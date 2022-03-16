@@ -1,7 +1,7 @@
 import React from 'react';
 import {NextPage} from "next";
 
-const Post: NextPage = () => {
+const News: NextPage = () => {
     return (
         <h1>
             Пост
@@ -9,4 +9,4 @@ const Post: NextPage = () => {
     );
 };
 
-export default Post;
+export default News;
