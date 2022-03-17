@@ -1,12 +1,13 @@
-import type {NextPage} from 'next'
+import React from 'react';
+import type {NextPage} from 'next';
 
 const Home: NextPage = () => {
 
-    return (
-        <>
-            <h1>Главная</h1>
-        </>
-    )
-}
+	return (
+		<>
+			<h1>Главная</h1>
+		</>
+	);
+};
 
-export default Home
+export default React.memo(Home);

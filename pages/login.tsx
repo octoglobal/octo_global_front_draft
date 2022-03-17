@@ -1,10 +1,10 @@
 import React from 'react';
 import type {NextPage} from 'next';
-import {useTranslate} from '../src/hooks/useTranslate';
+import {useTranslate} from '@/hooks/useTranslate';
 
 const Login: NextPage = () => {
 
-	const {language, handleChangeLanguage} = useTranslate();
+	const {handleChangeLanguage} = useTranslate();
 
 	return (
 		<>
@@ -14,4 +14,4 @@ const Login: NextPage = () => {
 	);
 };
 
-export default Login;
+export default React.memo(Login);

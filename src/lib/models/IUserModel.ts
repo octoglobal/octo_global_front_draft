@@ -3,7 +3,6 @@ export interface IUserModel {
 	readonly email: string;
 	readonly name: string;
 	readonly surname: string;
-	readonly password: string;
 	readonly salt: string;
 	readonly photo: string;
 	readonly username: string;

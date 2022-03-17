@@ -1,12 +1,13 @@
-import type {NextPage} from 'next'
+import React from 'react';
+import type {NextPage} from 'next';
 
 const Blog: NextPage = () => {
 
-    return (
-        <>
-            <h1>Блог</h1>
-        </>
-    )
-}
+	return (
+		<>
+			<h1>Блог</h1>
+		</>
+	);
+};
 
-export default Blog
+export default React.memo(Blog);

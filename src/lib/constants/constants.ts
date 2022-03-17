@@ -1,1 +1,2 @@
-const SECRET_KEY = process.env['NEXT_PUBLIC_SECRET_KEY '];
+export const SECRET_KEY = process.env['NEXT_PUBLIC_SECRET_KEY'];
+export const HOST = process.env['NEXT_PUBLIC_HOST'];

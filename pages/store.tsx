@@ -1,12 +1,13 @@
-import type {NextPage} from 'next'
+import React from 'react';
+import type {NextPage} from 'next';
 
 const Store: NextPage = () => {
 
-    return (
-        <>
-            <h1>Магазин</h1>
-        </>
-    )
-}
+	return (
+		<>
+			<h1>Магазин</h1>
+		</>
+	);
+};
 
-export default Store
+export default React.memo(Store);

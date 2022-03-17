@@ -2,9 +2,9 @@ import React from 'react';
 import 'normalize.css';
 import '../src/styles/globals.css';
 import {Provider} from 'react-redux';
-import {setupStore} from '../src/store/store';
 import type {AppProps} from 'next/app';
-import MainLayout from '../src/layout/MainLayout/MainLayout';
+import {setupStore} from '@/store/store';
+import MainLayout from '@/layout/MainLayout/MainLayout';
 
 function MyApp({Component, pageProps}: AppProps) {
 

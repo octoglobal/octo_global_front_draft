@@ -1,12 +1,12 @@
 import React from 'react';
-import {NextPage} from "next";
+import {NextPage} from 'next';
 
 const News: NextPage = () => {
-    return (
-        <h1>
+	return (
+		<h1>
             Пост
-        </h1>
-    );
+		</h1>
+	);
 };
 
-export default News;
+export default React.memo(News);

@@ -1,12 +1,7 @@
-import type {NextPage} from 'next'
+import React from 'react';
+import type {NextPage} from 'next';
+import SingUpPage from '@/components/SignUp/SignUp';
 
-const SignUp: NextPage = () => {
+const SignUp: NextPage = () => <SingUpPage/>;
 
-    return (
-        <>
-            <h1>Регистрация</h1>
-        </>
-    )
-}
-
-export default SignUp
+export default React.memo(SignUp);

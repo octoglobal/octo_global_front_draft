@@ -1,12 +1,13 @@
-import type {NextPage} from 'next'
+import React from 'react';
+import type {NextPage} from 'next';
 
 const Reset: NextPage = () => {
 
-    return (
-        <>
-            <h1>Востановление пароля</h1>
-        </>
-    )
-}
+	return (
+		<>
+			<h1>Востановление пароля</h1>
+		</>
+	);
+};
 
-export default Reset
+export default React.memo(Reset);
