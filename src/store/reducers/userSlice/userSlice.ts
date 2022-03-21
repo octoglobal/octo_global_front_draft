@@ -1,10 +1,23 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {fetchUserAutoLogin, fetchUserLogin, fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
+import {IUserModel} from '@/models/IUserModel';
 
-const initialState = {
-	id: 0,
-	email: '',
-	name: '',
-	surname: '',
+export interface IUserSlice {
+	user: IUserModel,
+}
+
+const initialState: IUserSlice = {
+	user: {
+		id: 0,
+		email: '',
+		lastLoginTime: '',
+		name: '',
+		photo: '',
+		registrationTime: '',
+		surname: '',
+		username: '',
+		verifiedEmail: false
+	}
 };
 
 export const userSlice = createSlice({
@@ -12,6 +25,25 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: {
+		[fetchUserLogin.fulfilled.type]: (state, data: PayloadAction<IUserSlice>) => {
+			state.user = data.payload.user;
+		},
+		[fetchUserAutoLogin.fulfilled.type]: (state, data: PayloadAction<IUserSlice>) => {
+			state.user = data.payload.user;
+		},
+		[fetchUserLogout.fulfilled.type]: (state) => {
+			state.user = {
+				id: 0,
+				email: '',
+				lastLoginTime: '',
+				name: '',
+				photo: '',
+				registrationTime: '',
+				surname: '',
+				username: '',
+				verifiedEmail: false
+			};
+		}
 	},
 });
 

@@ -7,8 +7,8 @@ import {useSignUp} from '@/components/SignUp/useSignUp';
 
 const SignUp = () => {
 
-	const {handleSubmit, control} = useForm();
-	const {onSubmit, resError} = useSignUp();
+	const {handleSubmit, control, setError} = useForm();
+	const {onSubmit} = useSignUp(setError);
 
 	return (
 		<Box component='form' onSubmit={handleSubmit(onSubmit)}>
@@ -17,7 +17,7 @@ const SignUp = () => {
 					name: 'name',
 					control,
 					defaultValue: '',
-					rules: {required: true, maxLength: 20}
+					rules: {required: true}
 				}}
 				inputProps={{
 					label: 'Имя',
@@ -31,7 +31,7 @@ const SignUp = () => {
 					name: 'surname',
 					control,
 					defaultValue: '',
-					rules: {required: true, maxLength: 20}
+					rules: {required: true}
 				}}
 				inputProps={{
 					label: 'Фамилия',
@@ -45,7 +45,7 @@ const SignUp = () => {
 					name: 'email',
 					control,
 					defaultValue: '',
-					rules: {required: true, maxLength: 20}
+					rules: {required: true}
 				}}
 				inputProps={{
 					label: 'Почта',
@@ -83,7 +83,6 @@ const SignUp = () => {
 					helperText: 'Заполните поле "Повторите пароль"'
 				}}
 			/>
-			<Box>{resError}</Box>
 			<ButtonUI type='submit'>
 				Войти
 			</ButtonUI>

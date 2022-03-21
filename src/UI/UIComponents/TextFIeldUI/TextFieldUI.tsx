@@ -18,9 +18,9 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps}) => {
 				<TextField
 					{...inputProps}
 					value={value}
-					defaultValue={controller.defaultValue}
 					onChange={(e) => onChange(e.target.value)}
 					helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
+					error={!!error}
 				/>
 			)}
 		/>
