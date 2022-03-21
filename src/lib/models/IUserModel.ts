@@ -1,13 +1,11 @@
 export interface IUserModel {
-	readonly id: number;
 	readonly email: string;
+	readonly id: number;
+	readonly lastLoginTime: string;
 	readonly name: string;
-	readonly surname: string;
-	readonly salt: string;
 	readonly photo: string;
+	readonly registrationTime: string
+	readonly surname: string;
 	readonly username: string;
-	readonly statusId: number;
-	readonly registrationTime: Date;
-	readonly lastLoginTime: Date;
-	readonly deleteTime: Date;
+	readonly verifiedEmail: boolean;
 }
