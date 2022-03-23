@@ -9,8 +9,8 @@ const ButtonUI: FC<ButtonProps> = (props) => {
 
 	return (
 		<Button
-			{...props}
 			sx={ButtonStyle}
+			{...props}
 		>
 			{props.children}
 		</Button>

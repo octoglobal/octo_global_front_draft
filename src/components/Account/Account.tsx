@@ -1,38 +1,36 @@
-import React, {FC} from 'react';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
+import React, {FC, useEffect} from 'react';
 
-import AccountPersonalData from './AccountPersonalData/AccountPersonalData'
+import Tabs from '../AnyPage/Tabs/Tabs';
+import AccountUrlArray from './AccountTabsData.json';
+import {useCustomRouter} from '../../hooks/useCustomRouter';
 
 import {useAccountPageStyle} from './style';
 
+interface IAccoutPage {
+	children: React.ReactChild | React.ReactNode,
+}
 
-const AccountPage: FC = () => {
+const AccountPage: FC<IAccoutPage> = ({children}) => {
 	const {
-		AccountWrapper,
-		Tab,
-		TabPanel,
-		TabsList
+		AccountWrapperUI,
 	} = useAccountPageStyle();
 
+	const {router, pushTo} = useCustomRouter();
+
+	// TODO: исправить - пока что захардкожено
+	useEffect(() => {
+		if(router.asPath.includes('info') && !router.asPath.includes('location')) {
+			pushTo(router.asPath, {location: 'ger'});
+		}
+	}, [router.asPath]);
+
 	return (
-		<AccountWrapper>
-			<TabsUnstyled defaultValue={0}>
-				<TabsList>
-					<Tab>Личные данные</Tab>
-					<Tab>Заказы</Tab>
-				</TabsList>
-				<TabPanel
-					value={0}
-				>
-					<AccountPersonalData />
-				</TabPanel>
-				<TabPanel
-					value={1}
-				>
-					Заказы content
-				</TabPanel>
-			</TabsUnstyled>
-		</AccountWrapper>
+		<AccountWrapperUI>
+			<Tabs
+				data={AccountUrlArray}
+			/>
+			{children}
+		</AccountWrapperUI>
 
 	);
 };

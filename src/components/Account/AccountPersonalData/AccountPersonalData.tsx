@@ -7,13 +7,13 @@ import {useAccountPersonalDataStyle} from './style';
 
 const AccountPersonalData: FC = () => {
 
-	const {PersonalDataWrapper} = useAccountPersonalDataStyle();
+	const {PersonalDataWrapperUI} = useAccountPersonalDataStyle();
 
 	return (
-		<PersonalDataWrapper >
+		<PersonalDataWrapperUI >
 			<AccountSettings />
 			<AccountLocations />
-		</PersonalDataWrapper>
+		</PersonalDataWrapperUI>
 	);
 };
 

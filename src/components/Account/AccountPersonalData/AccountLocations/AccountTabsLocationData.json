@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Германия",
+        "url": "",
+        "query": {
+            "location": "ger"
+        }
+    },
+    {
+        "title": "Нидерланды",
+        "url": "",
+        "query": {
+            "location": "nld"
+        }
+    },
+    {
+        "title": "Финляндия",
+        "url": "",
+        "query": {
+            "location": "fin"
+        }
+    },
+    {
+        "title": "Россия",
+        "url": "",
+        "query": {
+            "location": "rus"
+        }
+    }
+]

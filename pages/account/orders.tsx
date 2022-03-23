@@ -1,14 +1,14 @@
 import React from 'react';
 import {NextPage} from 'next';
-import {Box} from '@mui/material';
 
 import AccountPage from '../../src/components/Account/Account';
+import AccountOrders from '../../src/components/Account/AccountOrders/AccountOrders';
 
 const Account: NextPage = () => {
 	return (
-		<Box>
-			<AccountPage />
-		</Box>
+		<AccountPage>
+			<AccountOrders />
+		</AccountPage>
 	);
 };
 

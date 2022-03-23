@@ -21,11 +21,12 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps}) => {
 			rules={controller.rules}
 			render={({field: {value, onChange}, fieldState: {error}}) => (
 				<TextField
-					{...inputProps}
 					sx={TextFieldStyle}
+					{...inputProps}
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
 					helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
+					// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
 					error={!!error}
 				/>
 			)}
