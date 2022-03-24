@@ -12,13 +12,16 @@ export const useAccountSettingsStyle = () => {
 	}));
 
 	const FormTableUI = styled('div')(() => ({
-		// border: '1px solid green',
+
+		display: 'grid',
+		gridTemplateColumns: '130px auto',
+		gridTemplateRows: 'auto auto auto auto auto auto',
+		gridColumnGap: '20px',
+		gridRowGap: '15px',
+		marginBottom: '15px',
 	}));
 
 	const FormTableUserUI = styled('div')(() => ({
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
 		marginBottom: '26px',
 	}));
 
@@ -70,6 +73,8 @@ export const useAccountSettingsStyle = () => {
 		flexDirection: 'row',
 		alignItems: 'center',
 
+		width: 'auto',
+
 		'& p': {
 			fontFamily: 'Roboto',
 			fontStyle: 'normal',
@@ -97,14 +102,49 @@ export const useAccountSettingsStyle = () => {
 		height: '32px',
 	};
 
+	const FormTextFieldWrapperUI = styled('div')(() => ({
+		'& .MuiFormControl-root': {
+			border: 'none',
+			boxShadow: 'none',
+
+			height: 'auto',
+		},
+
+		'& .MuiFormControl-root input:focus ': {
+			border: '1px solid #DFE4EC',
+			boxSizing: 'border-box',
+			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		}
+	}));
+
+
+	const FormTextFieldPasswordWrapperUI = styled('div')(() => ({
+		'& .MuiFormControl-root': {
+			// border: 'none',
+			// boxShadow: 'none',
+
+			border: '1px solid #DFE4EC',
+			boxSizing: 'border-box',
+			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+
+			height: 'auto',
+		},
+
+		'& .MuiFormControl-root input:focus ': {
+			// border: '1px solid #DFE4EC',
+			// boxSizing: 'border-box',
+			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		}
+	}));
+
 	const FormTextFieldUI = {
 		width: '50%',
-		height: '32px',
+		height: '32px !important',
 		textAlign: 'start',
 
-		border: '1px solid #DFE4EC',
-		boxSizing: 'border-box',
-		boxShadow:' 0px 4px 4px rgba(0, 0, 0, 0.03)',
+		// border: '1px solid #DFE4EC',
+		// boxSizing: 'border-box',
+		// boxShadow:' 0px 4px 4px rgba(0, 0, 0, 0.03)',
 
 		'& label': {
 			transform: 'translate(14px, 2px) scale(1)',
@@ -113,6 +153,7 @@ export const useAccountSettingsStyle = () => {
 		'& .MuiOutlinedInput-root': {
 			'& input': {
 				padding: '0px 14px',
+				height: '32px !important',
 			},
 
 			'& fieldset': {
@@ -136,6 +177,8 @@ export const useAccountSettingsStyle = () => {
 		UserAvatarUI,
 		FormButtonUI,
 		FormTextFieldUI,
+		FormTextFieldWrapperUI,
+		FormTextFieldPasswordWrapperUI,
 		FormTableRowUI,
 		FormTableEndUI,
 		SettingsWrapperUI,

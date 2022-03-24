@@ -17,7 +17,7 @@ const CustomLinkUI : FC<ICustomLinkUI> = (
 	}
 ) => {
 
-	const {LinkUI} = useLinkStyle()
+	const {LinkUI} = useLinkStyle();
 
 	return (
 		<Link

@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 
+import AddressUser from './AddressUser/AddressUser';
 import AddLocationForm from '../../../forms/AddLocationForm/AddLocationForm';
 import AccountUrlArray from './AccountTabsLocationData.json';
 import Tabs from '../../../AnyPage/Tabs/Tabs';
@@ -8,6 +9,7 @@ import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 import { useCustomRouter } from '../../../../hooks/useCustomRouter';
 
 import { useAccountLocationStyle } from './style';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 const AccountLocations: FC = () => {
 	const {
@@ -18,6 +20,7 @@ const AccountLocations: FC = () => {
 		LocationAddressUI,
 		LocationContentUI,
 		LocationContainerUI,
+		ButtonAdd
 	} = useAccountLocationStyle();
 
 	const { router } = useCustomRouter();
@@ -36,8 +39,16 @@ const AccountLocations: FC = () => {
 					<Tabs data={AccountUrlArray} />
 					<LocationContentUI>
 						{router?.query?.location === 'rus' ? (
-							// TODO: вынести в отдельный компонент и выводить прошлые формы и новую при кнопке добавить адрес
-							<AddLocationForm />
+							<>
+								{/* TODO: вынести в отдельный компонент и выводить прошлые формы и новую при кнопке добавить адрес */}
+								<AddressUser />
+								<ButtonUI
+									style={ButtonAdd}
+								>
+									+ Добавить адрес
+								</ButtonUI>
+								<AddLocationForm />
+							</>
 						) : (
 							<>
 								<LocationAddressUI>

@@ -5,6 +5,12 @@ export const useAccountPageStyle = () => {
 		width: '100%',
 		height: '100%',
 
+		marginTop: '60px',
+
+		'& .TabsUnstyled-root': {
+			width: '80%',
+		},
+
 		'& .TabsListUnstyled-root button': {
 			margin: '0 50px',
 		}

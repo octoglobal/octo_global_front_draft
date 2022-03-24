@@ -11,7 +11,6 @@ export const useAddLocationFormStyle = () => {
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '21px',
 		gridRowGap: '10px',
-
 	}));
 
 	const FormRowTitle = styled('div')(() => ({
@@ -41,6 +40,6 @@ export const useAddLocationFormStyle = () => {
 		FormWrapper,
 		FormRowTitle,
 		FormRowTextField,
-		ButtonSubmitUI
+		ButtonSubmitUI,
 	};
 };

@@ -7,6 +7,11 @@ export const useLinkStyle = () => {
 		cursor: 'pointer',
 		textDecoration: 'none',
 
+		fontStyle: 'normal',
+		fontWeight: '400',
+		fontSize: '18px',
+		lineHeight: '21px',
+
 		'&:link': {
 			color: '#000000',
 		},

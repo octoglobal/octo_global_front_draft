@@ -8,6 +8,9 @@ export const useTabsStyle = () => {
 
 	const TabWrapperUI = styled('div')(() => ({
 		width: '100%',
+
+		display: 'flex',
+		justifyContent: 'center',
 	}));
 
 	const TabUI = styled(TabUnstyled)(() => ({
@@ -17,7 +20,8 @@ export const useTabsStyle = () => {
 		lineHeight: '28px',
 
 		color: '#000000',
-		backgroundColor: '#fff',
+		// backgroundColor: '#fff',
+		backgroundColor: 'transparent',
 		cursor: 'pointer',
 		border: 'none',
 

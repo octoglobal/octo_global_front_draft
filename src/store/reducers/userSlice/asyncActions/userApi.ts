@@ -42,6 +42,7 @@ export const fetchUserRegistration = async (data: IUserRegistrationReq) => {
 export const fetchUserLogout = createAsyncThunk(
 	'user/logout',
 	async (__, thunkAPI) => {
+		console.log('fetchUserLogout');
 		try {
 			const response = await octoAxios.get<IUserDefaultRes>('/logout');
 			return response.data;

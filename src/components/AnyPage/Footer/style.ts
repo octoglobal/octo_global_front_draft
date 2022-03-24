@@ -5,7 +5,7 @@ export const useFooterStyle = () => {
 
 	const FooterWrapperUI = styled('footer')(() => ({
 		height: '159px',
-		background: '#234A82',
+		background: '#274D82',
 		color: '#FFFFFF',
 		fontFamily: 'Roboto',
 		padding: '25px 80px',

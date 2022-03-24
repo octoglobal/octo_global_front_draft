@@ -5,7 +5,6 @@ import Footer from '@/components/AnyPage/Footer/Footer';
 import Theme from '../../theme/theme';
 import {useUpdateRefresh} from '@/hooks/useUpdateRefresh';
 import {useUserStore} from '@/hooks/useUserStore';
-
 interface MainLayout {
 	children: React.ReactChild | React.ReactNode;
 }

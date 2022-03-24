@@ -9,6 +9,8 @@ export const useAccountPersonalDataStyle = () => {
 
 		display: 'flex',
 		flexDirection: 'row',
+
+		border: '1px solid purple',
 	}));
 
 	return {

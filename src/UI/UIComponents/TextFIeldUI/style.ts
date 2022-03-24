@@ -1,4 +1,27 @@
+import {styled} from '@mui/material';
+
 export const useTextFieldUIStyle = () => {
+
+	const TextFieldUI = styled('div')(() => ({
+		width: '100%',
+		position: 'relative',
+
+		zIndex: '1',
+
+		'& .MuiFormControl-root': {
+			width: '100%',
+		},
+
+		'& .MuiFormHelperText-root': {
+			fontFamily: 'Roboto',
+			fontStyle: 'normal',
+			fontWeight: '400',
+			fontSize: '10px',
+			lineHeight: '12px',
+			color: '#F35151',
+			textAlign: 'end',
+		}
+	}));
 
 	const TextFieldStyle = {
 		width: '100%',
@@ -19,10 +42,27 @@ export const useTextFieldUIStyle = () => {
 		},
 		'& input': {
 			width: '100%',
-		}
+
+			'&::placeholder': {
+				fontStyle: 'normal',
+				fontWeight: '300',
+				fontSize: '14px',
+				lineHeight: '16px',
+				color: '#C4C4C4',
+			  }
+		},
 	};
 
+	const IconUI = styled('span')(() => ({
+		position: 'absolute',
+		top: '4px',
+		right: '7px',
+		zIndex: '2',
+	}));
+
 	return {
+		TextFieldUI,
 		TextFieldStyle,
+		IconUI
 	};
 };

@@ -9,8 +9,7 @@ import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 
 import {useFormsStyle} from '../style';
 
-// TODO: перенести в другую папку
-import {useLogin} from '../../Login/useLogin';
+import {useLogin} from './useLogin';
 
 const LoginForm = () => {
 
@@ -66,7 +65,7 @@ const LoginForm = () => {
 
 					<FormsButton>
 						<ButtonUI type='submit'>
-							Зарегистрироваться
+							Войти
 						</ButtonUI>
 					</FormsButton>
 

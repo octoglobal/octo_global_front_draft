@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Box, Typography } from '@mui/material';
+import {Box } from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import {useAddLocationFormStyle} from './style';
@@ -9,9 +9,9 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 const AddLocationForm: FC = () => {
 	const {
 		FormWrapper,
-        FormRowTitle,
-        FormRowTextField,
-		ButtonSubmitUI
+		FormRowTitle,
+		FormRowTextField,
+		ButtonSubmitUI,
 	} = useAddLocationFormStyle();
 
 	const {control} = useForm();
@@ -22,19 +22,19 @@ const AddLocationForm: FC = () => {
 				<FormRowTitle>Имя</FormRowTitle>
 				<FormRowTextField>
 					<TextFieldUI
-							controller={{
-								name: 'name',
-								control,
-								defaultValue: '',
-								rules: {required: true}
-							}}
-							inputProps={{
-								// label: 'Email',
-								name: 'name',
-								type: 'text',
-								required: true,
-								helperText: 'Заполните поле "Почта"',
-							}}
+						controller={{
+							name: 'name',
+							control,
+							defaultValue: '',
+							rules: {required: true}
+						}}
+						inputProps={{
+							// label: 'Email',
+							name: 'name',
+							type: 'text',
+							required: true,
+							helperText: 'Заполните поле "Почта"',
+						}}
 					/>
 				</FormRowTextField>
 

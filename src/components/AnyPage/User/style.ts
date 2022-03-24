@@ -6,7 +6,8 @@ export const useUserStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginBottom: '26px',
+
+		cursor: 'pointer',
 	}));
 
 	const UserAvatarUI = styled('span')(() => ({

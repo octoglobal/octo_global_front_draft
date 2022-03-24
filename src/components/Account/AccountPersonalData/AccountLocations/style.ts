@@ -21,6 +21,14 @@ export const useAccountLocationStyle = () => {
 		alignItems: 'center',
 		padding: '21px 38px',
 
+		'& .TabsUnstyled-root': {
+			width: '95%',
+		},
+
+		'& .TabsListUnstyled-root': {
+			paddingBottom: '20px',
+		},
+
 		'& .TabsListUnstyled-root button': {
 			margin: '0 25px',
 		}
@@ -65,6 +73,19 @@ export const useAccountLocationStyle = () => {
 		marginBottom: '40px'
 	}));
 
+	const ButtonAdd = {
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '300',
+		fontSize: '20px',
+		lineHeight: '22px',
+		color: 'rgb(0, 0, 0)',
+		background: '#fff',
+
+		width: '220px',
+		height: '28px',
+	};
+
 	return {
 		TypographyUI,
 		LocationButtonUI,
@@ -73,5 +94,6 @@ export const useAccountLocationStyle = () => {
 		LocationAddressUI,
 		LocationContentUI,
 		LocationContainerUI,
+		ButtonAdd
 	};
 };
