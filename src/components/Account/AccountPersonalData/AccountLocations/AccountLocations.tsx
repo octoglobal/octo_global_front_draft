@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
+import {Collapse} from '@mui/material';
 
-import AddressUser from './AddressUser/AddressUser';
+// import AddressUser from './AddressUser/AddressUser';
 import AddLocationForm from '../../../forms/AddLocationForm/AddLocationForm';
 import AccountUrlArray from './AccountTabsLocationData.json';
 import Tabs from '../../../AnyPage/Tabs/Tabs';
@@ -26,9 +27,15 @@ const AccountLocations: FC = () => {
 	const { router } = useCustomRouter();
 
 	const [openRules, setOpenRules] = useState(false);
+	const [operForm, setOpenForm] = useState(false);
 
 	const handlerOpenPromt = () => {
 		setOpenRules(!openRules);
+	};
+
+	const handlerOpenForm = () => {
+		// TODO: добавить всякие проверки на появление формы добавления адреса
+		setOpenForm(!operForm);
 	};
 
 	return (
@@ -41,13 +48,17 @@ const AccountLocations: FC = () => {
 						{router?.query?.location === 'rus' ? (
 							<>
 								{/* TODO: вынести в отдельный компонент и выводить прошлые формы и новую при кнопке добавить адрес */}
-								<AddressUser />
+								{/* <AddressUser /> */}
+								<AddLocationForm disabledTextField={true} />
 								<ButtonUI
 									style={ButtonAdd}
+									onClick={handlerOpenForm}
 								>
-									+ Добавить адрес
+										Добавить адрес
 								</ButtonUI>
-								<AddLocationForm />
+								<Collapse in={operForm}>
+									<AddLocationForm />
+								</Collapse>
 							</>
 						) : (
 							<>

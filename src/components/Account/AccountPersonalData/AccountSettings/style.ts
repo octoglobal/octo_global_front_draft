@@ -5,6 +5,12 @@ export const useAccountSettingsStyle = () => {
 	const SettingsWrapperUI = styled('div')(() => ({
 		width: '100%',
 		height: '100%',
+
+		'& form': {
+			display: 'flex',
+			justifyContent: 'center',
+			marginRight: '145px',
+		}
 	}));
 
 	const FormsWrapperBoxUI = styled('div')(() => ({
@@ -14,7 +20,7 @@ export const useAccountSettingsStyle = () => {
 	const FormTableUI = styled('div')(() => ({
 
 		display: 'grid',
-		gridTemplateColumns: '130px auto',
+		gridTemplateColumns: '150px auto',
 		gridTemplateRows: 'auto auto auto auto auto auto',
 		gridColumnGap: '20px',
 		gridRowGap: '15px',

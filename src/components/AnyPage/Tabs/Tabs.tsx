@@ -1,22 +1,22 @@
 import React, {FC} from 'react';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 
+import {ObjectHasOwnProperty} from '../../../lib/services/services';
 import {useCustomRouter} from '../../../hooks/useCustomRouter';
 import {useTabsStyle} from './style';
 
 interface ITabsQueryProps {
-	location: string;
+	[key: string]: string;
 }
 
 interface ITabsProps {
 	data: Array<{
 		title: string,
 		url: string,
-		query: object | ITabsQueryProps
+		query: ITabsQueryProps
 	}>
 }
 
-// TODO: добавить interface полям data
 const Tabs: FC<ITabsProps> = ({data}) => {
 
 	const {
@@ -34,7 +34,10 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		pushTo(urlTo, query);
 	};
 
-	const checkActiveClass = (url : string, location : string) : string => {
+	const checkActiveClass = (url : string, query : object) : string => {
+
+		const location = ObjectHasOwnProperty(query, 'location') ? query.location : '';
+
 		if(url) {
 			if( router.asPath.includes(url) ) {
 				return 'Mui-selected';
@@ -56,8 +59,8 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 					{data.map((item, i) => (
 						<TabUI
 							key={i}
+							className={checkActiveClass(item.url, item.query)}
 							onClick={() => handlerPushToTab(item?.url, item?.query)}
-							className={checkActiveClass(item?.url, item?.query?.location)}
 						>
 							{item.title}
 						</TabUI>

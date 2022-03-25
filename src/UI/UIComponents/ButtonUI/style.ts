@@ -2,7 +2,7 @@ export const useButtonUIStyle = () => {
 
 	const ButtonStyle = {
 		background: '#274D82',
-		opacity: '0.8',
+		opacity: '1',
 		borderRadius: '3px',
 		marginBottom: '15px',
 		height: '40px',
@@ -13,8 +13,8 @@ export const useButtonUIStyle = () => {
 		fontWeight: '300',
 		fontSize: '14px',
 		lineHeight: '16px',
-		color: '#FFFFFF',
-		textAlign: 'center'
+		color: '#FFFFFF !important',
+		textAlign: 'center',
 	};
 
 	return {

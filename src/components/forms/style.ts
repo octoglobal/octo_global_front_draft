@@ -1,15 +1,15 @@
-import {styled} from '@mui/material';
+import {styled, FormHelperText} from '@mui/material';
 
 export const useFormsStyle = () => {
 
-	const FormsWrapperBox = styled('div')(({theme}) => ({
+	const FormsWrapperBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 
 		padding: '20px 0px 0px',
 	}));
 
-	const FormsFooterInfoBox = styled('div')(({theme}) => ({
+	const FormsFooterInfoBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 		marginBottom: '15px',
@@ -21,7 +21,7 @@ export const useFormsStyle = () => {
 		color: '#000000',
 	}));
 
-	const FormsLink = styled('div')(({theme}) => ({
+	const FormsLink = styled('div')(() => ({
 		fontWeight: '300',
 		fontSize: '12px',
 		lineHeight: '14px',
@@ -30,15 +30,19 @@ export const useFormsStyle = () => {
 		display: 'inline-block',
 	}));
 
-	const FormsInput = styled('div')(({theme}) => ({
+	const FormsInput = styled('div')(() => ({
 		marginBottom: '20px',
 	}));
 
-	const FormsButton = styled('div')(({theme}) => ({
+	const FormsButton = styled('div')(() => ({
 		marginBottom: '15px',
+
+		'& .Mui-disabled': {
+			opacity: '0.8',
+		}
 	}));
 
-	const FormsDescription = styled('div')(({theme}) => ({
+	const FormsDescription = styled('div')(() => ({
 		marginBottom: '15px',
 
 		'& p': {
@@ -50,10 +54,11 @@ export const useFormsStyle = () => {
 		},
 	}));
 
-	const FormsCheckBoxWrapper = styled('div')(({theme}) => ({
+	const FormsCheckBoxWrapper = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginBottom: '21px',
+		position: 'relative',
 
 		'& p': {
 			fontStyle: 'normal',
@@ -72,6 +77,21 @@ export const useFormsStyle = () => {
 
 	}));
 
+	const FormHelperErrorUI = styled(FormHelperText)(() => ({
+		position: 'absolute',
+		top: '22px',
+		right: '0',
+
+		'& span': {
+			fontFamily: 'Roboto',
+			fontStyle: 'normal',
+			fontWeight: '400',
+			fontSize: '10px',
+			lineHeight: '12px',
+			color: 'red !important',
+		}
+	}));
+
 	return {
 		FormsWrapperBox,
 		FormsFooterInfoBox,
@@ -79,6 +99,7 @@ export const useFormsStyle = () => {
 		FormsInput,
 		FormsButton,
 		FormsCheckBoxWrapper,
-		FormsDescription
+		FormsDescription,
+		FormHelperErrorUI
 	};
 };

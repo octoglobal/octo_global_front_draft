@@ -2,22 +2,37 @@ import React, {FC} from 'react';
 import {Box } from '@mui/material';
 import {useForm} from 'react-hook-form';
 
+import Basket from '../../../UI/UIIcon/Basket.svg';
 import {useAddLocationFormStyle} from './style';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
-const AddLocationForm: FC = () => {
+interface IAddLocationForm {
+	disabledTextField?: boolean
+}
+
+const AddLocationForm: FC<IAddLocationForm> = ({disabledTextField = false}) => {
 	const {
+		FormUI,
 		FormWrapper,
 		FormRowTitle,
 		FormRowTextField,
+		FormTextFieldUI,
 		ButtonSubmitUI,
+		FormIconUI
 	} = useAddLocationFormStyle();
 
 	const {control} = useForm();
 
+	const handlerDeleteLocation = () => {
+		if(!handlerDeleteLocation) return;
+
+		// TODO: добавить проверку на подтверждения удаления
+		console.log('handlerDeleteLocation');
+	}
+
 	return (
-		<Box component="form">
+		<FormUI>
 			<FormWrapper>
 				<FormRowTitle>Имя</FormRowTitle>
 				<FormRowTextField>
@@ -25,7 +40,7 @@ const AddLocationForm: FC = () => {
 						controller={{
 							name: 'name',
 							control,
-							defaultValue: '',
+							defaultValue: 'Anastasia',
 							rules: {required: true}
 						}}
 						inputProps={{
@@ -34,6 +49,8 @@ const AddLocationForm: FC = () => {
 							type: 'text',
 							required: true,
 							helperText: 'Заполните поле "Почта"',
+							sx: FormTextFieldUI,
+							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
@@ -44,7 +61,7 @@ const AddLocationForm: FC = () => {
 						controller={{
 							name: 'surname',
 							control,
-							defaultValue: '',
+							defaultValue: 'Khorobrykh',
 							rules: {required: true}
 						}}
 						inputProps={{
@@ -52,7 +69,9 @@ const AddLocationForm: FC = () => {
 							name: 'surname',
 							type: 'text',
 							required: true,
+							sx: FormTextFieldUI,
 							helperText: 'Заполните поле "Почта"',
+							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
@@ -63,7 +82,7 @@ const AddLocationForm: FC = () => {
 						controller={{
 							name: 'phone',
 							control,
-							defaultValue: '',
+							defaultValue: '+7 963 785 78 45',
 							rules: {required: true}
 						}}
 						inputProps={{
@@ -71,7 +90,9 @@ const AddLocationForm: FC = () => {
 							name: 'phone',
 							type: 'text',
 							required: true,
+							sx: FormTextFieldUI,
 							helperText: 'Заполните поле "Почта"',
+							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
@@ -82,7 +103,7 @@ const AddLocationForm: FC = () => {
 						controller={{
 							name: 'address',
 							control,
-							defaultValue: '',
+							defaultValue: 'г. Челябинск, ул. Пушкина, д. 52 кв. 88',
 							rules: {required: true}
 						}}
 						inputProps={{
@@ -90,12 +111,15 @@ const AddLocationForm: FC = () => {
 							name: 'address',
 							type: 'text',
 							required: true,
+							sx: FormTextFieldUI,
 							helperText: 'Заполните поле "Почта"',
+							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
 
 				<FormRowTitle></FormRowTitle>
+				{!disabledTextField && (
 				<FormRowTextField>
 					<ButtonUI
 						type="submit"
@@ -104,8 +128,15 @@ const AddLocationForm: FC = () => {
 						Сохранить
 					</ButtonUI>
 				</FormRowTextField>
+				)}
+
 			</FormWrapper>
-		</Box>
+			{disabledTextField && (
+				<FormIconUI onClick={handlerDeleteLocation}>
+					<Basket />
+				</FormIconUI>
+			)}
+		</FormUI>
 	);
 };
 

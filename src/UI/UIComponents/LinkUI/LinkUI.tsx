@@ -1,11 +1,11 @@
-import React, {FC} from "react";
-import Link from 'next/link'
+import React, {FC} from 'react';
+import Link from 'next/link';
 
 import {useLinkStyle} from './style';
 
 interface ICustomLinkUI {
 	href: string,
-	customRoot: string,
+	linkProps?: string,
 	children: React.ReactChildren
 }
 
@@ -29,7 +29,7 @@ const CustomLinkUI : FC<ICustomLinkUI> = (
 				{children}
 			</LinkUI>
 		</Link>
-	)
-}
+	);
+};
 
 export default React.memo(CustomLinkUI);

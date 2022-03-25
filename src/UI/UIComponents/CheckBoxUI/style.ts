@@ -10,7 +10,6 @@ export const useCheckBoxUIStyle = () => {
 			boxSizing: 'border-box',
 		},
 		'& span': {
-			// margin: '0 15px 0 0',
 			padding: '0',
 		}
 	};

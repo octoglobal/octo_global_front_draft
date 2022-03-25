@@ -1,42 +1,21 @@
 export const summ = (a: number, b: number) => a + b;
 
-export const isObjectEmpty = (obj = {}) => {
+export const isObjectEmpty = (obj = {}) : boolean => {
 	if (Object.keys(obj).length == 0) {
 		return true;
 	} else {
 		return false;
 	}
-}
+};
 
-export default function PhoneMask(e, value, setValue) {
+export const ObjectHasOwnProperty = (object = {}, property : string) : boolean => {
+	return Object.prototype.hasOwnProperty.call(object, property);
+};
 
-	let inputOnlyNumber = e.target.value.replace(/\D/g, "");
-
-	let formattedInputValue = "";
-
-	if (!inputOnlyNumber) {
-		setValue("");
-		return;
+export const getTrueItemInObj = (obj = {}) => {
+	const trueArr = [];
+	for (const [, value] of Object.entries(obj)) {
+		if (value) trueArr.push(value);
 	}
-
-	if (inputOnlyNumber[0] === "9") inputOnlyNumber = "7" + inputOnlyNumber;
-	formattedInputValue = "+7 ";
-	if (inputOnlyNumber.length > 1) {
-		formattedInputValue += "(" + inputOnlyNumber.substring(1, 4);
-	}
-	if (inputOnlyNumber.length >= 5) {
-		formattedInputValue += ") " + inputOnlyNumber.substring(4, 7);
-	}
-	if (inputOnlyNumber.length >= 8) {
-		formattedInputValue += "-" + inputOnlyNumber.substring(7, 9);
-	}
-	if (inputOnlyNumber.length >= 10) {
-		formattedInputValue += "-" + inputOnlyNumber.substring(9, 11);
-	}
-
-	if (e.target.value.length >= 0 && e.target.value.length <= 18) {
-		setValue(formattedInputValue);
-	}
-
-	return inputOnlyNumber
-}
+	return trueArr;
+};

@@ -2,12 +2,14 @@ import React, {FC, useState} from 'react';
 import {TextFieldProps} from '@mui/material';
 import {ControllerProps} from 'react-hook-form';
 
+import EyeOpen from '../../../UIIcon/EyeOpen.svg';
+import EyeClose from '../../../UIIcon/EyeClose.svg';
 import TextFieldUI from '../TextFieldUI';
 
 interface iconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
-	(onClick: never): void;
+	onClick: () => void;
 }
 
 interface ITextFieldUIProps {
@@ -17,7 +19,7 @@ interface ITextFieldUIProps {
 }
 
 // TODO: вынести типы пропсов в отдельный файл
-const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps}) => {
+const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps}) => {
 
 	const [showPassword, setShowPassword] = useState(false);
 
@@ -35,8 +37,9 @@ const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps, ico
 				type: showPassword ? 'text' : 'password'
 			}}
 			iconProps={{
-				...iconProps,
-				onClick: handlerShowPassword,
+				defaultIcon: EyeOpen,
+				activeIcon: EyeClose,
+				onClick: handlerShowPassword
 			}}
 		/>
 	);

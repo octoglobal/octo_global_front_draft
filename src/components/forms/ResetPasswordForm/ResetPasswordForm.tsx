@@ -39,7 +39,7 @@ const ResetPasswordForm = () => {
 								rules: {required: true}
 							}}
 							inputProps={{
-								label: 'Email',
+								placeholder	: 'Email',
 								name: 'email',
 								type: 'email',
 								required: true,

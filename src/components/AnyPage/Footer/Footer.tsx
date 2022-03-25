@@ -6,6 +6,8 @@ import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIcon.svg';
 //import WhatsUpIcon from '../../../UI/UIIcon/WhatsUpIcon.svg';
 import TelegramIcon from '../../../UI/UIIcon/TelegramIcon.svg';
 
+import {useMobile} from '../../../hooks/useMedia';
+
 import {useFooterStyle} from './style';
 
 const Footer = () => {
@@ -19,6 +21,10 @@ const Footer = () => {
 		IndexTitleUI,
 		FooterRowIconsUI
 	} = useFooterStyle();
+
+	const {isMobile} = useMobile();
+
+	console.log('isMobile: ', isMobile);
 
 	return (
 		<FooterWrapperUI>
@@ -44,9 +50,7 @@ const Footer = () => {
 			</FooterColumnBlockUI>
 
 			<FooterColumnBlockUI>
-
 				<FooterRowUI>
-
 					<FooterColumnBlockUI>
 						<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
 						<FooterRowIconsUI>
@@ -57,7 +61,7 @@ const Footer = () => {
 					</FooterColumnBlockUI>
 
 					<FooterColumnBlockUI>
-						<FooterColumnTextUI>Чаты поддержки</FooterColumnTextUI>
+						<FooterColumnTitleUI>Чаты поддержки</FooterColumnTitleUI>
 						<FooterRowIconsUI>
 							<TelegramIcon />
 							{/*<WhatsUpIcon />*/}
@@ -66,10 +70,11 @@ const Footer = () => {
 
 				</FooterRowUI>
 
-				<IndexTitleUI>Разработано студией INDEX</IndexTitleUI>
-
+				{!isMobile && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
 			</FooterColumnBlockUI>
 
+
+			{isMobile && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
 
 		</FooterWrapperUI>
 	);

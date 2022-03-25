@@ -5,7 +5,7 @@ export const useHeaderStyle = () => {
 	const HeaderWrapperUI = styled('header')(() => ({
 		height: '61px',
 		width: '100%',
-		padding: '12px 76px 12px 170px',
+		padding: '12px 80px',
 
 		background: '#FFFFFF',
 		// opacity: '0.1',
@@ -22,7 +22,7 @@ export const useHeaderStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		alignItems: 'baseline',
+		alignItems: 'center',
 	}));
 
 	const OctoIconsUI = styled('span')(() => ({

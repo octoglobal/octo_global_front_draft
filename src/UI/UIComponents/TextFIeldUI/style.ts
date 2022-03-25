@@ -55,7 +55,7 @@ export const useTextFieldUIStyle = () => {
 
 	const IconUI = styled('span')(() => ({
 		position: 'absolute',
-		top: '4px',
+		top: '20%',
 		right: '7px',
 		zIndex: '2',
 	}));

@@ -37,7 +37,7 @@ const LoginForm = () => {
 								rules: {required: true}
 							}}
 							inputProps={{
-								label: 'Email',
+								placeholder: 'Email',
 								name: 'email',
 								type: 'email',
 								required: true,
@@ -55,7 +55,7 @@ const LoginForm = () => {
 								rules: {required: true}
 							}}
 							inputProps={{
-								label: 'Пароль',
+								placeholder: 'Пароль',
 								name: 'password',
 								required: true,
 								helperText: 'Заполните поле "Пароль"'

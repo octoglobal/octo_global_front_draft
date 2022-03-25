@@ -118,6 +118,7 @@ export const useSignUpFormStyle = () => {
 		SignUpFormInput,
 		SignUpFormButton,
 		SignUpFormCheckBox,
-		SignUpFormCheckBoxWrapper
+		SignUpFormCheckBoxWrapper,
+		FormHelperErrorUI
 	};
 };

@@ -3,6 +3,7 @@ import {Checkbox, CheckboxProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
 
 import CheckBoxEmpty from '../../UIIcon/CheckBoxEmpty.svg';
+import CheckBoxFill from '../../UIIcon/CheckBoxFill.svg';
 
 import {useCheckBoxUIStyle} from './style';
 
@@ -25,9 +26,10 @@ const CheckBoxUI: FC<ICheckBoxUIProps> = ({controller, inputProps}) => {
 				<Checkbox
 					sx={CheckBoxStyle}
 					{...inputProps}
-					value={value}
+					checked={value}
 					icon={<CheckBoxEmpty />}
-					onChange={(e) => onChange(e.target.checked)}
+					checkedIcon={<CheckBoxFill />}
+					onChange={() => onChange(!value)}
 				/>
 			)}
 		/>

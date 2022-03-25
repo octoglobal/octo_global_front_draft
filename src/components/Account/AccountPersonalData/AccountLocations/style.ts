@@ -31,6 +31,10 @@ export const useAccountLocationStyle = () => {
 
 		'& .TabsListUnstyled-root button': {
 			margin: '0 25px',
+		},
+
+		'& form:last-child': {
+			marginBottom: '0',
 		}
 	}));
 
@@ -77,13 +81,13 @@ export const useAccountLocationStyle = () => {
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '20px',
-		lineHeight: '22px',
-		color: 'rgb(0, 0, 0)',
-		background: '#fff',
+		fontSize: '14px',
+		lineHeight: '16px',
+		textAlign: 'center',
 
-		width: '220px',
-		height: '28px',
+		width: '150px',
+		height: '32px',
+		marginBottom: '33px',
 	};
 
 	return {

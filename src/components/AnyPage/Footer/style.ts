@@ -2,9 +2,8 @@ import {styled} from '@mui/material';
 
 export const useFooterStyle = () => {
 
-
-	const FooterWrapperUI = styled('footer')(() => ({
-		height: '159px',
+	const FooterWrapperUI = styled('footer')(({theme}) => ({
+		// height: '166px',
 		background: '#274D82',
 		color: '#FFFFFF',
 		fontFamily: 'Roboto',
@@ -13,11 +12,20 @@ export const useFooterStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+
+		[theme.breakpoints.down(405)]: {
+			flexDirection: 'column',
+			padding: '15px',
+		}
 	}));
 
-	const FooterRowUI  = styled('div')(() => ({
+	const FooterRowUI  = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
+
+		[theme.breakpoints.down(405)]: {
+			justifyContent: 'space-between',
+		}
 	}));
 
 	const FooterRowIconsUI  = styled('div')(() => ({
@@ -29,12 +37,38 @@ export const useFooterStyle = () => {
 		}
 	}));
 
-	const FooterColumnBlockUI  = styled('div')(() => ({
+	const FooterColumnBlockUI  = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'column',
 
 		// width: '210px',
 		margin: '0 64px',
+
+		'&:first-child': {
+			marginLeft: '0px',
+		},
+
+		'&:last-child': {
+			marginRight: '0px',
+		},
+
+		[theme.breakpoints.down(405)]: {
+			margin: '10px 0',
+			borderTop: '1px solid rgba(223, 228, 236, 0.5)',
+
+			'&:nth-child(1)': {
+				order: '2'
+			},
+			'&:nth-child(2)': {
+				order: '3'
+			},
+			'&:nth-child(3)': {
+				order: '4'
+			},
+			'&:nth-child(4)': {
+				order: '1'
+			},
+		}
 	}));
 
 	const FooterColumnTitleUI  = styled('h6')(() => ({
@@ -51,7 +85,11 @@ export const useFooterStyle = () => {
 		fontWeight: '300',
 		fontSize: '14px',
 		lineHeight: '16px',
-		marginBottom: '15px'
+		marginBottom: '15px',
+
+		'&:last-child': {
+			marginBottom: '0px',
+		}
 	}));
 
 	const IndexTitleUI  = styled('p')(() => ({
