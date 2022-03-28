@@ -1,5 +1,4 @@
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabUnstyled from '@mui/base/TabUnstyled';
 
 import {styled} from '@mui/material';
@@ -13,7 +12,7 @@ export const useTabsStyle = () => {
 		justifyContent: 'center',
 	}));
 
-	const TabUI = styled(TabUnstyled)(() => ({
+	const TabUI = styled(TabUnstyled)(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '24px',
@@ -38,10 +37,25 @@ export const useTabsStyle = () => {
 			lineHeight: '28px',
 
 			color: '#000000',
+
+			[theme.breakpoints.down(500)]: {
+				fontFamily: 'Roboto',
+				fontSize: '18px',
+				lineHeight: '21px',
+			}
+		},
+
+		[theme.breakpoints.down(500)]: {
+			fontFamily: 'Roboto',
+			fontStyle: 'normal',
+			fontWeight: '300',
+			fontSize: '18px',
+			lineHeight: '21px',
+			color: '#000000',
 		}
 	}));
 
-	const TabsListUI = styled(TabsListUnstyled)(() => ({
+	const TabsListUI = styled(TabsListUnstyled)(({theme}) => ({
 		minWidth: '320px',
 		paddingBottom: '5px',
 		display: 'flex',
@@ -49,11 +63,12 @@ export const useTabsStyle = () => {
 		justifyContent: 'center',
 		alignContent: 'space-between',
 		borderBottom: '2px solid #C4C4C4',
-	}));
 
-	// const TabPanelUI = styled(TabPanelUnstyled)(() => ({
-	// 	width: '100%',
-	// }));
+		[theme.breakpoints.down(800)]: {
+			flexWrap: 'wrap',
+			borderBottom: '1px solid #C4C4C4',
+		}
+	}));
 
 	return {
 		TabWrapperUI,

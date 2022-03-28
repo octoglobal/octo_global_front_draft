@@ -3,14 +3,14 @@ import {styled} from '@mui/material';
 export const useSignUpFormStyle = () => {
 
 
-	const SignUpFormWrapperBox = styled('div')(({theme}) => ({
+	const SignUpFormWrapperBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 
 		padding: '20px 0px 0px',
 	}));
 
-	const SignUpFormFooterInfoBox = styled('div')(({theme}) => ({
+	const SignUpFormFooterInfoBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 		marginBottom: '15px',
@@ -24,17 +24,14 @@ export const useSignUpFormStyle = () => {
 		textAlign: 'center',
 	}));
 
-	const SignUpFormLink = styled('div')(({theme}) => ({
-		// fontWeight: '300',
-		// fontSize: '12px',
-		// lineHeight: '14px',
+	const SignUpFormLink = styled('div')(() => ({
 		color: '#234A82',
 		textDecoration: 'underline',
 
 		display: 'inline-block',
 	}));
 
-	const SignUpFormInput = styled('div')(({theme}) => ({
+	const SignUpFormInput = styled('div')(() => ({
 		width: '100%',
 		marginBottom: '20px',
 		height: '40px',
@@ -57,7 +54,7 @@ export const useSignUpFormStyle = () => {
 		}
 	}));
 
-	const SignUpFormButton = styled('div')(({theme}) => ({
+	const SignUpFormButton = styled('div')(() => ({
 		background: '#234A82',
 		opacity: '0.8',
 		borderRadius: '3px',
@@ -76,7 +73,7 @@ export const useSignUpFormStyle = () => {
 		}
 	}));
 
-	const SignUpFormCheckBox = styled('div')(({theme}) => ({
+	const SignUpFormCheckBox = styled('div')(() => ({
 		'& input': {
 			width: '20px',
 			height: '20px',
@@ -91,7 +88,7 @@ export const useSignUpFormStyle = () => {
 		}
 	}));
 
-	const SignUpFormCheckBoxWrapper = styled('div')(({theme}) => ({
+	const SignUpFormCheckBoxWrapper = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginBottom: '21px',
@@ -118,7 +115,6 @@ export const useSignUpFormStyle = () => {
 		SignUpFormInput,
 		SignUpFormButton,
 		SignUpFormCheckBox,
-		SignUpFormCheckBoxWrapper,
-		FormHelperErrorUI
+		SignUpFormCheckBoxWrapper
 	};
 };

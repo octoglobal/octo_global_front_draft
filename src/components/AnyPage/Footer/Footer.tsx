@@ -24,8 +24,6 @@ const Footer = () => {
 
 	const {isMobile} = useMobile();
 
-	console.log('isMobile: ', isMobile);
-
 	return (
 		<FooterWrapperUI>
 			<FooterColumnBlockUI>

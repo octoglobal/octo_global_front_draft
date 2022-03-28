@@ -1,7 +1,7 @@
 import {octoAxios} from '@/lib/http';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {IUserSlice} from '@/reducers/userSlice/userSlice';
-import axios from 'axios';
+// import {IUserSlice} from '@/reducers/userSlice/userSlice';
+// import axios from 'axios';
 
 
 export interface IUserAddresReq {
@@ -30,10 +30,12 @@ export const fetchDeleteAddress = createAsyncThunk(
 	// TODO: добавитьтип адресса к удалению адреса
 	async (data, thunkAPI) => {
 		try {
-			const response = await octoAxios.get<IAddressDefaultRes>('/', data);
-			return response.data;
+			// const response = await octoAxios.get<IAddressDefaultRes>('/', data);
+			// const response
+			// return response.data;
 		} catch (e) {
-			return thunkAPI.rejectWithValue('Ошибка apu address/delete')
+			return thunkAPI.rejectWithValue('Ошибка apu address/delete');
 		}
 	}
-)
+);
+	

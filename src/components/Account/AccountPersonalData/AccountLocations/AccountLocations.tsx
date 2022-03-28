@@ -1,16 +1,19 @@
 import React, { FC, useState } from 'react';
-import {Collapse} from '@mui/material';
+import {Collapse, Divider} from '@mui/material';
 
-// import AddressUser from './AddressUser/AddressUser';
+import AddressUser from './AddressUser/AddressUser';
 import AddLocationForm from '../../../forms/AddLocationForm/AddLocationForm';
-import AccountUrlArray from './AccountTabsLocationData.json';
 import Tabs from '../../../AnyPage/Tabs/Tabs';
 import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 import { useCustomRouter } from '../../../../hooks/useCustomRouter';
 
+import AccountUrlArray from './AccountTabsLocationData.json';
+import AccountAddressUserArray from './AccountAddressUserData.json';
+
+
 import { useAccountLocationStyle } from './style';
-import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 const AccountLocations: FC = () => {
 	const {
@@ -21,21 +24,22 @@ const AccountLocations: FC = () => {
 		LocationAddressUI,
 		LocationContentUI,
 		LocationContainerUI,
-		ButtonAdd
+		LocationFormUI,
+		LocationButtonsUI,
+		ButtonAdd,
+		ButtonShowAll
 	} = useAccountLocationStyle();
 
 	const { router } = useCustomRouter();
 
-	const [openRules, setOpenRules] = useState(false);
-	const [operForm, setOpenForm] = useState(false);
+	const [openRules, setOpenRules] = useState<boolean>(false);
+	const [operForm, setOpenForm] = useState<boolean>(false);
+	const [showAllLoc, setAllLoc] = useState<boolean>(false);
 
-	const handlerOpenPromt = () => {
-		setOpenRules(!openRules);
-	};
-
-	const handlerOpenForm = () => {
-		// TODO: добавить всякие проверки на появление формы добавления адреса
-		setOpenForm(!operForm);
+	const handlerToggleState = (setState : (prevState : (state: boolean) => boolean) => void) => {
+		return () => {
+			setState(prevState => !prevState);
+		};
 	};
 
 	return (
@@ -46,20 +50,48 @@ const AccountLocations: FC = () => {
 					<Tabs data={AccountUrlArray} />
 					<LocationContentUI>
 						{router?.query?.location === 'rus' ? (
-							<>
-								{/* TODO: вынести в отдельный компонент и выводить прошлые формы и новую при кнопке добавить адрес */}
-								{/* <AddressUser /> */}
-								<AddLocationForm disabledTextField={true} />
-								<ButtonUI
-									style={ButtonAdd}
-									onClick={handlerOpenForm}
-								>
-										Добавить адрес
-								</ButtonUI>
-								<Collapse in={operForm}>
-									<AddLocationForm />
-								</Collapse>
-							</>
+							<LocationFormUI>
+								<>
+									{AccountAddressUserArray.slice(0, !showAllLoc ? 2 : AccountAddressUserArray.length).map((address, i, arr) => (
+										<>
+											<AddressUser
+												key={address.id}
+												id={address.id}
+												name={address.name}
+												surname={address.surname}
+												phone={address.phone}
+												location={address.location}
+											/>
+											{i !== (arr.length - 1) &&
+												<Divider sx={{borderColor: '#274D82'}} />
+											}
+										</>
+									))}
+									<LocationButtonsUI>
+										<ButtonUI
+											style={ButtonShowAll}
+											onClick={handlerToggleState(setAllLoc)}
+										>
+											{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
+										</ButtonUI>
+										{!operForm ? (
+											<ButtonUI
+												style={ButtonAdd}
+												onClick={handlerToggleState(setOpenForm)}
+											>
+													Добавить адрес
+											</ButtonUI>
+										): (
+											<Divider sx={{borderColor: '#274D82'}} />
+										)}
+									</LocationButtonsUI>
+									<Collapse in={operForm}>
+										<AddLocationForm
+											setOpenForm={handlerToggleState(setOpenForm)}
+										/>
+									</Collapse>
+								</>
+							</LocationFormUI>
 						) : (
 							<>
 								<LocationAddressUI>
@@ -67,7 +99,7 @@ const AccountLocations: FC = () => {
 									Delaware (DE) 19720 +1-929-999-57-97
 								</LocationAddressUI>
 
-								<LocationButtonUI onClick={handlerOpenPromt}>
+								<LocationButtonUI onClick={handlerToggleState(setOpenRules)}>
 									Как заполнять
 								</LocationButtonUI>
 

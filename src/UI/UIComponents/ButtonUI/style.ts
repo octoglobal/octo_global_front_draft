@@ -13,8 +13,10 @@ export const useButtonUIStyle = () => {
 		fontWeight: '300',
 		fontSize: '14px',
 		lineHeight: '16px',
-		color: '#FFFFFF !important',
+		color: '#FFFFFF',
 		textAlign: 'center',
+
+		textTransform: 'none',
 	};
 
 	return {

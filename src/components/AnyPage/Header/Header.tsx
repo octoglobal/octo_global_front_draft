@@ -1,9 +1,11 @@
 import React from 'react';
 
+import MobileHeader from './MobileHeader/MobileHeader';
 import User from '../User/User';
 import CustomLinkUI from '../../../UI/UIComponents/LinkUI/LinkUI';
-import OctoGlobal from '../../../UI/UIIcon/OctoGlobal.svg';
-import OctoGlobalTextIcon from '../../../UI/UIIcon/OctoGlobalTextIcon.svg';
+import Logotip from '../../AnyPage/Header/Logotip/Logotip';
+
+import {useMobile} from '../../../hooks/useMedia';
 import {useUserStore} from '@/hooks/useUserStore';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {useCustomRouter} from '../../../hooks/useCustomRouter';
@@ -16,26 +18,23 @@ const Header = () => {
 		HeaderWrapperUI,
 		HeaderNavUI,
 		UserWrapperUI,
-		OctoIconsUI,
 		ButtonLoginUI
 	} = useHeaderStyle();
 
 	const {
-		user: {
-			id,
-			// name, surname
-		},
+		// user: {
+		// 	id,
+		// 	// name, surname
+		// },
 		isAuth
 	} = useUserStore();
+
+	const {isMobile} = useMobile();
 
 	const {pushTo} = useCustomRouter();
 
 	const handlerPushLogin = () => {
 		pushTo('/login');
-	};
-
-	const handlerPushHome = () => {
-		pushTo('/');
 	};
 
 	const handlerPushAccount = () => {
@@ -45,66 +44,67 @@ const Header = () => {
 	};
 
 	return (
-		<HeaderWrapperUI>
-			<OctoIconsUI
-				onClick={handlerPushHome}
-			>
-				<OctoGlobal />
-				<OctoGlobalTextIcon />
-			</OctoIconsUI>
+		<>
+			{!isMobile ? (
+				<HeaderWrapperUI>
+					<Logotip />
 
-			<HeaderNavUI>
-				<CustomLinkUI
-					href="#"
-				>
-					Магазины
-				</CustomLinkUI>
-
-				<CustomLinkUI
-					href="#"
-				>
-					Калькулятор
-				</CustomLinkUI>
-
-				<CustomLinkUI
-					href="#"
-				>
-					Блог
-				</CustomLinkUI>
-
-				<CustomLinkUI
-					href="#"
-				>
-					Стоимость услуг
-				</CustomLinkUI>
-
-				<CustomLinkUI
-					href="#"
-				>
-					Помощь
-				</CustomLinkUI>
-
-				<div>
-					{!isAuth ? (
-						<ButtonUI
-							style={ButtonLoginUI}
-							onClick={handlerPushLogin}
+					<HeaderNavUI>
+						<CustomLinkUI
+							href="#"
 						>
-							Войти
-						</ButtonUI>
-					) : (
-						<UserWrapperUI
-							onClick={handlerPushAccount()}
+							Магазины
+						</CustomLinkUI>
+
+						<CustomLinkUI
+							href="#"
 						>
-							{/* <User name={name} surname={surname} /> */}
-							<User />
-						</UserWrapperUI>
-					)}
-				</div>
+							Калькулятор
+						</CustomLinkUI>
+
+						<CustomLinkUI
+							href="#"
+						>
+							Блог
+						</CustomLinkUI>
+
+						<CustomLinkUI
+							href="#"
+						>
+							Стоимость услуг
+						</CustomLinkUI>
+
+						<CustomLinkUI
+							href="#"
+						>
+							Помощь
+						</CustomLinkUI>
+
+						<div>
+							{!isAuth ? (
+								<ButtonUI
+									style={ButtonLoginUI}
+									onClick={handlerPushLogin}
+								>
+									Войти
+								</ButtonUI>
+							) : (
+								<UserWrapperUI
+									onClick={handlerPushAccount()}
+								>
+									{/* <User name={name} surname={surname} /> */}
+									<User />
+								</UserWrapperUI>
+							)}
+						</div>
 
 
-			</HeaderNavUI>
-		</HeaderWrapperUI>
+					</HeaderNavUI>
+				</HeaderWrapperUI>
+			) : (
+				<MobileHeader />
+			)}
+		</>
 	);
 };
 

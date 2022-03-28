@@ -2,7 +2,7 @@ import {styled} from '@mui/material';
 
 export const useAccountSettingsStyle = () => {
 
-	const SettingsWrapperUI = styled('div')(() => ({
+	const SettingsWrapperUI = styled('div')(({theme}) => ({
 		width: '100%',
 		height: '100%',
 
@@ -10,6 +10,13 @@ export const useAccountSettingsStyle = () => {
 			display: 'flex',
 			justifyContent: 'center',
 			marginRight: '145px',
+		},
+
+		[theme.breakpoints.down(450005)]: {
+			marginTop: '10px',
+			'& form': {
+				marginRight: '0'
+			}
 		}
 	}));
 

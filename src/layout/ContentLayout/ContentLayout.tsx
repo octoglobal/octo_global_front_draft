@@ -8,7 +8,12 @@ interface ContentLayout {
 const ContentLayoutUI = styled('div')(({theme}) => ({
 	padding: '0 80px',
 
-	[theme.breakpoints.down(405)]: {
+
+	[theme.breakpoints.down(1024)]: {
+		padding: '15px',
+	},
+
+	[theme.breakpoints.down(500)]: {
 		padding: '15px',
 	}
 }));

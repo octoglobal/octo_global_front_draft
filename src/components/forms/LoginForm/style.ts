@@ -3,14 +3,14 @@ import {styled} from '@mui/material';
 export const useLoginFormStyle = () => {
 
 
-	const LoginFormWrapperBox = styled('div')(({theme}) => ({
+	const LoginFormWrapperBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 
 		padding: '20px 0px 0px',
 	}));
 
-	const LoginFormFooterInfoBox = styled('div')(({theme}) => ({
+	const LoginFormFooterInfoBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 		marginBottom: '15px',
@@ -22,7 +22,7 @@ export const useLoginFormStyle = () => {
 		color: '#000000',
 	}));
 
-	const LoginFormLink = styled('div')(({theme}) => ({
+	const LoginFormLink = styled('div')(() => ({
 		fontWeight: '300',
 		fontSize: '12px',
 		lineHeight: '14px',
@@ -31,7 +31,7 @@ export const useLoginFormStyle = () => {
 		display: 'inline-block',
 	}));
 
-	const LoginFormInput = styled('div')(({theme}) => ({
+	const LoginFormInput = styled('div')(() => ({
 		width: '100%',
 		marginBottom: '20px',
 		height: '40px',
@@ -54,7 +54,7 @@ export const useLoginFormStyle = () => {
 		}
 	}));
 
-	const LoginFormButton = styled('div')(({theme}) => ({
+	const LoginFormButton = styled('div')(() => ({
 		background: '#234A82',
 		opacity: '0.8',
 		borderRadius: '3px',

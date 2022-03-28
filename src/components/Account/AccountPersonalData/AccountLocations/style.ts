@@ -1,3 +1,4 @@
+import React from 'react';
 import {styled, Typography} from '@mui/material';
 
 export const useAccountLocationStyle = () => {
@@ -5,17 +6,34 @@ export const useAccountLocationStyle = () => {
 	const LocationWrapperUI = styled('div')(() => ({
 		width: '100%',
 		height: '100%',
+
+		display: 'flex',
+		justifyContent: 'center',
 	}));
 
-	const BorderWrapperUI = styled('div')(() => ({
-		width: '737px',
+	const BorderWrapperUI = styled('div')(({theme}) => ({
+		maxWidth: '737px',
+		width: 'auto',
 		height: 'auto',
 		background: '#FFFFFF',
 		border: '5px dashed #234A82',
 		boxSizing: 'border-box',
+
+		[theme.breakpoints.down(1024)]: {
+			width: 'auto',
+		},
+		[theme.breakpoints.down(800)]: {
+			width: '600px'
+		},
+		[theme.breakpoints.down(800)]: {
+			width: '500px'
+		},
+		[theme.breakpoints.down(500)]: {
+			width: '95%'
+		}
 	}));
 
-	const LocationContainerUI = styled('div')(() => ({
+	const LocationContainerUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -27,25 +45,68 @@ export const useAccountLocationStyle = () => {
 
 		'& .TabsListUnstyled-root': {
 			paddingBottom: '20px',
+			marginBottom: '20px',
 		},
 
 		'& .TabsListUnstyled-root button': {
-			margin: '0 25px',
+			margin: '0 15px',
 		},
 
-		'& form:last-child': {
-			marginBottom: '0',
+		// '& form:last-child': {
+		// 	marginBottom: '0',
+		// },
+
+		[theme.breakpoints.down(500)]: {
+			padding: '15px',
+
+			// скрываем адрес на мобилке
+			'& p:first-child': {
+				display: 'none'
+			},
+
+			'& .TabsListUnstyled-root': {
+				paddingBottom: '4px',
+				marginBottom: '0px',
+				justifyContent: 'center',
+			},
+
+			'& .TabsListUnstyled-root button': {
+				margin: '0 10px 0 0	',
+			},
 		}
 	}));
 
-	const LocationContentUI = styled('div')(() => ({
+	const LocationContentUI = styled('div')(({theme}) => ({
 		width: '100%',
 		height: '100%',
-		margin: '38px 0px 25px 0px',
+
+		[theme.breakpoints.down(500)]: {
+			margin: '0',
+
+			'& button': {
+				marginBottom: '0 !important',
+			}
+		}
 	}));
 
+	const LocationFormUI = styled('div')(({theme}) => ({
+		display: 'flex',
+		flexDirection: 'column',
 
-	const LocationAddressUI = styled('div')(() => ({
+		[theme.breakpoints.down(500)]: {
+			'& button': {
+				alignSelf: 'flex-end',
+			}
+		}
+	}));
+
+	const LocationButtonsUI = styled('div')(() => ({
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+	}));
+
+	const LocationAddressUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '24px',
@@ -53,7 +114,13 @@ export const useAccountLocationStyle = () => {
 		color: '#000000',
 		width: '351px',
 
-		marginBottom: '25px'
+		marginBottom: '25px',
+
+		[theme.breakpoints.down(500)]: {
+			marginTop: '15px',
+			fontSize: '18px',
+			lineHeight: '21px',
+		}
 	}));
 
 	const LocationButtonUI = styled('div')(() => ({
@@ -77,7 +144,7 @@ export const useAccountLocationStyle = () => {
 		marginBottom: '40px'
 	}));
 
-	const ButtonAdd = {
+	const ButtonAdd: React.CSSProperties = {
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
@@ -87,7 +154,25 @@ export const useAccountLocationStyle = () => {
 
 		width: '150px',
 		height: '32px',
-		marginBottom: '33px',
+		padding: '0',
+		margin: '0',
+		marginLeft: '25px'
+	};
+
+	const ButtonShowAll: React.CSSProperties = {
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '300',
+		fontSize: '18px',
+		lineHeight: '21px',
+		textAlign: 'center',
+		color: '#274D82',
+		background: 'inherit',
+
+		width: '236px',
+		height: '32px',
+		padding: '0',
+		margin: '0'
 	};
 
 	return {
@@ -98,6 +183,9 @@ export const useAccountLocationStyle = () => {
 		LocationAddressUI,
 		LocationContentUI,
 		LocationContainerUI,
-		ButtonAdd
+		LocationFormUI,
+		LocationButtonsUI,
+		ButtonAdd,
+		ButtonShowAll
 	};
 };

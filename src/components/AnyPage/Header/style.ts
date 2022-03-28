@@ -2,7 +2,7 @@ import {styled} from '@mui/material';
 
 export const useHeaderStyle = () => {
 
-	const HeaderWrapperUI = styled('header')(() => ({
+	const HeaderWrapperUI = styled('header')(({theme}) => ({
 		height: '61px',
 		width: '100%',
 		padding: '12px 80px',
@@ -15,18 +15,30 @@ export const useHeaderStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+
+		[theme.breakpoints.down(1024)]: {
+			padding: '12px 60px',
+		},
+
+		[theme.breakpoints.down(800)]: {
+			padding: '12px 10px',
+		}
 	}));
 
-	const HeaderNavUI = styled('nav')(() => ({
+	const HeaderNavUI = styled('nav')(({theme}) => ({
 		width: '70%',
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+
+		[theme.breakpoints.down(1024)]: {
+			width: '80%',
+		}
 	}));
 
 	const OctoIconsUI = styled('span')(() => ({
-		width: '30%',
+		width: '20%',
 
 		display: 'flex',
 		flexDirection: 'row',

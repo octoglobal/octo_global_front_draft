@@ -1,11 +1,11 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 import {useForm} from 'react-hook-form';
 import Link from 'next/link';
 import { ErrorMessage } from '@hookform/error-message';
 
 import {useSignUp} from '@/components/SignUp/useSignUp';
-import {getTrueItemInObj} from '../../../lib/services/services';
+// import {getTrueItemInObj} from '../../../lib/services/services';
 import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 import CheckBoxUI from '../../../UI/UIComponents/CheckBoxUI/CheckBoxUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
@@ -17,7 +17,7 @@ import {useFormsStyle} from '../style';
 
 const SignUpForm = () => {
 
-	const {handleSubmit, watch, control, setError, formState: { errors }} = useForm();
+	const {handleSubmit, control, setError, formState: { errors }} = useForm();
 	const {onSubmit} = useSignUp(setError);
 
 	const {
@@ -30,14 +30,14 @@ const SignUpForm = () => {
 		FormHelperErrorUI
 	} = useFormsStyle();
 
-	const selectItemLength = useMemo(
-		() => getTrueItemInObj(watch()),
-		[watch()]
-	);
+	// const selectItemLength = useMemo(
+	// 	() => getTrueItemInObj(watch()),
+	// 	[watch()]
+	// );
 
 	return (
-		<Box component="form" onSubmit={handleSubmit(onSubmit)}>
-			<FormComponent title="Регистрация">
+		<Box component='form' onSubmit={handleSubmit(onSubmit)}>
+			<FormComponent title='Регистрация'>
 				<FormsWrapperBox>
 					<FormsInput>
 						<TextFieldUI
@@ -131,7 +131,7 @@ const SignUpForm = () => {
 								name: 'publicOffer',
 								control,
 								defaultValue: false,
-								rules: { required: "Заполните все поля" },
+								rules: { required: 'Заполните все поля' },
 							}}
 						/>
 
@@ -151,7 +151,7 @@ const SignUpForm = () => {
 								name: 'privacyPolicy',
 								control,
 								defaultValue: false,
-								rules: { required: "Заполните все поля" },
+								rules: { required: 'Заполните все поля' },
 							}}
 						/>
 

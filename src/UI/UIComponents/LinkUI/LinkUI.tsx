@@ -5,17 +5,13 @@ import {useLinkStyle} from './style';
 
 interface ICustomLinkUI {
 	href: string,
-	linkProps?: string,
-	children: React.ReactChildren
+	children: React.ReactChildren | React.ReactNode;
 }
 
-const CustomLinkUI : FC<ICustomLinkUI> = (
-	{
-		href = '#',
-		linkProps = null,
-		children,
-	}
-) => {
+const CustomLinkUI : FC<ICustomLinkUI> = ({
+	href = '#',
+	children,
+}) => {
 
 	const {LinkUI} = useLinkStyle();
 
@@ -23,9 +19,7 @@ const CustomLinkUI : FC<ICustomLinkUI> = (
 		<Link
 			href={href}
 		>
-			<LinkUI
-				{...linkProps}
-			>
+			<LinkUI>
 				{children}
 			</LinkUI>
 		</Link>

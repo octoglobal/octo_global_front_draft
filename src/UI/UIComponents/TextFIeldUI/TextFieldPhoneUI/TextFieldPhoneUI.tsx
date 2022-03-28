@@ -33,14 +33,14 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 
 	const handlerIconClick = () => {
 		if(hasIconProps) {
-			iconProps.onClick();
+			iconProps?.onClick();
 			setIconActive(prevState => !prevState);
 		};
 	};
 
 	const [iconActive, setIconActive] = useState(false);
 
-	const IconComponent = iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon;
+	const IconComponent = (iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon) as React.ElementType;
 
 	return (
 		<TextFieldUI>
@@ -52,6 +52,8 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 				render={({field: {value, onChange}, fieldState: {error}}) => (
 					<InputMask
 						mask="+9 999 999 99 99"
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+						// @ts-ignore:next-line
 						maskChar=" "
 						value={value}
 						onChange={onChange}

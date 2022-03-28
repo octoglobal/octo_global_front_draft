@@ -2,18 +2,16 @@ import React, {FC, useState, useMemo} from 'react';
 import {TextField, TextFieldProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
 
-// import {isObjectEmpty} from '../../../lib/services/services';
-
 import {useTextFieldUIStyle} from './style';
-interface iconsProps {
+interface IIconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
-	(onClick: never): void;
+	onClick: () => void;
 }
 interface ITextFieldUIProps {
 	controller: Omit<ControllerProps, 'render'>
 	inputProps?: TextFieldProps,
-	iconProps?: iconsProps
+	iconProps?: IIconsProps
 }
 
 const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps}) => {
@@ -31,11 +29,11 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps})
 
 	const [iconActive, setIconActive] = useState(false);
 
-	const IconComponent = iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon;
+	const IconComponent = (iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon) as React.ElementType;
 
 	const handlerIconClick = () => {
 		if(hasIconProps) {
-			iconProps.onClick();
+			iconProps?.onClick();
 			setIconActive(prevState => !prevState);
 		};
 	};

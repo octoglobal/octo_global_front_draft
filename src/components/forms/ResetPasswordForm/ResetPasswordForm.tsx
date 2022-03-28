@@ -10,7 +10,7 @@ import {useFormsStyle} from '../style';
 
 const ResetPasswordForm = () => {
 
-	const {handleSubmit, control, setError} = useForm();
+	const {control} = useForm();
 
 	const {
 		FormsWrapperBox,

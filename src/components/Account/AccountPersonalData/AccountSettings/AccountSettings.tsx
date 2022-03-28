@@ -2,33 +2,29 @@ import React, { FC, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-import { useUserStore } from '../../../../hooks/useUserStore';
-import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import User from '../../../AnyPage/User/User';
-
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import EditPencil from '../../../../UI/UIIcon/EditPencil.svg';
+import { useUserStore } from '../../../../hooks/useUserStore';
+import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
+import TextFieldPhoneUI from 'UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
+import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 
 import { useAccountSettingsStyle } from './style';
-import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
-import TextFieldPhoneUI from 'UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 
 const AccountSettings: FC = () => {
 	const {
-		UserFIOUI,
 		FormTableUI,
-		UserAvatarUI,
 		FormButtonUI,
-		FormTextFieldUI,
-		FormTextFieldWrapperUI,
-		FormTextFieldPasswordWrapperUI,
-		FormTableRowUI,
 		FormTableEndUI,
-		SettingsWrapperUI,
+		FormTextFieldUI,
 		FormTableUserUI,
 		FormTableTextUI,
+		SettingsWrapperUI,
 		FormsWrapperBoxUI,
 		FormTableRowLabelUI,
+		FormTextFieldWrapperUI,
+		FormTextFieldPasswordWrapperUI,
 	} = useAccountSettingsStyle();
 
 	const { control, setValue, getValues, setError } = useForm();
@@ -57,13 +53,12 @@ const AccountSettings: FC = () => {
 	return (
 		<SettingsWrapperUI>
 			{/* TODO: вынести форму в другой файл */}
-
-			<FormTableUserUI>
-				<User />
-			</FormTableUserUI>
 			<Box component="form">
 				<FormsWrapperBoxUI>
 
+					<FormTableUserUI>
+						<User />
+					</FormTableUserUI>
 					<FormTableUI>
 						<FormTableRowLabelUI>
 							<Typography variant="body2">
@@ -101,7 +96,6 @@ const AccountSettings: FC = () => {
 								// }}
 							/>
 						</FormTextFieldWrapperUI>
-
 
 						<FormTableRowLabelUI>
 							<Typography variant="body2">Телефон</Typography>

@@ -13,7 +13,19 @@ export const useFooterStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 
-		[theme.breakpoints.down(405)]: {
+		[theme.breakpoints.down(1250)]: {
+			padding: '25px 60px',
+		},
+
+		[theme.breakpoints.down(1024)]: {
+			padding: '15px 30px',
+		},
+
+		[theme.breakpoints.down(800)]: {
+			padding: '10px',
+		},
+
+		[theme.breakpoints.down(500)]: {
 			flexDirection: 'column',
 			padding: '15px',
 		}
@@ -23,8 +35,17 @@ export const useFooterStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
-		[theme.breakpoints.down(405)]: {
+		[theme.breakpoints.down(500)]: {
 			justifyContent: 'space-between',
+
+			'& div:first-child': {
+				border: 'none',
+				padding: '0',
+			},
+			'& div:nth-child(2)': {
+				border: 'none',
+				padding: '0',
+			}
 		}
 	}));
 
@@ -52,9 +73,23 @@ export const useFooterStyle = () => {
 			marginRight: '0px',
 		},
 
-		[theme.breakpoints.down(405)]: {
-			margin: '10px 0',
-			borderTop: '1px solid rgba(223, 228, 236, 0.5)',
+		[theme.breakpoints.down(1110)]: {
+			margin: '0 44px',
+		},
+
+		[theme.breakpoints.down(1024)]: {
+			margin: '0 34px',
+		},
+
+		[theme.breakpoints.down(800)]: {
+			margin: '0 10px',
+		},
+
+		[theme.breakpoints.down(500)]: {
+			margin: '0 0 10px',
+			padding: '0 0 10px',
+			// borderTop: '1px solid rgba(223, 228, 236, 0.5)',
+			borderBottom: '1px solid rgba(223, 228, 236, 0.5)',
 
 			'&:nth-child(1)': {
 				order: '2'
@@ -63,7 +98,10 @@ export const useFooterStyle = () => {
 				order: '3'
 			},
 			'&:nth-child(3)': {
-				order: '4'
+				border: 'none',
+				order: '4',
+				margin: '0',
+				padding: '0',
 			},
 			'&:nth-child(4)': {
 				order: '1'
@@ -92,7 +130,7 @@ export const useFooterStyle = () => {
 		}
 	}));
 
-	const IndexTitleUI  = styled('p')(() => ({
+	const IndexTitleUI  = styled('p')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '500',
 		fontSize: '14px',
@@ -102,6 +140,11 @@ export const useFooterStyle = () => {
 		color: '#FFFFFF',
 
 		marginTop: '39px',
+
+		[theme.breakpoints.down(500)]: {
+			order: '5',
+			marginTop: '10px',
+		}
 	}));
 
 	return {

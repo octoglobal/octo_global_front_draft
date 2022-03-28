@@ -1,17 +1,19 @@
-import React, {FC} from 'react';
-import {Box } from '@mui/material';
-import {useForm} from 'react-hook-form';
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
 
-import Basket from '../../../UI/UIIcon/Basket.svg';
-import {useAddLocationFormStyle} from './style';
+import {useMobile} from '../../../hooks/useMedia';
+
+import TextFieldPhoneUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
+import { useAddLocationFormStyle } from './style';
+
 interface IAddLocationForm {
-	disabledTextField?: boolean
+	setOpenForm: (prevState : (state: boolean) => boolean) => void
 }
 
-const AddLocationForm: FC<IAddLocationForm> = ({disabledTextField = false}) => {
+const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 	const {
 		FormUI,
 		FormWrapper,
@@ -19,17 +21,17 @@ const AddLocationForm: FC<IAddLocationForm> = ({disabledTextField = false}) => {
 		FormRowTextField,
 		FormTextFieldUI,
 		ButtonSubmitUI,
-		FormIconUI
+		ButtonCancelUI,
+		FormRowButtonUI,
 	} = useAddLocationFormStyle();
 
-	const {control} = useForm();
+	const { control } = useForm();
 
-	const handlerDeleteLocation = () => {
-		if(!handlerDeleteLocation) return;
+	const {isMobile} = useMobile();
 
-		// TODO: добавить проверку на подтверждения удаления
-		console.log('handlerDeleteLocation');
-	}
+	const handlerCancelButton = () => {
+		setOpenForm(prevState => !prevState);
+	};
 
 	return (
 		<FormUI>
@@ -40,17 +42,16 @@ const AddLocationForm: FC<IAddLocationForm> = ({disabledTextField = false}) => {
 						controller={{
 							name: 'name',
 							control,
-							defaultValue: 'Anastasia',
-							rules: {required: true}
+							defaultValue: '',
+							rules: { required: true },
 						}}
 						inputProps={{
-							// label: 'Email',
+							placeholder: isMobile ? 'Имя' : '',
 							name: 'name',
 							type: 'text',
 							required: true,
 							helperText: 'Заполните поле "Почта"',
 							sx: FormTextFieldUI,
-							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
@@ -61,38 +62,36 @@ const AddLocationForm: FC<IAddLocationForm> = ({disabledTextField = false}) => {
 						controller={{
 							name: 'surname',
 							control,
-							defaultValue: 'Khorobrykh',
-							rules: {required: true}
+							defaultValue: '',
+							rules: { required: true },
 						}}
 						inputProps={{
-							// label: 'text',
+							placeholder: isMobile ? 'Фамилия' : '',
 							name: 'surname',
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
 							helperText: 'Заполните поле "Почта"',
-							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
 
 				<FormRowTitle>Телефон</FormRowTitle>
 				<FormRowTextField>
-					<TextFieldUI
+					<TextFieldPhoneUI
 						controller={{
 							name: 'phone',
 							control,
-							defaultValue: '+7 963 785 78 45',
-							rules: {required: true}
+							defaultValue: '',
+							rules: { required: true },
 						}}
 						inputProps={{
-							// label: 'Email',
+							placeholder: isMobile ? 'Телефон' : '',
 							name: 'phone',
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
 							helperText: 'Заполните поле "Почта"',
-							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
@@ -103,39 +102,39 @@ const AddLocationForm: FC<IAddLocationForm> = ({disabledTextField = false}) => {
 						controller={{
 							name: 'address',
 							control,
-							defaultValue: 'г. Челябинск, ул. Пушкина, д. 52 кв. 88',
-							rules: {required: true}
+							defaultValue:
+								'',
+							rules: { required: true },
 						}}
 						inputProps={{
-							// label: 'Email',
+							placeholder: isMobile ? 'Адрес' : '',
 							name: 'address',
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
 							helperText: 'Заполните поле "Почта"',
-							disabled: disabledTextField ? true : false
 						}}
 					/>
 				</FormRowTextField>
 
 				<FormRowTitle></FormRowTitle>
-				{!disabledTextField && (
-				<FormRowTextField>
+				<FormRowButtonUI>
+					<ButtonUI
+						style={ButtonCancelUI}
+						variant="text"
+						onClick={handlerCancelButton}
+					>
+						Отмена
+					</ButtonUI>
 					<ButtonUI
 						type="submit"
 						style={ButtonSubmitUI}
 					>
 						Сохранить
 					</ButtonUI>
-				</FormRowTextField>
-				)}
-
+				</FormRowButtonUI>
 			</FormWrapper>
-			{disabledTextField && (
-				<FormIconUI onClick={handlerDeleteLocation}>
-					<Basket />
-				</FormIconUI>
-			)}
+
 		</FormUI>
 	);
 };

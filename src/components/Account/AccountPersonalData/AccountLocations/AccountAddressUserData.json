@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Anastasia",
+        "surname": "Khorobrykh",
+        "phone": "+7 999 446 12 23",
+        "location": "г. Челябинск, ул. Труда, д. 99 кв. 1"
+    },
+    {
+        "id": 2,
+        "name": "Steven",
+        "surname": "Mitchell",
+        "phone": "+7 987 465 76 12",
+        "location": "г. Челябинск, ул. Салавата Юлаева, д. 13 кв. 13"
+    },
+    {
+        "id": 3,
+        "name": "Alejandro",
+        "surname": "Perez",
+        "phone": "+7 963 785 78 45",
+        "location": "г. Челябинск, ул. Молодогвардейцев, д. 65В кв. 21"
+    }
+]

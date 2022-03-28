@@ -18,14 +18,18 @@ export const useAccountLocationRulesStyle = () => {
 
 	}));
 
-	const TableUI = styled('div')(() => ({
+	const TableUI = styled('div')(({theme}) => ({
 		display: 'grid',
 		gridTemplateColumns: '250px 382px',
 		gridTemplateRows: 'auto auto auto auto auto auto auto auto',
 		gridColumnGap: '20px',
 		gridRowGap: '15px',
-		marginBottom: '15px'
+		marginBottom: '15px',
 
+		[theme.breakpoints.down(500)]: {
+			gridTemplateColumns: '250px',
+			gridRowGap: '5px',
+		}
 	}));
 
 	const TitleUI = styled('div')(() => ({
@@ -41,7 +45,7 @@ export const useAccountLocationRulesStyle = () => {
 		}
 	}));
 
-	const SubTitleUI = styled('div')(() => ({
+	const SubTitleUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '18px',
@@ -49,6 +53,9 @@ export const useAccountLocationRulesStyle = () => {
 		color: '#000000',
 
 		'& > div': {
+			marginBottom: '15px',
+		},
+		[theme.breakpoints.down(500)]: {
 			marginBottom: '15px',
 		}
 	}));

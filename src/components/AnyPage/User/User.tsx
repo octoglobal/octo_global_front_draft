@@ -5,13 +5,8 @@ import {useUserStore} from '../../../hooks/useUserStore';
 
 import {useUserStyle} from './style';
 
-// interface IUser {
-// 	name: string,
-// 	surname: string
-// }
 
-// const User : FC<IUser> = ({name, surname}) => {
-const User : FC<IUser> = () => {
+const User : FC = () => {
 
 	const {
 		UserUI,
@@ -29,7 +24,6 @@ const User : FC<IUser> = () => {
 		<UserUI>
 			<UserAvatarUI>
 				<Avatar />
-				{/*<Avatar>{name} {surname}</Avatar>*/}
 			</UserAvatarUI>
 			<UserFIOUI>{name} {surname}</UserFIOUI>
 		</UserUI>
