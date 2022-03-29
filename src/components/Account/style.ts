@@ -8,7 +8,7 @@ export const useAccountPageStyle = () => {
 		marginTop: '60px',
 
 		'& .TabsUnstyled-root': {
-			width: '80%',
+			width: '100%',
 		},
 
 		'& .TabsListUnstyled-root button': {

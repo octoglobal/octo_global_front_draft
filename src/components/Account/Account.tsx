@@ -22,6 +22,9 @@ const AccountPage: FC<IAccoutPage> = ({children}) => {
 		if(router.asPath.includes('info') && !router.asPath.includes('location')) {
 			pushTo(router.asPath, {location: 'ger'});
 		}
+		if(router.asPath.includes('orders') && !router.asPath.includes('tab')) {
+			pushTo(router.asPath, {tab: 'all'});
+		}
 	}, [router.asPath]);
 
 	return (

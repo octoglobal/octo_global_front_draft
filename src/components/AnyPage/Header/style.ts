@@ -60,9 +60,55 @@ export const useHeaderStyle = () => {
 		// height: '28px',
 		// width: '28px',
 
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+
+		'& div:first-child': {
+			marginRight: '10px',
+		},
+
 		'& span, .MuiAvatar-root': {
 			height: '28px',
 			width: '28px',
+		}
+	}));
+
+	const ArrowUI = styled('span')(() => ({
+		width: '24px',
+		height: '10px',
+		position: 'relative',
+		transition: '.2s all linear',
+		'&::after': {
+			content: '""',
+			borderRadius: '10px',
+			position: 'absolute',
+			left: '0',
+			top: '45%',
+			width: '12px',
+			height: '2px',
+			backgroundColor: '#C7C7C7',
+			transform: 'rotate(48deg) translateY(-45%)'
+		},
+		'&::before': {
+			content: '""',
+			borderRadius: '10px',
+			position: 'absolute',
+			left: '8px',
+			top: '45%',
+			width: '12px',
+			height: '2px',
+			backgroundColor: '#C7C7C7',
+			transform: 'rotate(-48deg) translateY(-45%)'
+		},
+
+		'&:focus': {
+			'&::after': {
+				transform: 'rotate(130deg) translateY(-45%)'
+			},
+			'&::before': {
+				transform: 'rotate(-130deg) translateY(-45%)'
+			}
 		}
 	}));
 
@@ -79,6 +125,7 @@ export const useHeaderStyle = () => {
 		HeaderNavUI,
 		OctoIconsUI,
 		UserWrapperUI,
-		ButtonLoginUI
+		ButtonLoginUI,
+		ArrowUI
 	};
 };

@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react';
 
 import Logotip from '../Logotip/Logotip';
 
+import MenuAuthContent from './MenuAuthContent/MenuAuthContent';
 import HeaderMenu from '../../../../UI/UIIcon/HeaderMenu.svg';
 import Moon from '../../../../UI/UIIcon/Moon.svg';
 
@@ -14,7 +15,7 @@ const MobileHeader: FC = () => {
 		HeaderMobileWrapperUI,
 		NavMenuUI,
 		NavItemUI,
-		SwipeableDrawerUI
+		SwipeableDrawerUI,
 	} = useHeaderMobileStyle();
 
 	const [openMenu, setOpenMenu] = useState(false);
@@ -44,7 +45,7 @@ const MobileHeader: FC = () => {
 				onOpen={() => setOpenMenu(true)}
 				onClose={() => setOpenMenu(false)}
 			>
-				<div>123</div>
+				<MenuAuthContent />
 			</SwipeableDrawerUI>
 		</>
 	);
