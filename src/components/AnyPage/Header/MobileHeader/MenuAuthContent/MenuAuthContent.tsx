@@ -12,6 +12,7 @@ import User from '@/components/AnyPage/User/User';
 import FormComponent from '@/components/AnyPage/FormComponent/FormComponent';
 import { useAppDispatch } from '@/hooks/useReduxHooks';
 import { fetchUserLogout } from '@/reducers/userSlice/asyncActions/userApi';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 const MenuAuthContent: FC = () => {
 	const { isAuth } = useUserStore();
@@ -25,6 +26,8 @@ const MenuAuthContent: FC = () => {
 		UserUI,
 		ExitLinkUI,
 	} = useMenuAuthContentStyle();
+
+	const {pushTo} = useCustomRouter();
 
 	const [openAuth, setOpenAuth] = useState('');
 
@@ -40,13 +43,17 @@ const MenuAuthContent: FC = () => {
 		setOpenAuth('');
 	};
 
+	const handlerPushToAccount = () => {
+		pushTo('account/info');
+	};
+
 	// TODO: ужасное нечитаемое поправить завтра
 	return (
 		<ContentLayoutUI>
 			<>
 				{isAuth ? (
 					<>
-						<UserUI>
+						<UserUI onClick={handlerPushToAccount}>
 							<User />
 						</UserUI>
 						<MenuLinksUI>
