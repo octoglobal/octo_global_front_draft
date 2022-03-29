@@ -18,7 +18,6 @@ export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>)
 		setErrorFields('password', 'Неправильный логин или пароль');
 	};
 
-
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		const formData = data as IUserLoginReq;
 		if (formData.email && formData.password) {
