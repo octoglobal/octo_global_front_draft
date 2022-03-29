@@ -1,0 +1,8 @@
+version: "3"
+services:
+  app:
+    image: og_front
+    container_name: og_front
+    restart: always
+    ports:
+    - 7766:3000
