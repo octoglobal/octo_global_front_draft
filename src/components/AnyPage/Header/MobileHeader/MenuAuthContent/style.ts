@@ -1,37 +1,6 @@
-import {styled, SwipeableDrawer} from '@mui/material';
+import {styled} from '@mui/material';
 
-export const useHeaderMobileStyle = () => {
-
-	const HeaderMobileWrapperUI = styled('header')(() => ({
-		padding: '15px'
-	}));
-
-	const NavMenuUI = styled('nav')(() => ({
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	}));
-
-	const NavItemUI = styled('div')(() => ({
-		cursor: 'pointer',
-		'& span': {
-			width: 'auto',
-		},
-	}));
-
-	const SwipeableDrawerUI = styled(SwipeableDrawer)(() => ({
-		'& .MuiPaper-root': {
-			width: '290px',
-			height: '93%',
-			padding: '1.5em 1em',
-			marginTop: '15%',
-
-			background: '#FFFFFF',
-			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.15)',
-			borderRadius: '0px 8px',
-		}
-	}));
+export const useMenuAuthContentStyle = () => {
 
 	const MenuLinksUI = styled('div')(() => ({
 		display: 'flex',
@@ -51,6 +20,21 @@ export const useHeaderMobileStyle = () => {
 		'& a:last-child': {
 			marginBottom: '30px',
 		}
+	}));
+
+	const UserUI = styled('div')(() => ({
+		marginBottom: '16px',
+	}));
+
+	const ExitLinkUI = styled('div')(() => ({
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '400',
+		fontSize: '16px',
+		lineHeight: '19px',
+		color: '#274D82',
+
+		cursor: 'pointer',
 	}));
 
 	const ButtonsAuthUI = styled('div')(() => ({
@@ -80,14 +64,11 @@ export const useHeaderMobileStyle = () => {
 	};
 
 	return {
-		HeaderMobileWrapperUI,
-		NavMenuUI,
-		NavItemUI,
-		SwipeableDrawerUI,
 		MenuLinksUI,
-
 		ButtonsAuthUI,
 		ButtonLogin,
-		ButtonSignUp
+		ButtonSignUp,
+		UserUI,
+		ExitLinkUI
 	};
 };

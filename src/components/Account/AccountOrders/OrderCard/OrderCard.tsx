@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import Image from 'next/image';
 
+import {useMobile} from '../../../../hooks/useMedia';
 import TestOrderImage from '../../../../UI/UIIcon/TestOrderImage.png';
 import {IOrderCard} from '../../../../types/types';
 
@@ -21,7 +22,9 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		OrderInfoUI,
 		OrderInfoBlockUI,
 		ImageUI,
-		InfoUI
+		InfoUI,
+		TitleUI,
+		BoldTitleUI
 	} = useOrderCardStyle();
 
 	const {
@@ -34,6 +37,8 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		disabled,
 	} = order;
 
+	const {isMobile} = useMobile();
+
 	return (
 		<OrderCardUI
 			highlight={highlight}
@@ -41,8 +46,8 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		>
 			<OrderContentUI>
 				<OrderTitlesUI>
-					<OrderBoldTitleUI>Заказ № {orderNumber} прибыл на склад</OrderBoldTitleUI>
-					<OrderTitleUI>Трек номер: <OrderBoldTitleUI>{trackNumber}</OrderBoldTitleUI></OrderTitleUI>
+					<BoldTitleUI>Заказ № {orderNumber} прибыл на склад</BoldTitleUI>
+					{!isMobile && <TitleUI>Трек номер: <BoldTitleUI>{trackNumber}</BoldTitleUI></TitleUI>}
 				</OrderTitlesUI>
 				<OrderInfoUI>
 					<OrderInfoBlockUI>

@@ -5,10 +5,11 @@ import {useFormComponentStyle} from './style';
 
 interface FormComponent {
 	title: string,
+	background?: boolean,
 	children: React.ReactChild | React.ReactNode;
 }
 
-const FormComponent: FC<FormComponent> = ({title, children}) => {
+const FormComponent: FC<FormComponent> = ({title, background = true, children}) => {
 
 	const {
 		FormComponentContent,
@@ -16,7 +17,9 @@ const FormComponent: FC<FormComponent> = ({title, children}) => {
 	} = useFormComponentStyle();
 
 	return (
-		<FormComponentContent>
+		<FormComponentContent
+			background={background}
+		>
 			<FormComponentTitle>
 				<Typography variant="h4">{title}</Typography>
 			</FormComponentTitle>

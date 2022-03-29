@@ -5,7 +5,6 @@ import {useUserStore} from '../../../hooks/useUserStore';
 
 import {useUserStyle} from './style';
 
-
 const User : FC = () => {
 
 	const {
@@ -23,7 +22,9 @@ const User : FC = () => {
 	return (
 		<UserUI>
 			<UserAvatarUI>
-				<Avatar />
+				<Avatar sx={{
+					bgcolor: '#274D82'
+				}} />
 			</UserAvatarUI>
 			<UserFIOUI>{name} {surname}</UserFIOUI>
 		</UserUI>

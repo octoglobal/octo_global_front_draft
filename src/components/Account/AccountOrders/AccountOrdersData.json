@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "status": "wait",
         "orderNumber": "789456",
         "trackNumber": "7457895665656565656445",
         "shop": "Nike",
@@ -11,6 +12,7 @@
     },
     {
         "id": 2,
+        "status": "wait",
         "orderNumber": "123534",
         "trackNumber": "7457895665656565656445",
         "shop": "Adidas",
@@ -21,6 +23,7 @@
     },
     {
         "id": 3,
+        "status": "send",
         "orderNumber": "687345",
         "trackNumber": "7457895665656565656445",
         "shop": "Puma",
@@ -31,6 +34,7 @@
     },
     {
         "id": 4,
+        "status": "deliv",
         "orderNumber": "123978",
         "trackNumber": "7457895665656565656445",
         "shop": "Reebok",
@@ -41,6 +45,7 @@
     },
     {
         "id": 5,
+        "status": "wait",
         "orderNumber": "234978",
         "trackNumber": "7457895665656565656445",
         "shop": "Bershka",
@@ -51,6 +56,18 @@
     },
     {
         "id": 6,
+        "status": "send",
+        "orderNumber": "234678",
+        "trackNumber": "7457895665656565656445",
+        "shop": "Amazon",
+        "storage": "free",
+        "daysLeft": 9,
+        "highlight": false,
+        "disabled": true
+    },
+    {
+        "id": 7,
+        "status": "deliv",
         "orderNumber": "234678",
         "trackNumber": "7457895665656565656445",
         "shop": "Amazon",

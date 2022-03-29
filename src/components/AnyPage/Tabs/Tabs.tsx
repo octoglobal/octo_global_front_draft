@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
+// import Link from 'next/link';
 
 import {ObjectHasOwnProperty} from '../../../lib/services/services';
 import {useCustomRouter} from '../../../hooks/useCustomRouter';
@@ -67,7 +68,14 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 							className={checkActiveClass(item.url, item.query)}
 							onClick={() => handlerPushToTab(item.url, item.query)}
 						>
+							{/* <Link
+								href={{
+									pathname: item.url ? `/account/${item.url}` : router.pathname,
+									query: {...item.query} || {}
+								}}
+							> */}
 							{item.title}
+							{/* </Link> */}
 						</TabUI>
 					))}
 				</TabsListUI>

@@ -1,5 +1,6 @@
 export interface IOrderInfo {
 	id: number,
+	status: string,
 	orderNumber: string,
 	trackNumber: string,
 	shop: string,
