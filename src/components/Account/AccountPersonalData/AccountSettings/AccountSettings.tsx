@@ -100,7 +100,7 @@ const AccountSettings: FC = () => {
 						<FormTableRowLabelUI>
 							<Typography variant="body2">Телефон</Typography>
 						</FormTableRowLabelUI>
-						<FormTextFieldWrapperUI>
+						<FormTextFieldPasswordWrapperUI>
 							<TextFieldPhoneUI
 								controller={{
 									name: 'phone',
@@ -121,7 +121,7 @@ const AccountSettings: FC = () => {
 									onClick: handlerEditClick,
 								}}
 							/>
-						</FormTextFieldWrapperUI>
+						</FormTextFieldPasswordWrapperUI>
 
 						<FormTableRowLabelUI>
 							<Typography variant="body2">Смена пароля</Typography>

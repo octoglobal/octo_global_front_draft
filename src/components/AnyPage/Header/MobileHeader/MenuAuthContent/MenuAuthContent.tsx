@@ -13,6 +13,9 @@ import FormComponent from '@/components/AnyPage/FormComponent/FormComponent';
 import { useAppDispatch } from '@/hooks/useReduxHooks';
 import { fetchUserLogout } from '@/reducers/userSlice/asyncActions/userApi';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
+import ResetPasswordForm from '@/components/forms/ResetPasswordForm/ResetPasswordForm';
+import LoginPromt from '@/components/AnyPage/AuthFormPromt/LoginPromt/LoginPromt';
+import SignUpPromt from '@/components/AnyPage/AuthFormPromt/SignUpPromt/SignUpPromt';
 
 const MenuAuthContent: FC = () => {
 	const { isAuth } = useUserStore();
@@ -41,10 +44,23 @@ const MenuAuthContent: FC = () => {
 		console.log('handlerLogout');
 		dispatch(fetchUserLogout());
 		setOpenAuth('');
+		pushTo('/');
 	};
 
 	const handlerPushToAccount = () => {
-		pushTo('account/info');
+		pushTo('/account/info');
+	};
+
+	const handlerClickRefreshPass = () : void => {
+		setOpenAuth('reset');
+	};
+
+	const handlerClickRegistr = () : void => {
+		setOpenAuth('signup');
+	};
+
+	const handlerClickLogin = () : void => {
+		setOpenAuth('login');
 	};
 
 	// TODO: ужасное нечитаемое поправить завтра
@@ -70,6 +86,10 @@ const MenuAuthContent: FC = () => {
 						{openAuth === 'login' && !isAuth && (
 							<FormComponent title="Вход" background={false}>
 								<LoginForm />
+								<LoginPromt
+									onClickRegistr={handlerClickRegistr}
+									onClickRefreshPassword={handlerClickRefreshPass}
+								/>
 							</FormComponent>
 						)}
 						{openAuth === 'signup' && !isAuth && (
@@ -78,6 +98,17 @@ const MenuAuthContent: FC = () => {
 								background={false}
 							>
 								<SignUpForm />
+								<SignUpPromt
+									onClickLogin={handlerClickLogin}
+								/>
+							</FormComponent>
+						)}
+						{openAuth === 'reset' && !isAuth && (
+							<FormComponent
+								title="Восстановление пароля"
+								background={false}
+							>
+								<ResetPasswordForm />
 							</FormComponent>
 						)}
 						{openAuth === '' && (

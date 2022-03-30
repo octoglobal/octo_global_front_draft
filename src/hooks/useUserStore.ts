@@ -3,11 +3,9 @@ import {useEffect, useMemo} from 'react';
 import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
 
 export const useUserStore = () => {
-	const {user, loading} = useAppSelector(state => state.userReducer);
+	const {user} = useAppSelector(state => state.userReducer);
 	const dispatch = useAppDispatch();
 	const isAuth = useMemo(() => !!user.id, [user]);
-
-	console.log('user: ', user);
 
 	useEffect(() => {
 		if (!isAuth && !user.id) {
@@ -17,7 +15,6 @@ export const useUserStore = () => {
 
 	return {
 		user,
-		isAuth,
-		loading,
+		isAuth
 	};
 };

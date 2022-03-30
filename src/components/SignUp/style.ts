@@ -4,10 +4,7 @@ export const useSignUpFormStyle = () => {
 
 
 	const SignUpFormWrapperBox = styled('div')(() => ({
-		display: 'flex',
-		flexDirection: 'column',
-
-		padding: '20px 0px 0px',
+		width: '326px',
 	}));
 
 	const SignUpFormFooterInfoBox = styled('div')(() => ({

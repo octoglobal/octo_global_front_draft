@@ -24,7 +24,6 @@ export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrat
 		setErrorFields('confirmPassword', message);
 	};
 
-
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		const formData = data as IUserRegistrationReq;
 		const regResponse = await fetchUserRegistration(formData);

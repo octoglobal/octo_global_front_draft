@@ -4,7 +4,7 @@ import Logotip from '../Logotip/Logotip';
 
 import MenuAuthContent from './MenuAuthContent/MenuAuthContent';
 import HeaderMenu from '../../../../UI/UIIcon/HeaderMenu.svg';
-import Moon from '../../../../UI/UIIcon/Moon.svg';
+// import Moon from '../../../../UI/UIIcon/Moon.svg';
 
 import {useHeaderMobileStyle} from './style';
 // import SignUpForm from '@/components/forms/SignUpForm/SignUpForm';
@@ -35,7 +35,7 @@ const MobileHeader: FC = () => {
 						<Logotip />
 					</NavItemUI>
 					<NavItemUI>
-						<Moon />
+						{/* <Moon /> */}
 					</NavItemUI>
 				</NavMenuUI>
 			</HeaderMobileWrapperUI>

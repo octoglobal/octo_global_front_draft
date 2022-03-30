@@ -3,8 +3,7 @@ import {fetchUserAutoLogin, fetchUserLogin, fetchUserLogout} from '@/reducers/us
 import {IUserModel} from '@/models/IUserModel';
 
 export interface IUserSlice {
-	user: IUserModel,
-	loading: boolean
+	user: IUserModel
 }
 
 const initialState: IUserSlice = {
@@ -18,8 +17,7 @@ const initialState: IUserSlice = {
 		surname: '',
 		username: '',
 		verifiedEmail: false
-	},
-	loading: false
+	}
 };
 
 export const userSlice = createSlice({

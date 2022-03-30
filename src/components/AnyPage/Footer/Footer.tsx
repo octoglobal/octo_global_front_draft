@@ -3,7 +3,7 @@ import React from 'react';
 import VkIcon from '../../../UI/UIIcon/VKIcon.svg';
 //import InstIcon from '../../../UI/UIIcon/InstIcon.svg';
 import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIcon.svg';
-//import WhatsUpIcon from '../../../UI/UIIcon/WhatsUpIcon.svg';
+import WhatsUpIcon from '../../../UI/UIIcon/WhatsUpIcon.svg';
 import TelegramIcon from '../../../UI/UIIcon/TelegramIcon.svg';
 
 import {useMobile} from '../../../hooks/useMedia';
@@ -53,6 +53,7 @@ const Footer = () => {
 						<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
 						<FooterRowIconsUI>
 							<VkIcon />
+							<TelegramIcon />
 							{/*<InstIcon />*/}
 							<OdnoklasIcon />
 						</FooterRowIconsUI>
@@ -62,7 +63,7 @@ const Footer = () => {
 						<FooterColumnTitleUI>Чаты поддержки</FooterColumnTitleUI>
 						<FooterRowIconsUI>
 							<TelegramIcon />
-							{/*<WhatsUpIcon />*/}
+							<WhatsUpIcon />
 						</FooterRowIconsUI>
 					</FooterColumnBlockUI>
 

@@ -1,27 +1,35 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { Box, Typography } from '@mui/material';
 import {useForm} from 'react-hook-form';
-import Link from 'next/link';
 import { ErrorMessage } from '@hookform/error-message';
 
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useSignUp} from '@/components/SignUp/useSignUp';
-// import {getTrueItemInObj} from '../../../lib/services/services';
 import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 import CheckBoxUI from '../../../UI/UIComponents/CheckBoxUI/CheckBoxUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPasswordUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 
-
 import {useFormsStyle} from '../style';
 
-const SignUpForm = () => {
+const SignUpForm : FC = () => {
 
-	const {handleSubmit, control, setError, formState: { errors }} = useForm();
+	const {pushTo} = useCustomRouter();
+
+	const {
+		handleSubmit,
+		control,
+		setError,
+		formState: {
+			// isValid,
+			errors
+		}
+	} = useForm();
+
 	const {onSubmit} = useSignUp(setError);
 
 	const {
 		FormsWrapperBox,
-		FormsFooterInfoBox,
 		FormsLink,
 		FormsInput,
 		FormsButton,
@@ -29,10 +37,9 @@ const SignUpForm = () => {
 		FormHelperErrorUI
 	} = useFormsStyle();
 
-	// const selectItemLength = useMemo(
-	// 	() => getTrueItemInObj(watch()),
-	// 	[watch()]
-	// );
+	const handlerPushToPolicy = () => {
+		pushTo('/privacypolicy');
+	};
 
 	return (
 		<Box component='form' onSubmit={handleSubmit(onSubmit)}>
@@ -48,6 +55,7 @@ const SignUpForm = () => {
 						inputProps={{
 							placeholder: 'Имя',
 							name: 'name',
+							type: 'text',
 							required: true,
 							helperText: 'Заполните поле "Имя"',
 						}}
@@ -65,6 +73,7 @@ const SignUpForm = () => {
 						inputProps={{
 							placeholder: 'Фамилия',
 							name: 'surname',
+							type: 'text',
 							required: true,
 							helperText: 'Заполните поле "Фамилия"',
 						}}
@@ -155,7 +164,7 @@ const SignUpForm = () => {
 
 					<Typography variant="body2">
 						Я соглашаюсь с&nbsp;
-						<FormsLink>
+						<FormsLink onClick={handlerPushToPolicy}>
 							политикой конфиденциальности
 						</FormsLink>
 					</Typography>
@@ -171,22 +180,13 @@ const SignUpForm = () => {
 				<FormsButton>
 					<ButtonUI
 						type="submit"
-						// disabled={!selectItemLength?.length}
+						// disabled={!isValid || !isDirty}
+						// disabled={!isValid}
+						// disabled={!isDirtyAll}
 					>
 						Зарегистрироваться
 					</ButtonUI>
 				</FormsButton>
-
-				<FormsFooterInfoBox>
-					<Typography variant="body2">
-						У вас есть учетная запись ?&nbsp;
-						<Link href="/login">
-							<a>
-								<FormsLink>Войти</FormsLink>
-							</a>
-						</Link>
-					</Typography>
-				</FormsFooterInfoBox>
 			</FormsWrapperBox>
 		</Box>
 	);

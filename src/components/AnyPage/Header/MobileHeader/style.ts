@@ -22,15 +22,19 @@ export const useHeaderMobileStyle = () => {
 
 	const SwipeableDrawerUI = styled(SwipeableDrawer)(() => ({
 		'& .MuiPaper-root': {
-			width: '290px',
+			width: '90%',
 			height: '93%',
-			padding: '1.5em 1em',
+			// padding: '1.5em 1em',
 			marginTop: '15%',
 
 			background: '#FFFFFF',
 			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.15)',
 			borderRadius: '0px 8px',
-		}
+		},
+
+		'& .MuiBackdrop-root': {
+			background: 'inherit',
+		},
 	}));
 
 	const MenuLinksUI = styled('div')(() => ({

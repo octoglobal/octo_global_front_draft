@@ -1,4 +1,20 @@
+import {styled, Button} from '@mui/material';
+
 export const useButtonUIStyle = () => {
+
+	const CustonButtonUI = styled(Button)(() => ({
+		color: '#FFFFFF',
+
+		'&: hover': {
+			background: '#274D82',
+		},
+
+		'& .Mui-disabled': {
+			color: '#FFFFFF',
+			background: '#274D82',
+			opacity: '0.8'
+		}
+	}));
 
 	const ButtonStyle = {
 		background: '#274D82',
@@ -19,7 +35,14 @@ export const useButtonUIStyle = () => {
 		textTransform: 'none',
 	};
 
+	const ButtonMobileStyle = {
+		...ButtonStyle,
+		height: '32px',
+	};
+
 	return {
+		CustonButtonUI,
 		ButtonStyle,
+		ButtonMobileStyle
 	};
 };

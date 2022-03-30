@@ -40,7 +40,7 @@ export const useMenuAuthContentStyle = () => {
 	const ButtonsAuthUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		// justifyContent: 'space-between',
 		alignItems: 'center'
 	}));
 
@@ -50,6 +50,8 @@ export const useMenuAuthContentStyle = () => {
 		background: '#274D82',
 		opacity: '0.8',
 		borderRadius: '3px',
+
+		marginRight: '35px',
 	};
 
 	const ButtonSignUp = {

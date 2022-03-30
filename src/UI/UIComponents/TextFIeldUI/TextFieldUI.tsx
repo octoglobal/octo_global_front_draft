@@ -2,6 +2,8 @@ import React, {FC, useState, useMemo} from 'react';
 import {TextField, TextFieldProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
 
+import {useMobile} from '@/hooks/useMedia';
+
 import {useTextFieldUIStyle} from './style';
 interface IIconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
@@ -16,9 +18,12 @@ interface ITextFieldUIProps {
 
 const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps}) => {
 
+	const {isMobile} = useMobile();
+
 	const {
 		TextFieldUI,
 		TextFieldStyle,
+		TextFieldMobileStyle,
 		IconUI
 	} = useTextFieldUIStyle();
 
@@ -47,16 +52,15 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps})
 				rules={controller.rules}
 				render={({field: {value, onChange}, fieldState: {error}}) => (
 					<TextField
-						sx={TextFieldStyle}
+						// sx={TextFieldStyle}
+						sx={isMobile ? TextFieldMobileStyle : TextFieldStyle}
 						{...inputProps}
 						value={value}
 						onChange={(e) => onChange(e.target.value)}
+						// onChange={onChange}
 						helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
 						// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
 						error={!!error}
-						InputLabelProps={{
-							shrink: true,
-						}}
 					/>
 				)}
 			/>
@@ -69,4 +73,4 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps})
 	);
 };
 
-export default TextFieldUI;
+export default React.memo(TextFieldUI);
