@@ -2,12 +2,8 @@ import {styled} from '@mui/material';
 
 export const useLoginFormStyle = () => {
 
-
 	const LoginFormWrapperBox = styled('div')(() => ({
-		display: 'flex',
-		flexDirection: 'column',
-
-		padding: '20px 0px 0px',
+		width: '326px',
 	}));
 
 	const LoginFormFooterInfoBox = styled('div')(() => ({

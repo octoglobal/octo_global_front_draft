@@ -5,13 +5,11 @@ import {ControllerProps} from 'react-hook-form';
 import EyeOpen from '../../../UIIcon/EyeOpen.svg';
 import EyeClose from '../../../UIIcon/EyeClose.svg';
 import TextFieldUI from '../TextFieldUI';
-
 interface iconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	onClick: () => void;
 }
-
 interface ITextFieldUIProps {
 	controller: Omit<ControllerProps, 'render'>
 	inputProps?: TextFieldProps,

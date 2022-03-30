@@ -5,16 +5,20 @@ import {useForm} from 'react-hook-form';
 import {useAddTrackFormStyle} from './style';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+// import {useMobile} from '@/hooks/useMedia';
 
 const AddTrackForm: FC = () => {
 
 	const {control} = useForm();
 
+	// const {isMobile} = useMobile();
+
 	const {
 		TrackFormWrapperUI,
 		FormWrapperUI,
 		ButtonAddTrackUI,
-		TextAreaUI
+		TextAreaUI,
+		// TextFieldMobileStyleUI
 	} = useAddTrackFormStyle();
 
 	return (
@@ -23,17 +27,18 @@ const AddTrackForm: FC = () => {
 				<FormWrapperUI>
 					<TextFieldUI
 						controller={{
-							name: 'trackNumber',
+							name: 'name',
 							control,
 							defaultValue: '',
 							rules: {required: true}
 						}}
 						inputProps={{
-							placeholder: 'Трек номер',
-							name: 'trackNumber',
+							placeholder: 'Название',
+							name: 'name',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Почта"',
+							helperText: 'Заполните поле "Название"',
+							// style: isMobile ? TextFieldMobileStyleUI : {}
 						}}
 					/>
 
@@ -50,6 +55,7 @@ const AddTrackForm: FC = () => {
 							type: 'text',
 							required: true,
 							helperText: 'Заполните поле "Почта"',
+							// style: isMobile ? TextFieldMobileStyleUI : {}
 						}}
 					/>
 

@@ -32,8 +32,8 @@ const AccountOrders: FC = () => {
 
 	const toggleFilters = (filter : string) : MouseEventHandler<HTMLDivElement> => {
 		return () : void => {
-			console.log('toggleFilters: ', filter);
 			setFiltedOrders(filter);
+			pushTo(router.pathname, {tab: filter});
 		};
 	};
 
@@ -54,6 +54,15 @@ const AccountOrders: FC = () => {
 						onClick={toggleFilters('all')}
 					>
 						Все
+					</ListItemTextUI>
+				</ListItem>
+
+				<ListItem>
+					<ListItemTextUI
+						selected={filterOrders === 'expect'}
+						onClick={toggleFilters('expect')}
+					>
+						Ожидаемые
 					</ListItemTextUI>
 				</ListItem>
 

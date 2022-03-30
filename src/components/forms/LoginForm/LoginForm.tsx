@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
-import {Box, Typography } from '@mui/material';
+import {Box } from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
@@ -12,13 +11,15 @@ import {useLogin} from './useLogin';
 
 const LoginForm = () => {
 
-	const {handleSubmit, control, setError} = useForm();
+	const {
+		handleSubmit,
+		control,
+		setError,
+	} = useForm();
 	const {onSubmit} = useLogin(setError);
 
 	const {
 		FormsWrapperBox,
-		FormsFooterInfoBox,
-		FormsLink,
 		FormsInput,
 		FormsButton,
 	} = useFormsStyle();
@@ -62,31 +63,14 @@ const LoginForm = () => {
 				</FormsInput>
 
 				<FormsButton>
-					<ButtonUI type='submit'>
+					<ButtonUI
+						type='submit'
+						// disabled={!(isDirty && isValid)}
+					>
 						Войти
 					</ButtonUI>
 				</FormsButton>
 
-				<FormsFooterInfoBox>
-					<Typography variant="body2">
-						<Link href="/reset">
-							<a>
-								Забыли пароль ?
-							</a>
-						</Link>
-					</Typography>
-				</FormsFooterInfoBox>
-
-				<FormsFooterInfoBox>
-					<Typography variant="body2">
-						Нет учетной записи ?&nbsp;
-						<Link href="/signup">
-							<a>
-								<FormsLink>Регистрация</FormsLink>
-							</a>
-						</Link>
-					</Typography>
-				</FormsFooterInfoBox>
 			</FormsWrapperBox>
 		</Box>
 	);

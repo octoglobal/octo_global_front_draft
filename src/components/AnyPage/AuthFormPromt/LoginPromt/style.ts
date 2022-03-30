@@ -1,16 +1,12 @@
 import {styled, FormHelperText} from '@mui/material';
 
-export const useFormsStyle = () => {
+export const useLoginPromtStyle = () => {
 
-	const FormsWrapperBox = styled('div')(({theme}) => ({
+	const FormsWrapperBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 
 		padding: '20px 0px 0px',
-
-		[theme.breakpoints.down(500)]: {
-			padding: '15px 0px 0px',
-		}
 	}));
 
 	const FormsFooterInfoBox = styled('div')(() => ({
@@ -23,29 +19,28 @@ export const useFormsStyle = () => {
 		fontSize: '12px',
 		lineHeight: '14px',
 		color: '#000000',
+
+		'& a': {
+			cursor: 'pointer',
+		}
 	}));
 
 	const FormsLink = styled('div')(() => ({
 		fontWeight: '300',
 		fontSize: '12px',
 		lineHeight: '14px',
-		color: '#234A82',
-		textDecoration: 'underline',
+		color: '#274D82',
+		cursor: 'pointer',
 
 		display: 'inline-block',
-		cursor: 'pointer',
 	}));
 
-	const FormsInput = styled('div')(({theme}) => ({
+	const FormsInput = styled('div')(() => ({
 		marginBottom: '20px',
-
-		[theme.breakpoints.down(500)]: {
-			marginBottom: '15px',
-		}
 	}));
 
 	const FormsButton = styled('div')(() => ({
-		// marginBottom: '15px',
+		marginBottom: '15px',
 
 		'& .Mui-disabled': {
 			opacity: '0.8',
@@ -64,7 +59,7 @@ export const useFormsStyle = () => {
 		},
 	}));
 
-	const FormsCheckBoxWrapper = styled('div')(({theme}) => ({
+	const FormsCheckBoxWrapper = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginBottom: '21px',
@@ -83,10 +78,6 @@ export const useFormsStyle = () => {
 			height: '20px',
 			padding: '0',
 			margin: '0 15px 0 0',
-		},
-
-		[theme.breakpoints.down(500)]: {
-			marginBottom: '15px',
 		}
 
 	}));

@@ -16,10 +16,12 @@ export const useTextFieldUIStyle = () => {
 			fontFamily: 'Roboto',
 			fontStyle: 'normal',
 			fontWeight: '400',
-			fontSize: '10px',
+			fontSize: '10px !important',
 			lineHeight: '12px',
 			color: '#F35151',
 			textAlign: 'end',
+
+			marginTop: '0px',
 		}
 	}));
 
@@ -49,13 +51,43 @@ export const useTextFieldUIStyle = () => {
 				fontSize: '14px',
 				lineHeight: '16px',
 				color: '#C4C4C4',
-			  }
+			}
+		},
+	};
+
+	const TextFieldMobileStyle = {
+		width: '100%',
+		height: '29px',
+
+		background: '#FFFFFF',
+		border: '1px solid #DFE4EC',
+		boxSizing: 'border-box',
+		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+
+		'& .MuiOutlinedInput-root, .MuiFormControl-root': {
+			width: '100%',
+			height: '29px',
+			borderRadius: '0px'
+		},
+		'& .MuiInputLabel-root': {
+			top: '-8px',
+		},
+		'& input': {
+			width: '100%',
+
+			'&::placeholder': {
+				fontStyle: 'normal',
+				fontWeight: '300',
+				fontSize: '14px',
+				lineHeight: '16px',
+				color: '#C4C4C4',
+			}
 		},
 	};
 
 	const IconUI = styled('span')(() => ({
 		position: 'absolute',
-		top: '20%',
+		top: '25%',
 		right: '7px',
 		zIndex: '2',
 	}));
@@ -63,6 +95,7 @@ export const useTextFieldUIStyle = () => {
 	return {
 		TextFieldUI,
 		TextFieldStyle,
+		TextFieldMobileStyle,
 		IconUI
 	};
 };

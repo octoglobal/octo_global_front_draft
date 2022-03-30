@@ -64,8 +64,8 @@ export const useAddLocationFormStyle = () => {
 				fontFamily: 'Roboto',
 				fontStyle: 'normal',
 				fontWeight: '300',
-				fontSize: '24px',
-				lineHeight: '28px',
+				fontSize: '16px',
+				lineHeight: '18px',
 
 				'-webkit-text-fill-color': 'black',
 			},
@@ -86,6 +86,7 @@ export const useAddLocationFormStyle = () => {
 	};
 
 	const FormRowTextField = styled('div')(({theme}) => ({
+
 		// width: '501px',
 
 		'&:last-child': {

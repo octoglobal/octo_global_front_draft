@@ -53,7 +53,7 @@ const Header = () => {
 
 					<HeaderNavUI>
 						<HeaderNavLink />
-						<div>
+						<>
 							{!isAuth ? (
 								<ButtonUI
 									style={ButtonLoginUI}
@@ -70,9 +70,7 @@ const Header = () => {
 									<ArrowUI />
 								</UserWrapperUI>
 							)}
-						</div>
-
-
+						</>
 					</HeaderNavUI>
 				</HeaderWrapperUI>
 			) : (

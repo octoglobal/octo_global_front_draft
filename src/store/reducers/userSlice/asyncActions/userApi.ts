@@ -76,7 +76,6 @@ export const fetchUserLogin = createAsyncThunk(
 					'Authorization': `Basic ${window.btoa(`${data.email}:${data.password}`)}`
 				}
 			});
-			console.log(response);
 			return response.data;
 		} catch (err: unknown) {
 			if (axios.isAxiosError(err)) {

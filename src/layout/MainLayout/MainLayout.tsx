@@ -3,10 +3,9 @@ import {Box} from '@mui/material';
 import Header from '@/components/AnyPage/Header/Header';
 import Footer from '@/components/AnyPage/Footer/Footer';
 import ContentLayout from '../ContentLayout/ContentLayout';
-
-import Theme from '../../theme/theme';
 import {useUpdateRefresh} from '@/hooks/useUpdateRefresh';
 import {useUserStore} from '@/hooks/useUserStore';
+import Theme from '../../theme/theme';
 interface MainLayout {
 	children: React.ReactChild | React.ReactNode;
 }

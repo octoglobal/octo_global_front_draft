@@ -1,19 +1,27 @@
 import React, {FC} from 'react';
-import {Button, ButtonProps} from '@mui/material';
+import {ButtonProps} from '@mui/material';
+
+import {useMobile} from '@/hooks/useMedia';
 
 import {useButtonUIStyle} from './style';
 
-const ButtonUI: FC<ButtonProps> = (props) => {
+const ButtonUI : FC<ButtonProps> = (props) => {
 
-	const {ButtonStyle} = useButtonUIStyle();
+	const {isMobile} = useMobile();
+
+	const {
+		CustonButtonUI,
+		ButtonStyle,
+		ButtonMobileStyle
+	} = useButtonUIStyle();
 
 	return (
-		<Button
+		<CustonButtonUI
 			{...props}
-			sx={ButtonStyle}
+			sx={isMobile ? ButtonMobileStyle: ButtonStyle}
 		>
 			{props.children}
-		</Button>
+		</CustonButtonUI>
 	);
 };
 

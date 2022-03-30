@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import {Typography } from '@mui/material';
 
 import {useFormComponentStyle} from './style';
 
@@ -20,9 +19,7 @@ const FormComponent: FC<FormComponent> = ({title, background = true, children}) 
 		<FormComponentContent
 			background={background}
 		>
-			<FormComponentTitle>
-				<Typography variant="h4">{title}</Typography>
-			</FormComponentTitle>
+			<FormComponentTitle>{title}</FormComponentTitle>
 			{children}
 		</FormComponentContent>
 	);
