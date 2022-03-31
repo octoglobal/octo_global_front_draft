@@ -2,6 +2,8 @@ import {octoAxios} from '@/lib/http';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {IUserSlice} from '@/reducers/userSlice/userSlice';
 import axios from 'axios';
+import {IAddressModel} from '@/models/IAddressModel';
+import {AddressFetchObject, IRecoveryMessage} from '../../../../types/types';
 
 export interface IUserRegistrationReq {
 	name: string;
@@ -15,8 +17,24 @@ export interface IUserLoginReq {
 	email: string;
 	password: string;
 }
+export interface IUserChange {
+	name: string;
+	surname: string;
+	phone: string;
+}
 interface IUserDefaultRes {
 	message: string
+}
+
+export interface IUserAddresReq {
+	name: string;
+	surname: string;
+	phone: string;
+	address: string;
+}
+
+interface IAddressDelete {
+	address_id: number
 }
 
 export const fetchUserRefresh = async () => {
@@ -55,6 +73,7 @@ export const fetchUserAutoLogin = createAsyncThunk(
 	'user/autologin',
 	async (__, thunkAPI) => {
 		try {
+			console.log('пошел запрос');
 			const response = await octoAxios.get('/user');
 			return response.data;
 		} catch (err) {
@@ -82,6 +101,65 @@ export const fetchUserLogin = createAsyncThunk(
 				return thunkAPI.rejectWithValue(err.response?.status);
 			}
 			return thunkAPI.rejectWithValue(422);
+		}
+	}
+);
+
+export const fetchChangeUser = createAsyncThunk(
+	'user/change',
+	async(data: IUserChange, thunkAPI) => {
+		try {
+			const response = await octoAxios.patch('/user', data);
+
+			console.log('response: ', response);
+		} catch (e) {
+			console.log('e: ', e);
+
+		}
+	}
+);
+
+export const fetchRecoveryMessage = createAsyncThunk(
+	'user/send_recovery_message',
+	async(data : IRecoveryMessage, thunkAPI) => {
+		try {
+			// console.log('data: ', data);
+			const response = await octoAxios.post('/send_recovery_message', data);
+			console.log('response: ', response);
+
+		} catch (e) {
+			console.log('e: ', e);
+
+		}
+	}
+);
+
+export const fetchAddAddress = createAsyncThunk(
+	'address/add',
+	async(data: AddressFetchObject, thinkAPI) => {
+		try {
+			const response = await octoAxios.post('/user/address', data);
+
+			console.log('response: ', response);
+			return response;
+		} catch (e) {
+			console.log('e: ', e);
+		}
+	}
+);
+
+export const fetchDeleteAddress = createAsyncThunk(
+	'/address/delete',
+	// TODO: добавитьтип адресса к удалению адреса
+	async (data: IAddressDelete, thunkAPI) => {
+		try {
+			console.log('data: ', data);
+			const response = await octoAxios.delete('/user/address', {data});
+			console.log('response: ', response);
+			// const response
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Ошибка apu address/delete');
 		}
 	}
 );

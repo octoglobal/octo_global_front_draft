@@ -1,3 +1,5 @@
+import {IAddressModel} from '@/models/IAddressModel';
+
 export interface IOrderInfo {
 	id: number,
 	status: string,
@@ -14,3 +16,9 @@ export interface IOrderCardStyles {
 };
 
 export interface IOrderCard extends IOrderInfo, IOrderCardStyles {}
+
+export type AddressFetchObject = Omit<IAddressModel, 'id'>;
+
+export interface IRecoveryMessage {
+	email: string
+}

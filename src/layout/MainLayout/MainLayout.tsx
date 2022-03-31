@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Box} from '@mui/material';
 import Header from '@/components/AnyPage/Header/Header';
 import Footer from '@/components/AnyPage/Footer/Footer';
@@ -13,7 +13,12 @@ interface MainLayout {
 const MainLayout: FC<MainLayout> = ({children}) => {
 
 	useUpdateRefresh();
-	useUserStore();
+	// useUserStore();
+	const {getUser} = useUserStore();
+
+	useEffect(() => {
+		getUser();
+	}, );
 
 	return (
 		<Theme>

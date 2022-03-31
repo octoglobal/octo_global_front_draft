@@ -16,6 +16,10 @@ export const useHeaderStyle = () => {
 		justifyContent: 'space-between',
 		alignItems: 'center',
 
+		'& #demo-positioned-menu': {
+			// right: '0',
+		},
+
 		[theme.breakpoints.down(1024)]: {
 			padding: '12px 60px',
 		},
@@ -63,6 +67,13 @@ export const useHeaderStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
+		position: 'relative',
+
+		'& #popper': {
+			transform: 'none !important',
+			top: '35px !important',
+			width: '239px !important',
+		},
 
 		'& div:first-child': {
 			marginRight: '10px',

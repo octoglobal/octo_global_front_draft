@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import Image from 'next/image';
 
-import {useMobile} from '../../../../hooks/useMedia';
-import TestOrderImage from '../../../../UI/UIIcon/TestOrderImage.png';
+import {useMobile} from '@/hooks/useMedia';
+// import TestOrderImage from '../../../../UI/UIIcon/TestOrderImage.png';
+import TestOrderImage from '../../../../UI/UIIcon/Package.png';
 import {IOrderCard} from '../../../../types/types';
 
 import {useOrderCardStyle} from './style';

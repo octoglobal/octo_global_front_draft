@@ -6,16 +6,17 @@ import AddLocationForm from '../../../forms/AddLocationForm/AddLocationForm';
 import Tabs from '../../../AnyPage/Tabs/Tabs';
 import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+import PlusLocation from '../../../../UI/UIIcon/PlusLocation.svg';
 
 import { useCustomRouter } from '../../../../hooks/useCustomRouter';
 
 import AccountUrlArray from './AccountTabsLocationData.json';
 
 import { useAccountLocationStyle } from './style';
-
-// interface IAccountLocations {
-// 	array?: Array,
-// }
+import {useUserStore} from '@/hooks/useUserStore';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {fetchDeleteAddress} from '@/reducers/userSlice/asyncActions/userApi';
+import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
 
 const AccountLocations: FC = () => {
 	const {
@@ -32,30 +33,19 @@ const AccountLocations: FC = () => {
 		ButtonShowAll
 	} = useAccountLocationStyle();
 
+	const {
+		user: {
+			addresses
+		}
+	} = useUserStore();
+
 	const { router } = useCustomRouter();
+
+	const dispatch = useAppDispatch();
 
 	const [openRules, setOpenRules] = useState<boolean>(false);
 	const [operForm, setOpenForm] = useState<boolean>(false);
 	const [showAllLoc, setAllLoc] = useState<boolean>(false);
-
-	const [mockData, setMockData] = useState(
-		[
-			{
-				id: 1,
-				name: 'Anastasia',
-				surname: 'Khorobrykh',
-				phone: '+7 999 446 12 23',
-				location: 'г. Челябинск, ул. Труда, д. 99 кв. 1'
-			},
-			{
-				id: 2,
-				name: 'Steven',
-				surname: 'Mitchell',
-				phone: '+7 987 465 76 12',
-				location: 'г. Челябинск, ул. Салавата Юлаева, д. 13 кв. 13'
-			}
-		]
-	);
 
 	const handlerToggleState = (setState : (prevState : (state: boolean) => boolean) => void) => {
 		return () => {
@@ -64,13 +54,12 @@ const AccountLocations: FC = () => {
 	};
 
 	const handlerDeleteLocation = useCallback((id : number) => {
-		console.log('handlerDeleteLocation: ', id);
-		console.log('mockData: ', mockData);
-		const filteredArray = mockData.filter(item => item.id !== id);
-		setMockData(filteredArray);
+		dispatch(fetchDeleteAddress({address_id: id}))
+			//TODO: проверить на ошибку
+			.then(() => {
+				dispatch(fetchUserAutoLogin());
+			});
 	}, []);
-
-	console.log('mockData: ', mockData);
 
 	return (
 		<LocationWrapperUI>
@@ -82,7 +71,9 @@ const AccountLocations: FC = () => {
 						{router?.query?.location === 'rus' ? (
 							<LocationFormUI>
 								<>
-									{mockData.slice(0, !showAllLoc ? 2 : mockData.length).map((address, i, arr) => (
+									{!operForm && !addresses?.length && <PlusLocation />}
+									{/*TODO: сократить и вынести*/}
+									{typeof addresses !== 'undefined' && addresses.slice().sort((a : { id: number }, b : { id: number }) => a.id > b.id ? 1 : -1).slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
 										<>
 											<AddressUser
 												key={address.id}
@@ -90,16 +81,16 @@ const AccountLocations: FC = () => {
 												name={address.name}
 												surname={address.surname}
 												phone={address.phone}
-												location={address.location}
+												location={address.address_string}
 												handlerDeleteLocation={handlerDeleteLocation}
 											/>
 											{i !== (arr.length - 1) &&
-												<Divider sx={{borderColor: '#274D82'}} />
+												<Divider sx={{borderColor: '#274D82', width: '100%'}} />
 											}
 										</>
 									))}
 									<LocationButtonsUI>
-										{mockData.length > 2 &&
+										{addresses && addresses.length > 2 &&
 											<ButtonUI
 												style={ButtonShowAll}
 												onClick={handlerToggleState(setAllLoc)}
