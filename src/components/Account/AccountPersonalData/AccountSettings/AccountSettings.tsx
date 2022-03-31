@@ -28,12 +28,12 @@ const AccountSettings: FC = () => {
 		FormTextFieldPasswordWrapperUI,
 	} = useAccountSettingsStyle();
 
-	const { handleSubmit, control, setValue, getValues, setError } = useForm();
+	const { handleSubmit, control, setValue, getValues } = useForm();
 
 	const {onSubmit} = useAccountSettings();
 
 	const {
-		user: { verifiedEmail, email, id },
+		user: { personalAreaId, verifiedEmail, email, phone },
 	} = useUserStore();
 
 	// TODO: пока что задал жестко, потом переедет в хук
@@ -68,7 +68,7 @@ const AccountSettings: FC = () => {
 								Номер кабинета
 							</Typography>
 						</FormTableRowLabelUI>
-						<FormTableTextUI>#{id}</FormTableTextUI>
+						<FormTableTextUI>#{personalAreaId}</FormTableTextUI>
 
 						<FormTableRowLabelUI>
 							<Typography variant="body2">Почта</Typography>
@@ -108,7 +108,7 @@ const AccountSettings: FC = () => {
 								controller={{
 									name: 'phone',
 									control,
-									defaultValue: '',
+									defaultValue: phone,
 									rules: { required: true },
 								}}
 								inputProps={{

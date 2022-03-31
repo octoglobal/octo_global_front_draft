@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {SyntheticEvent, KeyboardEvent, useRef, useState} from 'react';
+import {Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
 import MobileHeader from './MobileHeader/MobileHeader';
 import User from '../User/User';
 import Logotip from '../../AnyPage/Header/Logotip/Logotip';
 
-import {useMobile} from '../../../hooks/useMedia';
+import {useMobile} from '@/hooks/useMedia';
 import {useUserStore} from '@/hooks/useUserStore';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-import {useCustomRouter} from '../../../hooks/useCustomRouter';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 import {useHeaderStyle} from './style';
 import HeaderNavLink from './HeaderNavLink/HeaderNavLink';
+import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
 
 const Header = () => {
+
+	const dispatch = useAppDispatch();
 
 	const {
 		HeaderWrapperUI,
@@ -31,6 +36,24 @@ const Header = () => {
 		// loading
 	} = useUserStore();
 
+	const [open, setOpen] = useState(false);
+	const anchorRef = useRef<HTMLDivElement>(null);
+
+	const handleToggle = () => {
+		setOpen((prevOpen) => !prevOpen);
+	};
+
+	const handleClose = (event: Event | SyntheticEvent) => {
+		if (
+			anchorRef.current &&
+			anchorRef.current.contains(event.target as HTMLElement)
+		) {
+			return;
+		}
+
+		setOpen(false);
+	};
+
 	const {isMobile} = useMobile();
 
 	const {pushTo} = useCustomRouter();
@@ -39,10 +62,26 @@ const Header = () => {
 		pushTo('/login');
 	};
 
-	const handlerPushAccount = () => {
+	const handlerLogout = () => {
+		dispatch(fetchUserLogout());
+		pushTo('/');
+		setOpen(false);
+	};
+
+	const handlerPushAccount = (url : string) => {
 		return () => {
-			pushTo('/account/info');
+			pushTo(url);
+			setOpen(false);
 		};
+	};
+
+	const handleListKeyDown = (event: KeyboardEvent) => {
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			setOpen(false);
+		} else if (event.key === 'Escape') {
+			setOpen(false);
+		}
 	};
 
 	return (
@@ -63,15 +102,61 @@ const Header = () => {
 								</ButtonUI>
 							) : (
 								<UserWrapperUI
-									onClick={handlerPushAccount()}
+									// onClick={togglePopover}
+									// ref={anchorEl}
+									ref={anchorRef}
 								>
 									{/* <User name={name} surname={surname} /> */}
 									<User />
-									<ArrowUI />
+									<Button
+										id="composition-button"
+										aria-controls={open ? 'composition-menu' : undefined}
+										aria-expanded={open ? 'true' : undefined}
+										aria-haspopup="true"
+										onClick={handleToggle}
+									>
+										<ArrowUI  />
+									</Button>
+
+									<Popper
+										id="popper"
+										open={open}
+										anchorEl={anchorRef.current}
+										role={undefined}
+										placement="bottom-end"
+										transition
+										disablePortal
+									>
+										{({ TransitionProps }) => (
+											<Grow
+												{...TransitionProps}
+												style={{
+													transformOrigin: 'right bottom',
+												}}
+											>
+												<Paper>
+													<ClickAwayListener onClickAway={handleClose}>
+														<MenuList
+															autoFocusItem={open}
+															id="composition-menu"
+															aria-labelledby="composition-button"
+															onKeyDown={handleListKeyDown}
+														>
+															<MenuItem onClick={handlerPushAccount('/account/info')}>Личные данные</MenuItem>
+															<MenuItem onClick={handlerPushAccount('/account/orders')}>Заказы</MenuItem>
+															<MenuItem onClick={handlerLogout}>Выход</MenuItem>
+														</MenuList>
+													</ClickAwayListener>
+												</Paper>
+											</Grow>
+										)}
+									</Popper>
+
 								</UserWrapperUI>
 							)}
 						</>
 					</HeaderNavUI>
+
 				</HeaderWrapperUI>
 			) : (
 				<MobileHeader />

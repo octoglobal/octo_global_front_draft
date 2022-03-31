@@ -8,6 +8,7 @@ import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useFormsStyle} from '../style';
 
 import {useLogin} from './useLogin';
+import TextFieldPasswordUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 
 const LoginForm = () => {
 
@@ -46,7 +47,7 @@ const LoginForm = () => {
 				</FormsInput>
 
 				<FormsInput>
-					<TextFieldUI
+					<TextFieldPasswordUI
 						controller={{
 							name: 'password',
 							control,

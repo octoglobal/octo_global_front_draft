@@ -6,10 +6,13 @@ import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 
 import {useFormsStyle} from '../style';
+import {useResetPasswordForm} from '@/components/forms/ResetPasswordForm/useResetPasswordForm';
 
 const ResetPasswordForm = () => {
 
-	const {control} = useForm();
+	const {handleSubmit, control} = useForm();
+
+	const {onSubmit} = useResetPasswordForm();
 
 	const {
 		FormsWrapperBox,
@@ -19,7 +22,7 @@ const ResetPasswordForm = () => {
 	} = useFormsStyle();
 
 	return (
-		<Box component="form">
+		<Box component="form" onSubmit={handleSubmit(onSubmit)}>
 			<FormsWrapperBox>
 
 				<FormsDescription>

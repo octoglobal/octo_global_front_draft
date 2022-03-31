@@ -1,7 +1,11 @@
 import {FieldValues, SubmitHandler} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {fetchChangeUser} from '@/reducers/userSlice/asyncActions/userApi';
 
 export const useAccountSettings = () => {
+
+	const dispatch = useAppDispatch();
 
 	const {
 		user: { name, surname },
@@ -20,12 +24,13 @@ export const useAccountSettings = () => {
 		};
 
 		if(sendObject.name && sendObject.surname && sendObject.phone) {
-			// dispatch(fetchChangeUser(sendObject))
-				// .then(e => {
-				//
-				// })
-		}
+			dispatch(fetchChangeUser(sendObject))
+				.then(e => {
+					const statusCode = e.payload;
 
+					console.log('statusCode: ', statusCode);
+				});
+		}
 	};
 
 	return {

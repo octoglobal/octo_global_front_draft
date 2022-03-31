@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 
 import {useMobile} from '../../../hooks/useMedia';
 import {useAddLocation} from './useAddLocation';
@@ -36,7 +36,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 		}
 	} = useUserStore();
 
-	const {obSubmit} = useAddLocation();
+	const {onSubmit} = useAddLocation();
 
 	const {isMobile} = useMobile();
 
@@ -44,8 +44,13 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 		setOpenForm(prevState => !prevState);
 	};
 
+	const wrapperSubmit = (formData : FieldValues) => {
+		onSubmit(formData);
+		setOpenForm(prevState => !prevState);
+	};
+
 	return (
-		<FormUI onSubmit={handleSubmit(obSubmit)}>
+		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
 			<FormWrapper>
 				<FormRowTitle>Имя</FormRowTitle>
 				<FormRowTextField>

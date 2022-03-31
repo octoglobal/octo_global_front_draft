@@ -95,6 +95,11 @@ export const useAccountLocationStyle = () => {
 	const LocationFormUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'column',
+		alignItems: 'center',
+
+		'& svg': {
+			marginBottom: '25px',
+		},
 
 		[theme.breakpoints.down(500)]: {
 			'& button': {
@@ -106,7 +111,7 @@ export const useAccountLocationStyle = () => {
 	const LocationButtonsUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		justifyContent: 'center',
 
 		[theme.breakpoints.down(500)]: {
 			justifyContent: 'space-between',
@@ -165,7 +170,7 @@ export const useAccountLocationStyle = () => {
 		padding: '8px 15px',
 		margin: '0',
 		// marginLeft: '25px'
-		alignSelf: 'flex-end'
+		// alignSelf: 'flex-end'
 	};
 
 	const ButtonShowAll: React.CSSProperties = {
