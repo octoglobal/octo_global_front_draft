@@ -6,31 +6,31 @@ const HeaderNavLink : FC = () => {
 	return (
 		<>
 			<CustomLinkUI
-				href="#"
+				href=""
 			>
 				Магазины
 			</CustomLinkUI>
 
 			<CustomLinkUI
-				href="#"
+				href=""
 			>
 				Калькулятор
 			</CustomLinkUI>
 
 			<CustomLinkUI
-				href="#"
+				href=""
 			>
 				Блог
 			</CustomLinkUI>
 
 			<CustomLinkUI
-				href="#"
+				href=""
 			>
 				Стоимость услуг
 			</CustomLinkUI>
 
 			<CustomLinkUI
-				href="#"
+				href=""
 			>
 				Помощь
 			</CustomLinkUI>

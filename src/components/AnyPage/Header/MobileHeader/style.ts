@@ -28,12 +28,12 @@ export const useHeaderMobileStyle = () => {
 			marginTop: '15%',
 
 			background: '#FFFFFF',
-			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.15)',
+			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.15)',
 			borderRadius: '0px 8px',
 		},
 
 		'& .MuiBackdrop-root': {
-			background: 'inherit',
+			// background: 'inherit',
 		},
 	}));
 

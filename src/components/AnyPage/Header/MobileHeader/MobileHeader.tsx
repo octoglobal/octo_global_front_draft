@@ -18,7 +18,7 @@ const MobileHeader: FC = () => {
 		SwipeableDrawerUI,
 	} = useHeaderMobileStyle();
 
-	const [openMenu, setOpenMenu] = useState(false);
+	const [openMenu, setOpenMenu] = useState<boolean>(false);
 
 	const handlerOpenMenu = () => {
 		setOpenMenu(prevState => !prevState);
@@ -45,7 +45,9 @@ const MobileHeader: FC = () => {
 				onOpen={() => setOpenMenu(true)}
 				onClose={() => setOpenMenu(false)}
 			>
-				<MenuAuthContent />
+				<MenuAuthContent
+					setOpenMenu={setOpenMenu}
+				/>
 			</SwipeableDrawerUI>
 		</>
 	);

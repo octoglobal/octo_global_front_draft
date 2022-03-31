@@ -1,5 +1,5 @@
 import React, {FC, MouseEventHandler, useState} from 'react';
-import { List, ListItem, Divider } from '@mui/material';
+import { List, Divider } from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import AccountOrdersArray from './AccountOrdersData.json';
@@ -11,6 +11,7 @@ import AddTrackForm from '../../forms/AddTrackForm/AddTrackForm';
 import {useAccountOrdersStyle} from './style';
 import CheckBoxUI from 'UI/UIComponents/CheckBoxUI/CheckBoxUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+// import HorizontalList from '@/components/AnyPage/HorizontalList/HorizontalList';
 
 const AccountOrders: FC = () => {
 
@@ -23,6 +24,7 @@ const AccountOrders: FC = () => {
 		OrderCardWrappUI,
 		OrdersItemUI,
 		ListItemTextUI,
+		ListItemUI,
 		ButtonExecutParcelUI
 	} = useAccountOrdersStyle();
 
@@ -48,60 +50,65 @@ const AccountOrders: FC = () => {
 	return (
 		<AccountOrdersWrapperUI>
 			<List dense={false}>
-				<ListItem>
+				<ListItemUI>
 					<ListItemTextUI
 						selected={filterOrders === 'all'}
 						onClick={toggleFilters('all')}
 					>
 						Все
 					</ListItemTextUI>
-				</ListItem>
+				</ListItemUI>
 
-				<ListItem>
+				<ListItemUI>
 					<ListItemTextUI
 						selected={filterOrders === 'expect'}
 						onClick={toggleFilters('expect')}
 					>
 						Ожидаемые
 					</ListItemTextUI>
-				</ListItem>
+				</ListItemUI>
 
-				<ListItem>
+				<ListItemUI>
 					<ListItemTextUI
 						selected={filterOrders === 'wait'}
 						onClick={toggleFilters('wait')}
 					>
 						Ждут отправки
 					</ListItemTextUI>
-				</ListItem>
+				</ListItemUI>
 
-				<ListItem>
+				<ListItemUI>
 					<ListItemTextUI
 						selected={filterOrders === 'send'}
 						onClick={toggleFilters('send')}
 					>
 						Отправлены
 					</ListItemTextUI>
-				</ListItem>
+				</ListItemUI>
 
-				<ListItem>
+				<ListItemUI>
 					<ListItemTextUI
 						selected={filterOrders === 'deliv'}
 						onClick={toggleFilters('deliv')}
 					>
 						Доставлены
 					</ListItemTextUI>
-				</ListItem>
+				</ListItemUI>
 
-				<ListItem>
+				<ListItemUI>
 					<ListItemTextUI
 						selected={filterOrders === 'addTrack'}
 						onClick={handlerAddTrack}
 					>
 						+ Добавить
 					</ListItemTextUI>
-				</ListItem>
+				</ListItemUI>
 			</List>
+
+			{/*<HorizontalList*/}
+			{/*	onClick={toggleFilters}*/}
+			{/*	list={['all', 'expect', 'wait', 'send', 'deliv', 'addTrack']}*/}
+			{/*/>*/}
 
 			{router?.query?.tab !== 'addTrack' ? (
 				<OrdersUI>

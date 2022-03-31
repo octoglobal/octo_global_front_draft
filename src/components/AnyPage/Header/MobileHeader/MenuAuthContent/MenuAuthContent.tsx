@@ -17,7 +17,11 @@ import ResetPasswordForm from '@/components/forms/ResetPasswordForm/ResetPasswor
 import LoginPromt from '@/components/AnyPage/AuthFormPromt/LoginPromt/LoginPromt';
 import SignUpPromt from '@/components/AnyPage/AuthFormPromt/SignUpPromt/SignUpPromt';
 
-const MenuAuthContent: FC = () => {
+interface IMenuAuthContent {
+	setOpenMenu: (state: boolean) => void,
+}
+
+const MenuAuthContent: FC<IMenuAuthContent> = ({setOpenMenu}) => {
 	const { isAuth } = useUserStore();
 	const dispatch = useAppDispatch();
 
@@ -48,6 +52,7 @@ const MenuAuthContent: FC = () => {
 	};
 
 	const handlerPushToAccount = () => {
+		setOpenMenu(false);
 		pushTo('/account/info');
 	};
 

@@ -57,7 +57,7 @@ export const useTextFieldUIStyle = () => {
 
 	const TextFieldMobileStyle = {
 		width: '100%',
-		height: '29px',
+		height: '37px',
 
 		background: '#FFFFFF',
 		border: '1px solid #DFE4EC',
@@ -66,7 +66,7 @@ export const useTextFieldUIStyle = () => {
 
 		'& .MuiOutlinedInput-root, .MuiFormControl-root': {
 			width: '100%',
-			height: '29px',
+			height: '37px',
 			borderRadius: '0px'
 		},
 		'& .MuiInputLabel-root': {

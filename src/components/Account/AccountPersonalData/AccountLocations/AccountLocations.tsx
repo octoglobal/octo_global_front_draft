@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, {FC, useCallback, useState} from 'react';
 import {Collapse, Divider} from '@mui/material';
 
 import AddressUser from './AddressUser/AddressUser';
@@ -10,10 +10,12 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import { useCustomRouter } from '../../../../hooks/useCustomRouter';
 
 import AccountUrlArray from './AccountTabsLocationData.json';
-import AccountAddressUserArray from './AccountAddressUserData.json';
-
 
 import { useAccountLocationStyle } from './style';
+
+// interface IAccountLocations {
+// 	array?: Array,
+// }
 
 const AccountLocations: FC = () => {
 	const {
@@ -36,11 +38,39 @@ const AccountLocations: FC = () => {
 	const [operForm, setOpenForm] = useState<boolean>(false);
 	const [showAllLoc, setAllLoc] = useState<boolean>(false);
 
+	const [mockData, setMockData] = useState(
+		[
+			{
+				id: 1,
+				name: 'Anastasia',
+				surname: 'Khorobrykh',
+				phone: '+7 999 446 12 23',
+				location: 'г. Челябинск, ул. Труда, д. 99 кв. 1'
+			},
+			{
+				id: 2,
+				name: 'Steven',
+				surname: 'Mitchell',
+				phone: '+7 987 465 76 12',
+				location: 'г. Челябинск, ул. Салавата Юлаева, д. 13 кв. 13'
+			}
+		]
+	);
+
 	const handlerToggleState = (setState : (prevState : (state: boolean) => boolean) => void) => {
 		return () => {
 			setState(prevState => !prevState);
 		};
 	};
+
+	const handlerDeleteLocation = useCallback((id : number) => {
+		console.log('handlerDeleteLocation: ', id);
+		console.log('mockData: ', mockData);
+		const filteredArray = mockData.filter(item => item.id !== id);
+		setMockData(filteredArray);
+	}, []);
+
+	console.log('mockData: ', mockData);
 
 	return (
 		<LocationWrapperUI>
@@ -52,7 +82,7 @@ const AccountLocations: FC = () => {
 						{router?.query?.location === 'rus' ? (
 							<LocationFormUI>
 								<>
-									{AccountAddressUserArray.slice(0, !showAllLoc ? 2 : AccountAddressUserArray.length).map((address, i, arr) => (
+									{mockData.slice(0, !showAllLoc ? 2 : mockData.length).map((address, i, arr) => (
 										<>
 											<AddressUser
 												key={address.id}
@@ -61,6 +91,7 @@ const AccountLocations: FC = () => {
 												surname={address.surname}
 												phone={address.phone}
 												location={address.location}
+												handlerDeleteLocation={handlerDeleteLocation}
 											/>
 											{i !== (arr.length - 1) &&
 												<Divider sx={{borderColor: '#274D82'}} />
@@ -68,12 +99,14 @@ const AccountLocations: FC = () => {
 										</>
 									))}
 									<LocationButtonsUI>
-										<ButtonUI
-											style={ButtonShowAll}
-											onClick={handlerToggleState(setAllLoc)}
-										>
-											{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
-										</ButtonUI>
+										{mockData.length > 2 &&
+											<ButtonUI
+												style={ButtonShowAll}
+												onClick={handlerToggleState(setAllLoc)}
+											>
+												{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
+											</ButtonUI>
+										}
 										{!operForm ? (
 											<ButtonUI
 												style={ButtonAdd}

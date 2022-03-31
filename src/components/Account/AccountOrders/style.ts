@@ -1,4 +1,4 @@
-import {styled, ListItemText} from '@mui/material';
+import {styled, ListItem, ListItemText} from '@mui/material';
 
 export const useAccountOrdersStyle = () => {
 	const AccountOrdersWrapperUI = styled('div')(({theme}) => ({
@@ -11,6 +11,7 @@ export const useAccountOrdersStyle = () => {
 
 		[theme.breakpoints.down(500)]: {
 			flexDirection: 'column',
+			marginTop: '15px',
 		}
 	}));
 
@@ -37,6 +38,7 @@ export const useAccountOrdersStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
+			marginBottom: '20px',
 		}
 	}));
 
@@ -97,6 +99,12 @@ export const useAccountOrdersStyle = () => {
 		}
 	}));
 
+	const ListItemUI = styled(ListItem)(({theme}) => ({
+		[theme.breakpoints.down(500)]: {
+			padding: '6px 0',
+		}
+	}));
+
 	const ButtonExecutParcelUI = {
 		width: '165px',
 		height: '32px',
@@ -111,6 +119,7 @@ export const useAccountOrdersStyle = () => {
 		OrderCardWrappUI,
 		OrdersItemUI,
 		ListItemTextUI,
+		ListItemUI,
 		ButtonExecutParcelUI
 	};
 };
