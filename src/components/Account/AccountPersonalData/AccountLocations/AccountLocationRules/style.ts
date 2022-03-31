@@ -26,8 +26,17 @@ export const useAccountLocationRulesStyle = () => {
 		gridRowGap: '15px',
 		marginBottom: '15px',
 
+		// border: '1px solid green',
+
+		[theme.breakpoints.down(800)]: {
+			gridTemplateColumns: 'auto',
+		},
 		[theme.breakpoints.down(500)]: {
-			gridTemplateColumns: '250px',
+			gridTemplateColumns: 'auto',
+			gridRowGap: '5px',
+		},
+		[theme.breakpoints.down(320)]: {
+			gridTemplateColumns: '100%',
 			gridRowGap: '5px',
 		}
 	}));
@@ -40,6 +49,10 @@ export const useAccountLocationRulesStyle = () => {
 		lineHeight: '21px',
 		color: '#000000',
 
+		width: '100%',
+
+		// border: '1px solid red',
+
 		'& > div': {
 			marginBottom: '15px',
 		}
@@ -51,6 +64,8 @@ export const useAccountLocationRulesStyle = () => {
 		fontSize: '18px',
 		lineHeight: '21px',
 		color: '#000000',
+
+		// border: '1px solid purple',
 
 		'& > div': {
 			marginBottom: '15px',

@@ -5,6 +5,7 @@ export const useAccountSettingsStyle = () => {
 	const SettingsWrapperUI = styled('div')(({theme}) => ({
 		width: '100%',
 		height: '100%',
+		padding: '5px',
 
 		'& form': {
 			display: 'flex',
@@ -12,7 +13,13 @@ export const useAccountSettingsStyle = () => {
 			marginRight: '145px',
 		},
 
-		[theme.breakpoints.down(450005)]: {
+		[theme.breakpoints.down(800)]: {
+			'& form': {
+				marginRight: '0',
+			}
+		},
+
+		[theme.breakpoints.down(500)]: {
 			marginTop: '10px',
 			'& form': {
 				marginRight: '0'
@@ -20,18 +27,26 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
-	const FormsWrapperBoxUI = styled('div')(() => ({
+	const FormsWrapperBoxUI = styled('div')(({theme}) => ({
 		width: '400px',
+
+		[theme.breakpoints.down(500)]: {
+			width: '100%',
+		}
 	}));
 
-	const FormTableUI = styled('div')(() => ({
-
+	const FormTableUI = styled('div')(({theme}) => ({
 		display: 'grid',
 		gridTemplateColumns: '150px auto',
 		gridTemplateRows: 'auto auto auto auto auto auto',
 		gridColumnGap: '20px',
 		gridRowGap: '15px',
 		marginBottom: '15px',
+
+		[theme.breakpoints.down(500)]: {
+			gridTemplateColumns: 'auto auto',
+			gridColumnGap: '10px',
+		}
 	}));
 
 	const FormTableUserUI = styled('div')(() => ({
@@ -76,7 +91,6 @@ export const useAccountSettingsStyle = () => {
 			fontWeight: '500',
 			fontSize: '18px',
 			lineHeight: '21px',
-			textAlign: 'center',
 			color: '#000000',
 		},
 	}));
@@ -94,7 +108,7 @@ export const useAccountSettingsStyle = () => {
 			fontWeight: '500',
 			fontSize: '18px',
 			lineHeight: '21px',
-			textAlign: 'center',
+			textAlign: 'start',
 			color: '#000000',
 		},
 

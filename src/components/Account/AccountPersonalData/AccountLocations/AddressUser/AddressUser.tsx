@@ -10,14 +10,17 @@ interface IAddressUser {
 	name: string,
 	surname: string,
 	phone: string,
-	location: string
+	location: string,
+	handlerDeleteLocation: (id: number) => void,
 }
 
 const AddressUser: FC<IAddressUser> = ({
+	id,
 	name,
 	surname,
 	phone,
-	location
+	location,
+	handlerDeleteLocation
 }) => {
 
 	const {
@@ -34,9 +37,12 @@ const AddressUser: FC<IAddressUser> = ({
 		setOpenConfirmDialog(prevState => !prevState);
 	}, []);
 
-	const handlerConfirm = () : void => {
+	const handlerConfirm = (idDelete : number) : void => {
+		// return () => {
 		console.log('handlerConfirm: ');
+		handlerDeleteLocation(idDelete);
 		handlerDialogState();
+		// };
 	};
 
 	const handlerCancel = () : void => {
@@ -69,7 +75,7 @@ const AddressUser: FC<IAddressUser> = ({
 			<ModalConfirmUI
 				open={openConfirmDialog}
 				title="Вы уверены что хотите удалить адрес?"
-				onClickYes={handlerConfirm}
+				onClickYes={() => handlerConfirm(id)}
 				onClickNo={handlerCancel}
 			/>
 		</>

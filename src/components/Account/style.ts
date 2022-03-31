@@ -13,6 +13,7 @@ export const useAccountPageStyle = () => {
 
 		'& .TabsListUnstyled-root button': {
 			margin: '0 50px',
+			flexWrap: 'wrap',
 		},
 
 		[theme.breakpoints.down(500)]: {
@@ -22,8 +23,13 @@ export const useAccountPageStyle = () => {
 				width: '100%',
 			},
 
+			'& .TabsListUnstyled-root': {
+				justifyContent: 'space-evenly',
+				minWidth: '0',
+			},
+
 			'& .TabsListUnstyled-root button': {
-				margin: '0 30px',
+				margin: '0 10px 0 0',
 			},
 		}
 	}));

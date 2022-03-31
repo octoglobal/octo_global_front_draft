@@ -4,12 +4,12 @@ import Link from 'next/link';
 import {useLinkStyle} from './style';
 
 interface ICustomLinkUI {
-	href: string,
+	href?: string,
 	children: React.ReactChildren | React.ReactNode;
 }
 
 const CustomLinkUI : FC<ICustomLinkUI> = ({
-	href = '#',
+	href = '',
 	children,
 }) => {
 

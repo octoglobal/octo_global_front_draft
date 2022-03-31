@@ -20,16 +20,16 @@ export const useAccountLocationStyle = () => {
 		boxSizing: 'border-box',
 
 		[theme.breakpoints.down(1024)]: {
-			width: 'auto',
+			width: '100%',
 		},
 		[theme.breakpoints.down(800)]: {
-			width: '600px'
+			// width: '100%'
 		},
 		[theme.breakpoints.down(800)]: {
-			width: '500px'
+			// width: '500px'
 		},
 		[theme.breakpoints.down(500)]: {
-			width: '95%'
+			// width: '95%'
 		}
 	}));
 
@@ -44,6 +44,8 @@ export const useAccountLocationStyle = () => {
 		},
 
 		'& .TabsListUnstyled-root': {
+			width: '100%',
+			minWidth: '280px',
 			paddingBottom: '20px',
 			marginBottom: '20px',
 		},
@@ -57,7 +59,7 @@ export const useAccountLocationStyle = () => {
 		// },
 
 		[theme.breakpoints.down(500)]: {
-			padding: '15px',
+			padding: '10px',
 
 			// скрываем адрес на мобилке
 			'& p:first-child': {
@@ -67,7 +69,8 @@ export const useAccountLocationStyle = () => {
 			'& .TabsListUnstyled-root': {
 				paddingBottom: '4px',
 				marginBottom: '0px',
-				justifyContent: 'center',
+				// justifyContent: 'flex-start',
+				minWidth: '100%',
 			},
 
 			'& .TabsListUnstyled-root button': {
@@ -100,10 +103,14 @@ export const useAccountLocationStyle = () => {
 		}
 	}));
 
-	const LocationButtonsUI = styled('div')(() => ({
+	const LocationButtonsUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
+
+		[theme.breakpoints.down(500)]: {
+			justifyContent: 'space-between',
+		}
 	}));
 
 	const LocationAddressUI = styled('div')(({theme}) => ({
@@ -117,6 +124,7 @@ export const useAccountLocationStyle = () => {
 		marginBottom: '25px',
 
 		[theme.breakpoints.down(500)]: {
+			width: '100%',
 			marginTop: '15px',
 			fontSize: '18px',
 			lineHeight: '21px',
@@ -154,17 +162,18 @@ export const useAccountLocationStyle = () => {
 
 		width: '150px',
 		height: '32px',
-		padding: '0',
+		padding: '8px 15px',
 		margin: '0',
-		marginLeft: '25px'
+		// marginLeft: '25px'
+		alignSelf: 'flex-end'
 	};
 
 	const ButtonShowAll: React.CSSProperties = {
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontSize: '16px',
+		lineHeight: '19px',
 		textAlign: 'center',
 		color: '#274D82',
 		background: 'inherit',
