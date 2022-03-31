@@ -11,6 +11,7 @@ import TextFieldPhoneUI from 'UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextF
 import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 
 import { useAccountSettingsStyle } from './style';
+import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
 
 const AccountSettings: FC = () => {
 	const {
@@ -27,7 +28,9 @@ const AccountSettings: FC = () => {
 		FormTextFieldPasswordWrapperUI,
 	} = useAccountSettingsStyle();
 
-	const { control, setValue, getValues, setError } = useForm();
+	const { handleSubmit, control, setValue, getValues, setError } = useForm();
+
+	const {onSubmit} = useAccountSettings();
 
 	const {
 		user: { verifiedEmail, email, id },
@@ -39,10 +42,10 @@ const AccountSettings: FC = () => {
 			setValue('email', email);
 		}
 		if(!verifiedEmail && getValues('email')) {
-			setError('email', {
-				type: 'manual',
-				message: 'Почта не подтверждена',
-			});
+			// setError('email', {
+			// 	type: 'manual',
+			// 	message: 'Почта не подтверждена',
+			// });
 		}
 	}, [email]);
 
@@ -53,7 +56,7 @@ const AccountSettings: FC = () => {
 	return (
 		<SettingsWrapperUI>
 			{/* TODO: вынести форму в другой файл */}
-			<Box component="form">
+			<Box component="form" onSubmit={handleSubmit(onSubmit)}>
 				<FormsWrapperBoxUI>
 
 					<FormTableUserUI>
@@ -132,14 +135,14 @@ const AccountSettings: FC = () => {
 									name: 'oldPassword',
 									control,
 									defaultValue: '',
-									rules: { required: true },
+									// rules: { required: true },
 								}}
 								inputProps={{
 									// label: 'Старый пароль',
 									placeholder: 'Старый пароль',
 									name: 'oldPassword',
 									type: 'password',
-									required: true,
+									// required: true,
 									helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
@@ -153,14 +156,14 @@ const AccountSettings: FC = () => {
 									name: 'newPassword',
 									control,
 									defaultValue: '',
-									rules: { required: true },
+									// rules: { required: true },
 								}}
 								inputProps={{
 									// label: 'Новый пароль',
 									placeholder: 'Новый пароль',
 									name: 'newPassword',
 									type: 'password',
-									required: true,
+									// required: true,
 									helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}

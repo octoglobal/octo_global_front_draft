@@ -69,9 +69,7 @@ const AccountLocations: FC = () => {
 		const filteredArray = mockData.filter(item => item.id !== id);
 		setMockData(filteredArray);
 	}, []);
-
-	console.log('mockData: ', mockData);
-
+	
 	return (
 		<LocationWrapperUI>
 			<BorderWrapperUI>

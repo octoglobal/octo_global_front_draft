@@ -2,12 +2,14 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {useMobile} from '../../../hooks/useMedia';
+import {useAddLocation} from './useAddLocation';
 
 import TextFieldPhoneUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 import { useAddLocationFormStyle } from './style';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IAddLocationForm {
 	setOpenForm: (prevState : (state: boolean) => boolean) => void
@@ -25,7 +27,16 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 		FormRowButtonUI,
 	} = useAddLocationFormStyle();
 
-	const { control } = useForm();
+	const { handleSubmit, control } = useForm();
+
+	const {
+		user: {
+			name, surname,
+			phone,
+		}
+	} = useUserStore();
+
+	const {obSubmit} = useAddLocation();
 
 	const {isMobile} = useMobile();
 
@@ -34,7 +45,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 	};
 
 	return (
-		<FormUI>
+		<FormUI onSubmit={handleSubmit(obSubmit)}>
 			<FormWrapper>
 				<FormRowTitle>Имя</FormRowTitle>
 				<FormRowTextField>
@@ -42,7 +53,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 						controller={{
 							name: 'name',
 							control,
-							defaultValue: '',
+							defaultValue: name,
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -62,7 +73,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 						controller={{
 							name: 'surname',
 							control,
-							defaultValue: '',
+							defaultValue: surname,
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -82,7 +93,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 						controller={{
 							name: 'phone',
 							control,
-							defaultValue: '',
+							defaultValue: phone,
 							rules: { required: true },
 						}}
 						inputProps={{
