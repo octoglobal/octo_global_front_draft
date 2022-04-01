@@ -10,13 +10,18 @@ interface IIconsProps {
 	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	onClick: () => void;
 }
+interface IRegexProps {
+	regex: RegExp
+}
+
 interface ITextFieldUIProps {
 	controller: Omit<ControllerProps, 'render'>
 	inputProps?: TextFieldProps,
-	iconProps?: IIconsProps
+	iconProps?: IIconsProps,
+	regexProps?: IRegexProps,
 }
 
-const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps}) => {
+const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, regexProps}) => {
 
 	const {isMobile} = useMobile();
 
@@ -40,7 +45,13 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps})
 		if(hasIconProps) {
 			iconProps?.onClick();
 			setIconActive(prevState => !prevState);
-		};
+		}
+	};
+
+	const handlerChange = (onChange : (value : string | number) => void) => (e : React.ChangeEvent<HTMLInputElement>) => {
+		let value = e.target.value;
+		if(regexProps?.regex) value = e.target.value.replace(regexProps.regex, '');
+		onChange(value);
 	};
 
 	return (
@@ -56,9 +67,10 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps})
 						sx={isMobile ? TextFieldMobileStyle : TextFieldStyle}
 						{...inputProps}
 						value={value}
-						onChange={(e) => onChange(e.target.value)}
+						onChange={handlerChange(onChange)}
 						// onChange={onChange}
-						helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
+						// helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
+						helperText={error ? error : ( inputProps?.helperText || '' )}
 						// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
 						error={!!error}
 					/>

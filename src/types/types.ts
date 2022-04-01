@@ -13,7 +13,7 @@ export interface IOrderInfo {
 export interface IOrderCardStyles {
 	highlight?: boolean,
 	disabled?: boolean,
-};
+}
 
 export interface IOrderCard extends IOrderInfo, IOrderCardStyles {}
 

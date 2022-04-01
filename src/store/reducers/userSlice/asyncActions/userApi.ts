@@ -2,7 +2,6 @@ import {octoAxios} from '@/lib/http';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {IUserSlice} from '@/reducers/userSlice/userSlice';
 import axios from 'axios';
-import {IAddressModel} from '@/models/IAddressModel';
 import {AddressFetchObject, IRecoveryMessage} from '../../../../types/types';
 
 export interface IUserRegistrationReq {
@@ -18,8 +17,8 @@ export interface IUserLoginReq {
 	password: string;
 }
 export interface IUserChange {
-	name: string;
-	surname: string;
+	name?: string;
+	surname?: string;
 	phone: string;
 }
 interface IUserDefaultRes {

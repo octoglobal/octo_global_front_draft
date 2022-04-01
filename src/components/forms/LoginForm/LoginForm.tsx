@@ -41,7 +41,7 @@ const LoginForm = () => {
 							name: 'email',
 							type: 'email',
 							required: true,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 						}}
 					/>
 				</FormsInput>
@@ -58,7 +58,7 @@ const LoginForm = () => {
 							placeholder: 'Пароль',
 							name: 'password',
 							required: true,
-							helperText: 'Заполните поле "Пароль"'
+							// helperText: 'Заполните поле "Пароль"'
 						}}
 					/>
 				</FormsInput>

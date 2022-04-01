@@ -1,9 +1,10 @@
 import React, {FC, useMemo, useState} from 'react';
 import {TextField, TextFieldProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
-import InputMask from 'react-input-mask';
+// import InputMask from 'react-input-mask';
 
 import {useTextFieldUIStyle} from '../style';
+import PhoneMask from '@/lib/services/services';
 
 interface iconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
@@ -35,7 +36,7 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 		if(hasIconProps) {
 			iconProps?.onClick();
 			setIconActive(prevState => !prevState);
-		};
+		}
 	};
 
 	const [iconActive, setIconActive] = useState(false);
@@ -50,29 +51,30 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 				defaultValue={controller.defaultValue}
 				rules={controller.rules}
 				render={({field: {value, onChange}, fieldState: {error}}) => (
-					<InputMask
-						mask="+9 999 999 99 99"
-						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-						// @ts-ignore:next-line
-						maskChar=" "
+					// <InputMask
+					// 	mask="+7 999 999 99 99"
+					// 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// 	// @ts-ignore:next-line
+					// 	maskChar=" "
+					// 	value={value}
+					// 	onChange={onChange}
+					// >
+					// 	{ () => (
+					<TextField
+						sx={TextFieldStyle}
+						{...inputProps}
 						value={value}
-						onChange={onChange}
-					>
-						{ () => (
-							<TextField
-								sx={TextFieldStyle}
-								{...inputProps}
-								// value={value}
-								// onChange={(e) => onChange(e.target.value)}
-								helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
-								// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
-								error={!!error}
-								InputLabelProps={{
-									shrink: true,
-								}}
-							/>
-						)}
-					</InputMask>
+						// onChange={(e) => onChange(e.target.value)}
+						onChange={(e) => PhoneMask(e, value, onChange)}
+						helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
+						// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
+						error={!!error}
+						InputLabelProps={{
+							shrink: true,
+						}}
+					/>
+					// 	)}
+					// </InputMask>
 				)}
 			/>
 			{typeof iconProps !== 'undefined' && (

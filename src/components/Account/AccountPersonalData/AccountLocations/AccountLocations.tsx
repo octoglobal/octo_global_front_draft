@@ -8,7 +8,7 @@ import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import PlusLocation from '../../../../UI/UIIcon/PlusLocation.svg';
 
-import { useCustomRouter } from '../../../../hooks/useCustomRouter';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 import AccountUrlArray from './AccountTabsLocationData.json';
 
@@ -27,6 +27,7 @@ const AccountLocations: FC = () => {
 		LocationAddressUI,
 		LocationContentUI,
 		LocationContainerUI,
+		LocationPlusUI,
 		LocationFormUI,
 		LocationButtonsUI,
 		ButtonAdd,
@@ -71,7 +72,13 @@ const AccountLocations: FC = () => {
 						{router?.query?.location === 'rus' ? (
 							<LocationFormUI>
 								<>
-									{!operForm && !addresses?.length && <PlusLocation />}
+									{!operForm && !addresses?.length && (
+										<LocationPlusUI>
+											<PlusLocation
+												onClick={handlerToggleState(setOpenForm)}
+											/>
+										</LocationPlusUI>
+									)}
 									{/*TODO: сократить и вынести*/}
 									{typeof addresses !== 'undefined' && addresses.slice().sort((a : { id: number }, b : { id: number }) => a.id > b.id ? 1 : -1).slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
 										<>

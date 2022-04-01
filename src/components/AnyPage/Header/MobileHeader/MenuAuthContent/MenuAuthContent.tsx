@@ -46,9 +46,11 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({setOpenMenu}) => {
 
 	const handlerLogout = (): void => {
 		console.log('handlerLogout');
-		dispatch(fetchUserLogout());
-		setOpenAuth('');
-		pushTo('/');
+		dispatch(fetchUserLogout())
+			.then(() => {
+				pushTo('/');
+				setOpenAuth('');
+			});
 	};
 
 	const handlerPushToAccount = () => {

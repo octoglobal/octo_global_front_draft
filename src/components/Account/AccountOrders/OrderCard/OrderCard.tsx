@@ -3,7 +3,8 @@ import Image from 'next/image';
 
 import {useMobile} from '@/hooks/useMedia';
 // import TestOrderImage from '../../../../UI/UIIcon/TestOrderImage.png';
-import TestOrderImage from '../../../../UI/UIIcon/Package.png';
+import Package from '../../../../UI/UIIcon/Package.png';
+import PackageSmall from '../../../../UI/UIIcon/PackageSmall.png';
 import {IOrderCard} from '../../../../types/types';
 
 import {useOrderCardStyle} from './style';
@@ -54,7 +55,7 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 					<OrderInfoBlockUI>
 						<ImageUI>
 							<Image
-								src={TestOrderImage}
+								src={isMobile ? PackageSmall : Package}
 							/>
 						</ImageUI>
 						<InfoUI>

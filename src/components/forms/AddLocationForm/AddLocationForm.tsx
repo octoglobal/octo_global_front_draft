@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, {FC, useMemo} from 'react';
 import {FieldValues, useForm} from 'react-hook-form';
 
-import {useMobile} from '../../../hooks/useMedia';
+import {useMobile} from '@/hooks/useMedia';
 import {useAddLocation} from './useAddLocation';
 
 import TextFieldPhoneUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
@@ -29,6 +29,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 
 	const { handleSubmit, control } = useForm();
 
+
 	const {
 		user: {
 			name, surname,
@@ -49,6 +50,8 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 		setOpenForm(prevState => !prevState);
 	};
 
+	const addressRegex = useMemo(() => new RegExp(/[^A-Za-z0-9#?!:;,.-_+= ]/gi), []);
+
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
 			<FormWrapper>
@@ -66,7 +69,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							name: 'name',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 							sx: FormTextFieldUI,
 						}}
 					/>
@@ -87,7 +90,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 						}}
 					/>
 				</FormRowTextField>
@@ -107,7 +110,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 						}}
 					/>
 				</FormRowTextField>
@@ -118,8 +121,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 						controller={{
 							name: 'address',
 							control,
-							defaultValue:
-								'',
+							defaultValue: '',
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -128,12 +130,15 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
-							helperText: 'Заполните поле "Почта"',
+							helperText: 'Только латинские цифры и буквы',
+						}}
+						regexProps={{
+							regex: addressRegex,
 						}}
 					/>
 				</FormRowTextField>
 
-				<FormRowTitle></FormRowTitle>
+				<FormRowTitle/>
 				<FormRowButtonUI>
 					<ButtonUI
 						style={ButtonCancelUI}

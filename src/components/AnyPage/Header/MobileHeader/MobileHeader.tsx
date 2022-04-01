@@ -7,9 +7,12 @@ import HeaderMenu from '../../../../UI/UIIcon/HeaderMenu.svg';
 // import Moon from '../../../../UI/UIIcon/Moon.svg';
 
 import {useHeaderMobileStyle} from './style';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 // import SignUpForm from '@/components/forms/SignUpForm/SignUpForm';
 
 const MobileHeader: FC = () => {
+
+	const {router} = useCustomRouter();
 
 	const {
 		HeaderMobileWrapperUI,
@@ -32,7 +35,7 @@ const MobileHeader: FC = () => {
 						<HeaderMenu />
 					</NavItemUI>
 					<NavItemUI>
-						<Logotip />
+						{router.route !== '/' && <Logotip />}
 					</NavItemUI>
 					<NavItemUI>
 						{/* <Moon /> */}
