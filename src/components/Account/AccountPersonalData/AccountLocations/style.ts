@@ -118,6 +118,18 @@ export const useAccountLocationStyle = () => {
 		}
 	}));
 
+	const LocationPlusUI = styled('span')(({theme}) => ({
+		marginTop: '5px',
+
+		'& svg': {
+			cursor: 'pointer',
+		},
+
+		[theme.breakpoints.down(500)]: {
+			marginTop: '30px',
+		}
+	}));
+
 	const LocationAddressUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
@@ -196,6 +208,7 @@ export const useAccountLocationStyle = () => {
 		LocationWrapperUI,
 		LocationAddressUI,
 		LocationContentUI,
+		LocationPlusUI,
 		LocationContainerUI,
 		LocationFormUI,
 		LocationButtonsUI,

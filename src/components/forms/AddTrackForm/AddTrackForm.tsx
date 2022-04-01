@@ -37,7 +37,7 @@ const AddTrackForm: FC = () => {
 							name: 'name',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Название"',
+							// helperText: 'Заполните поле "Название"',
 							// style: isMobile ? TextFieldMobileStyleUI : {}
 						}}
 					/>
@@ -54,7 +54,7 @@ const AddTrackForm: FC = () => {
 							name: 'trackNumber2',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 							// style: isMobile ? TextFieldMobileStyleUI : {}
 						}}
 					/>
@@ -71,7 +71,7 @@ const AddTrackForm: FC = () => {
 							name: 'comment',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 							multiline: true,
 							sx: TextAreaUI
 						}}

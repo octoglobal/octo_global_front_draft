@@ -5,8 +5,11 @@ import {
 	IUserRegistrationReq,
 } from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrationReq>) => {
+
+	const {pushTo} = useCustomRouter();
 
 	const dispatch = useAppDispatch();
 	const setErrorFields = (fieldName: keyof IUserRegistrationReq, message: string) => {
@@ -39,7 +42,10 @@ export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrat
 			dispatch(fetchUserLogin({
 				email: formData.email,
 				password: formData.password
-			}));
+			}))
+				.then(() => {
+					pushTo('/');
+				});
 		}
 	};
 

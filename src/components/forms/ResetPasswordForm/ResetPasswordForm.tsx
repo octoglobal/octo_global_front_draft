@@ -44,7 +44,7 @@ const ResetPasswordForm = () => {
 							name: 'email',
 							type: 'email',
 							required: true,
-							helperText: 'Заполните поле "Почта"'
+							// helperText: 'Заполните поле "Почта"'
 						}}
 					/>
 				</FormsInput>

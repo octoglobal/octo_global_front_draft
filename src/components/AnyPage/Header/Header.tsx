@@ -63,9 +63,11 @@ const Header = () => {
 	};
 
 	const handlerLogout = () => {
-		dispatch(fetchUserLogout());
-		pushTo('/');
-		setOpen(false);
+		dispatch(fetchUserLogout())
+			.then(() => {
+				pushTo('/');
+				setOpen(false);
+			});
 	};
 
 	const handlerPushAccount = (url : string) => {

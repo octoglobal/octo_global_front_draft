@@ -1,10 +1,12 @@
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {fetchUserLogin, IUserLoginReq} from '@/reducers/userSlice/asyncActions/userApi';
 import {FieldValues, SubmitHandler, UseFormSetError} from 'react-hook-form';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>) => {
 
 	const dispatch = useAppDispatch();
+	const {pushTo} = useCustomRouter();
 
 	const setErrorFields = (fieldName: keyof IUserLoginReq, message: string) => {
 		setError(fieldName, {
@@ -30,6 +32,9 @@ export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>)
 						return;
 					case 422:
 						handleBadResponse();
+						return;
+					default:
+						pushTo('/');
 					}
 				});
 		}

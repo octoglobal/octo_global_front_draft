@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import User from '../../../AnyPage/User/User';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import EditPencil from '../../../../UI/UIIcon/EditPencil.svg';
-import { useUserStore } from '../../../../hooks/useUserStore';
+import { useUserStore } from '@/hooks/useUserStore';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from 'UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
@@ -38,16 +38,16 @@ const AccountSettings: FC = () => {
 
 	// TODO: пока что задал жестко, потом переедет в хук
 	useEffect(() => {
-		if (email) {
-			setValue('email', email);
-		}
+		if (email) setValue('email', email);
+		if (phone) setValue('phone', phone);
+
 		if(!verifiedEmail && getValues('email')) {
 			// setError('email', {
 			// 	type: 'manual',
 			// 	message: 'Почта не подтверждена',
 			// });
 		}
-	}, [email]);
+	}, [email, phone]);
 
 	const handlerEditClick = (): void => {
 		console.log('handlerEditClick-e: ');
@@ -86,9 +86,7 @@ const AccountSettings: FC = () => {
 									name: 'email',
 									type: 'email',
 									required: true,
-									helperText: verifiedEmail
-										? 'Почта не подтверждена'
-										: 'Заполните поле "Почта"',
+									helperText: verifiedEmail && 'Почта не подтверждена',
 									sx: FormTextFieldUI,
 									disabled: true
 								}}
@@ -115,7 +113,7 @@ const AccountSettings: FC = () => {
 									name: 'phone',
 									type: 'tel',
 									required: true,
-									helperText: 'Заполните поле "Телефон"',
+									// helperText: 'Заполните поле "Телефон"',
 									sx: FormTextFieldUI,
 								}}
 								iconProps={{
@@ -143,13 +141,13 @@ const AccountSettings: FC = () => {
 									name: 'oldPassword',
 									type: 'password',
 									// required: true,
-									helperText: 'Заполните поле "Пароль"',
+									// helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
 							/>
 						</FormTextFieldPasswordWrapperUI>
 
-						<Typography variant="body2"></Typography>
+						<Typography variant="body2"/>
 						<FormTextFieldPasswordWrapperUI>
 							<TextFieldPasswordUI
 								controller={{
@@ -164,13 +162,13 @@ const AccountSettings: FC = () => {
 									name: 'newPassword',
 									type: 'password',
 									// required: true,
-									helperText: 'Заполните поле "Пароль"',
+									// helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
 							/>
 						</FormTextFieldPasswordWrapperUI>
 
-						<Typography variant="body2"></Typography>
+						<Typography variant="body2"/>
 						<FormTableEndUI>
 							<ButtonUI type="submit" style={FormButtonUI}>
 								Сохранить

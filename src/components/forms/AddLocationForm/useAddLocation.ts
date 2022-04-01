@@ -6,6 +6,7 @@ import {
 import { useAppDispatch } from '@/hooks/useReduxHooks';
 import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
 import {AddressFetchObject} from '../../../types/types';
+import { translit } from '@/lib/services/services';
 
 export const useAddLocation = (
 	// setError?: UseFormSetError<FieldValues | IUserAddresReq>
@@ -41,8 +42,20 @@ export const useAddLocation = (
 			longitude: '98.7456',
 		};
 
+		const sO2 : AddressFetchObject = {
+			name: translit(formData.name),
+			surname: translit(formData.surname),
+			address_string: formData.address,
+			phone: formData.phone,
+			latitude: '4.5321',
+			longitude: '98.7456',
+		};
+
+		console.log('sendObject: ', sendObject);
+		console.log('sO2: ', sO2);
+
 		if (formData.name && formData.surname && formData.phone && formData.address) {
-			dispatch(fetchAddAddress(sendObject)).then((e) => {
+			dispatch(fetchAddAddress(sO2)).then((e) => {
 				const statusCode = e.payload;
 
 				console.log('statusCode: ', statusCode);

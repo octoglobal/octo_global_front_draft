@@ -117,8 +117,9 @@ export const useOrderCardStyle = () => {
 		marginRight: '45px',
 
 		[theme.breakpoints.down(500)]: {
-			width: '74px',
-			height: '78px',
+			width: '37px',
+			height: '28px',
+			marginLeft: '1px',
 
 			marginRight: '10px',
 		}

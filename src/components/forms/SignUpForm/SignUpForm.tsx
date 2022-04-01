@@ -57,7 +57,7 @@ const SignUpForm : FC = () => {
 							name: 'name',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Имя"',
+							// helperText: 'Заполните поле "Имя"',
 						}}
 					/>
 				</FormsInput>
@@ -75,7 +75,7 @@ const SignUpForm : FC = () => {
 							name: 'surname',
 							type: 'text',
 							required: true,
-							helperText: 'Заполните поле "Фамилия"',
+							// helperText: 'Заполните поле "Фамилия"',
 						}}
 					/>
 				</FormsInput>
@@ -93,7 +93,7 @@ const SignUpForm : FC = () => {
 							name: 'email',
 							type: 'email',
 							required: true,
-							helperText: 'Заполните поле "Почта"',
+							// helperText: 'Заполните поле "Почта"',
 						}}
 					/>
 				</FormsInput>
@@ -110,7 +110,7 @@ const SignUpForm : FC = () => {
 							placeholder: 'Пароль',
 							name: 'password',
 							required: true,
-							helperText: 'Заполните поле "Пароль"',
+							// helperText: 'Заполните поле "Пароль"',
 						}}
 					/>
 				</FormsInput>
@@ -127,7 +127,7 @@ const SignUpForm : FC = () => {
 							placeholder: 'Повторите пароль',
 							name: 'password',
 							required: true,
-							helperText: 'Заполните поле "Повторите пароль"',
+							// helperText: 'Заполните поле "Повторите пароль"',
 						}}
 					/>
 				</FormsInput>
