@@ -46,6 +46,8 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			gridTemplateColumns: 'auto auto',
 			gridColumnGap: '10px',
+
+			width: '100%',
 		}
 	}));
 

@@ -13,7 +13,7 @@ import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI
 import {useAccountSettingsStyle} from './style';
 import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
 // import {useAppDispatch} from '@/hooks/useReduxHooks';
-import { fetchVerificMessage } from '@/store/reducers/userSlice/asyncActions/userApi';
+import {fetchVerificMessage} from '@/store/reducers/userSlice/asyncActions/userApi';
 
 const AccountSettings: FC = () => {
 	const {
@@ -51,8 +51,7 @@ const AccountSettings: FC = () => {
 		fetchVerificMessage()
 			.then(r => {
 				console.log('r: ', r);
-				const statusCode = r;
-				console.log('statusCode: ', typeof statusCode);
+				console.log('statusCode: ', typeof r);
 			})
 			.catch(e => {
 				console.log('e: ', e);
@@ -205,10 +204,15 @@ const AccountSettings: FC = () => {
 									name: 'newPassword',
 									type: 'password',
 									required: true,
-									helperText: 'Заполните поле "Пароль"',
+									// helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
 							/>
+							{isSubmitForm &&
+								<HelperBoxUI>
+									Пароль успешно изменен
+								</HelperBoxUI>
+							}
 						</FormTextFieldBorderUI>
 
 						<Typography variant="body2"/>

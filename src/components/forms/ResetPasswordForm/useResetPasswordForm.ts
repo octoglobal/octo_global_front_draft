@@ -12,7 +12,6 @@ export const useResetPasswordForm = () => {
 		if(formData.email) {
 			dispatch(fetchRecoveryMessage(formData));
 		}
-
 	};
 
 	return {

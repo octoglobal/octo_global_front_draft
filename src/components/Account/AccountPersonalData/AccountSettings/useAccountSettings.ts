@@ -45,8 +45,8 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>) => {
 	};
 
 	const handleBadResponse = () => {
-		setErrorFields('oldPassword', '');
-		setErrorFields('newPassword', 'Пароли должны совпадать');
+		setErrorFields('oldPassword', 'Пароль не совпадает');
+		setErrorFields('newPassword', '');
 	};
 
 	const onSubmitPassword : SubmitHandler<FieldValues> = (data) => {
