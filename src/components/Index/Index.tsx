@@ -14,6 +14,7 @@ import { IndexLayout, IndexShortLayout } from '@/layout/IndexLayout/IndexLayout'
 
 import {useIndexStyle} from './style';
 import {useMobile} from '@/hooks/useMedia';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 const IndexPage : FC = () => {
 
@@ -45,6 +46,10 @@ const IndexPage : FC = () => {
 		ButtonRegistrUI,
 		ButtonRegistrMobileUI
 	} = useIndexStyle();
+
+	const {router} = useCustomRouter();
+
+	console.log('router: ', router);
 
 	return (
 		<IndexContentUI>

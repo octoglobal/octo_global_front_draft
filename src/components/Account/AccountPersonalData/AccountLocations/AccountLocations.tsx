@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useState} from 'react';
+import React, {FC, useCallback, useState, useMemo} from 'react';
 import {Collapse, Divider} from '@mui/material';
 
 import AddressUser from './AddressUser/AddressUser';
@@ -19,6 +19,17 @@ import {fetchDeleteAddress} from '@/reducers/userSlice/asyncActions/userApi';
 import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
 
 const AccountLocations: FC = () => {
+
+	const {
+		user: {
+			addresses
+		}
+	} = useUserStore();
+
+	const { router } = useCustomRouter();
+
+	const dispatch = useAppDispatch();
+
 	const {
 		TypographyUI,
 		LocationButtonUI,
@@ -34,19 +45,13 @@ const AccountLocations: FC = () => {
 		ButtonShowAll
 	} = useAccountLocationStyle();
 
-	const {
-		user: {
-			addresses
-		}
-	} = useUserStore();
-
-	const { router } = useCustomRouter();
-
-	const dispatch = useAppDispatch();
-
 	const [openRules, setOpenRules] = useState<boolean>(false);
 	const [operForm, setOpenForm] = useState<boolean>(false);
 	const [showAllLoc, setAllLoc] = useState<boolean>(false);
+
+	const hasAddress = useMemo(
+		() => typeof addresses !== 'undefined',
+ [addresses]);
 
 	const handlerToggleState = (setState : (prevState : (state: boolean) => boolean) => void) => {
 		return () => {
@@ -80,7 +85,7 @@ const AccountLocations: FC = () => {
 										</LocationPlusUI>
 									)}
 									{/*TODO: сократить и вынести*/}
-									{typeof addresses !== 'undefined' && addresses.slice().sort((a : { id: number }, b : { id: number }) => a.id > b.id ? 1 : -1).slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
+									{hasAddress&& addresses.slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
 										<>
 											<AddressUser
 												key={address.id}
