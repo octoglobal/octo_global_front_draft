@@ -6,6 +6,7 @@ import {
 } from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
+import {ucFirst} from '@/services/services';
 
 export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrationReq>) => {
 
@@ -15,7 +16,7 @@ export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrat
 	const setErrorFields = (fieldName: keyof IUserRegistrationReq, message: string) => {
 		setError(fieldName, {
 			type: 'string',
-			message: message
+			message
 		});
 	};
 
@@ -29,7 +30,14 @@ export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrat
 
 	const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 		const formData = data as IUserRegistrationReq;
-		const regResponse = await fetchUserRegistration(formData);
+
+		const sendObject : IUserRegistrationReq = {
+			...formData,
+			name: ucFirst(formData.name),
+			surname: ucFirst(formData.surname),
+		};
+
+		const regResponse = await fetchUserRegistration(sendObject);
 		if (regResponse?.status) {
 			if (regResponse.status == 409) {
 				handleBadResponse('Пользователь с такой почтой уже существует');

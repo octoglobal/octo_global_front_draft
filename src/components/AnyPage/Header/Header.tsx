@@ -70,9 +70,9 @@ const Header = () => {
 			});
 	};
 
-	const handlerPushAccount = (url : string) => {
+	const handlerPushAccount = (url : string, query = {}) => {
 		return () => {
-			pushTo(url);
+			pushTo(url, query);
 			setOpen(false);
 		};
 	};
@@ -144,8 +144,8 @@ const Header = () => {
 															aria-labelledby="composition-button"
 															onKeyDown={handleListKeyDown}
 														>
-															<MenuItem onClick={handlerPushAccount('/account/info')}>Личные данные</MenuItem>
-															<MenuItem onClick={handlerPushAccount('/account/orders')}>Заказы</MenuItem>
+															<MenuItem onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные данные</MenuItem>
+															<MenuItem onClick={handlerPushAccount('/account/orders', {tab: 'all'})}>Заказы</MenuItem>
 															<MenuItem onClick={handlerLogout}>Выход</MenuItem>
 														</MenuList>
 													</ClickAwayListener>

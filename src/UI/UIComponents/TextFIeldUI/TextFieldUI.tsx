@@ -69,8 +69,8 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 						value={value}
 						onChange={handlerChange(onChange)}
 						// onChange={onChange}
-						// helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
-						helperText={error ? error : ( inputProps?.helperText || '' )}
+						helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
+						// helperText={error ? error : ( inputProps?.helperText || '' )}
 						// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
 						error={!!error}
 					/>

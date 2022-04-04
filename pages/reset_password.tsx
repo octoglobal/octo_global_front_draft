@@ -1,47 +1,64 @@
-import React from 'react';
-import {Box} from '@mui/material';
+import React, {useEffect, useState} from 'react';
+import {Box, styled} from '@mui/material';
 import type {NextPage} from 'next';
 
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import AuthFormLayout from '@/layout/AuthFormLayout/AuthFormLayout';
 import RepeatPasswordForm from '../src/components/forms/RepeatPasswordForm/RepeatPasswordForm';
-// import {ToRusDate, formatDate} from '@/services/services';
 
-const ResetPassword : NextPage = () => {
+const BoxUI = styled('div')(() => ({
+	fontWeight: '500',
+	fontSize: '36px',
+	lineHeight: '42px',
 
-	const {router} = useCustomRouter();
+	color: '#000000',
+}));
 
-	console.log('router: ', router);
+const ResetPassword: NextPage = () => {
 
-	// const token = router.query.token;
-	// const expaire = router.query.expaire;
+	const {router, pushTo} = useCustomRouter();
 
-	// const expaireData = new Date(expaire);
-	//
-	//
-	// const time = expaireData.getTime();
-	//
-	//
-	// const grinvic = new Date(time);
-	//
-	//
-	// const diff = grinvic.getTimezoneOffset();
-	//
-	// const local = new Date(time - (Math.abs(diff) * 60 * 1000));
-	//
-	// console.log('diff: ', diff);
-	// console.log('grinvic: ', formatDate(grinvic));
-	// console.log('local: ', formatDate(local));
-	//
-	const isValidTime = true;
+	const [showForm, setShowForm] = useState<boolean>(true);
+	const [token, setToken] = useState<string>('');
+
+	useEffect(() => {
+		const tokenFromQuery = router.query.token as string;
+		const expaire = router.query.expaire as string;
+
+		const expaireData = new Date(expaire);
+		const currendDate = new Date();
+
+		const time = expaireData.getTime();
+		const grinvic = new Date(time);
+		const diff = grinvic.getTimezoneOffset();
+		const local = new Date(time - (diff * 60 * 1000));
+
+		if (currendDate < local) {
+			setShowForm(false);
+			setToken(tokenFromQuery);
+		}
+	}, [router.query]);
+
+	const handlerPushToReset = () => {
+		pushTo('/reset');
+	};
 
 	return (
 		<AuthFormLayout>
 			<Box>
-				{isValidTime ? (
-					<RepeatPasswordForm />
+				{!showForm ? (
+					<RepeatPasswordForm token={token}/>
 				) : (
-					<Box>Время действия ссылки вышло, попробуйте в другой раз</Box>
+					<BoxUI>
+						<Box>Упс! Время ссылки истекло</Box>
+						<Box>Для получения новой, нажмите <Box
+							component="span"
+							onClick={handlerPushToReset}
+							sx={{
+								color: '#274D82',
+								cursor: 'pointer',
+							}}>здесь</Box></Box>
+					</BoxUI>
 				)}
 			</Box>
 		</AuthFormLayout>

@@ -1,21 +1,26 @@
-import React, {FC, MouseEventHandler, useState} from 'react';
+import React, {FC, MouseEventHandler, useEffect, useState} from 'react';
 import { List, Divider } from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import AccountOrdersArray from './AccountOrdersData.json';
 import OrderCard from './OrderCard/OrderCard';
 import {IOrderCard} from '../../../types/types';
-import {useCustomRouter} from '../../../hooks/useCustomRouter';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 import AddTrackForm from '../../forms/AddTrackForm/AddTrackForm';
-
-import {useAccountOrdersStyle} from './style';
 import CheckBoxUI from 'UI/UIComponents/CheckBoxUI/CheckBoxUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-// import HorizontalList from '@/components/AnyPage/HorizontalList/HorizontalList';
+import {useOrdersStore} from '@/hooks/useOrdersStore';
+
+import {useAccountOrdersStyle} from './style';
 
 const AccountOrders: FC = () => {
 
 	const {router, pushTo} = useCustomRouter();
+
+	const {getOrders,orders, hasOrders} = useOrdersStore();
+
+	console.log('orders: ', orders);
+	console.log('hasOrders: ', hasOrders);
 
 	const {
 		AccountOrdersWrapperUI,
@@ -46,6 +51,10 @@ const AccountOrders: FC = () => {
 	};
 
 	const MockDataOrders: IOrderCard[] = AccountOrdersArray;
+
+	useEffect(() => {
+		getOrders();
+	}, []);
 
 	return (
 		<AccountOrdersWrapperUI>
@@ -104,11 +113,6 @@ const AccountOrders: FC = () => {
 					</ListItemTextUI>
 				</ListItemUI>
 			</List>
-
-			{/*<HorizontalList*/}
-			{/*	onClick={toggleFilters}*/}
-			{/*	list={['all', 'expect', 'wait', 'send', 'deliv', 'addTrack']}*/}
-			{/*/>*/}
 
 			{router?.query?.tab !== 'addTrack' ? (
 				<OrdersUI>

@@ -69,7 +69,7 @@ export default function PhoneMask(e : ChangeEvent<HTMLTextAreaElement | HTMLInpu
 	return inputOnlyNumber;
 };
 
-const ucFirst = (str : string) : string => {
+export const ucFirst = (str : string) : string => {
 	if (!str) return str;
 
 	return str[0].toUpperCase() + str.slice(1);

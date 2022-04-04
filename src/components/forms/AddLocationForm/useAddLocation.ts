@@ -31,18 +31,8 @@ export const useAddLocation = (
 	const onSubmit: SubmitHandler<FieldValues> = (data) => {
 		const formData = data as IUserAddresReq;
 		// TODO: добавить проверки и всякие дополнения к данным формы
-		console.log('formData: ', formData);
 
 		const sendObject : AddressFetchObject = {
-			name: formData.name,
-			surname: formData.surname,
-			address_string: formData.address,
-			phone: formData.phone,
-			latitude: '4.5321',
-			longitude: '98.7456',
-		};
-
-		const sO2 : AddressFetchObject = {
 			name: translit(formData.name),
 			surname: translit(formData.surname),
 			address_string: formData.address,
@@ -51,11 +41,8 @@ export const useAddLocation = (
 			longitude: '98.7456',
 		};
 
-		console.log('sendObject: ', sendObject);
-		console.log('sO2: ', sO2);
-
-		if (formData.name && formData.surname && formData.phone && formData.address) {
-			dispatch(fetchAddAddress(sO2)).then((e) => {
+		if (sendObject.name && sendObject.surname && sendObject.phone && sendObject.address_string) {
+			dispatch(fetchAddAddress(sendObject)).then((e) => {
 				const statusCode = e.payload;
 
 				console.log('statusCode: ', statusCode);
