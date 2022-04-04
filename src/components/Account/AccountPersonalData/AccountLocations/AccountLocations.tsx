@@ -8,11 +8,11 @@ import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import PlusLocation from '../../../../UI/UIIcon/PlusLocation.svg';
 
-import { useCustomRouter } from '@/hooks/useCustomRouter';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 import AccountUrlArray from './AccountTabsLocationData.json';
 
-import { useAccountLocationStyle } from './style';
+import {useAccountLocationStyle} from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {fetchDeleteAddress} from '@/reducers/userSlice/asyncActions/userApi';
@@ -26,7 +26,7 @@ const AccountLocations: FC = () => {
 		}
 	} = useUserStore();
 
-	const { router } = useCustomRouter();
+	const {router} = useCustomRouter();
 
 	const dispatch = useAppDispatch();
 
@@ -49,17 +49,15 @@ const AccountLocations: FC = () => {
 	const [operForm, setOpenForm] = useState<boolean>(false);
 	const [showAllLoc, setAllLoc] = useState<boolean>(false);
 
-	const hasAddress = useMemo(
-		() => typeof addresses !== 'undefined',
- [addresses]);
+	const hasAddress = useMemo(() => typeof addresses !== 'undefined', [addresses]);
 
-	const handlerToggleState = (setState : (prevState : (state: boolean) => boolean) => void) => {
+	const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
 		return () => {
 			setState(prevState => !prevState);
 		};
 	};
 
-	const handlerDeleteLocation = useCallback((id : number) => {
+	const handlerDeleteLocation = useCallback((id: number) => {
 		dispatch(fetchDeleteAddress({address_id: id}))
 			//TODO: проверить на ошибку
 			.then(() => {
@@ -72,7 +70,7 @@ const AccountLocations: FC = () => {
 			<BorderWrapperUI>
 				<LocationContainerUI>
 					<TypographyUI>Адреса</TypographyUI>
-					<Tabs data={AccountUrlArray} />
+					<Tabs data={AccountUrlArray}/>
 					<LocationContentUI>
 						{router?.query?.location === 'rus' ? (
 							<LocationFormUI>
@@ -85,7 +83,7 @@ const AccountLocations: FC = () => {
 										</LocationPlusUI>
 									)}
 									{/*TODO: сократить и вынести*/}
-									{hasAddress&& addresses.slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
+									{hasAddress && addresses.slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
 										<>
 											<AddressUser
 												key={address.id}
@@ -97,7 +95,7 @@ const AccountLocations: FC = () => {
 												handlerDeleteLocation={handlerDeleteLocation}
 											/>
 											{i !== (arr.length - 1) &&
-												<Divider sx={{borderColor: '#274D82', width: '100%'}} />
+												<Divider sx={{borderColor: '#274D82', width: '100%'}}/>
 											}
 										</>
 									))}
@@ -115,10 +113,10 @@ const AccountLocations: FC = () => {
 												style={ButtonAdd}
 												onClick={handlerToggleState(setOpenForm)}
 											>
-													Добавить адрес
+												Добавить адрес
 											</ButtonUI>
-										): (
-											<Divider sx={{borderColor: '#274D82'}} />
+										) : (
+											<Divider sx={{borderColor: '#274D82'}}/>
 										)}
 									</LocationButtonsUI>
 									<Collapse in={operForm}>
@@ -139,7 +137,7 @@ const AccountLocations: FC = () => {
 									Как заполнять
 								</LocationButtonUI>
 
-								<AccountLocationRules openRules={openRules} />
+								<AccountLocationRules openRules={openRules}/>
 							</>
 						)}
 					</LocationContentUI>

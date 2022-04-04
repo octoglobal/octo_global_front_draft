@@ -10,7 +10,7 @@ export const useAccountSettingsStyle = () => {
 		'& form': {
 			display: 'flex',
 			justifyContent: 'center',
-			marginRight: '145px',
+			// marginRight: '145px',
 		},
 
 		[theme.breakpoints.down(800)]: {
@@ -38,10 +38,10 @@ export const useAccountSettingsStyle = () => {
 	const FormTableUI = styled('div')(({theme}) => ({
 		display: 'grid',
 		gridTemplateColumns: '150px auto',
-		gridTemplateRows: 'auto auto auto auto auto auto',
+		gridTemplateRows: 'auto auto auto auto',
 		gridColumnGap: '20px',
-		gridRowGap: '15px',
-		marginBottom: '15px',
+		gridRowGap: '20px',
+		// marginBottom: '15px',
 
 		[theme.breakpoints.down(500)]: {
 			gridTemplateColumns: 'auto auto',
@@ -121,7 +121,7 @@ export const useAccountSettingsStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
-		marginBottom: '26px',
+		// marginBottom: '26px',
 	}));
 
 	const FormButtonUI = {
@@ -137,7 +137,13 @@ export const useAccountSettingsStyle = () => {
 			height: 'auto',
 		},
 
+		'& .Mui-disabled': {
+			color: '#000000 !important',
+			WebkitTextFillColor: '#000000 !important',
+		},
+
 		'& .MuiFormControl-root input:focus ': {
+
 			border: '1px solid #DFE4EC',
 			boxSizing: 'border-box',
 			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
@@ -162,6 +168,46 @@ export const useAccountSettingsStyle = () => {
 			// boxSizing: 'border-box',
 			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
 		}
+	}));
+
+	const FormTextFieldBorderUI = styled('div', {
+		shouldForwardProp: (prop) => prop !== 'selection',
+	})<{selection?: boolean}>(({selection = true}) => ({
+		'& .MuiFormControl-root': {
+			// border: 'none',
+			// boxShadow: 'none',
+
+			border: selection ? '1px solid #DFE4EC' : '',
+			// border: selection ? '5px solid red' : '',
+			boxSizing: 'border-box',
+			boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
+
+			height: 'auto',
+		},
+
+		'& .Mui-disabled': {
+			color: '#000000 !important',
+			WebkitTextFillColor: '#000000 !important',
+		},
+
+		'& .MuiFormControl-root input:focus ': {
+			// border: '1px solid #DFE4EC',
+			// boxSizing: 'border-box',
+			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		}
+	}));
+
+	const HelperBoxUI = styled('div')(() => ({
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '400',
+		fontSize: '10px',
+		lineHeight: '12px',
+		textDecorationLine: 'underline',
+		color: '#274D82',
+		textAlign: 'right',
+
+		cursor: 'pointer',
 	}));
 
 	const FormTextFieldUI = {
@@ -206,6 +252,7 @@ export const useAccountSettingsStyle = () => {
 		FormTextFieldUI,
 		FormTextFieldWrapperUI,
 		FormTextFieldPasswordWrapperUI,
+		FormTextFieldBorderUI,
 		FormTableRowUI,
 		FormTableEndUI,
 		SettingsWrapperUI,
@@ -213,5 +260,6 @@ export const useAccountSettingsStyle = () => {
 		FormTableTextUI,
 		FormsWrapperBoxUI,
 		FormTableRowLabelUI,
+		HelperBoxUI,
 	};
 };

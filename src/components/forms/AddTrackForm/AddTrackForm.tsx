@@ -5,13 +5,16 @@ import {useForm} from 'react-hook-form';
 import {useAddTrackFormStyle} from './style';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+import {useAddTrackForm} from '@/components/forms/AddTrackForm/useAddTrackForm';
 // import {useMobile} from '@/hooks/useMedia';
 
 const AddTrackForm: FC = () => {
 
-	const {control} = useForm();
+	const {handleSubmit, control} = useForm();
 
 	// const {isMobile} = useMobile();
+
+	const {onSubmit} = useAddTrackForm();
 
 	const {
 		TrackFormWrapperUI,
@@ -23,18 +26,18 @@ const AddTrackForm: FC = () => {
 
 	return (
 		<TrackFormWrapperUI>
-			<Box component="form">
+			<Box component="form" onSubmit={handleSubmit(onSubmit)}>
 				<FormWrapperUI>
 					<TextFieldUI
 						controller={{
-							name: 'name',
+							name: 'title',
 							control,
 							defaultValue: '',
 							rules: {required: true}
 						}}
 						inputProps={{
 							placeholder: 'Название',
-							name: 'name',
+							name: 'title',
 							type: 'text',
 							required: true,
 							// helperText: 'Заполните поле "Название"',
@@ -44,14 +47,14 @@ const AddTrackForm: FC = () => {
 
 					<TextFieldUI
 						controller={{
-							name: 'trackNumber2',
+							name: 'track_number',
 							control,
 							defaultValue: '',
 							rules: {required: true}
 						}}
 						inputProps={{
 							placeholder: 'Трек номер',
-							name: 'trackNumber2',
+							name: 'track_number',
 							type: 'text',
 							required: true,
 							// helperText: 'Заполните поле "Почта"',
@@ -70,7 +73,7 @@ const AddTrackForm: FC = () => {
 							placeholder: 'Комментарий',
 							name: 'comment',
 							type: 'text',
-							required: true,
+							// required: true,
 							// helperText: 'Заполните поле "Почта"',
 							multiline: true,
 							sx: TextAreaUI
@@ -79,6 +82,7 @@ const AddTrackForm: FC = () => {
 
 					<ButtonUI
 						style={ButtonAddTrackUI}
+						type="submit"
 					>
 						Добавить
 					</ButtonUI>

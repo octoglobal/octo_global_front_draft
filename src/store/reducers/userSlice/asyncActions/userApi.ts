@@ -2,7 +2,7 @@ import {octoAxios} from '@/lib/http';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {IUserSlice} from '@/reducers/userSlice/userSlice';
 import axios from 'axios';
-import {AddressFetchObject, IRecoveryMessage} from '../../../../types/types';
+import {AddressFetchObject, IRecoveryMessage, ISendRecoveryPass, IUpdatePassword} from '../../../../types/types';
 
 export interface IUserRegistrationReq {
 	name: string;
@@ -36,9 +36,24 @@ interface IAddressDelete {
 	address_id: number
 }
 
+
+
 export const fetchUserRefresh = async () => {
 	try {
 		const response = await octoAxios.get('/refresh');
+		return response.data;
+	} catch (err: unknown) {
+		if (axios.isAxiosError(err)) {
+			return err.response?.status;
+		}
+		return 400;
+	}
+};
+
+export const fetchVerificMessage = async () => {
+	try {
+		const response = await octoAxios.get('/send_verification_message');
+		console.log(response);
 		return response.data;
 	} catch (err: unknown) {
 		if (axios.isAxiosError(err)) {
@@ -111,6 +126,41 @@ export const fetchChangeUser = createAsyncThunk(
 			const response = await octoAxios.patch('/user', data);
 
 			console.log('response: ', response);
+		} catch (e) {
+			console.log('e: ', e);
+
+		}
+	}
+);
+
+export const fetchChangePassword = createAsyncThunk(
+	'password/chang',
+	async(data : IUpdatePassword, thunkAPI) => {
+		try {
+			const response = await octoAxios.post('/password_change', data);
+
+			console.log(response);
+		} catch (e) {
+			console.log('e: ', e);
+
+		}
+	}
+);
+
+export const fetchRecoveryPassword = createAsyncThunk(
+	'password/recovery',
+	async(data : ISendRecoveryPass, thunkAPI) => {
+		try {
+			const dataSend = {
+				password: data.password
+			};
+			const response = await octoAxios.post('/password_recovery', dataSend, {
+				headers: {
+					'Authorization': `Bearer ${data.token}`
+				}
+			});
+			console.log(response);
+
 		} catch (e) {
 			console.log('e: ', e);
 

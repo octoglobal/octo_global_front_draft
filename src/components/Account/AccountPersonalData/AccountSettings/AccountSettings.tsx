@@ -1,17 +1,19 @@
-import React, { FC, useEffect } from 'react';
-import { Box, Typography } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import React, {FC, useEffect, useMemo} from 'react';
+import {Box, Typography} from '@mui/material';
+import {useForm} from 'react-hook-form';
 
 import User from '../../../AnyPage/User/User';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import EditPencil from '../../../../UI/UIIcon/EditPencil.svg';
-import { useUserStore } from '@/hooks/useUserStore';
+import {useUserStore} from '@/hooks/useUserStore';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from 'UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 
-import { useAccountSettingsStyle } from './style';
+import {useAccountSettingsStyle} from './style';
 import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
+// import {useAppDispatch} from '@/hooks/useReduxHooks';
+import { fetchVerificMessage } from '@/store/reducers/userSlice/asyncActions/userApi';
 
 const AccountSettings: FC = () => {
 	const {
@@ -24,44 +26,63 @@ const AccountSettings: FC = () => {
 		SettingsWrapperUI,
 		FormsWrapperBoxUI,
 		FormTableRowLabelUI,
-		FormTextFieldWrapperUI,
-		FormTextFieldPasswordWrapperUI,
+		FormTextFieldBorderUI,
+		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	const { handleSubmit, control, setValue, getValues } = useForm();
+	// const dispatch = useAppDispatch();
 
-	const {onSubmit} = useAccountSettings();
+	const {handleSubmit, control, setValue, setError, formState: {dirtyFields, isSubmitting, isSubmitted}} = useForm();
 
 	const {
-		user: { personalAreaId, verifiedEmail, email, phone },
+		onSubmitUser,
+		onSubmitPassword
+	} = useAccountSettings(setError);
+
+	const isSubmitForm = useMemo(
+		() => !isSubmitted,
+		[isSubmitting]
+	);
+
+	const handlerConfirmEmail = () => {
+		console.log('handlerConfirmEmail: ');
+
+		console.log('handlerEditClick-e: ');
+		fetchVerificMessage()
+			.then(r => {
+				console.log('r: ', r);
+				const statusCode = r;
+				console.log('statusCode: ', typeof statusCode);
+			})
+			.catch(e => {
+				console.log('e: ', e);
+			});
+	};
+
+	const {
+		user: {personalAreaId, verifiedEmail, email, phone},
 	} = useUserStore();
 
 	// TODO: пока что задал жестко, потом переедет в хук
 	useEffect(() => {
 		if (email) setValue('email', email);
 		if (phone) setValue('phone', phone);
-
-		if(!verifiedEmail && getValues('email')) {
-			// setError('email', {
-			// 	type: 'manual',
-			// 	message: 'Почта не подтверждена',
-			// });
-		}
 	}, [email, phone]);
 
 	const handlerEditClick = (): void => {
-		console.log('handlerEditClick-e: ');
+		console.log('handlerEditClick');
 	};
 
 	return (
 		<SettingsWrapperUI>
 			{/* TODO: вынести форму в другой файл */}
-			<Box component="form" onSubmit={handleSubmit(onSubmit)}>
-				<FormsWrapperBoxUI>
+			<FormsWrapperBoxUI>
+				<FormTableUserUI>
+					<User/>
+				</FormTableUserUI>
 
-					<FormTableUserUI>
-						<User />
-					</FormTableUserUI>
+				<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
+
 					<FormTableUI>
 						<FormTableRowLabelUI>
 							<Typography variant="body2">
@@ -74,40 +95,42 @@ const AccountSettings: FC = () => {
 							<Typography variant="body2">Почта</Typography>
 						</FormTableRowLabelUI>
 
-						<FormTextFieldWrapperUI>
+						<FormTextFieldBorderUI selection={!verifiedEmail}>
 							<TextFieldUI
 								controller={{
 									name: 'email',
 									control,
 									defaultValue: email,
-									rules: { required: true },
+									rules: {required: true},
 								}}
 								inputProps={{
 									name: 'email',
 									type: 'email',
 									required: true,
-									helperText: verifiedEmail && 'Почта не подтверждена',
+									// helperText: verifiedEmail ? 'Почта не подтверждена' : '',
 									sx: FormTextFieldUI,
-									disabled: true
+									disabled: verifiedEmail
 								}}
-								// iconProps={{
-								// 	defaultIcon: EditPencil,
-								// 	activeIcon: EditPencil,
-								// 	onClick: handlerEditClick,
-								// }}
 							/>
-						</FormTextFieldWrapperUI>
+							{!verifiedEmail &&
+								<HelperBoxUI
+									onClick={handlerConfirmEmail}
+								>
+									Подтвердите почту
+								</HelperBoxUI>
+							}
+						</FormTextFieldBorderUI>
 
 						<FormTableRowLabelUI>
 							<Typography variant="body2">Телефон</Typography>
 						</FormTableRowLabelUI>
-						<FormTextFieldPasswordWrapperUI>
+						<FormTextFieldBorderUI>
 							<TextFieldPhoneUI
 								controller={{
 									name: 'phone',
 									control,
 									defaultValue: phone,
-									rules: { required: true },
+									rules: {required: true},
 								}}
 								inputProps={{
 									name: 'phone',
@@ -115,6 +138,7 @@ const AccountSettings: FC = () => {
 									required: true,
 									// helperText: 'Заполните поле "Телефон"',
 									sx: FormTextFieldUI,
+									// autoFocus: true
 								}}
 								iconProps={{
 									defaultIcon: EditPencil,
@@ -122,51 +146,70 @@ const AccountSettings: FC = () => {
 									onClick: handlerEditClick,
 								}}
 							/>
-						</FormTextFieldPasswordWrapperUI>
+						</FormTextFieldBorderUI>
 
+						{isSubmitForm && (
+							dirtyFields.phone && (
+								<>
+									<FormTableRowLabelUI/>
+
+									<FormTableEndUI>
+										<ButtonUI type="submit" style={FormButtonUI}>
+											Сохранить
+										</ButtonUI>
+									</FormTableEndUI>
+								</>
+							)
+						)}
+					</FormTableUI>
+				</Box>
+
+
+				<Box component="form" onSubmit={handleSubmit(onSubmitPassword)}>
+					<FormTableUI>
 						<FormTableRowLabelUI>
 							<Typography variant="body2">Смена пароля</Typography>
 						</FormTableRowLabelUI>
-						<FormTextFieldPasswordWrapperUI>
+						<FormTextFieldBorderUI>
 							<TextFieldPasswordUI
 								controller={{
 									name: 'oldPassword',
 									control,
 									defaultValue: '',
-									// rules: { required: true },
+									rules: { required: true },
 								}}
 								inputProps={{
 									// label: 'Старый пароль',
 									placeholder: 'Старый пароль',
 									name: 'oldPassword',
 									type: 'password',
-									// required: true,
-									// helperText: 'Заполните поле "Пароль"',
+									required: true,
+									helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
 							/>
-						</FormTextFieldPasswordWrapperUI>
+						</FormTextFieldBorderUI>
 
 						<Typography variant="body2"/>
-						<FormTextFieldPasswordWrapperUI>
+						<FormTextFieldBorderUI>
 							<TextFieldPasswordUI
 								controller={{
 									name: 'newPassword',
 									control,
 									defaultValue: '',
-									// rules: { required: true },
+									rules: { required: true },
 								}}
 								inputProps={{
 									// label: 'Новый пароль',
 									placeholder: 'Новый пароль',
 									name: 'newPassword',
 									type: 'password',
-									// required: true,
-									// helperText: 'Заполните поле "Пароль"',
+									required: true,
+									helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
 							/>
-						</FormTextFieldPasswordWrapperUI>
+						</FormTextFieldBorderUI>
 
 						<Typography variant="body2"/>
 						<FormTableEndUI>
@@ -175,8 +218,9 @@ const AccountSettings: FC = () => {
 							</ButtonUI>
 						</FormTableEndUI>
 					</FormTableUI>
-				</FormsWrapperBoxUI>
-			</Box>
+				</Box>
+
+			</FormsWrapperBoxUI>
 		</SettingsWrapperUI>
 	);
 };

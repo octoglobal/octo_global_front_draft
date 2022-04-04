@@ -22,3 +22,22 @@ export type AddressFetchObject = Omit<IAddressModel, 'id'>;
 export interface IRecoveryMessage {
 	email: string
 }
+
+export interface IUpdatePassword {
+	old_password: string,
+	new_password: string,
+}
+
+export interface IAddOrder {
+	title: string,
+	track_number: string,
+	comment?: string
+}
+
+export interface IRepeatPasswordForm {
+	token: string,
+}
+
+export interface ISendRecoveryPass extends IRepeatPasswordForm{
+	password: string
+}

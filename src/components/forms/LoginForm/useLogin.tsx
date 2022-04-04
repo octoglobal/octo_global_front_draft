@@ -11,7 +11,7 @@ export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>)
 	const setErrorFields = (fieldName: keyof IUserLoginReq, message: string) => {
 		setError(fieldName, {
 			type: 'string',
-			message: message
+			message
 		});
 	};
 
@@ -39,7 +39,6 @@ export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>)
 				});
 		}
 	};
-
 
 	return {
 		onSubmit,
