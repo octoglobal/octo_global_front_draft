@@ -10,9 +10,9 @@ import {useResetPasswordForm} from '@/components/forms/ResetPasswordForm/useRese
 
 const ResetPasswordForm = () => {
 
-	const {handleSubmit, control} = useForm();
+	const {handleSubmit, control, setError} = useForm();
 
-	const {onSubmit} = useResetPasswordForm();
+	const {onSubmit} = useResetPasswordForm(setError);
 
 	const {
 		FormsWrapperBox,

@@ -10,6 +10,7 @@ class MyDocument extends Document {
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" />
 					<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+					<link rel="shortcut icon" href="/favicon2.svg" />
 				</Head>
 				<body>
 					<Main/>

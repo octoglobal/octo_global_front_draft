@@ -1,30 +1,30 @@
 import React, {FC} from 'react';
 import Image from 'next/image';
 
-import OctoGlobalBig from '../../UI/UIIcon/OctoGlobalBig.svg';
 import Step1 from '../../UI/UIIcon/Step1.png';
 import Step2 from '../../UI/UIIcon/Step2.png';
 import Step3 from '../../UI/UIIcon/Step3.png';
 import Step4 from '../../UI/UIIcon/Step4.png';
 import Map from '../../UI/UIIcon/Map.png';
-
+import {useMobile} from '@/hooks/useMedia';
 import IndexStep from './IndexStep/IndexStep';
+import OctoGlobalBig from '../../UI/UIIcon/OctoGlobalBig.svg';
 import ButtonUI from '../../UI/UIComponents/ButtonUI/ButtonUI';
 import { IndexLayout, IndexShortLayout } from '@/layout/IndexLayout/IndexLayout';
 
 import {useIndexStyle} from './style';
-import {useMobile} from '@/hooks/useMedia';
-import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 const IndexPage : FC = () => {
 
 	const {isMobile} = useMobile();
 
 	const {
-		IndexContentUI,
+		ContentUI,
 
-		TypographyTitleUI,
-		TypographyTextUI,
+		TitleUI,
+		TextUI,
+		ULUI,
+		LIUI,
 		OctoTextUI,
 
 		MainBlockUI,
@@ -47,29 +47,23 @@ const IndexPage : FC = () => {
 		ButtonRegistrMobileUI
 	} = useIndexStyle();
 
-	const {router} = useCustomRouter();
-
-	console.log('router: ', router);
-
 	return (
-		<IndexContentUI>
+		<ContentUI>
 			<IndexLayout>
 				<MainBlockUI>
 					<MainInfoUI>
 
 						<MainInteractUI>
-							<TypographyTitleUI>
-								Доставка товаров из Европы
-							</TypographyTitleUI>
-							<TypographyTextUI>
-								Цепляющий текст
-								Цепляющий текст
-								Цепляющий текст
-								Цепляющий текст
-								Цепляющий текст
-								Цепляющий текст
-								Цепляющий текст
-							</TypographyTextUI>
+							<TitleUI>
+								Вы делаете  покупки в Европе, мы присылаем Вам их по почте
+							</TitleUI>
+							<TextUI>
+								Мы предлагаем сервис по предоставлению адреса в Европе, чтобы вы могли пользоваться всеми преимуществами европейского покупателя.
+								Выгода покупок до 60%, богатейший выбор товаров и брендов, только оригинальные вещи и гарантия  высокого качество.
+								Служба поддержки в России и Европе поможет на любом этапе.
+								<br/><br/>
+								Если Вы хотите привезти крупногабаритный груз или коммерческую партию товара, поможем Вам в поиске, оплате и доставке.
+							</TextUI>
 							<ButtonUI
 								style={isMobile ? ButtonRegistrMobileUI : ButtonRegistrUI}
 							>
@@ -87,9 +81,9 @@ const IndexPage : FC = () => {
 					</MainInfoUI>
 
 					<MainHowWorkUI>
-						<TypographyTitleUI>
+						<TitleUI>
 							Как это работает
-						</TypographyTitleUI>
+						</TitleUI>
 						<MainHowWorkBlockUI>
 							<MainHowWorkMapUI>
 								<Image
@@ -99,23 +93,23 @@ const IndexPage : FC = () => {
 							</MainHowWorkMapUI>
 							<MainHowWorkStepUI>
 								<IndexStep
-									title="1. Регистрируйтесь"
-									subtitle="Получите адрес"
+									title=""
+									subtitle="Зарегистрируйтесь на сайте, чтобы получить инструкцию для покупок. "
 									image={Step1}
 								/>
 								<IndexStep
-									title="1. Регистрируйтесь"
-									subtitle="Получите адрес"
+									title=""
+									subtitle="Совершайте покупки самостоятельно или с помошью услуги «Выкуп товара»"
 									image={Step2}
 								/>
 								<IndexStep
-									title="1. Регистрируйтесь"
-									subtitle="Получите адрес"
+									title=""
+									subtitle="Консолидируйте несколько покупок в одну посылку "
 									image={Step3}
 								/>
 								<IndexStep
-									title="1. Регистрируйтесь"
-									subtitle="Получите адрес"
+									title=""
+									subtitle="Отправляем вам по почте"
 									image={Step4}
 								/>
 							</MainHowWorkStepUI>
@@ -124,37 +118,51 @@ const IndexPage : FC = () => {
 				</MainBlockUI>
 			</IndexLayout>
 
-			<IndexShortLayout>
+			<IndexLayout>
 				<WhyMeBlockUI>
-					<TypographyTitleUI>
-						Почему именно мы
-					</TypographyTitleUI>
-					<TypographyTextUI>
-						Цепляющий текст
-						Цепляющий текст
-						Цепляющий текст
-						Цепляющий текст
-						Цепляющий текст
-						Цепляющий текст
-						Цепляющий текст
-					</TypographyTextUI>
+					<TitleUI>
+						Почему нам доверяют
+					</TitleUI>
+					<ULUI>
+						<LIUI>
+							Поможем с поиском и оплатой любого товара
+						</LIUI>
+						<LIUI>
+							Консультация и помощь на любом этапе
+						</LIUI>
+						<LIUI>
+							Заполним сами экспортную декларацию
+						</LIUI>
+						<LIUI>
+							Наши услуги для Вас бесплатны мы зарабатываем на экспорте который и так включён в стоимость товаров.
+						</LIUI>
+						<LIUI>
+							Возможность оплаты криптовалютой
+						</LIUI>
+						<LIUI>
+							Покупаю на территории ЕС наши услуги бесплатные.
+						</LIUI>
+						<LIUI>
+							Возможно заказ любого вида товара от одежды до бытовой техники и спортинвентаря.
+						</LIUI>
+					</ULUI>
 				</WhyMeBlockUI>
-			</IndexShortLayout>
+			</IndexLayout>
 
 			<IndexLayout>Иконки</IndexLayout>
 
 			<IndexShortLayout>
 				<RegistrBlockUI>
-					<TypographyTitleUI>
+					<TitleUI>
 						Получите адрес прямо сейчас
-					</TypographyTitleUI>
+					</TitleUI>
 					<RegistrInfoBlockUI>
 						<RegistrImageUI>
 							{/*<Image />*/}
 						</RegistrImageUI>
 
 						<RegistrInfoUI>
-							<TypographyTextUI>
+							<TextUI>
 								Цепляющий текст
 								Цепляющий текст
 								Цепляющий текст
@@ -163,7 +171,7 @@ const IndexPage : FC = () => {
 								Цепляющий текст
 								Цепляющий текст
 								Цепляющий текст
-							</TypographyTextUI>
+							</TextUI>
 							<ButtonUI
 								style={isMobile ? ButtonRegistrMobileUI : ButtonRegistrUI}
 							>
@@ -173,7 +181,7 @@ const IndexPage : FC = () => {
 					</RegistrInfoBlockUI>
 				</RegistrBlockUI>
 			</IndexShortLayout>
-		</IndexContentUI>
+		</ContentUI>
 	);
 };
 
