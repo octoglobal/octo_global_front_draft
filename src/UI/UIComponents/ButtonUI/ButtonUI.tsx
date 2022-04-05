@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {ButtonProps} from '@mui/material';
+import React, {FC, useMemo} from 'react';
+import {ButtonProps, SxProps} from '@mui/material';
 
 import {useMobile} from '@/hooks/useMedia';
 
@@ -15,10 +15,19 @@ const ButtonUI : FC<ButtonProps> = (props) => {
 		ButtonMobileStyle
 	} = useButtonUIStyle();
 
+	const buttonStyle = useMemo(() => {
+		const propsStyles = props?.sx ? props.sx : {};
+		const adaptiveStyles = isMobile ? ButtonMobileStyle : ButtonStyle
+		return {
+			...adaptiveStyles,
+			...propsStyles
+		};
+	}, [isMobile]);
+
 	return (
 		<CustonButtonUI
 			{...props}
-			sx={isMobile ? ButtonMobileStyle: ButtonStyle}
+			sx={buttonStyle as SxProps}
 		>
 			{props.children}
 		</CustonButtonUI>
