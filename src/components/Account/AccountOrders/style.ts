@@ -61,7 +61,7 @@ export const useAccountOrdersStyle = () => {
 			'& span.MuiCheckbox-root': {
 				position: 'absolute',
 				top: '25px',
-				left: '10px',
+				left: '0px',
 				marginRight: '0px',
 				padding: '0px',
 			},

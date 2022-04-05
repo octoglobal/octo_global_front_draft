@@ -1,10 +1,9 @@
 import React, {FC} from 'react';
-import Image from 'next/image';
 
 import {useMobile} from '@/hooks/useMedia';
-// import TestOrderImage from '../../../../UI/UIIcon/TestOrderImage.png';
-import Package from '../../../../UI/UIIcon/Package.png';
-import PackageSmall from '../../../../UI/UIIcon/PackageSmall.png';
+import Arrow_Blue from '../../../../UI/UIIcon/Arrow_Blue.svg';
+
+import Package from '../../../../UI/UIIcon/Package.svg';
 import {IOrderCard} from '../../../../types/types';
 
 import {useOrderCardStyle} from './style';
@@ -19,24 +18,21 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		OrderCardUI,
 		OrderContentUI,
 		OrderTitlesUI,
-		OrderTitleUI,
+		OrderLinkMUI,
 		OrderBoldTitleUI,
 		OrderInfoUI,
 		OrderInfoBlockUI,
 		ImageUI,
 		InfoUI,
-		TitleUI,
 		BoldTitleUI
 	} = useOrderCardStyle();
 
 	const {
-		orderNumber,
+		longId,
 		trackNumber,
-		shop,
-		storage,
-		daysLeft,
 		highlight,
 		disabled,
+		tracking_link
 	} = order;
 
 	const {isMobile} = useMobile();
@@ -48,20 +44,24 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		>
 			<OrderContentUI>
 				<OrderTitlesUI>
-					<BoldTitleUI>Заказ № {orderNumber} прибыл на склад</BoldTitleUI>
-					{!isMobile && <TitleUI>Трек номер: <BoldTitleUI>{trackNumber}</BoldTitleUI></TitleUI>}
+					<BoldTitleUI>Заказ № {longId} прибыл на склад</BoldTitleUI>
+					{!isMobile && <BoldTitleUI>{trackNumber}</BoldTitleUI>}
 				</OrderTitlesUI>
 				<OrderInfoUI>
 					<OrderInfoBlockUI>
 						<ImageUI>
-							<Image
-								src={isMobile ? PackageSmall : Package}
-							/>
+							{/*<Image*/}
+							{/*	src={isMobile ? PackageSmall : Package}*/}
+							{/*/>*/}
+							<Package />
 						</ImageUI>
 						<InfoUI>
-							<OrderTitleUI>Магазин: <OrderBoldTitleUI>{shop}</OrderBoldTitleUI></OrderTitleUI>
-							<OrderTitleUI>Хранение: <OrderBoldTitleUI>{storage === 'free' ? 'бесплатное' : 'платное'}, осталось {daysLeft} дней</OrderBoldTitleUI></OrderTitleUI>
-							<OrderTitleUI>Трек номер: <OrderBoldTitleUI>7457895665656565656445</OrderBoldTitleUI></OrderTitleUI>
+							<OrderBoldTitleUI>Ebay</OrderBoldTitleUI>
+							{/*<OrderTitleUI>Хранение: <OrderBoldTitleUI>{storage === 'free' ? 'бесплатное' : 'платное'}, осталось {daysLeft} дней</OrderBoldTitleUI></OrderTitleUI>*/}
+							<OrderInfoBlockUI>
+								<OrderBoldTitleUI>{trackNumber}</OrderBoldTitleUI>
+								<OrderLinkMUI href={tracking_link} target="_blank" rel="noopener noreferrer">Отследить <Arrow_Blue /></OrderLinkMUI>
+							</OrderInfoBlockUI>
 						</InfoUI>
 					</OrderInfoBlockUI>
 				</OrderInfoUI>

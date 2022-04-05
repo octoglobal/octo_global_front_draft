@@ -29,7 +29,6 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 		TextFieldUI,
 		TextFieldStyle,
 		TextFieldMobileStyle,
-		IconUI
 	} = useTextFieldUIStyle();
 
 	const hasIconProps = useMemo(
@@ -39,7 +38,8 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 
 	const [iconActive, setIconActive] = useState(false);
 
-	const IconComponent = (iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon) as React.ElementType;
+	// const IconComponentActive = iconProps?.activeIcon as React.ElementType;
+	// const IconComponent = iconProps?.defaultIcon as React.ElementType;
 
 	const handlerIconClick = () => {
 		if(hasIconProps) {
@@ -76,11 +76,11 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 					/>
 				)}
 			/>
-			{typeof iconProps !== 'undefined' && (
-				<IconUI onClick={handlerIconClick}>
-					<IconComponent />
-				</IconUI>
-			)}
+			{/*{typeof iconProps !== 'undefined' && (*/}
+			{/*	<IconUI onClick={handlerIconClick}>*/}
+			{/*		{iconActive ? <IconComponent /> : <IconComponentActive/>}*/}
+			{/*	</IconUI>*/}
+			{/*)}*/}
 		</TextFieldUI>
 	);
 };

@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {TextFieldProps} from '@mui/material';
+import {IconButton, InputAdornment, TextFieldProps} from '@mui/material';
 import {ControllerProps} from 'react-hook-form';
 
 import EyeOpen from '../../../UIIcon/EyeOpen.svg';
@@ -25,6 +25,8 @@ const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps}) =>
 		setShowPassword(prevState => !prevState);
 	};
 
+	console.log('showPassword: ', showPassword);
+
 	return (
 		<TextFieldUI
 			controller={{
@@ -32,7 +34,18 @@ const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps}) =>
 			}}
 			inputProps={{
 				...inputProps,
-				type: showPassword ? 'text' : 'password'
+				type: showPassword ? 'text' : 'password',
+				InputProps: {
+					endAdornment : (
+						<InputAdornment position="end">
+							<IconButton
+								onClick={handlerShowPassword}
+							>
+								{showPassword ? <EyeOpen /> : <EyeClose/>}
+							</IconButton>
+						</InputAdornment>
+					)
+				}
 			}}
 			iconProps={{
 				defaultIcon: EyeOpen,

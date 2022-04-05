@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, KeyboardEventHandler, useMemo, useState} from 'react';
 import {TextField, TextFieldProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
 // import InputMask from 'react-input-mask';
@@ -66,6 +66,11 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 						value={value}
 						// onChange={(e) => onChange(e.target.value)}
 						onChange={(e) => PhoneMask(e, value, onChange)}
+						onKeyDown={(e : React.KeyboardEvent<HTMLInputElement>) => {
+							if(e.key === 'Backspace' && value.length === 3) {
+								onChange('');
+							}
+						}}
 						helperText={error ? error.message ? error.message : inputProps?.helperText : ''}
 						// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
 						error={!!error}

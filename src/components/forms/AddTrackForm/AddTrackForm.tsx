@@ -10,11 +10,9 @@ import {useAddTrackForm} from '@/components/forms/AddTrackForm/useAddTrackForm';
 
 const AddTrackForm: FC = () => {
 
-	const {handleSubmit, control} = useForm();
+	const {handleSubmit, control, reset} = useForm();
 
-	// const {isMobile} = useMobile();
-
-	const {onSubmit} = useAddTrackForm();
+	const {onSubmit} = useAddTrackForm(reset);
 
 	const {
 		TrackFormWrapperUI,

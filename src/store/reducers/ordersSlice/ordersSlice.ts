@@ -3,7 +3,7 @@ import {fetchOrdersAndPackages} from '@/reducers/ordersSlice/asyncActions/orderA
 import {IOrderModel} from '@/models/IOrderModel';
 
 export interface IOrdersSlice {
-	orders: IOrderModel[]
+	orders: IOrderModel[] | [],
 }
 
 const initialState : IOrdersSlice = {

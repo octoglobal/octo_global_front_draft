@@ -5,7 +5,9 @@ import {fetchAddOrders} from '@/reducers/ordersSlice/asyncActions/orderApi';
 import {IAddOrder} from '../../../types/types';
 // import {useCustomRouter} from '@/hooks/useCustomRouter';
 
-export const useAddTrackForm= () => {
+import {UseFormReset} from 'react-hook-form';
+
+export const useAddTrackForm = (reset : UseFormReset<IAddOrder>) => {
 
 	const dispatch = useAppDispatch();
 	// const {pushTo} = useCustomRouter();
@@ -40,6 +42,11 @@ export const useAddTrackForm= () => {
 						return;
 					default:
 						// pushTo('/');
+						reset({
+							title: '',
+							track_number: '',
+							comment: ''
+						});
 					}
 				});
 		}

@@ -22,6 +22,14 @@ export const useTextFieldUIStyle = () => {
 			textAlign: 'end',
 
 			marginTop: '0px',
+		},
+
+		'& .MuiOutlinedInput-root': {
+			paddingRight: '0px',
+		},
+
+		'& .MuiIconButton': {
+			backgroundColor: 'none',
 		}
 	}));
 
@@ -37,13 +45,15 @@ export const useTextFieldUIStyle = () => {
 		'& .MuiOutlinedInput-root, .MuiFormControl-root': {
 			width: '100%',
 			height: '40px',
-			borderRadius: '0px'
+			borderRadius: '0px',
+			paddingRight: '0px',
 		},
 		'& .MuiInputLabel-root': {
 			top: '-8px',
 		},
 		'& input': {
 			width: '100%',
+			boxSizing: 'border-box',
 
 			'&::placeholder': {
 				fontStyle: 'normal',
@@ -67,13 +77,15 @@ export const useTextFieldUIStyle = () => {
 		'& .MuiOutlinedInput-root, .MuiFormControl-root': {
 			width: '100%',
 			height: '37px',
-			borderRadius: '0px'
+			borderRadius: '0px',
+			paddingRight: '0px',
 		},
 		'& .MuiInputLabel-root': {
 			top: '-8px',
 		},
 		'& input': {
 			width: '100%',
+			boxSizing: 'border-box',
 
 			'&::placeholder': {
 				fontStyle: 'normal',
@@ -86,8 +98,16 @@ export const useTextFieldUIStyle = () => {
 	};
 
 	const IconUI = styled('span')(() => ({
+		width: '25px',
+		height: '25px',
+
+		'& svg': {
+			width: 'auto',
+			height: 'auto',
+		},
+
 		position: 'absolute',
-		top: '25%',
+		top: '22%',
 		right: '7px',
 		zIndex: '2',
 	}));

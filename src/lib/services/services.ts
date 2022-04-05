@@ -1,5 +1,7 @@
 import {ChangeEvent} from 'react';
 
+export const checkValidArray = (arr : any[]) : boolean => Array.isArray(arr) && !!arr?.length;
+
 export const summ = (a: number, b: number) => a + b;
 
 export const isObjectEmpty = (obj = {}) : boolean => {
