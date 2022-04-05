@@ -16,7 +16,6 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 	useUpdateRefresh();
 	// useUserStore();
 	const {getUser} = useUserStore();
-
 	const {router} = useCustomRouter();
 
 	useEffect(() => {

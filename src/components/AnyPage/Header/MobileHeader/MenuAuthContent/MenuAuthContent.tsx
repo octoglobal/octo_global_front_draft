@@ -72,7 +72,9 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({setOpenMenu}) => {
 
 	// TODO: ужасное нечитаемое поправить завтра
 	return (
-		<ContentLayoutUI>
+		<ContentLayoutUI
+			disabledPadding={true}
+		>
 			<>
 				{isAuth ? (
 					<>

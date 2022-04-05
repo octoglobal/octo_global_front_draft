@@ -12,12 +12,17 @@ const ContentLayoutUI = styled('div', {
 })<{disabledPadding?: boolean}>(({disabledPadding, theme}) => ({
 	padding: !disabledPadding ? '0 80px' : '0',
 
+	maxWidth: '1440px',
+	// padding: '0 80px',
+	margin: '0 auto',
+
 	[theme.breakpoints.down(1024)]: {
 		padding: !disabledPadding ? '15px' : '0',
 	},
 
 	[theme.breakpoints.down(500)]: {
-		padding: !disabledPadding ? '15px' : '0',
+		padding: '0',
+		margin: '15px',
 	}
 }));
 

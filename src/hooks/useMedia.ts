@@ -10,7 +10,24 @@ export const useTablet = () => {
 	return {isTablet};
 };
 
+export const useCustom800= () => {
+	const isCustom800= useMediaQuery('(max-width: 800px)');
+	return {isCustom800};
+};
+
 export const useMobile = () => {
 	const isMobile = useMediaQuery('(max-width: 500px)');
 	return {isMobile};
 };
+
+export const useCustomSize = (maxWidth = 0, minWidth = 0) => {
+	if(!minWidth) return {
+		isCustomSize: useMediaQuery(`(max-width: ${maxWidth}px)`)
+	}
+	if(!maxWidth) return {
+		isCustomSize: useMediaQuery(`(min-width: ${minWidth}px)`)
+	}
+
+	const isCustomSize = useMediaQuery(`(max-width: ${maxWidth}px) and (min-width: ${minWidth}px)`);
+	return {isCustomSize};
+}

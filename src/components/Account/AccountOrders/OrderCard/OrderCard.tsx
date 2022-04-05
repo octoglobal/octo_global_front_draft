@@ -50,14 +50,10 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 				<OrderInfoUI>
 					<OrderInfoBlockUI>
 						<ImageUI>
-							{/*<Image*/}
-							{/*	src={isMobile ? PackageSmall : Package}*/}
-							{/*/>*/}
 							<Package />
 						</ImageUI>
 						<InfoUI>
 							<OrderBoldTitleUI>Ebay</OrderBoldTitleUI>
-							{/*<OrderTitleUI>Хранение: <OrderBoldTitleUI>{storage === 'free' ? 'бесплатное' : 'платное'}, осталось {daysLeft} дней</OrderBoldTitleUI></OrderTitleUI>*/}
 							<OrderInfoBlockUI>
 								<OrderBoldTitleUI>{trackNumber}</OrderBoldTitleUI>
 								<OrderLinkMUI href={tracking_link} target="_blank" rel="noopener noreferrer">Отследить <Arrow_Blue /></OrderLinkMUI>

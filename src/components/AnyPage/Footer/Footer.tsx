@@ -6,77 +6,80 @@ import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIcon.svg';
 import WhatsUpIcon from '../../../UI/UIIcon/WhatsUpIcon.svg';
 import TelegramIcon from '../../../UI/UIIcon/TelegramIcon.svg';
 
-import {useMobile} from '../../../hooks/useMedia';
+import {useCustomSize} from '../../../hooks/useMedia';
 
 import {useFooterStyle} from './style';
 
 const Footer = () => {
 
-	const {
-		FooterWrapperUI,
-		FooterRowUI,
-		FooterColumnBlockUI,
-		FooterColumnTitleUI,
-		FooterColumnTextUI,
-		IndexTitleUI,
-		FooterRowIconsUI
-	} = useFooterStyle();
+    const {
+        FooterWrapperUI,
+        FooterContentUI,
+        FooterRowUI,
+        FooterColumnBlockUI,
+        FooterColumnTitleUI,
+        FooterColumnTextUI,
+        IndexTitleUI,
+        FooterRowIconsUI
+    } = useFooterStyle();
 
-	const {isMobile} = useMobile();
+    const {isCustomSize} = useCustomSize(800);
 
-	return (
-		<FooterWrapperUI>
-			<FooterColumnBlockUI>
-				<FooterColumnTitleUI>Общая информация</FooterColumnTitleUI>
-				<FooterColumnTextUI>Политика конфиденциальности</FooterColumnTextUI>
-				<FooterColumnTextUI>Пользовательское соглашение</FooterColumnTextUI>
-				<FooterColumnTextUI>Публичная оферта</FooterColumnTextUI>
-			</FooterColumnBlockUI>
+    return (
+        <FooterWrapperUI>
+            <FooterContentUI>
 
-			<FooterColumnBlockUI>
-				<FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
-				<FooterColumnTextUI>Список магазинов</FooterColumnTextUI>
-				<FooterColumnTextUI>Список стран</FooterColumnTextUI>
-				<FooterColumnTextUI>Калькулятор</FooterColumnTextUI>
-			</FooterColumnBlockUI>
+                <FooterColumnBlockUI>
+                    <FooterColumnTitleUI>Общая информация</FooterColumnTitleUI>
+                    <FooterColumnTextUI>Политика конфиденциальности</FooterColumnTextUI>
+                    <FooterColumnTextUI>Пользовательское соглашение</FooterColumnTextUI>
+                    <FooterColumnTextUI>Публичная оферта</FooterColumnTextUI>
+                </FooterColumnBlockUI>
 
-			<FooterColumnBlockUI>
-				<FooterColumnTitleUI>Блог</FooterColumnTitleUI>
-				<FooterColumnTextUI>Как это работает</FooterColumnTextUI>
-				<FooterColumnTextUI>Как заполнять адрес</FooterColumnTextUI>
-				<FooterColumnTextUI>Как отслеживать трек-номер</FooterColumnTextUI>
-			</FooterColumnBlockUI>
+                <FooterColumnBlockUI>
+                    <FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
+                    <FooterColumnTextUI>Список магазинов</FooterColumnTextUI>
+                    <FooterColumnTextUI>Список стран</FooterColumnTextUI>
+                    <FooterColumnTextUI>Калькулятор</FooterColumnTextUI>
+                </FooterColumnBlockUI>
 
-			<FooterColumnBlockUI>
-				<FooterRowUI>
-					<FooterColumnBlockUI>
-						<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
-						<FooterRowIconsUI>
-							<VkIcon />
-							<TelegramIcon />
-							{/*<InstIcon />*/}
-							<OdnoklasIcon />
-						</FooterRowIconsUI>
-					</FooterColumnBlockUI>
+                <FooterColumnBlockUI>
+                    <FooterColumnTitleUI>Блог</FooterColumnTitleUI>
+                    <FooterColumnTextUI>Как это работает</FooterColumnTextUI>
+                    <FooterColumnTextUI>Как заполнять адрес</FooterColumnTextUI>
+                    <FooterColumnTextUI>Как отслеживать трек-номер</FooterColumnTextUI>
+                </FooterColumnBlockUI>
 
-					<FooterColumnBlockUI>
-						<FooterColumnTitleUI>Чаты поддержки</FooterColumnTitleUI>
-						<FooterRowIconsUI>
-							<TelegramIcon />
-							<WhatsUpIcon />
-						</FooterRowIconsUI>
-					</FooterColumnBlockUI>
+                <FooterColumnBlockUI>
+                    <FooterRowUI>
+                        <FooterColumnBlockUI>
+                            <FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
+                            <FooterRowIconsUI>
+                                <VkIcon/>
+                                <TelegramIcon/>
+                                {/*<InstIcon />*/}
+                                <OdnoklasIcon/>
+                            </FooterRowIconsUI>
+                        </FooterColumnBlockUI>
 
-				</FooterRowUI>
+                        <FooterColumnBlockUI>
+                            <FooterColumnTitleUI>Чаты поддержки</FooterColumnTitleUI>
+                            <FooterRowIconsUI>
+                                <TelegramIcon/>
+                                <WhatsUpIcon/>
+                            </FooterRowIconsUI>
+                        </FooterColumnBlockUI>
 
-				{!isMobile && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
-			</FooterColumnBlockUI>
+                    </FooterRowUI>
+
+                    {!isCustomSize && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
+                </FooterColumnBlockUI>
 
 
-			{isMobile && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
-
-		</FooterWrapperUI>
-	);
+                {isCustomSize && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
+            </FooterContentUI>
+        </FooterWrapperUI>
+    );
 };
 
 export default React.memo(Footer);

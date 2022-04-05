@@ -7,7 +7,20 @@ export const useFooterStyle = () => {
 		background: '#274D82',
 		color: '#FFFFFF',
 		fontFamily: 'Roboto',
+		// padding: '25px 80px',
+
+	}));
+
+	const FooterContentUI = styled('div')(({theme}) => ({
+		// height: '166px',
+		background: '#274D82',
+		color: '#FFFFFF',
+		fontFamily: 'Roboto',
+		// padding: '25px 80px',
+
+		maxWidth: '1440px',
 		padding: '25px 80px',
+		margin: '0 auto',
 
 		display: 'flex',
 		flexDirection: 'row',
@@ -22,6 +35,7 @@ export const useFooterStyle = () => {
 		},
 
 		[theme.breakpoints.down(800)]: {
+			flexDirection: 'column',
 			padding: '10px',
 		},
 
@@ -35,7 +49,7 @@ export const useFooterStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(800)]: {
 			justifyContent: 'space-between',
 
 			'& div:first-child': {
@@ -85,7 +99,7 @@ export const useFooterStyle = () => {
 			margin: '0 10px',
 		},
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(800)]: {
 			margin: '0 0 10px',
 			padding: '0 0 10px',
 			// borderTop: '1px solid rgba(223, 228, 236, 0.5)',
@@ -141,7 +155,7 @@ export const useFooterStyle = () => {
 
 		marginTop: '39px',
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(800)]: {
 			order: '5',
 			marginTop: '10px',
 		}
@@ -149,6 +163,7 @@ export const useFooterStyle = () => {
 
 	return {
 		FooterWrapperUI,
+		FooterContentUI,
 		FooterRowUI,
 		FooterColumnBlockUI,
 		FooterColumnTitleUI,

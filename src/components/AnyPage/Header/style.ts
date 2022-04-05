@@ -5,20 +5,12 @@ export const useHeaderStyle = () => {
 	const HeaderWrapperUI = styled('header')(({theme}) => ({
 		height: '61px',
 		width: '100%',
-		padding: '12px 80px',
 
 		background: '#FFFFFF',
 		// opacity: '0.1',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
 
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-
-		'& #demo-positioned-menu': {
-			// right: '0',
-		},
+		// border: '1px solid red',
 
 		[theme.breakpoints.down(1024)]: {
 			padding: '12px 60px',
@@ -29,15 +21,46 @@ export const useHeaderStyle = () => {
 		}
 	}));
 
-	const HeaderNavUI = styled('nav')(({theme}) => ({
-		width: '70%',
+	const HeaderContentMUI = styled('nav')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 
+		padding: '12px 80px 12px 80px',
+
+		margin: '0 auto',
+		maxWidth: '1440px',
+	}));
+
+	const HeaderNavUI = styled('nav')(({theme}) => ({
+		width: '100%',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+
+		'& #long-menu .MuiPaper-root ': {
+			transform: 'none !important',
+			top: '35px !important',
+			left: '0px !important',
+			width: '239px !important',
+		},
+
+		[theme.breakpoints.down(1180)]: {
+			justifyContent: 'flex-end',
+		},
+
 		[theme.breakpoints.down(1024)]: {
 			width: '80%',
+		}
+	}));
+
+	const LogoMUI = styled('nav')(({theme}) => ({
+		marginRight: '180px',
+
+		[theme.breakpoints.down(1280)]: {
+			marginRight: '80px',
 		}
 	}));
 
@@ -55,9 +78,6 @@ export const useHeaderStyle = () => {
 		'& svg:first-child': {
 			marginRight: '6px',
 		}
-
-		// color: '#234A82',
-		// fill: '#234A82',
 	}));
 
 	const UserWrapperUI = styled('div')(() => ({
@@ -133,10 +153,12 @@ export const useHeaderStyle = () => {
 
 	return {
 		HeaderWrapperUI,
+		HeaderContentMUI,
 		HeaderNavUI,
 		OctoIconsUI,
 		UserWrapperUI,
 		ButtonLoginUI,
-		ArrowUI
+		ArrowUI,
+		LogoMUI
 	};
 };

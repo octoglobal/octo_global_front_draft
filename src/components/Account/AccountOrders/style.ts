@@ -9,6 +9,10 @@ export const useAccountOrdersStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
+		'& ul': {
+			marginRight: '37px',
+		},
+
 		[theme.breakpoints.down(500)]: {
 			flexDirection: 'column',
 			marginTop: '15px',

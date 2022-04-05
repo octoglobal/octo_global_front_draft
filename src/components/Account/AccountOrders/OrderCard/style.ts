@@ -7,7 +7,7 @@ export const useOrderCardStyle = () => {
 		shouldForwardProp: (prop) => prop !== 'highlight' && prop !== 'disabled',
 	})<IOrderCardStyles>(({ highlight, disabled, theme }) => ({
 		width: '100%',
-		height: '177px',
+		height: '155px',
 		margin: '15px 0',
 		padding: '10px 8px',
 
@@ -157,7 +157,7 @@ export const useOrderCardStyle = () => {
 	const InfoUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'space-evenly',
+		justifyContent: 'space-around',
 	}));
 
 	return {

@@ -28,9 +28,13 @@ export const useTextFieldUIStyle = () => {
 			paddingRight: '0px',
 		},
 
-		'& .MuiIconButton': {
-			backgroundColor: 'none',
-		}
+		'& .MuiIconButton:hover': {
+			backgroundColor: 'transparent !important',
+		},
+		'& .MuiButtonBase:hover': {
+			backgroundColor: 'transparent !important',
+		},
+
 	}));
 
 	const TextFieldStyle = {

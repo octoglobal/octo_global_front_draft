@@ -5,7 +5,7 @@ export const useAccountSettingsStyle = () => {
 	const SettingsWrapperUI = styled('div')(({theme}) => ({
 		width: '100%',
 		height: '100%',
-		padding: '5px',
+		// padding: '5px',
 
 		'& form': {
 			display: 'flex',
@@ -28,7 +28,7 @@ export const useAccountSettingsStyle = () => {
 	}));
 
 	const FormsWrapperBoxUI = styled('div')(({theme}) => ({
-		width: '400px',
+		maxWidth: '458px',
 
 		[theme.breakpoints.down(500)]: {
 			width: '100%',
@@ -36,6 +36,8 @@ export const useAccountSettingsStyle = () => {
 	}));
 
 	const FormTableUI = styled('div')(({theme}) => ({
+		width: '100%',
+
 		display: 'grid',
 		gridTemplateColumns: '150px auto',
 		gridTemplateRows: 'auto auto auto auto',
@@ -185,6 +187,7 @@ export const useAccountSettingsStyle = () => {
 			boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
 
 			height: 'auto',
+			width: '287px',
 		},
 
 		'& .Mui-disabled': {
@@ -216,10 +219,6 @@ export const useAccountSettingsStyle = () => {
 		width: '50%',
 		height: '32px !important',
 		textAlign: 'start',
-
-		// border: '1px solid #DFE4EC',
-		// boxSizing: 'border-box',
-		// boxShadow:' 0px 4px 4px rgba(0, 0, 0, 0.03)',
 
 		'& label': {
 			transform: 'translate(14px, 2px) scale(1)',

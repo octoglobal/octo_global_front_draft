@@ -16,9 +16,9 @@ export const orderSlice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[fetchOrdersAndPackages.fulfilled.type]: (state, data: PayloadAction<IOrdersSlice> ) => {
-			console.log(data);
+			console.log('data: ', data);
 			//TODO: исходно возвращает user_orders
-			state.orders = data.payload.orders;
+			state.orders = data.payload.user_orders;
 		}
 	}
 });
