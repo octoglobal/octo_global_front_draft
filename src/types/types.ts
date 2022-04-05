@@ -2,12 +2,10 @@ import {IAddressModel} from '@/models/IAddressModel';
 
 export interface IOrderInfo {
 	id: number,
-	status: string,
-	orderNumber: string,
+	statusId: number,
 	trackNumber: string,
-	shop: string,
-	storage: string,
-	daysLeft: number,
+	tracking_link: string,
+	longId: number
 }
 
 export interface IOrderCardStyles {
@@ -41,3 +39,10 @@ export interface IRepeatPasswordForm {
 export interface ISendRecoveryPass extends IRepeatPasswordForm{
 	password: string
 }
+
+export interface IAccountUpdateUser {
+	email: string,
+	phone: string
+}
+
+export type IUpdatePhone = Omit<IAccountUpdateUser, 'email'>;

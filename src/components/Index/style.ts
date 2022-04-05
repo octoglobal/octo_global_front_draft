@@ -41,7 +41,7 @@ export const useIndexStyle = () => {
 		}
 	}));
 
-	const ULUI = styled('ul')(({theme}) => ({
+	const ULUI = styled('ul')(() => ({
 		// listStyleType
 		fontStyle: 'normal',
 		fontWeight: '300',

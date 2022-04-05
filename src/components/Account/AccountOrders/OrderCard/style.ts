@@ -1,4 +1,4 @@
-import { styled, Card } from '@mui/material';
+import {styled, Card} from '@mui/material';
 
 import { IOrderCardStyles } from '../../../../types/types';
 
@@ -34,6 +34,31 @@ export const useOrderCardStyle = () => {
 		flexDirection: 'column',
 	}));
 
+	const OrderLinkMUI = styled('a')(({theme}) => ({
+		fontWeight: '400',
+		fontSize: '18px',
+		lineHeight: '21px',
+		textAlign: 'center',
+		color: '#274D82',
+		cursor: 'pointer',
+		textDecoration: 'none',
+
+		display: 'flex',
+		alignItems: 'center',
+		'& svg': {
+			marginLeft: '5px'
+		},
+
+		[theme.breakpoints.down(500)]: {
+			fontStyle: 'normal',
+			fontWeight: '400',
+			fontSize: '14px',
+			lineHeight: '16px',
+			textAlign: 'center',
+			color: '#274D82',
+		}
+	}));
+
 	const OrderTitlesUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
@@ -46,7 +71,8 @@ export const useOrderCardStyle = () => {
 
 		[theme.breakpoints.down(500)]: {
 			marginTop: '10px',
-			marginLeft: '40px',
+			marginLeft: '30px',
+			marginBottom: '15px',
 		}
 	}));
 
@@ -114,6 +140,9 @@ export const useOrderCardStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
+		width: '95px',
+		height: '72px',
+
 		marginRight: '45px',
 
 		[theme.breakpoints.down(500)]: {
@@ -136,6 +165,7 @@ export const useOrderCardStyle = () => {
 		OrderContentUI,
 		OrderTitlesUI,
 		OrderTitleUI,
+		OrderLinkMUI,
 		OrderBoldTitleUI,
 		OrderInfoUI,
 		OrderInfoBlockUI,

@@ -1,10 +1,8 @@
-import React, {FC, MouseEventHandler, useEffect, useState} from 'react';
+import React, {FC, MouseEventHandler, useEffect, useState, useMemo} from 'react';
 import { List, Divider } from '@mui/material';
 import {useForm} from 'react-hook-form';
 
-import AccountOrdersArray from './AccountOrdersData.json';
 import OrderCard from './OrderCard/OrderCard';
-import {IOrderCard} from '../../../types/types';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import AddTrackForm from '../../forms/AddTrackForm/AddTrackForm';
 import CheckBoxUI from 'UI/UIComponents/CheckBoxUI/CheckBoxUI';
@@ -12,16 +10,10 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {useOrdersStore} from '@/hooks/useOrdersStore';
 
 import {useAccountOrdersStyle} from './style';
+import {checkValidArray} from '@/services/services';
+import {IOrderModel} from '@/models/IOrderModel';
 
 const AccountOrders: FC = () => {
-
-	const {router, pushTo} = useCustomRouter();
-
-	const {getOrders,orders, hasOrders} = useOrdersStore();
-
-	console.log('orders: ', orders);
-	console.log('hasOrders: ', hasOrders);
-
 	const {
 		AccountOrdersWrapperUI,
 		OrdersUI,
@@ -33,11 +25,23 @@ const AccountOrders: FC = () => {
 		ButtonExecutParcelUI
 	} = useAccountOrdersStyle();
 
+	const {router, pushTo} = useCustomRouter();
+	const {getOrders, orders} = useOrdersStore();
 	const {control} = useForm();
 
-	const [filterOrders, setFiltedOrders] = useState(router?.query?.tab || 'all');
+	const routerTab = useMemo(
+		() => (router.query && router.query.tab) ? +router.query.tab : 0,
+		[router.query.tab]
+	);
 
-	const toggleFilters = (filter : string) : MouseEventHandler<HTMLDivElement> => {
+	const [filterOrders, setFiltedOrders] = useState(routerTab || 0);
+
+	// const filteredOrdersArray = useMemo(
+	// 	() => orders.filter((order : IOrderModel) => order.statusId === filterOrders),
+	// 	[orders]
+	// );
+
+	const toggleFilters = (filter : number) : MouseEventHandler<HTMLDivElement> => {
 		return () : void => {
 			setFiltedOrders(filter);
 			pushTo(router.pathname, {tab: filter});
@@ -45,24 +49,25 @@ const AccountOrders: FC = () => {
 	};
 
 	const handlerAddTrack = (): void => {
-		toggleFilters('add');
+		toggleFilters(5);
 		console.log('router: ', router.pathname);
-		pushTo(router.pathname, {tab: 'addTrack'});
+		pushTo(router.pathname, {tab: 5});
 	};
 
-	const MockDataOrders: IOrderCard[] = AccountOrdersArray;
-
+	//TODO: временно стоит тут
 	useEffect(() => {
 		getOrders();
 	}, []);
+
+	//orders.filter((order : IOrderModel) => order.statusId === filterOrders)
 
 	return (
 		<AccountOrdersWrapperUI>
 			<List dense={false}>
 				<ListItemUI>
 					<ListItemTextUI
-						selected={filterOrders === 'all'}
-						onClick={toggleFilters('all')}
+						selected={filterOrders === 0}
+						onClick={toggleFilters(0)}
 					>
 						Все
 					</ListItemTextUI>
@@ -70,8 +75,8 @@ const AccountOrders: FC = () => {
 
 				<ListItemUI>
 					<ListItemTextUI
-						selected={filterOrders === 'expect'}
-						onClick={toggleFilters('expect')}
+						selected={filterOrders === 1}
+						onClick={toggleFilters(1)}
 					>
 						Ожидаемые
 					</ListItemTextUI>
@@ -79,8 +84,8 @@ const AccountOrders: FC = () => {
 
 				<ListItemUI>
 					<ListItemTextUI
-						selected={filterOrders === 'wait'}
-						onClick={toggleFilters('wait')}
+						selected={filterOrders === 2}
+						onClick={toggleFilters(2)}
 					>
 						Ждут отправки
 					</ListItemTextUI>
@@ -88,8 +93,8 @@ const AccountOrders: FC = () => {
 
 				<ListItemUI>
 					<ListItemTextUI
-						selected={filterOrders === 'send'}
-						onClick={toggleFilters('send')}
+						selected={filterOrders === 3}
+						onClick={toggleFilters(3)}
 					>
 						Отправлены
 					</ListItemTextUI>
@@ -97,8 +102,8 @@ const AccountOrders: FC = () => {
 
 				<ListItemUI>
 					<ListItemTextUI
-						selected={filterOrders === 'deliv'}
-						onClick={toggleFilters('deliv')}
+						selected={filterOrders === 4}
+						onClick={toggleFilters(4)}
 					>
 						Доставлены
 					</ListItemTextUI>
@@ -106,7 +111,7 @@ const AccountOrders: FC = () => {
 
 				<ListItemUI>
 					<ListItemTextUI
-						selected={filterOrders === 'addTrack'}
+						selected={filterOrders === 5}
 						onClick={handlerAddTrack}
 					>
 						+ Добавить
@@ -114,7 +119,7 @@ const AccountOrders: FC = () => {
 				</ListItemUI>
 			</List>
 
-			{router?.query?.tab !== 'addTrack' ? (
+			{routerTab !== 5 ? (
 				<OrdersUI>
 					<OrdersNotifUI>
 						У вас есть возможность объединить все или несколько заказов
@@ -122,7 +127,7 @@ const AccountOrders: FC = () => {
 					</OrdersNotifUI>
 
 					<OrdersItemUI>
-						{MockDataOrders.filter(order => filterOrders === 'all' ? true : order.status === filterOrders).map((item) => (
+						{checkValidArray(orders) && orders.map((item : IOrderModel) => (
 							<React.Fragment key={item.id}>
 								<OrderCardWrappUI>
 									<CheckBoxUI

@@ -124,12 +124,12 @@ export const fetchChangeUser = createAsyncThunk(
 	'user/change',
 	async(data: IUserChange, thunkAPI) => {
 		try {
-			const response = await octoAxios.patch('/user', data);
-
-			console.log('response: ', response);
-		} catch (e) {
-			console.log('e: ', e);
-
+			return await octoAxios.patch('/user', data);
+		} catch (err : unknown) {
+			if (axios.isAxiosError(err)) {
+				return thunkAPI.rejectWithValue(err.response?.status);
+			}
+			return thunkAPI.rejectWithValue(400);
 		}
 	}
 );
@@ -138,12 +138,14 @@ export const fetchChangePassword = createAsyncThunk(
 	'password/chang',
 	async(data : IUpdatePassword, thunkAPI) => {
 		try {
-			const response = await octoAxios.post('/password_change', data);
-
-			console.log(response);
-		} catch (e) {
-			console.log('e: ', e);
-
+			return await octoAxios.post('/password_change', data);
+		} catch (err) {
+			// console.log('fetchChangePassword: ', err);
+			if (axios.isAxiosError(err)) {
+				console.log('isAxiosError', err.response);
+				return thunkAPI.rejectWithValue(err.response?.status);
+			}
+			return thunkAPI.rejectWithValue(400);
 		}
 	}
 );

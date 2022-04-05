@@ -1,5 +1,5 @@
 import React, {SyntheticEvent, KeyboardEvent, useRef, useState} from 'react';
-import {Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
+import {Box, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
 import MobileHeader from './MobileHeader/MobileHeader';
 import User from '../User/User';
@@ -104,12 +104,13 @@ const Header = () => {
 								</ButtonUI>
 							) : (
 								<UserWrapperUI
-									// onClick={togglePopover}
-									// ref={anchorEl}
 									ref={anchorRef}
 								>
-									{/* <User name={name} surname={surname} /> */}
-									<User />
+									<Box
+										onClick={handlerPushAccount('/account/info', {location: 'ger'})}
+									>
+										<User />
+									</Box>
 									<Button
 										id="composition-button"
 										aria-controls={open ? 'composition-menu' : undefined}

@@ -7,8 +7,6 @@ export const useUserStore = () => {
 	const dispatch = useAppDispatch();
 	const isAuth = useMemo(() => !!user.id, [user]);
 
-	// console.log('user: ', user);
-
 	const fetchUser = () : void => {
 		if (!isAuth && !user.id) {
 			dispatch(fetchUserAutoLogin());
