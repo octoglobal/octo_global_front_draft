@@ -12,8 +12,6 @@ import TextFieldPasswordUI from 'UI/UIComponents/TextFIeldUI/TextFieldPasswordUI
 
 import {useAccountSettingsStyle} from './style';
 import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
-// import {useAppDispatch} from '@/hooks/useReduxHooks';
-import { fetchVerificMessage } from '@/store/reducers/userSlice/asyncActions/userApi';
 
 const AccountSettings: FC = () => {
 	const {
@@ -30,48 +28,30 @@ const AccountSettings: FC = () => {
 		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	// const dispatch = useAppDispatch();
-
 	const {handleSubmit, control, setValue, setError, formState: {dirtyFields, isSubmitting, isSubmitted}} = useForm();
 
 	const {
+		user: {personalAreaId, verifiedEmail, email, phone},
+	} = useUserStore();
+
+	const {
 		onSubmitUser,
-		onSubmitPassword
-	} = useAccountSettings(setError);
+		onSubmitPassword,
+		handlerConfirmEmail,
+		handlerEditClick,
+		showEmailPromt
+	} = useAccountSettings(verifiedEmail, setError);
 
 	const isSubmitForm = useMemo(
 		() => !isSubmitted,
 		[isSubmitting]
 	);
 
-	const handlerConfirmEmail = () => {
-		console.log('handlerConfirmEmail: ');
-
-		console.log('handlerEditClick-e: ');
-		fetchVerificMessage()
-			.then(r => {
-				console.log('r: ', r);
-				const statusCode = r;
-				console.log('statusCode: ', typeof statusCode);
-			})
-			.catch(e => {
-				console.log('e: ', e);
-			});
-	};
-
-	const {
-		user: {personalAreaId, verifiedEmail, email, phone},
-	} = useUserStore();
-
 	// TODO: пока что задал жестко, потом переедет в хук
 	useEffect(() => {
 		if (email) setValue('email', email);
 		if (phone) setValue('phone', phone);
 	}, [email, phone]);
-
-	const handlerEditClick = (): void => {
-		console.log('handlerEditClick');
-	};
 
 	return (
 		<SettingsWrapperUI>
@@ -107,12 +87,12 @@ const AccountSettings: FC = () => {
 									name: 'email',
 									type: 'email',
 									required: true,
-									// helperText: verifiedEmail ? 'Почта не подтверждена' : '',
+									helperText: verifiedEmail ? 'Почта не подтверждена' : '',
 									sx: FormTextFieldUI,
 									disabled: verifiedEmail
 								}}
 							/>
-							{!verifiedEmail &&
+							{showEmailPromt &&
 								<HelperBoxUI
 									onClick={handlerConfirmEmail}
 								>
@@ -205,10 +185,15 @@ const AccountSettings: FC = () => {
 									name: 'newPassword',
 									type: 'password',
 									required: true,
-									helperText: 'Заполните поле "Пароль"',
+									// helperText: 'Заполните поле "Пароль"',
 									sx: FormTextFieldUI,
 								}}
 							/>
+							{isSubmitForm &&
+								<HelperBoxUI>
+									Пароль успешно изменен
+								</HelperBoxUI>
+							}
 						</FormTextFieldBorderUI>
 
 						<Typography variant="body2"/>

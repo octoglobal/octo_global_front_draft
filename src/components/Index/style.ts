@@ -2,19 +2,19 @@ import {styled, Typography} from '@mui/material';
 
 export const useIndexStyle = () => {
 
-	const IndexContentUI = styled('div')(() => ({
+	const ContentUI = styled('div')(() => ({
 		padding: '70px 0 0',
 
 		width: '100%'
 	}));
 
-	const TypographyTitleUI = styled(Typography)(({theme}) => ({
+	const TitleUI = styled(Typography)(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '400',
+		fontWeight: '600',
 		fontSize: '48px',
 		lineHeight: '56px',
-		textAlign: 'center',
+		textAlign: 'left',
 		color: '#000000',
 
 		marginBottom: '11px',
@@ -26,13 +26,50 @@ export const useIndexStyle = () => {
 		}
 	}));
 
-	const TypographyTextUI = styled(Typography)(({theme}) => ({
+	const TextUI = styled(Typography)(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '400',
+		fontWeight: '300',
 		fontSize: '24px',
 		lineHeight: '28px',
 		color: '#000000',
+
+		[theme.breakpoints.down(500)]: {
+			textAlign: 'start',
+			fontSize: '16px',
+			lineHeight: '19px',
+		}
+	}));
+
+	const ULUI = styled('ul')(({theme}) => ({
+		// listStyleType
+		fontStyle: 'normal',
+		fontWeight: '300',
+		fontSize: '24px',
+		lineHeight: '28px',
+
+		color: '#000000',
+	}));
+
+	const LIUI = styled('li')(({theme}) => ({
+		fontStyle: 'normal',
+		fontWeight: '300',
+		fontSize: '24px',
+		lineHeight: '28px',
+
+		color: '#000000',
+		listStylePosition: 'inside',
+
+		'&::marker': {
+			listStylePosition: 'inside',
+		},
+
+		// '&::before': {
+		// 	content: '""',
+		// 	display: 'inline-block',
+		// 	width: '1px',
+		// 	height: '1px',
+		// },
 
 		[theme.breakpoints.down(500)]: {
 			textAlign: 'start',
@@ -88,6 +125,7 @@ export const useIndexStyle = () => {
 
 		'& p:first-child': {
 			marginBottom: '21px',
+			textAlign: 'left',
 		},
 
 		'& p:nth-child(2)': {
@@ -195,9 +233,14 @@ export const useIndexStyle = () => {
 		flexDirection: 'column',
 		// paddingTop: '86px',
 
+		'& ul': {
+			paddingLeft: '20px',
+			width: '60%',
+		},
+
 		'& p:first-child': {
-			marginBottom: '58px',
-			alignSelf: 'center',
+			marginBottom: '45x',
+			alignSelf: 'left',
 		},
 
 		'& p:nth-child(2)': {
@@ -306,11 +349,13 @@ export const useIndexStyle = () => {
 	};
 
 	return {
-		IndexContentUI,
+		ContentUI,
 
 		RegistrBlockUI,
-		TypographyTitleUI,
-		TypographyTextUI,
+		TitleUI,
+		TextUI,
+		ULUI,
+		LIUI,
 		OctoTextUI,
 
 		MainBlockUI,

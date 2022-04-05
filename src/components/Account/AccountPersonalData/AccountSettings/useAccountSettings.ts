@@ -4,19 +4,45 @@ import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {
 	fetchChangePassword,
 	fetchChangeUser,
-	fetchUserAutoLogin,
+	fetchUserAutoLogin, fetchVerificMessage,
 } from '@/reducers/userSlice/asyncActions/userApi';
 import {IUpdatePassword} from '../../../../types/types';
+import {useState} from 'react';
 
-export const useAccountSettings = (setError: UseFormSetError<FieldValues>) => {
+export const useAccountSettings = (verifiedEmail : boolean, setError: UseFormSetError<FieldValues>) => {
 
 	const dispatch = useAppDispatch();
 
+	const [showEmailPromt, setShowPromt] = useState(!verifiedEmail);
+
+	const handlerConfirmEmail = () => {
+		fetchVerificMessage()
+			.then(r => {
+				console.log('r: ', r);
+				console.log('statusCode: ', typeof r);
+			})
+			.catch(e => {
+				if(e.response.status === 500) {
+					console.log('ваьыва');
+					setError('email', {
+						type: 'string',
+						message: 'Ошибка сервера',
+					});
+					setShowPromt(false);
+				}
+			});
+	};
+
+	const handlerEditClick = (): void => {
+		console.log('handlerEditClick');
+	};
+
 	const onSubmitUser : SubmitHandler<FieldValues> = (data) => {
+
+
 		const formData = data;
-		delete formData.oldPassword;
-		delete formData.newPassword;
-		delete formData.email;
+		// delete formData.email;
+		console.log('formData: ', formData);
 
 		const sendObject = {
 			// name: name,
@@ -24,16 +50,18 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>) => {
 			phone: formData.phone
 		};
 
+		console.log('sendObject: ', sendObject);
+
 		// if(sendObject.name && sendObject.surname && sendObject.phone) {
-		if(sendObject.phone) {
-			dispatch(fetchChangeUser(sendObject))
-				.then(e => {
-					//TODO: обработать statusCode
-					const statusCode = e.payload;
-					console.log('statusCode: ', statusCode);
-					dispatch(fetchUserAutoLogin());
-				});
-		}
+		// if(sendObject.phone) {
+		// 	dispatch(fetchChangeUser(sendObject))
+		// 		.then(e => {
+		// 			//TODO: обработать statusCode
+		// 			const statusCode = e.payload;
+		// 			console.log('statusCode: ', statusCode);
+		// 			dispatch(fetchUserAutoLogin());
+		// 		});
+		// }
 	};
 
 	const setErrorFields = (fieldName: string, message: string) => {
@@ -45,8 +73,8 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>) => {
 	};
 
 	const handleBadResponse = () => {
-		setErrorFields('oldPassword', '');
-		setErrorFields('newPassword', 'Пароли должны совпадать');
+		setErrorFields('oldPassword', 'Пароль не совпадает');
+		setErrorFields('newPassword', '');
 	};
 
 	const onSubmitPassword : SubmitHandler<FieldValues> = (data) => {
@@ -72,6 +100,9 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>) => {
 
 	return {
 		onSubmitUser,
-		onSubmitPassword
+		onSubmitPassword,
+		handlerConfirmEmail,
+		handlerEditClick,
+		showEmailPromt
 	};
 };

@@ -57,7 +57,8 @@ export const fetchVerificMessage = async () => {
 		return response.data;
 	} catch (err: unknown) {
 		if (axios.isAxiosError(err)) {
-			return err.response?.status;
+			throw err;
+			// return err.response?.status;
 		}
 		return 400;
 	}
@@ -172,13 +173,12 @@ export const fetchRecoveryMessage = createAsyncThunk(
 	'user/send_recovery_message',
 	async(data : IRecoveryMessage, thunkAPI) => {
 		try {
-			// console.log('data: ', data);
-			const response = await octoAxios.post('/send_recovery_message', data);
-			console.log('response: ', response);
-
-		} catch (e) {
-			console.log('e: ', e);
-
+			return await octoAxios.post('/send_recovery_message', data);
+		} catch (err: unknown) {
+			if (axios.isAxiosError(err)) {
+				return thunkAPI.rejectWithValue(err.response?.status);
+			}
+			return thunkAPI.rejectWithValue(422);
 		}
 	}
 );
