@@ -25,7 +25,7 @@ const HomeAboutLogo: FC = () => {
 			scrollTrigger: {
 				trigger: logoRefElement.current,
 				// start: 'top center',
-				markers: true,
+				markers: false,
 				scrub: true,
 				toggleActions: 'play none none none'
 			}

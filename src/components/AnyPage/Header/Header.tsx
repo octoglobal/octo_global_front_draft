@@ -19,15 +19,9 @@ import HeaderNavLink from './HeaderNavLink/HeaderNavLink';
 import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 
-import {useCustomSize} from '../../../hooks/useMedia';
+import HeaderNavLinksArray from './HeaderNavLink/HeaderNavLinkData.json';
 
-const options = [
-	'Магазины',
-	'Калькулятор',
-	'Блог',
-	'Стоимость услуг',
-	'Помощь',
-];
+import {useCustomSize} from '../../../hooks/useMedia';
 
 const Header = () => {
 
@@ -35,6 +29,7 @@ const Header = () => {
 	const {isCustomSize} = useCustomSize(1180);
 
 	const {
+		HeaderBurgerButtonMUI,
 		HeaderWrapperUI,
 		HeaderContentMUI,
 		HeaderNavUI,
@@ -125,7 +120,7 @@ const Header = () => {
 					<HeaderContentMUI>
 
 						{isCustomSize && (
-							<>
+							<HeaderBurgerButtonMUI>
 								<Button
 									onClick={handleClick}
 								>
@@ -146,14 +141,14 @@ const Header = () => {
 										},
 									}}
 								>
-									{options.map((option) => (
-										<MenuItem key={option} selected={option === 'Pyxis'}
+									{HeaderNavLinksArray.filter(item => item.showAuth === isAuth).map((option) => (
+										<MenuItem key={option.title} selected={option.title === 'Pyxis'}
 										          onClick={handleCloseBurger}>
-											{option}
+											{option.title}
 										</MenuItem>
 									))}
 								</Menu>
-							</>
+							</HeaderBurgerButtonMUI>
 						)}
 
 						<LogoMUI>

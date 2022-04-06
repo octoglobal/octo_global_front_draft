@@ -18,15 +18,15 @@ export const useOrderCardStyle = () => {
 		opacity: disabled ? '0.5' : '1',
 
 		[theme.breakpoints.down(500)]: {
-			height: '200px',
+			height: 'auto',
 			padding: '0px',
 		},
-		[theme.breakpoints.down(400)]: {
-			height: '210px',
-		},
-		[theme.breakpoints.down(365)]: {
-			height: '230px',
-		}
+		// [theme.breakpoints.down(400)]: {
+		// 	height: '210px',
+		// },
+		// [theme.breakpoints.down(365)]: {
+		// 	height: '230px',
+		// }
 	}));
 
 	const OrderContentUI = styled('div')(() => ({

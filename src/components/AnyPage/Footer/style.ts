@@ -26,23 +26,14 @@ export const useFooterStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 
-		[theme.breakpoints.down(1250)]: {
-			padding: '25px 60px',
-		},
-
-		[theme.breakpoints.down(1024)]: {
-			padding: '15px 30px',
+		[theme.breakpoints.down(1025)]: {
+			padding: '15px',
 		},
 
 		[theme.breakpoints.down(800)]: {
 			flexDirection: 'column',
-			padding: '10px',
-		},
-
-		[theme.breakpoints.down(500)]: {
-			flexDirection: 'column',
 			padding: '15px',
-		}
+		},
 	}));
 
 	const FooterRowUI  = styled('div')(({theme}) => ({
