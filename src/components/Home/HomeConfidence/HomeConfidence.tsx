@@ -7,15 +7,17 @@ import HomeConfidenceImg from '@/components/Home/HomeConfidence/HomeConfidenceIm
 
 const HomeConfidence: FC = () => {
 
-	const { WrapperMUI } = useHomeConfidenceStyles();
+	const { WrapperMUI, ConfidenceTextMUI } = useHomeConfidenceStyles();
 
 	return (
 		<Container>
-			<HomeSectionTitle
-				title='Почему нам доверяют'
-			/>
 			<WrapperMUI>
-				<HomeConfidenceList/>
+				<ConfidenceTextMUI>
+					<HomeSectionTitle
+						title='Почему нам доверяют'
+					/>
+					<HomeConfidenceList/>
+				</ConfidenceTextMUI>
 				<HomeConfidenceImg/>
 			</WrapperMUI>
 		</Container>

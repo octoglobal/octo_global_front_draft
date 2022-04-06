@@ -4,12 +4,21 @@ export const useHomeWorkExpImgStyles = () => {
 
 	const ContainerMUI = styled('div')(() => ({
 		marginRight: '23px',
+		[theme.breakpoints.down(769)]: {
+			marginRight: '0',
+		},
+		[theme.breakpoints.down(501)]: {
+			display: 'none',
+		}
 	}));
 
 	const ImageContainerMUI = styled('div')(() => ({
 		maxWidth: '671px',
 		maxHeight: '569px',
 		paddingLeft: '16px',
+		[theme.breakpoints.down(769)]: {
+			margin: '0 auto',
+		},
 	}));
 
 	const ImageMUI = styled('img')(() => ({

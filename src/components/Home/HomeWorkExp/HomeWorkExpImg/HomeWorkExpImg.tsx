@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 import {useHomeWorkExpImgStyles} from '@/components/Home/HomeWorkExp/HomeWorkExpImg/style';
 
 const HomeWorkExpImg: FC = () => {
