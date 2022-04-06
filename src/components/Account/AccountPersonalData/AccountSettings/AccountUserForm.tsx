@@ -8,6 +8,7 @@ import {useAccountSettings} from '@/components/Account/AccountPersonalData/Accou
 import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/AccountSettings/style';
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
+import {ObjectHasOwnProperty} from '../../../../lib/services/services';
 
 const AccountUserForm: FC = () => {
 
@@ -23,13 +24,20 @@ const AccountUserForm: FC = () => {
 		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	// const textPhoneRef = useRef();
+	const textPhoneRef = useRef<HTMLInputElement | null>(null);
 
-	const {handleSubmit, control, setValue, setError, formState: {isSubmitting, isSubmitted}} = useForm();
+	const {handleSubmit, control, setValue, setError, formState: {dirtyFields, isSubmitted}} = useForm();
 
 	const {
 		user: {personalAreaId, verifiedEmail, email, phone},
 	} = useUserStore();
+
+	console.log('dirtyFields: ', dirtyFields);
+
+	const dirtyPhone = useMemo(
+		() => dirtyFields.phone,
+		[dirtyFields.phone]
+	);
 
 	const {
 		onSubmitUser,
@@ -41,17 +49,19 @@ const AccountUserForm: FC = () => {
 	useEffect(() => {
 		if (email) setValue('email', email);
 		if (phone) setValue('phone', phone);
-	}, [email, phone]);
+	}, []);
 
-	// const isSubmitForm = useMemo(
-	// 	() => !isSubmitted,
-	// 	[isSubmitting]
-	// );
+	const isSubmitForm = useMemo(
+		() => !isSubmitted && dirtyPhone,
+		[isSubmitted, dirtyPhone]
+	);
 
-	// useEffect(() => {
-	// 	console.log('textPhoneRef: ', textPhoneRef);
-	// 	console.log('textPhoneRef: ', textPhoneRef.current.value);
-	// }, [textPhoneRef.current]);
+	useEffect(() => {
+		if (dirtyPhone && ObjectHasOwnProperty(textPhoneRef, 'current')) {
+			const phoneFieldRef = textPhoneRef.current as HTMLInputElement | null;
+			if (phoneFieldRef) phoneFieldRef.focus();
+		}
+	}, [dirtyPhone]);
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
@@ -111,7 +121,7 @@ const AccountUserForm: FC = () => {
 							// helperText: 'Заполните поле "Телефон"',
 							sx: FormTextFieldUI,
 							// autoFocus: true
-							// inputRef: textPhoneRef
+							inputRef: textPhoneRef
 						}}
 						iconProps={{
 							editIcon: true,
@@ -122,20 +132,20 @@ const AccountUserForm: FC = () => {
 					/>
 				</FormTextFieldBorderUI>
 
-				{/*{isSubmitForm && (*/}
-				<>
-					<FormTableRowLabelUI/>
+				{isSubmitForm && (
+					<>
+						<FormTableRowLabelUI/>
 
-					<FormTableEndUI>
-						<ButtonUI
-							type="submit"
-							style={FormButtonUI}
-						>
-							Сохранить
-						</ButtonUI>
-					</FormTableEndUI>
-				</>
-				{/*)}*/}
+						<FormTableEndUI>
+							<ButtonUI
+								type="submit"
+								style={FormButtonUI}
+							>
+								Сохранить
+							</ButtonUI>
+						</FormTableEndUI>
+					</>
+				)}
 			</FormTableUI>
 		</Box>
 	);

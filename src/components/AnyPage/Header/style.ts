@@ -32,13 +32,19 @@ export const useHeaderStyle = () => {
 		margin: '0 auto',
 		maxWidth: '1440px',
 
-		[theme.breakpoints.down(1024)]: {
-			padding: '6px 80px 12px 80px',
+		[theme.breakpoints.down(1025)]: {
+			padding: '6px 15px',
 		},
+	}));
 
-		[theme.breakpoints.down(690)]: {
-			padding: '0 15px',
-		}
+	const HeaderBurgerButtonMUI = styled('nav')(() => ({
+		'& button': {
+			display: 'flex',
+			justifyContent: 'flex-start',
+
+			margin: '0px',
+			padding: '0px',
+		},
 	}));
 
 	const HeaderNavUI = styled('nav')(({theme}) => ({
@@ -161,6 +167,7 @@ export const useHeaderStyle = () => {
 	};
 
 	return {
+		HeaderBurgerButtonMUI,
 		HeaderWrapperUI,
 		HeaderContentMUI,
 		HeaderNavUI,

@@ -1,39 +1,52 @@
+import { useUserStore } from '@/hooks/useUserStore';
 import React, {FC} from 'react';
 
 import CustomLinkUI from '../../../../UI/UIComponents/LinkUI/LinkUI';
+import HeaderNavLinkArray from './HeaderNavLinkData.json';
 
 const HeaderNavLink : FC = () => {
+
+	const {
+		isAuth
+	} = useUserStore();
+
 	return (
 		<>
-			<CustomLinkUI
-				href=""
-			>
-				Магазины
-			</CustomLinkUI>
+			{HeaderNavLinkArray.filter(item => isAuth ? true : item.showAuth === isAuth ).map((option) => (
+				<CustomLinkUI key={option.title} href={option.href}>
+					{option.title}
+				</CustomLinkUI>
+			))}
 
-			<CustomLinkUI
-				href=""
-			>
-				Калькулятор
-			</CustomLinkUI>
+			{/*<CustomLinkUI*/}
+			{/*	href=""*/}
+			{/*>*/}
+			{/*	Магазины*/}
+			{/*</CustomLinkUI>*/}
 
-			<CustomLinkUI
-				href=""
-			>
-				Блог
-			</CustomLinkUI>
+			{/*<CustomLinkUI*/}
+			{/*	href=""*/}
+			{/*>*/}
+			{/*	Калькулятор*/}
+			{/*</CustomLinkUI>*/}
 
-			<CustomLinkUI
-				href=""
-			>
-				Стоимость услуг
-			</CustomLinkUI>
+			{/*<CustomLinkUI*/}
+			{/*	href=""*/}
+			{/*>*/}
+			{/*	Блог*/}
+			{/*</CustomLinkUI>*/}
 
-			<CustomLinkUI
-				href=""
-			>
-				Помощь
-			</CustomLinkUI>
+			{/*<CustomLinkUI*/}
+			{/*	href=""*/}
+			{/*>*/}
+			{/*	Стоимость услуг*/}
+			{/*</CustomLinkUI>*/}
+
+			{/*<CustomLinkUI*/}
+			{/*	href=""*/}
+			{/*>*/}
+			{/*	Помощь*/}
+			{/*</CustomLinkUI>*/}
 		</>
 	);
 };

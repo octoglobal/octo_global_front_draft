@@ -16,6 +16,7 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 	const dispatch = useAppDispatch();
 
 	const [showEmailPromt, setShowPromt] = useState(!verifiedEmail);
+	const [isSubmitFormSuccess, setSuccess] = useState(false);
 
 	const handlerConfirmEmail = () => {
 		fetchVerificMessage()
@@ -112,7 +113,9 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 					case 422:
 						handleBadResponseUser();
 						return;
+					case 200:
 					default:
+						setSuccess(true);
 						dispatch(fetchUserAutoLogin());
 					}
 				})
@@ -127,6 +130,7 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 		onSubmitPassword,
 		handlerConfirmEmail,
 		handlerEditClick,
-		showEmailPromt
+		showEmailPromt,
+		isSubmitFormSuccess
 	};
 };

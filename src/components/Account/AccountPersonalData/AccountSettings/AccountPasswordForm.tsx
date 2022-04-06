@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useMemo} from 'react';
 import {Box, Typography} from '@mui/material';
 import {useForm} from 'react-hook-form';
 
@@ -16,14 +16,25 @@ const AccountPasswordForm : FC = () => {
 		FormTextFieldUI,
 		FormTableRowLabelUI,
 		FormTextFieldBorderUI,
-		// HelperBoxUI
+		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError} = useForm();
+	const {handleSubmit, control, setError, formState: {isSubmitting, isSubmitted}} = useForm();
 
 	const {
 		onSubmitPassword,
+		isSubmitFormSuccess
 	} = useAccountSettings(setError);
+
+	const isSubmitForm = useMemo(
+		() => isSubmitted && isSubmitFormSuccess,
+		[isSubmitted, isSubmitFormSuccess]
+	);
+
+	console.log('isSubmitForm: ', isSubmitForm);
+	console.log('isSubmitting: ', isSubmitting);
+	console.log('isSubmitted: ', isSubmitted);
+	console.log('isSubmitFormSuccess: ', isSubmitFormSuccess);
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitPassword)}>
@@ -72,11 +83,11 @@ const AccountPasswordForm : FC = () => {
 							// autoFocus: true,
 						}}
 					/>
-					{/*{isSubmitForm &&*/}
-					{/*	<HelperBoxUI>*/}
-					{/*		Пароль успешно изменен*/}
-					{/*	</HelperBoxUI>*/}
-					{/*}*/}
+					{isSubmitForm &&
+						<HelperBoxUI>
+							Пароль успешно изменен
+						</HelperBoxUI>
+					}
 				</FormTextFieldBorderUI>
 
 				<Typography variant="body2"/>
