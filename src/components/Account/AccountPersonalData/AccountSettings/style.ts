@@ -13,6 +13,12 @@ export const useAccountSettingsStyle = () => {
 			// marginRight: '145px',
 		},
 
+		[theme.breakpoints.down(1390)]: {
+			display: 'flex',
+			justifyContent: 'center',
+			marginTop: '40px',
+		},
+
 		[theme.breakpoints.down(800)]: {
 			'& form': {
 				marginRight: '0',
@@ -24,7 +30,8 @@ export const useAccountSettingsStyle = () => {
 			'& form': {
 				marginRight: '0'
 			}
-		}
+		},
+
 	}));
 
 	const FormsWrapperBoxUI = styled('div')(({theme}) => ({
@@ -32,6 +39,12 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(500)]: {
 			width: '100%',
+		},
+
+		[theme.breakpoints.down(320)]: {
+			'& form': {
+				marginTop: '10px',
+			},
 		}
 	}));
 
@@ -48,6 +61,14 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			gridTemplateColumns: 'auto auto',
 			gridColumnGap: '10px',
+
+			width: '100%',
+		},
+
+		[theme.breakpoints.down(320)]: {
+			gridTemplateColumns: 'auto',
+			gridColumnGap: '10px',
+			gridRowGap: '10px',
 
 			width: '100%',
 		}
@@ -176,7 +197,7 @@ export const useAccountSettingsStyle = () => {
 
 	const FormTextFieldBorderUI = styled('div', {
 		shouldForwardProp: (prop) => prop !== 'selection',
-	})<{selection?: boolean}>(({selection = true}) => ({
+	})<{selection?: boolean}>(({selection = true, theme}) => ({
 		'& .MuiFormControl-root': {
 			// border: 'none',
 			// boxShadow: 'none',
@@ -199,6 +220,21 @@ export const useAccountSettingsStyle = () => {
 			// border: '1px solid #DFE4EC',
 			// boxSizing: 'border-box',
 			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		},
+
+		[theme.breakpoints.down(320)]: {
+			'& .MuiFormControl-root': {
+				// border: 'none',
+				// boxShadow: 'none',
+
+				// border: selection ? '1px solid #DFE4EC' : '',
+				// // border: selection ? '5px solid red' : '',
+				// boxSizing: 'border-box',
+				// boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
+				//
+				// height: 'auto',
+				width: 'auto',
+			},
 		}
 	}));
 

@@ -20,6 +20,9 @@ import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 
 import {useCustomSize} from '../../../hooks/useMedia';
+import {
+	EventHandler
+} from "../../../../../../../Program Files/JetBrains/WebStorm 2021.3.3/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
 
 const options = [
 	'Магазины',
@@ -52,6 +55,8 @@ const Header = () => {
 		isAuth,
 		// loading
 	} = useUserStore();
+
+	// Пункты пользователя
 
 	const [open, setOpen] = useState(false);
 	const anchorRef = useRef<HTMLDivElement>(null);
@@ -103,15 +108,15 @@ const Header = () => {
 		}
 	};
 
+	// Пункты навигации
 
-	// * ====================================================
-
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const openBurger = Boolean(anchorEl);
 
-	const handleClick = (event) => {
+	const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
 		setAnchorEl(event.currentTarget);
 	};
+
 	const handleCloseBurger = () => {
 		setAnchorEl(null);
 	};
@@ -122,49 +127,49 @@ const Header = () => {
 				<HeaderWrapperUI>
 					<HeaderContentMUI>
 
+						{isCustomSize && (
+							<>
+								<Button
+									// aria-label='more'
+									// id='long-button'
+									// aria-controls={openBurger ? 'long-menu' : ''}
+									// aria-expanded={openBurger ? 'true' : ''}
+									// aria-haspopup='true'
+									onClick={handleClick}
+								>
+									<HeaderMenu/>
+								</Button>
+								<Menu
+									id="long-menu"
+									MenuListProps={{
+										'aria-labelledby': 'long-button',
+									}}
+									anchorEl={anchorEl}
+									open={openBurger}
+									onClose={handleCloseBurger}
+									PaperProps={{
+										style: {
+											maxHeight: 48 * 4.5,
+											width: '20ch',
+										},
+									}}
+								>
+									{options.map((option) => (
+										<MenuItem key={option} selected={option === 'Pyxis'}
+										          onClick={handleCloseBurger}>
+											{option}
+										</MenuItem>
+									))}
+								</Menu>
+							</>
+						)}
+
 						<LogoMUI>
 							<Logotip/>
 						</LogoMUI>
 
 						<HeaderNavUI>
-							{isCustomSize ? (
-								<>
-									<IconButton
-										aria-label="more"
-										id="long-button"
-										aria-controls={openBurger ? 'long-menu' : undefined}
-										aria-expanded={openBurger ? 'true' : undefined}
-										aria-haspopup="true"
-										onClick={handleClick}
-									>
-										<HeaderMenu/>
-									</IconButton>
-									<Menu
-										id="long-menu"
-										MenuListProps={{
-											'aria-labelledby': 'long-button',
-										}}
-										anchorEl={anchorEl}
-										open={openBurger}
-										onClose={handleCloseBurger}
-										PaperProps={{
-											style: {
-												maxHeight: 48 * 4.5,
-												width: '20ch',
-											},
-										}}
-									>
-										{options.map((option) => (
-											<MenuItem key={option} selected={option === 'Pyxis'}
-											          onClick={handleCloseBurger}>
-												{option}
-											</MenuItem>
-										))}
-									</Menu>
-								</>
-							) : (
-								<HeaderNavLink/>
-							)}
+							{!isCustomSize && <HeaderNavLink/> }
 							<>
 								{!isAuth ? (
 									<ButtonUI

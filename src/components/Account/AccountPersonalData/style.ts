@@ -11,6 +11,11 @@ export const useAccountPersonalDataStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
+		[theme.breakpoints.down(1390)]: {
+			padding: '0',
+			flexDirection: 'column',
+		},
+
 		[theme.breakpoints.down(1024)]: {
 			padding: '0',
 			flexDirection: 'column',

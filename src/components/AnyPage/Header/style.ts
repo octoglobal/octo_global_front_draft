@@ -13,11 +13,11 @@ export const useHeaderStyle = () => {
 		// border: '1px solid red',
 
 		[theme.breakpoints.down(1024)]: {
-			padding: '12px 60px',
+			// padding: '12px 60px',
 		},
 
 		[theme.breakpoints.down(800)]: {
-			padding: '12px 10px',
+			// padding: '12px 10px',
 		}
 	}));
 
@@ -31,6 +31,14 @@ export const useHeaderStyle = () => {
 
 		margin: '0 auto',
 		maxWidth: '1440px',
+
+		[theme.breakpoints.down(1024)]: {
+			padding: '6px 80px 12px 80px',
+		},
+
+		[theme.breakpoints.down(690)]: {
+			padding: '0 15px',
+		}
 	}));
 
 	const HeaderNavUI = styled('nav')(({theme}) => ({
@@ -48,19 +56,20 @@ export const useHeaderStyle = () => {
 		},
 
 		[theme.breakpoints.down(1180)]: {
+			width: 'auto',
 			justifyContent: 'flex-end',
 		},
 
 		[theme.breakpoints.down(1024)]: {
-			width: '80%',
+			// width: '80%',
 		}
 	}));
 
 	const LogoMUI = styled('nav')(({theme}) => ({
 		marginRight: '180px',
 
-		[theme.breakpoints.down(1280)]: {
-			marginRight: '80px',
+		[theme.breakpoints.down(1180)]: {
+			marginRight: '0px',
 		}
 	}));
 

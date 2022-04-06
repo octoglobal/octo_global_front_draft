@@ -2,7 +2,7 @@ import {styled} from '@mui/material';
 
 export const useFooterStyle = () => {
 
-	const FooterWrapperUI = styled('footer')(({theme}) => ({
+	const FooterWrapperUI = styled('footer')(() => ({
 		// height: '166px',
 		background: '#274D82',
 		color: '#FFFFFF',

@@ -1,6 +1,7 @@
-import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useMemo} from 'react';
-import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
+
+import { fetchUserAutoLogin } from '@/store/reducers/userSlice/asyncActions/userApi';
 
 export const useUserStore = () => {
 	const {user} = useAppSelector(state => state.userReducer);

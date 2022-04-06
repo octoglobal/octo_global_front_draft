@@ -1,4 +1,5 @@
-import {combineReducers} from 'redux';
+// import {StateType} from 'react';
+import {AnyAction, CombinedState, combineReducers} from 'redux';
 import {allReducers} from './allReducers';
 import {configureStore} from '@reduxjs/toolkit';
 
@@ -23,16 +24,16 @@ const appReducer = combineReducers({
 	ordersReducer: ordersReducer
 });
 
-const rootReducer = (state, action) => {
-	return appReducer(state, action);
-}
+// const rootReducer = (state: typeof state.getState, action: AnyAction) => {
+// 	return appReducer(state, action);
+// }
 
 const persistConfig = {
 	key: 'root',
 	storage
 }
 
-const persistedReducer = persistReducer<RootReducer>(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, appReducer);
 
 export const store = configureStore({
 	reducer: persistedReducer,
@@ -45,6 +46,7 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
+// export type RootState = ReturnType<ReturnType<typeof rootReducer>>;
 export type RootState = ReturnType<typeof store.getState>;
-// export type AppStore = ReturnType<typeof store>
+export type AppStore = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
