@@ -10,7 +10,7 @@ export const useTablet = () => {
 	return {isTablet};
 };
 
-export const useCustom800= () => {
+export const useCustom800 = () => {
 	const isCustom800= useMediaQuery('(max-width: 800px)');
 	return {isCustom800};
 };
