@@ -23,12 +23,13 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 	});
 
 	const disabledPadding = useMemo(() => router.route === '/', [router.route]);
+	const disabledMargin = useMemo(() => router.route === '/', [router.route]);
 
 	return (
 		<Theme>
 			<Header/>
 			<Box component="main">
-				<ContentLayout disabledPadding={disabledPadding}>
+				<ContentLayout disabledPadding={disabledPadding} disabledMargin={disabledMargin}>
 					{children}
 				</ContentLayout>
 			</Box>

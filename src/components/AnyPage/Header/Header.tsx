@@ -29,6 +29,7 @@ const Header = () => {
 	const {isCustomSize} = useCustomSize(1180);
 
 	const {
+		HeaderMarginMUI,
 		HeaderBurgerButtonMUI,
 		HeaderWrapperUI,
 		HeaderContentMUI,
@@ -115,6 +116,7 @@ const Header = () => {
 
 	return (
 		<>
+			<HeaderMarginMUI/>
 			{!isMobile ? (
 				<HeaderWrapperUI>
 					<HeaderContentMUI>

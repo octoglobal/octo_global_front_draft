@@ -18,14 +18,18 @@ const HomeAboutLogo: FC = () => {
 	const logoRefElement = useRef(null);
 	useEffect(() => {
 		gsap.fromTo(logoRefElement.current, {
-			opacity: 0,
-		}, {
+			top: '50%',
 			opacity: 1,
-			duration: 3,
+			transform: 'translateY(0px)'
+		}, {
+			transform: 'translateY(-200px)',
+			opacity: 0,
+			top: '35%',
+			duration: 1,
 			scrollTrigger: {
 				trigger: logoRefElement.current,
-				// start: 'top center',
-				markers: false,
+				start: '50% center',
+				markers: true,
 				scrub: true,
 				toggleActions: 'play none none none'
 			}

@@ -35,7 +35,8 @@ const MobileHeader: FC = () => {
 						<HeaderMenu />
 					</NavItemUI>
 					<NavItemUI>
-						{router.route !== '/' && <Logotip />}
+						{/*{router.route !== '/' && <Logotip />}*/}
+						<Logotip />
 					</NavItemUI>
 					<NavItemUI>
 						{/* <Moon /> */}
