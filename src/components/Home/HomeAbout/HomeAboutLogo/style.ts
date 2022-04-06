@@ -14,8 +14,8 @@ export const useHomeAboutLogoStyles = () => {
 		[theme.breakpoints.down(501)]: {
 			marginBottom: '10px',
 		},
-		[theme.breakpoints.down(350)]: {
-			marginBottom: '0px',
+		[theme.breakpoints.down(401)]: {
+			marginBottom: '5px',
 		},
 	}));
 
@@ -26,7 +26,6 @@ export const useHomeAboutLogoStyles = () => {
 		color: '#274D82',
 		fontFamily: 'Playfair Display',
 		[theme.breakpoints.down(1025)]: {
-			// marginTop: '32px',
 			fontSize: '32px',
 			lineHeight: '48px'
 		},
@@ -53,8 +52,8 @@ export const useHomeAboutLogoStyles = () => {
 			height: '214px',
 		},
 		[theme.breakpoints.down(501)]: {
-			width: '291px',
-			height: '206px',
+			width: '261px',
+			height: '176px',
 		},
 		[theme.breakpoints.down(401)]: {
 			width: '221px',

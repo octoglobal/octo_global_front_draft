@@ -2,9 +2,24 @@ import {styled} from '@mui/material';
 
 export const useHeaderStyle = () => {
 
+	const HeaderMarginMUI = styled('div')(({theme}) => ({
+		// marginBottom: '62px',
+		// [theme.breakpoints.down(1181)]: {
+		// 	marginBottom: '71px'
+		// },
+		// [theme.breakpoints.down(1023)]: {
+		// 	marginBottom: '65px',
+		// },
+		// [theme.breakpoints.down(501)]: {
+		// 	marginBottom: '69px'
+		// },
+	}));
+
 	const HeaderWrapperUI = styled('header')(({theme}) => ({
 		height: '61px',
 		width: '100%',
+		position: 'fixed',
+		zIndex: 1,
 
 		background: '#FFFFFF',
 		// opacity: '0.1',
@@ -12,8 +27,17 @@ export const useHeaderStyle = () => {
 
 		// border: '1px solid red',
 
-		[theme.breakpoints.down(1024)]: {
-			// padding: '12px 60px',
+		[theme.breakpoints.down(1181)]: {
+			height: '71px',
+		},
+		[theme.breakpoints.down(1023)]: {
+			height: '65px',
+		},
+		[theme.breakpoints.down(1023)]: {
+			height: '65px',
+		},
+		[theme.breakpoints.down(501)]: {
+			height: '69px'
 		},
 
 		[theme.breakpoints.down(800)]: {
@@ -37,7 +61,7 @@ export const useHeaderStyle = () => {
 		},
 
 		[theme.breakpoints.down(690)]: {
-			padding: '0 15px',
+			padding: '9px 15px',
 		}
 	}));
 
@@ -55,7 +79,7 @@ export const useHeaderStyle = () => {
 			width: '239px !important',
 		},
 
-		[theme.breakpoints.down(1180)]: {
+		[theme.breakpoints.down(1181)]: {
 			width: 'auto',
 			justifyContent: 'flex-end',
 		},
@@ -68,7 +92,7 @@ export const useHeaderStyle = () => {
 	const LogoMUI = styled('nav')(({theme}) => ({
 		marginRight: '180px',
 
-		[theme.breakpoints.down(1180)]: {
+		[theme.breakpoints.down(1181)]: {
 			marginRight: '0px',
 		}
 	}));
@@ -161,6 +185,7 @@ export const useHeaderStyle = () => {
 	};
 
 	return {
+		HeaderMarginMUI,
 		HeaderWrapperUI,
 		HeaderContentMUI,
 		HeaderNavUI,

@@ -33,6 +33,7 @@ export const useHomeSectionTitleStyles = () => {
 			fontSize: '24px',
 			lineHeight: '30px',
 			maxWidth: '325px',
+			marginBottom: '10px',
 		},
 		[theme.breakpoints.down(350)]: {
 			fontSize: '18px',

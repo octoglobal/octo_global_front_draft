@@ -8,7 +8,7 @@ export const useContainerStyles = () => {
 		margin: '0 auto',
 		[theme.breakpoints.down(1025)]: {
 			padding: '0 15px',
-		}
+		},
 	}));
 
 	return {

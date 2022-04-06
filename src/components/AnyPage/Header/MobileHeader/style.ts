@@ -1,9 +1,12 @@
 import {styled, SwipeableDrawer} from '@mui/material';
 
 export const useHeaderMobileStyle = () => {
-
 	const HeaderMobileWrapperUI = styled('header')(() => ({
-		padding: '15px'
+		padding: '15px',
+		position: 'fixed',
+		width: '100%',
+		zIndex: 1,
+		backgroundColor: '#FFFFFF',
 	}));
 
 	const NavMenuUI = styled('nav')(() => ({
@@ -15,6 +18,7 @@ export const useHeaderMobileStyle = () => {
 
 	const NavItemUI = styled('div')(() => ({
 		cursor: 'pointer',
+		marginRight: '35px',
 		'& span': {
 			width: 'auto',
 		},
