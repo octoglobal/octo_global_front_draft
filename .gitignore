@@ -42,3 +42,5 @@ yarn-error.log*
 
 ngrok.exe
 ./ngrok.exe
+
+/.idea
