@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useHomeWorkExpListStyles = () => {
 
-	const ListMUI = styled('ul')(() => ({
+	const ListMUI = styled('ul')(({theme}) => ({
 		'& > *:last-child': {
 			marginBottom: 0,
 		},

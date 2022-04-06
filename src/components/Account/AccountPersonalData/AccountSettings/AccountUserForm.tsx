@@ -19,11 +19,11 @@ const AccountUserForm: FC = () => {
 		FormTableTextUI,
 		FormTableRowLabelUI,
 		FormTextFieldBorderUI,
-		FormTextFieldFocusBorder,
+		// FormTextFieldFocusBorder,
 		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	const textPhoneRef = useRef();
+	// const textPhoneRef = useRef();
 
 	const {handleSubmit, control, setValue, setError, formState: {isSubmitting, isSubmitted}} = useForm();
 
@@ -43,10 +43,10 @@ const AccountUserForm: FC = () => {
 		if (phone) setValue('phone', phone);
 	}, [email, phone]);
 
-	const isSubmitForm = useMemo(
-		() => !isSubmitted,
-		[isSubmitting]
-	);
+	// const isSubmitForm = useMemo(
+	// 	() => !isSubmitted,
+	// 	[isSubmitting]
+	// );
 
 	// useEffect(() => {
 	// 	console.log('textPhoneRef: ', textPhoneRef);

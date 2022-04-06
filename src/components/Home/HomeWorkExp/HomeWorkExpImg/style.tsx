@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useHomeWorkExpImgStyles = () => {
 
-	const ContainerMUI = styled('div')(() => ({
+	const ContainerMUI = styled('div')(({theme}) => ({
 		marginRight: '23px',
 		[theme.breakpoints.down(769)]: {
 			marginRight: '0',
@@ -12,7 +12,7 @@ export const useHomeWorkExpImgStyles = () => {
 		}
 	}));
 
-	const ImageContainerMUI = styled('div')(() => ({
+	const ImageContainerMUI = styled('div')(({theme}) => ({
 		maxWidth: '671px',
 		maxHeight: '569px',
 		paddingLeft: '16px',

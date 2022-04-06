@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useHomeWorkExpListItemStyles = () => {
 
-	const ItemMUI = styled('li')(() => ({
+	const ItemMUI = styled('li')(({theme}) => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginBottom: '25px',
@@ -21,7 +21,7 @@ export const useHomeWorkExpListItemStyles = () => {
 		},
 	}));
 
-	const ItemTextMUI = styled('p')(() => ({
+	const ItemTextMUI = styled('p')(({theme}) => ({
 		fontSize: '24px',
 		lineHeight: '28px',
 		fontWeight: 300,
@@ -44,7 +44,7 @@ export const useHomeWorkExpListItemStyles = () => {
 		},
 	}));
 
-	const ItemIconMUI = styled('div')(() => ({
+	const ItemIconMUI = styled('div')(({theme}) => ({
 		marginRight: '25px',
 		height: '101px',
 		'& > svg': {

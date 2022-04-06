@@ -1,7 +1,7 @@
-import React, {SyntheticEvent, KeyboardEvent, useRef, useState} from 'react';
+import React, {SyntheticEvent, KeyboardEvent, useRef, useState, /** EventHandler */} from 'react';
 import {Box, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
-import IconButton from '@mui/material/IconButton';
+// import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import HeaderMenu from '../../../UI/UIIcon/HeaderMenu.svg';
 
@@ -20,9 +20,6 @@ import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 
 import {useCustomSize} from '../../../hooks/useMedia';
-import {
-	EventHandler
-} from "../../../../../../../Program Files/JetBrains/WebStorm 2021.3.3/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
 
 const options = [
 	'Магазины',
