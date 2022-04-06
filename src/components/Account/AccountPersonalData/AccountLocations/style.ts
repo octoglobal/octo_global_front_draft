@@ -112,13 +112,17 @@ export const useAccountLocationStyle = () => {
 		}
 	}));
 
-	const LocationButtonsUI = styled('div')(({theme}) => ({
+	const LocationButtonsUI = styled('div', {
+		shouldForwardProp: (prop) => prop !== 'justifyAlign',
+	})<{justifyAlign?: boolean}>(({justifyAlign = false, theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
+		justifyContent: justifyAlign ? 'center' : 'flex-end',
+		width: '100%',
 
 		[theme.breakpoints.down(500)]: {
-			justifyContent: 'space-between',
+			justifyContent: justifyAlign ? 'center' :'flex-end',
 		}
 	}));
 

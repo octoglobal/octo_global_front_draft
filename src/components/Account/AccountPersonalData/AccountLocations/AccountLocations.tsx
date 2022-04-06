@@ -99,7 +99,7 @@ const AccountLocations: FC = () => {
 											}
 										</>
 									))}
-									<LocationButtonsUI>
+									<LocationButtonsUI justifyAlign={!addresses.length}>
 										{addresses && addresses.length > 2 && (
 											<ButtonUI
 												style={ButtonShowAll}

@@ -68,7 +68,7 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(320)]: {
 			gridTemplateColumns: 'auto',
 			gridColumnGap: '10px',
-			gridRowGap: '10px',
+			// gridRowGap: '10px',
 
 			width: '100%',
 		}
@@ -175,7 +175,6 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
-
 	const FormTextFieldPasswordWrapperUI = styled('div')(() => ({
 		'& .MuiFormControl-root': {
 			// border: 'none',
@@ -196,8 +195,8 @@ export const useAccountSettingsStyle = () => {
 	}));
 
 	const FormTextFieldBorderUI = styled('div', {
-		shouldForwardProp: (prop) => prop !== 'selection',
-	})<{selection?: boolean}>(({selection = true, theme}) => ({
+		shouldForwardProp: (prop) => prop !== 'selection' && prop !== 'focusBorder',
+	})<{selection?: boolean, focusBorder?: boolean}>(({selection = true, focusBorder = false, theme}) => ({
 		'& .MuiFormControl-root': {
 			// border: 'none',
 			// boxShadow: 'none',
@@ -209,6 +208,14 @@ export const useAccountSettingsStyle = () => {
 
 			height: 'auto',
 			width: '287px',
+
+			[theme.breakpoints.down(500)]: {
+				width: 'auto',
+			}
+		},
+
+		'& .MuiFormControl-root:focus-within': {
+			border: !selection && focusBorder ? '1px solid #DFE4EC' : ''
 		},
 
 		'& .Mui-disabled': {
@@ -217,7 +224,7 @@ export const useAccountSettingsStyle = () => {
 		},
 
 		'& .MuiFormControl-root input:focus ': {
-			// border: '1px solid #DFE4EC',
+			// border: !selection && focusBorder ? '1px solid #DFE4EC' : '',
 			// boxSizing: 'border-box',
 			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
 		},
@@ -236,6 +243,19 @@ export const useAccountSettingsStyle = () => {
 				width: 'auto',
 			},
 		}
+	}));
+
+	const FormTextFieldFocusBorder = styled('div',{
+		shouldForwardProp: (prop) => prop !== 'selection',
+	})<{selection?: boolean}>(({selection = false}) => ({
+
+		// border: selection ? '1px solid #DFE4EC' : '',
+
+		'& .MuiFormControl-root input:focus ': {
+			border: selection ? '1px solid #DFE4EC' : '',
+			boxSizing: 'border-box',
+			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		},
 	}));
 
 	const HelperBoxUI = styled('div')(() => ({
@@ -290,6 +310,7 @@ export const useAccountSettingsStyle = () => {
 		FormTextFieldWrapperUI,
 		FormTextFieldPasswordWrapperUI,
 		FormTextFieldBorderUI,
+		FormTextFieldFocusBorder,
 		FormTableRowUI,
 		FormTableEndUI,
 		SettingsWrapperUI,

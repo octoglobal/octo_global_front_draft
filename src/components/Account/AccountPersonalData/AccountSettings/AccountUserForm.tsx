@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo} from 'react';
+import React, {FC, useEffect, useMemo, useRef} from 'react';
 import {Box, Typography} from '@mui/material';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
@@ -9,7 +9,7 @@ import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
 
-const AccountUserForm : FC = () => {
+const AccountUserForm: FC = () => {
 
 	const {
 		FormTableUI,
@@ -19,10 +19,13 @@ const AccountUserForm : FC = () => {
 		FormTableTextUI,
 		FormTableRowLabelUI,
 		FormTextFieldBorderUI,
+		FormTextFieldFocusBorder,
 		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setValue, setError, formState: {dirtyFields, isSubmitting, isSubmitted}} = useForm();
+	const textPhoneRef = useRef();
+
+	const {handleSubmit, control, setValue, setError, formState: {isSubmitting, isSubmitted}} = useForm();
 
 	const {
 		user: {personalAreaId, verifiedEmail, email, phone},
@@ -41,9 +44,14 @@ const AccountUserForm : FC = () => {
 	}, [email, phone]);
 
 	const isSubmitForm = useMemo(
-		() => !isSubmitted && dirtyFields.phone,
-		[isSubmitting, dirtyFields.phone]
+		() => !isSubmitted,
+		[isSubmitting]
 	);
+
+	// useEffect(() => {
+	// 	console.log('textPhoneRef: ', textPhoneRef);
+	// 	console.log('textPhoneRef: ', textPhoneRef.current.value);
+	// }, [textPhoneRef.current]);
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
@@ -60,7 +68,7 @@ const AccountUserForm : FC = () => {
 					<Typography variant="body2">Почта</Typography>
 				</FormTableRowLabelUI>
 
-				<FormTextFieldBorderUI selection={!verifiedEmail}>
+				<FormTextFieldBorderUI selection={false}>
 					<TextFieldUI
 						controller={{
 							name: 'email',
@@ -74,27 +82,26 @@ const AccountUserForm : FC = () => {
 							// required: true,
 							helperText: verifiedEmail ? 'Почта не подтверждена' : '',
 							sx: FormTextFieldUI,
-							disabled: verifiedEmail
+							disabled: true
 						}}
 					/>
-					{showEmailPromt &&
-						<HelperBoxUI
-							onClick={handlerConfirmEmail}
-						>
+					{showEmailPromt && (
+						<HelperBoxUI onClick={handlerConfirmEmail}>
 							Подтвердите почту
 						</HelperBoxUI>
-					}
+					)}
 				</FormTextFieldBorderUI>
 
 				<FormTableRowLabelUI>
 					<Typography variant="body2">Телефон</Typography>
 				</FormTableRowLabelUI>
-				<FormTextFieldBorderUI>
+
+				<FormTextFieldBorderUI selection={!phone} focusBorder={true}>
 					<TextFieldPhoneUI
 						controller={{
 							name: 'phone',
 							control,
-							defaultValue: phone,
+							defaultValue: phone || '',
 							rules: {required: true},
 						}}
 						inputProps={{
@@ -103,9 +110,11 @@ const AccountUserForm : FC = () => {
 							required: true,
 							// helperText: 'Заполните поле "Телефон"',
 							sx: FormTextFieldUI,
-							autoFocus: true
+							// autoFocus: true
+							// inputRef: textPhoneRef
 						}}
 						iconProps={{
+							editIcon: true,
 							defaultIcon: EditPencil,
 							activeIcon: EditPencil,
 							onClick: handlerEditClick,
@@ -113,20 +122,20 @@ const AccountUserForm : FC = () => {
 					/>
 				</FormTextFieldBorderUI>
 
-				{isSubmitForm && (
-					<>
-						<FormTableRowLabelUI/>
+				{/*{isSubmitForm && (*/}
+				<>
+					<FormTableRowLabelUI/>
 
-						<FormTableEndUI>
-							<ButtonUI
-								type="submit"
-								style={FormButtonUI}
-							>
-								Сохранить
-							</ButtonUI>
-						</FormTableEndUI>
-					</>
-				)}
+					<FormTableEndUI>
+						<ButtonUI
+							type="submit"
+							style={FormButtonUI}
+						>
+							Сохранить
+						</ButtonUI>
+					</FormTableEndUI>
+				</>
+				{/*)}*/}
 			</FormTableUI>
 		</Box>
 	);

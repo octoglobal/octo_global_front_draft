@@ -130,17 +130,12 @@ const Header = () => {
 						{isCustomSize && (
 							<>
 								<Button
-									// aria-label='more'
-									// id='long-button'
-									// aria-controls={openBurger ? 'long-menu' : ''}
-									// aria-expanded={openBurger ? 'true' : ''}
-									// aria-haspopup='true'
 									onClick={handleClick}
 								>
 									<HeaderMenu/>
 								</Button>
 								<Menu
-									id="long-menu"
+									id='long-menu'
 									MenuListProps={{
 										'aria-labelledby': 'long-button',
 									}}

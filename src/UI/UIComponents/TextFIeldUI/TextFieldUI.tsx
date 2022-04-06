@@ -38,8 +38,8 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 
 	const [iconActive, setIconActive] = useState(false);
 
-	// const IconComponentActive = iconProps?.activeIcon as React.ElementType;
-	// const IconComponent = iconProps?.defaultIcon as React.ElementType;
+	const IconComponentActive = iconProps?.activeIcon as React.ElementType;
+	const IconComponent = iconProps?.defaultIcon as React.ElementType;
 
 	const handlerIconClick = () => {
 		if(hasIconProps) {
