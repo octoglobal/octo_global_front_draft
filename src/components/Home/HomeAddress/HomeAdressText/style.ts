@@ -2,13 +2,13 @@ import { styled } from '@mui/material';
 
 export const useHomeAddressTextStyles = () => {
 
-	const ContainerMUI = styled('div')(({theme}) => ({
+	const ContainerMUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
 	}));
 
-	const ParagraphMUI = styled('p')(({theme}) => ({
+	const ParagraphMUI = styled('p')(() => ({
 		fontSize: '24px',
 		lineHeight: '28px',
 		color: '#000000',
@@ -16,7 +16,7 @@ export const useHomeAddressTextStyles = () => {
 		marginBottom: '33px',
 	}));
 
-	const ButtonWrapperMUI = styled('div')(({theme}) => ({
+	const ButtonWrapperMUI = styled('div')(() => ({
 		width: '193px'
 	}));
 

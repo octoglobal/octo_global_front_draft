@@ -1,11 +1,14 @@
 import React from 'react';
-import OctoGlobalCharacterIcon from '@/UIIcon/OctoGlobalCharacter.svg';
+import {useHomeConfidenceImgStyles} from '@/components/Home/HomeConfidence/HomeConfidenceImg/style';
 
 const HomeConfidenceImg = () => {
+
+	const { ImageContainerMUI, ImageMUI } = useHomeConfidenceImgStyles();
+
 	return (
-		<>
-			<OctoGlobalCharacterIcon/>
-		</>
+		<ImageContainerMUI>
+			<ImageMUI src='/image/OctoConfidence.png' alt='octo-confidence-image'/>
+		</ImageContainerMUI>
 	);
 };
 

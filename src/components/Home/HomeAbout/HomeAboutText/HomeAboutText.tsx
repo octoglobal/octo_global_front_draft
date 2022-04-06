@@ -2,20 +2,22 @@ import React, {FC} from 'react';
 import {useHomeAboutTextStyles} from '@/components/Home/HomeAbout/HomeAboutText/style';
 import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
+import {useMobile} from '@/hooks/useMedia';
 
 const HomeAboutText: FC = () => {
 
 	const {
-		buttonSx,
 		ContainerMUI,
 		ParagraphMUI,
 		ButtonWrapperMUI
 	} = useHomeAboutTextStyles();
 
+	const {isMobile} = useMobile();
+
 	return (
 		<ContainerMUI>
 			<HomeSectionTitle
-				title='Вы делаете  покупки в Европе, мы присылаем Ва их по почте'
+				title='Вы делаете покупки в Европе, мы присылаем Вам их по почте'
 			/>
 			<ParagraphMUI>
 				Мы предлагаем сервис по предоставлению адреса в Европе, чтобы
@@ -31,8 +33,8 @@ const HomeAboutText: FC = () => {
 				и доставке.
 			</ParagraphMUI>
 			<ButtonWrapperMUI>
-				<ButtonUI sx={buttonSx}>
-					Регистрация
+				<ButtonUI>
+					{isMobile ? 'За покупками' : 'Регистрация'}
 				</ButtonUI>
 			</ButtonWrapperMUI>
 		</ContainerMUI>

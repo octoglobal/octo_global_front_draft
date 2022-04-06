@@ -18,6 +18,35 @@ export const useHomeConfidenceListItemStyles = () => {
 			position: 'absolute',
 			left: -15,
 			top: 13.5,
+		},
+		[theme.breakpoints.down(1210)]: {
+			fontSize: '20px',
+			lineHeight: '22px',
+			'&::after': {
+				top: 10.5,
+			},
+		},
+		[theme.breakpoints.down(1025)]: {
+			fontSize: '18px',
+			lineHeight: '20px',
+			'&::after': {
+				top: 9.5,
+			},
+		},
+		[theme.breakpoints.down(769)]: {
+			fontSize: '16px',
+			lineHeight: '19px',
+			marginBottom: '10px',
+			'&::after': {
+				top: 7.5,
+			},
+		},
+		[theme.breakpoints.down(351)]: {
+			fontSize: '14px',
+			lineHeight: '17px',
+			'&::after': {
+				top: 7,
+			},
 		}
 	}));
 
