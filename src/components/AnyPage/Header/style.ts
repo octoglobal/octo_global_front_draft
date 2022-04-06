@@ -5,39 +5,71 @@ export const useHeaderStyle = () => {
 	const HeaderWrapperUI = styled('header')(({theme}) => ({
 		height: '61px',
 		width: '100%',
-		padding: '12px 80px',
 
 		background: '#FFFFFF',
 		// opacity: '0.1',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
 
+		// border: '1px solid red',
+
+		[theme.breakpoints.down(1024)]: {
+			// padding: '12px 60px',
+		},
+
+		[theme.breakpoints.down(800)]: {
+			// padding: '12px 10px',
+		}
+	}));
+
+	const HeaderContentMUI = styled('nav')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 
-		'& #demo-positioned-menu': {
-			// right: '0',
-		},
+		padding: '12px 80px 12px 80px',
+
+		margin: '0 auto',
+		maxWidth: '1440px',
 
 		[theme.breakpoints.down(1024)]: {
-			padding: '12px 60px',
+			padding: '6px 80px 12px 80px',
 		},
 
-		[theme.breakpoints.down(800)]: {
-			padding: '12px 10px',
+		[theme.breakpoints.down(690)]: {
+			padding: '0 15px',
 		}
 	}));
 
 	const HeaderNavUI = styled('nav')(({theme}) => ({
-		width: '70%',
+		width: '100%',
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
 
+		'& #long-menu .MuiPaper-root ': {
+			transform: 'none !important',
+			top: '35px !important',
+			left: '0px !important',
+			width: '239px !important',
+		},
+
+		[theme.breakpoints.down(1180)]: {
+			width: 'auto',
+			justifyContent: 'flex-end',
+		},
+
 		[theme.breakpoints.down(1024)]: {
-			width: '80%',
+			// width: '80%',
+		}
+	}));
+
+	const LogoMUI = styled('nav')(({theme}) => ({
+		marginRight: '180px',
+
+		[theme.breakpoints.down(1180)]: {
+			marginRight: '0px',
 		}
 	}));
 
@@ -55,9 +87,6 @@ export const useHeaderStyle = () => {
 		'& svg:first-child': {
 			marginRight: '6px',
 		}
-
-		// color: '#234A82',
-		// fill: '#234A82',
 	}));
 
 	const UserWrapperUI = styled('div')(() => ({
@@ -133,10 +162,12 @@ export const useHeaderStyle = () => {
 
 	return {
 		HeaderWrapperUI,
+		HeaderContentMUI,
 		HeaderNavUI,
 		OctoIconsUI,
 		UserWrapperUI,
 		ButtonLoginUI,
-		ArrowUI
+		ArrowUI,
+		LogoMUI
 	};
 };

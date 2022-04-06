@@ -1,3 +1,5 @@
+import {useCallback} from 'react';
+
 import {FieldValues, SubmitHandler, UseFormSetError} from 'react-hook-form';
 // import {useUserStore} from '@/hooks/useUserStore';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
@@ -45,9 +47,9 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 			});
 	};
 
-	const handlerEditClick = (): void => {
+	const handlerEditClick = useCallback((): void => {
 		console.log('handlerEditClick');
-	};
+	}, []);
 
 	const handleBadResponseUser = () => {
 		setErrorFields('phone', '');

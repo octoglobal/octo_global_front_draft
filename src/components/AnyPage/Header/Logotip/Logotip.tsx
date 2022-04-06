@@ -7,7 +7,7 @@ import OctoGlobal from '../../../../UI/UIIcon/OctoGlobal.svg';
 import OctoGlobalTextIcon from '../../../../UI/UIIcon/OctoGlobalTextIcon.svg';
 
 const OctoIconsUI = styled('span')(() => ({
-	width: '30%',
+	width: 'auto',
 
 	display: 'flex',
 	flexDirection: 'row',

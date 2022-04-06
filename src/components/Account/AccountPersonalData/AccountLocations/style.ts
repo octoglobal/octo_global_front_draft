@@ -5,7 +5,7 @@ export const useAccountLocationStyle = () => {
 
 	const LocationWrapperUI = styled('div')(() => ({
 		width: '100%',
-		height: '100%',
+		height: 'max-content',
 
 		display: 'flex',
 		justifyContent: 'center',
@@ -104,17 +104,25 @@ export const useAccountLocationStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			'& button': {
 				alignSelf: 'flex-end',
+			},
+
+			'& .MuiCollapse-root ': {
+				width: '100%',
 			}
 		}
 	}));
 
-	const LocationButtonsUI = styled('div')(({theme}) => ({
+	const LocationButtonsUI = styled('div', {
+		shouldForwardProp: (prop) => prop !== 'justifyAlign',
+	})<{justifyAlign?: boolean}>(({justifyAlign = false, theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'center',
+		alignSelf: 'flex-end',
+		justifyContent: justifyAlign ? 'center' : 'flex-end',
+		width: '100%',
 
 		[theme.breakpoints.down(500)]: {
-			justifyContent: 'space-between',
+			justifyContent: justifyAlign ? 'center' :'flex-end',
 		}
 	}));
 

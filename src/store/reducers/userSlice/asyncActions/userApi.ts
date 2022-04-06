@@ -88,8 +88,8 @@ export const fetchUserAutoLogin = createAsyncThunk(
 	'user/autologin',
 	async (__, thunkAPI) => {
 		try {
-			console.log('пошел запрос');
 			const response = await octoAxios.get('/user');
+			console.log('пошел запрос: ', response);
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {

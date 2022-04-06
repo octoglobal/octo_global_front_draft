@@ -1,6 +1,10 @@
 import React, {SyntheticEvent, KeyboardEvent, useRef, useState} from 'react';
 import {Box, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import HeaderMenu from '../../../UI/UIIcon/HeaderMenu.svg';
+
 import MobileHeader from './MobileHeader/MobileHeader';
 import User from '../User/User';
 import Logotip from '../../AnyPage/Header/Logotip/Logotip';
@@ -15,16 +19,32 @@ import HeaderNavLink from './HeaderNavLink/HeaderNavLink';
 import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 
+import {useCustomSize} from '../../../hooks/useMedia';
+import {
+	EventHandler
+} from "../../../../../../../Program Files/JetBrains/WebStorm 2021.3.3/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react";
+
+const options = [
+	'Магазины',
+	'Калькулятор',
+	'Блог',
+	'Стоимость услуг',
+	'Помощь',
+];
+
 const Header = () => {
 
 	const dispatch = useAppDispatch();
+	const {isCustomSize} = useCustomSize(1180);
 
 	const {
 		HeaderWrapperUI,
+		HeaderContentMUI,
 		HeaderNavUI,
 		UserWrapperUI,
 		ButtonLoginUI,
-		ArrowUI
+		ArrowUI,
+		LogoMUI
 	} = useHeaderStyle();
 
 	const {
@@ -35,6 +55,8 @@ const Header = () => {
 		isAuth,
 		// loading
 	} = useUserStore();
+
+	// Пункты пользователя
 
 	const [open, setOpen] = useState(false);
 	const anchorRef = useRef<HTMLDivElement>(null);
@@ -70,7 +92,7 @@ const Header = () => {
 			});
 	};
 
-	const handlerPushAccount = (url : string, query = {}) => {
+	const handlerPushAccount = (url: string, query = {}) => {
 		return () => {
 			pushTo(url, query);
 			setOpen(false);
@@ -86,83 +108,137 @@ const Header = () => {
 		}
 	};
 
+	// Пункты навигации
+
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const openBurger = Boolean(anchorEl);
+
+	const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleCloseBurger = () => {
+		setAnchorEl(null);
+	};
+
 	return (
 		<>
 			{!isMobile ? (
 				<HeaderWrapperUI>
-					<Logotip />
+					<HeaderContentMUI>
 
-					<HeaderNavUI>
-						<HeaderNavLink />
-						<>
-							{!isAuth ? (
-								<ButtonUI
-									style={ButtonLoginUI}
-									onClick={handlerPushLogin}
+						{isCustomSize && (
+							<>
+								<Button
+									onClick={handleClick}
 								>
-									Войти
-								</ButtonUI>
-							) : (
-								<UserWrapperUI
-									ref={anchorRef}
+									<HeaderMenu/>
+								</Button>
+								<Menu
+									id='long-menu'
+									MenuListProps={{
+										'aria-labelledby': 'long-button',
+									}}
+									anchorEl={anchorEl}
+									open={openBurger}
+									onClose={handleCloseBurger}
+									PaperProps={{
+										style: {
+											maxHeight: 48 * 4.5,
+											width: '20ch',
+										},
+									}}
 								>
-									<Box
-										onClick={handlerPushAccount('/account/info', {location: 'ger'})}
-									>
-										<User />
-									</Box>
-									<Button
-										id="composition-button"
-										aria-controls={open ? 'composition-menu' : undefined}
-										aria-expanded={open ? 'true' : undefined}
-										aria-haspopup="true"
-										onClick={handleToggle}
-									>
-										<ArrowUI  />
-									</Button>
+									{options.map((option) => (
+										<MenuItem key={option} selected={option === 'Pyxis'}
+										          onClick={handleCloseBurger}>
+											{option}
+										</MenuItem>
+									))}
+								</Menu>
+							</>
+						)}
 
-									<Popper
-										id="popper"
-										open={open}
-										anchorEl={anchorRef.current}
-										role={undefined}
-										placement="bottom-end"
-										transition
-										disablePortal
+						<LogoMUI>
+							<Logotip/>
+						</LogoMUI>
+
+						<HeaderNavUI>
+							{!isCustomSize && <HeaderNavLink/> }
+							<>
+								{!isAuth ? (
+									<ButtonUI
+										style={ButtonLoginUI}
+										onClick={handlerPushLogin}
 									>
-										{({ TransitionProps }) => (
-											<Grow
-												{...TransitionProps}
-												style={{
-													transformOrigin: 'right bottom',
-												}}
-											>
-												<Paper>
-													<ClickAwayListener onClickAway={handleClose}>
-														<MenuList
-															autoFocusItem={open}
-															id="composition-menu"
-															aria-labelledby="composition-button"
-															onKeyDown={handleListKeyDown}
-														>
-															<MenuItem onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные данные</MenuItem>
-															<MenuItem onClick={handlerPushAccount('/account/orders', {tab: 'all'})}>Заказы</MenuItem>
-															<MenuItem onClick={handlerLogout}>Выход</MenuItem>
-														</MenuList>
-													</ClickAwayListener>
-												</Paper>
-											</Grow>
-										)}
-									</Popper>
+										Войти
+									</ButtonUI>
+								) : (
+									<UserWrapperUI
+										ref={anchorRef}
+									>
+										<Box
+											onClick={handlerPushAccount('/account/info', {location: 'ger'})}
+										>
+											<User/>
+										</Box>
+										<Button
+											id="composition-button"
+											aria-controls={open ? 'composition-menu' : undefined}
+											aria-expanded={open ? 'true' : undefined}
+											aria-haspopup="true"
+											onClick={handleToggle}
+										>
+											<ArrowUI/>
+										</Button>
 
-								</UserWrapperUI>
-							)}
-						</>
-					</HeaderNavUI>
+										<Popper
+											id="popper"
+											open={open}
+											anchorEl={anchorRef.current}
+											role={undefined}
+											placement="bottom-end"
+											transition
+											disablePortal
+										>
+											{({TransitionProps}) => (
+												<Grow
+													{...TransitionProps}
+													style={{
+														transformOrigin: 'right bottom',
+													}}
+												>
+													<Paper>
+														<ClickAwayListener onClickAway={handleClose}>
+															<MenuList
+																autoFocusItem={open}
+																id="composition-menu"
+																aria-labelledby="composition-button"
+																onKeyDown={handleListKeyDown}
+															>
+																<MenuItem
+																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
+																	данные</MenuItem>
+																<MenuItem
+																	onClick={handlerPushAccount('/account/orders', {tab: 'all'})}>Заказы</MenuItem>
+																<MenuItem onClick={handlerLogout}>Выход</MenuItem>
+															</MenuList>
+														</ClickAwayListener>
+													</Paper>
+												</Grow>
+											)}
+										</Popper>
 
+									</UserWrapperUI>
+								)}
+							</>
+						</HeaderNavUI>
+
+
+					</HeaderContentMUI>
 				</HeaderWrapperUI>
 			) : (
-				<MobileHeader />
+				<MobileHeader/>
 			)}
 		</>
 	);

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import { Dialog, DialogContent, DialogContentText } from '@mui/material';
+import {Dialog, DialogContent, DialogContentText} from '@mui/material';
 
 import ButtonUI from '../ButtonUI/ButtonUI';
 import {useModalConfirmStyle} from './style';
@@ -13,14 +13,15 @@ interface IModalConfirmUI {
 }
 
 const ModalConfirmUI: FC<IModalConfirmUI> = ({
-	title = '',
-	text = '',
-	open = false,
-	onClickYes,
-	onClickNo
-}) => {
+     title = '',
+     text = '',
+     open = false,
+     onClickYes,
+     onClickNo
+ }) => {
 
 	const {
+		BackDropBlurMUI,
 		ModalUI,
 		ButtonCancelUI,
 		ButtonConfirmUI,
@@ -31,12 +32,13 @@ const ModalConfirmUI: FC<IModalConfirmUI> = ({
 	return (
 		<Dialog
 			open={open}
+			BackdropComponent={BackDropBlurMUI}
 		>
 			<ModalUI className="123">
 				<DialogTitleUI>{title}</DialogTitleUI>
-				<DialogContent>
-					<DialogContentText>{text}</DialogContentText>
-				</DialogContent>
+				{/*<DialogContent>*/}
+				{/*	<DialogContentText>{text}</DialogContentText>*/}
+				{/*</DialogContent>*/}
 				<DialogActionsUI>
 					<ButtonUI
 						style={ButtonConfirmUI}

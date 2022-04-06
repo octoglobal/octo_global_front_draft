@@ -1,6 +1,7 @@
-import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useMemo} from 'react';
-import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
+
+import { fetchUserAutoLogin } from '@/store/reducers/userSlice/asyncActions/userApi';
 
 export const useUserStore = () => {
 	const {user} = useAppSelector(state => state.userReducer);
@@ -8,6 +9,7 @@ export const useUserStore = () => {
 	const isAuth = useMemo(() => !!user.id, [user]);
 
 	const fetchUser = () : void => {
+		console.log('fetchUser: ', isAuth, user.id);
 		if (!isAuth && !user.id) {
 			dispatch(fetchUserAutoLogin());
 		}

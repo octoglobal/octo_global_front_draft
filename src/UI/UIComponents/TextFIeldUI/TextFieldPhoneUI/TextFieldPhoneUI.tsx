@@ -1,6 +1,8 @@
-import React, {FC, KeyboardEventHandler, useMemo, useState} from 'react';
-import {TextField, TextFieldProps} from '@mui/material';
+import React, {FC, KeyboardEventHandler, useMemo, useState, useCallback} from 'react';
+import {TextField, TextFieldProps, IconButton, InputAdornment} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
+import EditPencil from '@/UIIcon/EditPencil.svg';
+
 // import InputMask from 'react-input-mask';
 
 import {useTextFieldUIStyle} from '../style';
@@ -10,6 +12,7 @@ interface iconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	onClick: () => void;
+	editIcon?: boolean,
 }
 
 interface ITextFieldUIProps {
@@ -41,7 +44,12 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 
 	const [iconActive, setIconActive] = useState(false);
 
-	const IconComponent = (iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon) as React.ElementType;
+	const IconComponent = useMemo(() => (iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon) as React.ElementType, [iconProps]);
+
+	// const focusTextInput = useCallback(() => {
+	// 	console.log('focusTextInput: ', inputRef.current);
+	// 	if(inputRef?.current) inputRef.current.focus();
+	// }, [inputRef])
 
 	return (
 		<TextFieldUI>
@@ -65,7 +73,9 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 						{...inputProps}
 						value={value}
 						// onChange={(e) => onChange(e.target.value)}
-						onChange={(e) => PhoneMask(e, value, onChange)}
+						onChange={(e) => {
+							PhoneMask(e, value, onChange)
+						}}
 						onKeyDown={(e : React.KeyboardEvent<HTMLInputElement>) => {
 							if(e.key === 'Backspace' && value.length === 3) {
 								onChange('');
@@ -77,16 +87,19 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 						InputLabelProps={{
 							shrink: true,
 						}}
+						InputProps={{
+							endAdornment: iconProps?.editIcon ? (<InputAdornment onClick={handlerIconClick} position="start"><EditPencil /></InputAdornment>) : '',
+						}}
 					/>
 					// 	)}
 					// </InputMask>
 				)}
 			/>
-			{typeof iconProps !== 'undefined' && (
-				<IconUI onClick={handlerIconClick}>
-					<IconComponent />
-				</IconUI>
-			)}
+			{/*{typeof iconProps !== 'undefined' && (*/}
+			{/*	<IconUI onClick={handlerIconClick}>*/}
+			{/*		<IconComponent />*/}
+			{/*	</IconUI>*/}
+			{/*)}*/}
 		</TextFieldUI>
 	);
 };

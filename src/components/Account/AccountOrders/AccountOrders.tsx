@@ -36,11 +36,6 @@ const AccountOrders: FC = () => {
 
 	const [filterOrders, setFiltedOrders] = useState(routerTab || 0);
 
-	// const filteredOrdersArray = useMemo(
-	// 	() => orders.filter((order : IOrderModel) => order.statusId === filterOrders),
-	// 	[orders]
-	// );
-
 	const toggleFilters = (filter : number) : MouseEventHandler<HTMLDivElement> => {
 		return () : void => {
 			setFiltedOrders(filter);
@@ -58,8 +53,6 @@ const AccountOrders: FC = () => {
 	useEffect(() => {
 		getOrders();
 	}, []);
-
-	//orders.filter((order : IOrderModel) => order.statusId === filterOrders)
 
 	return (
 		<AccountOrdersWrapperUI>

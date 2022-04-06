@@ -14,6 +14,7 @@ export const useAddressUserStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			marginTop: '24px',
 			marginBottom: '15px',
+			width: '100%',
 
 			'&:first-child': {
 				marginTop: '33px',
@@ -35,7 +36,7 @@ export const useAddressUserStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			marginBottom: '0px',
 
-			gridTemplateColumns: 'auto auto',
+			gridTemplateColumns: '70px  auto',
 			gridColumnGap: '10px',
 		}
 	}));
@@ -66,6 +67,8 @@ export const useAddressUserStyle = () => {
 		fontSize: '24px',
 		lineHeight: '28px',
 		color: '#000000',
+
+		wordWrap: 'break-word',
 
 		[theme.breakpoints.down(500)]: {
 			fontSize: '16px',

@@ -148,6 +148,8 @@ export const useAddLocationFormStyle = () => {
 		marginRight: '15px',
 		width: '49px',
 		height: '16px',
+
+		alignSelf: 'center',
 	};
 
 	const FormIconUI = styled('span')(() => ({

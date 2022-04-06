@@ -1,5 +1,5 @@
 import React from 'react';
-import {styled, DialogActions} from '@mui/material';
+import {Dialog, styled, DialogActions, Backdrop} from '@mui/material';
 
 export const useModalConfirmStyle = () => {
 
@@ -20,12 +20,16 @@ export const useModalConfirmStyle = () => {
 		fontSize: '24px',
 		lineHeight: '28px',
 
+		marginBottom: '70px',
+
 		color: '#000000',
 
 		[theme.breakpoints.down(500)]: {
 			textAlign: 'center',
 			fontSize: '18px',
 			lineHeight: '21px',
+
+			marginBottom: '23px',
 		}
 	}));
 
@@ -49,14 +53,46 @@ export const useModalConfirmStyle = () => {
 		textTransform: 'none',
 	};
 
+	const BackDropBlurMUI = styled(Backdrop, {
+		name: 'MuiModal',
+		slot: 'Backdrop',
+		overridesResolver: (props, styles) => {
+			return styles.backdrop
+		},
+	})({
+		background: 'rgba(255, 255, 255, 0.5)',
+		backdropFilter: 'blur(1px)',
+		filter: 'blur(3px)',
+
+		position: 'fixed',
+		display: 'flex',
+		// -moz-box-align: center,
+		alignItems: 'center',
+		// -moz-box-pack: 'center',
+		justifyContent: 'center',
+		inset: '0px',
+		zIndex: '-1',
+	});
+
+	// const BackDropBlur: React.CSSProperties = {
+	// 	blur: {
+	// 		background: 'rgba(255, 255, 255, 0.5)',
+	// 		backdropFilter: 'blur(10px)',
+	// 	}
+	//
+	// };
+
 	const ButtonConfirmUI = {
 		width: '135px',
 		height: '32px',
+		minWidth: '93px',
 
+		opacity: '0.8',
 		marginRight: '80px',
 	};
 
 	return {
+		BackDropBlurMUI,
 		ModalUI,
 		ButtonCancelUI,
 		ButtonConfirmUI,

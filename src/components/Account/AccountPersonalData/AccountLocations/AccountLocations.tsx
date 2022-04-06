@@ -95,19 +95,19 @@ const AccountLocations: FC = () => {
 												handlerDeleteLocation={handlerDeleteLocation}
 											/>
 											{i !== (arr.length - 1) &&
-												<Divider sx={{borderColor: '#274D82', width: '100%'}}/>
+                                                <Divider sx={{borderColor: '#274D82', width: '100%'}}/>
 											}
 										</>
 									))}
-									<LocationButtonsUI>
-										{addresses && addresses.length > 2 &&
+									<LocationButtonsUI justifyAlign={!addresses.length}>
+										{addresses && addresses.length > 2 && (
 											<ButtonUI
 												style={ButtonShowAll}
 												onClick={handlerToggleState(setAllLoc)}
 											>
 												{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
 											</ButtonUI>
-										}
+										)}
 										{!operForm ? (
 											<ButtonUI
 												style={ButtonAdd}

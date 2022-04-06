@@ -2,13 +2,13 @@ import { styled } from '@mui/material';
 
 export const useHomeWorkExpListItemStyles = () => {
 
-	const ItemMUI = styled('li')(({theme}) => ({
+	const ItemMUI = styled('li')(() => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginBottom: '25px',
 	}));
 
-	const ItemTextMUI = styled('p')(({theme}) => ({
+	const ItemTextMUI = styled('p')(() => ({
 		fontSize: '24px',
 		lineHeight: '28px',
 		fontWeight: 300,
@@ -16,7 +16,7 @@ export const useHomeWorkExpListItemStyles = () => {
 		maxWidth: '420px',
 	}));
 
-	const ItemIconMUI = styled('div')(({theme}) => ({
+	const ItemIconMUI = styled('div')(() => ({
 		marginRight: '25px',
 		width: '125px',
 		height: '101px',

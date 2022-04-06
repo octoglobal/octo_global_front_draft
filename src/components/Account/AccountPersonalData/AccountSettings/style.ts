@@ -5,12 +5,18 @@ export const useAccountSettingsStyle = () => {
 	const SettingsWrapperUI = styled('div')(({theme}) => ({
 		width: '100%',
 		height: '100%',
-		padding: '5px',
+		// padding: '5px',
 
 		'& form': {
 			display: 'flex',
 			justifyContent: 'center',
 			// marginRight: '145px',
+		},
+
+		[theme.breakpoints.down(1390)]: {
+			display: 'flex',
+			justifyContent: 'center',
+			marginTop: '40px',
 		},
 
 		[theme.breakpoints.down(800)]: {
@@ -24,18 +30,27 @@ export const useAccountSettingsStyle = () => {
 			'& form': {
 				marginRight: '0'
 			}
-		}
+		},
+
 	}));
 
 	const FormsWrapperBoxUI = styled('div')(({theme}) => ({
-		width: '400px',
+		maxWidth: '458px',
 
 		[theme.breakpoints.down(500)]: {
 			width: '100%',
+		},
+
+		[theme.breakpoints.down(320)]: {
+			'& form': {
+				marginTop: '10px',
+			},
 		}
 	}));
 
 	const FormTableUI = styled('div')(({theme}) => ({
+		width: '100%',
+
 		display: 'grid',
 		gridTemplateColumns: '150px auto',
 		gridTemplateRows: 'auto auto auto auto',
@@ -46,6 +61,14 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			gridTemplateColumns: 'auto auto',
 			gridColumnGap: '10px',
+
+			width: '100%',
+		},
+
+		[theme.breakpoints.down(320)]: {
+			gridTemplateColumns: 'auto',
+			gridColumnGap: '10px',
+			// gridRowGap: '10px',
 
 			width: '100%',
 		}
@@ -152,7 +175,6 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
-
 	const FormTextFieldPasswordWrapperUI = styled('div')(() => ({
 		'& .MuiFormControl-root': {
 			// border: 'none',
@@ -173,8 +195,8 @@ export const useAccountSettingsStyle = () => {
 	}));
 
 	const FormTextFieldBorderUI = styled('div', {
-		shouldForwardProp: (prop) => prop !== 'selection',
-	})<{selection?: boolean}>(({selection = true}) => ({
+		shouldForwardProp: (prop) => prop !== 'selection' && prop !== 'focusBorder',
+	})<{selection?: boolean, focusBorder?: boolean}>(({selection = true, focusBorder = false, theme}) => ({
 		'& .MuiFormControl-root': {
 			// border: 'none',
 			// boxShadow: 'none',
@@ -185,6 +207,15 @@ export const useAccountSettingsStyle = () => {
 			boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
 
 			height: 'auto',
+			width: '287px',
+
+			[theme.breakpoints.down(500)]: {
+				width: 'auto',
+			}
+		},
+
+		'& .MuiFormControl-root:focus-within': {
+			border: !selection && focusBorder ? '1px solid #DFE4EC' : ''
 		},
 
 		'& .Mui-disabled': {
@@ -193,10 +224,38 @@ export const useAccountSettingsStyle = () => {
 		},
 
 		'& .MuiFormControl-root input:focus ': {
-			// border: '1px solid #DFE4EC',
+			// border: !selection && focusBorder ? '1px solid #DFE4EC' : '',
 			// boxSizing: 'border-box',
 			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		},
+
+		[theme.breakpoints.down(320)]: {
+			'& .MuiFormControl-root': {
+				// border: 'none',
+				// boxShadow: 'none',
+
+				// border: selection ? '1px solid #DFE4EC' : '',
+				// // border: selection ? '5px solid red' : '',
+				// boxSizing: 'border-box',
+				// boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
+				//
+				// height: 'auto',
+				width: 'auto',
+			},
 		}
+	}));
+
+	const FormTextFieldFocusBorder = styled('div',{
+		shouldForwardProp: (prop) => prop !== 'selection',
+	})<{selection?: boolean}>(({selection = false}) => ({
+
+		// border: selection ? '1px solid #DFE4EC' : '',
+
+		'& .MuiFormControl-root input:focus ': {
+			border: selection ? '1px solid #DFE4EC' : '',
+			boxSizing: 'border-box',
+			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
+		},
 	}));
 
 	const HelperBoxUI = styled('div')(() => ({
@@ -216,10 +275,6 @@ export const useAccountSettingsStyle = () => {
 		width: '50%',
 		height: '32px !important',
 		textAlign: 'start',
-
-		// border: '1px solid #DFE4EC',
-		// boxSizing: 'border-box',
-		// boxShadow:' 0px 4px 4px rgba(0, 0, 0, 0.03)',
 
 		'& label': {
 			transform: 'translate(14px, 2px) scale(1)',
@@ -255,6 +310,7 @@ export const useAccountSettingsStyle = () => {
 		FormTextFieldWrapperUI,
 		FormTextFieldPasswordWrapperUI,
 		FormTextFieldBorderUI,
+		FormTextFieldFocusBorder,
 		FormTableRowUI,
 		FormTableEndUI,
 		SettingsWrapperUI,

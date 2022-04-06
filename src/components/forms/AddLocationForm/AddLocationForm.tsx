@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, useEffect} from 'react';
 import {FieldValues, useForm} from 'react-hook-form';
 
 import {useMobile} from '@/hooks/useMedia';
@@ -27,8 +27,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 		FormRowButtonUI,
 	} = useAddLocationFormStyle();
 
-	const { handleSubmit, control } = useForm();
-
+	const { handleSubmit, control, setError } = useForm();
 
 	const {
 		user: {
@@ -51,6 +50,13 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 	};
 
 	const addressRegex = useMemo(() => new RegExp(/[^A-Za-z0-9#?!:;,.-_+= ]/gi), []);
+
+	useEffect(() => {
+		setError('address', {
+			type: 'string',
+			message: '',
+		});
+	}, []);
 
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
