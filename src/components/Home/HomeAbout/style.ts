@@ -15,11 +15,8 @@ export const useHomeAboutStyles = () => {
 		[theme.breakpoints.down(778)]: {
 			flexDirection: 'column-reverse',
 			justifyContent: 'center',
-			alignItems: 'flex-start',
+			alignItems: 'center',
 		},
-		[theme.breakpoints.down(501)]: {
-			// height: 'calc(100vh - 69px)',
-		}
 	}));
 
 	return {

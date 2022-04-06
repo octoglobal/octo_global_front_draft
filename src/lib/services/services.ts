@@ -1,4 +1,5 @@
 import {ChangeEvent} from 'react';
+import exp from 'constants';
 
 export const checkValidArray = (arr : Array<unknown>) : boolean => Array.isArray(arr) && !!arr?.length;
 
@@ -103,4 +104,11 @@ export const translit = (word : string) : string => {
 	answer = answer.replace(/^\\-|-$/g, '');
 
 	return ucFirst(answer);
+};
+
+export const checkMedia = (screen: number, type: 'innerWidth' | 'innerHeight' = 'innerWidth') => {
+	if (typeof window != 'undefined') {
+		return window[type] <= screen;
+	}
+	return false;
 };
