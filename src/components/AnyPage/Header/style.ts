@@ -2,7 +2,7 @@ import {styled} from '@mui/material';
 
 export const useHeaderStyle = () => {
 
-	const HeaderMarginMUI = styled('div')(({theme}) => ({
+	const HeaderMarginMUI = styled('div')(() => ({
 		// marginBottom: '62px',
 		// [theme.breakpoints.down(1181)]: {
 		// 	marginBottom: '71px'
@@ -60,7 +60,7 @@ export const useHeaderStyle = () => {
 			padding: '6px 15px',
 		},
 	}));
-  
+
 	const HeaderBurgerButtonMUI = styled('nav')(() => ({
 		'& button': {
 			display: 'flex',
