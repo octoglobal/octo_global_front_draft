@@ -18,13 +18,13 @@ const HomeAboutLogo: FC = () => {
 
 	const logoRefElement = useRef<HTMLDivElement>(null);
 
-	console.log(checkMedia(700, 'innerHeight'));
 
 	useEffect(() => {
 		const element = logoRefElement.current;
 		if (typeof window !== 'undefined' && element) {
 			const offsetTop = element.offsetTop;
-			const start = checkMedia(778) ? `-${offsetTop}px top` : '50% center';
+			const start = checkMedia(778) ? `-${offsetTop + 70}px top` : '30% center';
+			console.log(start);
 			gsap.fromTo(element, {
 				top: '50%',
 				opacity: 1,
@@ -32,7 +32,6 @@ const HomeAboutLogo: FC = () => {
 			}, {
 				transform: 'translateY(-200px)',
 				opacity: 0,
-				top: '35%',
 				duration: 1,
 				scrollTrigger: {
 					trigger: element,

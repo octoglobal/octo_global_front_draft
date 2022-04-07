@@ -4,24 +4,34 @@ import HomeWorkExpIconReg from '../../../../UI/UIIcon/HomeWorkExpIconReg.svg';
 import HomeWorkExpIconBuy from '../../../../UI/UIIcon/HomeWorkExpIconBuy.svg';
 import HomeWorkExpIconCons from '../../../../UI/UIIcon/HomeWorkExpIconCons.svg';
 import HomeWorkExpIconSending from '../../../../UI/UIIcon/HomeWorkExpIconSending.svg';
-import HomeWorkExpListItem from '@/components/Home/HomeWorkExp/HomeWorkExpListItem/HomeWorkExpListItem';
+import HomeWorkExpListItem, {
+	IHomeWorkExpListItemProps
+} from '@/components/Home/HomeWorkExp/HomeWorkExpListItem/HomeWorkExpListItem';
 
-const listData = [
+const listData: IHomeWorkExpListItemProps[] = [
 	{
 		title: 'Зарегистрируйтесь на сайте, чтобы получить инструкцию для покупок.',
 		icon: HomeWorkExpIconReg,
+		animation: false,
+		top: 0,
 	},
 	{
 		title: 'Совершайте покупки самостоятельно или с помощью услуги «Выкуп товара»',
 		icon: HomeWorkExpIconBuy,
+		animation: true,
+		top: 100,
 	},
 	{
 		title: 'Консолидируйте несколько покупок в одну посылку',
 		icon: HomeWorkExpIconCons,
+		animation: true,
+		top: 200,
 	},
 	{
 		title: 'Отправляем вам по почте',
 		icon: HomeWorkExpIconSending,
+		animation: true,
+		top: 300,
 	},
 ];
 
@@ -37,6 +47,8 @@ const HomeWorkExpList: FC = () => {
 					key={workItem.title}
 					title={workItem.title}
 					icon={workItem.icon}
+					animation={workItem.animation}
+					top={workItem.top}
 				/>
 			))}
 		</ListMUI>

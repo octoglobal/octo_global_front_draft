@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import {styled} from '@mui/material';
 
 export const useHomeAboutTextStyles = () => {
 
@@ -46,39 +46,69 @@ export const useHomeAboutTextStyles = () => {
 		},
 	}));
 
-	const ButtonWrapperMUI = styled('div')(({theme}) => ({
-		maxWidth: '254px',
-		'& > button': {
-			height: '58px',
-			fontSize: '24px',
-			lineHeight: '28px',
-			fontWeight: 400,
-			marginBottom: 0,
-			padding: '15px 55px',
+	const LinkTitleMUI = styled('h4')(({theme}) => ({
+		marginBottom: '22px',
+		fontSize: '32px',
+		lineHeight: '37px',
+		fontWeight: 400,
+		[theme.breakpoints.down(501)]: {
+			fontSize: '20px',
+			lineHeight: '23px',
+			marginBottom: '14px',
+		}
+	}));
+
+
+	const LinkContainerMUI = styled('div')(({theme}) => ({
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		maxWidth: '265px',
+		[theme.breakpoints.down(501)]: {
+			margin: '0 auto',
+			maxWidth: '208px',
+		}
+	}));
+
+
+	const LinkWrapperMUI = styled('div')(() => ({
+		width: '100%',
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	}));
+
+	const LinkItemMUI = styled('a')(({theme}) => ({
+		border: 0,
+		backgroundColor: '#FFFFFF',
+		'& > *:first-child': {
+			marginRight: '12px',
+			width: '45px',
+			height: '45px',
 		},
-		[theme.breakpoints.down(1025)]: {
-			maxWidth: '234px',
-			'& > button': {
-				fontSize: '18px',
-				height: '45px',
-			}
+		'& > *:last-child': {
+			width: '43px',
+			height: '43px',
 		},
-		[theme.breakpoints.down(781)]: {
-			maxWidth: '141px',
-			'& > button': {
-				fontSize: '14px',
-				lineHeight: '16px',
-				height: '32px',
-				backgroundColor: '#274D82',
-				padding: '8px 23px',
-				fontWeight: 300,
-			}
+		[theme.breakpoints.down(501)]: {
+			'& > *:first-child': {
+				marginRight: '9px',
+				width: '35px',
+				height: '35px',
+			},
+			'& > *:last-child': {
+				width: '33px',
+				height: '33px',
+			},
 		}
 	}));
 
 	return {
 		ParagraphMUI,
 		ContainerMUI,
-		ButtonWrapperMUI
+		LinkItemMUI,
+		LinkTitleMUI,
+		LinkWrapperMUI,
+		LinkContainerMUI
 	};
 };

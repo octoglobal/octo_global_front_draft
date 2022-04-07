@@ -16,8 +16,8 @@ export const useHomeConfidenceImgStyles = () => {
 			minWidth: 'auto',
 		},
 		[theme.breakpoints.down(769)]: {
-			width: '113px',
-			height: '105px',
+			width: '118px',
+			height: '115px',
 		},
 	}));
 

@@ -1,18 +1,22 @@
 import React, {FC} from 'react';
 import {useHomeAboutTextStyles} from '@/components/Home/HomeAbout/HomeAboutText/style';
-import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
-import {useMobile} from '@/hooks/useMedia';
+import RussianIcon from '../../../../UI/UIIcon/RussianIcon.svg';
+import GermanyIcon from '../../../../UI/UIIcon/GerIcon.svg';
+import WhatsAppIcon from '../../../../UI/UIIcon/WhatsappIcon.svg';
+import {SUPPORT_PHONE_DE, SUPPORT_PHONE_RU} from '@/constants/constants';
 
 const HomeAboutText: FC = () => {
 
 	const {
+		LinkItemMUI,
+		LinkTitleMUI,
 		ContainerMUI,
 		ParagraphMUI,
-		ButtonWrapperMUI
+		LinkWrapperMUI,
+		LinkContainerMUI
 	} = useHomeAboutTextStyles();
 
-	const {isMobile} = useMobile();
 
 	return (
 		<ContainerMUI>
@@ -32,11 +36,21 @@ const HomeAboutText: FC = () => {
 				коммерческую партию товара, поможем Вам в поиске, оплате
 				и доставке.
 			</ParagraphMUI>
-			<ButtonWrapperMUI>
-				<ButtonUI>
-					{isMobile ? 'За покупками' : 'Регистрация'}
-				</ButtonUI>
-			</ButtonWrapperMUI>
+			<LinkContainerMUI>
+				<LinkTitleMUI>
+					Поддержка
+				</LinkTitleMUI>
+				<LinkWrapperMUI>
+					<LinkItemMUI href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=`} target='_blank' title='WhatsAppRU'>
+						<RussianIcon/>
+						<WhatsAppIcon/>
+					</LinkItemMUI>
+					<LinkItemMUI href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=`} target='_blank' title='WhatsAppDE'>
+						<GermanyIcon/>
+						<WhatsAppIcon/>
+					</LinkItemMUI>
+				</LinkWrapperMUI>
+			</LinkContainerMUI>
 		</ContainerMUI>
 	);
 };
