@@ -111,3 +111,11 @@ export const checkMedia = (screen: number, type: 'innerWidth' | 'innerHeight' = 
 	}
 	return false;
 };
+
+export const ellipsis = (string : string, count : number) : string => {
+	if (string?.length > count) {
+		return (`${string.substr(0, (count - 1))}..`);
+	} else {
+		return (string);
+	}
+};

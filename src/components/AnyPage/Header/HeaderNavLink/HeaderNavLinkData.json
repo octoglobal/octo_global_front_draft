@@ -1,32 +1,62 @@
-[
-  {
-    "title": "Заказы",
-    "showAuth": true,
-    "href": "/account/orders?tab=0"
-  },
-  {
-    "title": "Магазины",
-    "showAuth": false,
-    "href": "/shops"
-  },
-  {
-    "title": "Отзывы",
-    "showAuth": false,
-    "href": "/"
-  },
-  {
-    "title": "Блог",
-    "showAuth": false,
-    "href": "/"
-  },
-  {
-    "title": "Стоимость услуг",
-    "showAuth": false,
-    "href": "/"
-  },
-  {
-    "title": "Помощь",
-    "showAuth": false,
-    "href": "/"
-  }
-]
+{
+  "desktop": [
+    {
+      "title": "Магазины",
+      "showAuth": false,
+      "href": "/shops"
+    },
+    {
+      "title": "Блог",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Стоимость услуг",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Помощь",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Отзывы",
+      "showAuth": false,
+      "href": "/"
+    }
+  ],
+  "mobile": [
+    {
+      "title": "Заказы",
+      "showAuth": true,
+      "href": "/account/orders?tab=0"
+    },
+    {
+      "title": "Магазины",
+      "showAuth": false,
+      "href": "/shops"
+    },
+    {
+      "title": "Блог",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Стоимость услуг",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Помощь",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Отзывы",
+      "showAuth": false,
+      "href": "/"
+    }
+  ]
+}
+

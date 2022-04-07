@@ -1,26 +1,21 @@
 import React, {SyntheticEvent, KeyboardEvent, useRef, useState, /** EventHandler */} from 'react';
 import {Box, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
-// import IconButton from '@mui/material/IconButton';
+import {IHeaderNavItemsData} from '../../../types/types';
 import Menu from '@mui/material/Menu';
 import HeaderMenu from '../../../UI/UIIcon/HeaderMenu.svg';
-
 import MobileHeader from './MobileHeader/MobileHeader';
 import User from '../User/User';
 import Logotip from '../../AnyPage/Header/Logotip/Logotip';
-
 import {useMobile} from '@/hooks/useMedia';
 import {useUserStore} from '@/hooks/useUserStore';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
-
 import {useHeaderStyle} from './style';
 import HeaderNavLink from './HeaderNavLink/HeaderNavLink';
 import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
-
 import HeaderNavLinksArray from './HeaderNavLink/HeaderNavLinkData.json';
-
 import {useCustomSize} from '../../../hooks/useMedia';
 
 const Header = () => {
@@ -39,6 +34,8 @@ const Header = () => {
 		ArrowUI,
 		LogoMUI
 	} = useHeaderStyle();
+
+	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 
 	const {
 		// user: {
@@ -143,9 +140,12 @@ const Header = () => {
 										},
 									}}
 								>
-									{HeaderNavLinksArray.filter(item => item.showAuth === isAuth).map((option) => (
-										<MenuItem key={option.title} selected={option.title === 'Pyxis'}
-										          onClick={handleCloseBurger}>
+									{navArray.desktop.map((option) => (
+										<MenuItem
+											key={option.title}
+											selected={option.title === 'Pyxis'}
+											onClick={handleCloseBurger}
+										>
 											{option.title}
 										</MenuItem>
 									))}
@@ -158,7 +158,7 @@ const Header = () => {
 						</LogoMUI>
 
 						<HeaderNavUI>
-							{!isCustomSize && <HeaderNavLink/> }
+							{!isCustomSize && <HeaderNavLink/>}
 							<>
 								{!isAuth ? (
 									<ButtonUI
