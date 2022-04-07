@@ -30,8 +30,10 @@ const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, anima
 				transform: 'translateY(0px)',
 				scrollTrigger: {
 					trigger: element,
-					start: `top -${top}px`,
+					// start: `top -${top}px`,
+					start: 'top 95%',
 					markers: false,
+					once: true,
 					end: '50',
 				}
 			});

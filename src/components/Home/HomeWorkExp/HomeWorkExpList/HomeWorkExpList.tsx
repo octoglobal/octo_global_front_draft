@@ -12,7 +12,7 @@ const listData: IHomeWorkExpListItemProps[] = [
 	{
 		title: 'Зарегистрируйтесь на сайте, чтобы получить инструкцию для покупок.',
 		icon: HomeWorkExpIconReg,
-		animation: false,
+		animation: true,
 		top: 0,
 	},
 	{

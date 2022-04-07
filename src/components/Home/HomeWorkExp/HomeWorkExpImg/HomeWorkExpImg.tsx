@@ -23,7 +23,7 @@ const HomeWorkExpImg: FC = () => {
 				transform: 'translateY(0px)',
 				scrollTrigger: {
 					trigger: element,
-					start: 'top bottom',
+					start: 'top 98%',
 					markers: false,
 				}
 			});
