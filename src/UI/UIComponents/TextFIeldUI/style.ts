@@ -21,7 +21,8 @@ export const useTextFieldUIStyle = () => {
 			color: '#F35151',
 			textAlign: 'end',
 
-			marginTop: '0px',
+			// marginTop: '5px',
+			marginRight: '0px',
 		},
 
 		'& .MuiOutlinedInput-root': {
@@ -58,6 +59,7 @@ export const useTextFieldUIStyle = () => {
 		'& input': {
 			width: '100%',
 			boxSizing: 'border-box',
+			height: '39px',
 
 			'&::placeholder': {
 				fontStyle: 'normal',

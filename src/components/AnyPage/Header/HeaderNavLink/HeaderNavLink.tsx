@@ -4,7 +4,11 @@ import React, {FC} from 'react';
 import CustomLinkUI from '../../../../UI/UIComponents/LinkUI/LinkUI';
 import HeaderNavLinkArray from './HeaderNavLinkData.json';
 
-const HeaderNavLink : FC = () => {
+interface IHeaderNavLink {
+	toggleOpenMenu?: () => void,
+}
+
+const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 
 	const {
 		isAuth
@@ -13,7 +17,7 @@ const HeaderNavLink : FC = () => {
 	return (
 		<>
 			{HeaderNavLinkArray.filter(item => isAuth ? true : item.showAuth === isAuth ).map((option) => (
-				<CustomLinkUI key={option.title} href={option.href}>
+				<CustomLinkUI key={option.title} href={option.href} onClick={toggleOpenMenu}>
 					{option.title}
 				</CustomLinkUI>
 			))}

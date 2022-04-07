@@ -18,10 +18,10 @@ import LoginPromt from '@/components/AnyPage/AuthFormPromt/LoginPromt/LoginPromt
 import SignUpPromt from '@/components/AnyPage/AuthFormPromt/SignUpPromt/SignUpPromt';
 
 interface IMenuAuthContent {
-	setOpenMenu: (state: boolean) => void,
+	toggleOpenMenu: () => void,
 }
 
-const MenuAuthContent: FC<IMenuAuthContent> = ({setOpenMenu}) => {
+const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 	const { isAuth } = useUserStore();
 	const dispatch = useAppDispatch();
 
@@ -54,7 +54,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({setOpenMenu}) => {
 	};
 
 	const handlerPushToAccount = () => {
-		setOpenMenu(false);
+		toggleOpenMenu();
 		pushTo('/account/info');
 	};
 
@@ -82,7 +82,9 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({setOpenMenu}) => {
 							<User />
 						</UserUI>
 						<MenuLinksUI>
-							<HeaderNavLink />
+							<HeaderNavLink
+								toggleOpenMenu={toggleOpenMenu}
+							/>
 							{isAuth && (
 								<ExitLinkUI onClick={handlerLogout}>
 									Выйти

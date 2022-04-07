@@ -63,10 +63,17 @@ export const useOrderCardStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
+		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
+
 		marginBottom: '20px',
 
 		'& span:first-child': {
 			marginRight: '40px',
+		},
+
+		'& span:last-child': {
+			marginRight: '0',
 		},
 
 		[theme.breakpoints.down(500)]: {
@@ -74,6 +81,11 @@ export const useOrderCardStyle = () => {
 			marginLeft: '30px',
 			marginBottom: '15px',
 		}
+	}));
+
+	const BasketMUI = styled('span')(() => ({
+		marginLeft: 'auto',
+		marginRight: '0',
 	}));
 
 	const TitleUI = styled('span')(() => ({
@@ -172,6 +184,7 @@ export const useOrderCardStyle = () => {
 		ImageUI,
 		InfoUI,
 		TitleUI,
-		BoldTitleUI
+		BoldTitleUI,
+		BasketMUI
 	};
 };

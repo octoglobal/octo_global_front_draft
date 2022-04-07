@@ -8,6 +8,7 @@ import AddTrackForm from '../../forms/AddTrackForm/AddTrackForm';
 import CheckBoxUI from 'UI/UIComponents/CheckBoxUI/CheckBoxUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {useOrdersStore} from '@/hooks/useOrdersStore';
+// import Basket from '../../../UI/UIIcon/Basket.svg';
 
 import {useAccountOrdersStyle} from './style';
 import {checkValidArray} from '@/services/services';
@@ -28,6 +29,8 @@ const AccountOrders: FC = () => {
 	const {router, pushTo} = useCustomRouter();
 	const {getOrders, orders} = useOrdersStore();
 	const {control} = useForm();
+
+	console.log('orders: ', orders);
 
 	const routerTab = useMemo(
 		() => (router.query && router.query.tab) ? +router.query.tab : 0,

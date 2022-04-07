@@ -3,15 +3,17 @@ import {TextField, TextFieldProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
 
 import {useMobile} from '@/hooks/useMedia';
-
 import {useTextFieldUIStyle} from './style';
+
 interface IIconsProps {
 	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
 	onClick: () => void;
 }
+
 interface IRegexProps {
-	regex: RegExp
+	regex: RegExp,
+	ucFirst?: boolean
 }
 
 interface ITextFieldUIProps {
@@ -51,7 +53,10 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 	const handlerChange = (onChange : (value : string | number) => void) => (e : React.ChangeEvent<HTMLInputElement>) => {
 		let value = e.target.value;
 		if(regexProps?.regex) value = e.target.value.replace(regexProps.regex, '');
-		onChange(value);
+		if(regexProps?.ucFirst) {
+			value = e.target.value.replace(regexProps.regex, (u) => u.toUpperCase());
+		}
+			onChange(value);
 	};
 
 	return (

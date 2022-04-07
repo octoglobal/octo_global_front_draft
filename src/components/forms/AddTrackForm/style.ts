@@ -33,6 +33,23 @@ export const useAddTrackFormStyle = () => {
 		}
 	}));
 
+	const HelperBoxMUI = styled('div')(() => ({
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '400',
+		fontSize: '10px',
+		lineHeight: '12px',
+		textDecorationLine: 'none',
+		color: '#274D82',
+		textAlign: 'right',
+
+		cursor: 'pointer',
+	}));
+
+	const BottomHelperBoxMUI = styled('div')(() => ({
+		// border: '1px solid red',
+	}));
+
 	const TextFieldMobileStyleUI = {
 		height: '39px',
 		marginBottom: '20px',
@@ -62,9 +79,11 @@ export const useAddTrackFormStyle = () => {
 
 	return {
 		TrackFormWrapperUI,
+		HelperBoxMUI,
 		FormWrapperUI,
 		ButtonAddTrackUI,
 		TextAreaUI,
-		TextFieldMobileStyleUI
+		TextFieldMobileStyleUI,
+		BottomHelperBoxMUI
 	};
 };

@@ -6,7 +6,7 @@ import {useCustomRouter} from '@/hooks/useCustomRouter';
 export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>) => {
 
 	const dispatch = useAppDispatch();
-	const {pushTo} = useCustomRouter();
+	const {router, pushTo} = useCustomRouter();
 
 	const setErrorFields = (fieldName: keyof IUserLoginReq, message: string) => {
 		setError(fieldName, {
@@ -34,7 +34,7 @@ export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>)
 						handleBadResponse();
 						return;
 					default:
-						pushTo('/');
+						if(router.route === '/login') pushTo('/');
 					}
 				});
 		}

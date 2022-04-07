@@ -10,6 +10,7 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
+import { translit } from '@/lib/services/services';
 
 interface IAddLocationForm {
 	setOpenForm: (prevState : (state: boolean) => boolean) => void
@@ -67,7 +68,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 						controller={{
 							name: 'name',
 							control,
-							defaultValue: name,
+							defaultValue: translit(name),
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -78,6 +79,9 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							// helperText: 'Заполните поле "Почта"',
 							sx: FormTextFieldUI,
 						}}
+						regexProps={{
+							regex: addressRegex,
+						}}
 					/>
 				</FormRowTextField>
 
@@ -87,7 +91,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 						controller={{
 							name: 'surname',
 							control,
-							defaultValue: surname,
+							defaultValue: translit(surname),
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -97,6 +101,9 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							required: true,
 							sx: FormTextFieldUI,
 							// helperText: 'Заполните поле "Почта"',
+						}}
+						regexProps={{
+							regex: addressRegex,
 						}}
 					/>
 				</FormRowTextField>

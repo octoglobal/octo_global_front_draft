@@ -16,10 +16,7 @@ export const orderSlice = createSlice({
 	reducers: {},
 	extraReducers: {
 		[fetchOrdersAndPackages.fulfilled.type]: (state, data: PayloadAction<IOrdersSlice> ) => {
-			//TODO: исходно возвращает user_orders
-			// ts_ignore так как с сервера возвращается user_orders, а не orders
-			// @ts-ignore
-			state.orders = data.payload.user_orders;
+			state.orders = data.payload.orders;
 		}
 	}
 });

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useMemo} from 'react';
 import { Box, Typography } from '@mui/material';
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
@@ -41,6 +41,8 @@ const SignUpForm : FC = () => {
 		pushTo('/privacypolicy');
 	};
 
+	const ucFirstRegex = useMemo(() => new RegExp(/^[a-zа-я]/), []);
+
 	return (
 		<Box component='form' onSubmit={handleSubmit(onSubmit)}>
 			<FormsWrapperBox>
@@ -59,6 +61,10 @@ const SignUpForm : FC = () => {
 							required: true,
 							// helperText: 'Заполните поле "Имя"',
 						}}
+						regexProps={{
+							regex: ucFirstRegex,
+							ucFirst: true,
+						}}
 					/>
 				</FormsInput>
 
@@ -76,6 +82,10 @@ const SignUpForm : FC = () => {
 							type: 'text',
 							required: true,
 							// helperText: 'Заполните поле "Фамилия"',
+						}}
+						regexProps={{
+							regex: ucFirstRegex,
+							ucFirst: true,
 						}}
 					/>
 				</FormsInput>

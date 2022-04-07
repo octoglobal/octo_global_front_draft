@@ -13,7 +13,7 @@ const SignUp = () => {
 	const {pushTo} = useCustomRouter();
 
 	const {
-		SignUpFormWrapperBox
+		SignUpFormWrapperBox,
 	} = useSignUpFormStyle();
 
 	const handlerToLogin = () => {

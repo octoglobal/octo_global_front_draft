@@ -46,8 +46,6 @@ const Confirm = () => {
 	const {isUserConfirm} = useConfirm();
 	const {query, pushTo} = useCustomRouter();
 
-	console.log('query: ', query);
-
 	const handlerPushToIndex = () => {
 		pushTo('/');
 	};

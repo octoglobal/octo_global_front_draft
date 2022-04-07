@@ -52,7 +52,7 @@ export const useSignUp = (setError: UseFormSetError<FieldValues | IUserRegistrat
 				password: formData.password
 			}))
 				.then(() => {
-					pushTo('/');
+					pushTo('/welcome');
 				});
 		}
 	};

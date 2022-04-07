@@ -9,7 +9,7 @@ export const useAuthFormLayoutStyle = () => {
 
 		width: '100%',
 		height: 'auto',
-		padding: '70px 0 100px',
+		padding: '130px 0 100px',
 	}));
 
 	return {

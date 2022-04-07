@@ -23,7 +23,8 @@ const MobileHeader: FC = () => {
 
 	const [openMenu, setOpenMenu] = useState<boolean>(false);
 
-	const handlerOpenMenu = () => {
+	const toggleOpenMenu = () => {
+		console.log('toggleOpenMenu');
 		setOpenMenu(prevState => !prevState);
 	};
 
@@ -31,7 +32,7 @@ const MobileHeader: FC = () => {
 		<>
 			<HeaderMobileWrapperUI>
 				<NavMenuUI>
-					<NavItemUI onClick={handlerOpenMenu}>
+					<NavItemUI onClick={toggleOpenMenu}>
 						<HeaderMenu />
 					</NavItemUI>
 					<NavItemUI>
@@ -50,7 +51,7 @@ const MobileHeader: FC = () => {
 				onClose={() => setOpenMenu(false)}
 			>
 				<MenuAuthContent
-					setOpenMenu={setOpenMenu}
+					toggleOpenMenu={toggleOpenMenu}
 				/>
 			</SwipeableDrawerUI>
 		</>

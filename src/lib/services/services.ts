@@ -1,5 +1,4 @@
 import {ChangeEvent} from 'react';
-import exp from 'constants';
 
 export const checkValidArray = (arr : Array<unknown>) : boolean => Array.isArray(arr) && !!arr?.length;
 

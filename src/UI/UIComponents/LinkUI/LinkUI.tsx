@@ -5,13 +5,20 @@ import {useLinkStyle} from './style';
 
 interface ICustomLinkUI {
 	href?: string,
+	onClick?: () => void,
 	children: React.ReactChildren | React.ReactNode;
 }
 
 const CustomLinkUI : FC<ICustomLinkUI> = ({
 	href = '',
+	onClick,
 	children,
 }) => {
+
+	const handlerClick = () => {
+		console.log('handlerClick');
+		if(onClick) onClick();
+	}
 
 	const {LinkUI} = useLinkStyle();
 
@@ -19,7 +26,9 @@ const CustomLinkUI : FC<ICustomLinkUI> = ({
 		<Link
 			href={href}
 		>
-			<LinkUI>
+			<LinkUI
+				onClick={handlerClick}
+			>
 				{children}
 			</LinkUI>
 		</Link>

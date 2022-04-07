@@ -24,13 +24,11 @@ export const useHeaderStyle = () => {
 		background: '#FFFFFF',
 		// opacity: '0.1',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
-
-		// border: '1px solid red',
-
-		[theme.breakpoints.down(1181)]: {
-			height: '71px',
-		},
-		[theme.breakpoints.down(1023)]: {
+		//
+		// [theme.breakpoints.down(1181)]: {
+		// 	height: '71px',
+		// },
+		[theme.breakpoints.down(1025)]: {
 			height: '65px',
 		},
 		[theme.breakpoints.down(1023)]: {
@@ -57,11 +55,11 @@ export const useHeaderStyle = () => {
 		maxWidth: '1440px',
 
 		[theme.breakpoints.down(1025)]: {
-			padding: '6px 15px',
+			padding: '15px',
 		},
 	}));
 
-	const HeaderBurgerButtonMUI = styled('nav')(() => ({
+	const HeaderBurgerButtonMUI = styled('span')(() => ({
 		'& button': {
 			display: 'flex',
 			justifyContent: 'flex-start',
@@ -71,7 +69,7 @@ export const useHeaderStyle = () => {
 		},
 	}));
 
-	const HeaderNavUI = styled('nav')(({theme}) => ({
+	const HeaderNavUI = styled('ul')(({theme}) => ({
 		width: '100%',
 		display: 'flex',
 		flexDirection: 'row',
@@ -85,7 +83,7 @@ export const useHeaderStyle = () => {
 			width: '239px !important',
 		},
 
-		[theme.breakpoints.down(1181)]: {
+		[theme.breakpoints.down(1241)]: {
 			width: 'auto',
 			justifyContent: 'flex-end',
 		},
@@ -95,10 +93,10 @@ export const useHeaderStyle = () => {
 		}
 	}));
 
-	const LogoMUI = styled('nav')(({theme}) => ({
+	const LogoMUI = styled('div')(({theme}) => ({
 		marginRight: '180px',
 
-		[theme.breakpoints.down(1181)]: {
+		[theme.breakpoints.down(1241)]: {
 			marginRight: '0px',
 		}
 	}));
@@ -127,6 +125,23 @@ export const useHeaderStyle = () => {
 		flexDirection: 'row',
 		alignItems: 'center',
 		position: 'relative',
+
+		'& button': {
+			width: '20px',
+			minWidth: '20px',
+			height: '28px',
+
+			padding: '0',
+
+			'& span': {
+				width: '20px',
+				height: '20px',
+			},
+
+			'&:hover': {
+				backgroundColor: 'inherit',
+			}
+		},
 
 		'& #popper': {
 			transform: 'none !important',

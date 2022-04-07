@@ -7,7 +7,7 @@ import {IAddOrder} from '../../../types/types';
 
 import {UseFormReset} from 'react-hook-form';
 
-export const useAddTrackForm = (reset : UseFormReset<IAddOrder>) => {
+export const useAddTrackForm = (reset : UseFormReset<IAddOrder>, successSubmit: () => void) => {
 
 	const dispatch = useAppDispatch();
 	// const {pushTo} = useCustomRouter();
@@ -47,6 +47,7 @@ export const useAddTrackForm = (reset : UseFormReset<IAddOrder>) => {
 							track_number: '',
 							comment: ''
 						});
+						successSubmit();
 					}
 				});
 		}

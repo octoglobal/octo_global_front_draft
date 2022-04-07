@@ -1,7 +1,8 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback} from 'react';
 
 import {useMobile} from '@/hooks/useMedia';
 import Arrow_Blue from '../../../../UI/UIIcon/Arrow_Blue.svg';
+import Basket from '../../../../UI/UIIcon/Basket.svg';
 
 import Package from '../../../../UI/UIIcon/Package.svg';
 import {IOrderCard} from '../../../../types/types';
@@ -24,10 +25,12 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		OrderInfoBlockUI,
 		ImageUI,
 		InfoUI,
-		BoldTitleUI
+		BoldTitleUI,
+		BasketMUI
 	} = useOrderCardStyle();
 
 	const {
+		id,
 		longId,
 		trackNumber,
 		highlight,
@@ -36,6 +39,13 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 	} = order;
 
 	const {isMobile} = useMobile();
+
+	const handlerDeleteTrack = useCallback((id: number) : () => void => {
+		return () : void => {
+			//	TODO: удалить посылку
+			console.log('handlerDeleteTrack: ', id);
+		};
+	}, [id]);
 
 	return (
 		<OrderCardUI
@@ -46,6 +56,12 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 				<OrderTitlesUI>
 					<BoldTitleUI>Заказ № {longId} прибыл на склад</BoldTitleUI>
 					{!isMobile && <BoldTitleUI>{trackNumber}</BoldTitleUI>}
+					<BasketMUI>
+						<Basket
+							onClick={handlerDeleteTrack(longId)}
+						/>
+					</BasketMUI>
+
 				</OrderTitlesUI>
 				<OrderInfoUI>
 					<OrderInfoBlockUI>

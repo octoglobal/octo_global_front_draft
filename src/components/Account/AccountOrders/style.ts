@@ -59,6 +59,10 @@ export const useAccountOrdersStyle = () => {
 			padding: '0px',
 		},
 
+		'& svg': {
+			cursor: 'pointer',
+		},
+
 		[theme.breakpoints.down(500)]: {
 			position: 'relative',
 
