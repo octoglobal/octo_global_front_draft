@@ -1,12 +1,15 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {useHomeWorkExpListItemStyles} from '@/components/Home/HomeWorkExp/HomeWorkExpListItem/style';
+import gsap from 'gsap';
 
-interface IHomeWorkExpListItemProps {
+export interface IHomeWorkExpListItemProps {
 	title: string;
 	icon: React.ElementType<React.ComponentPropsWithRef<'svg'>>
+	animation: boolean,
+	top: number;
 }
 
-const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon}) => {
+const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, animation, top}) => {
 	const {
 		ItemMUI,
 		ItemIconMUI,
@@ -14,9 +17,29 @@ const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon}) => {
 	} = useHomeWorkExpListItemStyles();
 
 	const Icon = icon;
+	const listItemRef = useRef<HTMLLIElement>(null);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined' && animation) {
+			const element = listItemRef.current;
+			gsap.fromTo(element, {
+				opacity: 0,
+				transform: 'translateY(50px)'
+			}, {
+				opacity: 1,
+				transform: 'translateY(0px)',
+				scrollTrigger: {
+					trigger: element,
+					start: `top -${top}px`,
+					markers: false,
+					end: '50',
+				}
+			});
+		}
+	}, []);
 
 	return (
-		<ItemMUI>
+		<ItemMUI ref={listItemRef}>
 			<ItemIconMUI>
 				<Icon/>
 			</ItemIconMUI>

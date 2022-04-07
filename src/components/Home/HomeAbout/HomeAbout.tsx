@@ -13,13 +13,13 @@ if (typeof window !== 'undefined') {
 
 const HomeAbout: FC = () => {
 
-	const { WrapperMUI } = useHomeAboutStyles();
+	const { WrapperMUI, HeaderMarginMUI } = useHomeAboutStyles();
 	const logoRefElement = useRef(null);
 
 	const smallSmartphoneStyle = useMemo(() => {
 		if (typeof window !== 'undefined') {
 			if (window.innerHeight <= 700) {
-				return  {justifyContent: 'flex-start', marginTop: '5px'};
+				return  {justifyContent: 'flex-end'};
 			}
 			return {};
 		}
@@ -28,12 +28,14 @@ const HomeAbout: FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
+			const start = checkMedia(501) ? 71 : checkMedia(1025) ? 65 : checkMedia(1181) ? 71 : 61;
 			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '0' : '100' : '500';
 			gsap.timeline({
 				scrollTrigger: {
 					trigger: logoRefElement.current,
-					start: '0% top',
+					start: `-${start}px top`,
 					end: end,
+					markers: false,
 					scrub: true,
 					pin: true,
 					toggleActions: 'play none none none'
@@ -44,12 +46,15 @@ const HomeAbout: FC = () => {
 
 
 	return (
-		<Container>
-			<WrapperMUI ref={logoRefElement} style={smallSmartphoneStyle}>
-				<HomeAboutText/>
-				<HomeAboutLogo/>
-			</WrapperMUI>
-		</Container>
+		<>
+			<HeaderMarginMUI/>
+			<Container>
+				<WrapperMUI ref={logoRefElement} style={smallSmartphoneStyle}>
+					<HomeAboutText/>
+					<HomeAboutLogo/>
+				</WrapperMUI>
+			</Container>
+		</>
 	);
 };
 

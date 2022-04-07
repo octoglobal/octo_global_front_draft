@@ -2,23 +2,32 @@ import { styled } from '@mui/material';
 
 export const useHomeWorkExpStyles = () => {
 
+	const InnerContainerMUI = styled('div')(({theme}) => ({
+		height: '100vh',
+		[theme.breakpoints.down(501)]: {
+			height: 'auto',
+			marginBottom: '50px'
+		}
+	}));
+
 	const WrapperMUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		flexDirection: 'row',
-		margin: '61px 0 134px',
+		margin: '61px 0 50px',
 		[theme.breakpoints.down(769)]: {
 			flexDirection: 'column'
 		},
 		[theme.breakpoints.down(1025)]: {
-			marginBottom: '100px',
+			marginBottom: '50px',
 		},
 		[theme.breakpoints.down(601)]: {
-			margin: '30px 0 50px',
+			margin: '30px 0 100px',
 		},
 	}));
 
 	return {
-		WrapperMUI
+		WrapperMUI,
+		InnerContainerMUI
 	};
 };

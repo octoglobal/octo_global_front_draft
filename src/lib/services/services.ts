@@ -1,15 +1,14 @@
 import {ChangeEvent} from 'react';
-import exp from 'constants';
 
-export const checkValidArray = (arr : Array<unknown>) : boolean => Array.isArray(arr) && !!arr?.length;
+export const checkValidArray = (arr: Array<unknown>): boolean => Array.isArray(arr) && !!arr?.length;
 
 export const summ = (a: number, b: number) => a + b;
 
-export const isObjectEmpty = (obj = {}) : boolean => {
+export const isObjectEmpty = (obj = {}): boolean => {
 	return Object.keys(obj).length == 0;
 };
 
-export const ObjectHasOwnProperty = (object = {}, property : string) : boolean => {
+export const ObjectHasOwnProperty = (object = {}, property: string): boolean => {
 	return Object.prototype.hasOwnProperty.call(object, property);
 };
 
@@ -40,7 +39,7 @@ export const ObjectHasOwnProperty = (object = {}, property : string) : boolean =
 // 		date.getMinutes();
 // }
 
-export default function PhoneMask(e : ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, value : string, setValue : (string: string) => void) {
+export default function PhoneMask(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, value: string, setValue: (string: string) => void) {
 
 	let inputOnlyNumber = e.target.value.replace(/\D/g, '');
 	let formattedInputValue = '';
@@ -72,28 +71,28 @@ export default function PhoneMask(e : ChangeEvent<HTMLTextAreaElement | HTMLInpu
 	return inputOnlyNumber;
 };
 
-export const ucFirst = (str : string) : string => {
+export const ucFirst = (str: string): string => {
 	if (!str) return str;
 
 	return str[0].toUpperCase() + str.slice(1);
 };
 
-export const translit = (word : string) : string => {
-	const converter : {
+export const translit = (word: string): string => {
+	const converter: {
 		[key: string]: string;
 	} = {
-		'а': 'a',  'б': 'b',  'в': 'v', 'г': 'g', 'д': 'd',
-		'е': 'e',  'ё': 'e',  'ж': 'zh','з': 'z', 'и': 'i',
-		'й': 'y',  'к': 'k',  'л': 'l', 'м': 'm', 'н': 'n',
-		'о': 'o',  'п': 'p',  'р': 'r', 'с': 's', 'т': 't',
-		'у': 'u',  'ф': 'f',  'х': 'h', 'ц': 'c', 'ч': 'ch',
-		'ш': 'sh', 'щ': 'sch','ь': '',  'ы': 'y', 'ъ': '',
-		'э': 'e',  'ю': 'yu', 'я': 'ya'
+		'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',
+		'е': 'e', 'ё': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i',
+		'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
+		'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
+		'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'c', 'ч': 'ch',
+		'ш': 'sh', 'щ': 'sch', 'ь': '', 'ы': 'y', 'ъ': '',
+		'э': 'e', 'ю': 'yu', 'я': 'ya'
 	};
 	word = word.toLowerCase();
 	let answer = '';
-	for (let i = 0; i < word.length; ++i ) {
-		if (converter[word[i]] == undefined){
+	for (let i = 0; i < word.length; ++i) {
+		if (converter[word[i]] == undefined) {
 			answer += word[i];
 		} else {
 			answer += converter[word[i]];
