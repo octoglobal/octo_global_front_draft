@@ -11,6 +11,7 @@ export const useOrdersStore = () => {
 	const hasOrders = useMemo(() => !orders?.length, [orders]);
 
 	const fetchOrders = () : void => {
+		console.log('fetchOrders');
 		dispatch(fetchOrdersAndPackages());
 	};
 

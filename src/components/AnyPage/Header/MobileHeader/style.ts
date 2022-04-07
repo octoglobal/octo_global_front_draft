@@ -5,7 +5,7 @@ export const useHeaderMobileStyle = () => {
 		padding: '15px',
 		position: 'fixed',
 		width: '100%',
-		zIndex: 1,
+		zIndex: 2,
 		backgroundColor: '#FFFFFF',
 	}));
 

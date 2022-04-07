@@ -1,3 +1,5 @@
+import { useUserStore } from '@/hooks/useUserStore';
+import { translit } from '@/lib/services/services';
 import { Collapse } from '@mui/material';
 import React, {FC} from 'react';
 
@@ -18,6 +20,14 @@ const AccountLocationRules: FC<IAccountLocationRules> = ({openRules}) => {
 		SupportPromtUI
 	} = useAccountLocationRulesStyle();
 
+	const {
+		user: {
+			name,
+			surname,
+			personalAreaId
+		}
+	} = useUserStore();
+
 	return (
 		<Collapse in={openRules}>
 			<RulesWrapperUI>
@@ -27,17 +37,17 @@ const AccountLocationRules: FC<IAccountLocationRules> = ({openRules}) => {
 
 				<TableUI>
 					<TitleUI>First name (ваше имя)</TitleUI>
-					<SubTitleUI>Anastasia</SubTitleUI>
+					<SubTitleUI>{translit(name)}</SubTitleUI>
 
 					<TitleUI>Last name (ваша фамилия)</TitleUI>
-					<SubTitleUI>Khorobrykh</SubTitleUI>
+					<SubTitleUI>{translit(surname)}</SubTitleUI>
 
 					<TitleUI>Address line 1 (адрес склада)</TitleUI>
 					<SubTitleUI>101 Lukens drive</SubTitleUI>
 
 					<TitleUI>Address line 2 (номер дома)</TitleUI>
 					<SubTitleUI>
-						suite H #174555 (#174555 - это уникальный номер, который вы видите в своем аккаунте. По нему мы узнаем, что это ваша посылка).
+						suite H #{personalAreaId} (#{personalAreaId} - это уникальный номер, который вы видите в своем аккаунте. По нему мы узнаем, что это ваша посылка).
 					</SubTitleUI>
 
 					<TitleUI>City (город)</TitleUI>

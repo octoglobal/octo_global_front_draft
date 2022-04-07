@@ -3,7 +3,7 @@ import {NextPage} from 'next';
 
 import AccountPage from '../../src/components/Account/Account';
 import AccountPersonalData from '../../src/components/Account/AccountPersonalData/AccountPersonalData';
-// import WithAuth from '@/components/HOC/WithAuth/WithAuth';
+import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 
 const Account: NextPage = () => {
 	return (
@@ -13,5 +13,5 @@ const Account: NextPage = () => {
 	);
 };
 
-export default React.memo(Account);
-// export default React.memo(WithAuth(Account));
+// export default React.memo(Account);
+export default React.memo(WithAuth(Account));

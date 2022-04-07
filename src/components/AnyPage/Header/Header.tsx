@@ -26,7 +26,7 @@ import {useCustomSize} from '../../../hooks/useMedia';
 const Header = () => {
 
 	const dispatch = useAppDispatch();
-	const {isCustomSize} = useCustomSize(1180);
+	const {isCustomSize} = useCustomSize(1240);
 
 	const {
 		HeaderMarginMUI,
