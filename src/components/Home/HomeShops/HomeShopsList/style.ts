@@ -2,11 +2,14 @@ import { styled } from '@mui/material';
 
 export const useHomeShopsListStyles = () => {
 
-	const ContainerMUI = styled('div')(() => ({
-
+	const ListMUI = styled('ul')(() => ({
+		display: 'flex',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center',
 	}));
 
 	return {
-		ContainerMUI
+		ListMUI
 	};
 };
