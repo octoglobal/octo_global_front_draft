@@ -5,7 +5,6 @@ import HomeWorkExpList from '@/components/Home/HomeWorkExp/HomeWorkExpList/HomeW
 import {useHomeWorkExpStyles} from '@/components/Home/HomeWorkExp/style';
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 import gsap from 'gsap';
-import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
 
 const HomeWorkExp: FC = () => {
 
