@@ -3,7 +3,7 @@ import HomeAbout from '@/components/Home/HomeAbout/HomeAbout';
 import HomeWorkExp from '@/components/Home/HomeWorkExp/HomeWorkExp';
 import HomeConfidence from '@/components/Home/HomeConfidence/HomeConfidence';
 // import HomeAddress from '@/components/Home/HomeAddress/HomeAddress';
-import HomeShops from '@/components/Home/HomeShops/HomeShops';
+// import HomeShops from '@/components/Home/HomeShops/HomeShops';
 
 const IndexPage : FC = () => {
 	return (
@@ -11,7 +11,7 @@ const IndexPage : FC = () => {
 			<HomeAbout/>
 			<HomeWorkExp/>
 			<HomeConfidence/>
-			<HomeShops/>
+			{/*<HomeShops/>*/}
 			{/*<HomeAddress/>*/}
 		</>
 	);
