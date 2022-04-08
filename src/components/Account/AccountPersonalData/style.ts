@@ -4,7 +4,8 @@ export const useAccountPersonalDataStyle = () => {
 
 	const PersonalDataWrapperUI = styled('div')(({theme}) => ({
 		width: '100%',
-		minHeight: 'calc(100vh - 61px)',
+		// minHeight: 'calc(100vh - 61px)',
+		// minHeight: '805px',
 		height: '100%',
 		padding: '60px 0px',
 
