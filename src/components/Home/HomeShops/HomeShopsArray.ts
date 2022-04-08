@@ -98,6 +98,7 @@ export const shopsData: IShopsData[] = [
 		icon: FilaIcon,
 		style: {
 			width: '120px',
+			transform: 'translateY(-30px)',
 		}
 	},
 	{
@@ -106,6 +107,7 @@ export const shopsData: IShopsData[] = [
 		icon: BenettonIcon,
 		style: {
 			width: '220px',
+			transform: 'translateY(-30px)',
 		}
 	},
 	{
@@ -114,6 +116,7 @@ export const shopsData: IShopsData[] = [
 		icon: AdidasIcon,
 		style: {
 			width: '225px',
+			transform: 'translateY(-20px)',
 		}
 	},
 	{
@@ -121,7 +124,8 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.ebay.de',
 		icon: EbayIcon,
 		style: {
-			width: '250px',
+			width: '260px',
+			transform: 'translateY(-10px)',
 		}
 	},
 	{
@@ -129,9 +133,10 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.ralphlauren.de',
 		icon: RalphLaurenIcon,
 		style: {
-			width: '350px',
+			width: '345px',
 			justifyContent: 'flex-end',
 			marginRight: '10px',
+			transform: 'translateY(10px)',
 		}
 	},
 	{
@@ -140,6 +145,7 @@ export const shopsData: IShopsData[] = [
 		icon: AsosIcon,
 		style: {
 			width: '195px',
+			transform: 'translateY(-45px)',
 		}
 	},
 	{
@@ -148,6 +154,7 @@ export const shopsData: IShopsData[] = [
 		icon: IkeaIcon,
 		style: {
 			width: '270px',
+			transform: 'translateY(-40px)',
 		}
 	},
 	{
@@ -156,6 +163,7 @@ export const shopsData: IShopsData[] = [
 		icon: GuessIcon,
 		style: {
 			width: '235px',
+			transform: 'translateY(-35px)',
 		}
 	},
 	{
@@ -164,6 +172,8 @@ export const shopsData: IShopsData[] = [
 		icon: ConverseIcon,
 		style: {
 			width: '265px',
+			transform: 'translateY(-30px)',
+
 		}
 	},
 	{
@@ -172,7 +182,7 @@ export const shopsData: IShopsData[] = [
 		icon: DeichmannIcon,
 		style: {
 			width: '300px',
-			transform: 'translateY(30px)'
+			transform: 'translateY(10px)'
 		}
 	},
 	{
@@ -181,6 +191,7 @@ export const shopsData: IShopsData[] = [
 		icon: PumaIcon,
 		style: {
 			width: '105px',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -189,7 +200,7 @@ export const shopsData: IShopsData[] = [
 		icon: CatawikiIcon,
 		style: {
 			width: '230px',
-			transform: 'translateY(-30px)',
+			transform: 'translateY(-80px)',
 		}
 	},
 	{
@@ -198,7 +209,7 @@ export const shopsData: IShopsData[] = [
 		icon: FurlaIcon,
 		style: {
 			width: '210px',
-			transform: 'translateY(-15px)',
+			transform: 'translateY(-60px)',
 		}
 	},
 	{
@@ -206,7 +217,8 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.uniqlo.com/de/de/home',
 		icon: UniqloIcon,
 		style: {
-			width: '240px',
+			width: '270px',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -214,8 +226,9 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.oysho.com/de/',
 		icon: OyshoIcon,
 		style: {
-			width: '340px',
+			width: '300px',
 			marginRight: '50px',
+			transform: 'translateY(-55px)',
 		}
 	},
 	{
@@ -225,6 +238,7 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '220px',
 			marginRight: '50px',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -233,6 +247,7 @@ export const shopsData: IShopsData[] = [
 		icon: MassimoDuttiIcon,
 		style: {
 			width: '180px',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -240,7 +255,8 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.vans.de',
 		icon: VansIcon,
 		style: {
-			width: '230px',
+			width: '240px',
+			transform: 'translateY(-90px)',
 		}
 	},
 	{
@@ -248,7 +264,8 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.zara.com/de/en/',
 		icon: ZaraIcon,
 		style: {
-			width: '230px',
+			width: '260px',
+			transform: 'translateY(-80px)',
 		}
 	},
 	{
@@ -256,8 +273,9 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www2.hm.com/de_de/index.html',
 		icon: HMIcon,
 		style: {
-			width: '240px',
+			width: '180px',
 			marginRight: '15px',
+			transform: 'translateY(-20px)',
 		}
 	},
 	{
@@ -267,6 +285,7 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '220px',
 			justifyContent: 'flex-start',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -276,6 +295,7 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '220px',
 			justifyContent: 'flex-start',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -284,6 +304,7 @@ export const shopsData: IShopsData[] = [
 		icon: ObiIcon,
 		style: {
 			width: '155px',
+			transform: 'translateY(-80px)',
 		}
 	},
 	{
@@ -292,6 +313,7 @@ export const shopsData: IShopsData[] = [
 		icon: SOliverIcon,
 		style: {
 			width: '215px',
+			transform: 'translateY(-70px)',
 		}
 	},
 	{
@@ -299,28 +321,47 @@ export const shopsData: IShopsData[] = [
 		url: 'https://www.crocs.de',
 		icon: CrocsIcon,
 		style: {
-			width: '120px',
-			marginRight: '300px'
+			width: '155px',
+			marginRight: '200px',
+			transform: 'translateY(-35px)',
 		}
 	},
 	{
 		title: 'Pandora',
 		url: 'https://de.pandora.net/de/',
 		icon: PandoraIcon,
+		style: {
+			width: '215px',
+			transform: 'translateY(-45px)',
+		}
 	},
 	{
 		title: 'Falke',
 		url: 'https://www.falke.com/de_de/',
 		icon: FalkeIcon,
+		style: {
+			width: '420px',
+			transform: 'translateY(-50px)',
+		}
 	},
 	{
 		title: 'Asics',
 		url: 'https://www.asics.com/de/de-de/',
 		icon: AsicsIcon,
+		style: {
+			marginLeft: '85px',
+			justifyContent: 'flex-start',
+			flexGrow: 1,
+			transform: 'translateY(-50px)',
+		}
 	},
 	{
 		title: 'Nike',
 		url: 'https://www.nike.com/de/',
 		icon: NikeIcon,
+		style: {
+			marginRight: '50px',
+			transform: 'translateY(-50px)',
+		}
 	},
 ];

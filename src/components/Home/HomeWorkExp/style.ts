@@ -21,7 +21,7 @@ export const useHomeWorkExpStyles = () => {
 			marginBottom: '50px',
 		},
 		[theme.breakpoints.down(601)]: {
-			margin: '30px 0 100px',
+			margin: '30px 0 50px',
 		},
 	}));
 
