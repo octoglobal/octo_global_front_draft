@@ -18,7 +18,7 @@ const HomeConfidenceImg = () => {
 				transform: 'translateY(0px)',
 				scrollTrigger: {
 					trigger: element,
-					start: 'top 70%',
+					start: 'top center',
 					markers: false,
 				}
 			});
