@@ -106,6 +106,23 @@ export const useFormsStyle = () => {
 		}
 	}));
 
+	const TextAreaUI = {
+		// height: '183px',
+		maxHeight: '183px',
+		// minHeight: '183px',
+
+		'& .MuiOutlinedInput-root, .MuiFormControl-root, .MuiOutlinedInput-input': {
+			// minHeight: '183px',
+			maxHeight: '183px !important',
+		},
+
+		'& textarea::placeholder': {
+			color: '#C4C4C4',
+		}
+	};
+
+
+
 	return {
 		FormsWrapperBox,
 		FormsFooterInfoBox,
@@ -114,6 +131,7 @@ export const useFormsStyle = () => {
 		FormsButton,
 		FormsCheckBoxWrapper,
 		FormsDescription,
-		FormHelperErrorUI
+		FormHelperErrorUI,
+		TextAreaUI
 	};
 };

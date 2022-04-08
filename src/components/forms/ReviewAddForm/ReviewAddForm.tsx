@@ -1,8 +1,60 @@
 import React, {FC} from 'react';
+import {Box} from '@mui/material';
+import {useForm} from 'react-hook-form';
 
-const ReviewAddForm : FC = () => {
+import {useReviewAddForm} from './useReviewAddForm';
+import {useFormsStyle} from '@/components/forms/style';
+import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
+import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+
+const ReviewAddForm: FC = () => {
+
+	const {handleSubmit, control, setError} = useForm();
+
+	const {onSubmit} = useReviewAddForm(setError);
+
+	const {
+		FormsWrapperBox,
+		TextAreaUI,
+	} = useFormsStyle();
+
+	const {
+		ReviewAddFormWrapperMUI,
+		ButtonSubmitMUI
+	} = useReviewAddFormStyle();
+
 	return (
-		<>ReviewAddForm</>
+		<ReviewAddFormWrapperMUI>
+			<Box component="form" onSubmit={handleSubmit(onSubmit)}>
+				<FormsWrapperBox>
+					<TextFieldUI
+						controller={{
+							name: 'comment',
+							control,
+							defaultValue: '',
+							rules: {required: true}
+						}}
+						inputProps={{
+							placeholder: 'Введите текст',
+							name: 'comment',
+							type: 'text',
+							// required: true,
+							// helperText: 'Заполните поле "Почта"',
+							multiline: true,
+							sx: TextAreaUI
+						}}
+					/>
+
+					<ButtonUI
+						type="submit"
+						style={ButtonSubmitMUI}
+					>
+						Отправить
+					</ButtonUI>
+				</FormsWrapperBox>
+			</Box>
+		</ReviewAddFormWrapperMUI>
 	);
 };
 

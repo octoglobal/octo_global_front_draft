@@ -4,14 +4,23 @@ export const useReviewStyle = () => {
 
 	const ReviewContentMUI = styled('div')(() => ({
 		marginTop: '120px',
-
-		border: '1px solid red',
 	}));
 
 	const ReviewBottomMUI = styled('div')(() => ({
-		marginTop: '120px',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 
-		border: '1px solid green',
+		// border: '1px solid purple',
+
+		'& > div:first-child': {
+			alignSelf: 'flex-start',
+			maxWidth: '546px',
+			// padding: '0',
+			padding: '25px 0px',
+			// border: '1px solid green',
+		}
 	}));
 
 	return {

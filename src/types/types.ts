@@ -56,4 +56,11 @@ interface IHeaderNavItem {
 export interface IHeaderNavItemsData {
 	desktop: IHeaderNavItem[],
 	mobile: IHeaderNavItem[]
-};
+}
+
+export interface IReview {
+	id: number,
+	name: string,
+	time: string,
+	comment: string
+}
