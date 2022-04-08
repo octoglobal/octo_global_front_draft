@@ -53,7 +53,7 @@ const CustomPagination: FC = () => {
 				hidePrevButton
 				variant="outlined"
 				shape="rounded"
-				boundaryCount={3}
+				// boundaryCount={3}
 				renderItem={(item) => (
 					<NextPaginationButton {...item} />
 				)}

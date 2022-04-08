@@ -111,6 +111,13 @@ const Header = () => {
 		setAnchorEl(null);
 	};
 
+	const handlerPushToNav = (url: string) : () => void => {
+		return () => {
+			pushTo(url);
+			handleCloseBurger();
+		};
+	};
+
 	return (
 		<>
 			<HeaderMarginMUI/>
@@ -144,7 +151,7 @@ const Header = () => {
 										<MenuItem
 											key={option.title}
 											selected={option.title === 'Pyxis'}
-											onClick={handleCloseBurger}
+											onClick={handlerPushToNav(option.href)}
 										>
 											{option.title}
 										</MenuItem>

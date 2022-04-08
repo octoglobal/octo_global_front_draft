@@ -9,7 +9,7 @@ import {useAddTrackForm} from '@/components/forms/AddTrackForm/useAddTrackForm';
 
 const AddTrackForm: FC = () => {
 
-	const {handleSubmit, control, reset} = useForm();
+	const {handleSubmit, setError, control, reset} = useForm();
 	const [showPromt, setShowPromt] = useState(false);
 
 	const {
@@ -26,7 +26,7 @@ const AddTrackForm: FC = () => {
 		setShowPromt(true);
 	};
 
-	const {onSubmit} = useAddTrackForm(successSubmit, reset);
+	const {onSubmit} = useAddTrackForm(successSubmit, reset, setError);
 
 	useEffect(() => {
 		const delay5s = setTimeout(() => {

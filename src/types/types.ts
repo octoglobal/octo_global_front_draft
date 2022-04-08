@@ -32,6 +32,10 @@ export interface IAddOrder {
 	comment?: string
 }
 
+export interface IDeleteOrder {
+	orderId: number,
+}
+
 export interface IRepeatPasswordForm {
 	token: string,
 }
