@@ -19,7 +19,7 @@ export const useHeaderStyle = () => {
 		height: '61px',
 		width: '100%',
 		position: 'fixed',
-		zIndex: 1,
+		zIndex: 2,
 
 		background: '#FFFFFF',
 		// opacity: '0.1',
@@ -54,6 +54,8 @@ export const useHeaderStyle = () => {
 		margin: '0 auto',
 		maxWidth: '1440px',
 
+		position: 'relative',
+
 		[theme.breakpoints.down(1025)]: {
 			padding: '15px',
 		},
@@ -66,6 +68,11 @@ export const useHeaderStyle = () => {
 
 			margin: '0px',
 			padding: '0px',
+			minWidth: '35px',
+
+			'&:hover': {
+				backgroundColor: 'inherit',
+			}
 		},
 	}));
 
@@ -97,7 +104,14 @@ export const useHeaderStyle = () => {
 		marginRight: '180px',
 
 		[theme.breakpoints.down(1241)]: {
-			marginRight: '0px',
+			position: 'absolute',
+
+			marginLeft: 'auto',
+			marginRight: 'auto',
+			left: '0',
+			right: '0',
+			textAlign: 'center',
+			width: 'fit-content',
 		}
 	}));
 

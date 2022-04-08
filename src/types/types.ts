@@ -46,3 +46,14 @@ export interface IAccountUpdateUser {
 }
 
 export type IUpdatePhone = Omit<IAccountUpdateUser, 'email'>;
+
+interface IHeaderNavItem {
+	title: string,
+	showAuth: boolean,
+	href: string
+}
+
+export interface IHeaderNavItemsData {
+	desktop: IHeaderNavItem[],
+	mobile: IHeaderNavItem[]
+};
