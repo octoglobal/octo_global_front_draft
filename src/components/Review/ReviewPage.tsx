@@ -1,28 +1,31 @@
 import React, {FC} from 'react';
 
-// import ReviewPagination from './ReviewPagination/ReviewPagination';
-import ReviewAddForm from '../../components/forms/ReviewAddForm/ReviewAddForm';
 import ReviewsList from './ReviewsList/ReviewsList';
-import ContentLayout from '../../layout/ContentLayout/ContentLayout';
+import CustomPagination from '../AnyPage/CustomPagination/CustomPagination';
+import FormComponent from '@/components/AnyPage/FormComponent/FormComponent';
+import ReviewAddForm from '../../components/forms/ReviewAddForm/ReviewAddForm';
+
 import {useReviewStyle} from './style';
 
-const ReviewPage : FC = () => {
-
+const ReviewPage: FC = () => {
 	const {
 		ReviewContentMUI,
 		ReviewBottomMUI
 	} = useReviewStyle();
 
 	return (
-		<ContentLayout>
-			<ReviewContentMUI>
-				<ReviewsList />
-				<ReviewBottomMUI>
-					<ReviewAddForm />
-					{/*<ReviewPagination />*/}
-				</ReviewBottomMUI>
-			</ReviewContentMUI>
-		</ContentLayout>
+		<ReviewContentMUI>
+			<ReviewsList/>
+			<ReviewBottomMUI>
+				<FormComponent
+					title='Оставьте отзыв'
+					background={false}
+				>
+					<ReviewAddForm/>
+				</FormComponent>
+				<CustomPagination/>
+			</ReviewBottomMUI>
+		</ReviewContentMUI>
 	);
 };
 
