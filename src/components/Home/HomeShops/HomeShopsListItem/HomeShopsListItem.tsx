@@ -1,6 +1,6 @@
 import React, {FC, useMemo} from 'react';
 import {IShopsData} from '@/components/Home/HomeShops/HomeShopsList/type';
-import {Link} from '@mui/material';
+// import {Link} from '@mui/material';
 import {useHomeShopsListItemStyles} from '@/components/Home/HomeShops/HomeShopsListItem/style';
 
 // interface IHomeShopsListItemProps {
