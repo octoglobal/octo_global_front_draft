@@ -9,7 +9,7 @@ export interface IHomeWorkExpListItemProps {
 	top: number;
 }
 
-const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, animation, top}) => {
+const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, animation}) => {
 	const {
 		ItemMUI,
 		ItemIconMUI,
