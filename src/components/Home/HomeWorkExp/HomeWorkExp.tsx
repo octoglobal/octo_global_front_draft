@@ -5,6 +5,7 @@ import HomeWorkExpList from '@/components/Home/HomeWorkExp/HomeWorkExpList/HomeW
 import {useHomeWorkExpStyles} from '@/components/Home/HomeWorkExp/style';
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 import gsap from 'gsap';
+import {ScrollTrigger} from 'gsap/dist/ScrollTrigger';
 
 const HomeWorkExp: FC = () => {
 
@@ -15,6 +16,7 @@ const HomeWorkExp: FC = () => {
 
 	const refWork = useRef<HTMLDivElement>(null);
 
+
 	useEffect(() => {
 		const element = refWork.current;
 		if (typeof window !== 'undefined' && element) {
@@ -24,10 +26,9 @@ const HomeWorkExp: FC = () => {
 					start: 'top 100px',
 					markers: false,
 					end: '1000',
-					pin: true,
+					pin: false,
 					scrub: 1,
 					toggleActions: 'play none none none',
-					// onLeave: (scrollTrigger) => scrollTrigger.kill(false, true),
 				}
 			});
 		}

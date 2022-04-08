@@ -57,7 +57,7 @@ export const useModalConfirmStyle = () => {
 		name: 'MuiModal',
 		slot: 'Backdrop',
 		overridesResolver: (props, styles) => {
-			return styles.backdrop
+			return styles.backdrop;
 		},
 	})({
 		background: 'rgba(255, 255, 255, 0.5)',

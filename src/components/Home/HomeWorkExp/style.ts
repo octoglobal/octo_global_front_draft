@@ -3,7 +3,6 @@ import { styled } from '@mui/material';
 export const useHomeWorkExpStyles = () => {
 
 	const InnerContainerMUI = styled('div')(({theme}) => ({
-		height: '100vh',
 		[theme.breakpoints.down(501)]: {
 			height: 'auto',
 			marginBottom: '50px'
@@ -14,7 +13,7 @@ export const useHomeWorkExpStyles = () => {
 		display: 'flex',
 		justifyContent: 'space-between',
 		flexDirection: 'row',
-		margin: '61px 0 50px',
+		margin: '61px 0 134px',
 		[theme.breakpoints.down(769)]: {
 			flexDirection: 'column'
 		},

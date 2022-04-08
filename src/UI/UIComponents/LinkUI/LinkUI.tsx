@@ -3,22 +3,26 @@ import Link from 'next/link';
 
 import {useLinkStyle} from './style';
 
+export type CustomLinkTypes = 'button';
+
 interface ICustomLinkUI {
 	href?: string,
 	onClick?: () => void,
 	children: React.ReactChildren | React.ReactNode;
+	type?: CustomLinkTypes,
 }
 
 const CustomLinkUI : FC<ICustomLinkUI> = ({
 	href = '',
 	onClick,
 	children,
+	type = 'button',
 }) => {
 
 	const handlerClick = () => {
 		console.log('handlerClick');
 		if(onClick) onClick();
-	}
+	};
 
 	const {LinkUI} = useLinkStyle();
 
@@ -27,6 +31,7 @@ const CustomLinkUI : FC<ICustomLinkUI> = ({
 			href={href}
 		>
 			<LinkUI
+				type={type}
 				onClick={handlerClick}
 			>
 				{children}

@@ -5,7 +5,7 @@ export const useHomeConfidenceStyles = () => {
 	const WrapperMUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
-		marginBottom: '100px',
+		marginBottom: '154px',
 		[theme.breakpoints.down(1113)]: {
 			alignItems: 'center',
 		},

@@ -10,10 +10,10 @@ import {checkMedia} from '@/services/services';
 
 const OctoIconsUI = styled('span')(() => ({
 	width: 'auto',
-
 	display: 'flex',
 	flexDirection: 'row',
 	alignItems: 'baseline',
+	visibility: 'hidden',
 
 	'& svg': {
 		cursor: 'pointer',
@@ -34,23 +34,32 @@ const Logotip: FC = () => {
 	};
 
 	useEffect(() => {
-		const element = logoRef.current;
-		const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
-		if (typeof window !== 'undefined' && element) {
-			gsap.fromTo(element, {
-				opacity: 0,
-				transform: 'translateY(-100px)'
-			}, {
-				opacity: 1,
-				transform: 'translateY(0px)',
-				duration: 1,
-				scrollTrigger: {
-					start: 'top top',
-					markers: false,
-					end: end,
-					scrub: true,
+		if (typeof window !== 'undefined') {
+			const element = logoRef.current;
+			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
+			if (element) {
+				if (window.location.pathname === '/') {
+					gsap.fromTo(element, {
+						opacity: 0,
+						transform: 'translateY(-100px)',
+						visibility: 'visible',
+					}, {
+						opacity: 1,
+						transform: 'translateY(0px)',
+						duration: 1,
+						scrollTrigger: {
+							start: 'top top',
+							markers: false,
+							end: end,
+							scrub: true,
+						}
+					});
+				} else {
+					gsap.to(element, {
+						visibility: 'visible',
+					});
 				}
-			});
+			}
 		}
 	}, []);
 

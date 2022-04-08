@@ -1,7 +1,6 @@
-import React, {FC, useEffect, useRef} from 'react';
+import React, {FC} from 'react';
 import {useHomeConfidenceListStyles} from '@/components/Home/HomeConfidence/HomeConfidenceList/style';
 import HomeConfidenceListItem from '../HomeConfidenceListItem/HomeConfidenceListItem';
-import gsap from 'gsap';
 
 const homeConfidenceData = [
 	'Поможем с поиском и оплатой любого товара',
@@ -16,28 +15,29 @@ const homeConfidenceData = [
 const HomeConfidenceList: FC = () => {
 
 	const { ListMUI } = useHomeConfidenceListStyles();
-	const listRef = useRef<HTMLUListElement>(null);
+	// const listRef = useRef<HTMLUListElement>(null);
+	//
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const element = listRef.current;
+	// 		gsap.fromTo(element, {
+	// 			opacity: 0,
+	// 			transform: 'translateY(200px)'
+	// 		}, {
+	// 			opacity: 1,
+	// 			transform: 'translateY(0px)',
+	// 			scrollTrigger: {
+	// 				trigger: element,
+	// 				start: 'top 120%',
+	// 				markers: false,
+	// 			}
+	// 		});
+	// 	}
+	// }, []);
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const element = listRef.current;
-			gsap.fromTo(element, {
-				opacity: 0,
-				transform: 'translateY(200px)'
-			}, {
-				opacity: 1,
-				transform: 'translateY(0px)',
-				scrollTrigger: {
-					trigger: element,
-					start: 'top bottom',
-					markers: false,
-				}
-			});
-		}
-	}, []);
-
+	// ref={listRef}
 	return (
-		<ListMUI ref={listRef}>
+		<ListMUI>
 			{homeConfidenceData.map(confidenceItem => (
 				<HomeConfidenceListItem
 					key={confidenceItem}
