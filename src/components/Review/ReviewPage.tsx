@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import ReviewPagination from './ReviewPagination/ReviewPagination';
+// import ReviewPagination from './ReviewPagination/ReviewPagination';
 import ReviewAddForm from '../../components/forms/ReviewAddForm/ReviewAddForm';
 import ReviewsList from './ReviewsList/ReviewsList';
 import ContentLayout from '../../layout/ContentLayout/ContentLayout';
@@ -19,7 +19,7 @@ const ReviewPage : FC = () => {
 				<ReviewsList />
 				<ReviewBottomMUI>
 					<ReviewAddForm />
-					<ReviewPagination />
+					{/*<ReviewPagination />*/}
 				</ReviewBottomMUI>
 			</ReviewContentMUI>
 		</ContentLayout>
