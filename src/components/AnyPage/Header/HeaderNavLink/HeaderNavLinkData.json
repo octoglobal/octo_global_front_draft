@@ -23,7 +23,7 @@
     {
       "title": "Отзывы",
       "showAuth": false,
-      "href": "/"
+      "href": "/reviews"
     }
   ],
   "mobile": [
