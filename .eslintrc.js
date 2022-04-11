@@ -5,10 +5,11 @@ module.exports = {
 		'es2021': true
 	},
 	'extends': [
+		'next',
 		'eslint:recommended',
 		'plugin:react/recommended',
 		'plugin:@typescript-eslint/recommended',
-		'prettier'
+		'prettier',
 	],
 	'parser': '@typescript-eslint/parser',
 	'parserOptions': {
@@ -35,6 +36,7 @@ module.exports = {
 		'semi': [
 			'error',
 			'always'
-		]
+		],
+		'react-hooks/exhaustive-deps': 'off',
 	}
 };
