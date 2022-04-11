@@ -1,6 +1,6 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, ReactNode, useMemo} from 'react';
 
-import {Pagination, PaginationItem, PaginationItemProps} from '@mui/material';
+import {Pagination, PaginationItem, PaginationItemProps, PaginationProps} from '@mui/material';
 import Arrow_Black_Right from '../../../UI/UIIcon/Arrow_Black_Right.svg';
 
 import {useReviewPaginationStyle} from './style';
@@ -21,6 +21,8 @@ const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 		[selected]
 	);
 
+	// console.log(`props-${props.page}: `, props);
+
 	return (
 		<NavigationItemMUI>
 			<PaginationItem
@@ -32,31 +34,35 @@ const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 					next: Arrow_Black_Right
 				}}
 			/>
-			{/*TODO: поправить баг с двумя "дальше"*/}
-			{page === 10 && (
+			{page === 10 && page !== 9 ? (
 				<TextNextPaginationMUI onClick={onClick}>Дальше</TextNextPaginationMUI>
-			)}
+			) : null}
 		</NavigationItemMUI>
 	);
 };
 
-const CustomPagination: FC = () => {
+const CustomPagination : FC<PaginationProps> = (props) => {
 
 	const {
 		PaginationContainerMUI
 	} = useReviewPaginationStyle();
 
+	console.log('props: ', props);
+
 	return (
 		<PaginationContainerMUI>
 			<Pagination
-				count={10}
+				// count={10}
 				hidePrevButton
+				// hideNextButton
 				variant="outlined"
 				shape="rounded"
+				// siblingCount={4}
 				// boundaryCount={3}
 				renderItem={(item) => (
 					<NextPaginationButton {...item} />
 				)}
+				{...props}
 			/>
 		</PaginationContainerMUI>
 	);

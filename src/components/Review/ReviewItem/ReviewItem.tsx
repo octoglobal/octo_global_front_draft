@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {useReviewItemStyle} from '@/components/Review/ReviewItem/style';
 
 import {IReview} from '../../../types/types';
+import { ToRusDate } from '@/lib/services/services';
 
 const ReviewItem: FC<IReview> = ({
 	name,
@@ -21,7 +22,8 @@ const ReviewItem: FC<IReview> = ({
 		<ReviewItemWrapperMUI>
 			<ReviewHeaderMUI>
 				<ReviewNameMUI>{name}</ReviewNameMUI>
-				<ReviewDateMUI>{time}</ReviewDateMUI>
+				<ReviewDateMUI>{ToRusDate(time)}</ReviewDateMUI>
+				{/*<ReviewDateMUI>{time}</ReviewDateMUI>*/}
 			</ReviewHeaderMUI>
 			<ReviewTextMUI>{comment}</ReviewTextMUI>
 		</ReviewItemWrapperMUI>

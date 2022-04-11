@@ -3,26 +3,32 @@ import React, {FC} from 'react';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import {useReviewListStyle} from '@/components/Review/ReviewsList/style';
 
-import ReviewsArray from '../ReviewsMockData.json';
-import {IReview} from '../../../types/types';
+// import ReviewsArray from '../ReviewsMockData.json';
+// import {IReview} from '../../../types/types';
+import {IReviewsModel} from '@/models/IReviewsModel';
 
-const ReviewsList : FC = () => {
+interface ReviewsList {
+	reviews : IReviewsModel[] | []
+}
+
+const ReviewsList : FC<ReviewsList> = ({
+	reviews
+}) => {
 
 	const {
 		ReviewsContentMUI
 	} = useReviewListStyle();
 
-	const mockArrayReview = ReviewsArray as IReview[];
+	// const mockArrayReview = ReviewsArray as IReview[];
 
 	return (
 		<ReviewsContentMUI>
-			{mockArrayReview.map(item => (
+			{reviews.map(item => (
 				<ReviewItem
-					key={item.id}
-					id={item.id}
-					name={item.name}
-					time={item.time}
-					comment={item.comment}
+					key={item.createdTime}
+					name={item.userName}
+					time={item.createdTime}
+					comment={item.text}
 				/>
 			))}
 		</ReviewsContentMUI>
