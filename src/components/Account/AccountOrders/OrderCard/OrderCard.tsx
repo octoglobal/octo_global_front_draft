@@ -5,15 +5,21 @@ import Arrow_Blue from '../../../../UI/UIIcon/Arrow_Blue.svg';
 import Basket from '../../../../UI/UIIcon/Basket.svg';
 
 import Package from '../../../../UI/UIIcon/Package.svg';
-import {IOrderCard} from '../../../../types/types';
+import {IDeleteOrder, IOrderCard} from '../../../../types/types';
 
 import {useOrderCardStyle} from './style';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {fetchDeleteOrders} from '@/reducers/ordersSlice/asyncActions/orderApi';
+import {useOrdersStore} from '@/hooks/useOrdersStore';
 
 interface IOrderCardProps {
 	order: IOrderCard
 }
 
 const OrderCard: FC<IOrderCardProps> = ({order}) => {
+
+	const dispatch = useAppDispatch();
+	const {getOrders} = useOrdersStore();
 
 	const {
 		OrderCardUI,
@@ -44,6 +50,23 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		return () : void => {
 			//	TODO: удалить посылку
 			console.log('handlerDeleteTrack: ', id);
+			const data : IDeleteOrder = {
+				orderId: id,
+			};
+			dispatch(fetchDeleteOrders(data))
+				.then(response => {
+					console.log('response: ', response);
+					const message = response?.payload.message;
+					if(message === 'success') {
+						getOrders();
+					}
+					// console.log('status: ', status);
+					// console.log(typeof status);
+					// switch (status) {
+					// 	case 200:
+					// 		getOrders();
+					// }
+				});
 		};
 	}, [id]);
 
@@ -58,7 +81,7 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 					{!isMobile && <BoldTitleUI>{trackNumber}</BoldTitleUI>}
 					<BasketMUI>
 						<Basket
-							onClick={handlerDeleteTrack(longId)}
+							onClick={handlerDeleteTrack(id)}
 						/>
 					</BasketMUI>
 

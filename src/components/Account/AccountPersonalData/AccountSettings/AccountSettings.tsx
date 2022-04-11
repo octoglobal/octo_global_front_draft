@@ -19,7 +19,7 @@ const AccountSettings: FC = () => {
 			<FormsWrapperBoxUI>
 
 				<FormTableUserUI>
-					<User/>
+					<User cutFio={false}/>
 				</FormTableUserUI>
 				<AccountUserForm />
 				<AccountPasswordForm />

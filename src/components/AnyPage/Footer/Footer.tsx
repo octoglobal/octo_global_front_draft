@@ -6,7 +6,7 @@ import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIcon.svg';
 import WhatsUpIcon from '../../../UI/UIIcon/WhatsUpIcon.svg';
 import TelegramIcon from '../../../UI/UIIcon/TelegramIcon.svg';
 
-import {useCustomSize} from '../../../hooks/useMedia';
+import {useCustomSize} from '@/hooks/useMedia';
 
 import {useFooterStyle} from './style';
 
@@ -72,11 +72,22 @@ const Footer = () => {
 
 					</FooterRowUI>
 
-					{!isCustomSize && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
+					{!isCustomSize && (
+						<IndexTitleUI
+							href="https://lndex.ru/"
+							rel="noopener noreferrer"
+							target="_blank"
+						>
+							Разработано студией INDEX
+						</IndexTitleUI>
+					)}
 				</FooterColumnBlockUI>
 
-
-				{isCustomSize && <IndexTitleUI>Разработано студией INDEX</IndexTitleUI>}
+				{isCustomSize && (
+					<IndexTitleUI>
+						Разработано студией INDEX
+					</IndexTitleUI>
+				)}
 			</FooterContentUI>
 		</FooterWrapperUI>
 	);

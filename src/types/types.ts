@@ -32,6 +32,10 @@ export interface IAddOrder {
 	comment?: string
 }
 
+export interface IDeleteOrder {
+	orderId: number,
+}
+
 export interface IRepeatPasswordForm {
 	token: string,
 }
@@ -58,9 +62,22 @@ export interface IHeaderNavItemsData {
 	mobile: IHeaderNavItem[]
 }
 
-export interface IReview {
-	id: number,
+export interface IReviewAdd {
 	name: string,
 	time: string,
 	comment: string
+}
+
+export interface IReviewItem {
+	text: string,
+	userName: string,
+	createdTime: string,
+}
+
+export interface IReviewAddSubmit {
+	text: string
+}
+
+export interface IReview extends IReviewAdd{
+	id: number,
 }

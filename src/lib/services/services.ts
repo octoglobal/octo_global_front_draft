@@ -119,3 +119,69 @@ export const ellipsis = (string : string, count : number) : string => {
 		return (string);
 	}
 };
+
+export const addZero = (n : number | string) : number | string => {
+	if (n && n < 10) {
+		return `0${n}`;
+	} else {
+		return n;
+	}
+};
+
+const MonthArray=[
+	'Января',
+	'Февраля',
+	'Марта',
+	'Апреля',
+	'Мая',
+	'Июня',
+	'Июля',
+	'Августа',
+	'Сентября',
+	'Ноября',
+	'Декабря',
+];
+
+
+export const ToRusDate = (date : string) : string => {
+
+	// console.log('date: , ', date);
+
+	const expaireData = new Date(date);
+
+	const time = expaireData.getTime();
+	const grinvic = new Date(time);
+	// const diff = grinvic.getTimezoneOffset();
+	// const local = new Date(time - (diff * 60 * 1000));
+
+	// console.log('localdate: ', local);
+	// console.log('diff: ', diff);
+	// console.log('grinvic: ', grinvic);
+
+	// const options = {
+	// 	month: 'long',
+	// };
+
+	// console.log(typeof grinvic.getHours());
+
+	const h = addZero(grinvic.getHours());
+	const mi = addZero(grinvic.getMinutes());
+
+	const d = addZero(grinvic.getDate());
+	const m = grinvic.getMonth();
+	const y = grinvic.getFullYear();
+
+	// const month = local.toLocaleString('ru', options);
+	const month = MonthArray[m];
+
+	// const wordEnd = wordAutoEnding(month, )
+
+	const timeLocal = `${h}:${mi}`;
+	const dateLocal = `${d} ${month} ${y}`;
+
+	// console.log('timeLocal: ', timeLocal);
+	// console.log('dmy: ', d, m, y);
+	// console.log('month: ', local.toLocaleString("ru", options));
+
+	return `${timeLocal} ${dateLocal}`;
+};

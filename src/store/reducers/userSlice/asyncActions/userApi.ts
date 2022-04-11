@@ -57,8 +57,8 @@ export const fetchVerificMessage = async () => {
 		return response.data;
 	} catch (err: unknown) {
 		if (axios.isAxiosError(err)) {
-			throw err;
-			// return err.response?.status;
+			// throw err;
+			return err.response?.status;
 		}
 		return 400;
 	}
