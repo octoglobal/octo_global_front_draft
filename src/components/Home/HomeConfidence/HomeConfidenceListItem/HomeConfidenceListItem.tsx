@@ -23,7 +23,7 @@ const HomeConfidenceListItem: FC<IHomeConfidenceListItemProps> = ({title}) => {
 				transform: 'translateY(0px)',
 				scrollTrigger: {
 					trigger: element,
-					start: 'top 100%',
+					start: 'top 60%',
 					markers: false,
 				}
 			});

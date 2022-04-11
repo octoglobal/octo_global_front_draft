@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC} from 'react';
 import { useContainerStyles } from './style';
 import {SxProps} from '@mui/material';
 

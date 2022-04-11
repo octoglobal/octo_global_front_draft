@@ -43,6 +43,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '235px',
 			justifyContent: 'flex-end',
+		},
+		initialSize: {
+			width: '111px',
+			height: '30px'
 		}
 	},
 	{
@@ -52,6 +56,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '230px',
 			justifyContent: 'flex-end',
+		},
+		initialSize: {
+			width: '83px',
+			height: '33px'
 		}
 	},
 	{
@@ -61,6 +69,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '250px',
 			justifyContent: 'flex-end',
+		},
+		initialSize: {
+			width: '106px',
+			height: '38px'
 		}
 	},
 	{
@@ -70,6 +82,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '179px',
 			justifyContent: 'flex-end',
+		},
+		initialSize: {
+			width: '91px',
+			height: '42px'
 		}
 	},
 	{
@@ -80,6 +96,10 @@ export const shopsData: IShopsData[] = [
 			width: '190px',
 			justifyContent: 'center',
 			transform: 'translateY(0px)',
+		},
+		initialSize: {
+			width: '79px',
+			height: '75px'
 		}
 	},
 	{
@@ -90,6 +110,10 @@ export const shopsData: IShopsData[] = [
 			width: '130px',
 			justifyContent: 'flex-start',
 			transform: 'translateY(10px)',
+		},
+		initialSize: {
+			width: '104px',
+			height: '43px'
 		}
 	},
 	{
@@ -99,6 +123,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '120px',
 			transform: 'translateY(-30px)',
+		},
+		initialSize: {
+			width: '104px',
+			height: '35px'
 		}
 	},
 	{
@@ -108,6 +136,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '220px',
 			transform: 'translateY(-30px)',
+		},
+		initialSize: {
+			width: '58px',
+			height: '47px'
 		}
 	},
 	{
@@ -117,6 +149,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '225px',
 			transform: 'translateY(-20px)',
+		},
+		initialSize: {
+			width: '72px',
+			height: '48px'
 		}
 	},
 	{
@@ -126,6 +162,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '260px',
 			transform: 'translateY(-10px)',
+		},
+		initialSize: {
+			width: '118px',
+			height: '48px'
 		}
 	},
 	{
@@ -137,6 +177,10 @@ export const shopsData: IShopsData[] = [
 			justifyContent: 'flex-end',
 			marginRight: '10px',
 			transform: 'translateY(10px)',
+		},
+		initialSize: {
+			width: '152px',
+			height: '24px'
 		}
 	},
 	{
@@ -146,6 +190,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '195px',
 			transform: 'translateY(-45px)',
+		},
+		initialSize: {
+			width: '104px',
+			height: '30px'
 		}
 	},
 	{
@@ -155,6 +203,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '270px',
 			transform: 'translateY(-40px)',
+		},
+		initialSize: {
+			width: '104px',
+			height: '37px'
 		}
 	},
 	{
@@ -164,6 +216,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '235px',
 			transform: 'translateY(-35px)',
+		},
+		initialSize: {
+			width: '102px',
+			height: '22px'
 		}
 	},
 	{
@@ -173,7 +229,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '265px',
 			transform: 'translateY(-30px)',
-
+		},
+		initialSize: {
+			width: '95px',
+			height: '64px',
 		}
 	},
 	{
@@ -183,6 +242,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '300px',
 			transform: 'translateY(10px)'
+		},
+		initialSize: {
+			width: '100px',
+			height: '86px'
 		}
 	},
 	{
@@ -192,6 +255,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '105px',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '88px',
+			height: '44px'
 		}
 	},
 	{
@@ -201,6 +268,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '230px',
 			transform: 'translateY(-80px)',
+		},
+		initialSize: {
+			width: '142px',
+			height: '42px'
 		}
 	},
 	{
@@ -210,6 +281,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '210px',
 			transform: 'translateY(-60px)',
+		},
+		initialSize: {
+			width: '105px',
+			height: '20px'
 		}
 	},
 	{
@@ -219,6 +294,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '270px',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '73px',
+			height: '73px'
 		}
 	},
 	{
@@ -229,6 +308,10 @@ export const shopsData: IShopsData[] = [
 			width: '300px',
 			marginRight: '50px',
 			transform: 'translateY(-55px)',
+		},
+		initialSize: {
+			width: '124px',
+			height: '24px'
 		}
 	},
 	{
@@ -239,6 +322,10 @@ export const shopsData: IShopsData[] = [
 			width: '220px',
 			marginRight: '50px',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '104px',
+			height: '51px'
 		}
 	},
 	{
@@ -248,6 +335,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '180px',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '149px',
+			height: '23px'
 		}
 	},
 	{
@@ -257,6 +348,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '240px',
 			transform: 'translateY(-90px)',
+		},
+		initialSize: {
+			width: '88px',
+			height: '59px'
 		}
 	},
 	{
@@ -266,6 +361,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '260px',
 			transform: 'translateY(-80px)',
+		},
+		initialSize: {
+			width: '99px',
+			height: '42px'
 		}
 	},
 	{
@@ -276,6 +375,10 @@ export const shopsData: IShopsData[] = [
 			width: '180px',
 			marginRight: '15px',
 			transform: 'translateY(-20px)',
+		},
+		initialSize: {
+			width: '101px',
+			height: '68px'
 		}
 	},
 	{
@@ -286,6 +389,10 @@ export const shopsData: IShopsData[] = [
 			width: '220px',
 			justifyContent: 'flex-start',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '106px',
+			height: '30px'
 		}
 	},
 	{
@@ -296,6 +403,10 @@ export const shopsData: IShopsData[] = [
 			width: '220px',
 			justifyContent: 'flex-start',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '170px',
+			height: '30px'
 		}
 	},
 	{
@@ -305,6 +416,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '155px',
 			transform: 'translateY(-80px)',
+		},
+		initialSize: {
+			width: '115px',
+			height: '29px'
 		}
 	},
 	{
@@ -314,6 +429,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '215px',
 			transform: 'translateY(-70px)',
+		},
+		initialSize: {
+			width: '103px',
+			height: '35px'
 		}
 	},
 	{
@@ -324,6 +443,10 @@ export const shopsData: IShopsData[] = [
 			width: '155px',
 			marginRight: '200px',
 			transform: 'translateY(-35px)',
+		},
+		initialSize: {
+			width: '96px',
+			height: '27px'
 		}
 	},
 	{
@@ -333,6 +456,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '215px',
 			transform: 'translateY(-45px)',
+		},
+		initialSize: {
+			width: '140px',
+			height: '28px'
 		}
 	},
 	{
@@ -342,6 +469,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			width: '420px',
 			transform: 'translateY(-50px)',
+		},
+		initialSize: {
+			width: '228px',
+			height: '24px'
 		}
 	},
 	{
@@ -353,6 +484,10 @@ export const shopsData: IShopsData[] = [
 			justifyContent: 'flex-start',
 			flexGrow: 1,
 			transform: 'translateY(-50px)',
+		},
+		initialSize: {
+			width: '105px',
+			height: '34px'
 		}
 	},
 	{
@@ -362,6 +497,10 @@ export const shopsData: IShopsData[] = [
 		style: {
 			marginRight: '50px',
 			transform: 'translateY(-50px)',
+		},
+		initialSize: {
+			width: '106px',
+			height: '38px'
 		}
 	},
 ];
