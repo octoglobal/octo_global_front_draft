@@ -31,9 +31,16 @@ export const useHomeShopStyles = () => {
 		}
 	}));
 
+	const containerStyle = {
+		padding: '0 10px',
+		maxWidth: '1300px',
+		width: '100%'
+	};
+
 	return {
 		TitleMUI,
 		WrapperMUI,
+		containerStyle,
 		LinkWrapperMUI,
 	};
 };

@@ -3,25 +3,36 @@ import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitl
 import Container from '@/components/Container/Container';
 import {useHomeShopStyles} from '@/components/Home/HomeShops/style';
 import HomeShopsList from '@/components/Home/HomeShops/HomeShopsList/HomeShopsList';
+import {useCustomSize} from '@/hooks/useMedia';
+import HomeShopSwiper from '@/components/Home/HomeShops/HomeShopSwipers/HomeShopSwipers';
 
 const HomeShops = () => {
 
-	const {WrapperMUI, TitleMUI, LinkWrapperMUI} = useHomeShopStyles();
+	const {WrapperMUI, TitleMUI, LinkWrapperMUI, containerStyle} = useHomeShopStyles();
+	const {isCustomSize: isTablet} = useCustomSize(1000);
 
 	return (
-		<Container>
-			<WrapperMUI>
+		<>
+			<Container>
 				<TitleMUI>
 					<HomeSectionTitle
 						title="Магазины с которыми мы работаем"
 					/>
 				</TitleMUI>
-				<HomeShopsList/>
-				<LinkWrapperMUI href="/shops">
-					ВСЕ МАГАЗИНЫ
-				</LinkWrapperMUI>
-			</WrapperMUI>
-		</Container>
+			</Container>
+			<Container customStyles={containerStyle}>
+				<WrapperMUI>
+					{isTablet ? (
+						<HomeShopSwiper/>
+					) : (
+						<HomeShopsList/>
+					)}
+					<LinkWrapperMUI href="/shops">
+						ВСЕ МАГАЗИНЫ
+					</LinkWrapperMUI>
+				</WrapperMUI>
+			</Container>
+		</>
 	);
 };
 
