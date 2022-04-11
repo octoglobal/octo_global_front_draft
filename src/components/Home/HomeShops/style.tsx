@@ -24,10 +24,15 @@ export const useHomeShopStyles = () => {
 		},
 	}));
 
-	const TitleMUI = styled('div')(() => ({
+	const TitleMUI = styled('div')(({theme}) => ({
 		'& > h1': {
 			maxWidth: 'none',
 			marginBottom: '50px',
+		},
+		[theme.breakpoints.down(1025)]: {
+			'& > h1': {
+				marginBottom: '20px'
+			}
 		}
 	}));
 
@@ -37,10 +42,15 @@ export const useHomeShopStyles = () => {
 		width: '100%'
 	};
 
+	const containerAdaptiveStyle = {
+		padding: '0 0 0 3px !important',
+	};
+
 	return {
 		TitleMUI,
 		WrapperMUI,
 		containerStyle,
 		LinkWrapperMUI,
+		containerAdaptiveStyle,
 	};
 };

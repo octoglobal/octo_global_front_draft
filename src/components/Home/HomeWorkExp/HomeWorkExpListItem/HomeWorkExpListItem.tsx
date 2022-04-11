@@ -31,7 +31,7 @@ const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, anima
 				scrollTrigger: {
 					trigger: element,
 					// start: `top -${top}px`,
-					start: 'top 95%',
+					start: 'top 70%',
 					markers: false,
 					once: true,
 					end: '50',

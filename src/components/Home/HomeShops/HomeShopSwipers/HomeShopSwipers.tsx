@@ -1,8 +1,11 @@
 import React from 'react';
-import {Swiper} from 'swiper/react';
 import {useHomeShopSwipers} from '@/components/Home/HomeShops/HomeShopSwipers/useHomeShopSwipers';
+import HomeShopSwiper from '@/components/Home/HomeShops/HomeShopSwiper/HomeShopSwiper';
+import {useHomeShopSwipersStyles} from '@/components/Home/HomeShops/HomeShopSwipers/style';
 
 const HomeShopSwipers = () => {
+
+	const { SwipersContainerMUI } = useHomeShopSwipersStyles();
 
 	const {
 		isShopsDataArray,
@@ -14,18 +17,22 @@ const HomeShopSwipers = () => {
 
 	return (
 		isShopsDataArray ? (
-			<>
+			<SwipersContainerMUI>
 				{isFirstSwiperData && (
-					<Swiper>
-
-					</Swiper>
+					<HomeShopSwiper
+						watchSlidesProgress={false}
+						photos={firstSwiperData}
+						firstSwiper
+					/>
 				)}
 				{isSecondSwiperData && (
-					<Swiper>
-
-					</Swiper>
+					<HomeShopSwiper
+						photos={secondSwiperData}
+						reverseDirection={true}
+						watchSlidesProgress={true}
+					/>
 				)}
-			</>
+			</SwipersContainerMUI>
 		) : null
 	);
 };

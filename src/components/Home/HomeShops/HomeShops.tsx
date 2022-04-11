@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 import Container from '@/components/Container/Container';
 import {useHomeShopStyles} from '@/components/Home/HomeShops/style';
@@ -8,19 +8,28 @@ import HomeShopSwiper from '@/components/Home/HomeShops/HomeShopSwipers/HomeShop
 
 const HomeShops = () => {
 
-	const {WrapperMUI, TitleMUI, LinkWrapperMUI, containerStyle} = useHomeShopStyles();
+	const {WrapperMUI, TitleMUI, LinkWrapperMUI, containerStyle, containerAdaptiveStyle} = useHomeShopStyles();
 	const {isCustomSize: isTablet} = useCustomSize(1000);
+	const containerAdaptiveStyles = useMemo(() => {
+		if (isTablet) {
+			return {
+				...containerStyle,
+				...containerAdaptiveStyle,
+			};
+		};
+		return containerStyle;
+	}, [isTablet]);
 
 	return (
 		<>
 			<Container>
 				<TitleMUI>
 					<HomeSectionTitle
-						title="Магазины с которыми мы работаем"
+						title={isTablet ? 'Магазины' : 'Магазины с которыми мы работаем'}
 					/>
 				</TitleMUI>
 			</Container>
-			<Container customStyles={containerStyle}>
+			<Container customStyles={containerAdaptiveStyles}>
 				<WrapperMUI>
 					{isTablet ? (
 						<HomeShopSwiper/>

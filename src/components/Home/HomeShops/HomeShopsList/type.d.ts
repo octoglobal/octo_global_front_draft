@@ -9,9 +9,15 @@ interface IShopsDataSx {
 	marginRight?: string;
 }
 
+interface IShopsSizeSx {
+	width?: string;
+	height?: string;
+}
+
 export interface IShopsData {
 	title: string;
 	url: string;
 	icon: React.ElementType<React.ComponentPropsWithRef<'svg'>>
 	style?: IShopsDataSx;
+	initialSize?: IShopsSizeSx;
 }

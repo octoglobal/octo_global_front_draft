@@ -1,5 +1,4 @@
 import {styled} from '@mui/material';
-import DeichmannIcon from '@/UIIcon/shopsIcon/deichmann.svg';
 
 export const useHomeShopsListStyles = () => {
 

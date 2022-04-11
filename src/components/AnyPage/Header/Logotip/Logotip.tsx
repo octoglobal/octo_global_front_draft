@@ -37,11 +37,12 @@ const Logotip: FC = () => {
 		if (typeof window !== 'undefined') {
 			const element = logoRef.current;
 			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
+			const transform = checkMedia(501) ? '50' : '100';
 			if (element) {
 				if (window.location.pathname === '/') {
 					gsap.fromTo(element, {
 						opacity: 0,
-						transform: 'translateY(-100px)',
+						transform: `translateY(-${transform}px)`,
 						visibility: 'visible',
 					}, {
 						opacity: 1,
