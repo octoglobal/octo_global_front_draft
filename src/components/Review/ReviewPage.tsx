@@ -11,7 +11,7 @@ import {useUserStore} from '@/hooks/useUserStore';
 import {useMobile} from '@/hooks/useMedia';
 import {useReviewsStore} from '@/hooks/useReviewsStore';
 import {setCurrentPage, setIntervalShow } from '@/store/reducers/reviewsSlice/reviewsSlice';
-import {useAppDispatch} from "@/hooks/useReduxHooks";
+import {useAppDispatch} from '@/hooks/useReduxHooks';
 
 const ReviewPage: FC = () => {
 	const {
@@ -25,10 +25,8 @@ const ReviewPage: FC = () => {
 	const dispatch = useAppDispatch();
 
 	const {
+		pagesCountFront,
 		reviews,
-		pagesCount,
-		pagesGet,
-		limitShow,
 		currentPage,
 		startShow,
 		endShow,
@@ -56,10 +54,10 @@ const ReviewPage: FC = () => {
 
 	useEffect(() => {
 		// console.log('currentPage: ', currentPage);
-		if(currentPage >= 3) {
+		if(currentPage >= pagesCountFront) {
 			getReviews();
 		}
-	}, [currentPage]);
+	}, [currentPage, ]);
 
 	return (
 		<ReviewContentMUI>
@@ -79,7 +77,7 @@ const ReviewPage: FC = () => {
 						<PaginationWrappMUI>
 							<CustomPagination
 								onChange={handlerPaginationChange}
-								count={pagesCount}
+								count={pagesCountFront}
 								page={currentPage}
 							/>
 						</PaginationWrappMUI>

@@ -5,10 +5,11 @@ import {useReviewListStyle} from '@/components/Review/ReviewsList/style';
 
 // import ReviewsArray from '../ReviewsMockData.json';
 // import {IReview} from '../../../types/types';
-import {IReviewsModel} from '@/models/IReviewsModel';
+// import {IReviewsModel} from '@/models/IReviewsModel';
+import {IReviewItem} from '../../../types/types';
 
 interface ReviewsList {
-	reviews : IReviewsModel[] | []
+	reviews : IReviewItem[] | []
 }
 
 const ReviewsList : FC<ReviewsList> = ({
@@ -26,9 +27,9 @@ const ReviewsList : FC<ReviewsList> = ({
 			{reviews.map(item => (
 				<ReviewItem
 					key={item.createdTime}
-					name={item.userName}
-					time={item.createdTime}
-					comment={item.text}
+					userName={item.userName}
+					createdTime={item.createdTime}
+					text={item.text}
 				/>
 			))}
 		</ReviewsContentMUI>

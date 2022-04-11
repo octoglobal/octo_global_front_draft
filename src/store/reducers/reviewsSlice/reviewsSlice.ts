@@ -5,6 +5,7 @@ import {fetchReviews} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
 export interface IReviewsSlice {
 	reviews: IReviewsModel[] | [],
 	pagesCount: number,
+	pagesCountFront: number,
 	pagesGet: number,
 	pagesIndex: number,
 	limitShow: number,
@@ -20,11 +21,12 @@ export interface IReviewsGet {
 	pages_count: number,
 }
 
-const initialState : IReviewsSlice = {
+const initialState: IReviewsSlice = {
 	reviews: [],
 	pagesGet: 1,
 	pagesIndex: 3,
 	pagesCount: 1,
+	pagesCountFront: 1,
 
 	limitShow: 6,
 	currentPage: 1,
@@ -45,22 +47,46 @@ export const reviewsSlice = createSlice({
 		},
 		setIntervalShow: (state, action) => {
 			const aP = action.payload;
-			// console.log('aP: ', aP);
-			state.startShow = aP * state.limitShow;
-			state.endShow = (aP + 1) * state.endIndex;
+			console.log('aP: ', aP);
+			if (aP === 1) {
+				state.startShow = 0;
+				state.endShow = 6;
+			} else {
+				// console.log('startShow: ', aP * state.limitShow);
+				// console.log('endShow: ', (aP + 1) * state.endIndex);
+
+				// state.startShow = aP * state.limitShow;
+				// state.endShow = (aP + 1) * state.endIndex;
+
+				state.startShow = state.endIndex * (aP - 1);
+				state.endShow = state.endIndex * aP;
+			}
 		}
 	},
 	extraReducers: {
-		[fetchReviews.fulfilled.type]: (state, data : PayloadAction<IReviewsGet>) => {
+		[fetchReviews.fulfilled.type]: (state, data: PayloadAction<IReviewsGet>) => {
 			console.log('reviewsSlice: ', data.payload);
-			state.reviews = [...state.reviews, ...data.payload.reviews];
-			if(data.payload.pages_count) {
-				console.log('data.payload.pages_count не пустой');
-				state.pagesCount = data.payload.pages_count;
-				if(data.payload.reviews.length === 23) {
-					state.pagesGet += 1;
-				}
+			// if(state.pagesGet) {
+			console.log('data.payload.pages_count не пустой');
+			console.log('data.payload.reviews.length: ', data.payload.reviews);
+			console.log('data.payload.reviews.length: ', data.payload.reviews.length);
+			state.pagesCount = data.payload.pages_count;
+			if (data.payload.reviews.length === 24) {
+				state.pagesGet += 1;
+				state.reviews = [...state.reviews, ...data.payload.reviews];
+				state.pagesCountFront = Math.ceil(data.payload.reviews.length / state.limitShow);
+				console.log(Math.ceil(data.payload.reviews.length / state.limitShow));
+			} else {
+				state.reviews = data.payload.reviews;
+				const reviewsLength = Math.ceil(data.payload.reviews.length / state.limitShow);
+				console.log('reviewsLength: ', reviewsLength);
+				state.pagesCountFront = reviewsLength;
+				// console.log('reviewsLength: ', reviewsLength / state.limitShow);
+				// if(reviewsLength / state.limitShow > state.pagesCount) {
+				// 	state.pagesCount += 1;
+				// }
 			}
+			// }
 		}
 	}
 });

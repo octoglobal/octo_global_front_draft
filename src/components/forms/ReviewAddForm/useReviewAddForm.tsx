@@ -4,7 +4,7 @@ import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {IReviewAddSubmit} from '../../../types/types';
 import {fetchAddReviews} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
-import {useReviewsStore} from "@/hooks/useReviewsStore";
+import {useReviewsStore} from '@/hooks/useReviewsStore';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const useReviewAddForm = (setError: UseFormSetError<FieldValues>) => {

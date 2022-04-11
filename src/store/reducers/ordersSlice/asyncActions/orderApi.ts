@@ -1,7 +1,6 @@
 import {octoAxios} from '@/lib/http';
 import axios from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
 import {IAddOrder, IDeleteOrder} from '../../../../types/types';
 
 export const fetchOrdersAndPackages = createAsyncThunk(
@@ -23,7 +22,7 @@ export const fetchAddOrders = createAsyncThunk(
 		try {
 			const response = await octoAxios.post('/user/orders', data);
 			console.log('response: ', response);
-			return response.data;
+			return response.status;
 		} catch (e : unknown) {
 			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);

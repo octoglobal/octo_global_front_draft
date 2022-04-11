@@ -1,4 +1,4 @@
-import React, {FC, ReactNode, useMemo} from 'react';
+import React, {FC, useMemo} from 'react';
 
 import {Pagination, PaginationItem, PaginationItemProps, PaginationProps} from '@mui/material';
 import Arrow_Black_Right from '../../../UI/UIIcon/Arrow_Black_Right.svg';
@@ -47,7 +47,7 @@ const CustomPagination : FC<PaginationProps> = (props) => {
 		PaginationContainerMUI
 	} = useReviewPaginationStyle();
 
-	console.log('props: ', props);
+	// console.log('props: ', props);
 
 	return (
 		<PaginationContainerMUI>

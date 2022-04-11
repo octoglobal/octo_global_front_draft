@@ -5,7 +5,7 @@ import {IReviewAddSubmit} from '../../../../types/types';
 
 export const fetchReviews = createAsyncThunk(
 	'reviews/get',
-	async (data, thunkAPI) => {
+	async (data : {page: number}, thunkAPI) => {
 		try {
 			// console.log('fetchReviews-data: ', data);
 			const response = await octoAxios.get('/reviews', {params: data});

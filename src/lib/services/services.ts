@@ -151,8 +151,8 @@ export const ToRusDate = (date : string) : string => {
 
 	const time = expaireData.getTime();
 	const grinvic = new Date(time);
-	const diff = grinvic.getTimezoneOffset();
-	const local = new Date(time - (diff * 60 * 1000));
+	// const diff = grinvic.getTimezoneOffset();
+	// const local = new Date(time - (diff * 60 * 1000));
 
 	// console.log('localdate: ', local);
 	// console.log('diff: ', diff);

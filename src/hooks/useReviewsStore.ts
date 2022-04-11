@@ -4,6 +4,7 @@ import { fetchReviews } from '@/store/reducers/reviewsSlice/asyncActions/reviews
 export const useReviewsStore = () => {
 	const dispatch = useAppDispatch();
 	const {
+		pagesCountFront,
 		reviews,
 		limitShow,
 		currentPage,
@@ -19,6 +20,7 @@ export const useReviewsStore = () => {
 	};
 
 	return {
+		pagesCountFront,
 		reviews,
 		pagesCount,
 		pagesGet,

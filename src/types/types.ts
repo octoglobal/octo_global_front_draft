@@ -68,6 +68,12 @@ export interface IReviewAdd {
 	comment: string
 }
 
+export interface IReviewItem {
+	text: string,
+	userName: string,
+	createdTime: string,
+}
+
 export interface IReviewAddSubmit {
 	text: string
 }

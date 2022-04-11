@@ -7,7 +7,7 @@ import {useFormsStyle} from '@/components/forms/style';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-import {useMobile} from "@/hooks/useMedia";
+import {useMobile} from '@/hooks/useMedia';
 
 const ReviewAddForm: FC = () => {
 
