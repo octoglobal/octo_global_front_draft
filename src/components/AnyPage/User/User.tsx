@@ -3,7 +3,6 @@ import {Avatar} from '@mui/material';
 
 import {useUserStore} from '../../../hooks/useUserStore';
 import {useCustomSize, useCustom800} from '../../../hooks/useMedia';
-import {ellipsis} from '../../../lib/services/services';
 
 import {useUserStyle} from './style';
 
@@ -23,17 +22,17 @@ const User : FC<IUser> = ({cutFio = true}) => {
 	const {isCustom800} = useCustom800();
 
 	const ellipsisScale = useMemo(
-		() => isCustomSize ? 4 : (isCustom800 ? 6 : 11),
+		() => isCustomSize || isCustom800 ? true : false,
 		[isCustomSize, isCustom800]
 	);
-
-	console.log('cutFio: ', cutFio);
 
 	const {
 		user: {
 			name, surname
 		}
 	} = useUserStore();
+
+	// console.log('cutFio: ', cutFio);
 
 	return (
 		<UserUI>
@@ -42,7 +41,8 @@ const User : FC<IUser> = ({cutFio = true}) => {
 					bgcolor: '#274D82'
 				}} />
 			</UserAvatarUI>
-			<UserFIOUI>{cutFio ? ellipsis(name, ellipsisScale) : name} {cutFio ? ellipsis(surname, ellipsisScale) : surname}</UserFIOUI>
+			{/*<UserFIOUI>{cutFio ? ellipsis(name, ellipsisScale) : name} {cutFio ? ellipsis(surname, ellipsisScale) : surname}</UserFIOUI>*/}
+			<UserFIOUI>{ellipsisScale && cutFio ? name : `${name} ${surname}`}</UserFIOUI>
 		</UserUI>
 	);
 };

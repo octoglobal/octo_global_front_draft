@@ -18,9 +18,17 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 	const {getUser} = useUserStore();
 	const {router} = useCustomRouter();
 
+	// useEffect(() => {
+	// 	console.log('useUserStore');
+	// 	getUser();
+	// });
+
+	// getUser();
+
 	useEffect(() => {
 		getUser();
 	});
+
 
 	const disabledPadding = useMemo(() => router.route === '/', [router.route]);
 	const disabledMargin = useMemo(() => router.route === '/', [router.route]);

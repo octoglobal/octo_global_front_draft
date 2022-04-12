@@ -1,15 +1,24 @@
 import React, {FC} from 'react';
 import {useReviewsAuthPlugStyles} from '@/components/Review/ReviewsAuthPlug/style';
+import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 
-const ReviewsAuthPlug : FC = () => {
+const ReviewsAuthPlug: FC = () => {
 	const {
-		ReviewPlugContentMUI
+		PlugWrapperMUI,
+		ReviewPlugContentMUI,
+		buttonSignUpStyle
 	} = useReviewsAuthPlugStyles();
 
 	return (
-		<ReviewPlugContentMUI>
-			Отзывы доступны после регистрации
-		</ReviewPlugContentMUI>
+		<PlugWrapperMUI>
+			<ReviewPlugContentMUI>
+				Отзывы доступны после регистрации
+			</ReviewPlugContentMUI>
+			<ButtonUI sx={buttonSignUpStyle}>
+				Регистрация
+			</ButtonUI>
+		</PlugWrapperMUI>
+
 	);
 };
 

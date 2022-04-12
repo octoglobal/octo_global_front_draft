@@ -2,6 +2,17 @@ import { styled } from '@mui/material';
 
 export const useReviewsAuthPlugStyles = () => {
 
+	const PlugWrapperMUI = styled('div')(() => ({
+		width: '100%',
+		display: 'flex',
+		flexDirection: 'column',
+
+		'& button': {
+			marginTop: '12px',
+			alignSelf: 'flex-end'
+		}
+	}));
+
 	const ReviewPlugContentMUI = styled('div')(() => ({
 		border: '1px solid #DFE4EC',
 		boxSizing: 'border-box',
@@ -18,7 +29,17 @@ export const useReviewsAuthPlugStyles = () => {
 		padding: '15px'
 	}));
 
+	const buttonSignUpStyle = {
+		width: '154px',
+		height: '32px',
+		background: '#274D82',
+		opacity: '0.8',
+		borderRadius: '3px',
+	};
+
 	return {
-		ReviewPlugContentMUI
+		PlugWrapperMUI,
+		ReviewPlugContentMUI,
+		buttonSignUpStyle
 	};
 };

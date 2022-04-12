@@ -20,14 +20,14 @@ export const useMobile = () => {
 	return {isMobile};
 };
 
-export const useCustomSize = (maxWidth = 0, minWidth = 0) => {
+export const useCustomSize = (maxWidth : number | null = 0, minWidth : number | null = 0) => {
 	if(!minWidth) return {
 		isCustomSize: useMediaQuery(`(max-width: ${maxWidth}px)`)
-	}
+	};
 	if(!maxWidth) return {
 		isCustomSize: useMediaQuery(`(min-width: ${minWidth}px)`)
-	}
+	};
 
 	const isCustomSize = useMediaQuery(`(max-width: ${maxWidth}px) and (min-width: ${minWidth}px)`);
 	return {isCustomSize};
-}
+};

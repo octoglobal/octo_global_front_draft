@@ -10,11 +10,10 @@ const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 	const {
 		BaseCellPagination,
 		SelectedCellPagination,
-		TextNextPaginationMUI,
 		NavigationItemMUI
 	} = useReviewPaginationStyle();
 
-	const {selected, page, onClick} = props;
+	const {selected} = props;
 
 	const CellPaginationClass = useMemo(
 		() => selected ? SelectedCellPagination : BaseCellPagination,
@@ -34,9 +33,9 @@ const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 					next: Arrow_Black_Right
 				}}
 			/>
-			{page === 10 && page !== 9 ? (
-				<TextNextPaginationMUI onClick={onClick}>Дальше</TextNextPaginationMUI>
-			) : null}
+			{/*{page === 10 && page !== 9 ? (*/}
+			{/*	<TextNextPaginationMUI onClick={onClick}>Дальше</TextNextPaginationMUI>*/}
+			{/*) : null}*/}
 		</NavigationItemMUI>
 	);
 };

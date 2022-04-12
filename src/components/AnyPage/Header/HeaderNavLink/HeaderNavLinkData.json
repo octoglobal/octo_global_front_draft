@@ -30,7 +30,7 @@
     {
       "title": "Заказы",
       "showAuth": true,
-      "href": "/account/orders?tab=0"
+      "href": "/account/orders?tab=6"
     },
     {
       "title": "Магазины",
@@ -55,7 +55,7 @@
     {
       "title": "Отзывы",
       "showAuth": false,
-      "href": "/"
+      "href": "/reviews"
     }
   ]
 }

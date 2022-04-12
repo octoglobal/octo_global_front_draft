@@ -42,55 +42,49 @@ export const reviewsSlice = createSlice({
 	initialState,
 	reducers: {
 		setCurrentPage: (state, action) => {
-			// console.log('setCurrentPage: ', action.payload);
 			state.currentPage = action.payload;
 		},
 		setIntervalShow: (state, action) => {
 			const aP = action.payload;
-			console.log('aP: ', aP);
 			if (aP === 1) {
 				state.startShow = 0;
 				state.endShow = 6;
 			} else {
-				// console.log('startShow: ', aP * state.limitShow);
-				// console.log('endShow: ', (aP + 1) * state.endIndex);
-
-				// state.startShow = aP * state.limitShow;
-				// state.endShow = (aP + 1) * state.endIndex;
-
 				state.startShow = state.endIndex * (aP - 1);
 				state.endShow = state.endIndex * aP;
 			}
+		},
+		reviewsReset: (state) => {
+			state.reviews = [];
+			state.pagesGet = 1;
+			state.pagesIndex = 3;
+			state.pagesCount = 1;
+			state.pagesCountFront = 1;
+
+			state.limitShow = 6;
+			state.currentPage = 1;
+
+			state.startIndex = 0;
+			state.endIndex = 6;
+			state.startShow = 0;
+			state.endShow = 6;
 		}
 	},
 	extraReducers: {
 		[fetchReviews.fulfilled.type]: (state, data: PayloadAction<IReviewsGet>) => {
-			console.log('reviewsSlice: ', data.payload);
-			// if(state.pagesGet) {
-			console.log('data.payload.pages_count не пустой');
-			console.log('data.payload.reviews.length: ', data.payload.reviews);
-			console.log('data.payload.reviews.length: ', data.payload.reviews.length);
-			state.pagesCount = data.payload.pages_count;
-			if (data.payload.reviews.length === 24) {
-				state.pagesGet += 1;
-				state.reviews = [...state.reviews, ...data.payload.reviews];
-				state.pagesCountFront = Math.ceil(data.payload.reviews.length / state.limitShow);
-				console.log(Math.ceil(data.payload.reviews.length / state.limitShow));
-			} else {
-				state.reviews = data.payload.reviews;
-				const reviewsLength = Math.ceil(data.payload.reviews.length / state.limitShow);
-				console.log('reviewsLength: ', reviewsLength);
-				state.pagesCountFront = reviewsLength;
-				// console.log('reviewsLength: ', reviewsLength / state.limitShow);
-				// if(reviewsLength / state.limitShow > state.pagesCount) {
-				// 	state.pagesCount += 1;
-				// }
+			if (state.pagesGet) {
+				if (data.payload.pages_count) {
+					state.pagesCount = data.payload.pages_count;
+					state.pagesCountFront = data.payload.pages_count;
+
+					if (data.payload.reviews.length === 6) state.pagesGet += 1;
+				}
 			}
-			// }
+			state.reviews = [...data.payload.reviews];
 		}
 	}
 });
 
-export const {setCurrentPage, setIntervalShow} = reviewsSlice.actions;
+export const {reviewsReset, setCurrentPage, setIntervalShow} = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;
