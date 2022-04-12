@@ -39,9 +39,9 @@ const AccountUserForm: FC = () => {
 		[dirtyFields.phone]
 	);
 
-	console.log('dirtyFields: ', dirtyFields);
-	console.log('dirtyPhone: ', dirtyPhone);
-	console.log('dirtyFields.phone: ', dirtyFields.phone);
+	// console.log('dirtyFields: ', dirtyFields);
+	// console.log('dirtyPhone: ', dirtyPhone);
+	// console.log('dirtyFields.phone: ', dirtyFields.phone);
 
 
 	const {
@@ -61,7 +61,7 @@ const AccountUserForm: FC = () => {
 		[isSubmitted, dirtyPhone]
 	);
 
-	console.log('isSubmitForm: ', isSubmitForm);
+	// console.log('isSubmitForm: ', isSubmitForm);
 
 
 	useEffect(() => {

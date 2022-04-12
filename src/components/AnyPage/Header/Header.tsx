@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, KeyboardEvent, useRef, useState, useEffect} from 'react';
+import React, {SyntheticEvent, KeyboardEvent, useRef, useState} from 'react';
 import {Box, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
 import {IHeaderNavItemsData} from '../../../types/types';
@@ -43,7 +43,6 @@ const Header = () => {
 		// 	// name, surname
 		// },
 		isAuth,
-		getUser,
 		// loading
 	} = useUserStore();
 
@@ -118,11 +117,6 @@ const Header = () => {
 			handleCloseBurger();
 		};
 	};
-
-	useEffect(() => {
-		console.log('useUserStore');
-		getUser();
-	});
 
 	return (
 		<>

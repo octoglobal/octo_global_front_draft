@@ -8,7 +8,7 @@
     {
       "title": "Блог",
       "showAuth": false,
-      "href": "/"
+      "href": "/blog"
     },
     {
       "title": "Стоимость услуг",
@@ -40,7 +40,7 @@
     {
       "title": "Блог",
       "showAuth": false,
-      "href": "/"
+      "href": "/blog"
     },
     {
       "title": "Стоимость услуг",

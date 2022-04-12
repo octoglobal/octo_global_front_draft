@@ -25,7 +25,7 @@ const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps}) =>
 		setShowPassword(prevState => !prevState);
 	};
 
-	console.log('showPassword: ', showPassword);
+	// console.log('showPassword: ', showPassword);
 
 	return (
 		<TextFieldUI

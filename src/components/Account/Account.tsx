@@ -5,6 +5,7 @@ import AccountUrlArray from './AccountTabsData.json';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 
 import {useAccountPageStyle} from './style';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IAccoutPage {
 	children: React.ReactChild | React.ReactNode,
@@ -17,6 +18,10 @@ const AccountPage: FC<IAccoutPage> = ({children}) => {
 
 	const {router, pushTo} = useCustomRouter();
 
+	const {
+		getUser
+	} = useUserStore();
+
 	// TODO: исправить - пока что захардкожено
 	useEffect(() => {
 		if(router.asPath.includes('info') && !router.asPath.includes('location')) {
@@ -26,6 +31,10 @@ const AccountPage: FC<IAccoutPage> = ({children}) => {
 			pushTo(router.asPath, {tab: 6});
 		}
 	}, [router.asPath]);
+
+	useEffect(() => {
+		getUser();
+	}, []);
 
 	return (
 		<AccountWrapperUI>

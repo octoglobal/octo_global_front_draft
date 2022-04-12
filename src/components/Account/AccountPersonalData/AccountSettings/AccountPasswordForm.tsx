@@ -19,7 +19,7 @@ const AccountPasswordForm : FC = () => {
 		HelperBoxUI
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError, formState: {isSubmitting, isSubmitted}} = useForm();
+	const {handleSubmit, control, setError, formState: {isSubmitted}} = useForm();
 
 	const {
 		onSubmitPassword,
@@ -30,11 +30,6 @@ const AccountPasswordForm : FC = () => {
 		() => isSubmitted && isSubmitFormSuccess,
 		[isSubmitted, isSubmitFormSuccess]
 	);
-
-	console.log('isSubmitForm: ', isSubmitForm);
-	console.log('isSubmitting: ', isSubmitting);
-	console.log('isSubmitted: ', isSubmitted);
-	console.log('isSubmitFormSuccess: ', isSubmitFormSuccess);
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitPassword)}>
