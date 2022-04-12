@@ -7,11 +7,12 @@ import {useFormsStyle} from '@/components/forms/style';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+import {useMobile} from '@/hooks/useMedia';
 
 const ReviewAddForm: FC = () => {
 
 	const {handleSubmit, control, setError} = useForm();
-
+	const {isMobile} = useMobile();
 	const {onSubmit} = useReviewAddForm(setError);
 
 	const {
@@ -30,16 +31,16 @@ const ReviewAddForm: FC = () => {
 				<FormsWrapperBox>
 					<TextFieldUI
 						controller={{
-							name: 'comment',
+							name: 'text',
 							control,
 							defaultValue: '',
 							rules: {required: true}
 						}}
 						inputProps={{
-							placeholder: 'Введите текст',
-							name: 'comment',
+							placeholder: isMobile ? 'Оставьте отзыв' : 'Введите текст',
+							name: 'text',
 							type: 'text',
-							// required: true,
+							required: true,
 							// helperText: 'Заполните поле "Почта"',
 							multiline: true,
 							sx: TextAreaUI

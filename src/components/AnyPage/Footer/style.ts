@@ -135,7 +135,7 @@ export const useFooterStyle = () => {
 		}
 	}));
 
-	const IndexTitleUI  = styled('p')(({theme}) => ({
+	const IndexTitleUI  = styled('a')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '500',
 		fontSize: '14px',

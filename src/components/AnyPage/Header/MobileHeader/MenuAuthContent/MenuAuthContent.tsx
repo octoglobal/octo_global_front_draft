@@ -126,7 +126,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 							<>
 								{isAuth && (
 									<UserUI>
-										<User />
+										<User cutFio={false} />
 									</UserUI>
 								)}
 								<MenuLinksUI>

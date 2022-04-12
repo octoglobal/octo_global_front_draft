@@ -2,17 +2,26 @@ import {styled} from '@mui/material';
 
 export const useReviewItemStyle = () => {
 
-	const ReviewItemWrapperMUI = styled('div')(() => ({
+	const ReviewItemWrapperMUI = styled('div')(({theme}) => ({
 		padding: '10px 20px',
 		border: '1px solid #AABCBF',
 		boxSizing: 'border-box',
 
-		maxWidth: '546px',
+		minWidth: '546px',
 		maxHeight: '219px',
 		height: 'fit-content',
 
 		marginBottom: '32px',
 		marginRight: '56px',
+
+		[theme.breakpoints.down(501)]: {
+			width: '100%',
+			// margin: '15px 0'
+			marginBottom: '15px',
+			marginRight: '0',
+			height: 'auto',
+			maxHeight: 'none',
+		}
 	}));
 
 	const ReviewHeaderMUI = styled('div')(() => ({
@@ -20,7 +29,7 @@ export const useReviewItemStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 
-		marginBottom: 'px',
+		marginBottom: '5px',
 	}));
 
 	const ReviewNameMUI = styled('div')(() => ({

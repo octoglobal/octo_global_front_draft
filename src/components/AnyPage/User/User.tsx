@@ -7,7 +7,11 @@ import {ellipsis} from '../../../lib/services/services';
 
 import {useUserStyle} from './style';
 
-const User : FC = () => {
+interface IUser {
+	cutFio?:boolean
+}
+
+const User : FC<IUser> = ({cutFio = true}) => {
 
 	const {
 		UserUI,
@@ -23,6 +27,8 @@ const User : FC = () => {
 		[isCustomSize, isCustom800]
 	);
 
+	console.log('cutFio: ', cutFio);
+
 	const {
 		user: {
 			name, surname
@@ -36,7 +42,7 @@ const User : FC = () => {
 					bgcolor: '#274D82'
 				}} />
 			</UserAvatarUI>
-			<UserFIOUI>{ellipsis(name, ellipsisScale)} {ellipsis(surname, ellipsisScale)}</UserFIOUI>
+			<UserFIOUI>{cutFio ? ellipsis(name, ellipsisScale) : name} {cutFio ? ellipsis(surname, ellipsisScale) : surname}</UserFIOUI>
 		</UserUI>
 	);
 };

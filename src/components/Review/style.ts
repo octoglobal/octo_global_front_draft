@@ -4,6 +4,8 @@ export const useReviewStyle = () => {
 
 	const ReviewContentMUI = styled('div')(() => ({
 		marginTop: '120px',
+
+		// border: '1px solid black',
 	}));
 
 	const ReviewBottomMUI = styled('div')(() => ({
@@ -23,8 +25,13 @@ export const useReviewStyle = () => {
 		}
 	}));
 
+	const PaginationWrappMUI = styled('div')(() => ({
+		marginRight: '112px',
+	}));
+
 	return {
 		ReviewContentMUI,
-		ReviewBottomMUI
+		ReviewBottomMUI,
+		PaginationWrappMUI
 	};
 };
