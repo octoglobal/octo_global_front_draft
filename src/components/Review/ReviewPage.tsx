@@ -1,17 +1,16 @@
-import React, {ChangeEvent, FC, useEffect, useMemo} from 'react';
+import React, {FC} from 'react';
 
-import ReviewsAuthPlug from './ReviewsAuthPlug/ReviewsAuthPlug';
+import {useMobile} from '@/hooks/useMedia';
+import {useUserStore} from '@/hooks/useUserStore';
 import ReviewsList from './ReviewsList/ReviewsList';
+import {useReviewsStore} from '@/hooks/useReviewsStore';
+import ReviewsAuthPlug from './ReviewsAuthPlug/ReviewsAuthPlug';
 import CustomPagination from '../AnyPage/CustomPagination/CustomPagination';
 import FormComponent from '@/components/AnyPage/FormComponent/FormComponent';
 import ReviewAddForm from '../../components/forms/ReviewAddForm/ReviewAddForm';
 
 import {useReviewStyle} from './style';
-import {useUserStore} from '@/hooks/useUserStore';
-import {useMobile} from '@/hooks/useMedia';
-import {useReviewsStore} from '@/hooks/useReviewsStore';
-import {setCurrentPage, setIntervalShow } from '@/store/reducers/reviewsSlice/reviewsSlice';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useReviewPage} from '@/components/Review/useReviewPage';
 
 const ReviewPage: FC = () => {
 	const {
@@ -22,69 +21,38 @@ const ReviewPage: FC = () => {
 
 	const {isMobile} = useMobile();
 	const {isAuth} = useUserStore();
-	const dispatch = useAppDispatch();
 
 	const {
 		pagesCountFront,
 		reviews,
 		currentPage,
-		startShow,
-		endShow,
-		getReviews,
 	} = useReviewsStore();
 
-	useEffect(() => {
-		getReviews();
-	}, []);
-
-	const reviewsPage = useMemo(
-		() => reviews.slice(startShow, endShow),
-		[reviews, startShow, endShow]
-	);
-
-	// console.log('startShow, endShow: ', reviews, reviewsPage, startShow, endShow);
-
-	const handlerPaginationChange = (event: ChangeEvent<unknown>, value: number) => {
-		// console.log('value: ', value);
-		dispatch(setCurrentPage(value));
-		dispatch(setIntervalShow(value));
-	};
-
-	// console.log('reviewsPage: ', reviewsPage);
-
-	useEffect(() => {
-		// console.log('currentPage: ', currentPage);
-		if(currentPage >= pagesCountFront) {
-			getReviews();
-		}
-	}, [currentPage, ]);
+	const {
+		handlerPaginationChange
+	} = useReviewPage();
 
 	return (
 		<ReviewContentMUI>
 			<ReviewsList
-				reviews={reviewsPage}
+				reviews={reviews}
 			/>
 			<ReviewBottomMUI>
 				{!isMobile ? (
-					<>
-						<FormComponent
-							title='Оставьте отзыв'
-							background={false}
-						>
-							<ReviewAddForm/>
-						</FormComponent>
-
-						<PaginationWrappMUI>
-							<CustomPagination
-								onChange={handlerPaginationChange}
-								count={pagesCountFront}
-								page={currentPage}
-							/>
-						</PaginationWrappMUI>
-					</>
-				) : (
-					isAuth ? <ReviewAddForm/> : <ReviewsAuthPlug/>
-				)}
+					<FormComponent
+						title='Оставьте отзыв'
+						background={false}
+					>
+						<ReviewAddForm/>
+					</FormComponent>
+				) : isAuth ? <ReviewAddForm/> : <ReviewsAuthPlug/> }
+				<PaginationWrappMUI>
+					<CustomPagination
+						page={currentPage}
+						count={pagesCountFront}
+						onChange={handlerPaginationChange}
+					/>
+				</PaginationWrappMUI>
 			</ReviewBottomMUI>
 		</ReviewContentMUI>
 	);

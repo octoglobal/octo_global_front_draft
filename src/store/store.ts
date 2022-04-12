@@ -21,26 +21,16 @@ import {
 	REGISTER,
 } from 'redux-persist';
 
-const reviewsReducerConfig = {
-	key: 'reviews',
-	storage: storage,
-};
-
 const appReducer = combineReducers({
 	translateReducer: translateReducer,
 	userReducer: userReducer,
 	ordersReducer: ordersReducer,
-	reviewsReducer: persistReducer(reviewsReducerConfig, reviewsReducer),
+	reviewsReducer: reviewsReducer,
 });
-
-// const rootReducer = (state: typeof state.getState, action: AnyAction) => {
-// 	return appReducer(state, action);
-// }
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['reviews']
 };
 
 const persistedReducer = persistReducer(persistConfig, appReducer);
@@ -49,7 +39,7 @@ export const store = configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => getDefaultMiddleware({
 		serializableCheck: {
-			ignoredActions: [FLUSH, REHYDRATE, PERSIST, PAUSE, PURGE, REGISTER],
+			ignoredActions: [FLUSH, PERSIST, REHYDRATE, PAUSE, PURGE, REGISTER],
 		},
 	})
 });

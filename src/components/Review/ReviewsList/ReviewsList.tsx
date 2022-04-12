@@ -1,38 +1,48 @@
 import React, {FC} from 'react';
 
 import ReviewItem from '../ReviewItem/ReviewItem';
+import {IReviewItem} from '../../../types/types';
 import {useReviewListStyle} from '@/components/Review/ReviewsList/style';
 
-// import ReviewsArray from '../ReviewsMockData.json';
-// import {IReview} from '../../../types/types';
-// import {IReviewsModel} from '@/models/IReviewsModel';
-import {IReviewItem} from '../../../types/types';
-
 interface ReviewsList {
-	reviews : IReviewItem[] | []
+	reviews: IReviewItem[] | []
 }
 
-const ReviewsList : FC<ReviewsList> = ({
-	reviews
-}) => {
-
+const ReviewsList: FC<ReviewsList> = ({reviews}) => {
 	const {
-		ReviewsContentMUI
+		ReviewsWrappMUI,
+		ReviewsContentMUI,
+		ReviewBlockMUI
 	} = useReviewListStyle();
 
-	// const mockArrayReview = ReviewsArray as IReview[];
-
 	return (
-		<ReviewsContentMUI>
-			{reviews.map(item => (
-				<ReviewItem
-					key={item.createdTime}
-					userName={item.userName}
-					createdTime={item.createdTime}
-					text={item.text}
-				/>
-			))}
-		</ReviewsContentMUI>
+		<ReviewsWrappMUI>
+			<ReviewsContentMUI>
+				<ReviewBlockMUI>
+					{reviews.slice(0, 3).map(item => (
+						<ReviewItem
+							key={item.createdTime}
+
+							text={item.text}
+							userName={item.userName}
+							createdTime={item.createdTime}
+						/>
+					))}
+				</ReviewBlockMUI>
+				<ReviewBlockMUI>
+					{reviews.slice(3, 6).map(item => (
+						<ReviewItem
+							key={item.createdTime}
+
+							text={item.text}
+							userName={item.userName}
+							createdTime={item.createdTime}
+						/>
+					))}
+				</ReviewBlockMUI>
+			</ReviewsContentMUI>
+		</ReviewsWrappMUI>
+
 	);
 };
 

@@ -79,7 +79,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 				{isAuth ? (
 					<>
 						<UserUI onClick={handlerPushToAccount}>
-							<User />
+							<User cutFio={false} />
 						</UserUI>
 						<MenuLinksUI>
 							<HeaderNavLink

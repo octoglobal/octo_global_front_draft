@@ -7,20 +7,30 @@ export const useReviewItemStyle = () => {
 		border: '1px solid #AABCBF',
 		boxSizing: 'border-box',
 
-		minWidth: '546px',
+		// border: '1px solid black',
+
+		// minWidth: '546px',
+		// maxWidth: '546px',
+		width: '546px',
 		maxHeight: '219px',
 		height: 'fit-content',
 
-		marginBottom: '32px',
-		marginRight: '56px',
+		// marginBottom: '32px',
+		// marginRight: '56px',
 
-		[theme.breakpoints.down(501)]: {
+		[theme.breakpoints.down(591)]: {
 			width: '100%',
+			maxHeight: '257px',
+			// width: '100%',
 			// margin: '15px 0'
-			marginBottom: '15px',
+			marginBottom: '0px',
 			marginRight: '0',
-			height: 'auto',
-			maxHeight: 'none',
+			// height: 'auto',
+			// maxHeight: 'none',
+			// // minWidth: '100px',
+			// maxWidth: '100%',
+			// width: '100%',
+			// minWidth: '100%',
 		}
 	}));
 

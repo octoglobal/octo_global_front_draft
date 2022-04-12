@@ -56,7 +56,7 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 		if(regexProps?.ucFirst) {
 			value = e.target.value.replace(regexProps.regex, (u) => u.toUpperCase());
 		}
-			onChange(value);
+		onChange(value);
 	};
 
 	return (
@@ -70,8 +70,8 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 					<TextField
 						// sx={TextFieldStyle}
 						sx={isMobile ? TextFieldMobileStyle : TextFieldStyle}
-						{...inputProps}
 						value={value}
+						{...inputProps}
 						onChange={handlerChange(onChange)}
 						// onChange={onChange}
 						helperText={error ? error.message ? error.message : inputProps?.helperText : ''}

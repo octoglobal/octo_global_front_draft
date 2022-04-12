@@ -32,12 +32,17 @@ const AccountUserForm: FC = () => {
 		user: {personalAreaId, verifiedEmail, email, phone},
 	} = useUserStore();
 
-	console.log('dirtyFields: ', dirtyFields);
+	// console.log('dirtyFields: ', dirtyFields);
 
 	const dirtyPhone = useMemo(
 		() => dirtyFields.phone,
 		[dirtyFields.phone]
 	);
+
+	console.log('dirtyFields: ', dirtyFields);
+	console.log('dirtyPhone: ', dirtyPhone);
+	console.log('dirtyFields.phone: ', dirtyFields.phone);
+
 
 	const {
 		onSubmitUser,
@@ -55,6 +60,9 @@ const AccountUserForm: FC = () => {
 		() => !isSubmitted && dirtyPhone,
 		[isSubmitted, dirtyPhone]
 	);
+
+	console.log('isSubmitForm: ', isSubmitForm);
+
 
 	useEffect(() => {
 		if (dirtyPhone && ObjectHasOwnProperty(textPhoneRef, 'current')) {

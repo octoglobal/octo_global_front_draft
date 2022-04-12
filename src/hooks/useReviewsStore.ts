@@ -14,9 +14,12 @@ export const useReviewsStore = () => {
 		pagesGet
 	} = useAppSelector(state => state.reviewsReducer);
 
-	const fetchAllReviews = () : void => {
-		// console.log('fetchReviews');
-		dispatch(fetchReviews({page: pagesGet}));
+	const fetchAllReviews = (page?: number) : void => {
+		dispatch(fetchReviews({page: page ? page : pagesGet}));
+	};
+
+	const fetchFirstReviews = () : void => {
+		dispatch(fetchReviews({page : 1}));
 	};
 
 	return {
@@ -28,6 +31,7 @@ export const useReviewsStore = () => {
 		currentPage,
 		startShow,
 		endShow,
-		getReviews: fetchAllReviews
+		getFirstReviews: fetchFirstReviews,
+		getReviews: fetchAllReviews,
 	};
 };
