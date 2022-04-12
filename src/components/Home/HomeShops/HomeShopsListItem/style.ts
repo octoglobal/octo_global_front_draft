@@ -7,7 +7,7 @@ export const useHomeShopsListItemStyles = () => {
 		transition: '.2s all linear',
 		height: '100%',
 		'&:hover': {
-			transform: 'scale(1.3)',
+			transform: 'scale(1.38)',
 			// margin: '15px 15px 15px 15px',
 		},
 	}));

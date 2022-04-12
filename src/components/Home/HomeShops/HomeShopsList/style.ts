@@ -9,16 +9,37 @@ export const useHomeShopsListStyles = () => {
 		alignItems: 'center',
 		height: '445px',
 		marginBottom: '100px',
+		[theme.breakpoints.down(1305)]: {
+			'.Oysho': {
+				marginRight: '0px',
+			},
+			'.Uniqlo': {
+				width: '260px',
+			},
+			'.Deichmann': {
+				width: '270px',
+			}
+		},
 		[theme.breakpoints.down(1285)]: {
 			'.Deichmann': {
 				width: '200px',
-				transform: 'translate(80px, 20px)'
+				transform: 'translate(70px, 20px)'
 			},
 			'.Benetton': {
 				width: '210px',
 			},
+			'.Vans': {
+				width: '230px',
+			},
+			'.Converse ': {
+				width: '245px',
+			},
+			'.Oysho': {
+				width: '270px',
+				transform: 'translateY(-45px)'
+			}
 		},
-		[theme.breakpoints.down(1234)]: {
+		[theme.breakpoints.down(1255)]: {
 			'.Converse': {
 				transform: 'translateY(-50px)',
 			},
@@ -35,7 +56,7 @@ export const useHomeShopsListStyles = () => {
 				width: '100px',
 			},
 			'.Puma': {
-				width: '120px'
+				width: '130px'
 			},
 			'.Uniqlo': {
 				width: '240px',
@@ -43,16 +64,18 @@ export const useHomeShopsListStyles = () => {
 			},
 			'.Oysho': {
 				width: '240px',
+				transform: 'translateY(-55px)'
+
 			},
 			'.Furla': {
 				width: '160px'
 			},
 			'.RalphLauren': {
-				width: '340px',
+				width: '350px',
 				transform: 'translateY(0px)',
 			},
 			'.Deichmann': {
-				width: '200px',
+				width: '230px',
 				marginRight: '0px',
 				transform: 'translate(10px, 30px)'
 			},
@@ -62,6 +85,17 @@ export const useHomeShopsListStyles = () => {
 			'.HM': {
 				width: '220px',
 			}
+		},
+		[theme.breakpoints.down(1215)]: {
+			'.Falke': {
+				width: '390px'
+			},
+			'.Crocs': {
+				marginRight: '100px'
+			},
+			'.purinaOne': {
+				width: '200px'
+			},
 		},
 		[theme.breakpoints.down(1186)]: {
 			'.Converse': {
@@ -91,7 +125,7 @@ export const useHomeShopsListStyles = () => {
 				width: '180px',
 			}
 		},
-		[theme.breakpoints.down(1135)]: {
+		[theme.breakpoints.down(1165)]: {
 			'.RalphLauren': {
 				width: '300px',
 			},
@@ -114,19 +148,25 @@ export const useHomeShopsListStyles = () => {
 				width: '240px'
 			},
 			'.Oysho': {
-				width: '170px',
-				transform: 'translateY(-70px)',
+				width: '210px',
+				transform: 'translateY(-60px)',
 			},
 			'.SOliver': {
 				width: '160px',
-			}
+			},
 		},
-		[theme.breakpoints.down(1111)]: {
+		[theme.breakpoints.down(1135)]: {
 			'.HM': {
 				width: '160px',
-			}
+			},
+			'.Deichmann': {
+				width: '200px'
+			},
+			'.Oysho': {
+				width: '170px',
+			},
 		},
-		[theme.breakpoints.down(1090)]: {
+		[theme.breakpoints.down(1098)]: {
 			'.amazon': {
 				width: '150px',
 			},
@@ -169,14 +209,17 @@ export const useHomeShopsListStyles = () => {
 			},
 			'.Pandora': {
 				width: '190px',
-			}
+			},
+			'.Deichmann': {
+				width: '230px'
+			},
 		},
-		[theme.breakpoints.down(1034)]: {
+		[theme.breakpoints.down(1064)]: {
 			'.HugoBoss': {
 				width: '190px'
 			}
 		},
-		[theme.breakpoints.down(1025)]: {
+		[theme.breakpoints.down(1060)]: {
 			'.HugoBoss': {
 				width: '190px'
 			},

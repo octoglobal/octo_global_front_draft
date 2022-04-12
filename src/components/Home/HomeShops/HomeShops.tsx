@@ -9,7 +9,7 @@ import HomeShopSwiper from '@/components/Home/HomeShops/HomeShopSwipers/HomeShop
 const HomeShops = () => {
 
 	const {WrapperMUI, TitleMUI, LinkWrapperMUI, containerStyle, containerAdaptiveStyle} = useHomeShopStyles();
-	const {isCustomSize: isTablet} = useCustomSize(1000);
+	const {isCustomSize: isTablet} = useCustomSize(1024);
 	const containerAdaptiveStyles = useMemo(() => {
 		if (isTablet) {
 			return {
