@@ -27,6 +27,7 @@ const CategorySearchHints: FC<ICategorySearchHintsProps> = ({inputFocus, activeS
 				<ListMUI>
 					{hintsData.map(hint => (
 						<CategorySearchHintsItem
+							active={true}
 							key={hint.url}
 							title={hint.title}
 							url={hint.url}
