@@ -1,13 +1,5 @@
-// import {StateType} from 'react';
-import {AnyAction, CombinedState, combineReducers} from 'redux';
-// import {allReducers} from './allReducers';
+import {combineReducers} from 'redux';
 import {configureStore} from '@reduxjs/toolkit';
-
-import translateReducer from '@/reducers/translateSlice/translateSlice';
-import userReducer from '@/reducers/userSlice/userSlice';
-import ordersReducer from '@/reducers//ordersSlice/ordersSlice';
-import reviewsReducer from '@/reducers/reviewsSlice/reviewsSlice';
-
 import storage from 'redux-persist/lib/storage';
 
 import {
@@ -20,12 +12,10 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist';
+import {allReducers} from '@/store/allReducers';
 
 const appReducer = combineReducers({
-	translateReducer: translateReducer,
-	userReducer: userReducer,
-	ordersReducer: ordersReducer,
-	reviewsReducer: reviewsReducer,
+	...allReducers,
 });
 
 const persistConfig = {

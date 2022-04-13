@@ -2,26 +2,33 @@ import React, {FC} from 'react';
 import CategorySwiperActiveItem
 	from '@/components/AnyPage/CategorySwiper/CategorySwiperActiveItem/CategorySwiperActiveItem';
 import {usCategorySwiperActiveStyle} from '@/components/AnyPage/CategorySwiper/CategorySwiperActive/style';
+import {ICategoryItem} from '@/components/Shops/type';
 
 interface ICategorySearchSwiperActiveProps {
-	category: string[],
-	handleDeleteCategory: (category: string) => () => void;
+	category: ICategoryItem[],
+	handleDeleteCategory: (category: ICategoryItem) => () => void;
 }
 
 const CategorySwiperActive: FC<ICategorySearchSwiperActiveProps> = ({category, handleDeleteCategory}) => {
 
-	const { ListMUI } = usCategorySwiperActiveStyle();
+	const {
+		ListMUI,
+		EmptyListMUI
+	} = usCategorySwiperActiveStyle();
 
 
 	return (
 		<ListMUI>
-			{category.map(categories => (
-				<CategorySwiperActiveItem
-					key={categories}
-					title={categories}
-					handleDeleteCategory={handleDeleteCategory}
-				/>
-			))}
+			{category?.length ? (
+				category.map(categories => (
+					<CategorySwiperActiveItem
+						key={categories.id}
+						id={categories.id}
+						title={categories.title}
+						handleDeleteCategory={handleDeleteCategory}
+					/>
+				))
+			) : <EmptyListMUI/>}
 		</ListMUI>
 	);
 };

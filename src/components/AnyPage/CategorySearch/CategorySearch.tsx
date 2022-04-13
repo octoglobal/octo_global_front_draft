@@ -1,6 +1,6 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {useCategorySearchStyles} from '@/components/AnyPage/CategorySearch/style';
-import {useFormContext, Controller} from 'react-hook-form';
+import {Controller} from 'react-hook-form';
 import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySearchHints/CategorySearchHints';
 import {useCategorySearch} from '@/components/AnyPage/CategorySearch/useCategorySearch';
 
@@ -8,11 +8,17 @@ const {SearchContainerMUI, TextFieldSearch} = useCategorySearchStyles();
 
 const CategorySearch: FC = () => {
 	const {
-		isFocus,
 		control,
+		hintsData,
+		isMouseEnter,
 		handleKeyDown,
+		isVisibleHints,
 		activeSuggestion,
+		handleMouseEnter,
+		handleMouseLeave,
 		handleChangeFocus,
+		handleClickHintItem,
+		handleChangeActiveSuggestion
 	} = useCategorySearch();
 
 	return (
@@ -24,6 +30,7 @@ const CategorySearch: FC = () => {
 					render={({field: {value, onChange}}) => (
 						<TextFieldSearch
 							value={value}
+							autoComplete='off'
 							onFocus={handleChangeFocus(true)}
 							onBlur={handleChangeFocus(false)}
 							onChange={onChange}
@@ -33,10 +40,18 @@ const CategorySearch: FC = () => {
 					)}
 				/>
 			</SearchContainerMUI>
-			<CategorySearchHint
-				inputFocus={isFocus}
-				activeSuggestion={activeSuggestion}
-			/>
+			{!!isVisibleHints && (
+				<CategorySearchHint
+					hintsData={hintsData}
+					isMouseEnter={isMouseEnter}
+					isVisibleHints={!!isVisibleHints}
+					activeSuggestion={activeSuggestion}
+					handleMouseEnter={handleMouseEnter}
+					handleMouseLeave={handleMouseLeave}
+					handleClickHintItem={handleClickHintItem}
+					handleChangeActiveSuggestion={handleChangeActiveSuggestion}
+				/>
+			)}
 		</>
 	);
 };

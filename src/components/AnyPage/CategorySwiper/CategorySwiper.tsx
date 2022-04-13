@@ -4,14 +4,12 @@ import CategorySearchSwiperItem from '@/components/AnyPage/CategorySwiper/Catego
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {useCategorySwiperItem} from '@/components/AnyPage/CategorySwiper/style';
 import SwiperArrowPrev from '@/UIIcon/CategoryArrow.svg';
-import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg';
+import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg'
+import { Controller } from 'react-hook-form';
 import 'swiper/css';
+import {ISwiperCategoryItemClick} from '@/components/Shops/type';
 
-interface ICategorySearchSwiperProps {
-	handleClick: (state: string) => () => void;
-}
-
-const CategorySwiper: FC<ICategorySearchSwiperProps> = ({handleClick}) => {
+const CategorySwiper: FC<ISwiperCategoryItemClick> = ({handleClick}) => {
 
 	const {
 		onSwiper,
@@ -28,28 +26,36 @@ const CategorySwiper: FC<ICategorySearchSwiperProps> = ({handleClick}) => {
 			<>
 				<SwiperArrowButtonMUI
 					className='nextArrow'
+					type='button'
 					onClick={handleChangeSlide('prev')}
 				>
 					<SwiperArrowPrev/>
 				</SwiperArrowButtonMUI>
-				<Swiper
-					onSwiper={onSwiper}
-					slidesPerView={'auto'}
-				>
-					{categories?.map(category => (
-						<SwiperSlide
-							key={category.id}
-							style={widthInName(category.title)}
+				<Controller
+					name='tags'
+					defaultValue={[]}
+					render={({field: {value, onChange}}) => (
+						<Swiper
+							onSwiper={onSwiper}
+							slidesPerView={'auto'}
 						>
-							<CategorySearchSwiperItem
-								handleClick={handleClick}
-								id={category.id}
-								title={category.title}
-							/>
-						</SwiperSlide>
-					))}
-				</Swiper>
+							{categories?.map(category => (
+								<SwiperSlide
+									key={category.id}
+									style={widthInName(category.title)}
+								>
+									<CategorySearchSwiperItem
+										handleClick={handleClick(value, onChange)}
+										id={category.id}
+										title={category.title}
+									/>
+								</SwiperSlide>
+							))}
+						</Swiper>
+					)}
+				/>
 				<SwiperArrowButtonMUI
+					type='button'
 					className='prevArrow'
 					onClick={handleChangeSlide('next')}
 				>

@@ -2,10 +2,12 @@ import {useCallback, useEffect, useMemo, useState} from 'react';
 import {octoAxios} from '@/lib/http';
 import {ICategoryModel, ICategoryModelResponse} from '@/models/ICategoryModel';
 import {Swiper as SwiperTypes} from 'swiper';
+import {useFormContext} from 'react-hook-form';
 
 export const useCategorySwiper = () => {
 	const [initSwiper, setInitSwiper] = useState<SwiperTypes>();
 	const [categories, setCategories] = useState<ICategoryModel[] | null>();
+	const { control } = useFormContext();
 
 	const onSwiper = useCallback((swiper: SwiperTypes) => {
 		if (!initSwiper) {
@@ -44,6 +46,7 @@ export const useCategorySwiper = () => {
 	}, []);
 
 	return {
+		control,
 		onSwiper,
 		initSwiper,
 		categories,
