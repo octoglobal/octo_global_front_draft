@@ -11,6 +11,7 @@ export const useLinkStyle = () => {
 		fontWeight: '400',
 		fontSize: '18px',
 		lineHeight: '21px',
+		webkitAppearance: 'none',
 
 		'&:link': {
 			color: '#000000',
