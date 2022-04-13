@@ -38,5 +38,5 @@ const {
 	ReviewNameMUI,
 	ReviewDateMUI,
 	ReviewTextMUI,
-	ShowMoreMUI
+	// ShowMoreMUI
 } = useReviewItemStyle();
