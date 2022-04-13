@@ -10,7 +10,13 @@ export const usCategorySwiperActiveStyle = () => {
 		paddingLeft: '3px',
 	}));
 
+	const EmptyListMUI = styled('ul')(({theme}) => ({
+		height: '19px',
+		width: '100%',
+	}));
+
 	return {
 		ListMUI,
+		EmptyListMUI
 	};
 };

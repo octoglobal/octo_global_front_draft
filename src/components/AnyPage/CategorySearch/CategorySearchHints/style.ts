@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useCategorySearchHinstStyles = () => {
 
-	const ListMUI = styled('ul')(({theme}) => ({
+	const ListMUI = styled('ul')(() => ({
 		borderRadius: '5px 5px 0px 0px',
 		backgroundColor: '#FFFFFF',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -13,7 +13,7 @@ export const useCategorySearchHinstStyles = () => {
 		top: 0,
 	}));
 
-	const ContainerMUI = styled('div')(({theme}) => ({
+	const ContainerMUI = styled('div')(() => ({
 		position: 'relative',
 	}));
 

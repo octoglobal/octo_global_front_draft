@@ -6,14 +6,13 @@ import CategorySearchSwiper from '@/components/AnyPage/CategorySwiper/CategorySw
 import CategorySearchSwiperActive
 	from '@/components/AnyPage/CategorySwiper/CategorySwiperActive/CategorySwiperActive';
 import {useShopPage} from '@/components/Shops/useShopPage';
-import {FormProvider, useForm} from 'react-hook-form';
-import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySearchHints/CategorySearchHints';
+import {FormProvider} from 'react-hook-form';
 
 const ShopsPage: FC = () => {
 
-	const methods = useForm();
-
 	const {
+		methods,
+		onSubmit,
 		activeCategory,
 		handleDeleteCategory,
 		handleChangeCategory
@@ -24,17 +23,19 @@ const ShopsPage: FC = () => {
 			<HeaderMargin/>
 			<ContainerMUI>
 				<FormProvider {...methods}>
-					<SearchWrapperMUI>
-						<CategorySearch/>
-						<CategorySearchSwiperActive
-							category={activeCategory}
-							handleDeleteCategory={handleDeleteCategory}/>
-					</SearchWrapperMUI>
-					<ContainerSwiperMUI>
-						<CategorySearchSwiper
-							handleClick={handleChangeCategory}
-						/>
-					</ContainerSwiperMUI>
+					<FormMUI onSubmit={methods.handleSubmit(data => onSubmit(data, 'search'))}>
+						<SearchWrapperMUI>
+							<CategorySearch/>
+							<CategorySearchSwiperActive
+								category={activeCategory}
+								handleDeleteCategory={handleDeleteCategory}/>
+						</SearchWrapperMUI>
+						<ContainerSwiperMUI>
+							<CategorySearchSwiper
+								handleClick={handleChangeCategory}
+							/>
+						</ContainerSwiperMUI>
+					</FormMUI>
 				</FormProvider>
 			</ContainerMUI>
 		</>
@@ -42,6 +43,7 @@ const ShopsPage: FC = () => {
 };
 
 const {
+	FormMUI,
 	ContainerMUI,
 	SearchWrapperMUI,
 	ContainerSwiperMUI

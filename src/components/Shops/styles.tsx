@@ -6,8 +6,11 @@ export const useShopsPageStyles = () => {
 		marginTop: '49px',
 	}));
 
+	const FormMUI = styled('form')(() => ({
+	}));
+
 	const SearchWrapperMUI = styled('div')(() => ({
-		maxWidth: '960px',
+		maxWidth: '976px',
 		width: '100%',
 		margin: '0 auto',
 	}));
@@ -33,6 +36,7 @@ export const useShopsPageStyles = () => {
 	}));
 
 	return {
+		FormMUI,
 		ContainerMUI,
 		SearchWrapperMUI,
 		ContainerSwiperMUI,

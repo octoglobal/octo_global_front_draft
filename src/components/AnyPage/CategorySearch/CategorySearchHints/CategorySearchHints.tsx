@@ -1,36 +1,53 @@
-import React, {FC, useMemo} from 'react';
-import {
-	useCategorySearchHints
-} from '@/components/AnyPage/CategorySearch/CategorySearchHints/useCategorySearchHints';
+import React, {FC} from 'react';
 import {
 	useCategorySearchHinstStyles,
 } from '@/components/AnyPage/CategorySearch/CategorySearchHints/style';
 import CategorySearchHintsItem
 	from '@/components/AnyPage/CategorySearch/CategorySearchHintsItem/CategorySearchHintsItem';
+import {IHints} from '@/components/AnyPage/CategorySearch/types';
 
 interface ICategorySearchHintsProps {
-	inputFocus: boolean
+	hintsData: IHints[],
+	isMouseEnter: boolean;
 	activeSuggestion: number;
+	isVisibleHints: boolean
+	handleChangeActiveSuggestion: (hintCount: number) => () => void;
+	handleMouseEnter: () => void;
+	handleMouseLeave: () => void;
+	handleClickHintItem: (hintName: string) => () => void;
 }
 
-const CategorySearchHints: FC<ICategorySearchHintsProps> = ({inputFocus, activeSuggestion}) => {
-
-	const { hintsData, isHintsData } = useCategorySearchHints();
-
-	const isVisibleHints = useMemo(() => (
-		isHintsData && inputFocus
-	), [inputFocus, isHintsData]);
-
+const CategorySearchHints: FC<ICategorySearchHintsProps> = (
+	{
+		hintsData,
+		isMouseEnter,
+		isVisibleHints,
+		handleMouseEnter,
+		handleMouseLeave,
+		activeSuggestion,
+		handleClickHintItem,
+		handleChangeActiveSuggestion,
+	}
+) => {
 	return (
 		isVisibleHints ? (
 			<ContainerMUI>
-				<ListMUI>
-					{hintsData.map(hint => (
+				<ListMUI
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+				>
+					{hintsData.map((hint, index) => (
 						<CategorySearchHintsItem
-							active={true}
 							key={hint.url}
-							title={hint.title}
 							url={hint.url}
+							title={hint.title}
+							hintCount={index + 1}
+							active={index + 1 === activeSuggestion}
+							activeSuggestion={activeSuggestion}
+							isMouseEnter={isMouseEnter}
+							onMouseMove={handleMouseEnter}
+							handleClickHintItem={handleClickHintItem}
+							handleChangeActiveSuggestion={handleChangeActiveSuggestion}
 						/>
 					))}
 				</ListMUI>
