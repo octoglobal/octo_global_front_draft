@@ -18,6 +18,19 @@ export const useReviewAddFormStyle = () => {
 		}
 	}));
 
+	const HelperBoxMUI = styled('div')(() => ({
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '400',
+		fontSize: '10px',
+		lineHeight: '12px',
+		textDecorationLine: 'none',
+		color: '#274D82',
+		textAlign: 'right',
+
+		cursor: 'pointer',
+	}));
+
 	const ButtonSubmitMUI = {
 		width: '140px',
 		height: '40px',
@@ -32,6 +45,7 @@ export const useReviewAddFormStyle = () => {
 
 	return {
 		ReviewAddFormWrapperMUI,
-		ButtonSubmitMUI
+		ButtonSubmitMUI,
+		HelperBoxMUI
 	};
 };

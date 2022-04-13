@@ -7,4 +7,5 @@ export interface IOrderModel {
 	readonly title: string;
 	readonly tracking_link: string;
 	readonly userId: number;
+	readonly comment: string;
 }

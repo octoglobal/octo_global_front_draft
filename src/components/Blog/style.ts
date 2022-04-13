@@ -3,7 +3,7 @@ import {styled} from '@mui/material';
 export const useBlogPageStyle = () => {
 
 	const BlogMUI = styled('div')(() => ({
-		border: '1px solid blue',
+		// border: '1px solid blue',
 		marginTop: '120px',
 
 		display: 'flex',

@@ -13,44 +13,37 @@ import {useReviewStyle} from './style';
 import {useReviewPage} from '@/components/Review/useReviewPage';
 
 const ReviewPage: FC = () => {
-	const {
-		ReviewContentMUI,
-		ReviewBottomMUI,
-		PaginationWrappMUI
-	} = useReviewStyle();
-
 	const {isMobile} = useMobile();
 	const {isAuth} = useUserStore();
 
 	const {
 		pagesCountFront,
-		reviews,
 		currentPage,
 	} = useReviewsStore();
 
 	const {
+		defaultValue,
 		handlerPaginationChange
 	} = useReviewPage();
 
 	return (
 		<ReviewContentMUI>
-			<ReviewsList
-				reviews={reviews}
-			/>
+			<ReviewsList />
 			<ReviewBottomMUI>
 				{!isMobile ? (
 					<FormComponent
 						title='Оставьте отзыв'
 						background={false}
 					>
-						<ReviewAddForm/>
+						<ReviewAddForm defaultText={defaultValue}/>
 					</FormComponent>
-				) : isAuth ? <ReviewAddForm/> : <ReviewsAuthPlug/> }
+				) : isAuth ? <ReviewAddForm defaultText={defaultValue}/> : <ReviewsAuthPlug/> }
 				<PaginationWrappMUI>
 					<CustomPagination
 						page={currentPage}
 						count={pagesCountFront}
 						onChange={handlerPaginationChange}
+						siblingCount={1}
 					/>
 				</PaginationWrappMUI>
 			</ReviewBottomMUI>
@@ -59,3 +52,9 @@ const ReviewPage: FC = () => {
 };
 
 export default React.memo(ReviewPage);
+
+const {
+	ReviewContentMUI,
+	ReviewBottomMUI,
+	PaginationWrappMUI
+} = useReviewStyle();

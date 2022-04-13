@@ -3,7 +3,7 @@ import {styled, Typography} from '@mui/material';
 export const useBlogNewsItemStyle = () => {
 
 	const BlogNewsMUI = styled('div')(() => ({
-		border: '1px solid red',
+		// border: '1px solid red',
 
 		margin: '20px 0 100px',
 	}));

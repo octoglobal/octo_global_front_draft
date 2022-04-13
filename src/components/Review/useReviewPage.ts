@@ -1,12 +1,15 @@
-import {ChangeEvent, useEffect} from 'react';
-import {reviewsReset, setCurrentPage, setIntervalShow} from '@/reducers/reviewsSlice/reviewsSlice';
+import {ChangeEvent, useEffect, useState} from 'react';
+import {reviewsReset, setCurrentPage} from '@/reducers/reviewsSlice/reviewsSlice';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {useReviewsStore} from '@/hooks/useReviewsStore';
+import {useLocalStorage} from '@/hooks/useLocalStorage';
 
 export const useReviewPage = () => {
 
 	const dispatch = useAppDispatch();
+	const [defaultValue, setDefaultValue] = useState<string>('');
 
+	const {getData, removeData} = useLocalStorage();
 	const {
 		getFirstReviews,
 		getReviews,
@@ -15,15 +18,23 @@ export const useReviewPage = () => {
 	useEffect(() => {
 		dispatch(reviewsReset());
 		getFirstReviews();
+
+		const savedData = getData('savedReview');
+		if(savedData) {
+			setDefaultValue(savedData);
+			removeData('savedReview');
+		}
 	}, []);
+
+
 
 	const handlerPaginationChange = (event: ChangeEvent<unknown>, value: number) => {
 		dispatch(setCurrentPage(value));
-		dispatch(setIntervalShow(value));
 		getReviews(value);
 	};
-	
+
 	return {
+		defaultValue,
 		handlerPaginationChange,
 	};
 };

@@ -7,7 +7,7 @@ export const useAccountPersonalDataStyle = () => {
 		// minHeight: 'calc(100vh - 61px)',
 		// minHeight: '805px',
 		height: '100%',
-		padding: '60px 0px',
+		padding: '60px 0px 50px',
 
 		display: 'flex',
 		flexDirection: 'row',

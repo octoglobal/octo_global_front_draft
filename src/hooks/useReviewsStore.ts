@@ -8,8 +8,6 @@ export const useReviewsStore = () => {
 		reviews,
 		limitShow,
 		currentPage,
-		startShow,
-		endShow,
 		pagesCount,
 		pagesGet
 	} = useAppSelector(state => state.reviewsReducer);
@@ -29,8 +27,6 @@ export const useReviewsStore = () => {
 		pagesGet,
 		limitShow,
 		currentPage,
-		startShow,
-		endShow,
 		getFirstReviews: fetchFirstReviews,
 		getReviews: fetchAllReviews,
 	};

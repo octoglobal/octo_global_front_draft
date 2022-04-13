@@ -5,7 +5,9 @@ export interface IOrderInfo {
 	statusId: number,
 	trackNumber: string,
 	tracking_link: string,
-	longId: number
+	longId: number,
+	title: string,
+	comment: string,
 }
 
 export interface IOrderCardStyles {
@@ -80,4 +82,8 @@ export interface IReviewAddSubmit {
 
 export interface IReview extends IReviewAdd{
 	id: number,
+}
+
+export type TAddReview = {
+	text: string;
 }

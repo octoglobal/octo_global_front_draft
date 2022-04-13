@@ -5,7 +5,7 @@ export const useAddressUserStyle = () => {
 	const FormUI = styled('div')(({theme}) => ({
 		display: 'flex',
 
-		margin: '33px 0',
+		margin: '33px 0 0px',
 
 		'&:first-child': {
 			marginTop: '0px',

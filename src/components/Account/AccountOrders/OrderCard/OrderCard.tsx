@@ -1,6 +1,6 @@
 import React, {FC, useCallback} from 'react';
 
-import {useMobile} from '@/hooks/useMedia';
+// import {useMobile} from '@/hooks/useMedia';
 import Arrow_Blue from '../../../../UI/UIIcon/Arrow_Blue.svg';
 import Basket from '../../../../UI/UIIcon/Basket.svg';
 
@@ -22,21 +22,9 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 	const {getOrders} = useOrdersStore();
 
 	const {
-		OrderCardUI,
-		OrderContentUI,
-		OrderTitlesUI,
-		OrderLinkMUI,
-		OrderBoldTitleUI,
-		OrderInfoUI,
-		OrderInfoBlockUI,
-		ImageUI,
-		InfoUI,
-		BoldTitleUI,
-		BasketMUI
-	} = useOrderCardStyle();
-
-	const {
 		id,
+		title,
+		comment,
 		longId,
 		trackNumber,
 		highlight,
@@ -44,7 +32,7 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 		tracking_link
 	} = order;
 
-	const {isMobile} = useMobile();
+	// const {isMobile} = useMobile();
 
 	const handlerDeleteTrack = useCallback((id: number) : () => void => {
 		return () : void => {
@@ -60,12 +48,6 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 					if(message === 'success') {
 						getOrders();
 					}
-					// console.log('status: ', status);
-					// console.log(typeof status);
-					// switch (status) {
-					// 	case 200:
-					// 		getOrders();
-					// }
 				});
 		};
 	}, [id]);
@@ -78,7 +60,7 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 			<OrderContentUI>
 				<OrderTitlesUI>
 					<BoldTitleUI>Заказ № {longId} прибыл на склад</BoldTitleUI>
-					{!isMobile && <BoldTitleUI>{trackNumber}</BoldTitleUI>}
+					{/*{!isMobile && <BoldTitleUI>{trackNumber}</BoldTitleUI>}*/}
 					<BasketMUI>
 						<Basket
 							onClick={handlerDeleteTrack(id)}
@@ -92,11 +74,12 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 							<Package />
 						</ImageUI>
 						<InfoUI>
-							<OrderBoldTitleUI>Ebay</OrderBoldTitleUI>
+							<OrderBoldTitleUI>{title}</OrderBoldTitleUI>
 							<OrderInfoBlockUI>
 								<OrderBoldTitleUI>{trackNumber}</OrderBoldTitleUI>
 								<OrderLinkMUI href={tracking_link} target="_blank" rel="noopener noreferrer">Отследить <Arrow_Blue /></OrderLinkMUI>
 							</OrderInfoBlockUI>
+							<TitleUI>{comment}</TitleUI>
 						</InfoUI>
 					</OrderInfoBlockUI>
 				</OrderInfoUI>
@@ -106,3 +89,18 @@ const OrderCard: FC<IOrderCardProps> = ({order}) => {
 };
 
 export default React.memo(OrderCard);
+
+const {
+	OrderCardUI,
+	OrderContentUI,
+	OrderTitlesUI,
+	OrderLinkMUI,
+	OrderBoldTitleUI,
+	OrderInfoUI,
+	OrderInfoBlockUI,
+	ImageUI,
+	InfoUI,
+	BoldTitleUI,
+	BasketMUI,
+	TitleUI
+} = useOrderCardStyle();

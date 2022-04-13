@@ -12,7 +12,7 @@ export const useReviewItemStyle = () => {
 		// minWidth: '546px',
 		// maxWidth: '546px',
 		width: '546px',
-		maxHeight: '219px',
+		maxHeight: '235px',
 		height: 'fit-content',
 
 		// marginBottom: '32px',
@@ -67,6 +67,8 @@ export const useReviewItemStyle = () => {
 		fontSize: '18px',
 		lineHeight: '21px',
 		color: '#000000',
+
+		wordBreak: 'break-all',
 	}));
 
 	return {

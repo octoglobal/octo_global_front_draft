@@ -221,7 +221,7 @@ const Header = () => {
 																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
 																	данные</MenuItem>
 																<MenuItem
-																	onClick={handlerPushAccount('/account/orders', {tab: 'all'})}>Заказы</MenuItem>
+																	onClick={handlerPushAccount('/account/orders', {tab: '0'})}>Заказы</MenuItem>
 																<MenuItem onClick={handlerLogout}>Выход</MenuItem>
 															</MenuList>
 														</ClickAwayListener>

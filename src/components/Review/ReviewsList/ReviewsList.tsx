@@ -1,19 +1,23 @@
 import React, {FC} from 'react';
 
 import ReviewItem from '../ReviewItem/ReviewItem';
-import {IReviewItem} from '../../../types/types';
 import {useReviewListStyle} from '@/components/Review/ReviewsList/style';
+import {useReviewsStore} from '@/hooks/useReviewsStore';
 
-interface ReviewsList {
-	reviews: IReviewItem[] | []
-}
+// interface ReviewsList {
+// 	reviews: IReviewItem[] | []
+// }
 
-const ReviewsList: FC<ReviewsList> = ({reviews}) => {
+const ReviewsList: FC = () => {
 	const {
 		ReviewsWrappMUI,
 		ReviewsContentMUI,
 		ReviewBlockMUI
 	} = useReviewListStyle();
+
+	const {
+		reviews
+	} = useReviewsStore();
 
 	return (
 		<ReviewsWrappMUI>

@@ -40,7 +40,7 @@ export const useAccountLocationStyle = () => {
 		padding: '21px 38px',
 
 		'& .TabsUnstyled-root': {
-			width: '95%',
+			width: '100%',
 		},
 
 		'& .TabsListUnstyled-root': {

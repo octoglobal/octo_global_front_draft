@@ -7,7 +7,7 @@ export const useOrderCardStyle = () => {
 		shouldForwardProp: (prop) => prop !== 'highlight' && prop !== 'disabled',
 	})<IOrderCardStyles>(({ highlight, disabled, theme }) => ({
 		width: '100%',
-		height: '155px',
+		height: 'auto',
 		margin: '15px 0',
 		padding: '10px 8px',
 
@@ -95,6 +95,8 @@ export const useOrderCardStyle = () => {
 		lineHeight: '21px',
 		textAlign: 'left',
 		color: '#000000',
+
+		maxWidth: '425px',
 	}));
 
 	const BoldTitleUI = styled('span')(() => ({
@@ -170,6 +172,13 @@ export const useOrderCardStyle = () => {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-around',
+
+		'& > *': {
+			marginBottom: '15px',
+		},
+		'& > :last-child': {
+			marginBottom: '0px',
+		}
 	}));
 
 	return {

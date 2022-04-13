@@ -28,7 +28,7 @@ const AccountPage: FC<IAccoutPage> = ({children}) => {
 			pushTo(router.asPath, {location: 'ger'});
 		}
 		if(router.asPath.includes('orders') && !router.asPath.includes('tab')) {
-			pushTo(router.asPath, {tab: 6});
+			pushTo(router.asPath, {tab: 0});
 		}
 	}, [router.asPath]);
 
