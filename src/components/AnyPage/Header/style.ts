@@ -19,7 +19,7 @@ export const useHeaderStyle = () => {
 		height: '61px',
 		width: '100%',
 		position: 'fixed',
-		zIndex: 2,
+		zIndex: 3,
 
 		background: '#FFFFFF',
 		// opacity: '0.1',

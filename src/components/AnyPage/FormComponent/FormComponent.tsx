@@ -9,12 +9,6 @@ interface FormComponent {
 }
 
 const FormComponent: FC<FormComponent> = ({title, background = true, children}) => {
-
-	const {
-		FormComponentContent,
-		FormComponentTitle
-	} = useFormComponentStyle();
-
 	return (
 		<FormComponentContent
 			background={background}
@@ -26,3 +20,8 @@ const FormComponent: FC<FormComponent> = ({title, background = true, children}) 
 };
 
 export default React.memo(FormComponent);
+
+const {
+	FormComponentContent,
+	FormComponentTitle
+} = useFormComponentStyle();

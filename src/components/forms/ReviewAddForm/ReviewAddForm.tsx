@@ -1,17 +1,13 @@
-import React, {FC, useCallback, useEffect, useMemo, useState} from 'react';
+import React, {FC, useCallback, useEffect, useMemo} from 'react';
 import {Box} from '@mui/material';
 import {FieldValues, useForm} from 'react-hook-form';
 
-import {useCustomSize} from '@/hooks/useMedia';
-import {useUserStore} from '@/hooks/useUserStore';
+import {useCustomSize, useMobile} from '@/hooks/useMedia';
 import {useReviewAddForm} from './useReviewAddForm';
 import {useFormsStyle} from '@/components/forms/style';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-import {useCustomRouter} from '@/hooks/useCustomRouter';
-import {useLocalStorage} from '@/hooks/useLocalStorage';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
-import {useReviewsStore} from '@/hooks/useReviewsStore';
 import {TAddReview} from '../../../types/types';
 
 interface IReviewAddForm {
@@ -28,7 +24,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 		reset,
 		formState: {
 			dirtyFields,
-			isSubmitted
+			isSubmitted,
 		}
 	} = useForm<FieldValues | TAddReview>({
 		defaultValues: {
@@ -36,33 +32,34 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 		}
 	});
 
-	const {
-		currentPage,
-		getReviews,
-	} = useReviewsStore();
+	const {isMobile} = useMobile();
+	const {isCustomSize} = useCustomSize(null, 1241);
 
 	const successSubmit = () => {
 		getReviews(currentPage);
 		setShowPromt(true);
+		if(isMobile) {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		}
+		reset({
+			text: '',
+		}, {
+			keepIsSubmitted: false,
+		});
 	};
 
-	const {isAuth} = useUserStore();
-	const {isCustomSize} = useCustomSize(null, 1241);
-	const {onSubmit} = useReviewAddForm(successSubmit, setError, reset);
-	const {pushTo} = useCustomRouter();
-	const {setData} = useLocalStorage();
-	const [showPromt, setShowPromt] = useState<boolean>(false);
-
 	const {
-		FormsWrapperBox,
-		TextAreaUI,
-	} = useFormsStyle();
-
-	const {
-		ReviewAddFormWrapperMUI,
-		ButtonSubmitMUI,
-		HelperBoxMUI
-	} = useReviewAddFormStyle();
+		pushTo,
+		isAuth,
+		onSubmit,
+		setData,
+		showPromt, setShowPromt,
+		currentPage,
+		getReviews,
+	} = useReviewAddForm(successSubmit, setError);
 
 	const dirtyText = useMemo(
 		() => dirtyFields.text,
@@ -144,3 +141,14 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 };
 
 export default React.memo(ReviewAddForm);
+
+const {
+	FormsWrapperBox,
+	TextAreaUI,
+} = useFormsStyle();
+
+const {
+	ReviewAddFormWrapperMUI,
+	ButtonSubmitMUI,
+	HelperBoxMUI
+} = useReviewAddFormStyle();

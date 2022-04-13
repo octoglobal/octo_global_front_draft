@@ -35,9 +35,9 @@ const ReviewPage: FC = () => {
 						title='Оставьте отзыв'
 						background={false}
 					>
-						<ReviewAddForm defaultText={defaultValue}/>
+						<ReviewAddForm defaultText={defaultValue} />
 					</FormComponent>
-				) : isAuth ? <ReviewAddForm defaultText={defaultValue}/> : <ReviewsAuthPlug/> }
+				) : isAuth ? <ReviewAddForm defaultText={defaultValue} /> : <ReviewsAuthPlug/> }
 				<PaginationWrappMUI>
 					<CustomPagination
 						page={currentPage}

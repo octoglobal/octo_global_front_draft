@@ -53,7 +53,7 @@ export const fetchUserRefresh = async () => {
 export const fetchVerificMessage = async () => {
 	try {
 		const response = await octoAxios.get('/send_verification_message');
-		console.log(response);
+		// console.log(response);
 		return response.data;
 	} catch (err: unknown) {
 		if (axios.isAxiosError(err)) {
@@ -89,7 +89,7 @@ export const fetchUserAutoLogin = createAsyncThunk(
 	async (__, thunkAPI) => {
 		try {
 			const response = await octoAxios.get('/user');
-			console.log('пошел запрос: ', response);
+			// console.log('пошел запрос: ', response);
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
@@ -142,7 +142,7 @@ export const fetchChangePassword = createAsyncThunk(
 		} catch (err) {
 			// console.log('fetchChangePassword: ', err);
 			if (axios.isAxiosError(err)) {
-				console.log('isAxiosError', err.response);
+				// console.log('isAxiosError', err.response);
 				return thunkAPI.rejectWithValue(err.response?.status);
 			}
 			return thunkAPI.rejectWithValue(400);
@@ -162,11 +162,10 @@ export const fetchRecoveryPassword = createAsyncThunk(
 					'Authorization': `Bearer ${data.token}`
 				}
 			});
-			console.log(response);
+			// console.log(response);
 
 		} catch (e) {
-			console.log('e: ', e);
-
+			// console.log('e: ', e);
 		}
 	}
 );
@@ -191,10 +190,10 @@ export const fetchAddAddress = createAsyncThunk(
 		try {
 			const response = await octoAxios.post('/user/address', data);
 
-			console.log('response: ', response);
+			// console.log('response: ', response);
 			return response;
 		} catch (e) {
-			console.log('e: ', e);
+			// console.log('e: ', e);
 		}
 	}
 );
@@ -204,9 +203,9 @@ export const fetchDeleteAddress = createAsyncThunk(
 	// TODO: добавитьтип адресса к удалению адреса
 	async (data: IAddressDelete, thunkAPI) => {
 		try {
-			console.log('data: ', data);
+			// console.log('data: ', data);
 			const response = await octoAxios.delete('/user/address', {data});
-			console.log('response: ', response);
+			// console.log('response: ', response);
 			// const response
 			return response;
 		} catch (e) {

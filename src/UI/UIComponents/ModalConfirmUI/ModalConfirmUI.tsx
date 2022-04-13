@@ -28,13 +28,11 @@ const ModalConfirmUI: FC<IModalConfirmUI> = ({title = '', text = '', open = fals
 			open={open}
 			BackdropComponent={BackDropBlurMUI}
 			onBackdropClick={onClickNo}
+			onClose={onClickNo}
 			disableScrollLock
 		>
 			<ModalUI>
 				<DialogTitleUI>{title}</DialogTitleUI>
-				{/*<DialogContent>*/}
-				{/*	<DialogContentText>{text}</DialogContentText>*/}
-				{/*</DialogContent>*/}
 				<DialogActionsUI>
 					<ButtonUI
 						style={ButtonConfirmUI}

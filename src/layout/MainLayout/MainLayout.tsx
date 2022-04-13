@@ -26,10 +26,10 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 	// getUser();
 
 	useEffect(() => {
-		console.log('123');
+		// console.log('123');
 		getUser();
 	}, []);
-	console.log('345');
+	// console.log('345');
 
 	// useEffect(() => {
 	// 	console.log('useUserStore');

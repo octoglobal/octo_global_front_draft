@@ -53,6 +53,11 @@ const AccountOrders: FC = () => {
 		getOrders();
 	}, []);
 
+	const countWaitingShip = useMemo(
+		() => orders.filter(item => item.statusId === 1).length,
+		[orders]
+	);
+
 	return (
 		<AccountOrdersWrapperUI>
 			<List dense={false}>
@@ -113,7 +118,7 @@ const AccountOrders: FC = () => {
 
 			{routerTab !== 4 ? (
 				<OrdersUI>
-					{routerTab === 1 && orders.length >= 1 && (
+					{routerTab === 1 && countWaitingShip >= 1 && (
 						<OrdersNotifUI>
 							У вас есть возможность объединить все или несколько заказов
 							в одну посылку.
@@ -142,7 +147,7 @@ const AccountOrders: FC = () => {
 						))}
 					</OrdersItemUI>
 
-					{routerTab === 1 && orders.length >= 1 && (
+					{routerTab === 1 && countWaitingShip >= 1 && (
 						<ButtonUI
 							style={ButtonExecutParcelUI}
 						>

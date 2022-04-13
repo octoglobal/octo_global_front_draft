@@ -3,7 +3,7 @@ import {styled} from '@mui/material';
 export const useReviewListStyle = () => {
 
 	const ReviewsWrappMUI = styled('div')(() => ({
-		minHeight: '404px',
+		minHeight: '446px',
 	}));
 
 	const ReviewBlockMUI = styled('div')(({theme}) => ({
@@ -25,7 +25,7 @@ export const useReviewListStyle = () => {
 
 	const ReviewsContentMUI = styled('div')(({theme}) => ({
 		// marginTop: '120px',
-		// border: '1px solid blue',
+		transform: 'translateX(-64px)',
 
 		// minHeight: '305px',
 
@@ -33,12 +33,14 @@ export const useReviewListStyle = () => {
 		// justifyContent: 'space-between',
 		// flexWrap: 'wrap',
 
-		display: 'grid',
-
-		gridTemplateColumns: '546px 546px',
-		gridTemplateRows: 'auto auto auto',
-		gridColumnGap: '26px',
-		gridRowGap: '25px',
+		// display: 'grid',
+		//
+		// gridTemplateColumns: '546px 546px',
+		// gridTemplateRows: 'auto auto auto',
+		// gridColumnGap: '26px',
+		// gridRowGap: '25px',
+		// display: 'flex',
+		// justifyContent: 'center',
 
 		[theme.breakpoints.down(1241)]: {
 
@@ -61,6 +63,7 @@ export const useReviewListStyle = () => {
 
 			// marginBottom: '30px',
 			gridRowGap: '0px',
+			transform: 'none',
 
 			'& > div:first-child': {
 				marginBottom: '15px',
