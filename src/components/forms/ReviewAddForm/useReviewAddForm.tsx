@@ -14,7 +14,7 @@ import {useReviewsStore} from '@/hooks/useReviewsStore';
 export const useReviewAddForm = (
 	successSubmit: () => void,
 	setError: UseFormSetError<FieldValues | TAddReview>,
-	reset?: UseFormReset<IReviewAddSubmit>,
+	// reset?: UseFormReset<IReviewAddSubmit>,
 ) => {
 	const [showPromt, setShowPromt] = useState<boolean>(false);
 

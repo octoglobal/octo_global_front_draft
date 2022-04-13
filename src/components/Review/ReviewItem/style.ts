@@ -12,7 +12,7 @@ export const useReviewItemStyle = () => {
 		// minWidth: '546px',
 		// maxWidth: '546px',
 		width: '546px',
-		maxHeight: '235px',
+		maxHeight: '262px',
 		height: 'fit-content',
 
 		// marginBottom: '32px',
@@ -20,7 +20,7 @@ export const useReviewItemStyle = () => {
 
 		[theme.breakpoints.down(591)]: {
 			width: '100%',
-			maxHeight: '360px',
+			// maxHeight: '360px',
 			// width: '100%',
 			// margin: '15px 0'
 			marginBottom: '0px',
@@ -71,11 +71,24 @@ export const useReviewItemStyle = () => {
 		wordBreak: 'break-all',
 	}));
 
+	const ShowMoreMUI = styled('div')(() => ({
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '300',
+		fontSize: '18px',
+		lineHeight: '21px',
+		color: '#274D82',
+		cursor: 'pointer',
+
+		marginTop: '5px',
+	}));
+
 	return {
 		ReviewItemWrapperMUI,
 		ReviewHeaderMUI,
 		ReviewNameMUI,
 		ReviewDateMUI,
-		ReviewTextMUI
+		ReviewTextMUI,
+		ShowMoreMUI
 	};
 };

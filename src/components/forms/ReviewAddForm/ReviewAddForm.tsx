@@ -1,17 +1,13 @@
-import React, {FC, useCallback, useEffect, useMemo, useState} from 'react';
+import React, {FC, useCallback, useEffect, useMemo} from 'react';
 import {Box} from '@mui/material';
 import {FieldValues, useForm} from 'react-hook-form';
 
 import {useCustomSize, useMobile} from '@/hooks/useMedia';
-import {useUserStore} from '@/hooks/useUserStore';
 import {useReviewAddForm} from './useReviewAddForm';
 import {useFormsStyle} from '@/components/forms/style';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-import {useCustomRouter} from '@/hooks/useCustomRouter';
-import {useLocalStorage} from '@/hooks/useLocalStorage';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
-import {useReviewsStore} from '@/hooks/useReviewsStore';
 import {TAddReview} from '../../../types/types';
 
 interface IReviewAddForm {
@@ -63,7 +59,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 		showPromt, setShowPromt,
 		currentPage,
 		getReviews,
-	} = useReviewAddForm(successSubmit, setError, reset);
+	} = useReviewAddForm(successSubmit, setError);
 
 	const dirtyText = useMemo(
 		() => dirtyFields.text,
