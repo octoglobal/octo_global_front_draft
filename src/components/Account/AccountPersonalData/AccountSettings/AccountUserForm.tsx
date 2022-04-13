@@ -8,7 +8,7 @@ import {useAccountSettings} from '@/components/Account/AccountPersonalData/Accou
 import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/AccountSettings/style';
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
-import {ObjectHasOwnProperty} from '../../../../lib/services/services';
+import {ObjectHasOwnProperty} from '@/services/services';
 
 const AccountUserForm: FC = () => {
 
@@ -32,17 +32,10 @@ const AccountUserForm: FC = () => {
 		user: {personalAreaId, verifiedEmail, email, phone},
 	} = useUserStore();
 
-	// console.log('dirtyFields: ', dirtyFields);
-
 	const dirtyPhone = useMemo(
 		() => dirtyFields.phone,
 		[dirtyFields.phone]
 	);
-
-	console.log('dirtyFields: ', dirtyFields);
-	console.log('dirtyPhone: ', dirtyPhone);
-	console.log('dirtyFields.phone: ', dirtyFields.phone);
-
 
 	const {
 		onSubmitUser,
@@ -61,7 +54,7 @@ const AccountUserForm: FC = () => {
 		[isSubmitted, dirtyPhone]
 	);
 
-	console.log('isSubmitForm: ', isSubmitForm);
+	// console.log('isSubmitForm: ', isSubmitForm);
 
 
 	useEffect(() => {

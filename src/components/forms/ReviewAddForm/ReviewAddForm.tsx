@@ -1,32 +1,57 @@
-import React, {FC, useCallback, useMemo} from 'react';
+import React, {FC, useCallback, useEffect, useMemo, useState} from 'react';
 import {Box} from '@mui/material';
-import {useForm} from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 
-import {useReviewAddForm} from './useReviewAddForm';
-import {useFormsStyle} from '@/components/forms/style';
-import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
-import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
-import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {useCustomSize} from '@/hooks/useMedia';
 import {useUserStore} from '@/hooks/useUserStore';
+import {useReviewAddForm} from './useReviewAddForm';
+import {useFormsStyle} from '@/components/forms/style';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
+import {useLocalStorage} from '@/hooks/useLocalStorage';
+import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
+import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
+import {useReviewsStore} from '@/hooks/useReviewsStore';
+import {TAddReview} from '../../../types/types';
 
-const ReviewAddForm: FC = () => {
+interface IReviewAddForm {
+	defaultText?:string
+}
+
+const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 
 	const {
 		handleSubmit,
 		control,
 		setError,
+		getValues,
+		reset,
 		formState: {
 			dirtyFields,
 			isSubmitted
 		}
-	} = useForm();
+	} = useForm<FieldValues | TAddReview>({
+		defaultValues: {
+			text: defaultText || ''
+		}
+	});
+
+	const {
+		currentPage,
+		getReviews,
+	} = useReviewsStore();
+
+	const successSubmit = () => {
+		getReviews(currentPage);
+		setShowPromt(true);
+	};
 
 	const {isAuth} = useUserStore();
 	const {isCustomSize} = useCustomSize(null, 1241);
-	const {onSubmit} = useReviewAddForm(setError);
+	const {onSubmit} = useReviewAddForm(successSubmit, setError, reset);
 	const {pushTo} = useCustomRouter();
+	const {setData} = useLocalStorage();
+	const [showPromt, setShowPromt] = useState<boolean>(false);
 
 	const {
 		FormsWrapperBox,
@@ -35,7 +60,8 @@ const ReviewAddForm: FC = () => {
 
 	const {
 		ReviewAddFormWrapperMUI,
-		ButtonSubmitMUI
+		ButtonSubmitMUI,
+		HelperBoxMUI
 	} = useReviewAddFormStyle();
 
 	const dirtyText = useMemo(
@@ -50,9 +76,22 @@ const ReviewAddForm: FC = () => {
 
 	const handlerClickButton = useCallback(() => {
 		if(!isAuth) {
+			const textData = getValues('text');
+			console.log('textData: ', textData);
+			setData('savedReview', textData);
 			pushTo('/signup');
 		}
 	}, [isAuth]);
+
+	useEffect(() => {
+		const delay5s = setTimeout(() => {
+			setShowPromt(false);
+		}, 10000);
+
+		return () => {
+			clearTimeout(delay5s);
+		};
+	}, [showPromt]);
 
 	return (
 		<ReviewAddFormWrapperMUI>
@@ -76,12 +115,19 @@ const ReviewAddForm: FC = () => {
 							inputProps: {
 								maxLength: 430,
 							},
-							disabled: !isAuth,
-							// inputRef: textCommentRef
-							inputRef: input => (input && dirtyText) && input.focus(),
+							inputRef: input => {
+								if(input && dirtyText) {
+									input.focus();
+									input.selectionStart = input.value.length;
+								}
+							},
 						}}
 					/>
-
+					{showPromt && (
+						<HelperBoxMUI>
+							Ваш отзыв добавлен
+						</HelperBoxMUI>
+					)}
 					{isCustomSize || isShowSubmitButton ? (
 						<ButtonUI
 							type={isAuth ? 'submit' : 'button'}

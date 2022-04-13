@@ -1,5 +1,5 @@
 import React, {FC, MouseEventHandler, useEffect, useState, useMemo} from 'react';
-import { List, Divider } from '@mui/material';
+import {List, Divider} from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import OrderCard from './OrderCard/OrderCard';
@@ -37,18 +37,18 @@ const AccountOrders: FC = () => {
 
 	const [filterOrders, setFiltedOrders] = useState(routerTab);
 
-	const toggleFilters = (filter : number) : MouseEventHandler<HTMLDivElement> => {
-		return () : void => {
+	const toggleFilters = (filter: number): MouseEventHandler<HTMLDivElement> => {
+		return (): void => {
 			setFiltedOrders(filter);
 			pushTo(router.pathname, {tab: filter});
 		};
 	};
+
 	const handlerAddTrack = (): void => {
 		toggleFilters(4);
 		pushTo(router.pathname, {tab: 4});
 	};
 
-	//TODO: временно стоит тут
 	useEffect(() => {
 		getOrders();
 	}, []);
@@ -56,14 +56,14 @@ const AccountOrders: FC = () => {
 	return (
 		<AccountOrdersWrapperUI>
 			<List dense={false}>
-				<ListItemUI>
-					<ListItemTextUI
-						selected={filterOrders === 6}
-						onClick={toggleFilters(6)}
-					>
-						Все
-					</ListItemTextUI>
-				</ListItemUI>
+				{/*<ListItemUI>*/}
+				{/*	<ListItemTextUI*/}
+				{/*		selected={filterOrders === 6}*/}
+				{/*		onClick={toggleFilters(6)}*/}
+				{/*	>*/}
+				{/*		Все*/}
+				{/*	</ListItemTextUI>*/}
+				{/*</ListItemUI>*/}
 
 				<ListItemUI>
 					<ListItemTextUI
@@ -113,13 +113,14 @@ const AccountOrders: FC = () => {
 
 			{routerTab !== 4 ? (
 				<OrdersUI>
-					<OrdersNotifUI>
-						У вас есть возможность объединить все или несколько заказов
-						в одну посылку.
-					</OrdersNotifUI>
-
+					{routerTab === 1 && orders.length >= 1 && (
+						<OrdersNotifUI>
+							У вас есть возможность объединить все или несколько заказов
+							в одну посылку.
+						</OrdersNotifUI>
+					)}
 					<OrdersItemUI>
-						{checkValidArray(orders) && orders.filter(item => filterOrders === 6 ? true : item.statusId === filterOrders).map((item : IOrderModel) => (
+						{checkValidArray(orders) && orders.filter(item => filterOrders === 6 ? true : item.statusId === filterOrders).map((item: IOrderModel) => (
 							<React.Fragment key={item.id}>
 								<OrderCardWrappUI>
 									<CheckBoxUI
@@ -136,20 +137,22 @@ const AccountOrders: FC = () => {
 										order={item}
 									/>
 								</OrderCardWrappUI>
-								<Divider />
+								<Divider/>
 							</React.Fragment>
 						))}
 					</OrdersItemUI>
 
-					<ButtonUI
-						style={ButtonExecutParcelUI}
-					>
-						Оформить посылку
-					</ButtonUI>
+					{routerTab === 1 && orders.length >= 1 && (
+						<ButtonUI
+							style={ButtonExecutParcelUI}
+						>
+							Оформить посылку
+						</ButtonUI>
+					)}
 
 				</OrdersUI>
 			) : (
-				<AddTrackForm />
+				<AddTrackForm/>
 			)}
 		</AccountOrdersWrapperUI>
 	);

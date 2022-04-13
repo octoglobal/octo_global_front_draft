@@ -46,8 +46,6 @@ const CustomPagination : FC<PaginationProps> = (props) => {
 		PaginationContainerMUI
 	} = useReviewPaginationStyle();
 
-	// console.log('props: ', props);
-
 	return (
 		<PaginationContainerMUI>
 			<Pagination
@@ -56,8 +54,6 @@ const CustomPagination : FC<PaginationProps> = (props) => {
 				// hideNextButton
 				variant="outlined"
 				shape="rounded"
-				// siblingCount={4}
-				// boundaryCount={3}
 				renderItem={(item) => (
 					<NextPaginationButton {...item} />
 				)}

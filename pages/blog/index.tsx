@@ -1,11 +1,12 @@
 import React from 'react';
 import type {NextPage} from 'next';
+import BlogPage from '@/components/Blog/BlogPage';
 
 const Blog: NextPage = () => {
 
 	return (
 		<>
-			<h1>Блог</h1>
+			<BlogPage />
 		</>
 	);
 };

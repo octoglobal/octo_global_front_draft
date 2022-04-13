@@ -21,13 +21,20 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 	// useEffect(() => {
 	// 	console.log('useUserStore');
 	// 	getUser();
-	// });
+	// }, []);
 
 	// getUser();
 
 	useEffect(() => {
+		console.log('123');
 		getUser();
-	});
+	}, []);
+	console.log('345');
+
+	// useEffect(() => {
+	// 	console.log('useUserStore');
+	// 	getUser();
+	// }, []);
 
 
 	const disabledPadding = useMemo(() => router.route === '/', [router.route]);
