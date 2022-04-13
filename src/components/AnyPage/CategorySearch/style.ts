@@ -1,18 +1,23 @@
+import {styled, TextField} from '@mui/material';
+
 export const useCategorySearchStyles = () => {
 
-	const searchSx = {
-		marginBottom: '20px',
-		borderRadius: '5px',
-		padding: '0',
-		'& > div' : {
-			'& > input': {
-				padding: '14px 25px',
-			}
-		}
-	};
+	const SearchContainerMUI = styled('div')(({theme}) => ({
+		marginBottom: '5px',
+		'& > div': {
+			display: 'flex',
+			justifyContent: 'center',
+		},
+	}));
 
+	const TextFieldSearch = styled(TextField)(({theme}) => ({
+		'& > div > input': {
+			padding: '15px 25px'
+		}
+	}));
 
 	return {
-		searchSx
+		TextFieldSearch,
+		SearchContainerMUI
 	};
 };

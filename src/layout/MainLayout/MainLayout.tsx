@@ -33,6 +33,7 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 	const disabledPadding = useMemo(() => router.route === '/', [router.route]);
 	const disabledMargin = useMemo(() => router.route === '/', [router.route]);
 
+
 	return (
 		<Theme>
 			<Header/>
