@@ -20,7 +20,7 @@ export const useReviewItemStyle = () => {
 
 		[theme.breakpoints.down(591)]: {
 			width: '100%',
-			maxHeight: '257px',
+			maxHeight: '360px',
 			// width: '100%',
 			// margin: '15px 0'
 			marginBottom: '0px',

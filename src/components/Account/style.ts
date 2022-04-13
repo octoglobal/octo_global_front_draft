@@ -5,7 +5,7 @@ export const useAccountPageStyle = () => {
 		width: '100%',
 		height: '100%',
 
-		margin: '120px 0px',
+		margin: '120px 0px 0px',
 
 		'& .TabsUnstyled-root': {
 			width: '100%',

@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useMemo} from 'react';
 
 import ReviewItem from '../ReviewItem/ReviewItem';
 import {useReviewListStyle} from '@/components/Review/ReviewsList/style';
 import {useReviewsStore} from '@/hooks/useReviewsStore';
+import { ImageList, ImageListItem  } from '@mui/material';
 
 // interface ReviewsList {
 // 	reviews: IReviewItem[] | []
@@ -10,44 +11,35 @@ import {useReviewsStore} from '@/hooks/useReviewsStore';
 
 const ReviewsList: FC = () => {
 	const {
-		ReviewsWrappMUI,
-		ReviewsContentMUI,
-		ReviewBlockMUI
-	} = useReviewListStyle();
-
-	const {
 		reviews
 	} = useReviewsStore();
+
+	const reviewsSizeItems = useMemo(
+		() => reviews.map(item => item.text.length),
+		[reviews]
+	);
 
 	return (
 		<ReviewsWrappMUI>
 			<ReviewsContentMUI>
-				<ReviewBlockMUI>
-					{reviews.slice(0, 3).map(item => (
-						<ReviewItem
-							key={item.createdTime}
+				{reviews.map(item => (
+					<ReviewItem
+						key={item.createdTime}
 
-							text={item.text}
-							userName={item.userName}
-							createdTime={item.createdTime}
-						/>
-					))}
-				</ReviewBlockMUI>
-				<ReviewBlockMUI>
-					{reviews.slice(3, 6).map(item => (
-						<ReviewItem
-							key={item.createdTime}
-
-							text={item.text}
-							userName={item.userName}
-							createdTime={item.createdTime}
-						/>
-					))}
-				</ReviewBlockMUI>
+						text={item.text}
+						userName={item.userName}
+						createdTime={item.createdTime}
+					/>
+				))}
 			</ReviewsContentMUI>
 		</ReviewsWrappMUI>
-
 	);
 };
 
 export default React.memo(ReviewsList);
+
+const {
+	ReviewsWrappMUI,
+	ReviewsContentMUI,
+	ReviewBlockMUI
+} = useReviewListStyle();

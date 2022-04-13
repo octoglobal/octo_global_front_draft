@@ -4,13 +4,16 @@ export const useAccountOrdersStyle = () => {
 	const AccountOrdersWrapperUI = styled('div')(({theme}) => ({
 		width: '100%',
 		height: '100%',
-		marginTop: '25px',
+		marginTop: '50px',
 
 		display: 'flex',
 		flexDirection: 'row',
 
 		'& ul': {
 			marginRight: '37px',
+			'& li': {
+				paddingLeft: '0px',
+			}
 		},
 
 		[theme.breakpoints.down(500)]: {
