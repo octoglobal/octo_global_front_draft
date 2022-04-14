@@ -38,7 +38,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 	const successSubmit = () => {
 		getReviews(currentPage);
 		setShowPromt(true);
-		if(isMobile) {
+		if(isMobile && currentPage) {
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth'

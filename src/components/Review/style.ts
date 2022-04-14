@@ -22,7 +22,7 @@ export const useReviewStyle = () => {
 			padding: '30px 0px',
 		},
 
-		[theme.breakpoints.down(891)]: {
+		[theme.breakpoints.down(1241)]: {
 			flexDirection: 'column',
 
 			'& > div:first-child': {
@@ -47,8 +47,8 @@ export const useReviewStyle = () => {
 		marginLeft: '183px',
 		marginBottom: '20px',
 
-		[theme.breakpoints.down(891)]: {
-			margin: '0 auto',
+		[theme.breakpoints.down(1241)]: {
+			margin: '0 auto 15px',
 
 			'& ul': {
 				justifyContent: 'center',
