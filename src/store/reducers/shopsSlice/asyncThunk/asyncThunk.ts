@@ -1,18 +1,59 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {octoAxios} from '@/lib/http';
-import {IShopsResponse} from '@/models/IShopsModel';
+import {IShopsSearchResponse, IShopsTagsResponse} from '@/models/IShopsModel';
 
 export const fetchSearchShops = createAsyncThunk(
 	'shopsSlice/search',
 	async (data: { search: string }, thunkAPI) => {
 		try {
 			const response =
-				await octoAxios.get<IShopsResponse>(`/shops?search=${data.search}`)
+				await octoAxios.get<IShopsSearchResponse>(`/shops?search=${data.search}`)
 					.then(response => response.data);
 			return response.search_results;
 		} catch (e) {
-			if(axios.isAxiosError(e)) {
+			if (axios.isAxiosError(e)) {
+				return thunkAPI.rejectWithValue(e.response?.status);
+			}
+		}
+	}
+);
+
+export const fetchTagShops = createAsyncThunk(
+	'shopsSlice/tags',
+	async (data: { tagsQuery: string }, thunkAPI) => {
+		try {
+			const response =
+				await octoAxios.get<IShopsTagsResponse>(`/shops?${data.tagsQuery}page=1`)
+					.then(response => response.data);
+			console.log(response.shops);
+			return {
+				shops: response.shops,
+				shopsEnd: !(response.shops.length === response.postsOnPage),
+				tags: data.tagsQuery,
+			};
+		} catch (e) {
+			if (axios.isAxiosError(e)) {
+				return thunkAPI.rejectWithValue(e.response?.status);
+			}
+		}
+	}
+);
+
+export const fetchMoreTagShops = createAsyncThunk(
+	'shopsSlice/moreTags',
+	async (data: { tagsQuery: string, page: number }, thunkAPI) => {
+		try {
+			const response =
+				await octoAxios.get<IShopsTagsResponse>(`/shops?${data.tagsQuery}page=${data.page}`)
+					.then(response => response.data);
+			return {
+				shops: response.shops,
+				shopsEnd: !(response.shops.length === response.postsOnPage),
+				tags: data.tagsQuery,
+			};
+		} catch (e) {
+			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);
 			}
 		}

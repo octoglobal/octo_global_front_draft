@@ -9,5 +9,5 @@ export const allReducers = {
 	userReducer,
 	ordersReducer,
 	reviewsReducer,
-	shopReducer,
+	shopReducer: shopReducer,
 };

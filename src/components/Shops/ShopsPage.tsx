@@ -7,6 +7,7 @@ import CategorySearchSwiperActive
 	from '@/components/AnyPage/CategorySwiper/CategorySwiperActive/CategorySwiperActive';
 import {useShopPage} from '@/components/Shops/useShopPage';
 import {FormProvider} from 'react-hook-form';
+import ShopsList from '@/components/Shops/ShopsList/ShopsList';
 
 const ShopsPage: FC = () => {
 
@@ -15,7 +16,8 @@ const ShopsPage: FC = () => {
 		onSubmit,
 		activeCategory,
 		handleDeleteCategory,
-		handleChangeCategory
+		handleChangeCategory,
+		handleClickTagInCard
 	} = useShopPage();
 
 	return (
@@ -35,6 +37,9 @@ const ShopsPage: FC = () => {
 								handleClick={handleChangeCategory}
 							/>
 						</ContainerSwiperMUI>
+						<ShopsList
+							handleClickTagInCard={handleClickTagInCard}
+						/>
 					</FormMUI>
 				</FormProvider>
 			</ContainerMUI>

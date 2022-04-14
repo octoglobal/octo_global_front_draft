@@ -14,6 +14,11 @@ export interface IShopsModel {
 	url: string;
 }
 
-export interface IShopsResponse {
+export interface IShopsSearchResponse {
 	search_results: IShopsModel[];
+}
+
+export interface IShopsTagsResponse {
+	shops: IShopsModel[];
+	postsOnPage: number;
 }

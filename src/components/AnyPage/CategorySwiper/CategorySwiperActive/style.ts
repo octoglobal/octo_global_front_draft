@@ -2,7 +2,7 @@ import {styled} from '@mui/material';
 
 export const usCategorySwiperActiveStyle = () => {
 
-	const ListMUI = styled('ul')(({theme}) => ({
+	const ListMUI = styled('ul')(() => ({
 		display: 'flex',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
@@ -10,7 +10,7 @@ export const usCategorySwiperActiveStyle = () => {
 		paddingLeft: '3px',
 	}));
 
-	const EmptyListMUI = styled('ul')(({theme}) => ({
+	const EmptyListMUI = styled('ul')(() => ({
 		height: '19px',
 		width: '100%',
 	}));
