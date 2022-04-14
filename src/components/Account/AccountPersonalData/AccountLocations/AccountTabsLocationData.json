@@ -4,27 +4,31 @@
         "url": "",
         "query": {
             "location": "ger"
-        }
+        },
+        "showMobile": true
     },
     {
         "title": "Нидерланды",
         "url": "",
         "query": {
             "location": "nld"
-        }
+        },
+        "showMobile": true
     },
     {
         "title": "Финляндия",
         "url": "",
         "query": {
             "location": "fin"
-        }
+        },
+        "showMobile": true
     },
     {
         "title": "Россия",
         "url": "",
         "query": {
             "location": "rus"
-        }
+        },
+        "showMobile": true
     }
 ]

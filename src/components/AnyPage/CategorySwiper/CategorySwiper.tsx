@@ -3,6 +3,7 @@ import {useCategorySwiper} from '@/components/AnyPage/CategorySwiper/useCategory
 import CategorySearchSwiperItem from '@/components/AnyPage/CategorySwiper/CategorySwiperItem/CategorySwiperItem';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {useCategorySwiperItem} from '@/components/AnyPage/CategorySwiper/style';
+import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg';
 import SwiperArrowPrev from '@/UIIcon/CategoryArrow.svg';
 import { Controller } from 'react-hook-form';
 import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg';

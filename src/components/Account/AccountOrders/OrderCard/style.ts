@@ -140,6 +140,13 @@ export const useOrderCardStyle = () => {
 		}
 	}));
 
+	const OrderTrackNumberMUI = styled(OrderBoldTitleUI)(({theme}) => ({
+		[theme.breakpoints.down(500)]: {
+			maxWidth: '55%',
+			marginRight: '20px'
+		}
+	}));
+
 	const OrderInfoUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
@@ -172,6 +179,7 @@ export const useOrderCardStyle = () => {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-around',
+		wordBreak: 'break-word',
 
 		'& > *': {
 			marginBottom: '15px',
@@ -188,6 +196,7 @@ export const useOrderCardStyle = () => {
 		OrderTitleUI,
 		OrderLinkMUI,
 		OrderBoldTitleUI,
+		OrderTrackNumberMUI,
 		OrderInfoUI,
 		OrderInfoBlockUI,
 		ImageUI,

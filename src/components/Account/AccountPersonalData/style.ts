@@ -13,7 +13,7 @@ export const useAccountPersonalDataStyle = () => {
 		flexDirection: 'row',
 
 		[theme.breakpoints.down(1390)]: {
-			padding: '0',
+			padding: '0 0 50px',
 			flexDirection: 'column',
 		},
 

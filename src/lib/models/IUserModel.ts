@@ -5,6 +5,7 @@ export interface IUserModel {
 	readonly id: number;
 	readonly addresses: IAddressModel[];
 	readonly personalAreaId: number;
+	readonly statusId: number;
 	readonly lastLoginTime: string;
 	readonly name: string;
 	readonly photo: string;

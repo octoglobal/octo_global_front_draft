@@ -17,6 +17,7 @@ const initialState: IUserSlice = {
 		addresses: [],
 		lastLoginTime: '',
 		personalAreaId: 0,
+		statusId: 0,
 		name: '',
 		photo: '',
 		phone: '',

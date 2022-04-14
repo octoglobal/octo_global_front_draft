@@ -4,6 +4,7 @@ import Basket from '../../../../../UI/UIIcon/Basket.svg';
 import ModalConfirmUI from '../../../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
 import {useAddressUserStyle} from './style';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IAddressUser {
 	id: number,
@@ -30,6 +31,12 @@ const AddressUser: FC<IAddressUser> = ({
 		FormRowTextUI,
 		FormIconUI
 	} = useAddressUserStyle();
+
+	const {
+		user: {
+			statusId
+		}
+	} = useUserStore();
 
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
@@ -68,11 +75,13 @@ const AddressUser: FC<IAddressUser> = ({
 					<FormRowTitleUI>Адрес</FormRowTitleUI>
 					<FormRowTextUI>{location}</FormRowTextUI>
 				</FormWrapperUI>
-				<FormIconUI
-					onClick={handlerDialogState}
-				>
-					<Basket />
-				</FormIconUI>
+				{statusId === 9 && (
+					<FormIconUI
+						onClick={handlerDialogState}
+					>
+						<Basket />
+					</FormIconUI>
+				)}
 			</FormUI>
 			<ModalConfirmUI
 				open={openConfirmDialog}

@@ -32,36 +32,6 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 					{option.title}
 				</CustomLinkUI>
 			))}
-
-			{/*<CustomLinkUI*/}
-			{/*	href=""*/}
-			{/*>*/}
-			{/*	Магазины*/}
-			{/*</CustomLinkUI>*/}
-
-			{/*<CustomLinkUI*/}
-			{/*	href=""*/}
-			{/*>*/}
-			{/*	Калькулятор*/}
-			{/*</CustomLinkUI>*/}
-
-			{/*<CustomLinkUI*/}
-			{/*	href=""*/}
-			{/*>*/}
-			{/*	Блог*/}
-			{/*</CustomLinkUI>*/}
-
-			{/*<CustomLinkUI*/}
-			{/*	href=""*/}
-			{/*>*/}
-			{/*	Стоимость услуг*/}
-			{/*</CustomLinkUI>*/}
-
-			{/*<CustomLinkUI*/}
-			{/*	href=""*/}
-			{/*>*/}
-			{/*	Помощь*/}
-			{/*</CustomLinkUI>*/}
 		</>
 	);
 };
