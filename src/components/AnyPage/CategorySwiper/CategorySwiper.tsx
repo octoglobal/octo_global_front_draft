@@ -6,7 +6,6 @@ import {useCategorySwiperItem} from '@/components/AnyPage/CategorySwiper/style';
 import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg';
 import SwiperArrowPrev from '@/UIIcon/CategoryArrow.svg';
 import { Controller } from 'react-hook-form';
-import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg';
 import 'swiper/css';
 import {ISwiperCategoryItemClick} from '@/components/Shops/type';
 
