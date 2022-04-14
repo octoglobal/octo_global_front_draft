@@ -33,13 +33,15 @@ const AddressUser: FC<IAddressUser> = ({
 
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
-	const handlerDialogState = useCallback(() => {
+	const handlerDialogState = () => {
+		console.log('handlerDialogState: ');
 		setOpenConfirmDialog(prevState => !prevState);
-	}, []);
+	};
+
+	console.log('openConfirmDialog: ', openConfirmDialog);
 
 	const handlerConfirm = (idDelete : number) : void => {
 		// return () => {
-		console.log('handlerConfirm: ');
 		handlerDeleteLocation(idDelete);
 		handlerDialogState();
 		// };
@@ -47,7 +49,7 @@ const AddressUser: FC<IAddressUser> = ({
 
 	const handlerCancel = () : void => {
 		console.log('handlerCancel: ');
-		handlerDialogState();
+		setOpenConfirmDialog(false);
 	};
 
 	return (
