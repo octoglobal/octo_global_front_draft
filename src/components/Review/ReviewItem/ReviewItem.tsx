@@ -1,16 +1,16 @@
-import React, {FC, /*useState*/} from 'react';
+import React, {FC, useState} from 'react';
 
 import {IReviewItem} from '../../../types/types';
 import { ToRusDate, ellipsis } from '@/lib/services/services';
 import {useReviewItemStyle} from '@/components/Review/ReviewItem/style';
-// import { Collapse } from '@mui/material';
+import { Collapse } from '@mui/material';
 
 const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
-	// const [openMore, setOpenMore] = useState<boolean>(false);
+	const [openMore, setOpenMore] = useState<boolean>(false);
 
-	// const triggerShowMore = () => {
-	// 	setOpenMore(prevState => !prevState);
-	// };
+	const triggerShowMore = () => {
+		setOpenMore(prevState => !prevState);
+	};
 
 	return (
 		<ReviewItemWrapperMUI>
@@ -19,13 +19,14 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
 				<ReviewDateMUI>{ToRusDate(createdTime)}</ReviewDateMUI>
 				{/*<ReviewDateMUI>{time}</ReviewDateMUI>*/}
 			</ReviewHeaderMUI>
-			<ReviewTextMUI>{ellipsis(text, 190)}</ReviewTextMUI>
-			{/*<Collapse in={openMore}>*/}
-			{/*	<ReviewTextMUI>{openMore ? text : ellipsis(text, 190)}</ReviewTextMUI>*/}
-			{/*</Collapse>*/}
-			{/*{text.length >= 190 && (*/}
-			{/*	<ShowMoreMUI onClick={triggerShowMore}>{openMore ? 'Скрыть' : 'Показать полностью'}</ShowMoreMUI>*/}
-			{/*)}*/}
+			<ReviewTextMUI>{ellipsis(text, 145)}</ReviewTextMUI>
+			{/*<ReviewTextMUI>{text}</ReviewTextMUI>*/}
+			<Collapse in={openMore}>
+				<ReviewTextMUI>{openMore ? text : ellipsis(text, 145)}</ReviewTextMUI>
+			</Collapse>
+			{text.length >= 145 && (
+				<ShowMoreMUI onClick={triggerShowMore}>{openMore ? 'Скрыть' : 'Показать полностью'}</ShowMoreMUI>
+			)}
 		</ReviewItemWrapperMUI>
 	);
 };
@@ -38,5 +39,5 @@ const {
 	ReviewNameMUI,
 	ReviewDateMUI,
 	ReviewTextMUI,
-	// ShowMoreMUI
+	ShowMoreMUI
 } = useReviewItemStyle();

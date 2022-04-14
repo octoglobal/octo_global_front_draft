@@ -1,10 +1,10 @@
 import React from 'react';
 
-import VkIcon from '../../../UI/UIIcon/VKIcon.svg';
+import VkIcon from '../../../UI/UIIcon/VKIconColor.svg';
 //import InstIcon from '../../../UI/UIIcon/InstIcon.svg';
-import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIcon.svg';
-import WhatsUpIcon from '../../../UI/UIIcon/WhatsUpIcon.svg';
-import TelegramIcon from '../../../UI/UIIcon/TelegramIcon.svg';
+import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIconColor.svg';
+import WhatsUpIcon from '../../../UI/UIIcon/WhatsappIconColor.svg';
+import TelegramIcon from '../../../UI/UIIcon/TelegramIconColor.svg';
 
 import {useCustomSize} from '@/hooks/useMedia';
 

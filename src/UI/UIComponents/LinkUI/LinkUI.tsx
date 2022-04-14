@@ -20,7 +20,6 @@ const CustomLinkUI : FC<ICustomLinkUI> = ({
 }) => {
 
 	const handlerClick = () => {
-		console.log('handlerClick');
 		if(onClick) onClick();
 	};
 

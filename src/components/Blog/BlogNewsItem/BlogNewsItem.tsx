@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {useBlogNewsItemStyle} from '@/components/Blog/BlogNewsItem/style';
 
-import TestImage from '../../../UI/UIIcon/TestImage.svg';
+// import TestImage from '../../../UI/UIIcon/TestImage.svg';
 import CustomLinkUI from '../../../UI/UIComponents/LinkUI/LinkUI';
 import { Divider } from '@mui/material';
 
@@ -15,7 +15,7 @@ const BlogNewsItem : FC<IBlogNewsItem> = ({title, text}) => {
 		<BlogNewsMUI>
 			<TitleMUI>{title}</TitleMUI>
 			<ImageMUI>
-				<TestImage />
+				{/*<TestImage />*/}
 			</ImageMUI>
 			<NewsBottomMUI>
 				<MainTextMUI>

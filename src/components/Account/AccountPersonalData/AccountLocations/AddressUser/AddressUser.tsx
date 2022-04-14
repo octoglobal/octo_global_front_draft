@@ -1,9 +1,10 @@
-import React, {FC, useCallback, useState} from 'react';
+import React, {FC, useState} from 'react';
 
 import Basket from '../../../../../UI/UIIcon/Basket.svg';
 import ModalConfirmUI from '../../../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
 import {useAddressUserStyle} from './style';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IAddressUser {
 	id: number,
@@ -31,15 +32,23 @@ const AddressUser: FC<IAddressUser> = ({
 		FormIconUI
 	} = useAddressUserStyle();
 
+	const {
+		user: {
+			statusId
+		}
+	} = useUserStore();
+
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
-	const handlerDialogState = useCallback(() => {
+	const handlerDialogState = () => {
+		console.log('handlerDialogState: ');
 		setOpenConfirmDialog(prevState => !prevState);
-	}, []);
+	};
+
+	console.log('openConfirmDialog: ', openConfirmDialog);
 
 	const handlerConfirm = (idDelete : number) : void => {
 		// return () => {
-		console.log('handlerConfirm: ');
 		handlerDeleteLocation(idDelete);
 		handlerDialogState();
 		// };
@@ -47,7 +56,7 @@ const AddressUser: FC<IAddressUser> = ({
 
 	const handlerCancel = () : void => {
 		console.log('handlerCancel: ');
-		handlerDialogState();
+		setOpenConfirmDialog(false);
 	};
 
 	return (
@@ -66,11 +75,13 @@ const AddressUser: FC<IAddressUser> = ({
 					<FormRowTitleUI>Адрес</FormRowTitleUI>
 					<FormRowTextUI>{location}</FormRowTextUI>
 				</FormWrapperUI>
-				<FormIconUI
-					onClick={handlerDialogState}
-				>
-					<Basket />
-				</FormIconUI>
+				{statusId === 9 && (
+					<FormIconUI
+						onClick={handlerDialogState}
+					>
+						<Basket />
+					</FormIconUI>
+				)}
 			</FormUI>
 			<ModalConfirmUI
 				open={openConfirmDialog}

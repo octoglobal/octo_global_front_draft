@@ -4,15 +4,17 @@ export const useReviewItemStyle = () => {
 
 	const ReviewItemWrapperMUI = styled('div')(({theme}) => ({
 		padding: '10px 20px',
-		border: '1px solid #AABCBF',
+
+		border: '1px solid #E4EAF3',
 		boxSizing: 'border-box',
+		borderRadius: '8px',
 
 		// border: '1px solid black',
 
 		// minWidth: '546px',
 		// maxWidth: '546px',
 		width: '546px',
-		maxHeight: '262px',
+		maxHeight: '540px',
 		height: 'fit-content',
 
 		// marginBottom: '32px',
@@ -45,9 +47,9 @@ export const useReviewItemStyle = () => {
 	const ReviewNameMUI = styled('div')(() => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '600',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontWeight: '400',
+		fontSize: '20px',
+		lineHeight: '23px',
 		color: '#000000',
 	}));
 
@@ -64,23 +66,25 @@ export const useReviewItemStyle = () => {
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontSize: '20px',
+		lineHeight: '130%',
 		color: '#000000',
 
 		wordBreak: 'break-all',
 	}));
 
 	const ShowMoreMUI = styled('div')(() => ({
+
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '300',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontWeight: '400',
+		fontSize: '14px',
+		lineHeight: '16px',
 		color: '#274D82',
 		cursor: 'pointer',
 
 		marginTop: '5px',
+		textAlign: 'end',
 	}));
 
 	return {

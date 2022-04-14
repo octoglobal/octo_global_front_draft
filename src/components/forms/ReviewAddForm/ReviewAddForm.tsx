@@ -9,6 +9,9 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
 import {TAddReview} from '../../../types/types';
+// import {useAppDispatch} from "@/hooks/useReduxHooks";
+// import { toggleDrawer } from '@/store/reducers/swipeableDrawerSlice/swipeableDrawerSlice';
+import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
 
 interface IReviewAddForm {
 	defaultText?:string
@@ -34,11 +37,12 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 
 	const {isMobile} = useMobile();
 	const {isCustomSize} = useCustomSize(null, 1241);
+	// const dispatch = useAppDispatch();
 
 	const successSubmit = () => {
 		getReviews(currentPage);
 		setShowPromt(true);
-		if(isMobile) {
+		if(isMobile && currentPage) {
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth'
@@ -61,6 +65,10 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 		getReviews,
 	} = useReviewAddForm(successSubmit, setError);
 
+	const {
+		toggleDrawer
+	} = useSwipeableDrawerStore();
+
 	const dirtyText = useMemo(
 		() => dirtyFields.text,
 		[dirtyFields.text]
@@ -71,14 +79,22 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 		[isSubmitted, dirtyText]
 	);
 
+	const placeHolderText = useMemo(
+		() => isAuth ? (isMobile ? 'Оставьте отзыв' : 'Введите текст') : 'Отзывы доступны после регистрации',
+		[isAuth, isMobile]
+	);
+
 	const handlerClickButton = useCallback(() => {
 		if(!isAuth) {
 			const textData = getValues('text');
-			console.log('textData: ', textData);
 			setData('savedReview', textData);
-			pushTo('/signup');
+			if(isMobile) {
+				toggleDrawer();
+			} else{
+				pushTo('/signup');
+			}
 		}
-	}, [isAuth]);
+	}, [isAuth, isMobile]);
 
 	useEffect(() => {
 		const delay5s = setTimeout(() => {
@@ -102,13 +118,13 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 							rules: {required: true}
 						}}
 						inputProps={{
-							placeholder: isAuth ? 'Оставьте отзыв' : 'Отзывы доступны после регистрации',
+							placeholder: placeHolderText,
 							name: 'text',
 							type: 'text',
 							required: true,
 							// helperText: 'Заполните поле "Почта"',
 							multiline: true,
-							sx: TextAreaUI,
+							sx: TextAreaReviewMUI,
 							inputProps: {
 								maxLength: 430,
 							},
@@ -144,11 +160,11 @@ export default React.memo(ReviewAddForm);
 
 const {
 	FormsWrapperBox,
-	TextAreaUI,
 } = useFormsStyle();
 
 const {
 	ReviewAddFormWrapperMUI,
 	ButtonSubmitMUI,
-	HelperBoxMUI
+	HelperBoxMUI,
+	TextAreaReviewMUI
 } = useReviewAddFormStyle();

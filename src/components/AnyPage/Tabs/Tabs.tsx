@@ -1,10 +1,11 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback} from 'react';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 // import Link from 'next/link';
 
-import {ObjectHasOwnProperty} from '../../../lib/services/services';
-import {useCustomRouter} from '../../../hooks/useCustomRouter';
+import {ObjectHasOwnProperty} from '@/services/services';
+import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useTabsStyle} from './style';
+import {useMobile} from '@/hooks/useMedia';
 
 type TabsQueryProps = {
 	location?: string;
@@ -12,14 +13,16 @@ type TabsQueryProps = {
 
 interface ITabsQueryProps {
 	[key: string]: string;
+
 	location: string;
-};
+}
 
 interface ITabsProps {
 	data: Array<{
 		title: string,
 		url: string,
-		query: ITabsQueryProps | object
+		query: ITabsQueryProps | object,
+		showMobile: boolean
 	}>
 }
 
@@ -31,26 +34,28 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		TabsListUI
 	} = useTabsStyle();
 
+	const {isMobile} = useMobile();
+
 	const {router, pushTo} = useCustomRouter();
 
-	const handlerPushToTab = (url: string, query ={}) => {
+	const handlerPushToTab = (url: string, query = {}) => {
 		let urlTo = router.pathname;
-		if(url) urlTo = `/account/${url}`;
+		if (url) urlTo = `/account/${url}`;
 
 		pushTo(urlTo, query);
 	};
 
-	const checkActiveClass = (url : string, query : TabsQueryProps) : string => {
+	const checkActiveClass = (url: string, query: TabsQueryProps): string => {
 
 		const location = ObjectHasOwnProperty(query, 'location') ? query.location : '';
 
-		if(url) {
-			if( router.asPath.includes(url) ) {
+		if (url) {
+			if (router.asPath.includes(url)) {
 				return 'Mui-selected';
 			}
 		}
-		if(location) {
-			if(router?.query?.location === location) {
+		if (location) {
+			if (router?.query?.location === location) {
 				return 'Mui-selected';
 			}
 		}
@@ -58,25 +63,26 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		return '';
 	};
 
+	const checkShowingTab = useCallback((flag: boolean): boolean => {
+		return isMobile ? isMobile && flag : true;
+	}, [isMobile]);
+
 	return (
 		<TabWrapperUI>
 			<TabsUnstyled defaultValue={router.asPath}>
 				<TabsListUI>
 					{data.map((item, i) => (
-						<TabUI
-							key={i}
-							className={checkActiveClass(item.url, item.query)}
-							onClick={() => handlerPushToTab(item.url, item.query)}
-						>
-							{/* <Link
-								href={{
-									pathname: item.url ? `/account/${item.url}` : router.pathname,
-									query: {...item.query} || {}
-								}}
-							> */}
-							{item.title}
-							{/* </Link> */}
-						</TabUI>
+						<>
+							{checkShowingTab(item.showMobile) ? (
+								<TabUI
+									key={i}
+									className={checkActiveClass(item.url, item.query)}
+									onClick={() => handlerPushToTab(item.url, item.query)}
+								>
+									{item.title}
+								</TabUI>
+							) : null}
+						</>
 					))}
 				</TabsListUI>
 			</TabsUnstyled>

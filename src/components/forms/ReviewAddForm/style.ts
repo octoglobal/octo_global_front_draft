@@ -38,14 +38,39 @@ export const useReviewAddFormStyle = () => {
 		alignSelf: 'flex-end',
 		background: '#274D82',
 		opacity: '0.8',
-		borderRadius: '3px',
+		borderRadius: '5px',
 
 		marginTop: '30px',
+	};
+
+	const TextAreaReviewMUI = {
+		// height: '183px',
+		maxHeight: '183px',
+		// minHeight: '183px',
+
+		'& .MuiOutlinedInput-root, .MuiFormControl-root, .MuiOutlinedInput-input': {
+			// minHeight: '183px',
+			maxHeight: '183px !important',
+		},
+
+		'& textarea.MuiOutlinedInput-input': {
+			height: '64px !important',
+		},
+
+		'& textarea::placeholder': {
+			color: '#C4C4C4',
+			fontFamily: 'Roboto',
+			fontStyle: 'normal',
+			fontWeight: '400',
+			fontSize: '20px',
+			lineHeight: '23px',
+		}
 	};
 
 	return {
 		ReviewAddFormWrapperMUI,
 		ButtonSubmitMUI,
-		HelperBoxMUI
+		HelperBoxMUI,
+		TextAreaReviewMUI
 	};
 };
