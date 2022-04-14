@@ -17,6 +17,12 @@ interface IFetchMoreTagShopsFulfilled {
 	shopsEnd: boolean;
 	tags: string;
 }
+
+interface IFetchSearchShopsFulfilled {
+	shops: IShopsModel[],
+	search: string
+}
+
 const initialState: IShopsSlice = {
 	search: '',
 	shops: [],
@@ -37,12 +43,23 @@ export const shopSlice = createSlice({
 		updatePost(state) {
 			state.updateShops = true;
 		},
+		resetSlice(state) {
+			state.search = '';
+			state.shops = [];
+			state.page = 1;
+			state.page = 1;
+			state.tags = '';
+			state.updateShops = true;
+			state.shopsEnd = false;
+			state.error = '';
+		},
 	},
 	extraReducers: {
-		[fetchSearchShops.fulfilled.type]: (state, data: PayloadAction<IShopsModel[]>) => {
-			state.shops = data.payload;
+		[fetchSearchShops.fulfilled.type]: (state, data: PayloadAction<IFetchSearchShopsFulfilled>) => {
+			state.shops = data.payload.shops;
 			state.page = 1;
 			state.updateShops = false;
+			state.search = data.payload.search;
 		},
 		[fetchSearchShops.pending.type]: (state) => {
 			state.updateShops = true;
@@ -58,6 +75,9 @@ export const shopSlice = createSlice({
 			state.updateShops = false;
 			state.tags = data.payload.tags;
 		},
+		[fetchTagShops.pending.type]: (state) => {
+			state.search = '';
+		},
 		[fetchTagShops.rejected.type]: (state) => {
 			state.updateShops = false;
 			state.error = 'error';
@@ -71,6 +91,7 @@ export const shopSlice = createSlice({
 		},
 		[fetchMoreTagShops.pending.type]: (state) => {
 			state.updateShops = true;
+			state.search = '';
 		},
 		[fetchMoreTagShops.rejected.type]: (state) => {
 			state.updateShops = false;
