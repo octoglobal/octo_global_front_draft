@@ -12,7 +12,13 @@ interface ISearchData {
 }
 
 export const useShopPage = () => {
-	const { page, updateShops, shopsEnd, tags: tagsStore } = useAppSelector(state => state.shopReducer);
+	const {
+		page,
+		updateShops,
+		shopsEnd,
+		tags: tagsStore,
+		search
+	} = useAppSelector(state => state.shopReducer);
 	const dispatch = useAppDispatch();
 	const methods  = useForm<ISearchData>();
 	const activeCategory = methods.watch('tags') as ICategoryItem[];
@@ -46,7 +52,6 @@ export const useShopPage = () => {
 		if (type === 'category') {
 			const tags = methods.getValues('tags');
 			const tagsQuery = activeCategoryQuery(tags);
-			console.log('change category');
 			dispatch(fetchTagShops({tagsQuery: tagsQuery}))
 				.then(r => {
 					try {
@@ -147,7 +152,9 @@ export const useShopPage = () => {
 
 	useEffect(() => {
 		//! First Shops
-		dispatch(fetchMoreTagShops({tagsQuery: '', page: 1}));
+		if (!search) {
+			dispatch(fetchMoreTagShops({tagsQuery: '', page: 1}));
+		}
 		window.addEventListener(
 			'scroll',
 			onScroll
@@ -157,15 +164,16 @@ export const useShopPage = () => {
 				'scroll',
 				onScroll
 			);
+			dispatch(shopSlice.actions.resetSlice());
 		};
 	}, []);
 
 
 	useEffect(() => {
-		if (page > 1 && updateShops && !shopsEnd) {
+		if (page > 1 && updateShops && !shopsEnd && !search && !methods.getValues('search')) {
+			console.log(search);
 			const tags = methods.getValues('tags');
 			const tagsQuery = activeCategoryQuery(tags);
-			console.log('update posts', page);
 			if (tagsQuery == tagsStore) {
 				dispatch(fetchMoreTagShops({tagsQuery, page}));
 			};

@@ -2,6 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {useFormContext, useWatch} from 'react-hook-form';
 import {IHints, IHintsResponse} from '@/components/AnyPage/CategorySearch/types';
 import {octoAxios} from '@/lib/http';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
 
 export const useCategorySearch = () => {
 
@@ -27,7 +28,7 @@ export const useCategorySearch = () => {
 			if (!state) {
 				setTimeout(function() {
 					setIsFocus(state);
-				}.bind(this), 100);
+				}.bind(this), 150);
 				return;
 			}
 			setIsFocus(state);
@@ -54,9 +55,8 @@ export const useCategorySearch = () => {
 			return;
 		}
 		if (e.key === 'Enter') {
-			console.log(e.key);
-			console.log(searchValue);
 			// setIsFocus(false);
+			e.preventDefault();
 			return;
 		};
 		setActiveSuggestion(0);

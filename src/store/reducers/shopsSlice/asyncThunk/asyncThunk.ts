@@ -10,7 +10,10 @@ export const fetchSearchShops = createAsyncThunk(
 			const response =
 				await octoAxios.get<IShopsSearchResponse>(`/shops?search=${data.search}`)
 					.then(response => response.data);
-			return response.search_results;
+			return {
+				shops: response.search_results,
+				search: data.search,
+			};
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);
@@ -26,7 +29,6 @@ export const fetchTagShops = createAsyncThunk(
 			const response =
 				await octoAxios.get<IShopsTagsResponse>(`/shops?${data.tagsQuery}page=1`)
 					.then(response => response.data);
-			console.log(response.shops);
 			return {
 				shops: response.shops,
 				shopsEnd: !(response.shops.length === response.postsOnPage),
