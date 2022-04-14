@@ -20,6 +20,7 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
 				{/*<ReviewDateMUI>{time}</ReviewDateMUI>*/}
 			</ReviewHeaderMUI>
 			<ReviewTextMUI>{ellipsis(text, 190)}</ReviewTextMUI>
+			{/*<ReviewTextMUI>{text}</ReviewTextMUI>*/}
 			{/*<Collapse in={openMore}>*/}
 			{/*	<ReviewTextMUI>{openMore ? text : ellipsis(text, 190)}</ReviewTextMUI>*/}
 			{/*</Collapse>*/}

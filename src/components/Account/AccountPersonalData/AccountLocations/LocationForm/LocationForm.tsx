@@ -48,7 +48,7 @@ const LocationForm : FC = () => {
 					</LocationPlusUI>
 				)}
 				{/*TODO: сократить и вынести*/}
-				{hasAddress && addresses.slice(0, 1).map((address, i, arr) => (
+				{hasAddress && addresses.slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
 					<>
 						<AddressUser
 							key={address.id}
@@ -73,7 +73,7 @@ const LocationForm : FC = () => {
 							{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
 						</ButtonUI>
 					)}
-					{!operForm && !addresses?.length ? (
+					{!operForm ? (
 						<ButtonUI
 							style={ButtonAdd}
 							onClick={handlerToggleState(setOpenForm)}
