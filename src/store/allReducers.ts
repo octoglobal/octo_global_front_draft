@@ -8,6 +8,6 @@ export const allReducers = {
 	translateReducer,
 	userReducer,
 	ordersReducer,
-	reviewsReducer,
+	reviewsReducer: reviewsReducer,
 	shopReducer,
 };
