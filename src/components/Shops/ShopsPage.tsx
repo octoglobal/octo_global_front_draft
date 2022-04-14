@@ -25,9 +25,11 @@ const ShopsPage: FC = () => {
 			<HeaderMargin/>
 			<ContainerMUI>
 				<FormProvider {...methods}>
-					<FormMUI onSubmit={methods.handleSubmit(data => onSubmit(data, 'search'))}>
+					<FormMUI
+						onSubmit={methods.handleSubmit(data => onSubmit(data, 'search'))}
+					>
 						<SearchWrapperMUI>
-							<CategorySearch/>
+							<CategorySearch onSubmit={onSubmit}/>
 							<CategorySearchSwiperActive
 								category={activeCategory}
 								handleDeleteCategory={handleDeleteCategory}/>

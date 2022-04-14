@@ -3,10 +3,15 @@ import {useCategorySearchStyles} from '@/components/AnyPage/CategorySearch/style
 import {Controller} from 'react-hook-form';
 import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySearchHints/CategorySearchHints';
 import {useCategorySearch} from '@/components/AnyPage/CategorySearch/useCategorySearch';
+import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
 
 const {SearchContainerMUI, TextFieldSearch} = useCategorySearchStyles();
 
-const CategorySearch: FC = () => {
+interface ICategorySearchProps {
+	onSubmit: (data: ISearchData, type: SearchSubmitType) => void;
+}
+
+const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
 	const {
 		control,
 		hintsData,
@@ -19,7 +24,7 @@ const CategorySearch: FC = () => {
 		handleChangeFocus,
 		handleClickHintItem,
 		handleChangeActiveSuggestion
-	} = useCategorySearch();
+	} = useCategorySearch(onSubmit);
 
 	return (
 		<>
@@ -40,11 +45,11 @@ const CategorySearch: FC = () => {
 					)}
 				/>
 			</SearchContainerMUI>
-			{!!isVisibleHints && (
+			{isVisibleHints && (
 				<CategorySearchHint
 					hintsData={hintsData}
 					isMouseEnter={isMouseEnter}
-					isVisibleHints={!!isVisibleHints}
+					isVisibleHints={isVisibleHints}
 					activeSuggestion={activeSuggestion}
 					handleMouseEnter={handleMouseEnter}
 					handleMouseLeave={handleMouseLeave}
