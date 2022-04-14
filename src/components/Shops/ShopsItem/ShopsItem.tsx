@@ -5,7 +5,6 @@ import {HOST} from '@/constants/constants';
 import ShopTags from '@/components/Shops/ShopsItem/ShopTags/ShopTags';
 import {IHandleClickTagInCard} from '@/components/Shops/type';
 
-
 const ShopsItem: FC<IShopsModel & IHandleClickTagInCard> = (
 	{
 		title,

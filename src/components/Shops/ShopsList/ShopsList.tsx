@@ -13,8 +13,8 @@ const ShopsList: FC<IHandleClickTagInCard> = ({handleClickTagInCard}) => {
 				shops.map((shop, index) => (
 					<ShopsItem
 						key={`${shop.url}${shop.title}${index}`}
-						{...shop}
 						handleClickTagInCard={handleClickTagInCard}
+						{...shop}
 					/>
 				))
 			) : null}

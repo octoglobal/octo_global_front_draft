@@ -2,9 +2,10 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {useFormContext, useWatch} from 'react-hook-form';
 import {IHints, IHintsResponse} from '@/components/AnyPage/CategorySearch/types';
 import {octoAxios} from '@/lib/http';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
 
-export const useCategorySearch = () => {
+
+export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubmitType) => void) => {
 
 	const {control, setValue} = useFormContext();
 	const searchValue = useWatch({name: 'search'});
@@ -19,8 +20,10 @@ export const useCategorySearch = () => {
 	), [hintsData]);
 
 	const isVisibleHints = useMemo(() => (
-		isHintsData && isFocus
+		!!(isHintsData && isFocus)
 	), [isFocus, isHintsData]);
+
+	console.log(isHintsData, isFocus, activeSuggestion);
 
 
 	const handleChangeFocus = (state: boolean) => {
@@ -42,7 +45,7 @@ export const useCategorySearch = () => {
 			if (activeSuggestion + 1 > hintsData.length) {
 				setActiveSuggestion(1);
 				return;
-			};
+			}
 			setActiveSuggestion(prevState => prevState + 1);
 			return;
 		}
@@ -50,15 +53,20 @@ export const useCategorySearch = () => {
 			if (activeSuggestion - 1 < 1) {
 				setActiveSuggestion(hintsData.length);
 				return;
-			};
+			}
 			setActiveSuggestion(prevState => prevState - 1);
 			return;
 		}
 		if (e.key === 'Enter') {
-			// setIsFocus(false);
 			e.preventDefault();
-			return;
-		};
+			onSubmit(
+				{
+					search: searchValue, tags: []
+				},
+				'search'
+			);
+			setHintsData([]);
+		}
 		setActiveSuggestion(0);
 	};
 

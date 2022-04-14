@@ -6,7 +6,9 @@ import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {getFulfilledInString} from '@/services/services';
 import {shopSlice} from '@/reducers/shopsSlice/shopsSlice';
 
-interface ISearchData {
+export type SearchSubmitType = 'category' | 'search'
+
+export interface ISearchData {
 	search: string;
 	tags: ICategoryItem[];
 }
@@ -33,8 +35,9 @@ export const useShopPage = () => {
 		return tagString;
 	};
 
-	const onSubmit = (data: ISearchData, type: 'category' | 'search' = 'search') => {
+	const onSubmit = (data: ISearchData, type: SearchSubmitType = 'search') => {
 		if (type === 'search' && data.search) {
+			console.log(data.search);
 			dispatch(fetchSearchShops({search: data.search}))
 				.then(r => {
 					try {
@@ -80,6 +83,7 @@ export const useShopPage = () => {
 			if (Array.isArray(activeCategory)) {
 				const findTag = activeCategory.find(item => item.title === tagTitle);
 				const tagObj = {title: tagTitle, id: tagId};
+				methods.setValue('search', '');
 				if (findTag) {
 					// methods.setValue(
 					// 	'tags',
