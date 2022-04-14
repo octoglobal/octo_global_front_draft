@@ -1,10 +1,8 @@
 import React, {FC} from 'react';
 
 import {useMobile} from '@/hooks/useMedia';
-import {useUserStore} from '@/hooks/useUserStore';
 import ReviewsList from './ReviewsList/ReviewsList';
 import {useReviewsStore} from '@/hooks/useReviewsStore';
-import ReviewsAuthPlug from './ReviewsAuthPlug/ReviewsAuthPlug';
 import CustomPagination from '../AnyPage/CustomPagination/CustomPagination';
 import FormComponent from '@/components/AnyPage/FormComponent/FormComponent';
 import ReviewAddForm from '../../components/forms/ReviewAddForm/ReviewAddForm';
@@ -14,7 +12,6 @@ import {useReviewPage} from '@/components/Review/useReviewPage';
 
 const ReviewPage: FC = () => {
 	const {isMobile} = useMobile();
-	const {isAuth} = useUserStore();
 
 	const {
 		pagesCountFront,
@@ -28,16 +25,16 @@ const ReviewPage: FC = () => {
 
 	return (
 		<ReviewContentMUI>
-			<ReviewsList />
+			<ReviewsList/>
 			<ReviewBottomMUI>
 				{!isMobile ? (
 					<FormComponent
 						title='Оставьте отзыв'
 						background={false}
 					>
-						<ReviewAddForm defaultText={defaultValue} />
+						<ReviewAddForm defaultText={defaultValue}/>
 					</FormComponent>
-				) : isAuth ? <ReviewAddForm defaultText={defaultValue} /> : <ReviewsAuthPlug/> }
+				) : <ReviewAddForm defaultText={defaultValue}/>}
 				<PaginationWrappMUI>
 					<CustomPagination
 						page={currentPage}

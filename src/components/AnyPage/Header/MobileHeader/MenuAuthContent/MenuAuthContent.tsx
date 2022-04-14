@@ -16,12 +16,9 @@ import {useCustomRouter} from '@/hooks/useCustomRouter';
 import ResetPasswordForm from '@/components/forms/ResetPasswordForm/ResetPasswordForm';
 import LoginPromt from '@/components/AnyPage/AuthFormPromt/LoginPromt/LoginPromt';
 import SignUpPromt from '@/components/AnyPage/AuthFormPromt/SignUpPromt/SignUpPromt';
+import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
 
-interface IMenuAuthContent {
-	toggleOpenMenu: () => void,
-}
-
-const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
+const MenuAuthContent: FC = () => {
 	const { isAuth } = useUserStore();
 	const dispatch = useAppDispatch();
 
@@ -34,6 +31,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 		ExitLinkUI,
 	} = useMenuAuthContentStyle();
 
+	const {toggleDrawer} = useSwipeableDrawerStore();
 	const {pushTo} = useCustomRouter();
 
 	const [openAuth, setOpenAuth] = useState('');
@@ -54,7 +52,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 	};
 
 	const handlerPushToAccount = () => {
-		toggleOpenMenu();
+		toggleDrawer();
 		pushTo('/account/info');
 	};
 
@@ -82,9 +80,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 							<User cutFio={false} />
 						</UserUI>
 						<MenuLinksUI>
-							<HeaderNavLink
-								toggleOpenMenu={toggleOpenMenu}
-							/>
+							<HeaderNavLink toggleOpenMenu={toggleDrawer} />
 							{isAuth && (
 								<ExitLinkUI onClick={handlerLogout}>
 									Выйти
@@ -130,7 +126,7 @@ const MenuAuthContent: FC<IMenuAuthContent> = ({toggleOpenMenu}) => {
 									</UserUI>
 								)}
 								<MenuLinksUI>
-									<HeaderNavLink />
+									<HeaderNavLink toggleOpenMenu={toggleDrawer} />
 									{isAuth && (
 										<ExitLinkUI onClick={handlerLogout}>
 											Выйти

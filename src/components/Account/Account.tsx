@@ -8,10 +8,11 @@ import {useAccountPageStyle} from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 
 interface IAccoutPage {
+	renderTabs?: boolean,
 	children: React.ReactChild | React.ReactNode,
 }
 
-const AccountPage: FC<IAccoutPage> = ({children}) => {
+const AccountPage: FC<IAccoutPage> = ({renderTabs = true, children}) => {
 	const {
 		AccountWrapperUI,
 	} = useAccountPageStyle();
@@ -38,12 +39,13 @@ const AccountPage: FC<IAccoutPage> = ({children}) => {
 
 	return (
 		<AccountWrapperUI>
-			<Tabs
-				data={AccountUrlArray}
-			/>
+			{renderTabs && (
+				<Tabs
+					data={AccountUrlArray}
+				/>
+			)}
 			{children}
 		</AccountWrapperUI>
-
 	);
 };
 

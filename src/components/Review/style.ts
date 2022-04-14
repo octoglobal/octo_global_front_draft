@@ -15,6 +15,7 @@ export const useReviewStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		padding: '0 70px',
 
 		'& > div:first-child': {
 			alignSelf: 'flex-start',
@@ -32,6 +33,7 @@ export const useReviewStyle = () => {
 
 		[theme.breakpoints.down(501)]: {
 			flexDirection: 'column',
+			padding: '0',
 
 			'& > div:first-child': {
 				alignSelf: 'flex-start',
@@ -43,8 +45,8 @@ export const useReviewStyle = () => {
 	}));
 
 	const PaginationWrappMUI = styled('div')(({theme}) => ({
-		width: '100%',
-		marginLeft: '183px',
+		width: 'auto',
+		// marginLeft: '183px',
 		marginBottom: '20px',
 
 		[theme.breakpoints.down(1241)]: {

@@ -2,7 +2,7 @@ import {styled, Typography} from '@mui/material';
 
 export const useAccountHelpStyle = () => {
 
-	const HelpWrapperMUI = styled('div')(({theme}) => ({
+	const HelpWrapperMUI = styled('div')(() => ({
 		// border: '1px solid blue',
 
 		display: 'flex',
@@ -17,7 +17,7 @@ export const useAccountHelpStyle = () => {
 		},
 	}));
 
-	const HelpItemMUI = styled('div')(({theme}) => ({
+	const HelpItemMUI = styled('div')(() => ({
 		// border: '1px solid black',
 		cursor: 'pointer',
 
@@ -26,12 +26,12 @@ export const useAccountHelpStyle = () => {
 		alignItems: 'center'
 	}));
 
-	const HelpImageMUI = styled('picture')(({theme}) => ({
+	const HelpImageMUI = styled('picture')(() => ({
 		width: '43px',
 		height: '43px',
 	}));
 
-	const HelperTextMUI = styled(Typography)(({theme}) => ({
+	const HelperTextMUI = styled(Typography)(() => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',

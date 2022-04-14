@@ -40,8 +40,9 @@ export const useReviewListStyle = () => {
 
 		gridTemplateColumns: '546px 546px',
 		gridTemplateRows: 'auto auto auto',
-		gridColumnGap: '26px',
-		gridRowGap: '25px',
+		gridColumnGap: '56px',
+		gridRowGap: '15px',
+		justifyContent: 'center',
 		// display: 'flex',
 		// justifyContent: 'center',
 

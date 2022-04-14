@@ -4,20 +4,23 @@
         "url": "info",
         "query": {
 
-        }
+        },
+        "showMobile": true
     },
     {
         "title": "Заказы",
         "url": "orders",
         "query": {
 
-        }
+        },
+        "showMobile": true
     },
     {
         "title": "Выкуп товара",
         "url": "instruction",
         "query": {
 
-        }
+        },
+        "showMobile": false
     }
 ]

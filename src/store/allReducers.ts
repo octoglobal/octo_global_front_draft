@@ -3,6 +3,7 @@ import userReducer from '@/reducers/userSlice/userSlice';
 import ordersReducer from '@/reducers/ordersSlice/ordersSlice';
 import reviewsReducer from '@/reducers/reviewsSlice/reviewsSlice';
 import shopReducer from '@/reducers/shopsSlice/shopsSlice';
+import swipeableDrawerSliceReducer from '@/reducers/swipeableDrawerSlice/swipeableDrawerSlice';
 
 export const allReducers = {
 	translateReducer,
@@ -10,4 +11,5 @@ export const allReducers = {
 	ordersReducer,
 	reviewsReducer: reviewsReducer,
 	shopReducer,
+	swipeableDrawerSliceReducer,
 };
