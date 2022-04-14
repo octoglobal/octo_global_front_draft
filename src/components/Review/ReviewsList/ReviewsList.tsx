@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-
 import ReviewItem from '../ReviewItem/ReviewItem';
 import {useReviewListStyle} from '@/components/Review/ReviewsList/style';
 import {useReviewsStore} from '@/hooks/useReviewsStore';

@@ -12,6 +12,10 @@ export const ObjectHasOwnProperty = (object = {}, property: string): boolean => 
 	return Object.prototype.hasOwnProperty.call(object, property);
 };
 
+export const getFulfilledInString = (str: string) => {
+	return str.includes('fulfilled');
+};
+
 // export const getTrueItemInObj = (obj = {}) => {
 // 	const trueArr = [];
 // 	for (const [, value] of Object.entries(obj)) {
