@@ -3,11 +3,14 @@ import {styled} from '@mui/material';
 export const useReviewListStyle = () => {
 
 	const ReviewsWrappMUI = styled('div')(() => ({
-		minHeight: '446px',
+		minHeight: '525px',
 	}));
 
 	const ReviewBlockMUI = styled('div')(({theme}) => ({
 		// border: '1px solid red',
+
+		display: 'flex',
+		flexDirection: 'column',
 
 		'& > div': {
 			marginBottom: '32px',
@@ -25,7 +28,7 @@ export const useReviewListStyle = () => {
 
 	const ReviewsContentMUI = styled('div')(({theme}) => ({
 		// marginTop: '120px',
-		transform: 'translateX(-64px)',
+		// transform: 'translateX(-64px)',
 
 		// minHeight: '305px',
 
@@ -33,12 +36,12 @@ export const useReviewListStyle = () => {
 		// justifyContent: 'space-between',
 		// flexWrap: 'wrap',
 
-		// display: 'grid',
-		//
-		// gridTemplateColumns: '546px 546px',
-		// gridTemplateRows: 'auto auto auto',
-		// gridColumnGap: '26px',
-		// gridRowGap: '25px',
+		display: 'grid',
+
+		gridTemplateColumns: '546px 546px',
+		gridTemplateRows: 'auto auto auto',
+		gridColumnGap: '26px',
+		gridRowGap: '25px',
 		// display: 'flex',
 		// justifyContent: 'center',
 
@@ -63,7 +66,7 @@ export const useReviewListStyle = () => {
 
 			// marginBottom: '30px',
 			gridRowGap: '0px',
-			transform: 'none',
+			// transform: 'none',
 
 			'& > div:first-child': {
 				marginBottom: '15px',
