@@ -166,6 +166,14 @@ export const useOrderCardStyle = () => {
 
 		marginRight: '45px',
 
+		'& svg': {
+			fill: '#274D82',
+
+			'& path': {
+				fill: '#274D82',
+			}
+		},
+
 		[theme.breakpoints.down(500)]: {
 			width: '37px',
 			height: '28px',

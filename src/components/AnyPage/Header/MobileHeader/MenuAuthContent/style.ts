@@ -5,7 +5,7 @@ export const useMenuAuthContentStyle = () => {
 	const MenuLinksUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
-
+		alignItems: 'flex-start',
 		'& a': {
 			fontFamily: 'Roboto',
 			fontStyle: 'normal',
@@ -13,7 +13,7 @@ export const useMenuAuthContentStyle = () => {
 			fontSize: '16px',
 			lineHeight: '19px',
 			color: '#000000',
-
+			textAlign: 'start',
 			marginBottom: '25px',
 		},
 
