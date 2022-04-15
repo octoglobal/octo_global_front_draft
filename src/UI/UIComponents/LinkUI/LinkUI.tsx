@@ -16,7 +16,7 @@ const CustomLinkUI : FC<ICustomLinkUI> = ({
 	href = '',
 	onClick,
 	children,
-	type = 'button',
+	type = '',
 }) => {
 
 	const handlerClick = () => {
