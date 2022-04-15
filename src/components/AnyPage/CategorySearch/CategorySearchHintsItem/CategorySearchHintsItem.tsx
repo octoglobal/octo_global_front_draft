@@ -42,7 +42,10 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				onClick={handleClickHintItem(title)}
 			>
 				{customHint ? (
-					<ItemTextMUI dangerouslySetInnerHTML={{__html: customHint}}/>
+					// <ItemTextMUI dangerouslySetInnerHTML={{__html: customHint}}/>
+					<ItemTextMUI>
+						{title}
+					</ItemTextMUI>
 				) : (
 					<ItemTextMUI>
 						{title}

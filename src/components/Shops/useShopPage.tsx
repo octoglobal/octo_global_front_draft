@@ -21,11 +21,13 @@ export interface ISearchData {
 export const useShopPage = () => {
 	const {
 		page,
+		searchHints,
 		updateShops,
 		shopsEnd,
 		tags: tagsStore,
 		search,
-		allTags
+		allTags,
+		isNotFoundShops
 	} = useAppSelector(state => state.shopReducer);
 	const dispatch = useAppDispatch();
 	const methods  = useForm<ISearchData>();
@@ -43,20 +45,27 @@ export const useShopPage = () => {
 
 	const onSubmit = (data: ISearchData, type: SearchSubmitType = 'search') => {
 		if (type === 'search' && data.search) {
-			console.log(data.search);
-			dispatch(fetchSearchShops({search: data.search}))
-				.then(r => {
-					try {
-						if (getFulfilledInString(r.type)) {
-							methods.reset({
-								search: data.search,
-								tags: []
-							});
+			if (searchHints.length) {
+				dispatch(fetchSearchShops({search: data.search}))
+					.then(r => {
+						try {
+							if (getFulfilledInString(r.type)) {
+								methods.reset({
+									search: data.search,
+									tags: []
+								});
+							}
+						} catch (e) {
+							throw new Error('Ошибка поиска по названию');
 						}
-					} catch (e) {
-						throw new Error('Ошибка поиска по названию');
-					}
+					});
+			} else {
+				methods.reset({
+					search: '',
+					tags: [],
 				});
+				dispatch(fetchTagShops({tagsQuery: '', isSearchNotFound: true}));
+			}
 		}
 		if (type === 'category') {
 			const tags = methods.getValues('tags');
@@ -86,10 +95,10 @@ export const useShopPage = () => {
 	//! Category
 	const handleClickTagInCard = (tagTitle: string, tagId: number, type: 'tagInList' | 'tagInCard') => {
 		return () => {
+			methods.setValue('search', '');
 			if (Array.isArray(activeCategory)) {
 				const findTag = activeCategory.find(item => item.title === tagTitle);
 				const tagObj = {title: tagTitle, id: tagId};
-				methods.setValue('search', '');
 				if (findTag) {
 					if (type === 'tagInList') {
 						methods.setValue(
@@ -122,6 +131,7 @@ export const useShopPage = () => {
 	const handleChangeCategory = (value: ICategoryItem[], onChange: (hint: ICategoryItem[]) => void) => {
 		return (categoryItem: ICategoryItem) => {
 			if (categoryItem.title) {
+				methods.setValue('search', '');
 				const findCategory = value.find(item => item.title == categoryItem.title);
 				if (findCategory) {
 					onChange(value.filter(item => item.title !== categoryItem.title));
@@ -160,7 +170,7 @@ export const useShopPage = () => {
 			if (currentScrollTop > documentHeight - 600) {
 				handleUpdateShops();
 			}
-		};
+		}
 	};
 
 	useEffect(() => {
@@ -187,12 +197,11 @@ export const useShopPage = () => {
 
 	useEffect(() => {
 		if (page > 1 && updateShops && !shopsEnd && !search && !methods.getValues('search')) {
-			console.log(search);
 			const tags = methods.getValues('tags');
 			const tagsQuery = activeCategoryQuery(tags);
 			if (tagsQuery == tagsStore) {
 				dispatch(fetchMoreTagShops({tagsQuery, page}));
-			};
+			}
 		}
 	}, [updateShops, activeCategory]);
 	//! InfinityScroll
@@ -202,6 +211,7 @@ export const useShopPage = () => {
 		methods,
 		onSubmit,
 		activeCategory,
+		isNotFoundShops,
 		handleChangeCategory,
 		handleDeleteCategory,
 		handleClickTagInCard,

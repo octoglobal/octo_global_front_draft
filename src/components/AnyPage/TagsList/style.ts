@@ -2,7 +2,7 @@ import {Button, Collapse, Dialog, styled} from '@mui/material';
 
 export const useTagsListStyles = () => {
 
-	const ContainerMUI = styled('section')(({theme}) => ({
+	const ContainerMUI = styled('section')(() => ({
 		marginTop: '14px',
 	}));
 
@@ -16,14 +16,14 @@ export const useTagsListStyles = () => {
 		display: 'block'
 	}));
 
-	const ListMUI = styled('ul')(({theme}) => ({
+	const ListMUI = styled('ul')(() => ({
 		display: 'flex',
 		flexWrap: 'wrap',
 		paddingLeft: 0,
 		minHeight: '150px',
 	}));
 
-	const CollapseMUI = styled(Collapse)(({theme}) => ({
+	const CollapseMUI = styled(Collapse)(() => ({
 		margin: '0 auto',
 		maxWidth: '1122px',
 		maxHeight: '216px',
@@ -43,7 +43,7 @@ export const useTagsListStyles = () => {
 		}
 	}));
 
-	const ModalMUI = styled(Dialog)(({theme}) => ({
+	const ModalMUI = styled(Dialog)(() => ({
 		zIndex: 5,
 		'& > div': {
 			backgroundColor: 'rgba(0, 0, 0, 0)',

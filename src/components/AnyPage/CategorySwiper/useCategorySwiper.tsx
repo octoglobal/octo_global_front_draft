@@ -1,6 +1,5 @@
-import {useCallback, useEffect, useMemo, useState} from 'react';
-import {octoAxios} from '@/lib/http';
-import {ICategoryModel, ICategoryModelResponse} from '@/models/ICategoryModel';
+import {useCallback, useMemo, useState} from 'react';
+import {ICategoryModel} from '@/models/ICategoryModel';
 import {Swiper as SwiperTypes} from 'swiper';
 import {useFormContext} from 'react-hook-form';
 

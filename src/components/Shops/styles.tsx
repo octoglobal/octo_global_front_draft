@@ -26,7 +26,7 @@ export const useShopsPageStyles = () => {
 			boxShadow: '0px 4px 2px rgba(0, 0, 0, 0.05)',
 			'& > div.swiper-wrapper': {
 				'& > div': {
-					marginRight: '15px',
+					paddingRight: '15px',
 				},
 				'& > *:last-child': {
 					marginRight: '0'

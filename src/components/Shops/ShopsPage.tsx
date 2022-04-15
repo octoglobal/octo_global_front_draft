@@ -9,6 +9,7 @@ import {useShopPage} from '@/components/Shops/useShopPage';
 import {FormProvider} from 'react-hook-form';
 import ShopsList from '@/components/Shops/ShopsList/ShopsList';
 import CategoryList from '@/components/AnyPage/TagsList/TagsList';
+import ShopsNotFound from '@/components/Shops/ShopsNotFound/ShopsNotFound';
 
 const ShopsPage: FC = () => {
 
@@ -17,6 +18,7 @@ const ShopsPage: FC = () => {
 		methods,
 		onSubmit,
 		activeCategory,
+		isNotFoundShops,
 		handleDeleteCategory,
 		handleChangeCategory,
 		handleClickTagInCard
@@ -47,6 +49,9 @@ const ShopsPage: FC = () => {
 								allTags={allTags}
 								handleClickTagInCard={handleClickTagInCard}
 							/>
+							{isNotFoundShops && (
+								<ShopsNotFound/>
+							)}
 						</ContainerTagsMUI>
 						<ShopsList
 							handleClickTagInCard={handleClickTagInCard}

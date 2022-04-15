@@ -2,7 +2,7 @@ import {Button, styled} from '@mui/material';
 
 export const useTagListItemStyles = () => {
 
-	const ItemMUI = styled('li')(({theme}) => ({
+	const ItemMUI = styled('li')(() => ({
 		listStyle: 'none',
 		margin: '0 15px 20px 0'
 	}));
@@ -13,7 +13,7 @@ export const useTagListItemStyles = () => {
 		textTransform: 'none',
 	}));
 
-	const ItemTextMUI = styled('span')(({theme}) => ({
+	const ItemTextMUI = styled('span')(() => ({
 		fontSize: '20px',
 		lineHeight: '21px',
 		fontWeight: 400,
