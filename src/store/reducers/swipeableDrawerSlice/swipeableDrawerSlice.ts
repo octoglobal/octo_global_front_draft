@@ -1,11 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 export interface ISwipeableDrawerSlice {
-	open: boolean
+	open: boolean,
+	openTab: string
 }
 
 const initialState : ISwipeableDrawerSlice = {
 	open: false,
+	openTab: '',
 };
 
 export const swipeableDrawerSlice = createSlice({
@@ -18,10 +20,13 @@ export const swipeableDrawerSlice = createSlice({
 			}else {
 				state.open = !state.open;
 			}
+		},
+		toggleTab : (state, action) => {
+			state.openTab = action.payload;
 		}
 	}
 });
 
-export const {toggleDrawer} = swipeableDrawerSlice.actions;
+export const {toggleDrawer, toggleTab} = swipeableDrawerSlice.actions;
 
 export default swipeableDrawerSlice.reducer;

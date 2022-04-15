@@ -9,6 +9,8 @@ export const useAccountHelpStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 
+		marginBottom: '15px',
+
 		'& > *': {
 			margin: '0 36px',
 		},
@@ -38,7 +40,8 @@ export const useAccountHelpStyle = () => {
 		fontSize: '20px',
 		lineHeight: '23px',
 		textDecorationLine: 'underline',
-		color: '#C4C4C4',
+		color: '#274D82',
+		textAlign: 'center',
 
 		marginTop: '8px',
 	}));

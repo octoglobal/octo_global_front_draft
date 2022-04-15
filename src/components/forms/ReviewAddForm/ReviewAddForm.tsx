@@ -66,7 +66,8 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 	} = useReviewAddForm(successSubmit, setError);
 
 	const {
-		toggleDrawer
+		toggleDrawer,
+		toggleTab,
 	} = useSwipeableDrawerStore();
 
 	const dirtyText = useMemo(
@@ -90,6 +91,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 			setData('savedReview', textData);
 			if(isMobile) {
 				toggleDrawer();
+				toggleTab('signup');
 			} else{
 				pushTo('/signup');
 			}

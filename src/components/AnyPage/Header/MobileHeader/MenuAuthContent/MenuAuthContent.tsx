@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import HeaderNavLink from '../../HeaderNavLink/HeaderNavLink';
 import ContentLayoutUI from '../../../../../layout/ContentLayout/ContentLayout';
@@ -31,41 +31,29 @@ const MenuAuthContent: FC = () => {
 		ExitLinkUI,
 	} = useMenuAuthContentStyle();
 
-	const {toggleDrawer} = useSwipeableDrawerStore();
+	const {
+		toggleDrawer,
+		openTab, toggleTab
+	} = useSwipeableDrawerStore();
 	const {pushTo} = useCustomRouter();
-
-	const [openAuth, setOpenAuth] = useState('');
 
 	const toggleAuthForm = (trigger: string) => {
 		return () => {
-			setOpenAuth(trigger);
+			toggleTab(trigger);
 		};
 	};
 
 	const handlerLogout = (): void => {
-		console.log('handlerLogout');
 		dispatch(fetchUserLogout())
 			.then(() => {
 				pushTo('/');
-				setOpenAuth('');
+				toggleTab('');
 			});
 	};
 
 	const handlerPushToAccount = () => {
 		toggleDrawer();
 		pushTo('/account/info');
-	};
-
-	const handlerClickRefreshPass = () : void => {
-		setOpenAuth('reset');
-	};
-
-	const handlerClickRegistr = () : void => {
-		setOpenAuth('signup');
-	};
-
-	const handlerClickLogin = () : void => {
-		setOpenAuth('login');
 	};
 
 	// TODO: ужасное нечитаемое поправить завтра
@@ -90,27 +78,27 @@ const MenuAuthContent: FC = () => {
 					</>
 				) : (
 					<>
-						{openAuth === 'login' && !isAuth && (
+						{openTab === 'login' && !isAuth && (
 							<FormComponent title="Вход" background={false}>
 								<LoginForm />
 								<LoginPromt
-									onClickRegistr={handlerClickRegistr}
-									onClickRefreshPassword={handlerClickRefreshPass}
+									onClickRegistr={toggleAuthForm('signup')}
+									onClickRefreshPassword={toggleAuthForm('reset')}
 								/>
 							</FormComponent>
 						)}
-						{openAuth === 'signup' && !isAuth && (
+						{openTab === 'signup' && !isAuth && (
 							<FormComponent
 								title="Регистрация"
 								background={false}
 							>
 								<SignUpForm />
 								<SignUpPromt
-									onClickLogin={handlerClickLogin}
+									onClickLogin={toggleAuthForm('login')}
 								/>
 							</FormComponent>
 						)}
-						{openAuth === 'reset' && !isAuth && (
+						{openTab === 'reset' && !isAuth && (
 							<FormComponent
 								title="Восстановление пароля"
 								background={false}
@@ -118,7 +106,7 @@ const MenuAuthContent: FC = () => {
 								<ResetPasswordForm />
 							</FormComponent>
 						)}
-						{openAuth === '' && (
+						{openTab === '' && (
 							<>
 								{isAuth && (
 									<UserUI>

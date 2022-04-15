@@ -30,7 +30,7 @@ export const useFooterStyle = () => {
 			padding: '15px',
 		},
 
-		[theme.breakpoints.down(800)]: {
+		[theme.breakpoints.down(801)]: {
 			flexDirection: 'column',
 			padding: '15px',
 		},
@@ -40,7 +40,7 @@ export const useFooterStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 
-		[theme.breakpoints.down(800)]: {
+		[theme.breakpoints.down(801)]: {
 			justifyContent: 'space-between',
 
 			'& div:first-child': {
@@ -87,11 +87,11 @@ export const useFooterStyle = () => {
 			margin: '0 34px',
 		},
 
-		[theme.breakpoints.down(800)]: {
+		[theme.breakpoints.down(801)]: {
 			margin: '0 10px',
 		},
 
-		[theme.breakpoints.down(800)]: {
+		[theme.breakpoints.down(801)]: {
 			margin: '0 0 10px',
 			padding: '0 0 10px',
 			borderBottom: '1px solid rgba(223, 228, 236, 0.5)',
@@ -148,7 +148,7 @@ export const useFooterStyle = () => {
 
 		marginTop: '39px',
 
-		[theme.breakpoints.down(800)]: {
+		[theme.breakpoints.down(801)]: {
 			order: '5',
 			marginTop: '10px',
 		}

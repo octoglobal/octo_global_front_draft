@@ -9,27 +9,27 @@ import WhatsAppLarge from '../../../../UI/UIIcon/WhatsAppLarge.svg';
 import {useHeaderMobileStyle} from './style';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
 import {useUserStore} from '@/hooks/useUserStore';
+import {useHeader} from '@/components/AnyPage/Header/useHeader';
 
 const MobileHeader: FC = () => {
-
-	const {
-		HeaderMobileWrapperUI,
-		NavMenuUI,
-		NavItemUI,
-		SwipeableDrawerUI,
-	} = useHeaderMobileStyle();
-
 	const {
 		isAuth
 	} = useUserStore();
 
+	const {isHomePage} = useHeader();
+
 	const {
 		open,
-		toggleDrawer
+		toggleDrawer, toggleTab
 	} = useSwipeableDrawerStore();
 
 	const handlerNav : React.MouseEventHandler<HTMLDivElement>  = () : void => {
 		toggleDrawer();
+	};
+
+	const handlerClearDrawer = () => {
+		toggleDrawer(false);
+		toggleTab('');
 	};
 
 	return (
@@ -44,7 +44,7 @@ const MobileHeader: FC = () => {
 						<Logotip />
 					</NavItemUI>
 					<NavItemUI>
-						{/*{!isAuth ? <WhatsAppLarge /> : <></>}*/}
+						{!isAuth && isHomePage ? <WhatsAppLarge /> : <></>}
 					</NavItemUI>
 				</NavMenuUI>
 			</HeaderMobileWrapperUI>
@@ -54,7 +54,7 @@ const MobileHeader: FC = () => {
 				// onOpen={() => setOpenMenu(true)}
 				// onClose={() => setOpenMenu(false)}
 				onOpen={() => toggleDrawer(true)}
-				onClose={() => toggleDrawer(false)}
+				onClose={handlerClearDrawer}
 			>
 				<MenuAuthContent />
 			</SwipeableDrawerUI>
@@ -63,3 +63,10 @@ const MobileHeader: FC = () => {
 };
 
 export default React.memo(MobileHeader);
+
+const {
+	HeaderMobileWrapperUI,
+	NavMenuUI,
+	NavItemUI,
+	SwipeableDrawerUI,
+} = useHeaderMobileStyle();
