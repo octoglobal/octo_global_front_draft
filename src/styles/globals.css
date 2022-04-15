@@ -26,10 +26,6 @@ a {
   flex-grow: 1;
 }
 
-footer {
-  display: none;
-}
-
 *, *::after, *::before {
   margin: 0;
   padding: 0;
