@@ -60,6 +60,7 @@ export const useFooterStyle = () => {
 
 		'& svg': {
 			marginRight: '10px',
+			cursor: 'pointer',
 		}
 	}));
 
