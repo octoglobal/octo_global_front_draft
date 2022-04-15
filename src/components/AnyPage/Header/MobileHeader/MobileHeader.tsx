@@ -4,9 +4,11 @@ import Logotip from '../Logotip/Logotip';
 
 import MenuAuthContent from './MenuAuthContent/MenuAuthContent';
 import HeaderMenu from '../../../../UI/UIIcon/HeaderMenu.svg';
+import WhatsAppLarge from '../../../../UI/UIIcon/WhatsAppLarge.svg';
 
 import {useHeaderMobileStyle} from './style';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
+import {useUserStore} from '@/hooks/useUserStore';
 
 const MobileHeader: FC = () => {
 
@@ -16,6 +18,10 @@ const MobileHeader: FC = () => {
 		NavItemUI,
 		SwipeableDrawerUI,
 	} = useHeaderMobileStyle();
+
+	const {
+		isAuth
+	} = useUserStore();
 
 	const {
 		open,
@@ -38,7 +44,7 @@ const MobileHeader: FC = () => {
 						<Logotip />
 					</NavItemUI>
 					<NavItemUI>
-						{/* <Moon /> */}
+						{/*{!isAuth ? <WhatsAppLarge /> : <></>}*/}
 					</NavItemUI>
 				</NavMenuUI>
 			</HeaderMobileWrapperUI>

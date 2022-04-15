@@ -18,7 +18,7 @@ export const useHeaderMobileStyle = () => {
 
 	const NavItemUI = styled('div')(() => ({
 		cursor: 'pointer',
-		marginRight: '35px',
+		// marginRight: '35px',
 		'& span': {
 			width: 'auto',
 		},

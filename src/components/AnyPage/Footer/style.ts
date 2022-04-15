@@ -36,7 +36,7 @@ export const useFooterStyle = () => {
 		},
 	}));
 
-	const FooterRowUI  = styled('div')(({theme}) => ({
+	const FooterRowUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 
@@ -54,7 +54,7 @@ export const useFooterStyle = () => {
 		}
 	}));
 
-	const FooterRowIconsUI  = styled('div')(() => ({
+	const FooterRowIconsUI = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'row',
 
@@ -64,7 +64,7 @@ export const useFooterStyle = () => {
 		}
 	}));
 
-	const FooterColumnBlockUI  = styled('div')(({theme}) => ({
+	const FooterColumnBlockUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'column',
 
@@ -94,7 +94,6 @@ export const useFooterStyle = () => {
 		[theme.breakpoints.down(800)]: {
 			margin: '0 0 10px',
 			padding: '0 0 10px',
-			// borderTop: '1px solid rgba(223, 228, 236, 0.5)',
 			borderBottom: '1px solid rgba(223, 228, 236, 0.5)',
 
 			'&:nth-child(1)': {
@@ -115,15 +114,15 @@ export const useFooterStyle = () => {
 		}
 	}));
 
-	const FooterColumnTitleUI  = styled('h6')(() => ({
+	const FooterColumnTitleUI = styled('h6')(() => ({
 		fontStyle: 'normal',
-		fontWeight: '600',
+		fontWeight: '400',
 		fontSize: '14px',
 		lineHeight: '16px',
 		marginBottom: '15px'
 	}));
 
-	const FooterColumnTextUI  = styled('p')(() => ({
+	const FooterColumnTextUI = styled('p')(() => ({
 		width: 'auto',
 		fontStyle: 'normal',
 		fontWeight: '300',
@@ -131,14 +130,16 @@ export const useFooterStyle = () => {
 		lineHeight: '16px',
 		marginBottom: '15px',
 
+		cursor: 'pointer',
+
 		'&:last-child': {
 			marginBottom: '0px',
 		}
 	}));
 
-	const IndexTitleUI  = styled('a')(({theme}) => ({
+	const IndexTitleUI = styled('a')(({theme}) => ({
 		fontStyle: 'normal',
-		fontWeight: '500',
+		fontWeight: '400',
 		fontSize: '14px',
 		lineHeight: '16px',
 		textAlign: 'center',
