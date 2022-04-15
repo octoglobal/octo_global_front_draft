@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 
 import {IReviewItem} from '../../../types/types';
-import { ToRusDate, ellipsis } from '@/lib/services/services';
+import { ToRusDate } from '@/lib/services/services';
 import {useReviewItemStyle} from '@/components/Review/ReviewItem/style';
 import { Collapse } from '@mui/material';
 
@@ -19,11 +19,20 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
 				<ReviewDateMUI>{ToRusDate(createdTime)}</ReviewDateMUI>
 				{/*<ReviewDateMUI>{time}</ReviewDateMUI>*/}
 			</ReviewHeaderMUI>
-			<ReviewTextMUI>{ellipsis(text, 145)}</ReviewTextMUI>
+			{/*<ReviewTextMUI>{ellipsis(text, 145)}</ReviewTextMUI>*/}
 			{/*<ReviewTextMUI>{text}</ReviewTextMUI>*/}
-			<Collapse in={openMore}>
-				<ReviewTextMUI>{openMore ? text : ellipsis(text, 145)}</ReviewTextMUI>
-			</Collapse>
+			{text.length > 145 ? (
+				<Collapse in={openMore} collapsedSize='74px'>
+					{/*<ReviewTextMUI>{openMore ? text : ellipsis(text, 145)}</ReviewTextMUI>*/}
+					<ReviewTextMUI>{text}</ReviewTextMUI>
+				</Collapse>
+			) : (
+				<ReviewTextMUI>{text}</ReviewTextMUI>
+			)}
+			{/*<Collapse in={openMore} collapsedSize='74px'>*/}
+			{/*	/!*<ReviewTextMUI>{openMore ? text : ellipsis(text, 145)}</ReviewTextMUI>*!/*/}
+			{/*	<ReviewTextMUI>{text}</ReviewTextMUI>*/}
+			{/*</Collapse>*/}
 			{text.length >= 145 && (
 				<ShowMoreMUI onClick={triggerShowMore}>{openMore ? 'Скрыть' : 'Показать полностью'}</ShowMoreMUI>
 			)}
