@@ -31,7 +31,7 @@ export const useShopsItemStyles = () => {
 	const TitleMUI = styled('h3')(() => ({
 		fontSize: '24px',
 		lineHeight: '28px',
-		fontWeight: 600,
+		fontWeight: 400,
 		color: '#000000',
 		textAlign: 'center',
 		marginBottom: '10px',

@@ -7,19 +7,26 @@ import SwiperArrowNext from '@/UIIcon/CategoryArrowRight.svg';
 import SwiperArrowPrev from '@/UIIcon/CategoryArrow.svg';
 import { Controller } from 'react-hook-form';
 import 'swiper/css';
-import {ISwiperCategoryItemClick} from '@/components/Shops/type';
+import {ICategoryItem, ISwiperCategoryItemClick} from '@/components/Shops/type';
 
-const CategorySwiper: FC<ISwiperCategoryItemClick> = ({handleClick}) => {
+interface ICategorySwiperProps extends ISwiperCategoryItemClick {
+	allTags: ICategoryItem[];
+}
+
+const CategorySwiper: FC<ICategorySwiperProps> = (
+	{
+		allTags,
+		handleClick,
+	}
+) => {
 
 	const {
 		onSwiper,
-		categories,
+		// categories,
 		widthInName,
 		isCategoriesArray,
 		handleChangeSlide,
-	} = useCategorySwiper();
-
-	const { SwiperArrowButtonMUI } = useCategorySwiperItem();
+	} = useCategorySwiper(allTags);
 
 	return (
 		isCategoriesArray ? (
@@ -39,15 +46,15 @@ const CategorySwiper: FC<ISwiperCategoryItemClick> = ({handleClick}) => {
 							onSwiper={onSwiper}
 							slidesPerView={'auto'}
 						>
-							{categories?.map(category => (
+							{allTags?.map(tag => (
 								<SwiperSlide
-									key={category.id}
-									style={widthInName(category.title)}
+									key={tag.id}
+									style={widthInName(tag.title)}
 								>
 									<CategorySearchSwiperItem
 										handleClick={handleClick(value, onChange)}
-										id={category.id}
-										title={category.title}
+										id={tag.id}
+										title={tag.title}
 									/>
 								</SwiperSlide>
 							))}
@@ -65,5 +72,8 @@ const CategorySwiper: FC<ISwiperCategoryItemClick> = ({handleClick}) => {
 		) : null
 	);
 };
+
+const { SwiperArrowButtonMUI } = useCategorySwiperItem();
+
 
 export default React.memo(CategorySwiper);

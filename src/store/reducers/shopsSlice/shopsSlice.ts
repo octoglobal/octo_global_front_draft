@@ -1,6 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchMoreTagShops, fetchSearchShops, fetchTagShops} from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
+import {
+	fetchAllTagsShops,
+	fetchMoreTagShops,
+	fetchSearchShops,
+	fetchTagShops
+} from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
 import {IShopsModel} from '@/models/IShopsModel';
+import {ICategoryItem} from '@/components/Shops/type';
+import {ICategoryModel} from '@/models/ICategoryModel';
 
 export interface IShopsSlice {
 	search: string;
@@ -10,6 +17,7 @@ export interface IShopsSlice {
 	error: string;
 	updateShops: boolean
 	shopsEnd: boolean;
+	allTags: ICategoryItem[]
 }
 
 interface IFetchMoreTagShopsFulfilled {
@@ -31,6 +39,7 @@ const initialState: IShopsSlice = {
 	updateShops: true,
 	shopsEnd: false,
 	error: '',
+	allTags: [],
 };
 
 export const shopSlice = createSlice({
@@ -55,11 +64,11 @@ export const shopSlice = createSlice({
 		},
 	},
 	extraReducers: {
-		[fetchSearchShops.fulfilled.type]: (state, data: PayloadAction<IFetchSearchShopsFulfilled>) => {
-			state.shops = data.payload.shops;
+		[fetchSearchShops.fulfilled.type]: (state, action: PayloadAction<IFetchSearchShopsFulfilled>) => {
+			state.shops = action.payload.shops;
 			state.page = 1;
 			state.updateShops = false;
-			state.search = data.payload.search;
+			state.search = action.payload.search;
 		},
 		[fetchSearchShops.pending.type]: (state) => {
 			state.updateShops = true;
@@ -68,12 +77,12 @@ export const shopSlice = createSlice({
 			state.updateShops = false;
 			state.error = 'error';
 		},
-		[fetchTagShops.fulfilled.type]: (state, data: PayloadAction<IFetchMoreTagShopsFulfilled>) => {
-			state.shops = data.payload.shops;
-			state.shopsEnd = data.payload.shopsEnd;
+		[fetchTagShops.fulfilled.type]: (state, action: PayloadAction<IFetchMoreTagShopsFulfilled>) => {
+			state.shops = action.payload.shops;
+			state.shopsEnd = action.payload.shopsEnd;
 			state.page = 2;
 			state.updateShops = false;
-			state.tags = data.payload.tags;
+			state.tags = action.payload.tags;
 		},
 		[fetchTagShops.pending.type]: (state) => {
 			state.search = '';
@@ -82,12 +91,12 @@ export const shopSlice = createSlice({
 			state.updateShops = false;
 			state.error = 'error';
 		},
-		[fetchMoreTagShops.fulfilled.type]: (state, data: PayloadAction<IFetchMoreTagShopsFulfilled>) => {
-			state.shops = [...state.shops, ...data.payload.shops];
-			state.updateShops = data.payload.shopsEnd;
+		[fetchMoreTagShops.fulfilled.type]: (state, action: PayloadAction<IFetchMoreTagShopsFulfilled>) => {
+			state.shops = [...state.shops, ...action.payload.shops];
+			state.updateShops = action.payload.shopsEnd;
 			state.page += 1;
 			state.shopsEnd = false;
-			state.tags = data.payload.tags;
+			state.tags = action.payload.tags;
 		},
 		[fetchMoreTagShops.pending.type]: (state) => {
 			state.updateShops = true;
@@ -97,6 +106,9 @@ export const shopSlice = createSlice({
 			state.updateShops = false;
 			state.error = 'error';
 		},
+		[fetchAllTagsShops.fulfilled.type]: (state, action: PayloadAction<ICategoryModel[]>) => {
+			state.allTags = action.payload;
+		}
 	}
 });
 

@@ -1,28 +1,49 @@
 import React, {FC} from 'react';
-import {ICategoryItem} from '@/components/Shops/type';
-import {useCategoryList} from '@/components/AnyPage/CategoryList/useCategoryList';
-import {useCategoryListStyles} from '@/components/AnyPage/CategoryList/style';
+import {ICategoryItem, IHandleClickTagInCard} from '@/components/Shops/type';
+import {useTagsList} from '@/components/AnyPage/TagsList/useTagsList';
+import {useTagsListStyles} from '@/components/AnyPage/TagsList/style';
+import ShopsTagsListArrow from '@/UIIcon/ShopsTagsListArrow.svg';
+import TagsListItem from '@/components/AnyPage/TagsList/TagsListItem/TagsListItem';
 
-interface ICategoryListProps {
+interface ICategoryListProps extends IHandleClickTagInCard {
 	allTags: ICategoryItem[],
 }
 
-const CategoryList: FC<ICategoryListProps> = ({allTags}) => {
+const TagsList: FC<ICategoryListProps> = ({allTags, handleClickTagInCard}) => {
 
 	const {
 		isOpenList,
 		isAllTagArray,
 		handleChangeOpenList,
-	} = useCategoryList(allTags);
+	} = useTagsList(allTags);
 
 	return (
 		<>
-			<CollapseMUI in={isOpenList}>
-				23
-			</CollapseMUI>
-			<ModalMUI open={isOpenList}>
-				test
-			</ModalMUI>
+			<ContainerMUI>
+				<ArrowContainerMUI onClick={handleChangeOpenList(true)}>
+					<ShopsTagsListArrow/>
+				</ArrowContainerMUI>
+				<CollapseMUI
+					in={isOpenList}
+					timeout={300}
+				>
+					<ListMUI>
+						{isAllTagArray && (
+							allTags.map((tag, index) => (
+								<TagsListItem
+									key={`${tag.id}${index}${tag.title}`}
+									handleClickTagInCard={handleClickTagInCard}
+									{...tag}
+								/>
+							))
+						)}
+					</ListMUI>
+				</CollapseMUI>
+			</ContainerMUI>
+			<ModalMUI
+				open={isOpenList}
+				onClick={handleChangeOpenList(false)}
+			/>
 		</>
 	);
 };
@@ -31,7 +52,8 @@ const {
 	ListMUI,
 	ModalMUI,
 	CollapseMUI,
-	ContainerMUI
-} = useCategoryListStyles();
+	ContainerMUI,
+	ArrowContainerMUI,
+} = useTagsListStyles();
 
-export default React.memo(CategoryList);
+export default React.memo(TagsList);

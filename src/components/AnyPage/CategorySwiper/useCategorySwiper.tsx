@@ -4,9 +4,8 @@ import {ICategoryModel, ICategoryModelResponse} from '@/models/ICategoryModel';
 import {Swiper as SwiperTypes} from 'swiper';
 import {useFormContext} from 'react-hook-form';
 
-export const useCategorySwiper = () => {
+export const useCategorySwiper = (allTags: ICategoryModel[]) => {
 	const [initSwiper, setInitSwiper] = useState<SwiperTypes>();
-	const [categories, setCategories] = useState<ICategoryModel[] | null>();
 	const { control } = useFormContext();
 
 	const onSwiper = useCallback((swiper: SwiperTypes) => {
@@ -25,31 +24,20 @@ export const useCategorySwiper = () => {
 	};
 
 	const isCategoriesArray = useMemo(() => (
-		Array.isArray(categories) && categories?.length
-	), [categories]);
+		Array.isArray(allTags) && allTags?.length
+	), [allTags]);
 
 	const widthInName = (category: string) => {
-		const width = category.length * 10 + 11;
+		const width = category.length * 12 + 15;
 		return {
 			width: `${width}px`,
 		};
 	};
 
-	useEffect(() => {
-		try {
-			octoAxios.get<ICategoryModelResponse>('/shops_tags').then(response => {
-				setCategories(response.data.shops_tags);
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	}, []);
-
 	return {
 		control,
 		onSwiper,
 		initSwiper,
-		categories,
 		widthInName,
 		handleChangeSlide,
 		isCategoriesArray

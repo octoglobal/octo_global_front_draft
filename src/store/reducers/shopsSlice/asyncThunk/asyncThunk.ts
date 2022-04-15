@@ -2,6 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {octoAxios} from '@/lib/http';
 import {IShopsSearchResponse, IShopsTagsResponse} from '@/models/IShopsModel';
+import {ICategoryModelResponse} from '@/models/ICategoryModel';
 
 export const fetchSearchShops = createAsyncThunk(
 	'shopsSlice/search',
@@ -54,6 +55,23 @@ export const fetchMoreTagShops = createAsyncThunk(
 				shopsEnd: !(response.shops.length === response.postsOnPage),
 				tags: data.tagsQuery,
 			};
+		} catch (e) {
+			if (axios.isAxiosError(e)) {
+				return thunkAPI.rejectWithValue(e.response?.status);
+			}
+		}
+	}
+);
+
+
+export const fetchAllTagsShops = createAsyncThunk(
+	'shopsSlice/allTags',
+	async (_, thunkAPI) => {
+		try {
+			const response =
+				await octoAxios.get<ICategoryModelResponse>('/shops_tags')
+					.then(response => response.data);
+			return response.shops_tags;
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);

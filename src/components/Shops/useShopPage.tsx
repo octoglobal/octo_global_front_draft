@@ -1,7 +1,12 @@
 import {useCallback, useEffect} from 'react';
 import {ICategoryItem} from '@/components/Shops/type';
 import {useForm} from 'react-hook-form';
-import {fetchMoreTagShops, fetchSearchShops, fetchTagShops} from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
+import {
+	fetchAllTagsShops,
+	fetchMoreTagShops,
+	fetchSearchShops,
+	fetchTagShops
+} from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {getFulfilledInString} from '@/services/services';
 import {shopSlice} from '@/reducers/shopsSlice/shopsSlice';
@@ -19,7 +24,8 @@ export const useShopPage = () => {
 		updateShops,
 		shopsEnd,
 		tags: tagsStore,
-		search
+		search,
+		allTags
 	} = useAppSelector(state => state.shopReducer);
 	const dispatch = useAppDispatch();
 	const methods  = useForm<ISearchData>();
@@ -78,19 +84,22 @@ export const useShopPage = () => {
 	};
 
 	//! Category
-	const handleClickTagInCard = (tagTitle: string, tagId: number) => {
+	const handleClickTagInCard = (tagTitle: string, tagId: number, type: 'tagInList' | 'tagInCard') => {
 		return () => {
 			if (Array.isArray(activeCategory)) {
 				const findTag = activeCategory.find(item => item.title === tagTitle);
 				const tagObj = {title: tagTitle, id: tagId};
 				methods.setValue('search', '');
 				if (findTag) {
-					// methods.setValue(
-					// 	'tags',
-					// 	[
-					// 		...activeCategory.filter(tag => tag.title !== tagTitle),
-					// 	]
-					// );
+					if (type === 'tagInList') {
+						methods.setValue(
+							'tags',
+							[
+								...activeCategory.filter(tag => tag.title !== tagTitle),
+							]
+						);
+					}
+					handleSubmitForm();
 					return;
 				} else {
 					methods.setValue(
@@ -159,6 +168,9 @@ export const useShopPage = () => {
 		if (!search) {
 			dispatch(fetchMoreTagShops({tagsQuery: '', page: 1}));
 		}
+		if (!allTags.length) {
+			dispatch(fetchAllTagsShops());
+		}
 		window.addEventListener(
 			'scroll',
 			onScroll
@@ -186,6 +198,7 @@ export const useShopPage = () => {
 	//! InfinityScroll
 
 	return {
+		allTags,
 		methods,
 		onSubmit,
 		activeCategory,
