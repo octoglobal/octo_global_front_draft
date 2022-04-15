@@ -8,7 +8,6 @@ import {ISwiperCategoryItemClick2} from '@/components/Shops/type';
 
 const CategorySwiperItem: FC<ISwiperCategoryItemClick2 & ICategoryModel> = ({title, id, handleClick}) => {
 
-	const {ItemMUI, ItemTextMUI} = useCategorySwiperItemStyles();
 
 	return (
 		<ItemMUI
@@ -21,5 +20,8 @@ const CategorySwiperItem: FC<ISwiperCategoryItemClick2 & ICategoryModel> = ({tit
 		</ItemMUI>
 	);
 };
+
+const {ItemMUI, ItemTextMUI} = useCategorySwiperItemStyles();
+
 
 export default React.memo(CategorySwiperItem);

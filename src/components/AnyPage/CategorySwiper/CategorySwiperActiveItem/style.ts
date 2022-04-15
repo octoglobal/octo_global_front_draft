@@ -12,7 +12,7 @@ export const useCategorySwiperActiveItemStyles = () => {
 	}));
 
 	const ItemTitleMUI = styled('p')(() => ({
-		fontSize: '16px',
+		fontSize: '14px',
 		lineHeight: '19px',
 		fontWeight: 400,
 		color: '#274D82',

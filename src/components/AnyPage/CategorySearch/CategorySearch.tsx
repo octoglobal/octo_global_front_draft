@@ -14,7 +14,7 @@ interface ICategorySearchProps {
 const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
 	const {
 		control,
-		hintsData,
+		searchHints,
 		isMouseEnter,
 		handleKeyDown,
 		isVisibleHints,
@@ -47,7 +47,7 @@ const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
 			</SearchContainerMUI>
 			{isVisibleHints && (
 				<CategorySearchHint
-					hintsData={hintsData}
+					hintsData={searchHints}
 					isMouseEnter={isMouseEnter}
 					isVisibleHints={isVisibleHints}
 					activeSuggestion={activeSuggestion}

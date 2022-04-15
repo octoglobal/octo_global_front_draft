@@ -2,6 +2,8 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {octoAxios} from '@/lib/http';
 import {IShopsSearchResponse, IShopsTagsResponse} from '@/models/IShopsModel';
+import {ICategoryModelResponse} from '@/models/ICategoryModel';
+import {IHintsResponse} from '@/components/AnyPage/CategorySearch/types';
 
 export const fetchSearchShops = createAsyncThunk(
 	'shopsSlice/search',
@@ -24,7 +26,7 @@ export const fetchSearchShops = createAsyncThunk(
 
 export const fetchTagShops = createAsyncThunk(
 	'shopsSlice/tags',
-	async (data: { tagsQuery: string }, thunkAPI) => {
+	async (data: { tagsQuery: string, isSearchNotFound?: boolean }, thunkAPI) => {
 		try {
 			const response =
 				await octoAxios.get<IShopsTagsResponse>(`/shops?${data.tagsQuery}page=1`)
@@ -33,6 +35,7 @@ export const fetchTagShops = createAsyncThunk(
 				shops: response.shops,
 				shopsEnd: !(response.shops.length === response.postsOnPage),
 				tags: data.tagsQuery,
+				isSearchNotFound: !!data.isSearchNotFound,
 			};
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
@@ -54,6 +57,39 @@ export const fetchMoreTagShops = createAsyncThunk(
 				shopsEnd: !(response.shops.length === response.postsOnPage),
 				tags: data.tagsQuery,
 			};
+		} catch (e) {
+			if (axios.isAxiosError(e)) {
+				return thunkAPI.rejectWithValue(e.response?.status);
+			}
+		}
+	}
+);
+
+
+export const fetchAllTagsShops = createAsyncThunk(
+	'shopsSlice/allTags',
+	async (_, thunkAPI) => {
+		try {
+			const response =
+				await octoAxios.get<ICategoryModelResponse>('/shops_tags')
+					.then(response => response.data);
+			return response.shops_tags;
+		} catch (e) {
+			if (axios.isAxiosError(e)) {
+				return thunkAPI.rejectWithValue(e.response?.status);
+			}
+		}
+	}
+);
+
+export const fetchHintsSearchShops = createAsyncThunk(
+	'shopsSlice/hintsSearch',
+	async (data: {searchValue: string}, thunkAPI) => {
+		try {
+			const response = await octoAxios
+				.get<IHintsResponse>(`/shops?search_suggestions=${data.searchValue}`)
+				.then(response => response.data);
+			return response.search_suggestions_results;
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);

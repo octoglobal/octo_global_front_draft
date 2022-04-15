@@ -18,15 +18,15 @@ export const useShopsPageStyles = () => {
 	const ContainerSwiperMUI = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
-		maxWidth: '1107px',
-		margin: '0 auto',
+		// maxWidth: '1107px',
+		// margin: '0 auto',
 		'& > .swiper': {
 			paddingBottom: '2px',
 			border: '1px solid #FFFFFF',
 			boxShadow: '0px 4px 2px rgba(0, 0, 0, 0.05)',
 			'& > div.swiper-wrapper': {
 				'& > div': {
-					marginRight: '15px',
+					paddingRight: '15px',
 				},
 				'& > *:last-child': {
 					marginRight: '0'
@@ -35,10 +35,19 @@ export const useShopsPageStyles = () => {
 		}
 	}));
 
+	const ContainerTagsMUI = styled('div')(() => ({
+		position: 'relative',
+		display: 'flex',
+		margin: '0 auto',
+		flexDirection: 'column',
+		maxWidth: '1107px',
+	}));
+
 	return {
 		FormMUI,
 		ContainerMUI,
 		SearchWrapperMUI,
+		ContainerTagsMUI,
 		ContainerSwiperMUI,
 	};
 };

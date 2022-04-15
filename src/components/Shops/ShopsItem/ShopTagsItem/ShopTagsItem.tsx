@@ -12,7 +12,7 @@ const ShopTagsItem: FC<IShopTagsItemProps & IHandleClickTagInCard> = ({tagTitle,
 		<ItemMUI>
 			<ItemTextButtonMUI
 				// type='submit'
-				onClick={handleClickTagInCard(tagTitle, tagId)}
+				onClick={handleClickTagInCard(tagTitle, tagId, 'tagInCard')}
 			>
 				{tagTitle}
 			</ItemTextButtonMUI>

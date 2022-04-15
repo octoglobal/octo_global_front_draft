@@ -1,29 +1,29 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useFormContext, useWatch} from 'react-hook-form';
-import {IHints, IHintsResponse} from '@/components/AnyPage/CategorySearch/types';
-import {octoAxios} from '@/lib/http';
 import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
+import {fetchHintsSearchShops} from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
+import {shopSlice} from '@/reducers/shopsSlice/shopsSlice';
 
 
 export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubmitType) => void) => {
 
+	const { searchHints } = useAppSelector(state => state.shopReducer);
+	const dispatch = useAppDispatch();
 	const {control, setValue} = useFormContext();
 	const searchValue = useWatch({name: 'search'});
 	const [isFocus, setIsFocus] = useState<boolean>(false);
-	const [hintsData, setHintsData] = useState<IHints[]>([]);
 	const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
 	const [isMouseEnter, setIsMouseEnter] = useState(false);
 
 
 	const isHintsData = useMemo(() => (
-		Array.isArray(hintsData) && hintsData.length
-	), [hintsData]);
+		Array.isArray(searchHints) && searchHints.length
+	), [searchHints]);
 
 	const isVisibleHints = useMemo(() => (
 		!!(isHintsData && isFocus)
 	), [isFocus, isHintsData]);
-
-	console.log(isHintsData, isFocus, activeSuggestion);
 
 
 	const handleChangeFocus = (state: boolean) => {
@@ -42,7 +42,7 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		setIsMouseEnter(false);
 		if (e.key === 'ArrowDown') {
-			if (activeSuggestion + 1 > hintsData.length) {
+			if (activeSuggestion + 1 > searchHints.length) {
 				setActiveSuggestion(1);
 				return;
 			}
@@ -51,7 +51,7 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 		}
 		if (e.key === 'ArrowUp') {
 			if (activeSuggestion - 1 < 1) {
-				setActiveSuggestion(hintsData.length);
+				setActiveSuggestion(searchHints.length);
 				return;
 			}
 			setActiveSuggestion(prevState => prevState - 1);
@@ -65,7 +65,7 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 				},
 				'search'
 			);
-			setHintsData([]);
+			dispatch(shopSlice.actions.changeHintsShops([]));
 		}
 		setActiveSuggestion(0);
 	};
@@ -97,19 +97,21 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 
 	useEffect(() => {
 		if (!activeSuggestion && searchValue) {
-			try {
-				octoAxios.get<IHintsResponse>(`/shops?search_suggestions=${searchValue}`).then(response => {
-					const hintsResponse = response.data.search_suggestions_results;
-					if (hintsResponse) {
-						setHintsData(hintsResponse);
-					}
-				});
-			} catch (e) {
-				console.log(e);
-			}
+			// try {
+			// 	octoAxios.get<IHintsResponse>(`/shops?search_suggestions=${searchValue}`).then(response => {
+			// 		const hintsResponse = response.data.search_suggestions_results;
+			// 		if (hintsResponse) {
+			// 			setHintsData(hintsResponse);
+			// 			dispatch(shopSlice.actions.changeFoundShops(!hintsResponse.length));
+			// 		}
+			// 	});
+			// } catch (e) {
+			// 	console.log(e);
+			// }
+			dispatch(fetchHintsSearchShops({searchValue}));
 		}
-		if (!searchValue && hintsData.length) {
-			setHintsData([]);
+		if (!searchValue && searchHints.length) {
+			// setHintsData([]);
 			setActiveSuggestion(0);
 		}
 	}, [searchValue]);
@@ -117,7 +119,7 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 	return {
 		isFocus,
 		control,
-		hintsData,
+		searchHints,
 		isMouseEnter,
 		handleKeyDown,
 		isVisibleHints,

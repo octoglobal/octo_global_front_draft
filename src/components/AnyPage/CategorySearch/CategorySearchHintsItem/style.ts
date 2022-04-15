@@ -17,7 +17,7 @@ export const useCategorySearchHintsItemStyles = () => {
 	}));
 
 	const ItemTextMUI = styled('div')(() => ({
-		fontSize: '18px',
+		fontSize: '14px',
 		lineHeight: '21px',
 		fontWeight: 400,
 	}));

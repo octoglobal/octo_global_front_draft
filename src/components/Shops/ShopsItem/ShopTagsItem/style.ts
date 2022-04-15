@@ -10,9 +10,9 @@ export const useShopTagsItemStyles = () => {
 
 	const ItemTextButtonMUI = styled('button')(() => ({
 		color: '#274D82',
-		fontSize: '18px',
+		fontSize: '20px',
 		lineHeight: '21px',
-		fontWeight: 400,
+		fontWeight: 300,
 		border: 0,
 		backgroundColor: 'transparent',
 		cursor: 'pointer',

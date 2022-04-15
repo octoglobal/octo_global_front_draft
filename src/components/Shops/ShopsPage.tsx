@@ -8,13 +8,17 @@ import CategorySearchSwiperActive
 import {useShopPage} from '@/components/Shops/useShopPage';
 import {FormProvider} from 'react-hook-form';
 import ShopsList from '@/components/Shops/ShopsList/ShopsList';
+import CategoryList from '@/components/AnyPage/TagsList/TagsList';
+import ShopsNotFound from '@/components/Shops/ShopsNotFound/ShopsNotFound';
 
 const ShopsPage: FC = () => {
 
 	const {
+		allTags,
 		methods,
 		onSubmit,
 		activeCategory,
+		isNotFoundShops,
 		handleDeleteCategory,
 		handleChangeCategory,
 		handleClickTagInCard
@@ -34,11 +38,21 @@ const ShopsPage: FC = () => {
 								category={activeCategory}
 								handleDeleteCategory={handleDeleteCategory}/>
 						</SearchWrapperMUI>
-						<ContainerSwiperMUI>
-							<CategorySearchSwiper
-								handleClick={handleChangeCategory}
+						<ContainerTagsMUI>
+							<ContainerSwiperMUI>
+								<CategorySearchSwiper
+									allTags={allTags}
+									handleClick={handleChangeCategory}
+								/>
+							</ContainerSwiperMUI>
+							<CategoryList
+								allTags={allTags}
+								handleClickTagInCard={handleClickTagInCard}
 							/>
-						</ContainerSwiperMUI>
+							{isNotFoundShops && (
+								<ShopsNotFound/>
+							)}
+						</ContainerTagsMUI>
 						<ShopsList
 							handleClickTagInCard={handleClickTagInCard}
 						/>
@@ -53,7 +67,8 @@ const {
 	FormMUI,
 	ContainerMUI,
 	SearchWrapperMUI,
-	ContainerSwiperMUI
+	ContainerTagsMUI,
+	ContainerSwiperMUI,
 } = useShopsPageStyles();
 
 export default React.memo(ShopsPage);

@@ -17,5 +17,5 @@ export interface ISwiperCategoryItemClick {
 }
 
 export interface IHandleClickTagInCard {
-	handleClickTagInCard: (tagTitle: string, tagId: number) => () => void;
+	handleClickTagInCard: (tagTitle: string, tagId: number, type: 'tagInCard' | 'tagInList') => () => void;
 }
