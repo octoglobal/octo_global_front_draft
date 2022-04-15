@@ -10,13 +10,6 @@ interface ICategorySearchSwiperActiveProps {
 }
 
 const CategorySwiperActive: FC<ICategorySearchSwiperActiveProps> = ({category, handleDeleteCategory}) => {
-
-	const {
-		ListMUI,
-		EmptyListMUI
-	} = usCategorySwiperActiveStyle();
-
-
 	return (
 		<ListMUI>
 			{category?.length ? (
@@ -32,5 +25,10 @@ const CategorySwiperActive: FC<ICategorySearchSwiperActiveProps> = ({category, h
 		</ListMUI>
 	);
 };
+
+const {
+	ListMUI,
+	EmptyListMUI
+} = usCategorySwiperActiveStyle();
 
 export default React.memo(CategorySwiperActive);

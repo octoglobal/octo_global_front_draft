@@ -8,12 +8,12 @@ export const useCategorySwiperActiveItemStyles = () => {
 		flexDirection: 'row',
 		alignItems: 'center',
 		marginRight: '19px',
-		// marginBottom: '5px',
+		marginBottom: '5px',
 	}));
 
 	const ItemTitleMUI = styled('p')(() => ({
 		fontSize: '14px',
-		lineHeight: '19px',
+		lineHeight: '16px',
 		fontWeight: 400,
 		color: '#274D82',
 		marginRight: '3px',

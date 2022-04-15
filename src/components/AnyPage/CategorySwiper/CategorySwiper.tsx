@@ -22,7 +22,7 @@ const CategorySwiper: FC<ICategorySwiperProps> = (
 
 	const {
 		onSwiper,
-		// categories,
+		isTablet,
 		widthInName,
 		isCategoriesArray,
 		handleChangeSlide,
@@ -31,13 +31,15 @@ const CategorySwiper: FC<ICategorySwiperProps> = (
 	return (
 		isCategoriesArray ? (
 			<>
-				<SwiperArrowButtonMUI
-					className='nextArrow'
-					type='button'
-					onClick={handleChangeSlide('prev')}
-				>
-					<SwiperArrowPrev/>
-				</SwiperArrowButtonMUI>
+				{!isTablet && (
+					<SwiperArrowButtonMUI
+						className='nextArrow'
+						type='button'
+						onClick={handleChangeSlide('prev')}
+					>
+						<SwiperArrowPrev/>
+					</SwiperArrowButtonMUI>
+				)}
 				<Controller
 					name='tags'
 					defaultValue={[]}
@@ -61,13 +63,15 @@ const CategorySwiper: FC<ICategorySwiperProps> = (
 						</Swiper>
 					)}
 				/>
-				<SwiperArrowButtonMUI
-					type='button'
-					className='prevArrow'
-					onClick={handleChangeSlide('next')}
-				>
-					<SwiperArrowNext/>
-				</SwiperArrowButtonMUI>
+				{!isTablet && (
+					<SwiperArrowButtonMUI
+						type='button'
+						className='prevArrow'
+						onClick={handleChangeSlide('next')}
+					>
+						<SwiperArrowNext/>
+					</SwiperArrowButtonMUI>
+				)}
 			</>
 		) : null
 	);

@@ -25,7 +25,11 @@ const CategorySwiperActiveItem: FC<ICategorySwiperActiveItemProps> = ({title, id
 	);
 };
 
-const { ItemMUI, ItemTitleMUI, ItemDeleteMUI } = useCategorySwiperActiveItemStyles();
+const {
+	ItemMUI,
+	ItemTitleMUI,
+	ItemDeleteMUI
+} = useCategorySwiperActiveItemStyles();
 
 
 export default React.memo(CategorySwiperActiveItem);

@@ -6,8 +6,6 @@ export const useShopTagsStyles = () => {
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
-		// display: 'grid',
-		// gridTemplateColumns: 'repeat(3, 1fr)'
 	}));
 
 	return {
