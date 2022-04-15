@@ -2,8 +2,11 @@ import {Button, Collapse, Dialog, styled} from '@mui/material';
 
 export const useTagsListStyles = () => {
 
-	const ContainerMUI = styled('section')(() => ({
+	const ContainerMUI = styled('section')(({theme}) => ({
 		marginTop: '14px',
+		[theme.breakpoints.down(1025)]: {
+			marginTop: '10px'
+		}
 	}));
 
 	const ArrowContainerMUI = styled(Button)(() => ({
@@ -13,7 +16,7 @@ export const useTagsListStyles = () => {
 		height: '33px',
 		margin: '0 auto',
 		padding: 0,
-		display: 'block'
+		display: 'block',
 	}));
 
 	const ListMUI = styled('ul')(() => ({
@@ -21,6 +24,7 @@ export const useTagsListStyles = () => {
 		flexWrap: 'wrap',
 		paddingLeft: 0,
 		minHeight: '150px',
+		justifyContent: 'center',
 	}));
 
 	const CollapseMUI = styled(Collapse)(() => ({
@@ -31,7 +35,8 @@ export const useTagsListStyles = () => {
 		backgroundColor: '#FFFFFF',
 		borderRadius: '10px',
 		boxShadow: '0px 1px 10px rgba(0, 0, 0, 0.25)',
-		padding: '0px 0 3px 25px',
+		// padding: '0px 0 3px 25px',
+		padding: '0px 5px 3px',
 		overflowY: 'scroll',
 		position: 'absolute',
 		zIndex: 10,

@@ -2,24 +2,31 @@ import { styled } from '@mui/material';
 
 export const useShopsPageStyles = () => {
 
-	const ContainerMUI = styled('div')(() => ({
+	const ContainerMUI = styled('div')(({theme}) => ({
 		marginTop: '49px',
+		[theme.breakpoints.down(769)]: {
+			marginTop: '0',
+		}
 	}));
 
 	const FormMUI = styled('form')(() => ({
 	}));
 
-	const SearchWrapperMUI = styled('div')(() => ({
+	const SearchWrapperMUI = styled('div')(({theme}) => ({
 		maxWidth: '976px',
 		width: '100%',
 		margin: '0 auto',
+		[theme.breakpoints.down(1200)]: {
+			padding: '0 40px',
+		},
+		[theme.breakpoints.down(1025)]: {
+			padding: '0',
+		}
 	}));
 
-	const ContainerSwiperMUI = styled('div')(() => ({
+	const ContainerSwiperMUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		alignItems: 'center',
-		// maxWidth: '1107px',
-		// margin: '0 auto',
 		'& > .swiper': {
 			paddingBottom: '2px',
 			border: '1px solid #FFFFFF',
@@ -32,7 +39,10 @@ export const useShopsPageStyles = () => {
 					marginRight: '0'
 				}
 			}
-		}
+		},
+		[theme.breakpoints.down(1025)]: {
+			padding: '0 13px',
+		},
 	}));
 
 	const ContainerTagsMUI = styled('div')(() => ({

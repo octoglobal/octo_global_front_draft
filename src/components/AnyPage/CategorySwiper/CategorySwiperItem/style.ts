@@ -12,11 +12,15 @@ export const useCategorySwiperItemStyles = () => {
 		cursor: 'pointer',
 	}));
 
-	const ItemTextMUI = styled('div')(() => ({
+	const ItemTextMUI = styled('div')(({theme}) => ({
 		fontSize: '20px',
 		lineHeight: '21px',
 		color: '#274D82',
 		fontWeight: 400,
+		[theme.breakpoints.down(1025)]: {
+			fontSize: '16px',
+			lineHeight: '19px'
+		}
 	}));
 
 

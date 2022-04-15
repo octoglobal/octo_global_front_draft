@@ -53,10 +53,10 @@ const ShopsPage: FC = () => {
 								<ShopsNotFound/>
 							)}
 						</ContainerTagsMUI>
-						<ShopsList
-							handleClickTagInCard={handleClickTagInCard}
-						/>
 					</FormMUI>
+					<ShopsList
+						handleClickTagInCard={handleClickTagInCard}
+					/>
 				</FormProvider>
 			</ContainerMUI>
 		</>

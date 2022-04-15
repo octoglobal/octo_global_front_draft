@@ -5,7 +5,6 @@ import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySear
 import {useCategorySearch} from '@/components/AnyPage/CategorySearch/useCategorySearch';
 import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
 
-const {SearchContainerMUI, TextFieldSearch} = useCategorySearchStyles();
 
 interface ICategorySearchProps {
 	onSubmit: (data: ISearchData, type: SearchSubmitType) => void;
@@ -60,5 +59,11 @@ const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
 		</>
 	);
 };
+
+const {
+	SearchContainerMUI,
+	TextFieldSearch
+} = useCategorySearchStyles();
+
 
 export default React.memo(CategorySearch);
