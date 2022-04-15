@@ -19,12 +19,23 @@ import {useHeader} from '@/components/AnyPage/Header/useHeader';
 
 const Header = () => {
 
+	const {isMobile} = useMobile();
+	const {isAuth} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
+
 	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 
 	const {
-		isAuth,
-	} = useUserStore();
+		HeaderMarginMUI,
+		HeaderBurgerButtonMUI,
+		HeaderWrapperUI,
+		HeaderContentMUI,
+		HeaderNavUI,
+		UserWrapperUI,
+		ButtonLoginUI,
+		ArrowUI,
+		LogoMUI
+	} = useHeaderStyle();
 
 	const {
 		handlerPushToNav,
@@ -42,8 +53,6 @@ const Header = () => {
 		open,
 		isHomePage
 	} = useHeader();
-
-	const {isMobile} = useMobile();
 
 	return (
 		<>
@@ -173,15 +182,3 @@ const Header = () => {
 };
 
 export default React.memo(Header);
-
-const {
-	HeaderMarginMUI,
-	HeaderBurgerButtonMUI,
-	HeaderWrapperUI,
-	HeaderContentMUI,
-	HeaderNavUI,
-	UserWrapperUI,
-	ButtonLoginUI,
-	ArrowUI,
-	LogoMUI
-} = useHeaderStyle();
