@@ -14,11 +14,16 @@ export const useHeaderMobileStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+
+		'& div:last-child': {
+			marginRight: '0px',
+		},
 	}));
 
 	const NavItemUI = styled('div')(() => ({
 		cursor: 'pointer',
 		marginRight: '35px',
+
 		'& span': {
 			width: 'auto',
 		},

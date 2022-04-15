@@ -1,19 +1,25 @@
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import { toggleDrawer } from '@/store/reducers/swipeableDrawerSlice/swipeableDrawerSlice';
+import { toggleDrawer, toggleTab } from '@/store/reducers/swipeableDrawerSlice/swipeableDrawerSlice';
 
 export const useSwipeableDrawerStore = () => {
 	const dispatch = useAppDispatch();
 	const {
-		open
+		open,
+		openTab
 	} = useAppSelector(state => state.swipeableDrawerSliceReducer);
 
 	const toggleSwipeableDrawer = (state?: boolean) => {
-		console.log('toggleSwipeableDrawer');
 		dispatch(toggleDrawer(state));
+	};
+
+	const toggleTabSwipeableDrawer = (state: string) => {
+		dispatch(toggleTab(state));
 	};
 
 	return {
 		open,
+		openTab,
 		toggleDrawer: toggleSwipeableDrawer,
+		toggleTab: toggleTabSwipeableDrawer,
 	};
 };

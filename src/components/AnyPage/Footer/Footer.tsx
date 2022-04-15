@@ -30,24 +30,23 @@ const Footer = () => {
 			<FooterContentUI>
 
 				<FooterColumnBlockUI>
-					<FooterColumnTitleUI>Общая информация</FooterColumnTitleUI>
-					<FooterColumnTextUI>Политика конфиденциальности</FooterColumnTextUI>
-					<FooterColumnTextUI>Пользовательское соглашение</FooterColumnTextUI>
-					<FooterColumnTextUI>Публичная оферта</FooterColumnTextUI>
-				</FooterColumnBlockUI>
-
-				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
 					<FooterColumnTextUI>Список магазинов</FooterColumnTextUI>
-					<FooterColumnTextUI>Список стран</FooterColumnTextUI>
-					<FooterColumnTextUI>Калькулятор</FooterColumnTextUI>
+					<FooterColumnTextUI>Стоимость посылки</FooterColumnTextUI>
+					<FooterColumnTextUI>Частые вопросы</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
 				<FooterColumnBlockUI>
-					<FooterColumnTitleUI>Блог</FooterColumnTitleUI>
-					<FooterColumnTextUI>Как это работает</FooterColumnTextUI>
-					<FooterColumnTextUI>Как заполнять адрес</FooterColumnTextUI>
-					<FooterColumnTextUI>Как отслеживать трек-номер</FooterColumnTextUI>
+					<FooterColumnTitleUI>Информация</FooterColumnTitleUI>
+					<FooterColumnTextUI>Отзывы</FooterColumnTextUI>
+					<FooterColumnTextUI>Блог</FooterColumnTextUI>
+				</FooterColumnBlockUI>
+
+				<FooterColumnBlockUI>
+					<FooterColumnTitleUI>Общая информация</FooterColumnTitleUI>
+					<FooterColumnTextUI>О нас</FooterColumnTextUI>
+					<FooterColumnTextUI>Контакты</FooterColumnTextUI>
+					<FooterColumnTextUI>Юридическая информация</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
 				<FooterColumnBlockUI>
@@ -56,9 +55,9 @@ const Footer = () => {
 							<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
 							<FooterRowIconsUI>
 								<VkIcon/>
+								<OdnoklasIcon/>
 								<TelegramIcon/>
 								{/*<InstIcon />*/}
-								<OdnoklasIcon/>
 							</FooterRowIconsUI>
 						</FooterColumnBlockUI>
 

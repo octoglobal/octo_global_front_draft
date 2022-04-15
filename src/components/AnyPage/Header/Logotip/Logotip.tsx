@@ -26,7 +26,7 @@ const OctoIconsUI = styled('span')(() => ({
 
 const Logotip: FC = () => {
 
-	const {pushTo} = useCustomRouter();
+	const {router, pushTo} = useCustomRouter();
 	const logoRef = useRef<HTMLDivElement>(null);
 
 	const handlerPushHome = () => {
@@ -35,11 +35,14 @@ const Logotip: FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
+			console.log('window !== undefined');
 			const element = logoRef.current;
 			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
 			const transform = checkMedia(501) ? '50' : '100';
 			if (element) {
+				console.log('element !== undefined');
 				if (window.location.pathname === '/') {
+					console.log('главная: ');
 					gsap.fromTo(element, {
 						opacity: 0,
 						transform: `translateY(-${transform}px)`,
@@ -56,13 +59,17 @@ const Logotip: FC = () => {
 						}
 					});
 				} else {
+					console.log('не главная: ');
+
 					gsap.to(element, {
 						visibility: 'visible',
 					});
 				}
 			}
 		}
-	}, []);
+	}, [router.pathname]);
+
+	console.log('router.pathname: ', router.pathname);
 
 	return (
 		<OctoIconsUI

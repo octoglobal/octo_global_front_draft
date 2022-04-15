@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 
 import VPN from '../../../../UI/UIIcon/VPN.svg';
 import Translate from '../../../../UI/UIIcon/Translate.svg';
+import Earth from '../../../../UI/UIIcon/Earth.svg';
+import Box3 from '../../../../UI/UIIcon/Box3.svg';
 
 import {useAccountHelpStyle} from './style';
 import {useCustomSize, useMobile} from '@/hooks/useMedia';
@@ -15,6 +17,25 @@ const AccountHelp: FC = () => {
 		<>
 			{!isMobile && !isCustomSize ? (
 				<HelpWrapperMUI>
+
+					<HelpItemMUI>
+						<HelpImageMUI>
+							<Earth/>
+						</HelpImageMUI>
+						<HelperTextMUI>
+							Дополнительные услуги
+						</HelperTextMUI>
+					</HelpItemMUI>
+
+					<HelpItemMUI>
+						<HelpImageMUI>
+							<Box3/>
+						</HelpImageMUI>
+						<HelperTextMUI>
+							Стоимость почтового отправления
+						</HelperTextMUI>
+					</HelpItemMUI>
+
 					<HelpItemMUI>
 						<HelpImageMUI>
 							<VPN/>
@@ -23,6 +44,7 @@ const AccountHelp: FC = () => {
 							Как подключить VPN
 						</HelperTextMUI>
 					</HelpItemMUI>
+
 					<HelpItemMUI>
 						<HelpImageMUI>
 							<Translate/>
@@ -31,6 +53,7 @@ const AccountHelp: FC = () => {
 							Как перевести страницу на русский
 						</HelperTextMUI>
 					</HelpItemMUI>
+
 				</HelpWrapperMUI>
 			) : null}
 		</>

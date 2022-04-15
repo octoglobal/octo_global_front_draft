@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, KeyboardEvent, useRef, useState} from 'react';
+import React from 'react';
 import {Box, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper} from '@mui/material';
 
 import {IHeaderNavItemsData} from '../../../types/types';
@@ -10,18 +10,20 @@ import Logotip from '../../AnyPage/Header/Logotip/Logotip';
 import {useMobile} from '@/hooks/useMedia';
 import {useUserStore} from '@/hooks/useUserStore';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useHeaderStyle} from './style';
 import HeaderNavLink from './HeaderNavLink/HeaderNavLink';
-import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
 import HeaderNavLinksArray from './HeaderNavLink/HeaderNavLinkData.json';
 import {useCustomSize} from '@/hooks/useMedia';
+import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
+import {useHeader} from '@/components/AnyPage/Header/useHeader';
 
 const Header = () => {
 
-	const dispatch = useAppDispatch();
+	const {isMobile} = useMobile();
+	const {isAuth} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
+
+	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 
 	const {
 		HeaderMarginMUI,
@@ -35,88 +37,22 @@ const Header = () => {
 		LogoMUI
 	} = useHeaderStyle();
 
-	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
-
 	const {
-		// user: {
-		// 	id,
-		// 	// name, surname
-		// },
-		isAuth,
-		// loading
-	} = useUserStore();
-
-	// Пункты пользователя
-
-	const [open, setOpen] = useState(false);
-	const anchorRef = useRef<HTMLDivElement>(null);
-
-	const handleToggle = () => {
-		setOpen((prevOpen) => !prevOpen);
-	};
-
-	const handleClose = (event: Event | SyntheticEvent) => {
-		if (
-			anchorRef.current &&
-			anchorRef.current.contains(event.target as HTMLElement)
-		) {
-			return;
-		}
-
-		setOpen(false);
-	};
-
-	const {isMobile} = useMobile();
-
-	const {pushTo} = useCustomRouter();
-
-	const handlerPushLogin = () => {
-		pushTo('/login');
-	};
-
-	const handlerLogout = () => {
-		dispatch(fetchUserLogout())
-			.then(() => {
-				pushTo('/');
-				setOpen(false);
-			});
-	};
-
-	const handlerPushAccount = (url: string, query = {}) => {
-		return () => {
-			pushTo(url, query);
-			setOpen(false);
-		};
-	};
-
-	const handleListKeyDown = (event: KeyboardEvent) => {
-		if (event.key === 'Tab') {
-			event.preventDefault();
-			setOpen(false);
-		} else if (event.key === 'Escape') {
-			setOpen(false);
-		}
-	};
-
-	// Пункты навигации
-
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const openBurger = Boolean(anchorEl);
-
-	const handleClick = (event: React.MouseEvent<HTMLElement>): void => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleCloseBurger = () => {
-		setAnchorEl(null);
-	};
-
-	const handlerPushToNav = (url: string) : () => void => {
-		return () => {
-			pushTo(url);
-			handleCloseBurger();
-		};
-	};
+		handlerPushToNav,
+		handleClick,
+		openBurger,
+		handleListKeyDown,
+		handlerPushAccount,
+		handlerLogout,
+		handleToggle,
+		handleClose,
+		handlerPushLogin,
+		handleCloseBurger,
+		anchorEl,
+		anchorRef,
+		open,
+		isHomePage
+	} = useHeader();
 
 	return (
 		<>
@@ -124,7 +60,6 @@ const Header = () => {
 			{!isMobile ? (
 				<HeaderWrapperUI>
 					<HeaderContentMUI>
-
 						{isCustomSize && (
 							<HeaderBurgerButtonMUI>
 								<Button
@@ -168,12 +103,15 @@ const Header = () => {
 							{!isCustomSize && <HeaderNavLink/>}
 							<>
 								{!isAuth ? (
-									<ButtonUI
-										style={ButtonLoginUI}
-										onClick={handlerPushLogin}
-									>
-										Войти
-									</ButtonUI>
+									<>
+										{isHomePage && <WhatsAppIconLarge/>}
+										<ButtonUI
+											style={ButtonLoginUI}
+											onClick={handlerPushLogin}
+										>
+											Войти
+										</ButtonUI>
+									</>
 								) : (
 									<UserWrapperUI
 										ref={anchorRef}
@@ -234,8 +172,6 @@ const Header = () => {
 								)}
 							</>
 						</HeaderNavUI>
-
-
 					</HeaderContentMUI>
 				</HeaderWrapperUI>
 			) : (
