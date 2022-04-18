@@ -7,6 +7,8 @@ export const useFooterStyle = () => {
 		background: '#274D82',
 		color: '#FFFFFF',
 		fontFamily: 'Roboto',
+		position: 'relative',
+		zIndex: '2',
 		// padding: '25px 80px',
 
 	}));

@@ -7,6 +7,7 @@ import {useUpdateRefresh} from '@/hooks/useUpdateRefresh';
 import {useUserStore} from '@/hooks/useUserStore';
 import Theme from '../../theme/theme';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
+import ScrollTop from '@/components/AnyPage/ScrollTop/ScrollTop';
 interface MainLayout {
 	children: React.ReactChild | React.ReactNode;
 }
@@ -14,28 +15,12 @@ interface MainLayout {
 const MainLayout: FC<MainLayout> = ({children}) => {
 
 	useUpdateRefresh();
-	// useUserStore();
 	const {getUser} = useUserStore();
 	const {router} = useCustomRouter();
 
-	// useEffect(() => {
-	// 	console.log('useUserStore');
-	// 	getUser();
-	// }, []);
-
-	// getUser();
-
 	useEffect(() => {
-		// console.log('123');
 		getUser();
 	}, []);
-	// console.log('345');
-
-	// useEffect(() => {
-	// 	console.log('useUserStore');
-	// 	getUser();
-	// }, []);
-
 
 	const disabledPadding = useMemo(() => router.route === '/', [router.route]);
 	const disabledMargin = useMemo(() => router.route === '/', [router.route]);
@@ -48,6 +33,7 @@ const MainLayout: FC<MainLayout> = ({children}) => {
 				<ContentLayout disabledPadding={disabledPadding} disabledMargin={disabledMargin}>
 					{children}
 				</ContentLayout>
+				<ScrollTop/>
 			</Box>
 			<Footer/>
 		</Theme>

@@ -28,7 +28,6 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 ) => {
 
 	const {
-		customHint,
 		activeStyles,
 	} = useCategorySearchHintsItem(active, title, isMouseEnter, activeSuggestion);
 
