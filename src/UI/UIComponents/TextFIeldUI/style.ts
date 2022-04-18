@@ -40,17 +40,16 @@ export const useTextFieldUIStyle = () => {
 
 	const TextFieldStyle = {
 		width: '100%',
-		height: '40px',
-
+		height: '49px',
 		background: '#FFFFFF',
-		border: '1px solid #DFE4EC',
+		border: '0',
 		boxSizing: 'border-box',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
 
 		'& .MuiOutlinedInput-root, .MuiFormControl-root': {
 			width: '100%',
-			height: '40px',
-			borderRadius: '0px',
+			height: '49px',
+			borderRadius: '5px',
 			paddingRight: '0px',
 		},
 		'& .MuiInputLabel-root': {
@@ -64,8 +63,8 @@ export const useTextFieldUIStyle = () => {
 			'&::placeholder': {
 				fontStyle: 'normal',
 				fontWeight: '300',
-				fontSize: '14px',
-				lineHeight: '16px',
+				fontSize: '20px',
+				lineHeight: '23px',
 				color: '#C4C4C4',
 			}
 		},

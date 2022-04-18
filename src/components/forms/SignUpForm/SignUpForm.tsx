@@ -1,7 +1,7 @@
 import React, {FC, useMemo} from 'react';
-import { Box, Typography } from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import {useForm} from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
+import {ErrorMessage} from '@hookform/error-message';
 
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useSignUp} from '@/components/SignUp/useSignUp';
@@ -12,7 +12,7 @@ import TextFieldPasswordUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldP
 
 import {useFormsStyle} from '../style';
 
-const SignUpForm : FC = () => {
+const SignUpForm: FC = () => {
 
 	const {pushTo} = useCustomRouter();
 
@@ -34,7 +34,9 @@ const SignUpForm : FC = () => {
 		FormsInput,
 		FormsButton,
 		FormsCheckBoxWrapper,
-		FormHelperErrorUI
+		FormHelperErrorUI,
+		checkboxItemModificationWrapper,
+		FormCheckboxItemMUI
 	} = useFormsStyle();
 
 	const handlerPushToPolicy = () => {
@@ -52,7 +54,7 @@ const SignUpForm : FC = () => {
 							name: 'name',
 							control,
 							defaultValue: '',
-							rules: { required: true },
+							rules: {required: true},
 						}}
 						inputProps={{
 							placeholder: 'Имя',
@@ -74,7 +76,7 @@ const SignUpForm : FC = () => {
 							name: 'surname',
 							control,
 							defaultValue: '',
-							rules: { required: true },
+							rules: {required: true},
 						}}
 						inputProps={{
 							placeholder: 'Фамилия',
@@ -96,7 +98,7 @@ const SignUpForm : FC = () => {
 							name: 'email',
 							control,
 							defaultValue: '',
-							rules: { required: true },
+							rules: {required: true},
 						}}
 						inputProps={{
 							placeholder: 'Почта',
@@ -114,7 +116,7 @@ const SignUpForm : FC = () => {
 							name: 'password',
 							control,
 							defaultValue: '',
-							rules: { required: true },
+							rules: {required: true},
 						}}
 						inputProps={{
 							placeholder: 'Пароль',
@@ -131,7 +133,7 @@ const SignUpForm : FC = () => {
 							name: 'confirmPassword',
 							control,
 							defaultValue: '',
-							rules: { required: true },
+							rules: {required: true},
 						}}
 						inputProps={{
 							placeholder: 'Повторите пароль',
@@ -148,11 +150,15 @@ const SignUpForm : FC = () => {
 							name: 'publicOffer',
 							control,
 							defaultValue: false,
-							rules: { required: 'Заполните все поля' },
+							rules: {required: 'Заполните все поля'},
 						}}
 					/>
 
-					<Typography>Я соглашаюсь с публичной офертой</Typography>
+					<Typography>
+						<FormCheckboxItemMUI>
+							Я соглашаюсь с публичной офертой
+						</FormCheckboxItemMUI>
+					</Typography>
 					<FormHelperErrorUI>
 						<ErrorMessage
 							errors={errors}
@@ -162,21 +168,23 @@ const SignUpForm : FC = () => {
 					</FormHelperErrorUI>
 				</FormsCheckBoxWrapper>
 
-				<FormsCheckBoxWrapper>
+				<FormsCheckBoxWrapper sx={checkboxItemModificationWrapper}>
 					<CheckBoxUI
 						controller={{
 							name: 'privacyPolicy',
 							control,
 							defaultValue: false,
-							rules: { required: 'Заполните все поля' },
+							rules: {required: 'Заполните все поля'},
 						}}
 					/>
 
 					<Typography variant="body2">
-						Я соглашаюсь с&nbsp;
-						<FormsLink onClick={handlerPushToPolicy}>
-							политикой конфиденциальности
-						</FormsLink>
+						<FormCheckboxItemMUI>
+							Я соглашаюсь с&nbsp;
+							<FormsLink onClick={handlerPushToPolicy}>
+								политикой конфиденциальности
+							</FormsLink>
+						</FormCheckboxItemMUI>
 					</Typography>
 					<FormHelperErrorUI>
 						<ErrorMessage

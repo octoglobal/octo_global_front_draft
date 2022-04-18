@@ -2,6 +2,12 @@ import {styled, FormHelperText} from '@mui/material';
 
 export const useLoginPromtStyle = () => {
 
+	const FormsFooterContainerMUI = styled('div')(() => ({
+		'& > *:last-child': {
+			marginBottom: '0px'
+		},
+	}));
+
 	const FormsWrapperBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
@@ -26,9 +32,9 @@ export const useLoginPromtStyle = () => {
 	}));
 
 	const FormsLink = styled('div')(() => ({
-		fontWeight: '300',
-		fontSize: '12px',
-		lineHeight: '14px',
+		fontWeight: '400',
+		fontSize: '14px',
+		lineHeight: '16px',
 		color: '#274D82',
 		cursor: 'pointer',
 
@@ -97,6 +103,14 @@ export const useLoginPromtStyle = () => {
 		}
 	}));
 
+
+	const FormFooterItemLink = styled('a')(() => ({
+		fontWeight: 300,
+		lineHeight: '16px',
+		fontSize: '14px',
+	}));
+
+
 	return {
 		FormsWrapperBox,
 		FormsFooterInfoBox,
@@ -104,6 +118,8 @@ export const useLoginPromtStyle = () => {
 		FormsInput,
 		FormsButton,
 		FormsCheckBoxWrapper,
+		FormsFooterContainerMUI,
+		FormFooterItemLink,
 		FormsDescription,
 		FormHelperErrorUI
 	};

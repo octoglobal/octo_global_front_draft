@@ -14,6 +14,8 @@ const LoginPromt : FC<ILoginPromt> = ({
 }) => {
 
 	const {
+		FormsFooterContainerMUI,
+		FormFooterItemLink,
 		FormsFooterInfoBox,
 		FormsLink
 	} = useLoginPromtStyle();
@@ -27,20 +29,21 @@ const LoginPromt : FC<ILoginPromt> = ({
 	};
 
 	return (
-		<>
+		<FormsFooterContainerMUI>
 			<FormsFooterInfoBox>
 				<Typography variant="body2">
 					<Box onClick={handlerToRefreshPassword}>
-						<a>
+						<FormFooterItemLink>
 							Забыли пароль ?
-						</a>
+						</FormFooterItemLink>
 					</Box>
 				</Typography>
 			</FormsFooterInfoBox>
-
 			<FormsFooterInfoBox>
 				<Typography variant="body2">
-					Нет учетной записи ?&nbsp;
+					<FormFooterItemLink>
+						Нет учетной записи ?&nbsp;
+					</FormFooterItemLink>
 					<Box component="span" onClick={handlerToSignUp}>
 						<a>
 							<FormsLink>Регистрация</FormsLink>
@@ -48,7 +51,7 @@ const LoginPromt : FC<ILoginPromt> = ({
 					</Box>
 				</Typography>
 			</FormsFooterInfoBox>
-		</>
+		</FormsFooterContainerMUI>
 	);
 };
 

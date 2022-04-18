@@ -13,6 +13,13 @@ export const useFormsStyle = () => {
 		}
 	}));
 
+
+	const FormCheckboxItemMUI = styled('div')(() => ({
+		fontWeight: 300,
+		lineHeight: '16px',
+		fontSize: '14px',
+	}));
+
 	const FormsFooterInfoBox = styled('div')(() => ({
 		display: 'flex',
 		flexDirection: 'column',
@@ -25,14 +32,13 @@ export const useFormsStyle = () => {
 		color: '#000000',
 	}));
 
-	const FormsLink = styled('div')(() => ({
+	const FormsLink = styled('span')(() => ({
 		fontWeight: '300',
-		fontSize: '12px',
-		lineHeight: '14px',
+		fontSize: '14px',
+		lineHeight: '16px',
 		color: '#234A82',
 		textDecoration: 'underline',
-
-		display: 'inline-block',
+		// display: 'inline-block',
 		cursor: 'pointer',
 	}));
 
@@ -79,8 +85,8 @@ export const useFormsStyle = () => {
 		},
 
 		'& span': {
-			width: '20px',
-			height: '20px',
+			// width: '20px',
+			// height: '20px',
 			padding: '0',
 			margin: '0 15px 0 0',
 		},
@@ -121,6 +127,9 @@ export const useFormsStyle = () => {
 		}
 	};
 
+	const checkboxItemModificationWrapper = {
+		alignItems: 'flex-start'
+	};
 
 
 	return {
@@ -129,9 +138,11 @@ export const useFormsStyle = () => {
 		FormsLink,
 		FormsInput,
 		FormsButton,
+		FormCheckboxItemMUI,
 		FormsCheckBoxWrapper,
 		FormsDescription,
 		FormHelperErrorUI,
+		checkboxItemModificationWrapper,
 		TextAreaUI
 	};
 };

@@ -13,7 +13,8 @@ const SignUpPromt : FC<ISignUpPromt> = ({
 
 	const {
 		FormsFooterInfoBox,
-		FormsLink
+		FormsLink,
+		FormsItemMUI
 	} = useSignUpPromtStyle();
 
 	const handlerToLogin = () => {
@@ -24,7 +25,9 @@ const SignUpPromt : FC<ISignUpPromt> = ({
 	return (
 		<FormsFooterInfoBox>
 			<Typography variant="body2">
-				У вас есть учетная запись ?&nbsp;
+				<FormsItemMUI>
+					У вас есть учетная запись?&nbsp;
+				</FormsItemMUI>
 				<Box component="span" onClick={handlerToLogin}>
 					<a>
 						<FormsLink>Войти</FormsLink>

@@ -19,7 +19,7 @@ export const useButtonUIStyle = () => {
 	const ButtonStyle = {
 		background: '#274D82',
 		opacity: '1',
-		borderRadius: '3px',
+		borderRadius: '5px',
 		marginBottom: '15px',
 		height: '40px',
 		display: 'flex',
