@@ -1,4 +1,4 @@
-import {styled} from '@mui/material';
+import {Collapse, styled} from '@mui/material';
 
 export const useReviewItemStyle = () => {
 
@@ -26,6 +26,8 @@ export const useReviewItemStyle = () => {
 			// width: '100%',
 			// margin: '15px 0'
 			marginBottom: '0px',
+			padding: '10px 12px',
+			borderRadius: '5px',
 			marginRight: '0',
 			// height: 'auto',
 			// maxHeight: 'none',
@@ -36,41 +38,60 @@ export const useReviewItemStyle = () => {
 		}
 	}));
 
-	const ReviewHeaderMUI = styled('div')(() => ({
+	const CollapseMUI = styled(Collapse)(({theme}) => ({
+		[theme.breakpoints.down(501)]: {
+			marginBottom: '8px'
+		}
+	}));
+
+	const ReviewHeaderMUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-
 		marginBottom: '5px',
+		[theme.breakpoints.down(501)]: {
+			marginBottom: '6px',
+		}
 	}));
 
-	const ReviewNameMUI = styled('div')(() => ({
+	const ReviewNameMUI = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '400',
 		fontSize: '20px',
 		lineHeight: '23px',
 		color: '#000000',
+		[theme.breakpoints.down(501)]: {
+			fontSize: '16px',
+			lineHeight: '19px',
+		}
 	}));
 
-	const ReviewDateMUI = styled('div')(() => ({
+	const ReviewDateMUI = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '400',
 		fontSize: '14px',
 		lineHeight: '16px',
 		color: '#C4C4C4',
+		[theme.breakpoints.down(501)]: {
+			fontSize: '14px',
+			lineHeight: '16.5px',
+		}
 	}));
 
-	const ReviewTextMUI = styled('div')(() => ({
+	const ReviewTextMUI = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '20px',
 		lineHeight: '130%',
 		color: '#000000',
-
 		wordBreak: 'break-all',
+		[theme.breakpoints.down(501)]: {
+			fontSize: '16px',
+			lineHeight: '19px'
+		}
 	}));
 
 	const ShowMoreMUI = styled('div')(() => ({
@@ -88,6 +109,7 @@ export const useReviewItemStyle = () => {
 	}));
 
 	return {
+		CollapseMUI,
 		ReviewItemWrapperMUI,
 		ReviewHeaderMUI,
 		ReviewNameMUI,

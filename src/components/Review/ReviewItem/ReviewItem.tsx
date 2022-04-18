@@ -3,7 +3,6 @@ import React, {FC, useState} from 'react';
 import {IReviewItem} from '../../../types/types';
 import { ToRusDate } from '@/lib/services/services';
 import {useReviewItemStyle} from '@/components/Review/ReviewItem/style';
-import { Collapse } from '@mui/material';
 
 const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
 	const [openMore, setOpenMore] = useState<boolean>(false);
@@ -22,10 +21,10 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
 			{/*<ReviewTextMUI>{ellipsis(text, 145)}</ReviewTextMUI>*/}
 			{/*<ReviewTextMUI>{text}</ReviewTextMUI>*/}
 			{text.length > 145 ? (
-				<Collapse in={openMore} collapsedSize='74px'>
+				<CollapseMUI in={openMore} collapsedSize='74px'>
 					{/*<ReviewTextMUI>{openMore ? text : ellipsis(text, 145)}</ReviewTextMUI>*/}
 					<ReviewTextMUI>{text}</ReviewTextMUI>
-				</Collapse>
+				</CollapseMUI>
 			) : (
 				<ReviewTextMUI>{text}</ReviewTextMUI>
 			)}
@@ -43,6 +42,7 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName}) => {
 export default React.memo(ReviewItem);
 
 const {
+	CollapseMUI,
 	ReviewItemWrapperMUI,
 	ReviewHeaderMUI,
 	ReviewNameMUI,

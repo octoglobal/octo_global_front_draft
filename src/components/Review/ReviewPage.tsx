@@ -1,6 +1,4 @@
 import React, {FC} from 'react';
-
-import {useMobile} from '@/hooks/useMedia';
 import ReviewsList from './ReviewsList/ReviewsList';
 import {useReviewsStore} from '@/hooks/useReviewsStore';
 import CustomPagination from '../AnyPage/CustomPagination/CustomPagination';
@@ -9,9 +7,10 @@ import ReviewAddForm from '../../components/forms/ReviewAddForm/ReviewAddForm';
 
 import {useReviewStyle} from './style';
 import {useReviewPage} from '@/components/Review/useReviewPage';
+import {useMediaQuery} from '@mui/material';
 
 const ReviewPage: FC = () => {
-	const {isMobile} = useMobile();
+	const isMobile = useMediaQuery('(max-width: 768px)');
 
 	const {
 		pagesCountFront,

@@ -5,6 +5,14 @@ import Arrow_Black_Right from '../../../UI/UIIcon/Arrow_Black_Right.svg';
 
 import {useReviewPaginationStyle} from './style';
 
+const NextArrow = () => {
+	return (
+		<>
+			Дальше&nbsp;&nbsp;
+			<Arrow_Black_Right/>
+		</>
+	);
+};
 const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 
 	const {
@@ -30,7 +38,7 @@ const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 					...CellPaginationClass
 				}}
 				components={{
-					next: Arrow_Black_Right
+					next: NextArrow
 				}}
 			/>
 			{/*{page === 10 && page !== 9 ? (*/}
