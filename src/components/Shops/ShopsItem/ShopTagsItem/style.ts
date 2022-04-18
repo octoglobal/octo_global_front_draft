@@ -25,7 +25,7 @@ export const useShopTagsItemStyles = () => {
 		backgroundColor: 'transparent',
 		cursor: 'pointer',
 		[theme.breakpoints.down(1250)]: {
-			fontSize: '14px',
+			fontSize: '16px',
 		},
 		[theme.breakpoints.down(769)]: {
 			// fontSize: '18px',

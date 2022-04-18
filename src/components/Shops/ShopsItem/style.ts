@@ -64,7 +64,7 @@ export const useShopsItemStyles = () => {
 	const TextWrapperMUI = styled('div')(({theme}) => ({
 		marginBottom: '15px',
 		[theme.breakpoints.down(768)]: {
-			marginBottom: '6px',
+			marginBottom: '16px',
 		}
 	}));
 
@@ -76,9 +76,9 @@ export const useShopsItemStyles = () => {
 		textAlign: 'center',
 		marginBottom: '10px',
 		[theme.breakpoints.down(501)]: {
-			fontSize: '18px',
-			lineHeight: '21px',
-			marginBottom: '15px',
+			fontSize: '16px',
+			lineHeight: '19px',
+			marginBottom: '10px',
 		}
 	}));
 
