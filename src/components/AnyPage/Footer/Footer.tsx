@@ -9,6 +9,8 @@ import TelegramIcon from '../../../UI/UIIcon/TelegramIconColor.svg';
 import {useCustomSize} from '@/hooks/useMedia';
 
 import {useFooterStyle} from './style';
+import SvgLinkUI from '../../../UI/UIComponents/SvgLinkUI/SvgLinkUI';
+import {SUPPORT_PHONE_RU} from '@/constants/constants';
 
 const Footer = () => {
 
@@ -20,7 +22,7 @@ const Footer = () => {
 		FooterColumnTitleUI,
 		FooterColumnTextUI,
 		IndexTitleUI,
-		FooterRowIconsUI
+		FooterRowIconsUI,
 	} = useFooterStyle();
 
 	const {isCustomSize} = useCustomSize(800);
@@ -54,9 +56,24 @@ const Footer = () => {
 						<FooterColumnBlockUI>
 							<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
 							<FooterRowIconsUI>
-								<VkIcon/>
-								<OdnoklasIcon/>
-								<TelegramIcon/>
+								<SvgLinkUI
+									href='https://vk.com/'
+									title='vk'
+								>
+									<VkIcon/>
+								</SvgLinkUI>
+								<SvgLinkUI
+									title='ok'
+									href='https://ok.ru/'
+								>
+									<OdnoklasIcon/>
+								</SvgLinkUI>
+								<SvgLinkUI
+									title='telegram'
+									href='https://web.telegram.org/k/'
+								>
+									<TelegramIcon/>
+								</SvgLinkUI>
 								{/*<InstIcon />*/}
 							</FooterRowIconsUI>
 						</FooterColumnBlockUI>
@@ -64,8 +81,18 @@ const Footer = () => {
 						<FooterColumnBlockUI>
 							<FooterColumnTitleUI>Чаты поддержки</FooterColumnTitleUI>
 							<FooterRowIconsUI>
-								<TelegramIcon/>
-								<WhatsUpIcon/>
+								<SvgLinkUI
+									title='telegram'
+									href={'tg://resolve?domain=<@qwe>'}
+								>
+									<TelegramIcon/>
+								</SvgLinkUI>
+								<SvgLinkUI
+									title='whatsapp'
+									href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=123`}
+								>
+									<WhatsUpIcon/>
+								</SvgLinkUI>
 							</FooterRowIconsUI>
 						</FooterColumnBlockUI>
 

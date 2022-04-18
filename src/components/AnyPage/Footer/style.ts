@@ -21,7 +21,7 @@ export const useFooterStyle = () => {
 		// padding: '25px 80px',
 
 		maxWidth: '1440px',
-		padding: '25px 80px',
+		padding: '25px 80px 23px',
 		margin: '0 auto',
 
 		display: 'flex',
@@ -61,7 +61,7 @@ export const useFooterStyle = () => {
 		flexDirection: 'row',
 
 		'& svg': {
-			marginRight: '10px',
+			marginRight: '13px',
 			cursor: 'pointer',
 		}
 	}));
