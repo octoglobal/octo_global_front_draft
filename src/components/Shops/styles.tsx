@@ -42,6 +42,14 @@ export const useShopsPageStyles = () => {
 		},
 		[theme.breakpoints.down(1025)]: {
 			padding: '0 13px',
+			'& > .swiper': {
+				'& > div.swiper-wrapper': {
+					'& > div': {
+						paddingRight: '10px',
+					},
+				}
+			}
+
 		},
 	}));
 
