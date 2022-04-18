@@ -20,6 +20,7 @@ export const useCategorySearchHintsItemStyles = () => {
 		fontSize: '14px',
 		lineHeight: '21px',
 		fontWeight: 400,
+		color: '#000000',
 	}));
 
 	return {

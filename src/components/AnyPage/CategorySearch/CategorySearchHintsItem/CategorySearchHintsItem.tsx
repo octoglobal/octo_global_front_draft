@@ -41,16 +41,16 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
 				onClick={handleClickHintItem(title)}
 			>
-				{customHint ? (
-					// <ItemTextMUI dangerouslySetInnerHTML={{__html: customHint}}/>
-					<ItemTextMUI>
-						{title}
-					</ItemTextMUI>
-				) : (
-					<ItemTextMUI>
-						{title}
-					</ItemTextMUI>
-				)}
+				{/*{customHint?.length && (*/}
+				{/*	<ItemTextMUI dangerouslySetInnerHTML={{__html: customHint}}/>*/}
+				{/*) : (*/}
+				{/*	<ItemTextMUI>*/}
+				{/*		{title}*/}
+				{/*	</ItemTextMUI>*/}
+				{/*)}*/}
+				<ItemTextMUI>
+					{title}
+				</ItemTextMUI>
 			</ButtonMUI>
 		</ItemMUI>
 	);
