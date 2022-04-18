@@ -9,9 +9,14 @@ export const useCustomRouter = () => {
 		router.push({pathname: location, query: {...query}});
 	};
 
+	const getPathName = () => {
+		return router.pathname;
+	};
+
 	return {
 		query,
 		router,
-		pushTo: handlePushLocation
+		pushTo: handlePushLocation,
+		getPathName,
 	};
 };
