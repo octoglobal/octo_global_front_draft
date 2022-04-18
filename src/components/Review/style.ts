@@ -21,6 +21,7 @@ export const useReviewStyle = () => {
 			alignSelf: 'flex-start',
 			maxWidth: '546px',
 			padding: '30px 0px',
+			marginRight: '20px',
 		},
 
 		[theme.breakpoints.down(1241)]: {
@@ -31,7 +32,7 @@ export const useReviewStyle = () => {
 			},
 		},
 
-		[theme.breakpoints.down(501)]: {
+		[theme.breakpoints.down(769)]: {
 			flexDirection: 'column',
 			padding: '0',
 
@@ -39,7 +40,7 @@ export const useReviewStyle = () => {
 				alignSelf: 'flex-start',
 				maxWidth: '100%',
 				minWidth: '100px',
-				padding: '25px 0px',
+				padding: '15px 0px 30px',
 			},
 		}
 	}));

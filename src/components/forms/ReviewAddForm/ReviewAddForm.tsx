@@ -86,6 +86,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 	);
 
 	const handlerClickButton = useCallback(() => {
+		console.log(123);
 		if(!isAuth) {
 			const textData = getValues('text');
 			setData('savedReview', textData);
@@ -126,7 +127,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 							required: true,
 							// helperText: 'Заполните поле "Почта"',
 							multiline: true,
-							sx: TextAreaReviewMUI,
+							sx: isMobile ? TextAreaReviewAdaptiveMUI : TextAreaReviewMUI,
 							inputProps: {
 								maxLength: 430,
 							},
@@ -168,5 +169,6 @@ const {
 	ReviewAddFormWrapperMUI,
 	ButtonSubmitMUI,
 	HelperBoxMUI,
-	TextAreaReviewMUI
+	TextAreaReviewMUI,
+	TextAreaReviewAdaptiveMUI
 } = useReviewAddFormStyle();

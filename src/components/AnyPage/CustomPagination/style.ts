@@ -35,7 +35,6 @@ export const useReviewPaginationStyle = () => {
 		fontSize: '24px',
 		lineHeight: '28px',
 		color:' #000000',
-
 		border: 'none',
 	};
 
@@ -47,6 +46,7 @@ export const useReviewPaginationStyle = () => {
 		width: '45px',
 		height: '45px',
 		backgroundColor: '#274D82 !important',
+		borderRadius: '5px',
 
 		// border: '1px solid blue',
 

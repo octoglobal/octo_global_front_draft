@@ -8,7 +8,7 @@ export const useReviewAddFormStyle = () => {
 		maxWidth: '546px',
 		width: '546px',
 
-		[theme.breakpoints.down(501)]: {
+		[theme.breakpoints.down(769)]: {
 			'& form > div:first-child': {
 				padding: '0px',
 			},
@@ -51,6 +51,12 @@ export const useReviewAddFormStyle = () => {
 		'& .MuiOutlinedInput-root, .MuiFormControl-root, .MuiOutlinedInput-input': {
 			// minHeight: '183px',
 			maxHeight: '183px !important',
+			paddingRight: '7.5px',
+			borderRadius: '5px',
+		},
+
+		'& .MuiOutlinedInput-root': {
+			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.08)',
 		},
 
 		'& textarea.MuiOutlinedInput-input': {
@@ -64,13 +70,38 @@ export const useReviewAddFormStyle = () => {
 			fontWeight: '400',
 			fontSize: '20px',
 			lineHeight: '23px',
-		}
+		},
+	};
+
+	const TextAreaReviewAdaptiveMUI = {
+		maxHeight: '183px',
+
+		'& .MuiOutlinedInput-root, .MuiFormControl-root, .MuiOutlinedInput-input': {
+			maxHeight: '183px !important',
+			paddingRight: '7.5px',
+			borderRadius: '5px',
+		},
+
+		'& .MuiOutlinedInput-root ': {
+			padding: '15px',
+			boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.08)',
+		},
+
+		'& textarea::placeholder': {
+			color: '#C4C4C4',
+			fontWeight: '300',
+			fontSize: '16px',
+			lineHeight: '18.75px',
+			height: '19px',
+			paddingTop: '3.5px',
+		},
 	};
 
 	return {
 		ReviewAddFormWrapperMUI,
 		ButtonSubmitMUI,
 		HelperBoxMUI,
-		TextAreaReviewMUI
+		TextAreaReviewMUI,
+		TextAreaReviewAdaptiveMUI
 	};
 };

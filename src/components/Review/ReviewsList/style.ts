@@ -2,8 +2,11 @@ import {styled} from '@mui/material';
 
 export const useReviewListStyle = () => {
 
-	const ReviewsWrappMUI = styled('div')(() => ({
+	const ReviewsWrappMUI = styled('div')(({theme}) => ({
 		minHeight: '525px',
+		[theme.breakpoints.down(501)]: {
+			minHeight: 'auto',
+		}
 	}));
 
 	const ReviewBlockMUI = styled('div')(({theme}) => ({
@@ -13,7 +16,7 @@ export const useReviewListStyle = () => {
 		flexDirection: 'column',
 
 		'& > div': {
-			marginBottom: '32px',
+			marginBottom: '15px',
 		},
 		'& > div:last-child': {
 			marginBottom: '0px',
