@@ -31,17 +31,43 @@ export const useReviewAddFormStyle = () => {
 		cursor: 'pointer',
 	}));
 
-	const ButtonSubmitMUI = {
-		width: '140px',
-		height: '40px',
+	// const ButtonSubmitMUI = {
+	// 	width: '140px',
+	// 	height: '40px',
+	//
+	// 	alignSelf: 'flex-end',
+	// 	background: '#274D82',
+	// 	opacity: '0.8',
+	// 	borderRadius: '5px',
+	//
+	// 	marginTop: '30px',
+	// };
 
-		alignSelf: 'flex-end',
-		background: '#274D82',
-		opacity: '0.8',
-		borderRadius: '5px',
+	const ButtonSubmitMUI = styled('div')(({theme}) => ({
+		display: 'flex',
+		justifyContent: 'flex-end',
+		'& > button': {
+			width: '140px',
+			height: '40px',
 
-		marginTop: '30px',
-	};
+			alignSelf: 'flex-end',
+			background: '#274D82',
+			opacity: '0.8',
+			fontWeight: 300,
+			fontSize: '14px',
+			lineHeight: '16px',
+			borderRadius: '5px',
+
+			marginTop: '30px',
+		},
+		[theme.breakpoints.down(501)]: {
+			'& > button': {
+				width: '135px',
+				height: '32px',
+				marginBottom: 0,
+			}
+		}
+	}));
 
 	const TextAreaReviewMUI = {
 		// height: '183px',

@@ -10,7 +10,8 @@ import {useReviewPage} from '@/components/Review/useReviewPage';
 import {useMediaQuery} from '@mui/material';
 
 const ReviewPage: FC = () => {
-	const isMobile = useMediaQuery('(max-width: 768px)');
+	const isTablet = useMediaQuery('(max-width: 768px)');
+	const isMobile = useMediaQuery('(max-width: 500px)');
 
 	const {
 		pagesCountFront,
@@ -23,27 +24,31 @@ const ReviewPage: FC = () => {
 	} = useReviewPage();
 
 	return (
-		<ReviewContentMUI>
-			<ReviewsList/>
-			<ReviewBottomMUI>
-				{!isMobile ? (
-					<FormComponent
-						title='Оставьте отзыв'
-						background={false}
-					>
-						<ReviewAddForm defaultText={defaultValue}/>
-					</FormComponent>
-				) : <ReviewAddForm defaultText={defaultValue}/>}
-				<PaginationWrappMUI>
-					<CustomPagination
-						page={currentPage}
-						count={pagesCountFront}
-						onChange={handlerPaginationChange}
-						siblingCount={1}
-					/>
-				</PaginationWrappMUI>
-			</ReviewBottomMUI>
-		</ReviewContentMUI>
+		<>
+			<ReviewContentMUI>
+				<ReviewsList isMobile={isMobile}/>
+				<ReviewBottomMUI>
+					{!isTablet ? (
+						<FormComponent
+							title='Оставьте отзыв'
+							background={false}
+						>
+							<ReviewAddForm defaultText={defaultValue}/>
+						</FormComponent>
+					) : <ReviewAddForm defaultText={defaultValue}/>}
+					{!isMobile && (
+						<PaginationWrappMUI>
+							<CustomPagination
+								page={currentPage}
+								count={pagesCountFront}
+								onChange={handlerPaginationChange}
+								siblingCount={1}
+							/>
+						</PaginationWrappMUI>
+					)}
+				</ReviewBottomMUI>
+			</ReviewContentMUI>
+		</>
 	);
 };
 

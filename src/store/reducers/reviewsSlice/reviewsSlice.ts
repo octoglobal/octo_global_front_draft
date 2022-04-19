@@ -1,15 +1,17 @@
 import {IReviewsModel} from '@/models/IReviewsModel';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchReviews} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
+import {fetchAddReviewsMobile, fetchMoreReviews, fetchReviews} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
 
 export interface IReviewsSlice {
 	reviews: IReviewsModel[] | [],
 	pagesCount: number,
 	pagesGet: number,
 	pagesCountFront: number,
-
 	limitShow: number,
 	currentPage: number,
+	updateReviews: boolean,
+	reviewsEnd: boolean,
+	isNewReviewsMobile: boolean,
 }
 
 export interface IReviewsGet {
@@ -17,14 +19,21 @@ export interface IReviewsGet {
 	pages_count: number,
 }
 
+interface IReviewsGetMore {
+	reviews: IReviewsModel[] | [],
+	reviewsEnd: boolean
+}
+
 const initialState: IReviewsSlice = {
 	reviews: [],
 	pagesGet: 1,
 	pagesCount: 1,
 	pagesCountFront: 1,
-
 	limitShow: 6,
 	currentPage: 1,
+	updateReviews: false,
+	reviewsEnd: false,
+	isNewReviewsMobile: false
 };
 
 export const reviewsSlice = createSlice({
@@ -42,6 +51,12 @@ export const reviewsSlice = createSlice({
 
 			state.limitShow = 6;
 			state.currentPage = 1;
+		},
+		updateReviews: (state) => {
+			state.updateReviews = true;
+		},
+		changeNewReviewsMobile: (state) => {
+			state.isNewReviewsMobile = false;
 		}
 	},
 	extraReducers: {
@@ -55,6 +70,18 @@ export const reviewsSlice = createSlice({
 				}
 			}
 			state.reviews = [...data.payload.reviews];
+		},
+		[fetchMoreReviews.fulfilled.type]: (state, data: PayloadAction<IReviewsGetMore>) => {
+			state.currentPage += 1;
+			state.reviews = [ ...state.reviews, ...data.payload.reviews];
+			state.updateReviews = false;
+			state.reviewsEnd = data.payload.reviewsEnd;
+			state.isNewReviewsMobile = false;
+		},
+		[fetchAddReviewsMobile.fulfilled.type]: (state, data: PayloadAction<IReviewsModel>) => {
+			state.updateReviews = false;
+			state.isNewReviewsMobile = true;
+			state.reviews = [ data.payload, ...state.reviews];
 		}
 	}
 });

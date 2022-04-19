@@ -9,9 +9,11 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
 import {TAddReview} from '../../../types/types';
-// import {useAppDispatch} from "@/hooks/useReduxHooks";
+import {useAppDispatch} from '@/hooks/useReduxHooks';
 // import { toggleDrawer } from '@/store/reducers/swipeableDrawerSlice/swipeableDrawerSlice';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
+import {fetchAddReviewsMobile} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IReviewAddForm {
 	defaultText?:string
@@ -37,16 +39,20 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 
 	const {isMobile} = useMobile();
 	const {isCustomSize} = useCustomSize(null, 1241);
-	// const dispatch = useAppDispatch();
+	const { user } = useUserStore();
+	const dispatch = useAppDispatch();
 
 	const successSubmit = () => {
-		getReviews(currentPage);
-		setShowPromt(true);
-		if(isMobile && currentPage) {
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
+		if (!isMobile) {
+			getReviews(currentPage);
+			setShowPromt(true);
+		} else {
+			const text = getValues('text');
+			dispatch(fetchAddReviewsMobile({
+				text,
+				userName: user.name,
+				userId: user.id
+			}));
 		}
 		reset({
 			text: '',
@@ -86,7 +92,6 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 	);
 
 	const handlerClickButton = useCallback(() => {
-		console.log(123);
 		if(!isAuth) {
 			const textData = getValues('text');
 			setData('savedReview', textData);
@@ -145,13 +150,14 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 						</HelperBoxMUI>
 					)}
 					{isCustomSize || isShowSubmitButton ? (
-						<ButtonUI
-							type={isAuth ? 'submit' : 'button'}
-							style={ButtonSubmitMUI}
-							onClick={handlerClickButton}
-						>
-							{isAuth ? 'Отправить' : 'Регистрация'}
-						</ButtonUI>
+						<ButtonSubmitMUI>
+							<ButtonUI
+								type={isAuth ? 'submit' : 'button'}
+								onClick={handlerClickButton}
+							>
+								{isAuth ? 'Отправить' : 'Регистрация'}
+							</ButtonUI>
+						</ButtonSubmitMUI>
 					) : null}
 				</FormsWrapperBox>
 			</Box>

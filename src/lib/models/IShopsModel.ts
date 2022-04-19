@@ -4,14 +4,14 @@ export interface IShopsModelTags {
 }
 
 export interface IShopsModel {
-	alias: null | string;
-	description: null | string;
-	id: number;
-	logo: null | string;
-	photo: string;
-	tags: IShopsModelTags[]
-	title: string;
-	url: string;
+	readonly alias: null | string;
+	readonly description: null | string;
+	readonly id: number;
+	readonly logo: null | string;
+	readonly photo: string;
+	readonly tags: IShopsModelTags[]
+	readonly title: string;
+	readonly url: string;
 }
 
 export interface IShopsSearchResponse {
