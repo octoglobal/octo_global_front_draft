@@ -1,17 +1,33 @@
 import React, {useEffect, useState} from 'react';
 import {Box, styled} from '@mui/material';
 import type {NextPage} from 'next';
+import Image from 'next/image';
 
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import AuthFormLayout from '@/layout/AuthFormLayout/AuthFormLayout';
 import RepeatPasswordForm from '../src/components/forms/RepeatPasswordForm/RepeatPasswordForm';
 
-const BoxUI = styled('div')(() => ({
-	fontWeight: '500',
+const BoxUI = styled('div')(({theme}) => ({
+	fontWeight: '400',
 	fontSize: '36px',
 	lineHeight: '42px',
-
 	color: '#000000',
+	'& span': {
+		fontWeight: '400',
+	},
+	[theme.breakpoints.down(769)]: {
+		fontSize: '22px',
+		lineHeight: '34px',
+	}
+}));
+
+const ImageUI = styled('div')(({theme}) => ({
+	marginTop: '23px',
+	display: 'flex',
+	justifyContent: 'center',
+	[theme.breakpoints.down(769)]: {
+		marginTop: '10px',
+	}
 }));
 
 const ResetPassword: NextPage = () => {
@@ -58,6 +74,15 @@ const ResetPassword: NextPage = () => {
 								color: '#274D82',
 								cursor: 'pointer',
 							}}>здесь</Box></Box>
+						<ImageUI>
+							<Image
+								width={410}
+								height={348}
+								objectFit='cover'
+								src='/image/OctoFailed.png'
+								alt='octo-failed'
+							/>
+						</ImageUI>
 					</BoxUI>
 				)}
 			</Box>
