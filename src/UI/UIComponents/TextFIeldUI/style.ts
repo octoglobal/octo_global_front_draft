@@ -16,8 +16,8 @@ export const useTextFieldUIStyle = () => {
 			fontFamily: 'Roboto',
 			fontStyle: 'normal',
 			fontWeight: '400',
-			fontSize: '10px !important',
-			lineHeight: '12px',
+			fontSize: '14px !important',
+			lineHeight: '16px',
 			color: '#F35151',
 			textAlign: 'end',
 

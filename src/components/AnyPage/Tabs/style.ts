@@ -32,7 +32,7 @@ export const useTabsStyle = () => {
 
 		'&.Mui-selected': {
 			fontFamily: 'Roboto',
-			fontWeight: '500',
+			fontWeight: '400',
 			fontSize: '24px',
 			lineHeight: '28px',
 

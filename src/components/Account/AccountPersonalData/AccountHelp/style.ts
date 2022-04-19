@@ -7,7 +7,7 @@ export const useAccountHelpStyle = () => {
 
 		display: 'flex',
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		justifyContent: 'space-around',
 
 		marginBottom: '15px',
 

@@ -48,22 +48,21 @@ const LocationForm : FC = () => {
 					</LocationPlusUI>
 				)}
 				{/*TODO: сократить и вынести*/}
-				{hasAddress && addresses.slice(0, !showAllLoc ? 2 : addresses?.length).map((address, i, arr) => (
-					<>
-						<AddressUser
-							key={address.id}
-							id={address.id}
-							name={address.name}
-							surname={address.surname}
-							phone={address.phone}
-							location={address.address_string}
-							handlerDeleteLocation={handlerDeleteLocation}
-						/>
-						{i !== (arr.length - 1) &&
-                          <Divider sx={{borderColor: '#274D82', width: '100%'}}/>
-						}
-					</>
-				))}
+				<AddressListMUI>
+					{hasAddress && addresses.slice(0, !showAllLoc ? 2 : addresses?.length).map((address) => (
+						<>
+							<AddressUser
+								key={address.id}
+								id={address.id}
+								name={address.name}
+								surname={address.surname}
+								phone={address.phone}
+								location={address.address_string}
+								handlerDeleteLocation={handlerDeleteLocation}
+							/>
+						</>
+					))}
+				</AddressListMUI>
 				<LocationButtonsUI justifyAlign={!addresses.length}>
 					{addresses && addresses.length > 2 && (
 						<ButtonUI
@@ -101,5 +100,6 @@ const {
 	LocationFormUI,
 	LocationButtonsUI,
 	ButtonAdd,
+	AddressListMUI,
 	ButtonShowAll
 } = useAccountLocationStyle();

@@ -32,7 +32,7 @@ const AccountLocationRules: FC<IAccountLocationRules> = ({openRules}) => {
 		<Collapse in={openRules}>
 			<RulesWrapperUI>
 				<PromtUI>
-					На сайтах магазинов он заполняется следующим образом:
+					Пример заполнения адреса
 				</PromtUI>
 
 				<TableUI>
@@ -46,8 +46,8 @@ const AccountLocationRules: FC<IAccountLocationRules> = ({openRules}) => {
 					<SubTitleUI>101 Lukens drive</SubTitleUI>
 
 					<TitleUI>Address line 2 (номер дома)</TitleUI>
-					<SubTitleUI>
-						suite H #{personalAreaId} (#{personalAreaId} - это уникальный номер, который вы видите в своем аккаунте. По нему мы узнаем, что это ваша посылка).
+					<SubTitleUI sx={{maxWidth: '311px'}}>
+						suite H #{personalAreaId} (#{personalAreaId} - это уникальный номер, который вы видите в своем аккаунте. По нему мы узнаем, что это ваша<br/> посылка).
 					</SubTitleUI>
 
 					<TitleUI>City (город)</TitleUI>

@@ -2,8 +2,9 @@ import React, {FC} from 'react';
 
 import VPN from '../../../../UI/UIIcon/VPN.svg';
 import Translate from '../../../../UI/UIIcon/Translate.svg';
-import Earth from '../../../../UI/UIIcon/Earth.svg';
+// import Earth from '../../../../UI/UIIcon/Earth.svg';
 import Box3 from '../../../../UI/UIIcon/Box3.svg';
+import DopServicesIcon from '@/UIIcon/DopServicesIcont.svg';
 
 import {useAccountHelpStyle} from './style';
 import {useCustomSize, useMobile} from '@/hooks/useMedia';
@@ -20,10 +21,11 @@ const AccountHelp: FC = () => {
 
 					<HelpItemMUI>
 						<HelpImageMUI>
-							<Earth/>
+							<DopServicesIcon/>
 						</HelpImageMUI>
 						<HelperTextMUI>
-							Дополнительные услуги
+							Дополнительные<br/>
+							услуги
 						</HelperTextMUI>
 					</HelpItemMUI>
 
@@ -32,7 +34,8 @@ const AccountHelp: FC = () => {
 							<Box3/>
 						</HelpImageMUI>
 						<HelperTextMUI>
-							Стоимость почтового отправления
+							Стоимость<br/>
+							почтового отправления
 						</HelperTextMUI>
 					</HelpItemMUI>
 
@@ -50,7 +53,8 @@ const AccountHelp: FC = () => {
 							<Translate/>
 						</HelpImageMUI>
 						<HelperTextMUI>
-							Как перевести страницу на русский
+							Как перевести<br/>
+							страницу на русский
 						</HelperTextMUI>
 					</HelpItemMUI>
 

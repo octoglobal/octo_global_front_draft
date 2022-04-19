@@ -5,7 +5,8 @@ export const useAddressUserStyle = () => {
 	const FormUI = styled('div')(({theme}) => ({
 		display: 'flex',
 
-		margin: '33px 0 0px',
+		margin: '0px 0 20px',
+		borderBottom: '2px solid #274D82',
 
 		'&:first-child': {
 			marginTop: '0px',
@@ -28,7 +29,7 @@ export const useAddressUserStyle = () => {
 		// marginTop: '25px',
 
 		display: 'grid',
-		gridTemplateColumns: '105px 501px',
+		gridTemplateColumns: '87px 451px',
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '21px',
 		gridRowGap: '10px',
@@ -44,9 +45,9 @@ export const useAddressUserStyle = () => {
 	const FormRowTitleUI = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '500',
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontWeight: '400',
+		fontSize: '20px',
+		lineHeight: '24px',
 		color: '#000000',
 
 		[theme.breakpoints.down(500)]: {

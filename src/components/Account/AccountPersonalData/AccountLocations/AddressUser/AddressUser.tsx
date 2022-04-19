@@ -55,7 +55,6 @@ const AddressUser: FC<IAddressUser> = ({
 	};
 
 	const handlerCancel = () : void => {
-		console.log('handlerCancel: ');
 		setOpenConfirmDialog(false);
 	};
 

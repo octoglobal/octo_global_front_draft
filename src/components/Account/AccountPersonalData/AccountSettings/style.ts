@@ -51,11 +51,11 @@ export const useAccountSettingsStyle = () => {
 	const FormTableUI = styled('div')(({theme}) => ({
 		width: '100%',
 
-		display: 'grid',
-		gridTemplateColumns: '150px auto',
-		gridTemplateRows: 'auto auto auto auto',
-		gridColumnGap: '20px',
-		gridRowGap: '20px',
+		// display: 'grid',
+		// gridTemplateColumns: '150px auto',
+		// gridTemplateRows: 'auto auto auto auto',
+		// gridColumnGap: '20px',
+		// gridRowGap: '20px',
 		// marginBottom: '15px',
 
 		[theme.breakpoints.down(500)]: {
@@ -73,6 +73,18 @@ export const useAccountSettingsStyle = () => {
 			width: '100%',
 		}
 	}));
+
+	const FormTableSectionMUI = styled('div')(() => ({
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start',
+	}));
+
+
+	const FormTableSectionInputsMUI = styled('div')(() => ({
+		marginBottom: '15px',
+	}));
+
 
 	const FormTableUserUI = styled('div')(() => ({
 		marginBottom: '26px',
@@ -96,8 +108,8 @@ export const useAccountSettingsStyle = () => {
 	const FormTableTextUI = styled('div')(() => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontSize: '20px',
+		lineHeight: '24px',
 		textAlign: 'start',
 		color: '#000000',
 
@@ -130,9 +142,9 @@ export const useAccountSettingsStyle = () => {
 		'& p': {
 			fontFamily: 'Roboto',
 			fontStyle: 'normal',
-			fontWeight: '500',
-			fontSize: '18px',
-			lineHeight: '21px',
+			fontWeight: '400',
+			fontSize: '20px',
+			lineHeight: '23px',
 			textAlign: 'start',
 			color: '#000000',
 		},
@@ -273,8 +285,9 @@ export const useAccountSettingsStyle = () => {
 
 	const FormTextFieldUI = {
 		width: '50%',
-		height: '32px !important',
+		height: '49px !important',
 		textAlign: 'start',
+		borderRadius: '5px',
 
 		'& label': {
 			transform: 'translate(14px, 2px) scale(1)',
@@ -283,7 +296,8 @@ export const useAccountSettingsStyle = () => {
 		'& .MuiOutlinedInput-root': {
 			'& input': {
 				padding: '0px 14px',
-				height: '32px !important',
+				borderRadius: '5px',
+				height: '49px !important',
 			},
 
 			'& fieldset': {
@@ -317,7 +331,9 @@ export const useAccountSettingsStyle = () => {
 		FormTableUserUI,
 		FormTableTextUI,
 		FormsWrapperBoxUI,
+		FormTableSectionMUI,
 		FormTableRowLabelUI,
+		FormTableSectionInputsMUI,
 		HelperBoxUI,
 	};
 };
