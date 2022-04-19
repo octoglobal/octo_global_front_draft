@@ -15,6 +15,7 @@ export const useFormComponentStyle = () => {
 
 		background: 'inherit',
 		border: background ? '1px solid #AABCBF' : 'none',
+		borderRadius: '8px',
 
 		[theme.breakpoints.down(500)]: {
 			padding: '0',

@@ -37,10 +37,9 @@ const TextMUI = styled(Typography)(() => ({
 	fontFamily: 'Roboto',
 	fontStyle: 'normal',
 	fontWeight: '400',
-	fontSize: '24px',
-	lineHeight: '28px',
+	fontSize: '36px',
+	lineHeight: '42px',
 	textAlign: 'center',
-
 	color: '#000000',
 }));
 
@@ -61,8 +60,7 @@ const OctoImageMUI = styled('div')(({theme}) => ({
 	height: '245px',
 
 	alignSelf: 'center',
-	marginTop: '25px',
-	marginBottom: '30px',
+	margin: '11px 0 56px',
 
 	[theme.breakpoints.down(1024)]: {
 		marginBottom: '15px',
@@ -97,7 +95,6 @@ const Welcome: NextPage = () => {
 						height: '40px',
 						opacity: '0.8',
 						alignSelf: 'center',
-						marginTop: '60px'
 					}}
 				>
 					За покупками!

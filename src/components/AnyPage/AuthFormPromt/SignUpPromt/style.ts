@@ -27,14 +27,21 @@ export const useSignUpPromtStyle = () => {
 	}));
 
 	const FormsLink = styled('div')(() => ({
-		fontWeight: '300',
-		fontSize: '12px',
-		lineHeight: '14px',
+		fontWeight: '400',
+		fontSize: '14px',
+		lineHeight: '16px',
 		color: '#274D82',
 		cursor: 'pointer',
 
 		display: 'inline-block',
 	}));
+
+	const FormsItemMUI = styled('span')(() => ({
+		fontWeight: 300,
+		fontSize: '14px',
+		lineHeight: '16px',
+	}));
+
 
 	const FormsInput = styled('div')(() => ({
 		marginBottom: '20px',
@@ -106,6 +113,7 @@ export const useSignUpPromtStyle = () => {
 		FormsButton,
 		FormsCheckBoxWrapper,
 		FormsDescription,
+		FormsItemMUI,
 		FormHelperErrorUI
 	};
 };
