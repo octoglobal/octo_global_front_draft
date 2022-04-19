@@ -33,7 +33,7 @@ const BoxUI = styled('div')(({theme}) => ({
 	}
 }));
 
-const TextMUI = styled(Typography)(() => ({
+const TextMUI = styled(Typography)(({theme}) => ({
 	fontFamily: 'Roboto',
 	fontStyle: 'normal',
 	fontWeight: '400',
@@ -41,6 +41,10 @@ const TextMUI = styled(Typography)(() => ({
 	lineHeight: '42px',
 	textAlign: 'center',
 	color: '#000000',
+	[theme.breakpoints.down(1025)]: {
+		fontSize: '22px',
+		lineHeight: '34px',
+	}
 }));
 
 const BoxWrapperUI = styled('div')(({theme}) => ({
@@ -93,7 +97,6 @@ const Welcome: NextPage = () => {
 					style={{
 						width: '161px',
 						height: '40px',
-						opacity: '0.8',
 						alignSelf: 'center',
 					}}
 				>

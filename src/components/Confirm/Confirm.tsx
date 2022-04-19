@@ -31,6 +31,18 @@ const BoxWrapperUI = styled('div')(({theme}) => ({
 	flexDirection: 'column',
 	alignItems: 'left',
 
+	'& div': {
+		fontWeight: 400,
+		lineHeight: '42px',
+		fontSize: '36px',
+	},
+
+	'& span': {
+		color: '#274D82',
+		cursor: 'pointer',
+		fontWeight: 500,
+	},
+
 	'& svg': {
 		alignSelf: 'center',
 		marginTop: '60px',
@@ -56,12 +68,10 @@ const Confirm = () => {
 				<BoxUI>
 					<BoxWrapperUI>
 						<Box>Спасибо!</Box>
-						<Box>Почта <Box
-							component="span"
-							sx={{
-								color: '#274D82',
-								cursor: 'pointer',
-							}}>{query.email}</Box> успешно подтверждена</Box>
+						<Box>Почта
+							<Box component="span">
+								{query.email}
+							</Box> успешно подтверждена</Box>
 						<Octo_Mail />
 
 						<ButtonUI
