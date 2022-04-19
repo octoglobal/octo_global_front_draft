@@ -80,6 +80,12 @@ export interface IReviewAddSubmit {
 	text: string
 }
 
+export interface IReviewAddSubmitMobile {
+	text: string,
+	userName: string,
+	userId: number;
+}
+
 export interface IReview extends IReviewAdd{
 	id: number,
 }

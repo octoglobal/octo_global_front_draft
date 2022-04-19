@@ -4,9 +4,17 @@ export const useReviewStyle = () => {
 
 	const ReviewContentMUI = styled('div')(({theme}) => ({
 		marginTop: '120px',
-
+		[theme.breakpoints.down(1025)]: {
+			marginTop: '70px',
+		},
 		[theme.breakpoints.down(501)]: {
 			marginTop: '80px',
+			height: `${window.innerHeight - 65}px`,
+			display: 'flex',
+			flexDirection: 'column',
+		},
+		[theme.breakpoints.down(350)]: {
+			marginTop: '70px',
 		}
 	}));
 

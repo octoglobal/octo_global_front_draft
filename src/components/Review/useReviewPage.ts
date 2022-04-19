@@ -16,8 +16,9 @@ export const useReviewPage = () => {
 	} = useReviewsStore();
 
 	useEffect(() => {
+		const pageLimit = window.innerWidth > 500 ? 6 : 50;
 		dispatch(reviewsReset());
-		getFirstReviews();
+		getFirstReviews(pageLimit);
 
 		const savedData = getData('savedReview');
 		if(savedData) {

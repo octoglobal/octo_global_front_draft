@@ -13,11 +13,17 @@ export const useReviewsStore = () => {
 	} = useAppSelector(state => state.reviewsReducer);
 
 	const fetchAllReviews = (page?: number) : void => {
-		dispatch(fetchReviews({page: page ? page : pagesGet}));
+		dispatch(fetchReviews({
+			page: page ? page : pagesGet,
+			page_limit: 6,
+		}));
 	};
 
-	const fetchFirstReviews = () : void => {
-		dispatch(fetchReviews({page : 1}));
+	const fetchFirstReviews = (pageLimit = 6) : void => {
+		dispatch(fetchReviews({
+			page : 1,
+			page_limit: pageLimit
+		}));
 	};
 
 	return {

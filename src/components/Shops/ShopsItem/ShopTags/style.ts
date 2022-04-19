@@ -6,6 +6,9 @@ export const useShopTagsStyles = () => {
 		display: 'flex',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
+		'& > *:last-child': {
+			marginRight: '0',
+		}
 	}));
 
 	return {

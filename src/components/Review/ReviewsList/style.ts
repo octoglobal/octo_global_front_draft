@@ -6,6 +6,9 @@ export const useReviewListStyle = () => {
 		minHeight: '525px',
 		[theme.breakpoints.down(501)]: {
 			minHeight: 'auto',
+			flexGrow: 1,
+			maxHeight: `${window.innerHeight - 50}px`,
+			overflow: 'scroll',
 		}
 	}));
 
