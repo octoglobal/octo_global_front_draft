@@ -11,7 +11,7 @@ export interface IisTopState {
 }
 
 export const useScrollTop = () => {
-	const scrollRoutes: string[] = ['/shops'];
+	const scrollRoutes: string[] = ['/shops', '/blog'];
 	const {getPathName, router} = useCustomRouter();
 	const isMobile = useMediaQuery('(max-width: 1024px)');
 	const [isTop, setIsTop] = useState<IisTopState>({
@@ -21,7 +21,7 @@ export const useScrollTop = () => {
 	});
 
 	const isMountingScroll = useMemo(() => {
-		return !!(scrollRoutes.find(route => route === getPathName())) && !isMobile;
+		return !!(scrollRoutes.find(route => route === getPathName()));
 	}, [router, isMobile]);
 
 	const isVisible = useMemo(() => (
@@ -76,6 +76,7 @@ export const useScrollTop = () => {
 
 	return {
 		isTop,
+		isMobile,
 		isVisible,
 		isMountingScroll,
 		handleClickButton,

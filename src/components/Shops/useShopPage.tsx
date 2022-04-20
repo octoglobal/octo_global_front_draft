@@ -155,6 +155,15 @@ export const useShopPage = () => {
 			handleSubmitForm();
 		};
 	};
+
+	const handleResetCategory = () => {
+		methods.reset({
+			search: '',
+			tags: [],
+		});
+		handleSubmitForm();
+	};
+
 	//! Category
 
 	//! InfinityScroll
@@ -212,6 +221,7 @@ export const useShopPage = () => {
 		onSubmit,
 		activeCategory,
 		isNotFoundShops,
+		handleResetCategory,
 		handleChangeCategory,
 		handleDeleteCategory,
 		handleClickTagInCard,
