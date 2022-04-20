@@ -16,7 +16,10 @@ const BlogLink: FC<IBlogLinkProps> = ({indexField}) => {
 			<TextFieldUI
 				controller={{
 					control,
-					name: `postLink${indexField}`
+					name: `postLink${indexField}`,
+					rules: {
+						required: true,
+					}
 				}}
 				inputProps={{
 					placeholder: '[Купить/https:://........]'

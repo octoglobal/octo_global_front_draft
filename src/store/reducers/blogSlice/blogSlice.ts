@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IBlogModel} from '@/models/IBlogModel';
-import {fetchNewsData} from '@/reducers/blogSlice/asyncThunk/blogApi';
+import { fetchAddNewsBlog, fetchNewsData } from '@/reducers/blogSlice/asyncThunk/blogApi';
 
 interface IBlogSlice {
 	page: number;
@@ -27,8 +27,15 @@ const initialState: IBlogSlice = {
 export const blogSlice = createSlice({
 	name: 'blogSlice',
 	initialState,
-	reducers: {},
+	reducers: {
+		updatePosts: (state) => {
+			state.updatePosts = true;
+		}
+	},
 	extraReducers: {
+		[fetchAddNewsBlog.fulfilled.type]: (state, action: PayloadAction<IBlogModel>) => {
+			state.blogData = [ action.payload, ...state.blogData];
+		},
 		[fetchNewsData.fulfilled.type]: (state, action: PayloadAction<IFetchNewsFulfilled>) => {
 			state.blogEnd = action.payload.blogEnd;
 			state.updatePosts = false;

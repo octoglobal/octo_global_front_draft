@@ -38,7 +38,7 @@ export const useBlogFieldsStyles = () => {
 		},
 		[theme.breakpoints.down(769)]: {
 			flexDirection: 'column',
-			margin: '15px auto 15px',
+			margin: '15px auto 0px',
 		}
 	}));
 

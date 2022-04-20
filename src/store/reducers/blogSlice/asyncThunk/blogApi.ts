@@ -9,6 +9,11 @@ interface IFetchNewsDataReq {
 	pageLimit: number;
 }
 
+interface IFetchAddNewsRes {
+	message: string;
+}
+
+
 interface IFetchNewsDataRes {
 	page_count: number
 	posts: IBlogModel[];
@@ -47,7 +52,39 @@ export const fetchAddNewsBlog = createAsyncThunk(
 			formData.append('image', data.blogPhoto2.file);
 			formData.append('image', data.blogPhoto3.file);
 			formData.append('json_data', sendData);
-			const response = await octoAxios.post('/admin/blog', formData).then(r => console.log(r));
+			const response = await octoAxios
+				.post<IFetchAddNewsRes>('/admin/blog', formData)
+				.then(r => r.data);
+			if (response.message == 'success') {
+				return {
+					newPost: true,
+					title: data.blogTitle,
+					body: data.blogDescription,
+					createdTime: new Date().toString(),
+					editedTime: null,
+					id: 0,
+					products: [
+						{
+							title: data.subtitlePhoto1,
+							body: data.miniDescPhoto1,
+							url: data.postLink1,
+							photo:  data.blogPhoto1.base64,
+						},
+						{
+							title: data.subtitlePhoto2,
+							body: data.miniDescPhoto2,
+							url: data.postLink2,
+							photo:  data.blogPhoto2.base64,
+						},
+						{
+							title: data.subtitlePhoto3,
+							body: data.miniDescPhoto3,
+							url: data.postLink3,
+							photo:  data.blogPhoto3.base64,
+						},
+					]
+				};
+			}
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);

@@ -22,6 +22,7 @@ export const useBlogProductStyles = () => {
 		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
 		[theme.breakpoints.down(601)]: {
 			maxHeight: '114px',
+			height: '114px',
 		}
 	}));
 
