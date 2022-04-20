@@ -1,13 +1,14 @@
 import React, {FC} from 'react';
 
 import {useAccountInstructionStyle} from './style';
-import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
+// import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
+import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
 
 const AccountInstruction : FC = () => {
 	return (
 		<WrapperMUI>
 			<HeaderMUI>
-				<TextMUI>Инструкция</TextMUI>
+				<TextMUI style={{fontSize:'24px'}}>Инструкция</TextMUI>
 			</HeaderMUI>
 			<ULMUI>
 				<LIMUI>Присылаете полную инструкцию на товар.</LIMUI>
@@ -19,11 +20,15 @@ const AccountInstruction : FC = () => {
 				<TextMUI>Если товар превышает сумму беспошлинного ввоза (на сегодня это пока что 200 евро за посылку), то там точно такая же процедура, как если бы товар пришел от интернет магазина на прямую. </TextMUI>
 			</FooterMUI>
 			<FooterButtonMUI>
-				<ButtonUI
+				{/* <ButtonUI
 					sx={ButtonToShopMUI}
 				>
 					За покупками!
-				</ButtonUI>
+				</ButtonUI> */}
+				<LinkMUI >Связаться с менеджером</LinkMUI>
+
+
+				<WhatsAppIconLarge/>
 			</FooterButtonMUI>
 		</WrapperMUI>
 	);
@@ -39,5 +44,6 @@ const {
 	FooterButtonMUI,
 	ULMUI,
 	LIMUI,
-	TextMUI
+	TextMUI,
+	LinkMUI
 } = useAccountInstructionStyle();

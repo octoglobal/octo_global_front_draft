@@ -1,4 +1,4 @@
-import {styled, Typography} from '@mui/material';
+import { styled, Typography, Link } from '@mui/material';
 
 export const useAccountInstructionStyle = () => {
 	const WrapperMUI = styled('div')(() => ({
@@ -32,18 +32,18 @@ export const useAccountInstructionStyle = () => {
 			}
 		}
 	}));
-
+	
 	const ULMUI = styled('ul')(({theme}) => ({
 		listStyleType: 'decimal',
-		marginBottom: '54px',
+		marginBottom: '30px',
 		maxWidth: '1190px',
 		marginLeft: '15px',
 
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontSize: '20px',
+		lineHeight: '23.44px',
 		color: '#000000',
 
 		[theme.breakpoints.down(501)]: {
@@ -52,7 +52,8 @@ export const useAccountInstructionStyle = () => {
 			lineHeight: '19px',
 			color: '#000000',
 			marginLeft: '20px',
-			marginBottom: '32px',
+			marginBottom: '12px',
+			// marginBottom: '32px',
 		}
 	}));
 
@@ -63,19 +64,21 @@ export const useAccountInstructionStyle = () => {
 	const TextMUI = styled(Typography)(() => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '500',
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontWeight: '400',
+		fontSize: '20px',
+		lineHeight: '23.44px',
 		color: '#000000',
 	}));
 
 	const FooterButtonMUI = styled('div')(({theme}) => ({
-		marginTop: '71px',
+		marginTop: '42px',
+		display: 'flex',
+		alignItems:'center',
 
 		[theme.breakpoints.down(501)]: {
 			display: 'flex',
 			justifyContent: 'flex-end',
-			margin: '50px 0px',
+			marginTop: '20px',
 		}
 	}));
 
@@ -87,6 +90,17 @@ export const useAccountInstructionStyle = () => {
 		borderRadius: '3px',
 	};
 
+
+	const LinkMUI = styled(Link)(({theme}) => ({
+		fontSize: '20px',
+		cursor: 'pointer',
+		marginRight: '12px',
+
+		[theme.breakpoints.down(501)]: {
+			fontSize: '16px'
+		}
+	}));
+
 	return {
 		WrapperMUI,
 		HeaderMUI,
@@ -95,6 +109,7 @@ export const useAccountInstructionStyle = () => {
 		FooterButtonMUI,
 		ULMUI,
 		LIMUI,
-		TextMUI
+		TextMUI,
+		LinkMUI
 	};
 };

@@ -82,6 +82,7 @@ export const useHeaderStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		
 
 		'& #long-menu .MuiPaper-root ': {
 			transform: 'none !important',
@@ -102,7 +103,7 @@ export const useHeaderStyle = () => {
 
 	const LogoMUI = styled('div')(({theme}) => ({
 		marginRight: '180px',
-
+		// marginTop: '-12px',
 		[theme.breakpoints.down(1241)]: {
 			position: 'absolute',
 
@@ -117,7 +118,7 @@ export const useHeaderStyle = () => {
 
 	const OctoIconsUI = styled('span')(() => ({
 		width: '20%',
-
+		
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',

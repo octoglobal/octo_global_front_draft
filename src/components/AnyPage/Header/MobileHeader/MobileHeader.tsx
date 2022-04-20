@@ -8,14 +8,10 @@ import WhatsAppLarge from '../../../../UI/UIIcon/WhatsAppLarge.svg';
 
 import {useHeaderMobileStyle} from './style';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
-import {useUserStore} from '@/hooks/useUserStore';
 import {useHeader} from '@/components/AnyPage/Header/useHeader';
 
 const MobileHeader: FC = () => {
-	const {
-		isAuth
-	} = useUserStore();
-
+	
 	const {isHomePage} = useHeader();
 
 	const {
@@ -44,7 +40,7 @@ const MobileHeader: FC = () => {
 						<Logotip />
 					</NavItemUI>
 					<NavItemUI>
-						{!isAuth && isHomePage ? <WhatsAppLarge /> : <></>}
+						{isHomePage ? <WhatsAppLarge /> : <></>}
 					</NavItemUI>
 				</NavMenuUI>
 			</HeaderMobileWrapperUI>
@@ -58,6 +54,7 @@ const MobileHeader: FC = () => {
 			>
 				<MenuAuthContent />
 			</SwipeableDrawerUI>
+
 		</>
 	);
 };

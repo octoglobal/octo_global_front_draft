@@ -6,6 +6,8 @@ import {ObjectHasOwnProperty} from '@/services/services';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useTabsStyle} from './style';
 import {useMobile} from '@/hooks/useMedia';
+import LightningInsideCircle from '../../../UI/UIIcon/LightningInsideCircle.svg';
+
 
 type TabsQueryProps = {
 	location?: string;
@@ -79,7 +81,11 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									className={checkActiveClass(item.url, item.query)}
 									onClick={() => handlerPushToTab(item.url, item.query)}
 								>
-									{item.title}
+									<>
+										{item.title}
+										{item.title === "Выкуп товара" ?  <LightningInsideCircle /> : ''}
+
+									</>
 								</TabUI>
 							) : null}
 						</>

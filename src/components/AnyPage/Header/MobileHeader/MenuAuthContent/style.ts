@@ -6,10 +6,11 @@ export const useMenuAuthContentStyle = () => {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'flex-start',
+		marginTop: '10px',
 		'& a': {
 			fontFamily: 'Roboto',
 			fontStyle: 'normal',
-			fontWeight: '500',
+			fontWeight: '300',
 			fontSize: '16px',
 			lineHeight: '19px',
 			color: '#000000',
@@ -18,7 +19,7 @@ export const useMenuAuthContentStyle = () => {
 		},
 
 		'& a:last-child': {
-			marginBottom: '30px',
+			marginBottom: '25px',
 		}
 	}));
 
