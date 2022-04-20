@@ -7,6 +7,7 @@ export const useUserStore = () => {
 	const {user} = useAppSelector(state => state.userReducer);
 	const dispatch = useAppDispatch();
 	const isAuth = useMemo(() => !!user.id, [user]);
+	const isAdmin = useMemo(() => user.statusId === 9, [user]);
 
 	// const fetchUser = () : void => {
 	// 	console.log('fetchUser: ', isAuth, user.id);
@@ -36,6 +37,7 @@ export const useUserStore = () => {
 	return {
 		user,
 		isAuth,
+		isAdmin,
 		getUser: fetchUser,
 	};
 };

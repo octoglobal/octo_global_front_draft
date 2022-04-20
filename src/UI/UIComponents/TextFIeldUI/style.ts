@@ -10,6 +10,9 @@ export const useTextFieldUIStyle = () => {
 
 		'& .MuiFormControl-root': {
 			width: '100%',
+			'& .MuiInputBase-root': {
+				fontSize: '20px',
+			}
 		},
 
 		'& .MuiFormHelperText-root': {
@@ -72,17 +75,17 @@ export const useTextFieldUIStyle = () => {
 
 	const TextFieldMobileStyle = {
 		width: '100%',
-		height: '37px',
+		height: '49px',
 
 		background: '#FFFFFF',
-		border: '1px solid #DFE4EC',
+		border: '0',
 		boxSizing: 'border-box',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
 
 		'& .MuiOutlinedInput-root, .MuiFormControl-root': {
 			width: '100%',
-			height: '37px',
-			borderRadius: '0px',
+			height: '49px',
+			borderRadius: '5px',
 			paddingRight: '0px',
 		},
 		'& .MuiInputLabel-root': {
@@ -95,8 +98,8 @@ export const useTextFieldUIStyle = () => {
 			'&::placeholder': {
 				fontStyle: 'normal',
 				fontWeight: '300',
-				fontSize: '14px',
-				lineHeight: '16px',
+				fontSize: '16px',
+				lineHeight: '40px',
 				color: '#C4C4C4',
 			}
 		},
