@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useRef} from 'react';
+import React, { FC, useEffect, useMemo, useRef } from 'react';
 import {styled} from '@mui/material';
 
 import {useCustomRouter} from '@/hooks/useCustomRouter';
@@ -33,45 +33,58 @@ const Logotip: FC = () => {
 		pushTo('/');
 	};
 
+	const isLanding = useMemo(() => {
+		if (router) {
+			return router.pathname === '/';
+		}
+	}, [router]);
+
+
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			const element = logoRef.current;
 			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
 			const transform = checkMedia(501) ? '50' : '100';
 			if (element) {
-				if (window.location.pathname === '/') {
-					gsap.fromTo(element, {
-						opacity: 0,
-						transform: `translateY(-${transform}px)`,
-						visibility: 'visible',
-					}, {
-						opacity: 1,
-						transform: 'translateY(0px)',
-						duration: 1,
-						scrollTrigger: {
-							start: 'top top',
-							markers: false,
-							end: end,
-							scrub: true,
-						}
-					});
-				} else {
-					gsap.to(element, {
-						visibility: 'visible',
-					});
-				}
+				gsap.fromTo(element, {
+					opacity: 0,
+					transform: `translateY(-${transform}px)`,
+					visibility: 'visible',
+				}, {
+					opacity: 1,
+					transform: 'translateY(0px)',
+					duration: 1,
+					scrollTrigger: {
+						start: 'top top',
+						markers: false,
+						end: end,
+						scrub: true,
+					}
+				});
 			}
 		}
 	}, [router.pathname]);
 
 	return (
-		<OctoIconsUI
-			onClick={handlerPushHome}
-			ref={logoRef}
-		>
-			<OctoGlobal />
-			<OctoGlobalTextIcon />
-		</OctoIconsUI>
+		isLanding ? (
+			<OctoIconsUI
+				onClick={handlerPushHome}
+				ref={logoRef}
+			>
+				<OctoGlobal />
+				<OctoGlobalTextIcon />
+			</OctoIconsUI>
+		) : (
+			<OctoIconsUI
+				onClick={handlerPushHome}
+				sx={{
+					visibility: 'visible'
+				}}
+			>
+				<OctoGlobal />
+				<OctoGlobalTextIcon />
+			</OctoIconsUI>
+		)
 	);
 };
 

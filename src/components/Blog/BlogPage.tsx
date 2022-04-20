@@ -15,7 +15,7 @@ const BlogPage = () => {
 		<>
 			<HeaderMargin/>
 			<ContainerMUI>
-				{!isAdmin && (
+				{isAdmin && (
 					<BlogNewPost/>
 				)}
 				<BlogList/>

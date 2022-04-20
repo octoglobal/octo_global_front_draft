@@ -4,7 +4,7 @@ import {isTopStateDirection} from '@/components/AnyPage/ScrollTop/useScrollTop';
 
 export const useScrollTopStyles = () => {
 
-	const animTrue = keyframes`
+	const animTrueDesc = keyframes`
       from {
         opacity: 0;
 		transform: translateX(-100px);
@@ -15,7 +15,18 @@ export const useScrollTopStyles = () => {
       }
 	`;
 
-	const animFalse = keyframes`
+	const animTrueMobile = keyframes`
+		from {
+			opacity: 0;
+			transform: translateX(100px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+	`;
+
+	const animFalseDesc = keyframes`
       from {
         opacity: 1;
 		transform: translateX(0px);
@@ -24,6 +35,17 @@ export const useScrollTopStyles = () => {
         opacity: 0;
         transform: translateX(-100px);
       }
+	`;
+
+	const animFalseMobile = keyframes`
+		from {
+			opacity: 1;
+			transform: translateX(0px);
+		}
+		to {
+			opacity: 0;
+			transform: translateX(100px);
+		}
 	`;
 
 	const animUndefined = keyframes`
@@ -38,10 +60,14 @@ export const useScrollTopStyles = () => {
 	`;
 
 
-	const animationVisible = (direction: isTopStateDirection, render: number) => {
+	const animationVisible = (direction: isTopStateDirection, render: number, isMobile: boolean) => {
 		if (render === 1) return {
 			opacity: 0,
 		};
+
+		const animFalse = isMobile ? animFalseMobile : animFalseDesc;
+		const animTrue = isMobile ? animTrueMobile : animTrueDesc;
+
 		const animationName =
 			direction == 'top' && render >= 1 ? animFalse :
 				direction === 'bottom' && render > 1 ? animTrue
@@ -54,7 +80,7 @@ export const useScrollTopStyles = () => {
 	};
 
 
-	const WrapperMUI = styled('div')(() => ({
+	const WrapperMUI = styled('div')(({theme}) => ({
 		position: 'fixed',
 		left: 0,
 		top: 0,
@@ -66,9 +92,21 @@ export const useScrollTopStyles = () => {
 		'&:hover': {
 			backgroundColor: 'rgba(223, 228, 236, 1)',
 		},
+		[theme.breakpoints.down(1025)]: {
+			right: '15px',
+			bottom: '145px',
+			left: 'auto',
+			top: 'auto',
+			zIndex: '10',
+			backgroundColor: '#C4C4C4',
+			width: '38px',
+			height: '38px',
+			boxShadow: '0px 3px 4px rgba(0, 0, 0, 0.2)',
+			borderRadius: '50%',
+		}
 	}));
 
-	const ScrollButtonMUI = styled('button')(() => ({
+	const ScrollButtonMUI = styled('button')(({theme}) => ({
 		border: 0,
 		width: '100%',
 		height: '100%',
@@ -76,6 +114,9 @@ export const useScrollTopStyles = () => {
 		justifyContent: 'center',
 		cursor: 'pointer',
 		backgroundColor: 'transparent',
+		[theme.breakpoints.down(1025)]: {
+			alignItems: 'center',
+		}
 	}));
 
 	const TextMUI = styled('div')(() => ({
