@@ -21,7 +21,12 @@ const appReducer = combineReducers({
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['shopReducer', 'reviewsReducer', 'swipeableDrawerSliceReducer'],
+	blacklist: [
+		'blogReducer',
+		'shopReducer',
+		'reviewsReducer',
+		'swipeableDrawerSliceReducer',
+	],
 };
 
 const persistedReducer = persistReducer(persistConfig, appReducer);
