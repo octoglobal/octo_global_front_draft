@@ -6,7 +6,7 @@ import BlogProduct from '@/components/Blog/BlogProduct/BlogProduct';
 import {useBlogItem} from '@/components/Blog/BlogItem/useBlogItem';
 import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemDescription';
 
-const BlogItem: FC<IBlogModel> = ({title, products, body}) => {
+const BlogItem: FC<IBlogModel> = ({title, products, body, newPost}) => {
 
 	const {
 		isOpenDesc,
@@ -22,6 +22,7 @@ const BlogItem: FC<IBlogModel> = ({title, products, body}) => {
 				<ProductListMUI>
 					{products.map((product, index) => (
 						<BlogProduct
+							newPost={newPost}
 							key={`${product.title}${product.url}${index}`}
 							{...product}
 						/>

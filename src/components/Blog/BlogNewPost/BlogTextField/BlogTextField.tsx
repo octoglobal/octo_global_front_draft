@@ -17,6 +17,9 @@ const BlogTextField: FC<IBlogSubtitleProps> = ({name, placeholder}) => {
 				controller={{
 					name,
 					control,
+					rules: {
+						required: true,
+					}
 				}}
 				inputProps={{
 					placeholder

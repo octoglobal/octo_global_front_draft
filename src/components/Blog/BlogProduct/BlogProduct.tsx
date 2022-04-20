@@ -1,17 +1,31 @@
-import React, {FC} from 'react';
+import React, { FC, useMemo } from 'react';
 import {IBlogModelProducts} from '@/models/IBlogModel';
 import {useBlogProductStyles} from '@/components/Blog/BlogProduct/style';
 import {HOST} from '@/constants/constants';
 import {useMediaQuery} from '@mui/material';
 
-const BlogProduct: FC<IBlogModelProducts> = ({title, body, url, photo}) => {
+const BlogProduct: FC<IBlogModelProducts & {newPost?: boolean}> = (
+	{
+		title,
+		body,
+		url,
+		photo,
+		newPost
+	}
+) => {
 
 	const isTablet = useMediaQuery('(max-width: 768px)');
+	const photoSrc = useMemo(() => {
+		if (newPost) {
+			return photo;
+		}
+		return `${HOST}/image/${photo}`;
+	}, [photo]);
 
 	return (
 		<ItemMUI>
 			<PhotoMUI
-				src={`${HOST}/image/${photo}`}
+				src={photoSrc}
 				alt={title}
 			/>
 			{!isTablet && (

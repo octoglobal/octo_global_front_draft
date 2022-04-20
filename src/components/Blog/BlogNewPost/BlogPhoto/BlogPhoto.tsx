@@ -36,6 +36,9 @@ const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
 			<Controller
 				name={`blogPhoto${indexField}`}
 				control={control}
+				rules={{
+					required: true,
+				}}
 				render={({field: {onChange}}) => (
 					<PhotoInputFileMUI
 						onChange={(e) => onChangeInput(e, onChange)}

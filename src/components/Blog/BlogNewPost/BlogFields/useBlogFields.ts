@@ -34,7 +34,15 @@ export const useBlogFields = () => {
 
 	const onSubmit = (data: IFormData) => {
 		try {
-			dispatch(fetchAddNewsBlog(data));
+			dispatch(fetchAddNewsBlog(data)).then(r => {
+				if (r.type === 'blogSlice/add/fulfilled') {
+					methods.reset({});
+					window.scrollTo({
+						behavior: 'smooth',
+						top: 0
+					});
+				}
+			});
 		} catch (e) {
 			throw new Error('Ошибка запроса');
 		}
