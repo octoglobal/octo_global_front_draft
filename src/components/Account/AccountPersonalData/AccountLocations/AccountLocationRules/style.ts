@@ -20,7 +20,7 @@ export const useAccountLocationRulesStyle = () => {
 
 	const TableUI = styled('div')(({theme}) => ({
 		display: 'grid',
-		gridTemplateColumns: '250px 382px',
+		gridTemplateColumns: '272px 382px',
 		gridTemplateRows: 'auto auto auto auto auto auto auto auto',
 		gridColumnGap: '20px',
 		gridRowGap: '15px',
@@ -44,9 +44,9 @@ export const useAccountLocationRulesStyle = () => {
 	const TitleUI = styled('div')(() => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '500',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontWeight: '400',
+		fontSize: '20px',
+		lineHeight: '23px',
 		color: '#000000',
 
 		width: '100%',

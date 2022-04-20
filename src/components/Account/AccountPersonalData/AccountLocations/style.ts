@@ -11,12 +11,20 @@ export const useAccountLocationStyle = () => {
 		justifyContent: 'center',
 	}));
 
+	const AddressListMUI = styled('div')(() => ({
+		'& > *:last-child': {
+			borderBottom: 0
+		}
+	}));
+
 	const BorderWrapperUI = styled('div')(({theme}) => ({
-		maxWidth: '737px',
+		maxWidth: '673px',
+		minWidth: '673px',
 		width: 'auto',
 		height: 'auto',
 		background: '#FFFFFF',
-		border: '5px dashed #234A82',
+		border: '3.5px dashed #234A82',
+		borderImage: 'url("/image/AddressBorder.png") 3',
 		boxSizing: 'border-box',
 
 		[theme.breakpoints.down(1024)]: {
@@ -37,7 +45,7 @@ export const useAccountLocationStyle = () => {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		padding: '21px 38px',
+		padding: '15px 30px 30px',
 
 		'& .TabsUnstyled-root': {
 			width: '100%',
@@ -46,7 +54,7 @@ export const useAccountLocationStyle = () => {
 		'& .TabsListUnstyled-root': {
 			width: '100%',
 			minWidth: '280px',
-			paddingBottom: '20px',
+			paddingBottom: '6px',
 			marginBottom: '20px',
 		},
 
@@ -114,7 +122,7 @@ export const useAccountLocationStyle = () => {
 
 	const LocationButtonsUI = styled('div', {
 		shouldForwardProp: (prop) => prop !== 'justifyAlign',
-	})<{justifyAlign?: boolean}>(({justifyAlign = false, theme}) => ({
+	})<{ justifyAlign?: boolean }>(({justifyAlign = false, theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
@@ -122,7 +130,7 @@ export const useAccountLocationStyle = () => {
 		width: '100%',
 
 		[theme.breakpoints.down(500)]: {
-			justifyContent: justifyAlign ? 'center' :'flex-end',
+			justifyContent: justifyAlign ? 'center' : 'flex-end',
 		}
 	}));
 
@@ -141,10 +149,10 @@ export const useAccountLocationStyle = () => {
 	const LocationAddressUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '24px',
+		fontSize: '22px',
 		lineHeight: '28px',
 		color: '#000000',
-		width: '351px',
+		width: '288px',
 
 		marginBottom: '25px',
 
@@ -163,18 +171,16 @@ export const useAccountLocationStyle = () => {
 		lineHeight: '23px',
 		textDecorationLine: 'underline',
 		color: '#989292',
-
 		cursor: 'pointer'
 	}));
 
 	const TypographyUI = styled(Typography)(() => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
-		fontSize: '36px',
-		lineHeight: '42px',
+		fontSize: '24px',
+		lineHeight: '28px',
 		color: '#000000',
-
-		marginBottom: '40px'
+		marginBottom: '26px'
 	}));
 
 	const ButtonAdd: React.CSSProperties = {
@@ -213,6 +219,7 @@ export const useAccountLocationStyle = () => {
 		TypographyUI,
 		LocationButtonUI,
 		BorderWrapperUI,
+		AddressListMUI,
 		LocationWrapperUI,
 		LocationAddressUI,
 		LocationContentUI,

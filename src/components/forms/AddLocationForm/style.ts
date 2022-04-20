@@ -5,7 +5,7 @@ export const useAddLocationFormStyle = () => {
 
 	const FormUI = styled('form')(({theme}) => ({
 		display: 'flex',
-		margin: '33px 0',
+		margin: '5px 0 0',
 		[theme.breakpoints.down(500)]: {
 			marginTop: '24px',
 		}
@@ -16,7 +16,7 @@ export const useAddLocationFormStyle = () => {
 		height: '100%',
 
 		display: 'grid',
-		gridTemplateColumns: '105px 501px',
+		gridTemplateColumns: '87px 451px',
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '21px',
 		gridRowGap: '10px',
@@ -29,10 +29,11 @@ export const useAddLocationFormStyle = () => {
 	const FormRowTitle = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '500',
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontWeight: '400',
+		fontSize: '20px',
+		lineHeight: '23px',
 		color: '#000000',
+		paddingTop: '13px',
 
 		[theme.breakpoints.down(500)]: {
 			fontSize: '16px',
@@ -44,9 +45,9 @@ export const useAddLocationFormStyle = () => {
 
 	const FormTextFieldUI = {
 		width: '50%',
-		height: '32px !important',
+		height: '49px !important',
 		textAlign: 'start',
-
+		borderRadius: '5px',
 		// border: '1px solid #DFE4EC',
 		// boxSizing: 'border-box',
 		// boxShadow:' 0px 4px 4px rgba(0, 0, 0, 0.03)',
@@ -58,13 +59,13 @@ export const useAddLocationFormStyle = () => {
 		'& .MuiOutlinedInput-root': {
 			'& input': {
 				padding: '0px 14px',
-				height: '32px !important',
+				height: '49px !important',
 				color: 'black',
 
 				fontFamily: 'Roboto',
 				fontStyle: 'normal',
 				fontWeight: '300',
-				fontSize: '16px',
+				fontSize: '20px',
 				lineHeight: '18px',
 
 				'-webkit-text-fill-color': 'black',
@@ -125,13 +126,13 @@ export const useAddLocationFormStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
-
 		marginTop: '20px'
 	}));
 
 	const ButtonSubmitUI: React.CSSProperties = {
 		width: '135px',
 		height: '32px',
+		marginBottom: '0',
 	};
 
 	const ButtonCancelUI: React.CSSProperties = {
@@ -139,13 +140,13 @@ export const useAddLocationFormStyle = () => {
 
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '300',
+		fontWeight: '400',
 		fontSize: '14px',
 		lineHeight: '16px',
 		textAlign: 'center',
 		color: '#274D82',
 
-		marginRight: '15px',
+		margin: '0 15px 0 0',
 		width: '49px',
 		height: '16px',
 

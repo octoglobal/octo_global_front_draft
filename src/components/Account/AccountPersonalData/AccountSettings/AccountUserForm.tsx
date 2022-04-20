@@ -12,18 +12,6 @@ import {ObjectHasOwnProperty} from '@/services/services';
 
 const AccountUserForm: FC = () => {
 
-	const {
-		FormTableUI,
-		FormButtonUI,
-		FormTableEndUI,
-		FormTextFieldUI,
-		FormTableTextUI,
-		FormTableRowLabelUI,
-		FormTextFieldBorderUI,
-		// FormTextFieldFocusBorder,
-		HelperBoxUI
-	} = useAccountSettingsStyle();
-
 	const textPhoneRef = useRef<HTMLInputElement | null>(null);
 
 	const {handleSubmit, control, setValue, setError, formState: {dirtyFields, isSubmitted}} = useForm();
@@ -68,70 +56,84 @@ const AccountUserForm: FC = () => {
 		<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
 
 			<FormTableUI>
-				<FormTableRowLabelUI>
-					<Typography variant="body2">
-						Номер кабинета
-					</Typography>
-				</FormTableRowLabelUI>
-				<FormTableTextUI>#{personalAreaId}</FormTableTextUI>
 
-				<FormTableRowLabelUI>
-					<Typography variant="body2">Почта</Typography>
-				</FormTableRowLabelUI>
 
-				<FormTextFieldBorderUI selection={false}>
-					<TextFieldUI
-						controller={{
-							name: 'email',
-							control,
-							defaultValue: email,
-							// rules: {required: true},
-						}}
-						inputProps={{
-							name: 'email',
-							type: 'email',
-							// required: true,
-							helperText: verifiedEmail ? 'Почта не подтверждена' : '',
-							sx: FormTextFieldUI,
-							disabled: true
-						}}
-					/>
-					{showEmailPromt && (
-						<HelperBoxUI onClick={handlerConfirmEmail}>
-							Подтвердите почту
-						</HelperBoxUI>
-					)}
-				</FormTextFieldBorderUI>
+				<FormTableSectionInputsMUI>
+					<FormTableSectionMUI>
+						<FormTableRowLabelUI>
+							<Typography variant="body2">
+								Номер кабинета
+							</Typography>
+						</FormTableRowLabelUI>
+						<FormTableTextUI>#{personalAreaId}</FormTableTextUI>
+					</FormTableSectionMUI>
+				</FormTableSectionInputsMUI>
 
-				<FormTableRowLabelUI>
-					<Typography variant="body2">Телефон</Typography>
-				</FormTableRowLabelUI>
 
-				<FormTextFieldBorderUI selection={!phone} focusBorder={true}>
-					<TextFieldPhoneUI
-						controller={{
-							name: 'phone',
-							control,
-							defaultValue: phone || '',
-							rules: {required: true},
-						}}
-						inputProps={{
-							name: 'phone',
-							type: 'tel',
-							required: true,
-							// helperText: 'Заполните поле "Телефон"',
-							sx: FormTextFieldUI,
-							// autoFocus: true
-							inputRef: textPhoneRef
-						}}
-						iconProps={{
-							editIcon: true,
-							defaultIcon: EditPencil,
-							activeIcon: EditPencil,
-							onClick: handlerEditClick,
-						}}
-					/>
-				</FormTextFieldBorderUI>
+				<FormTableSectionMUI>
+					<FormTableRowLabelUI>
+						<Typography variant="body2">Почта</Typography>
+					</FormTableRowLabelUI>
+					<FormTableSectionInputsMUI>
+						<FormTextFieldBorderUI selection={false}>
+							<TextFieldUI
+								controller={{
+									name: 'email',
+									control,
+									defaultValue: email,
+									// rules: {required: true},
+								}}
+								inputProps={{
+									name: 'email',
+									type: 'email',
+									// required: true,
+									helperText: verifiedEmail ? 'Почта не подтверждена' : '',
+									sx: FormTextFieldUI,
+									disabled: true
+								}}
+							/>
+							{showEmailPromt && (
+								<HelperBoxUI onClick={handlerConfirmEmail}>
+									Подтвердите почту
+								</HelperBoxUI>
+							)}
+						</FormTextFieldBorderUI>
+					</FormTableSectionInputsMUI>
+				</FormTableSectionMUI>
+
+
+				<FormTableSectionMUI>
+					<FormTableRowLabelUI>
+						<Typography variant="body2">Телефон</Typography>
+					</FormTableRowLabelUI>
+					<FormTableSectionInputsMUI>
+						<FormTextFieldBorderUI selection={!phone} focusBorder={true}>
+							<TextFieldPhoneUI
+								controller={{
+									name: 'phone',
+									control,
+									defaultValue: phone || '',
+									rules: {required: true},
+								}}
+								inputProps={{
+									name: 'phone',
+									type: 'tel',
+									required: true,
+									// helperText: 'Заполните поле "Телефон"',
+									sx: FormTextFieldUI,
+									// autoFocus: true
+									inputRef: textPhoneRef
+								}}
+								iconProps={{
+									editIcon: true,
+									defaultIcon: EditPencil,
+									activeIcon: EditPencil,
+									onClick: handlerEditClick,
+								}}
+							/>
+						</FormTextFieldBorderUI>
+					</FormTableSectionInputsMUI>
+				</FormTableSectionMUI>
 
 				{isSubmitForm && (
 					<>
@@ -151,5 +153,18 @@ const AccountUserForm: FC = () => {
 		</Box>
 	);
 };
+
+const {
+	FormTableUI,
+	FormButtonUI,
+	FormTableEndUI,
+	FormTextFieldUI,
+	FormTableTextUI,
+	FormTableRowLabelUI,
+	FormTextFieldBorderUI,
+	HelperBoxUI,
+	FormTableSectionInputsMUI,
+	FormTableSectionMUI
+} = useAccountSettingsStyle();
 
 export default React.memo(AccountUserForm);
