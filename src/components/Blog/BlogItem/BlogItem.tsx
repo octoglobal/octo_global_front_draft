@@ -6,17 +6,30 @@ import BlogProduct from '@/components/Blog/BlogProduct/BlogProduct';
 import {useBlogItem} from '@/components/Blog/BlogItem/useBlogItem';
 import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemDescription';
 
-const BlogItem: FC<IBlogModel> = ({title, products, body, newPost}) => {
+interface IBlogItemProps extends IBlogModel{
+	viewDescription?: boolean;
+}
+
+const BlogItem: FC<IBlogItemProps> = (
+	{
+		title,
+		products,
+		body,
+		newPost,
+		viewDescription = true,
+	}
+) => {
 
 	const {
 		isOpenDesc,
+		dopItemStyle,
 		handleToggleDesc
-	} = useBlogItem();
+	} = useBlogItem(viewDescription);
 
 	return (
-		<ItemMUI>
+		<ItemMUI sx={dopItemStyle.item}>
 			<WrapperMUI>
-				<ItemTitleMUI>
+				<ItemTitleMUI sx={dopItemStyle.title}>
 					{title}
 				</ItemTitleMUI>
 				<ProductListMUI>
@@ -28,14 +41,18 @@ const BlogItem: FC<IBlogModel> = ({title, products, body, newPost}) => {
 						/>
 					))}
 				</ProductListMUI>
-				<ButtonIconMUI onClick={handleToggleDesc}>
-					<ShopsTagsListArrow/>
-				</ButtonIconMUI>
-				<CollapseDescMUI in={isOpenDesc}>
-					<BlogItemDescription
-						description={body}
-					/>
-				</CollapseDescMUI>
+				{viewDescription && (
+					<>
+						<ButtonIconMUI onClick={handleToggleDesc}>
+							<ShopsTagsListArrow/>
+						</ButtonIconMUI>
+						<CollapseDescMUI in={isOpenDesc}>
+							<BlogItemDescription
+								description={body}
+							/>
+						</CollapseDescMUI>
+					</>
+				)}
 			</WrapperMUI>
 		</ItemMUI>
 	);

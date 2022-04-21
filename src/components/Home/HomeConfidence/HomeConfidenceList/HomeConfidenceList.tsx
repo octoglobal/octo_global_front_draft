@@ -14,7 +14,6 @@ const homeConfidenceData = [
 
 const HomeConfidenceList: FC = () => {
 
-	const { ListMUI } = useHomeConfidenceListStyles();
 	// const listRef = useRef<HTMLUListElement>(null);
 	//
 	// useEffect(() => {
@@ -47,5 +46,8 @@ const HomeConfidenceList: FC = () => {
 		</ListMUI>
 	);
 };
+
+const { ListMUI } = useHomeConfidenceListStyles();
+
 
 export default React.memo(HomeConfidenceList);

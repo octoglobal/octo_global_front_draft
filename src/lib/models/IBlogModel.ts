@@ -7,7 +7,7 @@ export interface IBlogModelProducts {
 
 
 export interface IBlogModel {
-	readonly newPost: boolean,
+	readonly newPost?: boolean,
 	readonly title: string;
 	readonly body: string;
 	readonly createdTime: string;

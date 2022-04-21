@@ -5,6 +5,11 @@ export const useDesktop = () => {
 	return {isDesktop};
 };
 
+export const useTouchDevice = () => {
+	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
+	return {isTouchDevice};
+};
+
 export const useTablet = () => {
 	const isTablet = useMediaQuery('(max-width: 1024px) and (min-width: 500px)');
 	return {isTablet};

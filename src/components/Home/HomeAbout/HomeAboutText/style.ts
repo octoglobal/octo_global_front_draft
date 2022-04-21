@@ -19,11 +19,11 @@ export const useHomeAboutTextStyles = () => {
 	}));
 
 	const ParagraphMUI = styled('p')(({theme}) => ({
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontSize: '20px',
+		lineHeight: '32px',
 		marginBottom: '50px',
 		fontWeight: 300,
-		maxWidth: '759px',
+		maxWidth: '749px',
 		[theme.breakpoints.down(1321)]: {
 			fontSize: '18px',
 			maxWidth: '590px',
