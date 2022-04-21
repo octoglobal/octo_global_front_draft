@@ -22,7 +22,7 @@ export const useHomeAboutLogoStyles = () => {
 	const TextMUI = styled('h3')(({theme}) => ({
 		fontSize: '48px',
 		lineHeight: '64px',
-		fontWeight: 600,
+		fontWeight: 500,
 		color: '#274D82',
 		fontFamily: 'Playfair Display',
 		[theme.breakpoints.down(1025)]: {
