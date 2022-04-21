@@ -1,8 +1,7 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import {IBlogModelProducts} from '@/models/IBlogModel';
 import {useBlogProductStyles} from '@/components/Blog/BlogProduct/style';
-import {HOST} from '@/constants/constants';
-import {useMediaQuery} from '@mui/material';
+import {useBlogProduct} from '@/components/Blog/BlogProduct/useBlogProduct';
 
 const BlogProduct: FC<IBlogModelProducts & {newPost?: boolean}> = (
 	{
@@ -14,13 +13,11 @@ const BlogProduct: FC<IBlogModelProducts & {newPost?: boolean}> = (
 	}
 ) => {
 
-	const isTablet = useMediaQuery('(max-width: 768px)');
-	const photoSrc = useMemo(() => {
-		if (newPost) {
-			return photo;
-		}
-		return `${HOST}/image/${photo}`;
-	}, [photo]);
+	const {
+		isTablet,
+		productLink,
+		photoSrc,
+	} = useBlogProduct(!!newPost, photo, url);
 
 	return (
 		<ItemMUI>
@@ -41,9 +38,9 @@ const BlogProduct: FC<IBlogModelProducts & {newPost?: boolean}> = (
 			<LinkMUI
 				target='_blank'
 				rel='noreferrer'
-				href={url}
+				href={productLink.hrefLink}
 			>
-				{url}
+				{productLink.nameLink}
 			</LinkMUI>
 		</ItemMUI>
 	);

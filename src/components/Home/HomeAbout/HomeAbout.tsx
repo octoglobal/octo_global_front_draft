@@ -13,7 +13,6 @@ if (typeof window !== 'undefined') {
 
 const HomeAbout: FC = () => {
 
-	const { WrapperMUI, HeaderMarginMUI } = useHomeAboutStyles();
 	const logoRefElement = useRef(null);
 
 	const smallSmartphoneStyle = useMemo(() => {
@@ -57,5 +56,8 @@ const HomeAbout: FC = () => {
 		</>
 	);
 };
+
+const { WrapperMUI, HeaderMarginMUI } = useHomeAboutStyles();
+
 
 export default HomeAbout;

@@ -6,16 +6,20 @@ export const useBlogProductStyles = () => {
 		marginRight: '32px',
 		listStyle: 'none',
 		width: '100%',
-		maxWidth: '336px',
+		maxWidth: '33.3333%',
+		minWidth: '31%',
 		textAlign: 'center',
+		[theme.breakpoints.down(1025)]: {
+			marginRight: '15px',
+		},
 		[theme.breakpoints.down(769)]: {
-			marginRight: '5px',
+			marginRight: '6px',
 		}
 	}));
 
 	const PhotoMUI = styled('img')(({theme}) => ({
 		width: '100%',
-		height: '100%',
+		height: '208px',
 		objectFit: 'cover',
 		maxHeight: '208px',
 		marginBottom: '10px',

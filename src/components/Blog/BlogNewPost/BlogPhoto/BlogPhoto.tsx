@@ -45,7 +45,8 @@ const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
 						ref={inputRef}
 						name="photoFile"
 						type='file'
-						accept="image/*"
+						accept=
+							"image/jpeg, "
 						hidden
 					/>
 				)}

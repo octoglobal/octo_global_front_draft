@@ -14,7 +14,7 @@ interface IFetchAddNewsRes {
 }
 
 
-interface IFetchNewsDataRes {
+export interface IFetchNewsDataRes {
 	page_count: number
 	posts: IBlogModel[];
 }

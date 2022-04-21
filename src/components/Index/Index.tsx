@@ -2,17 +2,29 @@ import React, {FC} from 'react';
 import HomeAbout from '@/components/Home/HomeAbout/HomeAbout';
 import HomeWorkExp from '@/components/Home/HomeWorkExp/HomeWorkExp';
 import HomeConfidence from '@/components/Home/HomeConfidence/HomeConfidence';
-// import HomeAddress from '@/components/Home/HomeAddress/HomeAddress';
 import HomeShops from '@/components/Home/HomeShops/HomeShops';
+import HomeBlog from '@/components/Home/HomeBlog/HomeBlog';
+import {useTouchDevice} from '@/hooks/useMedia';
+import HomeReviews from '@/components/Home/HomeReviews/HomeReviews';
 
 const IndexPage : FC = () => {
+	const {
+		isTouchDevice
+	} = useTouchDevice();
+
 	return (
 		<>
 			<HomeAbout/>
+			{isTouchDevice && (
+				<HomeBlog/>
+			)}
 			<HomeWorkExp/>
 			<HomeConfidence/>
 			<HomeShops/>
-			{/*<HomeAddress/>*/}
+			{!isTouchDevice && (
+				<HomeBlog/>
+			)}
+			<HomeReviews/>
 		</>
 	);
 };

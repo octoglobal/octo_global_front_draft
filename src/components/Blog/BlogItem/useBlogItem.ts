@@ -1,6 +1,6 @@
-import {useState} from 'react';
+import {useMemo, useState} from 'react';
 
-export const useBlogItem = () => {
+export const useBlogItem = (viewDescription?: boolean) => {
 
 	const [isOpenDesc, setIsOpenDesc] = useState<boolean>(false);
 
@@ -8,8 +8,27 @@ export const useBlogItem = () => {
 		setIsOpenDesc(prevState => !prevState);
 	};
 
+	const dopItemStyle = useMemo(() => {
+		if (viewDescription) {
+			return {
+				item: {},
+				title: {}
+			};
+		}
+		return {
+			item: {
+				borderBottom: 0
+			},
+			title: {
+				marginBottom: '31px',
+				textAlign: 'center',
+			}
+		};
+	}, [viewDescription]);
+
 	return {
 		isOpenDesc,
+		dopItemStyle,
 		handleToggleDesc
 	};
 };

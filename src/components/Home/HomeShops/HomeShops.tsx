@@ -5,10 +5,11 @@ import {useHomeShopStyles} from '@/components/Home/HomeShops/style';
 import HomeShopsList from '@/components/Home/HomeShops/HomeShopsList/HomeShopsList';
 import {useCustomSize} from '@/hooks/useMedia';
 import HomeShopSwiper from '@/components/Home/HomeShops/HomeShopSwipers/HomeShopSwipers';
+import LinkButtonUI from '../../../UI/UIComponents/LinkButtonUI/LinkButton';
 
 const HomeShops = () => {
 
-	const {WrapperMUI, TitleMUI, LinkWrapperMUI, containerStyle, containerAdaptiveStyle} = useHomeShopStyles();
+	const {WrapperMUI, TitleMUI, containerStyle, containerAdaptiveStyle} = useHomeShopStyles();
 	const {isCustomSize: isTablet} = useCustomSize(1024);
 	const containerAdaptiveStyles = useMemo(() => {
 		if (isTablet) {
@@ -36,9 +37,9 @@ const HomeShops = () => {
 					) : (
 						<HomeShopsList/>
 					)}
-					<LinkWrapperMUI href="/shops">
-						ВСЕ МАГАЗИНЫ
-					</LinkWrapperMUI>
+					<LinkButtonUI href="/shops">
+						Все магазины
+					</LinkButtonUI>
 				</WrapperMUI>
 			</Container>
 		</>

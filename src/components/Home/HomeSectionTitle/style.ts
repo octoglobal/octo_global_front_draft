@@ -3,14 +3,14 @@ import { styled } from '@mui/material';
 export const useHomeSectionTitleStyles = () => {
 
 	const TitleMUI = styled('h1')(({theme}) => ({
-		fontSize: '48px',
+		fontSize: '36px',
 		fontWeight: 400,
-		lineHeight: '56px',
-		margin: '0 0 30px 0',
+		lineHeight: '42px',
+		margin: '0 0 36px 0',
 		maxWidth: '770px',
 		[theme.breakpoints.down(1321)]: {
-			fontSize: '40px',
-			lineHeight: '48px',
+			// fontSize: '40px',
+			// lineHeight: '48px',
 			margin: '0 0 15px 0',
 			maxWidth: '620px',
 		},
@@ -33,7 +33,7 @@ export const useHomeSectionTitleStyles = () => {
 			fontSize: '24px',
 			lineHeight: '30px',
 			maxWidth: '325px',
-			marginBottom: '10px',
+			marginBottom: '15px',
 		},
 		[theme.breakpoints.down(350)]: {
 			fontSize: '18px',
