@@ -13,6 +13,9 @@ export const useHomeBlogStyles = () => {
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		'& > .swiper': {
+			'& > .swiper-wrapper': {
+				alignItems: 'center',
+			},
 			'& > .swiper-button-next, & > .swiper-button-prev': {
 				top: '45%',
 				'&::after': {

@@ -44,7 +44,8 @@ const Logotip: FC = () => {
 		if (typeof window !== 'undefined') {
 			const element = logoRef.current;
 			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
-			const transform = checkMedia(501) ? '50' : '100';
+			const transform = checkMedia(501) ? '25' : '100';
+			console.log(transform);
 			if (element) {
 				gsap.fromTo(element, {
 					opacity: 0,

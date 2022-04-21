@@ -33,7 +33,7 @@ const HomeBlogSwiper = () => {
 				)}
 				<Swiper
 					loop={true}
-					autoHeight={true}
+					autoHeight={false}
 					spaceBetween={20}
 					onSwiper={onSwiper}
 					modules={[Autoplay]}
