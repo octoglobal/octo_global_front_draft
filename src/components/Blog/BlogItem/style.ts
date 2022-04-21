@@ -9,7 +9,7 @@ export const useBlogItemStyles = () => {
 	}));
 
 	const WrapperMUI = styled('div')(() => ({
-		maxWidth: '1114px',
+		maxWidth: '1072px',
 		margin: '0 auto',
 	}));
 

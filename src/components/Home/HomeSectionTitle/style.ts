@@ -4,10 +4,10 @@ export const useHomeSectionTitleStyles = () => {
 
 	const TitleMUI = styled('h1')(({theme}) => ({
 		fontSize: '48px',
-		fontWeight: 600,
+		fontWeight: 400,
 		lineHeight: '56px',
 		margin: '0 0 30px 0',
-		maxWidth: '750px',
+		maxWidth: '770px',
 		[theme.breakpoints.down(1321)]: {
 			fontSize: '40px',
 			lineHeight: '48px',

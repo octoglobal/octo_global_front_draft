@@ -7,17 +7,6 @@ import WhatsAppIcon from '../../../../UI/UIIcon/WhatsappIcon.svg';
 import {SUPPORT_PHONE_DE, SUPPORT_PHONE_RU} from '@/constants/constants';
 
 const HomeAboutText: FC = () => {
-
-	const {
-		LinkItemMUI,
-		LinkTitleMUI,
-		ContainerMUI,
-		ParagraphMUI,
-		LinkWrapperMUI,
-		LinkContainerMUI
-	} = useHomeAboutTextStyles();
-
-
 	return (
 		<ContainerMUI>
 			<HomeSectionTitle
@@ -54,5 +43,14 @@ const HomeAboutText: FC = () => {
 		</ContainerMUI>
 	);
 };
+
+const {
+	LinkItemMUI,
+	LinkTitleMUI,
+	ContainerMUI,
+	ParagraphMUI,
+	LinkWrapperMUI,
+	LinkContainerMUI
+} = useHomeAboutTextStyles();
 
 export default React.memo(HomeAboutText);

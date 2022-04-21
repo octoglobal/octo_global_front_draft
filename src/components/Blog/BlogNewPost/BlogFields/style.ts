@@ -32,7 +32,7 @@ export const useBlogFieldsStyles = () => {
 		display: 'flex',
 		justifyContent: 'space-between',
 		margin: '24px auto 27px',
-		maxWidth: '1114px',
+		maxWidth: '1118px',
 		'& > *:last-child': {
 			marginRight: 0,
 		},
