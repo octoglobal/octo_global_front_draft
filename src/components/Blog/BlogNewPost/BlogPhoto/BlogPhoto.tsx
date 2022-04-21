@@ -46,7 +46,7 @@ const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
 						name="photoFile"
 						type='file'
 						accept=
-							"image/jpeg, "
+							"image/jpeg,image/png,image/jpg,image/webp,image/raw,image/tiff,image/psd,image/bmp,image/gif,image/jp2"
 						hidden
 					/>
 				)}
