@@ -27,7 +27,6 @@ const HomeAbout: FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			console.log(123);
 			const start = checkMedia(501) ? 71 : checkMedia(1025) ? 65 : checkMedia(1181) ? 71 : 61;
 			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '0' : '100' : '500';
 			setTimeout(() => {
