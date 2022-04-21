@@ -9,6 +9,10 @@ export const useAccountLocationStyle = () => {
 
 		display: 'flex',
 		justifyContent: 'center',
+
+		// [theme.breakpoints.down(400)]: {
+		// 	width: '350px'
+		// },
 	}));
 
 	const AddressListMUI = styled('div')(() => ({
@@ -19,7 +23,6 @@ export const useAccountLocationStyle = () => {
 
 	const BorderWrapperUI = styled('div')(({theme}) => ({
 		maxWidth: '673px',
-		minWidth: '673px',
 		width: 'auto',
 		height: 'auto',
 		background: '#FFFFFF',
@@ -36,8 +39,10 @@ export const useAccountLocationStyle = () => {
 		[theme.breakpoints.down(800)]: {
 			// width: '500px'
 		},
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			// width: '95%'
+			border: '5px dashed #234A82',
+
 		}
 	}));
 
@@ -158,20 +163,24 @@ export const useAccountLocationStyle = () => {
 
 		[theme.breakpoints.down(500)]: {
 			width: '100%',
-			marginTop: '15px',
+			margin: '15px 0px',
 			fontSize: '18px',
 			lineHeight: '21px',
 		}
 	}));
 
-	const LocationButtonUI = styled('div')(() => ({
+	const LocationButtonUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '20px',
 		lineHeight: '23px',
 		textDecorationLine: 'underline',
 		color: '#989292',
-		cursor: 'pointer'
+		cursor: 'pointer',
+
+		[theme.breakpoints.down(600)]: {
+			fontSize: '18px',
+		}
 	}));
 
 	const TypographyUI = styled(Typography)(() => ({
