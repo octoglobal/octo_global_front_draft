@@ -4,7 +4,7 @@ import {useHomeReviewsStyles} from '@/components/Home/HomeReviews/style';
 import Container from '@/components/Container/Container';
 import LinkButtonUI from '../../../UI/UIComponents/LinkButtonUI/LinkButton';
 import {useHomeReviews} from '@/components/Home/HomeReviews/useHomeReviews';
-import ReviewItem from '@/components/Review/ReviewItem/ReviewItem';
+import HomeReviewsItem from '@/components/Home/HomeReviews/HomeReviewsItem/HomeReviewsItem';
 
 const HomeReviews = () => {
 
@@ -22,13 +22,10 @@ const HomeReviews = () => {
 				{isReviewsDataArray && (
 					<ListMUI>
 						{reviewsData?.map((review, index) => (
-							<ItemMUI
+							<HomeReviewsItem
 								key={`${review.text}${review.userName}${index}`}
-							>
-								<ReviewItem
-									{...review}
-								/>
-							</ItemMUI>
+								review={review}
+							/>
 						))}
 					</ListMUI>
 				)}
@@ -42,7 +39,6 @@ const HomeReviews = () => {
 
 const {
 	ListMUI,
-	ItemMUI,
 	WrapperMUI
 } = useHomeReviewsStyles();
 

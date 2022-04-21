@@ -23,7 +23,7 @@ const HomeAboutLogo: FC = () => {
 		const element = logoRefElement.current;
 		if (typeof window !== 'undefined' && element) {
 			const offsetTop = element.offsetTop;
-			const start = checkMedia(778) ? `-${offsetTop + 70}px top` : 'center 38%';
+			const start = checkMedia(778) ? `-${offsetTop + 70}px top` : 'center 55%';
 			gsap.fromTo(element, {
 				top: '50%',
 				opacity: 1,
