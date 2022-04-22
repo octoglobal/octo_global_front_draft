@@ -28,9 +28,9 @@ const AccountPage: FC<IAccoutPage> = ({renderTabs = true, children}) => {
 		if(router.asPath.includes('info') && !router.asPath.includes('location')) {
 			pushTo(router.asPath, {location: 'ger'});
 		}
-		if(router.asPath.includes('orders') && !router.asPath.includes('tab')) {
-			pushTo(router.asPath, {tab: 0});
-		}
+		// if(router.asPath.includes('orders') && !router.asPath.includes('tab')) {
+		// 	pushTo(router.asPath, {tab: 0});
+		// }
 	}, [router.asPath]);
 
 	useEffect(() => {

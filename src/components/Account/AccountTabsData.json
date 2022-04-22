@@ -9,7 +9,7 @@
     },
     {
         "title": "Заказы",
-        "url": "orders",
+        "url": "orders/wait",
         "query": {
 
         },
