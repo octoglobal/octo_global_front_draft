@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useMemo, useRef} from 'react';
-import {Box, Typography} from '@mui/material';
+import {Box} from '@mui/material';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import EditPencil from '@/UIIcon/EditPencil.svg';
@@ -27,9 +27,9 @@ const AccountUserForm: FC = () => {
 
 	const {
 		onSubmitUser,
-		handlerConfirmEmail,
+		// handlerConfirmEmail,
 		handlerEditClick,
-		showEmailPromt
+		// showEmailPromt
 	} = useAccountSettings(setError, verifiedEmail);
 
 	useEffect(() => {
@@ -54,103 +54,103 @@ const AccountUserForm: FC = () => {
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
-
 			<FormTableUI>
+				<FormContainerTopMUI>
+					<FormSectionMUI>
+						<FormTableSectionTopLeftMUI>
+							Номер кабинета	
+						</FormTableSectionTopLeftMUI>
+						<FormTableSectionTopRightMUI>
+							<FormTableTextUI>#{personalAreaId}</FormTableTextUI>
+						</FormTableSectionTopRightMUI>
+					</FormSectionMUI>
+					
+					<FormSectionMUI>
+						<FormTableSectionTopLeftMUI>
+							Почта
+						</FormTableSectionTopLeftMUI>
+						<FormTableSectionTopRightMUI>
+							<FormTextFieldBorderUI selection={false}>
+								<TextFieldEmailMUI>
+									<TextFieldUI
+										controller={{
+											name: 'email',
+											control,
+											defaultValue: email,
+											// rules: {required: true},
+										}}
+										inputProps={{
+											name: 'email',
+											type: 'email',
+											// required: true,
+											helperText: verifiedEmail ? 'Почта не подтверждена' : '',
+											sx: FormTextFieldUI,
+											disabled: true
+										}}
+									/>
+								</TextFieldEmailMUI>
+								{/* {showEmailPromt && (
+									<HelperBoxUI onClick={handlerConfirmEmail}>
+										Подтвердите почту
+									</HelperBoxUI>
+								)} */}
+							</FormTextFieldBorderUI>
+										
+						</FormTableSectionTopRightMUI>
+					</FormSectionMUI>
+				</FormContainerTopMUI>
 
-
-				<FormTableSectionInputsMUI>
-					<FormTableSectionMUI>
-						<FormTableRowLabelUI>
-							<Typography variant="body2">
-								Номер кабинета
-							</Typography>
-						</FormTableRowLabelUI>
-						<FormTableTextUI>#{personalAreaId}</FormTableTextUI>
-					</FormTableSectionMUI>
-				</FormTableSectionInputsMUI>
-
-
-				<FormTableSectionMUI>
-					<FormTableRowLabelUI>
-						<Typography variant="body2">Почта</Typography>
-					</FormTableRowLabelUI>
-					<FormTableSectionInputsMUI>
-						<FormTextFieldBorderUI selection={false}>
-							<TextFieldUI
-								controller={{
-									name: 'email',
-									control,
-									defaultValue: email,
-									// rules: {required: true},
-								}}
-								inputProps={{
-									name: 'email',
-									type: 'email',
-									// required: true,
-									helperText: verifiedEmail ? 'Почта не подтверждена' : '',
-									sx: FormTextFieldUI,
-									disabled: true
-								}}
-							/>
-							{showEmailPromt && (
-								<HelperBoxUI onClick={handlerConfirmEmail}>
-									Подтвердите почту
-								</HelperBoxUI>
-							)}
-						</FormTextFieldBorderUI>
-					</FormTableSectionInputsMUI>
-				</FormTableSectionMUI>
-
-
-				<FormTableSectionMUI>
-					<FormTableRowLabelUI>
-						<Typography variant="body2">Телефон</Typography>
-					</FormTableRowLabelUI>
-					<FormTableSectionInputsMUI>
+				<FormTableTopSectionMUI>
+					<FormTableSectionLeftMUI>
+						Телефон
+					</FormTableSectionLeftMUI>
+					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI selection={!phone} focusBorder={true}>
-							<TextFieldPhoneUI
-								controller={{
-									name: 'phone',
-									control,
-									defaultValue: phone || '',
-									rules: {required: true},
-								}}
-								inputProps={{
-									name: 'phone',
-									type: 'tel',
-									required: true,
-									// helperText: 'Заполните поле "Телефон"',
-									sx: FormTextFieldUI,
-									// autoFocus: true
-									inputRef: textPhoneRef
-								}}
-								iconProps={{
-									editIcon: true,
-									defaultIcon: EditPencil,
-									activeIcon: EditPencil,
-									onClick: handlerEditClick,
-								}}
-							/>
+							<FormTextFieldContainerMUI>
+								<TextFieldPhoneUI
+									controller={{
+										name: 'phone',
+										control,
+										defaultValue: phone || '',
+										rules: {required: true},
+									}}
+									inputProps={{
+										name: 'phone',
+										type: 'tel',
+										required: true,
+										// helperText: 'Заполните поле "Телефон"',
+										sx: FormTextFieldUI,
+										// autoFocus: true
+										inputRef: textPhoneRef
+									}}
+									iconProps={{
+										editIcon: true,
+										defaultIcon: EditPencil,
+										activeIcon: EditPencil,
+										onClick: handlerEditClick,
+									}}
+								/>
+							</FormTextFieldContainerMUI> 
 						</FormTextFieldBorderUI>
-					</FormTableSectionInputsMUI>
-				</FormTableSectionMUI>
 
-				{isSubmitForm && (
-					<>
-						<FormTableRowLabelUI/>
+					</FormTableSectionRightMUI>
+				</FormTableTopSectionMUI>
 
-						<FormTableEndUI>
-							<ButtonUI
-								type="submit"
-								style={FormButtonUI}
-							>
-								Сохранить
-							</ButtonUI>
-						</FormTableEndUI>
-					</>
-				)}
+				{isSubmitForm && (<>
+					<FormTableEndUI>	
+						<ButtonUI
+							type="submit"
+							style={FormButtonUI}
+						>
+							Сохранить
+						</ButtonUI>
+					</FormTableEndUI>
+				</>)}
+
 			</FormTableUI>
 		</Box>
+
+
 	);
 };
 
@@ -160,11 +160,17 @@ const {
 	FormTableEndUI,
 	FormTextFieldUI,
 	FormTableTextUI,
-	FormTableRowLabelUI,
 	FormTextFieldBorderUI,
-	HelperBoxUI,
-	FormTableSectionInputsMUI,
-	FormTableSectionMUI
+	FormTableSectionLeftMUI,
+	FormTableSectionRightMUI,
+	FormTableTopSectionMUI,
+	TextFieldEmailMUI,
+	FormTableSectionTopLeftMUI,
+	FormTableSectionTopRightMUI,
+	FormSectionMUI,
+	FormContainerTopMUI,
+	FormTextFieldContainerMUI,
+	
 } = useAccountSettingsStyle();
 
 export default React.memo(AccountUserForm);

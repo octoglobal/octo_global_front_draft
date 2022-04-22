@@ -9,6 +9,10 @@ export const useAccountLocationStyle = () => {
 
 		display: 'flex',
 		justifyContent: 'center',
+
+		// [theme.breakpoints.down(400)]: {
+		// 	width: '350px'
+		// },
 	}));
 
 	const AddressListMUI = styled('div')(() => ({
@@ -19,7 +23,6 @@ export const useAccountLocationStyle = () => {
 
 	const BorderWrapperUI = styled('div')(({theme}) => ({
 		maxWidth: '673px',
-		minWidth: '673px',
 		width: 'auto',
 		height: 'auto',
 		background: '#FFFFFF',
@@ -36,8 +39,10 @@ export const useAccountLocationStyle = () => {
 		[theme.breakpoints.down(800)]: {
 			// width: '500px'
 		},
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			// width: '95%'
+			border: '5px dashed #234A82',
+
 		}
 	}));
 
@@ -46,7 +51,7 @@ export const useAccountLocationStyle = () => {
 		flexDirection: 'column',
 		alignItems: 'center',
 		padding: '15px 30px 30px',
-
+		
 		'& .TabsUnstyled-root': {
 			width: '100%',
 		},
@@ -66,7 +71,7 @@ export const useAccountLocationStyle = () => {
 		// 	marginBottom: '0',
 		// },
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			padding: '10px',
 
 			// скрываем адрес на мобилке
@@ -156,31 +161,47 @@ export const useAccountLocationStyle = () => {
 
 		marginBottom: '25px',
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			width: '100%',
-			marginTop: '15px',
+			margin: '15px 0px',
 			fontSize: '18px',
 			lineHeight: '21px',
+		},
+		[theme.breakpoints.down(400)]: {
+			width: '100%',
+			margin: '15px 0px 20px 0px',
+			fontSize: '16px'
 		}
 	}));
 
-	const LocationButtonUI = styled('div')(() => ({
+	const LocationButtonUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '20px',
 		lineHeight: '23px',
 		textDecorationLine: 'underline',
 		color: '#989292',
-		cursor: 'pointer'
+		cursor: 'pointer',
+
+		[theme.breakpoints.down(600)]: {
+			fontSize: '18px',
+		},
+		[theme.breakpoints.down(400)]: {
+			fontSize: '16px',
+		}
 	}));
 
-	const TypographyUI = styled(Typography)(() => ({
+	const TypographyUI = styled(Typography)(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '24px',
 		lineHeight: '28px',
 		color: '#000000',
-		marginBottom: '26px'
+		marginBottom: '26px',
+
+		[theme.breakpoints.down(750)]: {
+			fontSize: '20px',
+		},
 	}));
 
 	const ButtonAdd: React.CSSProperties = {
