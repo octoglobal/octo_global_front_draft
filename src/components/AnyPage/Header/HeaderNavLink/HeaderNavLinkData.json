@@ -26,7 +26,7 @@
     {
       "title": "Заказы",
       "showAuth": true,
-      "href": "/account/orders?tab=0"
+      "href": "/account/orders/wait"
     },
     
     {
