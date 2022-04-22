@@ -3,12 +3,12 @@ import { styled } from '@mui/material';
 export const useHomeConfidenceListItemStyles = () => {
 
 	const ItemMUI = styled('li')(({theme}) => ({
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontSize: '20px',
+		lineHeight: '32px',
 		fontWeight: 300,
 		marginBottom: '15px',
 		position: 'relative',
-		maxWidth: '759px',
+		maxWidth: '770px',
 		'&::after': {
 			content: '""',
 			width: 4,
@@ -17,28 +17,29 @@ export const useHomeConfidenceListItemStyles = () => {
 			borderRadius: '50%',
 			position: 'absolute',
 			left: -15,
-			top: 13.5,
+			top: 14,
 		},
-		[theme.breakpoints.down(1210)]: {
-			fontSize: '20px',
-			lineHeight: '22px',
-			'&::after': {
-				top: 10.5,
-			},
-		},
-		[theme.breakpoints.down(1025)]: {
-			fontSize: '18px',
-			lineHeight: '20px',
-			'&::after': {
-				top: 9.5,
-			},
-		},
+		// [theme.breakpoints.down(1210)]: {
+		// 	fontSize: '20px',
+		// 	lineHeight: '22px',
+		// 	'&::after': {
+		// 		top: 10.5,
+		// 	},
+		// },
+		// [theme.breakpoints.down(1025)]: {
+		// 	fontSize: '18px',
+		// 	lineHeight: '20px',
+		// 	'&::after': {
+		// 		top: 9.5,
+		// 	},
+		// },
 		[theme.breakpoints.down(769)]: {
 			fontSize: '16px',
-			lineHeight: '19px',
-			marginBottom: '10px',
+			lineHeight: '20px',
+			marginBottom: '12px',
+			maxWidth: '345px',
 			'&::after': {
-				top: 7.5,
+				top: 8,
 			},
 		},
 		[theme.breakpoints.down(351)]: {

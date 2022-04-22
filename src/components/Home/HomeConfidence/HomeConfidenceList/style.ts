@@ -5,21 +5,21 @@ export const useHomeConfidenceListStyles = () => {
 	const ListMUI = styled('ul')(({theme}) => ({
 		listStyle: 'none',
 		paddingLeft: '25px',
-		marginRight: '92px',
-		marginTop: '45px',
+		margin: '60px 0 0 265px',
 		'& >*:last-child': {
 			marginBottom: 0,
 		},
 		[theme.breakpoints.down(1321)]: {
-			marginTop: '10px',
-			marginRight: '45px',
+			// marginTop: '10px',
 		},
 		[theme.breakpoints.down(1025)]: {
 			maxWidth: '600px',
-			marginRight: '0px',
+			margin: '30px 0 0 80px',
+			// marginRight: '0px',
 		},
 		[theme.breakpoints.down(769)]: {
 			marginTop: '30px',
+			marginLeft: '0',
 			maxWidth: 'none',
 		},
 		[theme.breakpoints.down(351)]: {

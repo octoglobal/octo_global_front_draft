@@ -16,7 +16,7 @@ export const useAccountPageStyle = () => {
 			flexWrap: 'wrap',
 		},
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(750)]: {
 			marginTop: '80px',
 
 			'& .TabsUnstyled-root': {

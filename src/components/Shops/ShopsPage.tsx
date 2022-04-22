@@ -19,6 +19,7 @@ const ShopsPage: FC = () => {
 		onSubmit,
 		activeCategory,
 		isNotFoundShops,
+		handleResetCategory,
 		handleDeleteCategory,
 		handleChangeCategory,
 		handleClickTagInCard
@@ -36,7 +37,9 @@ const ShopsPage: FC = () => {
 							<CategorySearch onSubmit={onSubmit}/>
 							<CategorySearchSwiperActive
 								category={activeCategory}
-								handleDeleteCategory={handleDeleteCategory}/>
+								handleDeleteCategory={handleDeleteCategory}
+								handleResetCategory={handleResetCategory}
+							/>
 						</SearchWrapperMUI>
 						<ContainerTagsMUI>
 							<ContainerSwiperMUI>

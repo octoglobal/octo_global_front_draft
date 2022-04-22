@@ -1,6 +1,23 @@
-import {styled} from '@mui/material';
+import { Button, styled } from '@mui/material';
 
 export const usCategorySwiperActiveStyle = () => {
+
+	const ContainerMUI = styled('div')(() => ({
+		display: 'flex',
+		justifyContent: 'space-between',
+	}));
+
+	const ClearTagButtonMUI = styled(Button)(() => ({
+		border: 0,
+		textTransform: 'none',
+		padding: 0,
+		height: '16px',
+		minWidth: '98px',
+		justifyContent: 'flex-end',
+		'& > p': {
+			marginRight: 0,
+		}
+	}));
 
 	const ListMUI = styled('ul')(({theme}) => ({
 		display: 'flex',
@@ -21,6 +38,8 @@ export const usCategorySwiperActiveStyle = () => {
 
 	return {
 		ListMUI,
-		EmptyListMUI
+		EmptyListMUI,
+		ContainerMUI,
+		ClearTagButtonMUI
 	};
 };

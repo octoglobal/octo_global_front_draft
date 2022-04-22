@@ -8,14 +8,14 @@ interface IHomeSectionTitleProps {
 }
 
 const HomeSectionTitle: FC<IHomeSectionTitleProps> = ({title, sx = {}}) => {
-
-	const { TitleMUI } = useHomeSectionTitleStyles();
-
 	return (
 		<TitleMUI sx={sx}>
 			{title}
 		</TitleMUI>
 	);
 };
+
+const { TitleMUI } = useHomeSectionTitleStyles();
+
 
 export default React.memo(HomeSectionTitle);

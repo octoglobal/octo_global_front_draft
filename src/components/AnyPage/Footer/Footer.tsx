@@ -2,7 +2,7 @@ import React from 'react';
 
 import VkIcon from '../../../UI/UIIcon/VKIconColor.svg';
 //import InstIcon from '../../../UI/UIIcon/InstIcon.svg';
-import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIconColor.svg';
+// import OdnoklasIcon from '../../../UI/UIIcon/OdnoklasIconColor.svg';
 import WhatsUpIcon from '../../../UI/UIIcon/WhatsappIconColor.svg';
 import TelegramIcon from '../../../UI/UIIcon/TelegramIconColor.svg';
 
@@ -62,12 +62,12 @@ const Footer = () => {
 								>
 									<VkIcon/>
 								</SvgLinkUI>
-								<SvgLinkUI
-									title='ok'
-									href='https://ok.ru/'
-								>
-									<OdnoklasIcon/>
-								</SvgLinkUI>
+								{/*<SvgLinkUI*/}
+								{/*	title='ok'*/}
+								{/*	href='https://ok.ru/'*/}
+								{/*>*/}
+								{/*	<OdnoklasIcon/>*/}
+								{/*</SvgLinkUI>*/}
 								<SvgLinkUI
 									title='telegram'
 									href='https://web.telegram.org/k/'

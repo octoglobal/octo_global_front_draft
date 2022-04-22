@@ -61,10 +61,16 @@ export const useReviewItemStyle = () => {
 		fontSize: '20px',
 		lineHeight: '23px',
 		color: '#000000',
+		wordBreak: 'break-word',
 		[theme.breakpoints.down(501)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
-		}
+		},
+		[theme.breakpoints.down(361)]: {
+			fontSize: '14px',
+			lineHeight: '17px',
+			marginRight: '10px',
+		},
 	}));
 
 	const ReviewDateMUI = styled('div')(({theme}) => ({
@@ -74,9 +80,13 @@ export const useReviewItemStyle = () => {
 		fontSize: '14px',
 		lineHeight: '16px',
 		color: '#C4C4C4',
+		wordBreak: 'break-word',
+		minWidth: '150px',
 		[theme.breakpoints.down(501)]: {
-			fontSize: '14px',
-			lineHeight: '16.5px',
+			fontSize: '12px',
+			lineHeight: '14.5px',
+			textAlign: 'right',
+			minWidth: '100px',
 		}
 	}));
 

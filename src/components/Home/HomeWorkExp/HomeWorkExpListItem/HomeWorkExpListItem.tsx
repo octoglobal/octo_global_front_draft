@@ -10,12 +10,6 @@ export interface IHomeWorkExpListItemProps {
 }
 
 const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, animation}) => {
-	const {
-		ItemMUI,
-		ItemIconMUI,
-		ItemTextMUI
-	} = useHomeWorkExpListItemStyles();
-
 	const Icon = icon;
 	const listItemRef = useRef<HTMLLIElement>(null);
 
@@ -51,5 +45,11 @@ const HomeWorkExpListItem: FC<IHomeWorkExpListItemProps> = ({ title, icon, anima
 		</ItemMUI>
 	);
 };
+
+const {
+	ItemMUI,
+	ItemIconMUI,
+	ItemTextMUI
+} = useHomeWorkExpListItemStyles();
 
 export default React.memo(HomeWorkExpListItem);

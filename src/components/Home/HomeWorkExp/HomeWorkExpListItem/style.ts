@@ -22,8 +22,8 @@ export const useHomeWorkExpListItemStyles = () => {
 	}));
 
 	const ItemTextMUI = styled('p')(({theme}) => ({
-		fontSize: '24px',
-		lineHeight: '28px',
+		fontSize: '20px',
+		lineHeight: '32px',
 		fontWeight: 300,
 		color: '#000000',
 		maxWidth: '420px',
@@ -33,10 +33,10 @@ export const useHomeWorkExpListItemStyles = () => {
 		},
 		[theme.breakpoints.down(1025)]: {
 			fontSize: '16px',
-			lineHeight: '19px',
+			lineHeight: '21px',
 		},
 		[theme.breakpoints.down(400)]: {
-			maxWidth: '220px'
+			maxWidth: '250px'
 		},
 		[theme.breakpoints.down(351)]: {
 			fontSize: '14px',
