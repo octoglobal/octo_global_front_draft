@@ -162,8 +162,9 @@ export const useAccountSettingsStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
-		height: '50px',
+		// height: '50px',
 		// marginRight: '5px',
+		marginTop: '5px'
 	}));
 
 	const FormButtonUI = {
@@ -246,7 +247,7 @@ export const useAccountSettingsStyle = () => {
 			// boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.03)',
 		},
 
-		[theme.breakpoints.down(320)]: {
+		[theme.breakpoints.down(500)]: {
 			'& .MuiFormControl-root': {
 				// border: 'none',
 				// boxShadow: 'none',
@@ -257,7 +258,7 @@ export const useAccountSettingsStyle = () => {
 				// boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
 				//
 				// height: 'auto',
-				width: 'auto',
+				width: '100%',
 			},
 		}
 	}));
@@ -275,17 +276,20 @@ export const useAccountSettingsStyle = () => {
 		},
 	}));
 
-	const HelperBoxUI = styled('div')(() => ({
+	const HelperBoxUI = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '400',
-		fontSize: '10px',
+		fontSize: '14px',
 		lineHeight: '12px',
 		textDecorationLine: 'underline',
 		color: '#274D82',
 		textAlign: 'right',
-
 		cursor: 'pointer',
+
+		[theme.breakpoints.down(600)]: {
+			fontSize: '12px',
+		},
 	}));
 
 	const FormTextFieldUI = {
@@ -303,7 +307,7 @@ export const useAccountSettingsStyle = () => {
 				padding: '9px 14px 11px 14px',
 				fontStyle: 'normal',
 				fontWeight: '300',
-				fontSize: '20px',
+				// fontSize: '20px',
 				lineHeight: '24px',
 				// textAlign: 'start',
 				// color: '#000000',
@@ -333,11 +337,12 @@ export const useAccountSettingsStyle = () => {
 
 		},
 	}));
+	
 	const FormContainerBottomMUI = styled('div')(({theme}) => ({
 		marginBottom: '0px',
 
 		[theme.breakpoints.down(600)]: {
-			marginBottom: '17px',
+			marginBottom: '20px',
 
 		},
 	}));
@@ -348,6 +353,8 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			height: '40px',	
+			justifyContent: 'space-between',
+
 		},
 	}));
 	const FormTableSectionLeftMUI  = styled('div')(({theme}) => ({
@@ -362,8 +369,6 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			fontSize: '16px',
-			fontWeight: '500',
-
 		},
 	}));
 	const FormTableSectionRightMUI  = styled('div')(({theme}) => ({
@@ -372,6 +377,8 @@ export const useAccountSettingsStyle = () => {
 		textAlign: 'left',
 		
 		[theme.breakpoints.down(600)]: {
+			textAlign: 'right',
+		
 			'& > * .MuiOutlinedInput-root': {
 			
 				'& input': {
@@ -379,6 +386,10 @@ export const useAccountSettingsStyle = () => {
 					fontSize: '16px'
 				},
 			}
+		},
+		[theme.breakpoints.down(500)]: {
+			textAlign: 'right',
+			maxWidth: '227px',
 		},
 		
 		
@@ -390,7 +401,8 @@ export const useAccountSettingsStyle = () => {
 		alignItems: 'center',
 
 		[theme.breakpoints.down(600)]: {
-			height: '40px',	
+			height: '40px',
+			justifyContent: 'space-between',
 		},
 	}));
 	const FormTableSectionTopLeftMUI  = styled('div')(({theme}) => ({
@@ -404,7 +416,6 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			fontSize: '16px',
-			fontWeight: '500',
 			width: '166px',
 		},
 	}));
@@ -414,9 +425,13 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			textAlign: 'right',
-			
 			width: '287px',
 		},
+		[theme.breakpoints.down(600)]: {
+			textAlign: 'right',
+			maxWidth: '227px',
+		},
+		
 	}));
 	
 
@@ -432,28 +447,35 @@ export const useAccountSettingsStyle = () => {
 			},
 		},
 		[theme.breakpoints.down(600)]: {
+		
 			'& * .MuiOutlinedInput-root': {
 			
 				'& input': {
-					fontSize: '16px',
+					fontSize: '16px !important',
 					textAlign: 'right'
 				},
 			},
 		},
+		
 	}));
 
 	const FormTextFieldContainerMUI = styled('div')(({theme}) => ({
-		
+
+		'& > * .MuiOutlinedInput-root': {
+			
+			'& input': {
+				fontSize: '20px',
+			},
+		},
 		[theme.breakpoints.down(600)]: {
 			'& > * .MuiOutlinedInput-root': {
 			
 				'& input': {
+					fontSize: '16px !important',
 					padding: '5px 5px 3px 5px',
 				},
 			}
 		},
-		
-		
 	}));
 
 	return {

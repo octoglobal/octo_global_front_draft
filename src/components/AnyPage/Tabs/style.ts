@@ -7,7 +7,6 @@ export const useTabsStyle = () => {
 
 	const TabWrapperUI = styled('div')(() => ({
 		width: '100%',
-
 		display: 'flex',
 		justifyContent: 'center',
 	}));
@@ -29,30 +28,37 @@ export const useTabsStyle = () => {
 		padding: '5px 0px 0px',
 		display: 'flex',
 		justifyContent: 'center',
+		fontFamily: 'Roboto',
 
 		'&.Mui-selected': {
-			fontFamily: 'Roboto',
 			fontWeight: '400',
 			fontSize: '24px',
 			lineHeight: '28px',
 
 			color: '#000000',
 
-			[theme.breakpoints.down(500)]: {
+			[theme.breakpoints.down(750)]: {
 				fontFamily: 'Roboto',
-				fontSize: '18px',
+				fontSize: '20px',
 				lineHeight: '21px',
-			}
+			},
+			[theme.breakpoints.down(400)]: {
+				fontFamily: 'Roboto',
+				fontSize: '16px',
+				lineHeight: '19px',
+			},
 		},
 
-		[theme.breakpoints.down(500)]: {
-			fontFamily: 'Roboto',
-			fontStyle: 'normal',
-			fontWeight: '300',
-			fontSize: '18px',
+		[theme.breakpoints.down(750)]: {
+			fontSize: '20px',
 			lineHeight: '21px',
 			color: '#000000',
-		}
+		},
+		[theme.breakpoints.down(400)]: {
+			fontSize: '16px',
+			lineHeight: '19px',
+			color: '#000000',
+		},
 	}));
 
 	const TabsListUI = styled(TabsListUnstyled)(({theme}) => ({
@@ -67,6 +73,7 @@ export const useTabsStyle = () => {
 		[theme.breakpoints.down(800)]: {
 			flexWrap: 'wrap',
 			borderBottom: '1px solid #C4C4C4',
+			minWidth: '0px',
 		}
 	}));
 

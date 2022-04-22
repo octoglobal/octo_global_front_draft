@@ -51,7 +51,7 @@ export const useAccountLocationStyle = () => {
 		flexDirection: 'column',
 		alignItems: 'center',
 		padding: '15px 30px 30px',
-
+		
 		'& .TabsUnstyled-root': {
 			width: '100%',
 		},
@@ -71,7 +71,7 @@ export const useAccountLocationStyle = () => {
 		// 	marginBottom: '0',
 		// },
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			padding: '10px',
 
 			// скрываем адрес на мобилке
@@ -161,11 +161,16 @@ export const useAccountLocationStyle = () => {
 
 		marginBottom: '25px',
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			width: '100%',
 			margin: '15px 0px',
 			fontSize: '18px',
 			lineHeight: '21px',
+		},
+		[theme.breakpoints.down(400)]: {
+			width: '100%',
+			margin: '15px 0px 20px 0px',
+			fontSize: '16px'
 		}
 	}));
 
@@ -180,16 +185,23 @@ export const useAccountLocationStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			fontSize: '18px',
+		},
+		[theme.breakpoints.down(400)]: {
+			fontSize: '16px',
 		}
 	}));
 
-	const TypographyUI = styled(Typography)(() => ({
+	const TypographyUI = styled(Typography)(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '24px',
 		lineHeight: '28px',
 		color: '#000000',
-		marginBottom: '26px'
+		marginBottom: '26px',
+
+		[theme.breakpoints.down(750)]: {
+			fontSize: '20px',
+		},
 	}));
 
 	const ButtonAdd: React.CSSProperties = {

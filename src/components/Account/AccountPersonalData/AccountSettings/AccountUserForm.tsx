@@ -146,7 +146,7 @@ const AccountUserForm: FC = () => {
 						</ButtonUI>
 					</FormTableEndUI>
 				</>)}
-				<FormContainerBottomMUI></FormContainerBottomMUI>
+
 			</FormTableUI>
 		</Box>
 
@@ -170,7 +170,6 @@ const {
 	FormSectionMUI,
 	FormContainerTopMUI,
 	FormTextFieldContainerMUI,
-	FormContainerBottomMUI
 	
 } = useAccountSettingsStyle();
 

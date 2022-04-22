@@ -19,6 +19,9 @@ const AccountPasswordForm : FC = () => {
 		FormTableTopSectionMUI,
 		FormTableSectionLeftMUI,
 		FormTableSectionRightMUI,
+		FormTextFieldContainerMUI,
+		FormContainerTopMUI,
+		FormContainerBottomMUI
 
 	} = useAccountSettingsStyle();
 
@@ -39,29 +42,31 @@ const AccountPasswordForm : FC = () => {
 			<FormTableUI>
 
 				<FormTableTopSectionMUI>
-					<FormTableSectionLeftMUI>
+					<FormTableSectionLeftMUI >
 						Смена пароля	
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI>
-							<TextFieldPasswordUI
-								controller={{
-									name: 'oldPassword',
-									control,
-									defaultValue: '',
-									rules: { required: true },
-								}}
-								inputProps={{
-									// label: 'Старый пароль',
-									placeholder: 'Старый пароль',
-									name: 'oldPassword',
-									type: 'password',
-									required: true,
-									helperText: 'Заполните поле "Пароль"',
-									sx: FormTextFieldUI,
-									// autoFocus: true,
-								}}
-							/>
+							<FormTextFieldContainerMUI>
+								<TextFieldPasswordUI
+									controller={{
+										name: 'oldPassword',
+										control,
+										defaultValue: '',
+										rules: { required: true },
+									}}
+									inputProps={{
+										// label: 'Старый пароль',
+										placeholder: 'Старый пароль',
+										name: 'oldPassword',
+										type: 'password',
+										required: true,
+										helperText: 'Заполните поле "Пароль"',
+										sx: FormTextFieldUI,
+										// autoFocus: true,
+									}}
+								/>
+							</FormTextFieldContainerMUI>	
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
@@ -72,39 +77,46 @@ const AccountPasswordForm : FC = () => {
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI>
-							<TextFieldPasswordUI
-								controller={{
-									name: 'newPassword',
-									control,
-									defaultValue: '',
-									rules: { required: true },
-								}}
-								inputProps={{
-									// label: 'Новый пароль',
-									placeholder: 'Новый пароль',
-									name: 'newPassword',
-									type: 'password',
-									required: true,
-									// helperText: 'Заполните поле "Пароль"',
-									sx: FormTextFieldUI,
-									// autoFocus: true,
-								}}
-							/>
-							{isSubmitForm &&
-								<HelperBoxUI>
-									Пароль успешно изменен
-								</HelperBoxUI>
-							}
+							<FormTextFieldContainerMUI>
+								<TextFieldPasswordUI
+									controller={{
+										name: 'newPassword',
+										control,
+										defaultValue: '',
+										rules: { required: true },
+									}}
+									inputProps={{
+										// label: 'Новый пароль',
+										placeholder: 'Новый пароль',
+										name: 'newPassword',
+										type: 'password',
+										required: true,
+										// helperText: 'Заполните поле "Пароль"',
+										sx: FormTextFieldUI,
+										// autoFocus: true,
+									}}
+								/>
+							</FormTextFieldContainerMUI>
+							
+				
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
+				{isSubmitForm &&
+					<HelperBoxUI>
+						Пароль успешно изменен
+					</HelperBoxUI>
+				}
+				<FormContainerBottomMUI>
+					<FormContainerTopMUI>
+						<FormTableEndUI>
+							<ButtonUI type="submit" style={FormButtonUI}>
+								Сохранить
+							</ButtonUI>
+						</FormTableEndUI>
+					</FormContainerTopMUI>
+				</FormContainerBottomMUI>
 
-				<FormTableEndUI>
-					<ButtonUI type="submit" style={FormButtonUI}>
-						Сохранить
-					</ButtonUI>
-				</FormTableEndUI>
-				
 			</FormTableUI>
 		</Box>
 	);
