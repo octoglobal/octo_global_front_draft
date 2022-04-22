@@ -16,7 +16,7 @@ export const useTabsStyle = () => {
 		fontWeight: '300',
 		fontSize: '24px',
 		lineHeight: '28px',
-
+		alignItems: 'center',
 		color: '#000000',
 		// backgroundColor: '#fff',
 		backgroundColor: 'transparent',
@@ -37,7 +37,7 @@ export const useTabsStyle = () => {
 
 			color: '#000000',
 
-			[theme.breakpoints.down(750)]: {
+			[theme.breakpoints.down(781)]: {
 				fontFamily: 'Roboto',
 				fontSize: '20px',
 				lineHeight: '21px',
@@ -49,7 +49,7 @@ export const useTabsStyle = () => {
 			},
 		},
 
-		[theme.breakpoints.down(750)]: {
+		[theme.breakpoints.down(781)]: {
 			fontSize: '20px',
 			lineHeight: '21px',
 			color: '#000000',
@@ -76,10 +76,16 @@ export const useTabsStyle = () => {
 			minWidth: '0px',
 		}
 	}));
+	const TabsMarginLeft = styled(TabsListUnstyled)(() => ({
+		margin: '0px 0px -6px 6px',
+		alignItems: 'baseline',
+
+	}));
 
 	return {
 		TabWrapperUI,
 		TabUI,
-		TabsListUI
+		TabsListUI,
+		TabsMarginLeft
 	};
 };

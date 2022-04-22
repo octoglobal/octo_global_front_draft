@@ -132,6 +132,12 @@ export const useHeaderStyle = () => {
 		}
 	}));
 
+	const IconMarginRight = styled('div')(({theme}) => ({
+
+		[theme.breakpoints.between(600, 1241)]: {
+			marginRight: '50px'	
+		}
+	}));
 	const UserWrapperUI = styled('div')(() => ({
 		// height: '28px',
 		// width: '28px',
@@ -230,6 +236,7 @@ export const useHeaderStyle = () => {
 		UserWrapperUI,
 		ButtonLoginUI,
 		ArrowUI,
-		LogoMUI
+		LogoMUI,
+		IconMarginRight
 	};
 };

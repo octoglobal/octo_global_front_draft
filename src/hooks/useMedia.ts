@@ -21,7 +21,7 @@ export const useCustom800 = () => {
 };
 
 export const useMobile = () => {
-	const isMobile = useMediaQuery('(max-width: 500px)');
+	const isMobile = useMediaQuery('(max-width: 600px)');
 	return {isMobile};
 };
 
