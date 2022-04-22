@@ -100,11 +100,14 @@ const Header = () => {
 						</LogoMUI>
 
 						<HeaderNavUI>
+							
 							{!isCustomSize && <HeaderNavLink/>}
+							{isHomePage && <WhatsAppIconLarge/>}
+
 							<>
 								{!isAuth ? (
 									<>
-										{isHomePage && <WhatsAppIconLarge/>}
+										{/* {isHomePage && <WhatsAppIconLarge/>} */}
 										<ButtonUI
 											style={ButtonLoginUI}
 											onClick={handlerPushLogin}
@@ -116,6 +119,7 @@ const Header = () => {
 									<UserWrapperUI
 										ref={anchorRef}
 									>
+
 										<Box
 											onClick={handlerPushAccount('/account/info', {location: 'ger'})}
 										>
@@ -160,7 +164,10 @@ const Header = () => {
 																	данные</MenuItem>
 																<MenuItem
 																	onClick={handlerPushAccount('/account/orders', {tab: '0'})}>Заказы</MenuItem>
-																<MenuItem onClick={handlerLogout}>Выход</MenuItem>
+																<MenuItem 
+																	onClick={()=>{}}>Выкуп товара</MenuItem>
+																<MenuItem 
+																	onClick={handlerLogout} style={{color: '#274D82'}} >Выход</MenuItem>
 															</MenuList>
 														</ClickAwayListener>
 													</Paper>

@@ -20,6 +20,8 @@ export const useUserStyle = () => {
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '18px',
+		// overflow: 'hidden',
+		// width: '165px',
 		lineHeight: '21px',
 		textAlign: 'center',
 		color: '#000000',

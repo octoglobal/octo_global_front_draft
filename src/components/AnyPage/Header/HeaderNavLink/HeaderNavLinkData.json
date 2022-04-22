@@ -5,11 +5,7 @@
       "showAuth": false,
       "href": "/shops"
     },
-    {
-      "title": "Блог",
-      "showAuth": false,
-      "href": "/blog"
-    },
+   
     {
       "title": "Стоимость услуг",
       "showAuth": false,
@@ -32,10 +28,16 @@
       "showAuth": true,
       "href": "/account/orders?tab=0"
     },
+    
     {
       "title": "Магазины",
       "showAuth": false,
       "href": "/shops"
+    },
+    {
+      "title": "Выкуп товара",
+      "showAuth": false,
+      "href": "/#"
     },
     {
       "title": "Блог",
@@ -43,19 +45,9 @@
       "href": "/blog"
     },
     {
-      "title": "Стоимость услуг",
+      "title": "Частые вопросы",
       "showAuth": false,
-      "href": "/"
-    },
-    {
-      "title": "Помощь",
-      "showAuth": false,
-      "href": "/"
-    },
-    {
-      "title": "Отзывы",
-      "showAuth": false,
-      "href": "/reviews"
+      "href": "/#"
     }
   ]
 }

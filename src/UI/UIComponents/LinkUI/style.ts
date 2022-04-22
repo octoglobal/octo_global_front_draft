@@ -8,9 +8,9 @@ export const useLinkStyle = () => {
 		textDecoration: 'none',
 
 		fontStyle: 'normal',
-		fontWeight: '400',
-		fontSize: '18px',
-		lineHeight: '21px',
+		fontWeight: '300',
+		fontSize: '20px',
+		lineHeight: '23.44px',
 		webkitAppearance: 'none',
 
 		'&:link': {

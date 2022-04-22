@@ -72,13 +72,17 @@ export const useAccountSettingsStyle = () => {
 
 	const FormTableSectionMUI = styled('div')(() => ({
 		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'flex-start',
+		// justifyContent: 'space-between',
+		// textAlign: 'left',
+		'& > :nth-child(1n)':{
+			width: '180px'
+		}
 	}));
 
 
 	const FormTableSectionInputsMUI = styled('div')(() => ({
-		// marginBottom: '15px',
+		alignItems: 'flex-start',
+		marginBottom: '15px',
 	}));
 
 
@@ -303,6 +307,7 @@ export const useAccountSettingsStyle = () => {
 		},
 
 		'& .MuiOutlinedInput-root': {
+		
 			'& input': {
 				padding: '9px 14px 11px 14px',
 				fontStyle: 'normal',
