@@ -33,7 +33,8 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 	const {
 		TabWrapperUI,
 		TabUI,
-		TabsListUI
+		TabsListUI,
+		TabsMarginLeft
 	} = useTabsStyle();
 
 	const {isMobile} = useMobile();
@@ -83,8 +84,12 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 								>
 									<>
 										{item.title}
-										{item.title === "Выкуп товара" ?  <LightningInsideCircle /> : ''}
-
+										{item.title === 'Выкуп товара'
+											? <TabsMarginLeft>
+												<LightningInsideCircle />
+											  </TabsMarginLeft>
+											: ''
+										}
 									</>
 								</TabUI>
 							) : null}

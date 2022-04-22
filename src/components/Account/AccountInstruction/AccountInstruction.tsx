@@ -40,7 +40,6 @@ const {
 	WrapperMUI,
 	HeaderMUI,
 	FooterMUI,
-	ButtonToShopMUI,
 	FooterButtonMUI,
 	ULMUI,
 	LIMUI,

@@ -22,6 +22,7 @@ const Header = () => {
 	const {isMobile} = useMobile();
 	const {isAuth} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
+	// const {isCustomSizeMobile} = useCustomSize(700);
 
 	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 
@@ -34,7 +35,8 @@ const Header = () => {
 		UserWrapperUI,
 		ButtonLoginUI,
 		ArrowUI,
-		LogoMUI
+		LogoMUI,
+		IconMarginRight
 	} = useHeaderStyle();
 
 	const {
@@ -51,7 +53,6 @@ const Header = () => {
 		anchorEl,
 		anchorRef,
 		open,
-		isHomePage
 	} = useHeader();
 
 	return (
@@ -102,12 +103,13 @@ const Header = () => {
 						<HeaderNavUI>
 							
 							{!isCustomSize && <HeaderNavLink/>}
-							{isHomePage && <WhatsAppIconLarge/>}
+							<IconMarginRight>
+								<WhatsAppIconLarge/>
+							</IconMarginRight> 
 
 							<>
 								{!isAuth ? (
 									<>
-										{/* {isHomePage && <WhatsAppIconLarge/>} */}
 										<ButtonUI
 											style={ButtonLoginUI}
 											onClick={handlerPushLogin}
@@ -165,7 +167,8 @@ const Header = () => {
 																<MenuItem
 																	onClick={handlerPushAccount('/account/orders', {tab: '0'})}>Заказы</MenuItem>
 																<MenuItem 
-																	onClick={()=>{}}>Выкуп товара</MenuItem>
+																	// onClick={()=>{}}
+																>Выкуп товара</MenuItem>
 																<MenuItem 
 																	onClick={handlerLogout} style={{color: '#274D82'}} >Выход</MenuItem>
 															</MenuList>
