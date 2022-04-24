@@ -49,6 +49,7 @@ const HomeBlogSwiper = () => {
 							key={blogItem.id}
 						>
 							<BlogItem
+								isTitleSplice={isTouchDevice}
 								viewDescription={false}
 								{...blogItem}
 							/>

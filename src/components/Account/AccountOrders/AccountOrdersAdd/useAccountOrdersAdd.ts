@@ -14,8 +14,13 @@ interface IAddOrderSuccess {
 
 export const useAccountOrdersAdd = () => {
 
+	const [isAddOrder, setIsAddOrder] = useState<boolean>(false);
 	const {control, handleSubmit, reset} = useForm<IFormData | FieldValues>();
 	const [formMessage, setFormMessage] = useState<string>('');
+
+	const handleToggleOrder = () => {
+		setIsAddOrder(prevState => !prevState);
+	};
 
 	const getControlObj = (name: string, placeholder: string) => {
 		return {
@@ -61,16 +66,17 @@ export const useAccountOrdersAdd = () => {
 			.then(response => {
 				if (response.data.message === 'success') {
 					setFormMessage('Посылка успешно добавлена');
+					setIsAddOrder(true);
+					reset({
+						title: '',
+						track_number: '',
+						comment: '',
+					});
 					return;
 				}
 				setFormMessage(submitErrors(500));
 			})
 			.catch(e => setFormMessage(submitErrors(e.response.status)));
-		reset({
-			title: '',
-			track_number: '',
-			comment: '',
-		});
 		setTimeout(() => {
 			setFormMessage('');
 		}, 5000);
@@ -79,10 +85,12 @@ export const useAccountOrdersAdd = () => {
 	return {
 		control,
 		onSubmit,
+		isAddOrder,
 		formMessage,
 		handleSubmit,
 		textFieldDesc,
 		textFieldName,
+		handleToggleOrder,
 		textFieldTrackNumber,
 	};
 };

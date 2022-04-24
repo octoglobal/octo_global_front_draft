@@ -1,12 +1,20 @@
 import {useMemo, useState} from 'react';
 
-export const useBlogItem = (viewDescription?: boolean) => {
+export const useBlogItem = (title: string, viewDescription?: boolean, isTitleSplice?: boolean) => {
 
 	const [isOpenDesc, setIsOpenDesc] = useState<boolean>(false);
 
 	const handleToggleDesc = () => {
 		setIsOpenDesc(prevState => !prevState);
 	};
+
+	const modifiedTitle = useMemo(() => {
+		if (isTitleSplice) {
+			// Вот тут менять!!!!
+			return title;
+		}
+		return title;
+	}, [isTitleSplice]);
 
 	const dopItemStyle = useMemo(() => {
 		if (viewDescription) {
@@ -29,6 +37,7 @@ export const useBlogItem = (viewDescription?: boolean) => {
 	return {
 		isOpenDesc,
 		dopItemStyle,
+		modifiedTitle,
 		handleToggleDesc
 	};
 };
