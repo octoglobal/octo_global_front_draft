@@ -16,6 +16,7 @@ import HeaderNavLinksArray from './HeaderNavLink/HeaderNavLinkData.json';
 import {useCustomSize} from '@/hooks/useMedia';
 import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
 import {useHeader} from '@/components/AnyPage/Header/useHeader';
+import {SUPPORT_PHONE_RU} from '@/constants/constants';
 
 const Header = () => {
 
@@ -101,11 +102,13 @@ const Header = () => {
 						</LogoMUI>
 
 						<HeaderNavUI>
-							
+
 							{!isCustomSize && <HeaderNavLink/>}
-							<IconMarginRight>
+							<IconMarginRight
+								href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=`}
+							>
 								<WhatsAppIconLarge/>
-							</IconMarginRight> 
+							</IconMarginRight>
 
 							<>
 								{!isAuth ? (
@@ -166,10 +169,10 @@ const Header = () => {
 																	данные</MenuItem>
 																<MenuItem
 																	onClick={handlerPushAccount('/account/orders', {tab: '0'})}>Заказы</MenuItem>
-																<MenuItem 
+																<MenuItem
 																	// onClick={()=>{}}
 																>Выкуп товара</MenuItem>
-																<MenuItem 
+																<MenuItem
 																	onClick={handlerLogout} style={{color: '#274D82'}} >Выход</MenuItem>
 															</MenuList>
 														</ClickAwayListener>

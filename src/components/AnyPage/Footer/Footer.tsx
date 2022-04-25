@@ -33,15 +33,15 @@ const Footer = () => {
 
 				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
-					<FooterColumnTextUI>Список магазинов</FooterColumnTextUI>
+					<FooterColumnTextUI href='/shops'>Список магазинов</FooterColumnTextUI>
 					<FooterColumnTextUI>Стоимость посылки</FooterColumnTextUI>
-					<FooterColumnTextUI>Частые вопросы</FooterColumnTextUI>
+					<FooterColumnTextUI href='/questions'>Частые вопросы</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
 				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Информация</FooterColumnTitleUI>
-					<FooterColumnTextUI>Отзывы</FooterColumnTextUI>
-					<FooterColumnTextUI>Блог</FooterColumnTextUI>
+					<FooterColumnTextUI href='/reviews'>Отзывы</FooterColumnTextUI>
+					<FooterColumnTextUI href='/blog'>Блог</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
 				<FooterColumnBlockUI>
@@ -89,7 +89,7 @@ const Footer = () => {
 								</SvgLinkUI>
 								<SvgLinkUI
 									title='whatsapp'
-									href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=123`}
+									href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=`}
 								>
 									<WhatsUpIcon/>
 								</SvgLinkUI>

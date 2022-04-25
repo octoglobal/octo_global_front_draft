@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useOrderTitleStyles = () => {
 
-	const ContainerMUI = styled('div')(({theme}) => ({
+	const ContainerMUI = styled('div')(() => ({
 		width: '100%',
 		display: 'flex',
 		justifyContent: 'space-between',
@@ -10,12 +10,12 @@ export const useOrderTitleStyles = () => {
 		marginBottom: '25px',
 	}));
 
-	const LeftContentMUI = styled('div')(({theme}) => ({
+	const LeftContentMUI = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
 	}));
 
-	const TitleMUI = styled('h4')(({theme}) => ({
+	const TitleMUI = styled('h4')(() => ({
 		fontSize: '20px',
 		lineHeight: '24px',
 		fontWeight: 400,

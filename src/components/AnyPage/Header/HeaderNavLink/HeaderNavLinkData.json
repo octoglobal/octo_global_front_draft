@@ -5,7 +5,7 @@
       "showAuth": false,
       "href": "/shops"
     },
-   
+
     {
       "title": "Выкуп товара",
       "showAuth": false,
@@ -28,7 +28,7 @@
       "showAuth": true,
       "href": "/account/orders/wait"
     },
-    
+
     {
       "title": "Магазины",
       "showAuth": false,
@@ -47,7 +47,7 @@
     {
       "title": "Частые вопросы",
       "showAuth": false,
-      "href": "/#"
+      "href": "/questions"
     }
   ]
 }
