@@ -93,3 +93,7 @@ export interface IReview extends IReviewAdd{
 export type TAddReview = {
 	text: string;
 }
+
+export interface IDefaultFetchSuccess {
+	message: 'success'
+}

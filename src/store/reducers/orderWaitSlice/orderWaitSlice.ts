@@ -34,6 +34,10 @@ export const orderWaitSlice = createSlice({
 			state.scrollEmpty = false;
 			state.updateData = false;
 		},
+		sortOrderData(state, action: PayloadAction<number>) {
+			state.orderWaitData = state.orderWaitData
+				.filter(order => order.id !== action.payload);
+		}
 	},
 	extraReducers: {
 		[fetchOrderWaitData.fulfilled.type]: (state, action: PayloadAction<IFetchOrderWaitDataFulfilled>) => {

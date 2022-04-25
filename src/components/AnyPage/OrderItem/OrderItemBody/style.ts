@@ -4,7 +4,7 @@ export const useOrderItemBodyStyles = () => {
 
 	const ContainerMUI = styled('div')(() => ({
 		display: 'flex',
-		marginLeft: '50px',
+		marginLeft: '55px',
 	}));
 
 	const IconMUI = styled('div')(() => ({

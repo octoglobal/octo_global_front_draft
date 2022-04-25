@@ -10,6 +10,11 @@ export const useOrderTitleStyles = () => {
 		marginBottom: '25px',
 	}));
 
+	const CheckboxContainerMUI = styled('div')(() => ({
+		width: '21px',
+		height: '21px',
+	}));
+
 	const LeftContentMUI = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
@@ -27,5 +32,6 @@ export const useOrderTitleStyles = () => {
 		TitleMUI,
 		ContainerMUI,
 		LeftContentMUI,
+		CheckboxContainerMUI,
 	};
 };

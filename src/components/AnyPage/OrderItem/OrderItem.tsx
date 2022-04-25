@@ -3,11 +3,13 @@ import {IOrderModel} from '@/models/IOrderModel';
 import {useOrderItemStyles} from '@/components/AnyPage/OrderItem/style';
 import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderItemTitle';
 import OrderItemBody from '@/components/AnyPage/OrderItem/OrderItemBody/OrderItemBody';
-import {IDropItem} from '../../../UI/UIComponents/DropDownUI/type';
+import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
+import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
+import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
+import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 
 interface IOrderItemProps {
 	orderItem: IOrderModel,
-	dropItem: IDropItem[],
 	visibleDropDown: boolean,
 	visibleCheckbox: boolean,
 }
@@ -24,26 +26,57 @@ const OrderItem: FC<IOrderItemProps> = (
 		},
 		visibleCheckbox,
 		visibleDropDown,
-		dropItem
 	}
 ) => {
+
+	const {
+		isAdmin,
+		dropDownData,
+		dialogStyles,
+		isDeleteModal,
+		isStatusModal,
+		setIsDeleteModal,
+		setIsStatusModal,
+		handleDeleteOrder,
+		handleToggleModal,
+	} = useOrderItemWait();
+
+
 	return (
-		<ContainerMUI>
-			<OrderItemTitle
-				id={id}
-				title={title}
-				longId={longId}
-				visibleCheckbox={visibleCheckbox}
-				visibleDropDown={visibleDropDown}
-				dropItems={dropItem}
-			/>
-			<OrderItemBody
-				title={title}
-				tracking_link={tracking_link}
-				trackNumber={trackNumber}
-				comment={comment}
-			/>
-		</ContainerMUI>
+		<>
+			<ContainerMUI>
+				<OrderItemTitle
+					id={id}
+					title={title}
+					longId={longId}
+					visibleCheckbox={visibleCheckbox}
+					visibleDropDown={visibleDropDown}
+					dropItems={dropDownData}
+				/>
+				<OrderItemBody
+					title={title}
+					tracking_link={tracking_link}
+					trackNumber={trackNumber}
+					comment={comment}
+				/>
+			</ContainerMUI>
+			{isAdmin && (
+				<ModalConfirmUI
+					open={isDeleteModal}
+					dialogSx={dialogStyles}
+					title='Вы точно хотите удалить?'
+					onClickYes={handleDeleteOrder(id)}
+					onClickNo={handleToggleModal(setIsDeleteModal)}
+					buttonNoText='Нет'
+				/>
+			)}
+			{isAdmin && (
+				<OrderStatusModal
+					open={isStatusModal}
+					onClose={handleToggleModal(setIsStatusModal)}
+				/>
+			)}
+		</>
 	);
 };
 

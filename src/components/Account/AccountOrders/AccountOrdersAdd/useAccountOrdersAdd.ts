@@ -1,6 +1,8 @@
 import {FieldValues, useForm} from 'react-hook-form';
 import {useMemo, useState} from 'react';
 import {octoAxios} from '@/lib/http';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 
 interface IFormData {
 	title: string;
@@ -13,7 +15,7 @@ interface IAddOrderSuccess {
 }
 
 export const useAccountOrdersAdd = () => {
-
+	const dispatch = useAppDispatch();
 	const [isAddOrder, setIsAddOrder] = useState<boolean>(false);
 	const {control, handleSubmit, reset} = useForm<IFormData | FieldValues>();
 	const [formMessage, setFormMessage] = useState<string>('');
@@ -67,6 +69,7 @@ export const useAccountOrdersAdd = () => {
 				if (response.data.message === 'success') {
 					setFormMessage('Посылка успешно добавлена');
 					setIsAddOrder(true);
+					dispatch(orderWaitSlice.actions.defaultData());
 					reset({
 						title: '',
 						track_number: '',
