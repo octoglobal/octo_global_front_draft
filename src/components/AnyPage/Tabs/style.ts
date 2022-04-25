@@ -42,7 +42,7 @@ export const useTabsStyle = () => {
 				fontSize: '20px',
 				lineHeight: '21px',
 			},
-			[theme.breakpoints.down(400)]: {
+			[theme.breakpoints.down(404)]: {
 				fontFamily: 'Roboto',
 				fontSize: '16px',
 				lineHeight: '19px',
@@ -54,7 +54,7 @@ export const useTabsStyle = () => {
 			lineHeight: '21px',
 			color: '#000000',
 		},
-		[theme.breakpoints.down(400)]: {
+		[theme.breakpoints.down(404)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
 			color: '#000000',
