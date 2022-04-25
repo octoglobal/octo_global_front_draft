@@ -124,7 +124,7 @@ export const useFooterStyle = () => {
 		marginBottom: '15px'
 	}));
 
-	const FooterColumnTextUI = styled('p')(() => ({
+	const FooterColumnTextUI = styled('a')(() => ({
 		width: 'auto',
 		fontStyle: 'normal',
 		fontWeight: '300',

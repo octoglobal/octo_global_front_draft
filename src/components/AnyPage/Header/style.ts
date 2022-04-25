@@ -82,7 +82,7 @@ export const useHeaderStyle = () => {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		
+
 
 		'& #long-menu .MuiPaper-root ': {
 			transform: 'none !important',
@@ -118,7 +118,7 @@ export const useHeaderStyle = () => {
 
 	const OctoIconsUI = styled('span')(() => ({
 		width: '20%',
-		
+
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -132,10 +132,10 @@ export const useHeaderStyle = () => {
 		}
 	}));
 
-	const IconMarginRight = styled('div')(({theme}) => ({
+	const IconMarginRight = styled('a')(({theme}) => ({
 
 		[theme.breakpoints.between(600, 1241)]: {
-			marginRight: '50px'	
+			marginRight: '50px'
 		}
 	}));
 	const UserWrapperUI = styled('div')(() => ({

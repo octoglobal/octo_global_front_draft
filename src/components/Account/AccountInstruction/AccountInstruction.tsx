@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import {useAccountInstructionStyle} from './style';
 // import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
+import {SUPPORT_PHONE_DE} from '@/constants/constants';
 
 const AccountInstruction : FC = () => {
 	return (
@@ -25,9 +26,9 @@ const AccountInstruction : FC = () => {
 				>
 					За покупками!
 				</ButtonUI> */}
-				<LinkMUI >Связаться с менеджером</LinkMUI>
-
-
+				<LinkMUI
+					href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=`}
+				>Связаться с менеджером</LinkMUI>
 				<WhatsAppIconLarge/>
 			</FooterButtonMUI>
 		</WrapperMUI>
