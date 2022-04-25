@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Dialog} from '@mui/material';
+import {Dialog, SxProps} from '@mui/material';
 
 import ButtonUI from '../ButtonUI/ButtonUI';
 import {useModalConfirmStyle} from './style';
@@ -9,10 +9,20 @@ interface IModalConfirmUI {
 	text?: string,
 	open: boolean,
 	onClickYes: () => void,
-	onClickNo: () => void
+	onClickNo: () => void,
+	buttonNoText?: string;
+	dialogSx?: SxProps
 }
 
-const ModalConfirmUI: FC<IModalConfirmUI> = ({title = '', text = '', open = false, onClickYes, onClickNo}) => {
+const ModalConfirmUI: FC<IModalConfirmUI> = (
+	{
+		title = '',
+		open = false,
+		onClickYes,
+		onClickNo,
+		buttonNoText,
+		dialogSx = {}}
+) => {
 
 	const {
 		BackDropBlurMUI,
@@ -25,6 +35,7 @@ const ModalConfirmUI: FC<IModalConfirmUI> = ({title = '', text = '', open = fals
 
 	return (
 		<Dialog
+			sx={dialogSx}
 			open={open}
 			BackdropComponent={BackDropBlurMUI}
 			onBackdropClick={onClickNo}
@@ -44,7 +55,7 @@ const ModalConfirmUI: FC<IModalConfirmUI> = ({title = '', text = '', open = fals
 						style={ButtonCancelUI}
 						onClick={onClickNo}
 					>
-						Отмена
+						{buttonNoText ? buttonNoText : 'Отмена'}
 					</ButtonUI>
 				</DialogActionsUI>
 			</ModalUI>

@@ -3,13 +3,20 @@ import {useAccountOrdersWait} from '@/components/Account/AccountOrders/AccountOr
 import OrderItem from '@/components/AnyPage/OrderItem/OrderItem';
 import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 import { FormProvider } from 'react-hook-form';
+import ModalConfirmUI from '../../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
 const AccountOrdersWait = () => {
 
 	const {
+		isModal,
+		isAdmin,
 		methods,
+		dialogStyles,
+		dropDownData,
 		isDataLength,
-		orderWaitData
+		orderWaitData,
+		handleDeleteOrder,
+		handleToggleModal,
 	} = useAccountOrdersWait();
 
 
@@ -19,20 +26,26 @@ const AccountOrdersWait = () => {
 				{isDataLength && (
 					orderWaitData.map(order => (
 						<OrderItem
-							visibleCheckbox={true}
-							visibleDropDown={true}
+							visibleCheckbox={isAdmin}
+							visibleDropDown={isAdmin}
 							key={`${order.trackNumber}${order.id}`}
 							orderItem={order}
-							dropItem={[
-								{title: 'Текст21', onClick: () => console.log(1)},
-								{title: 'Текст2', onClick: () => console.log(1)},
-								{title: 'Текст3', onClick: () => console.log(1)},
-								{title: 'Текст4', onClick: () => console.log(1)}
-							]}
+							dropItem={dropDownData}
 						/>
 					))
 				)}
 			</FormProvider>
+			{isAdmin && (
+				<ModalConfirmUI
+					text=''
+					open={isModal}
+					dialogSx={dialogStyles}
+					title='Вы точно хотите удалить?'
+					onClickYes={handleDeleteOrder}
+					onClickNo={handleToggleModal}
+					buttonNoText='Нет'
+				/>
+			)}
 		</WrapperOrdersMUI>
 	);
 };

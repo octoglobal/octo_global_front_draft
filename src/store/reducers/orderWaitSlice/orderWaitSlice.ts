@@ -26,7 +26,15 @@ const initialState: IInitialState = {
 export const orderWaitSlice = createSlice({
 	name: 'orderWaitSlice',
 	initialState,
-	reducers: {},
+	reducers: {
+		defaultData(state) {
+			state.page = 1;
+			state.pageLimit = 50;
+			state.orderWaitData = [];
+			state.scrollEmpty = false;
+			state.updateData = false;
+		},
+	},
 	extraReducers: {
 		[fetchOrderWaitData.fulfilled.type]: (state, action: PayloadAction<IFetchOrderWaitDataFulfilled>) => {
 			state.orderWaitData = action.payload.data;
