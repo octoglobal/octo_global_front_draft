@@ -7,19 +7,19 @@
     },
    
     {
-      "title": "Стоимость услуг",
+      "title": "Выкуп товара",
       "showAuth": false,
       "href": "/"
     },
     {
-      "title": "Помощь",
+      "title": "Блог",
       "showAuth": false,
-      "href": "/"
+      "href": "/blog"
     },
     {
-      "title": "Отзывы",
+      "title": "Частые вопросы",
       "showAuth": false,
-      "href": "/reviews"
+      "href": "/questions"
     }
   ],
   "mobile": [
