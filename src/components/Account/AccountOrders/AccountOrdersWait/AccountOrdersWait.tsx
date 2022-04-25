@@ -3,20 +3,13 @@ import {useAccountOrdersWait} from '@/components/Account/AccountOrders/AccountOr
 import OrderItem from '@/components/AnyPage/OrderItem/OrderItem';
 import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 import { FormProvider } from 'react-hook-form';
-import ModalConfirmUI from '../../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
 const AccountOrdersWait = () => {
-
 	const {
-		isModal,
 		isAdmin,
 		methods,
-		dialogStyles,
-		dropDownData,
 		isDataLength,
 		orderWaitData,
-		handleDeleteOrder,
-		handleToggleModal,
 	} = useAccountOrdersWait();
 
 
@@ -26,26 +19,14 @@ const AccountOrdersWait = () => {
 				{isDataLength && (
 					orderWaitData.map(order => (
 						<OrderItem
-							visibleCheckbox={isAdmin}
+							visibleCheckbox={false}
 							visibleDropDown={isAdmin}
 							key={`${order.trackNumber}${order.id}`}
 							orderItem={order}
-							dropItem={dropDownData}
 						/>
 					))
 				)}
 			</FormProvider>
-			{isAdmin && (
-				<ModalConfirmUI
-					text=''
-					open={isModal}
-					dialogSx={dialogStyles}
-					title='Вы точно хотите удалить?'
-					onClickYes={handleDeleteOrder}
-					onClickNo={handleToggleModal}
-					buttonNoText='Нет'
-				/>
-			)}
 		</WrapperOrdersMUI>
 	);
 };

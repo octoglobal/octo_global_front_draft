@@ -33,12 +33,14 @@ const OrderItemTitle: FC<OrderItemTitleProps> = (
 	return (
 		<ContainerMUI>
 			<LeftContentMUI>
-				{visibleCheckbox && (
+				{visibleCheckbox ? (
 					<CheckboxUIV2
 						controller={{
 							name: `${title}${longId}`,
 							control
 						}}/>
+				) : (
+					<CheckboxContainerMUI/>
 				)}
 				<TitleMUI>
 					Заказ № {longId}
@@ -57,6 +59,7 @@ const {
 	TitleMUI,
 	ContainerMUI,
 	LeftContentMUI,
+	CheckboxContainerMUI,
 } = useOrderTitleStyles();
 
 export default React.memo(OrderItemTitle);

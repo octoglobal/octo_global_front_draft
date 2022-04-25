@@ -15,18 +15,13 @@ const AccountAddModal: FC<IAccountAddModalProps> = ({ open, onClose }) => {
 				open: open,
 				onClose,
 			}}
-			title='Заказ добавлен'>
-			<ButtonContainerMUI>
-				<ButtonUI onClick={onClose}>
-					Отлично
-				</ButtonUI>
-			</ButtonContainerMUI>
-		</ModalUI>
+			title='Заказ добавлен'/>
 	);
 };
 
 const ButtonContainerMUI = styled('div')(() => ({
-	marginTop: '68px',
+	maxWidth: '135px',
+	margin: '68px auto 0',
 	'& > button': {
 		opacity: 0.8,
 		fontWeight: 400,

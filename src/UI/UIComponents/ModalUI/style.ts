@@ -1,4 +1,5 @@
 import { Dialog, styled } from '@mui/material';
+import ButtonUI from '../ButtonUI/ButtonUI';
 
 export const useModalUIStyles = () => {
 
@@ -23,16 +24,34 @@ export const useModalUIStyles = () => {
 		fontSize: '20px',
 		lineHeight: '23px',
 		fontWeight: 400,
+		whiteSpace: 'pre-line',
+		textAlign: 'center',
 		color: '#000000',
 	}));
 
 	const DialogBodyMUI = styled('div')(() => ({
+		width: '100%',
+	}));
 
+	const ButtonContainerMUI = styled('div')(() => ({
+		maxWidth: '135px',
+		margin: '68px auto 0',
+	}));
+
+	const ButtonMUI = styled(ButtonUI)(() => ({
+		opacity: 0.8,
+		fontWeight: 400,
+		minWidth: '135px',
+		maxWidth: '135px',
+		height: '32px',
+		marginBottom: 0,
 	}));
 
 	return {
 		DialogMUI,
+		ButtonMUI,
 		DialogBodyMUI,
-		DialogTitleMUI
+		DialogTitleMUI,
+		ButtonContainerMUI
 	};
 };
