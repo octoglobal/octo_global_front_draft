@@ -19,51 +19,51 @@ const AccountHelp: FC = () => {
 	return (
 		<>
 		
-				<HelpWrapperMUI>
+			<HelpWrapperMUI>
 
-					<HelpItemMUI>
-						<HelpImageMUI>
-							{isCustomSize? <DopServicesIconSmall/> :<DopServicesIcon/>}
-						</HelpImageMUI>
-						<HelperTextMUI>
+				<HelpItemMUI>
+					<HelpImageMUI>
+						{isCustomSize? <DopServicesIconSmall/> :<DopServicesIcon/>}
+					</HelpImageMUI>
+					<HelperTextMUI>
 							Дополнительные
 							услуги
-						</HelperTextMUI>
-					</HelpItemMUI>
+					</HelperTextMUI>
+				</HelpItemMUI>
 
-					<HelpItemMUI>
-						<HelpImageMUI>
+				<HelpItemMUI>
+					<HelpImageMUI>
 						{isCustomSize?<Box3Small/> :<Box3/>}
 							
-						</HelpImageMUI>
-						<HelperTextMUI>
+					</HelpImageMUI>
+					<HelperTextMUI>
 							Стоимость
 							почтового отправления
-						</HelperTextMUI>
-					</HelpItemMUI>
+					</HelperTextMUI>
+				</HelpItemMUI>
 
-					<HelpItemMUI>
-						<HelpImageMUI>
+				<HelpItemMUI>
+					<HelpImageMUI>
 						{isCustomSize?<VPNsmall/> :<VPN/>}
 							
-						</HelpImageMUI>
-						<HelperTextMUI>
+					</HelpImageMUI>
+					<HelperTextMUI>
 							Как подключить VPN
-						</HelperTextMUI>
-					</HelpItemMUI>
+					</HelperTextMUI>
+				</HelpItemMUI>
 
-					<HelpItemMUI>
-						<HelpImageMUI>
+				<HelpItemMUI>
+					<HelpImageMUI>
 						{isCustomSize?<TranslateSmall/> :<Translate/>}
 							
-						</HelpImageMUI>
-						<HelperTextMUI>
+					</HelpImageMUI>
+					<HelperTextMUI>
 							Как перевести
 							страницу на русский
-						</HelperTextMUI>
-					</HelpItemMUI>
+					</HelperTextMUI>
+				</HelpItemMUI>
 
-				</HelpWrapperMUI>
+			</HelpWrapperMUI>
 		
 		</>
 	);
