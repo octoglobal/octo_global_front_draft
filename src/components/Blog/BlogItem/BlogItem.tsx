@@ -9,6 +9,8 @@ import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemD
 
 import { useCustomSize } from '@/hooks/useMedia';
 import BtnSection from './BtnSection/BtnSection';
+import {useUserStore} from '@/hooks/useUserStore';
+
 
 interface IBlogItemProps extends IBlogModel {
 	viewDescription?: boolean;
@@ -25,7 +27,7 @@ const BlogItem: FC<IBlogItemProps> = (
 		isTitleSplice = false,
 	},
 ) => {
-
+	console.log('products',products);
 	const {
 		isOpenDesc,
 		modifiedTitle,
@@ -36,6 +38,12 @@ const BlogItem: FC<IBlogItemProps> = (
 		viewDescription,
 		isTitleSplice,
 	);
+
+
+	const {
+		isAdmin
+	} = useUserStore();
+	console.log('isAdmin',isAdmin);
 	const { isCustomSize } = useCustomSize(1025);
 	return (
 		<ItemMUI sx={dopItemStyle.item}>
@@ -80,8 +88,7 @@ const {
 	ItemTitleMUI,
 	ButtonIconMUI,
 	ProductListMUI,
-	CollapseDescMUI,
-	BtnSectionMUI,
+	CollapseDescMUI,	
 	BtnSectionWrapperMUI,
 } = useBlogItemStyles();
 
