@@ -6,11 +6,9 @@ import BlogProduct from '@/components/Blog/BlogProduct/BlogProduct';
 import { useBlogItem } from '@/components/Blog/BlogItem/useBlogItem';
 import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemDescription';
 
-import BascetIcon from '../../../UI/UIIcon/Basket.svg';
-import EditPencilBlueIcon from '../../../UI/UIIcon/EditPencilBlue.svg';
-
 
 import { useCustomSize } from '@/hooks/useMedia';
+import BtnSection from './BtnSection/BtnSection';
 
 interface IBlogItemProps extends IBlogModel {
 	viewDescription?: boolean;
@@ -54,15 +52,8 @@ const BlogItem: FC<IBlogItemProps> = (
 						/>
 						
 					))}
-					{isCustomSize? null :<BtnSectionMUI>
-						<ButtonIconMUI>
-							<BascetIcon/>
-						</ButtonIconMUI>
-						
-						<ButtonIconMUI>
-							<EditPencilBlueIcon/>
-						</ButtonIconMUI>
-					</BtnSectionMUI>}
+					
+					{isCustomSize? null :<BtnSection></BtnSection>}
 					
 				</ProductListMUI>
 				{viewDescription && (
@@ -70,15 +61,7 @@ const BlogItem: FC<IBlogItemProps> = (
 						<ButtonIconMUI onClick={handleToggleDesc}>
 							<ShopsTagsListArrow />
 						</ButtonIconMUI>
-						{isCustomSize? <BtnSectionMUI>
-							<ButtonIconMUI>
-								<BascetIcon/>
-							</ButtonIconMUI>
-						
-							<ButtonIconMUI>
-								<EditPencilBlueIcon/>
-							</ButtonIconMUI>
-						</BtnSectionMUI> :null}
+						{isCustomSize? <BtnSection/> :null}
 						<CollapseDescMUI in={isOpenDesc}>
 							<BlogItemDescription
 								description={body}
