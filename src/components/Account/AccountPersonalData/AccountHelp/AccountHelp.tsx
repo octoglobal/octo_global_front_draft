@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
 import VPN from '../../../../UI/UIIcon/VPN.svg';
 import VPNsmall from '../../../../UI/UIIcon/VPNsmall.svg';
@@ -10,70 +10,56 @@ import Box3Small from '../../../../UI/UIIcon/Box3Small.svg';
 import DopServicesIcon from '@/UIIcon/DopServicesIcont.svg';
 import DopServicesIconSmall from '@/UIIcon/DopServicesIconSmall.svg';
 
-import {useAccountHelpStyle} from './style';
-import {useCustomSize, useMobile} from '@/hooks/useMedia';
+import { useAccountHelpStyle } from './style';
+import { useCustomSize } from '@/hooks/useMedia';
 
 const AccountHelp: FC = () => {
-	const {isCustomSize} = useCustomSize(600);
+	const { isCustomSize } = useCustomSize(600);
 
 	return (
 		<>
-		
 			<HelpWrapperMUI>
+				<HelpItemMUI>
+					<HelpImageMUI>
+						{isCustomSize ? (
+							<DopServicesIconSmall />
+						) : (
+							<DopServicesIcon />
+						)}
+					</HelpImageMUI>
+					<HelperTextMUI>Дополнительные услуги</HelperTextMUI>
+				</HelpItemMUI>
 
 				<HelpItemMUI>
 					<HelpImageMUI>
-						{isCustomSize? <DopServicesIconSmall/> :<DopServicesIcon/>}
+						{isCustomSize ? <Box3Small /> : <Box3 />}
 					</HelpImageMUI>
 					<HelperTextMUI>
-							Дополнительные
-							услуги
+                        Стоимость почтового отправления
 					</HelperTextMUI>
 				</HelpItemMUI>
 
 				<HelpItemMUI>
 					<HelpImageMUI>
-						{isCustomSize?<Box3Small/> :<Box3/>}
-							
+						{isCustomSize ? <VPNsmall /> : <VPN />}
 					</HelpImageMUI>
-					<HelperTextMUI>
-							Стоимость
-							почтового отправления
-					</HelperTextMUI>
+					<HelperTextMUI>Как подключить VPN</HelperTextMUI>
 				</HelpItemMUI>
 
 				<HelpItemMUI>
 					<HelpImageMUI>
-						{isCustomSize?<VPNsmall/> :<VPN/>}
-							
+						{isCustomSize ? <TranslateSmall /> : <Translate />}
 					</HelpImageMUI>
 					<HelperTextMUI>
-							Как подключить VPN
+                        Как перевести страницу на русский
 					</HelperTextMUI>
 				</HelpItemMUI>
-
-				<HelpItemMUI>
-					<HelpImageMUI>
-						{isCustomSize?<TranslateSmall/> :<Translate/>}
-							
-					</HelpImageMUI>
-					<HelperTextMUI>
-							Как перевести
-							страницу на русский
-					</HelperTextMUI>
-				</HelpItemMUI>
-
 			</HelpWrapperMUI>
-		
 		</>
 	);
 };
 
 export default React.memo(AccountHelp);
 
-const {
-	HelpWrapperMUI,
-	HelpItemMUI,
-	HelpImageMUI,
-	HelperTextMUI
-} = useAccountHelpStyle();
+const { HelpWrapperMUI, HelpItemMUI, HelpImageMUI, HelperTextMUI } =
+    useAccountHelpStyle();
