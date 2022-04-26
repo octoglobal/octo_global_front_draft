@@ -15,18 +15,21 @@ interface IOrderItemProps {
 
 const OrderItem: FC<IOrderItemProps> = (
 	{
-		orderItem: {
-			title,
-			longId,
-			id,
-			tracking_link,
-			trackNumber,
-			comment,
-		},
 		visibleCheckbox,
 		visibleDropDown,
+		orderItem,
 	}
 ) => {
+
+	const {
+		title,
+		longId,
+		id,
+		tracking_link,
+		trackNumber,
+		comment,
+	} = orderItem;
+
 
 	const {
 		isAdmin,
@@ -71,6 +74,7 @@ const OrderItem: FC<IOrderItemProps> = (
 			)}
 			{isAdmin && (
 				<OrderStatusModal
+					orderItem={orderItem}
 					open={isStatusModal}
 					onClose={handleToggleModal(setIsStatusModal)}
 				/>

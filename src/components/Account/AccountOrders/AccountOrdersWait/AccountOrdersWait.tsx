@@ -4,7 +4,6 @@ import OrderItem from '@/components/AnyPage/OrderItem/OrderItem';
 import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 import { FormProvider } from 'react-hook-form';
 import AdminBottomMenu from '@/components/Account/AdminBottomMenu/AdminBottomMenu';
-import {sortItemArrayInId} from '@/services/services';
 
 const AccountOrdersWait = () => {
 	const {
@@ -15,8 +14,6 @@ const AccountOrdersWait = () => {
 		isDataLength,
 		orderWaitData,
 	} = useAccountOrdersWait();
-
-	sortItemArrayInId(orderWaitData, [59]);
 
 	return (
 		<WrapperOrdersMUI>
@@ -31,12 +28,12 @@ const AccountOrdersWait = () => {
 						/>
 					))
 				)}
+				{isAdminMenu && (
+					<AdminBottomMenu
+						buttons={buttonsData}
+					/>
+				)}
 			</FormProvider>
-			{isAdminMenu && (
-				<AdminBottomMenu
-					buttons={buttonsData}
-				/>
-			)}
 		</WrapperOrdersMUI>
 	);
 };

@@ -1,11 +1,15 @@
 import { styled } from '@mui/material';
 
 export const useOrderStatusModalStyles = () => {
-	const FormMUI = styled('form')(() => ({
+
+	const ContainerMUI = styled('div')(() => ({
 		marginTop: '25px',
 		width: '100%',
 		maxWidth: '552px',
 		margin: '25px auto',
+	}));
+
+	const FormMUI = styled('form')(() => ({
 	}));
 
 	const TextFieldContainerMUI = styled('div')(() => ({
@@ -20,12 +24,6 @@ export const useOrderStatusModalStyles = () => {
 	}));
 
 	const DialogSx = {
-		// '& > div': {
-		// 	'& > div': {
-		// 		padding: 0,
-		// 		// backgroundColor: 'red',
-		// 	}
-		// }
 		'& > div': {
 			'& > div': {
 				padding: '0 !important',
@@ -41,6 +39,7 @@ export const useOrderStatusModalStyles = () => {
 	return {
 		FormMUI,
 		DialogSx,
+		ContainerMUI,
 		TextFieldContainerMUI,
 		DropDownContainerMUI,
 	};

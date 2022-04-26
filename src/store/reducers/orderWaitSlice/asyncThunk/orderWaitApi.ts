@@ -75,6 +75,32 @@ export const fetchDeleteOrders = createAsyncThunk(
 	}
 );
 
+export const fetchChangeStatus = createAsyncThunk(
+	'orderWaitSlice/delete',
+	async (data: IFetchDeleteData, thunkAPI) => {
+		try {
+			const sendData = {
+				'userId': data.userId,
+				'orderId': data.orderId,
+			};
+			const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
+				data: sendData
+			}).then(response => {
+				if (response.data.message === 'success') {
+					data.successCallback();
+					return sortItemArrayInId(data.ordersData, data.orderId);
+
+				} else {
+					return [];
+				}
+			});
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Error orderWaitSlice/delete');
+		}
+	}
+);
+
 // const handleDeleteOrder = (orderId: number) => {
 // 	return () => {
 // 		try {

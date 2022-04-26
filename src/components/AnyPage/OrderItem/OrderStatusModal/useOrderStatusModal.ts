@@ -1,5 +1,8 @@
-import {FieldValues, useForm} from 'react-hook-form';
+import {FieldValues, SubmitHandler, useForm} from 'react-hook-form';
 import {useEffect} from 'react';
+import {octoAxios} from '@/lib/http';
+import {IOrderModel} from '@/models/IOrderModel';
+import {IDefaultFetchSuccess} from '../../../../types/types';
 
 interface IFormStatus {
 	trackNumber: string;
@@ -17,17 +20,14 @@ const collapseItems = [
 		name: 'stock',
 		value: 1,
 	},
-	{
-		title: 'Доставлены',
-		name: 'send',
-		value: 2,
-	},
 ];
 
 
 
-export const useOrderStatusModal = (isOpen: boolean) => {
+export const useOrderStatusModal = (isOpen: boolean, orderItem: IOrderModel) => {
 	const methods = useForm<IFormStatus | FieldValues>();
+
+
 	const trackNumberProps = {
 		controller: {
 			name: 'trackNumber',
@@ -40,6 +40,34 @@ export const useOrderStatusModal = (isOpen: boolean) => {
 	};
 
 	useEffect(() => {
+		if (orderItem.trackNumber && isOpen) {
+			methods.setValue('trackNumber', orderItem.trackNumber);
+		}
+	}, [orderItem, isOpen]);
+
+
+	const onSubmit: SubmitHandler<IFormStatus | FieldValues> = (data) => {
+		if (data?.trackNumber && data?.orderStatus?.value !== undefined) {
+			try {
+				octoAxios.post<IDefaultFetchSuccess>('/admin/orders', {
+					userId: orderItem.userId,
+					track_number:orderItem.trackNumber,
+					title: orderItem.title,
+					comment: orderItem.comment,
+					statusId: data.orderStatus.value
+				}).then(r => {
+					if (r.data.message === 'success') {
+
+					}
+				});
+			} catch (e) {
+				throw new Error('Error change status');
+			}
+		}
+	};
+
+
+	useEffect(() => {
 		if (!isOpen) {
 			methods.reset({
 				trackNumber: '',
@@ -50,6 +78,7 @@ export const useOrderStatusModal = (isOpen: boolean) => {
 
 	return {
 		methods,
+		onSubmit,
 		collapseItems,
 		trackNumberProps
 	};

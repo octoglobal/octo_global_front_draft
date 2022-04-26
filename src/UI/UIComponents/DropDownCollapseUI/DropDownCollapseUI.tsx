@@ -10,6 +10,7 @@ const DropDownCollapseUI: FC<IDropDownCollapseUIProps> = (
 	{
 		title,
 		collapseItems,
+		required = false,
 	}
 ) => {
 
@@ -28,8 +29,8 @@ const DropDownCollapseUI: FC<IDropDownCollapseUIProps> = (
 
 	return (
 		<ContainerMUI>
-			<TitleContainerMUI>
-				<CollapseTitleMUI onClick={handleToggleOpen}>
+			<TitleContainerMUI onClick={handleToggleOpen}>
+				<CollapseTitleMUI>
 					{modificationTitle}
 				</CollapseTitleMUI>
 				<CollapseIconMUI sx={activeArrowStyles}>
@@ -40,17 +41,28 @@ const DropDownCollapseUI: FC<IDropDownCollapseUIProps> = (
 				name='orderStatus'
 				control={control}
 				defaultValue={undefined}
-				render={({field: { onChange }}) => (
-					<CollapseListMUI in={isOpen}>
-						{collapseItems.map(item => (
-							<DropDownCollapseItem
-								key={item.name}
-								onClick={onChange}
-								{...item}
-							/>
-						))}
-					</CollapseListMUI>
-				)}/>
+				render={({field: { onChange }, fieldState: {error}}) => {
+					return (
+						<>
+							<CollapseListMUI in={isOpen}>
+								{collapseItems.map(item => (
+									<DropDownCollapseItem
+										key={item.name}
+										onClick={onChange}
+										{...item}
+									/>
+								))}
+							</CollapseListMUI>
+							{error?.type && (
+								<CollapseErrorMUI>
+									Выберите статус
+								</CollapseErrorMUI>
+							)}
+						</>
+					);
+				}}
+				rules={{required}}
+			/>
 		</ContainerMUI>
 	);
 };
@@ -61,7 +73,8 @@ const {
 	CollapseTitleMUI,
 	TitleContainerMUI,
 	CollapseIconMUI,
-	CollapseListMUI
+	CollapseListMUI,
+	CollapseErrorMUI,
 } = useDropDownCollapseUIStyles();
 
 export default React.memo(DropDownCollapseUI);

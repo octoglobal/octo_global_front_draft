@@ -6,5 +6,6 @@ export interface ICollapseItem {
 
 interface IDropDownCollapseUIProps {
 	title: string;
+	required: boolean;
 	collapseItems: ICollapseItem[]
 }

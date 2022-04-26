@@ -1,6 +1,9 @@
 import React, {FC} from 'react';
 import {useAdminBottomMenuStyles} from '@/components/Account/AdminBottomMenu/style';
 import AdminMenuCheckboxIcon from '@/UIIcon/AdminMenuCheckbox.svg';
+import AdminMenuCheckboxEmptyIcon from '@/UIIcon/AdminMenuCheckboxEmpty.svg';
+import {useAdminBottomMenu} from '@/components/Account/AdminBottomMenu/useAdminBottomMenu';
+import {Checkbox} from '@mui/material';
 
 export interface IAdminMenuButton {
 	name: string;
@@ -12,10 +15,20 @@ interface IAdminBottomMenuProps {
 }
 
 const AdminBottomMenu: FC<IAdminBottomMenuProps> = ({buttons}) => {
+	const {
+		isChecked,
+		handleToggleChecked
+	} = useAdminBottomMenu();
+
 	return (
 		<ContainerMUI>
 			<WrapperMUI>
-				<AdminMenuCheckboxIcon/>
+				<Checkbox
+					onClick={handleToggleChecked}
+					checked={isChecked}
+					icon={<AdminMenuCheckboxEmptyIcon/>}
+					checkedIcon={<AdminMenuCheckboxIcon/>}
+				/>
 				<ButtonWrapperMUI>
 					{buttons.map((button, index) => (
 						<ButtonMUI

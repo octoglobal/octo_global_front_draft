@@ -21,6 +21,7 @@ export const useDropDownCollapseUIStyles = () => {
 		color: '#000000',
 	}));
 
+
 	const CollapseIconMUI = styled('div')(() => ({
 		width: '30px',
 		height: '20px',
@@ -37,11 +38,19 @@ export const useDropDownCollapseUIStyles = () => {
 		}
 	}));
 
+	const CollapseErrorMUI = styled('span')(() => ({
+		fontSize: '12px',
+		lineHeight: '14pч',
+		fontWeight: 400,
+		color: 'red',
+	}));
+
 	return {
 		ContainerMUI,
 		CollapseListMUI,
 		CollapseIconMUI,
 		CollapseTitleMUI,
+		CollapseErrorMUI,
 		TitleContainerMUI,
 	};
 };
