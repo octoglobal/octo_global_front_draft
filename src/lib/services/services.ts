@@ -125,9 +125,10 @@ export const ellipsis = (string : string, count : number) : string => {
 };
 
 export const addZero = (n : number | string) : number | string => {
-	if (n && n < 10) {
+	if (n < 10) {
 		return `0${n}`;
-	} else {
+	} 
+	else {
 		return n;
 	}
 };
