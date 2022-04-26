@@ -4,15 +4,20 @@ import {useUserStore} from '@/hooks/useUserStore';
 import {octoAxios} from '@/lib/http';
 import {IDefaultFetchSuccess} from '../../../types/types';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+import {fetchDeleteOrders} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 
 export const useOrderItemWait = () => {
 	const {
-		isAdmin
+		isAdmin,
 	} = useUserStore();
 
 	const {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
+
+	const {
+		orderWaitData
+	} = useAppSelector(state => state.orderWaitReducer);
 
 	const dispatch = useAppDispatch();
 	const [isStatusModal, setIsStatusModal] = useState<boolean>(false);
@@ -26,22 +31,30 @@ export const useOrderItemWait = () => {
 
 	const handleDeleteOrder = (orderId: number) => {
 		return () => {
-			try {
-				const sendData = {
-					'userId': adminSwitchIdToUser,
-					'orderId': orderId
-				};
-				octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
-					data: sendData
-				}).then(response => {
-					if (response.data.message === 'success') {
-						handleToggleModal(setIsDeleteModal);
-						dispatch(orderWaitSlice.actions.sortOrderData(orderId));
-					}
-				});
-			} catch (e) {
-				throw new Error('Error delete order');
+			if (adminSwitchIdToUser) {
+				dispatch(fetchDeleteOrders({
+					userId: adminSwitchIdToUser,
+					orderId: [orderId],
+					ordersData: orderWaitData,
+					successCallback: handleToggleModal(setIsDeleteModal)
+
+				}));
 			}
+			// try {
+			// 	const sendData = {
+			// 		'userId': adminSwitchIdToUser,
+			// 		'orderId': [orderId]
+			// 	};
+			// 	octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
+			// 		data: sendData
+			// 	}).then(response => {
+			// 		if (response.data.message === 'success') {
+			// 			dispatch(orderWaitSlice.actions.sortOrderData(orderId));
+			// 		}
+			// 	});
+			// } catch (e) {
+			// 	throw new Error('Error delete order');
+			// }
 		};
 	};
 

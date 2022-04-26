@@ -8,7 +8,7 @@ interface IInitialState {
 };
 
 const initialState: IInitialState = {
-	adminSwitchIdToUser: 38,
+	adminSwitchIdToUser: 27,
 	search: '',
 	hints: [],
 };
