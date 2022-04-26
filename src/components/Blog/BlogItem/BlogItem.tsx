@@ -8,6 +8,7 @@ import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemD
 
 import BascetIcon from '../../../UI/UIIcon/Basket.svg';
 import EditPencilIcon from '../../../UI/UIIcon/EditPencil.svg';
+import EditPencilBlueIcon from '../../../UI/UIIcon/EditPencilBlue.svg';
 
 
 import { useCustomSize } from '@/hooks/useMedia';
@@ -60,7 +61,7 @@ const BlogItem: FC<IBlogItemProps> = (
 						</ButtonIconMUI>
 						
 						<ButtonIconMUI>
-							<EditPencilIcon/>
+							<EditPencilBlueIcon/>
 						</ButtonIconMUI>
 					</BtnSectionMUI>}
 					
@@ -76,7 +77,7 @@ const BlogItem: FC<IBlogItemProps> = (
 							</ButtonIconMUI>
 						
 							<ButtonIconMUI>
-								<EditPencilIcon/>
+								<EditPencilBlueIcon/>
 							</ButtonIconMUI>
 						</BtnSectionMUI> :null}
 						<CollapseDescMUI in={isOpenDesc}>
