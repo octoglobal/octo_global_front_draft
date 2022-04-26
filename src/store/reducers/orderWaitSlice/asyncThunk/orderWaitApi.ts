@@ -1,6 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {octoAxios} from '@/lib/http';
 import {IOrderModel} from '@/models/IOrderModel';
+import {IDefaultFetchSuccess} from '../../../../types/types';
+import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+import {sortItemArrayInId} from '@/services/services';
 
 interface IOrderWaitData {
 	page: number;
@@ -11,6 +14,7 @@ interface IOrderWaitData {
 interface IOrderWaitDataRes {
 	orders: IOrderModel[]
 }
+
 
 export const fetchOrderWaitData = createAsyncThunk(
 	'orderWaitSlice/data',
@@ -36,3 +40,58 @@ export const fetchOrderWaitData = createAsyncThunk(
 		}
 	}
 );
+
+
+interface IFetchDeleteData {
+	userId: number;
+	orderId: number[];
+	successCallback: () => void;
+	ordersData: IOrderModel[];
+}
+
+export const fetchDeleteOrders = createAsyncThunk(
+	'orderWaitSlice/delete',
+	async (data: IFetchDeleteData, thunkAPI) => {
+		try {
+			const sendData = {
+				'userId': data.userId,
+				'orderId': data.orderId,
+			};
+			const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
+				data: sendData
+			}).then(response => {
+				if (response.data.message === 'success') {
+					data.successCallback();
+					return sortItemArrayInId(data.ordersData, data.orderId);
+
+				} else {
+					return [];
+				}
+			});
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Error orderWaitSlice/delete');
+		}
+	}
+);
+
+// const handleDeleteOrder = (orderId: number) => {
+// 	return () => {
+// 		try {
+// 			const sendData = {
+// 				'userId': adminSwitchIdToUser,
+// 				'orderId': [orderId]
+// 			};
+// 			octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
+// 				data: sendData
+// 			}).then(response => {
+// 				if (response.data.message === 'success') {
+// 					handleToggleModal(setIsDeleteModal);
+// 					dispatch(orderWaitSlice.actions.sortOrderData(orderId));
+// 				}
+// 			});
+// 		} catch (e) {
+// 			throw new Error('Error delete order');
+// 		}
+// 	};
+// };

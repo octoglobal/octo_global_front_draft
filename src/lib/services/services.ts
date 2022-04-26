@@ -189,3 +189,12 @@ export const ToRusDate = (date : string) : string => {
 
 	return `${timeLocal} ${dateLocal}`;
 };
+
+export const sortItemArrayInId = (array: unknown, arrayId: number[]) => {
+	let filterArray = array as [];
+	for (let i = 0; i < arrayId.length; i++) {
+		filterArray = filterArray.filter((item: {id: number}) => item.id !== arrayId[i]) as [];
+	}
+	console.log(filterArray, array);
+	return filterArray;
+};
