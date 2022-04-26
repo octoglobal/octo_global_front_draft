@@ -58,9 +58,11 @@ export const useAccountHelpStyle = () => {
 		textDecorationLine: 'underline',
 		color: '#274D82',
 		textAlign: 'center',
-		marginTop: '8px',	
+		marginTop: '8px',
+		width: '220px',	
 		[theme.breakpoints.down(1024)]: {
 			fontSize: '16px',
+			width: '100%',
 		},	
 		[theme.breakpoints.down(600)]: {
 			alignSelf:' center',
