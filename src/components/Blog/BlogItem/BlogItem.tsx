@@ -7,7 +7,6 @@ import { useBlogItem } from '@/components/Blog/BlogItem/useBlogItem';
 import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemDescription';
 
 import BascetIcon from '../../../UI/UIIcon/Basket.svg';
-import EditPencilIcon from '../../../UI/UIIcon/EditPencil.svg';
 import EditPencilBlueIcon from '../../../UI/UIIcon/EditPencilBlue.svg';
 
 
