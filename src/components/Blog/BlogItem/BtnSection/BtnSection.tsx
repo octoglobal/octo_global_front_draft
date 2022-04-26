@@ -5,9 +5,14 @@ import EditPencilBlueIcon from '../../../../UI/UIIcon/EditPencilBlue.svg';
 
 import {useUserStore} from '@/hooks/useUserStore';
 
-const BtnSection: FC = ()=>{
+interface IBtnSection {
+	id:number
+}
 
 
+const BtnSection: FC<IBtnSection> = ({id})=>{
+
+	console.log('id в BtnSection',id);
 	const {
 		isAdmin
 	} = useUserStore();

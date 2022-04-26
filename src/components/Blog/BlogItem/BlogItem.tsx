@@ -9,8 +9,6 @@ import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemD
 
 import { useCustomSize } from '@/hooks/useMedia';
 import BtnSection from './BtnSection/BtnSection';
-import {useUserStore} from '@/hooks/useUserStore';
-
 
 interface IBlogItemProps extends IBlogModel {
 	viewDescription?: boolean;
@@ -25,9 +23,10 @@ const BlogItem: FC<IBlogItemProps> = (
 		newPost,
 		viewDescription = true,
 		isTitleSplice = false,
+		id,
 	},
 ) => {
-	console.log('products',products);
+	console.log('id', id);
 	const {
 		isOpenDesc,
 		modifiedTitle,
@@ -37,13 +36,7 @@ const BlogItem: FC<IBlogItemProps> = (
 		title,
 		viewDescription,
 		isTitleSplice,
-	);
-
-
-	const {
-		isAdmin
-	} = useUserStore();
-	console.log('isAdmin',isAdmin);
+	);	
 	const { isCustomSize } = useCustomSize(1025);
 	return (
 		<ItemMUI sx={dopItemStyle.item}>
@@ -61,7 +54,7 @@ const BlogItem: FC<IBlogItemProps> = (
 						
 					))}
 					
-					{isCustomSize? null :<BtnSection></BtnSection>}
+					{isCustomSize? null :<BtnSection id={id}></BtnSection>}
 					
 				</ProductListMUI>
 				{viewDescription && (
@@ -69,7 +62,7 @@ const BlogItem: FC<IBlogItemProps> = (
 						<ButtonIconMUI onClick={handleToggleDesc}>
 							<ShopsTagsListArrow />
 						</ButtonIconMUI>
-						{isCustomSize? <BtnSection/> :null}
+						{isCustomSize? <BtnSection id={id}/> :null}
 						<CollapseDescMUI in={isOpenDesc}>
 							<BlogItemDescription
 								description={body}
