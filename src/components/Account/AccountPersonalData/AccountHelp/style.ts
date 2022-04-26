@@ -4,14 +4,13 @@ export const useAccountHelpStyle = () => {
 
 	const HelpWrapperMUI = styled('div')(({theme}) => ({
 		// border: '1px solid blue',
+		gap: 10,
 		[theme.breakpoints.down(1024)]: {
 			marginTop:'20px'
-
-			
 		},
 		[theme.breakpoints.down(600)]: {
 			flexDirection: 'column',
-			gap: 10
+			
 		},
 		display: 'flex',
 		flexDirection: 'row',
@@ -33,10 +32,9 @@ export const useAccountHelpStyle = () => {
 		flexDirection: 'column',
 		alignItems: 'center',
 		
-		gap: 20,
 		[theme.breakpoints.down(600)]: {
 			flexDirection: 'row',
-					
+			gap: 20,
 		},
 	}));
 
@@ -46,8 +44,7 @@ export const useAccountHelpStyle = () => {
 		[theme.breakpoints.down(600)]: {
 			display:'flex',
 			justifyContent:'center',
-			alignItems: 'center',
-					
+			alignItems: 'center',				
 		},
 		
 	}));
@@ -61,8 +58,10 @@ export const useAccountHelpStyle = () => {
 		textDecorationLine: 'underline',
 		color: '#274D82',
 		textAlign: 'center',
-		marginTop: '8px',
-		
+		marginTop: '8px',	
+		[theme.breakpoints.down(1024)]: {
+			fontSize: '16px',
+		},	
 		[theme.breakpoints.down(600)]: {
 			alignSelf:' center',
 			textAlign: 'left',
