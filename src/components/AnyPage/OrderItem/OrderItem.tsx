@@ -75,6 +75,7 @@ const OrderItem: FC<IOrderItemProps> = (
 			)}
 			{isAdmin && (
 				<OrderStatusModal
+					successCallback={() => console.log(123)}
 					orderItem={orderItem}
 					open={isStatusModal}
 					onClose={handleToggleModal(setIsStatusModal)}

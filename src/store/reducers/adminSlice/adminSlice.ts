@@ -1,10 +1,20 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {IHints} from '@/components/AnyPage/CategorySearch/types';
+import { fetchUsersInAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
+
+export interface IAdminHintsData extends IHints{
+	userAreaId: null | number,
+	email: null | string,
+	orderNumber: null | number,
+	trackNumber: null | string,
+	name: null | string,
+	type: 'user' | 'order' | null,
+}
 
 interface IInitialState {
 	adminSwitchIdToUser: null | number;
 	search: string;
-	hints: IHints[];
+	hints: IAdminHintsData[]
 };
 
 const initialState: IInitialState = {
@@ -17,7 +27,11 @@ export const adminSlice = createSlice({
 	name: 'adminSlice',
 	initialState,
 	reducers: {},
-	extraReducers: {}
+	extraReducers: {
+		[fetchUsersInAdmin.fulfilled.type]: (state, action: PayloadAction<IAdminHintsData[]>) => {
+			state.hints = action.payload;
+		}
+	}
 });
 
 export default adminSlice.reducer;

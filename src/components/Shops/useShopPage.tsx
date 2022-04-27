@@ -2,10 +2,10 @@ import {useCallback, useEffect} from 'react';
 import {ICategoryItem} from '@/components/Shops/type';
 import {useForm} from 'react-hook-form';
 import {
-	fetchAllTagsShops,
+	fetchAllTagsShops, fetchHintsSearchShops,
 	fetchMoreTagShops,
 	fetchSearchShops,
-	fetchTagShops
+	fetchTagShops,
 } from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {getFulfilledInString} from '@/services/services';
@@ -41,6 +41,14 @@ export const useShopPage = () => {
 			}
 		}
 		return tagString;
+	};
+
+	const handleResetHints = () => {
+		dispatch(shopSlice.actions.changeHintsShops([]));
+	};
+
+	const handleChangeSearchValue = (searchValue: string) => {
+		dispatch(fetchHintsSearchShops({searchValue}));
 	};
 
 	const onSubmit = (data: ISearchData, type: SearchSubmitType = 'search') => {
@@ -219,11 +227,14 @@ export const useShopPage = () => {
 		allTags,
 		methods,
 		onSubmit,
+		searchHints,
 		activeCategory,
 		isNotFoundShops,
+		handleResetHints,
 		handleResetCategory,
 		handleChangeCategory,
 		handleDeleteCategory,
 		handleClickTagInCard,
+		handleChangeSearchValue,
 	};
 };

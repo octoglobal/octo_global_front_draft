@@ -4,16 +4,27 @@ import {Controller} from 'react-hook-form';
 import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySearchHints/CategorySearchHints';
 import {useCategorySearch} from '@/components/AnyPage/CategorySearch/useCategorySearch';
 import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
+import { IHints } from '@/components/AnyPage/CategorySearch/types';
+import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 
 interface ICategorySearchProps {
 	onSubmit: (data: ISearchData, type: SearchSubmitType) => void;
+	searchHints: IHints[] | IAdminHintsData[];
+	handleKeyDownEnter: () => void;
+	handleChangeSearchValue: (value: string) => void;
+	component: 'account' | 'shops';
 }
 
-const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
+const CategorySearch: FC<ICategorySearchProps> = ({
+	onSubmit,
+	searchHints,
+	handleKeyDownEnter,
+	handleChangeSearchValue,
+	component = 'shops',
+}) => {
 	const {
 		control,
-		searchHints,
 		isMouseEnter,
 		handleKeyDown,
 		isVisibleHints,
@@ -23,7 +34,12 @@ const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
 		handleChangeFocus,
 		handleClickHintItem,
 		handleChangeActiveSuggestion
-	} = useCategorySearch(onSubmit);
+	} = useCategorySearch(
+		onSubmit,
+		searchHints,
+		handleKeyDownEnter,
+		handleChangeSearchValue
+	);
 
 	return (
 		<>
@@ -46,6 +62,7 @@ const CategorySearch: FC<ICategorySearchProps> = ({onSubmit}) => {
 			</SearchContainerMUI>
 			{isVisibleHints && (
 				<CategorySearchHint
+					component={component}
 					hintsData={searchHints}
 					isMouseEnter={isMouseEnter}
 					isVisibleHints={isVisibleHints}
