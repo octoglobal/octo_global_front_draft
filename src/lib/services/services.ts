@@ -1,4 +1,6 @@
 import {ChangeEvent} from 'react';
+import { IOrdersSearchAdmin, ISearchAdminModel, IUserSearchAdmin } from '@/models/ISearchAdminModel';
+import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 export const checkValidArray = (arr: Array<unknown>): boolean => Array.isArray(arr) && !!arr?.length;
 
@@ -127,7 +129,7 @@ export const ellipsis = (string : string, count : number) : string => {
 export const addZero = (n : number | string) : number | string => {
 	if (n < 10) {
 		return `0${n}`;
-	} 
+	}
 	else {
 		return n;
 	}
@@ -198,4 +200,47 @@ export const sortItemArrayInId = (array: unknown, arrayId: number[]) => {
 	}
 	console.log(filterArray, array);
 	return filterArray;
+};
+
+export const generateAdminHintsData = (data: ISearchAdminModel) => {
+	const modificationArray: IAdminHintsData[] = [];
+	for (const [, value] of Object.entries(data)) {
+		value.forEach((item: IOrdersSearchAdmin & IUserSearchAdmin, index: number) => {
+			const innerObj: IAdminHintsData = {
+				userAreaId: null,
+				email: null,
+				orderNumber: null,
+				trackNumber: null,
+				name: null,
+				type: null,
+				url: '',
+				title: '',
+			};
+
+			const type = item?.trackNumber || item?.trackNumber ? 'order' : 'user';
+
+			if (type == 'order') {
+				innerObj.userAreaId = item?.userAreaId;
+				innerObj.name = item?.userName;
+				innerObj.email = item?.userEmail;
+				innerObj.orderNumber = item?.longId;
+				innerObj.trackNumber = item?.trackNumber;
+				innerObj.url = `${item?.userEmail}${item?.userName}${item?.userAreaId}${item.trackNumber}${item.longId}`;
+			}
+
+			if (type == 'user') {
+				innerObj.userAreaId = item?.personalAreaId;
+				innerObj.name = item?.name;
+				innerObj.email = item?.email;
+				innerObj.orderNumber = null;
+				innerObj.trackNumber = null;
+				innerObj.url = `${item?.email}${item?.name}${item?.personalAreaId}${index}`;
+			}
+			innerObj.type = type;
+
+			modificationArray.push(innerObj);
+
+		});
+	}
+	return modificationArray.splice(0, 5);
 };
