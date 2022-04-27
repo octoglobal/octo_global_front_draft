@@ -26,7 +26,7 @@ const BlogItem: FC<IBlogItemProps> = (
 		id,
 	},
 ) => {
-	console.log('id', id);
+	
 	const {
 		isOpenDesc,
 		modifiedTitle,

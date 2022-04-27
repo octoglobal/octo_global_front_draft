@@ -6,6 +6,10 @@ import EditPencilBlueIcon from '../../../../UI/UIIcon/EditPencilBlue.svg';
 import {useUserStore} from '@/hooks/useUserStore';
 import ModalConfirmUI from 'UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
+
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import { fetchDeleteBlogItem } from '@/store/reducers/blogSlice/asyncThunk/blogApi';
+
 interface IBtnSection {
 	id:number
 }
@@ -13,19 +17,28 @@ interface IBtnSection {
 
 const BtnSection: FC<IBtnSection> = ({id})=>{
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
-	
+	const dispatch = useAppDispatch();
+
 	const {
 		isAdmin
 	} = useUserStore();
 
 
-	const handlerDialogOpen = () => {
-		console.log('handlerDialogState: openModal');
+	const handlerDialogOpen = () => {		
 		setOpenConfirmDialog(true);
 	};
-	const handlerCancel = () : void => {
-		console.log('handlerDialogState: closeModal');
-		setOpenConfirmDialog(false);
+
+	const handlerFetchDelete = (id:number)  => {
+		return ()=>{		
+			dispatch(fetchDeleteBlogItem(id));			
+			setOpenConfirmDialog(false);
+		};
+
+		
+	};
+	const handlerCancel = ():void  => {
+		
+		setOpenConfirmDialog(false);		
 	};
 	return (
 		<>
@@ -45,7 +58,7 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 			
 				open={openConfirmDialog}
 				title="Вы уверены что хотите удалить пост?"
-				onClickYes={handlerCancel}
+				onClickYes={handlerFetchDelete(id)}
 				onClickNo={handlerCancel}
 			/>
 		</>

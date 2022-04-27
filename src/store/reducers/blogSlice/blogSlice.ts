@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
 import {IBlogModel} from '@/models/IBlogModel';
-import { fetchAddNewsBlog, fetchNewsData } from '@/reducers/blogSlice/asyncThunk/blogApi';
+import { fetchAddNewsBlog, fetchNewsData,fetchDeleteBlogItem } from '@/reducers/blogSlice/asyncThunk/blogApi';
 
 interface IBlogSlice {
 	page: number;
@@ -30,6 +30,14 @@ export const blogSlice = createSlice({
 	reducers: {
 		updatePosts: (state) => {
 			state.updatePosts = true;
+		},
+		deletePostItem:(state,action)=>{
+			console.log('dfdfdfd');
+			state.blogData = state.blogData.filter((blog) => {
+				return blog.id !== action.payload;
+			});
+		
+			
 		}
 	},
 	extraReducers: {
@@ -45,8 +53,12 @@ export const blogSlice = createSlice({
 			} else {
 				state.blogData = [...action.payload.posts];
 			}
-		},
+		},	
+			
 	}
 });
+
+export const { deletePostItem } =
+blogSlice.actions;
 
 export default blogSlice.reducer;

@@ -4,6 +4,8 @@ import {octoAxios} from '@/lib/http';
 import axios from 'axios';
 import {IBlogModel} from '@/models/IBlogModel';
 
+import { deletePostItem } from '@/store/reducers/blogSlice/blogSlice';
+
 interface IFetchNewsDataReq {
 	page: number
 	pageLimit: number;
@@ -106,6 +108,21 @@ export const fetchNewsData = createAsyncThunk(
 			if (axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);
 			}
+		}
+	}
+);
+
+export const fetchDeleteBlogItem = createAsyncThunk(
+	'blogSlice/deletePosts',
+	async (id, {dispatch,rejectWithValue }) => {
+		try {		
+			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: id }});
+			if (response.statusText === 'OK'){				
+				dispatch(deletePostItem(id));				
+			}			
+	
+		} catch (e) {
+			console.log('delete err');
 		}
 	}
 );
