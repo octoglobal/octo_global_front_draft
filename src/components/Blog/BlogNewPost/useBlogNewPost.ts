@@ -1,22 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useAppSelector } from '@/hooks/useReduxHooks';
+import { useEffect } from 'react';
+import { useAppDispatch,useAppSelector } from '@/hooks/useReduxHooks';
+import { updateEditMode } from '@/store/reducers/blogSlice/blogSlice';
 
 export const useBlogNewPost = () => {
-	const { blogData } = useAppSelector(state => state.blogReducer);
-	const [isNewPost, setIsNewPost] = useState<boolean>(false);
+	const { blogData,EditMode } = useAppSelector(state => state.blogReducer);
+	
+	const isOpen = EditMode.open;
+	const dispatch = useAppDispatch();
 
 	const handleToggleNewPost = () => {
-		setIsNewPost(prevState => !prevState);
+		dispatch(updateEditMode({open:!isOpen,id:null}));
+		
 	};
 
 	useEffect(() => {
-		if (isNewPost) {
-			setIsNewPost(false);
+		if (isOpen) {			
+			dispatch(updateEditMode({open:false,id:null}));
 		}
 	}, [blogData]);
 
 	return {
-		isNewPost,
+		
+		isOpen,
 		handleToggleNewPost
 	};
 };

@@ -8,6 +8,7 @@ interface IBlogSlice {
 	updatePosts: boolean;
 	blogData: IBlogModel[];
 	blogEnd: boolean;
+	EditMode: any;
 };
 
 interface IFetchNewsFulfilled {
@@ -22,6 +23,10 @@ const initialState: IBlogSlice = {
 	updatePosts: false,
 	blogData: [],
 	blogEnd: false,
+	EditMode: {
+		id: null,
+		open:false
+	}
 };
 
 export const blogSlice = createSlice({
@@ -34,10 +39,13 @@ export const blogSlice = createSlice({
 		deletePostItem:(state,action)=>{			
 			state.blogData = state.blogData.filter((blog) => {
 				return blog.id !== action.payload;
-			});
+			});			
+		},
+		updateEditMode: (state,action) => {
 		
-			
-		}
+			state.EditMode.id = action.payload.id;
+			state.EditMode.open = action.payload.open;
+		},
 	},
 	extraReducers: {
 		[fetchAddNewsBlog.fulfilled.type]: (state, action: PayloadAction<IBlogModel>) => {
@@ -57,7 +65,7 @@ export const blogSlice = createSlice({
 	}
 });
 
-export const { deletePostItem } =
+export const { deletePostItem,updateEditMode } =
 blogSlice.actions;
 
 export default blogSlice.reducer;

@@ -1,20 +1,22 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useBlogTextFieldStyles} from '@/components/Blog/BlogNewPost/BlogTextField/style';
-import {useFormContext} from 'react-hook-form';
+import {useFormContext,useForm } from 'react-hook-form';
 
 interface IBlogSubtitleProps {
 	name: string,
 	placeholder: string,
+	value: string,
 };
 
-const BlogTextField: FC<IBlogSubtitleProps> = ({name, placeholder}) => {
+const BlogTextField: FC<IBlogSubtitleProps> = ({name, placeholder,value}) => {
+	console.log('dfdfdf',value);
 	const {control} = useFormContext();
-
+	const text =  value ? value : '';
 	return (
 		<TextFieldContainerMUI>
-			<TextFieldUI
-				controller={{
+			<TextFieldUI		
+				controller={{					
 					name,
 					control,
 					rules: {
@@ -22,7 +24,10 @@ const BlogTextField: FC<IBlogSubtitleProps> = ({name, placeholder}) => {
 					}
 				}}
 				inputProps={{
-					placeholder
+					name,
+					placeholder,
+					defaultValue: text
+					
 				}}
 			/>
 		</TextFieldContainerMUI>

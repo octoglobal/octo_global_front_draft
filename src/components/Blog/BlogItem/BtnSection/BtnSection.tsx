@@ -9,6 +9,8 @@ import ModalConfirmUI from 'UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import { fetchDeleteBlogItem } from '@/store/reducers/blogSlice/asyncThunk/blogApi';
+import { updateEditMode } from '@/store/reducers/blogSlice/blogSlice';
+
 
 interface IBtnSection {
 	id:number
@@ -22,7 +24,9 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 	const {
 		isAdmin
 	} = useUserStore();
+	
 
+	
 
 	const handlerDialogOpen = () => {		
 		setOpenConfirmDialog(true);
@@ -40,6 +44,13 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 		
 		setOpenConfirmDialog(false);		
 	};
+
+	const handleEditMode = ()  => {
+		
+		dispatch(updateEditMode({open: true,id:id}));
+			
+	};
+
 	return (
 		<>
 			{ isAdmin? <BtnSectionMUI>
@@ -47,7 +58,7 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 					<BascetIcon/>
 				</ButtonIconMUI>
 					
-				<ButtonIconMUI >
+				<ButtonIconMUI onClick={handleEditMode}>
 					<EditPencilBlueIcon/>
 				</ButtonIconMUI>
 				

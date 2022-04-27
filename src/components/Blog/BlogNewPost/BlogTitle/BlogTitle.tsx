@@ -3,9 +3,10 @@ import {useBlogTitleStyles} from '@/components/Blog/BlogNewPost/BlogTitle/style'
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useFormContext} from 'react-hook-form';
 
-const BlogTitle = () => {
+const BlogTitle = ({value}) => {
 	const { control } = useFormContext();
-
+	const text =  value ? value : '';
+	
 	return (
 		<TitleContainerMUI>
 			<TextFieldUI
@@ -14,7 +15,8 @@ const BlogTitle = () => {
 					control,
 				}}
 				inputProps={{
-					placeholder: 'Название поста'
+					placeholder: 'Название поста',
+					defaultValue: text
 				}}
 			/>
 		</TitleContainerMUI>

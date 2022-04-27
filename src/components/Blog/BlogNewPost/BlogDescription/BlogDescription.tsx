@@ -4,9 +4,9 @@ import {useFormContext} from 'react-hook-form';
 import {useBlogDescriptionStyles} from '@/components/Blog/BlogNewPost/BlogDescription/style';
 
 
-const BlogDescription = () => {
+const BlogDescription = ({body}) => {
 	const { control } = useFormContext();
-
+	const text =  body ? body : '';
 	return (
 		<TextAreaContainerMUI>
 			<TextFieldUI
@@ -19,6 +19,8 @@ const BlogDescription = () => {
 					minRows: 5,
 					maxRows: 5,
 					multiline: true,
+				
+					defaultValue: text,
 				}}
 			/>
 		</TextAreaContainerMUI>

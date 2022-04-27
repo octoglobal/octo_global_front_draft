@@ -1,6 +1,7 @@
+
 import {useForm} from 'react-hook-form';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
-import {fetchAddNewsBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
+import {fetchAddNewsBlog,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
 
 
 export interface IPhotoFormState {
@@ -27,25 +28,38 @@ export interface IFormData {
 
 
 
-export const useBlogFields = () => {
+export const useBlogFields = (edit) => {
 
 	const dispatch = useAppDispatch();
 	const methods = useForm<IFormData>();
 
 	const onSubmit = (data: IFormData) => {
-		try {
-			dispatch(fetchAddNewsBlog(data)).then(r => {
-				if (r.type === 'blogSlice/add/fulfilled') {
-					methods.reset({});
-					window.scrollTo({
-						behavior: 'smooth',
-						top: 0
-					});
-				}
-			});
-		} catch (e) {
-			throw new Error('Ошибка запроса');
+		
+		if (edit){
+			
+			try {
+				console.log('edit try',edit);
+			
+				dispatch(fetchUpdateBlog({data: data,id:edit}));
+			} catch (e) {
+				throw new Error('Ошибка запроса');
+			}
+		} else {
+			try {
+				dispatch(fetchAddNewsBlog(data)).then(r => {
+					if (r.type === 'blogSlice/add/fulfilled') {
+						methods.reset({});
+						window.scrollTo({
+							behavior: 'smooth',
+							top: 0
+						});
+					}
+				});
+			} catch (e) {
+				throw new Error('Ошибка запроса');
+			}
 		}
+		
 	};
 
 	return {
