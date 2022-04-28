@@ -9,6 +9,7 @@ import {useMobile} from '@/hooks/useMedia';
 import LightningInsideCircle from '../../../UI/UIIcon/LightningInsideCircle.svg';
 
 
+
 type TabsQueryProps = {
 	location?: string;
 };
@@ -34,7 +35,8 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		TabWrapperUI,
 		TabUI,
 		TabsListUI,
-		TabsMarginLeft
+		TabsMarginLeft,
+		// MyPng
 	} = useTabsStyle();
 
 	const {isMobile} = useMobile();
@@ -84,8 +86,10 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 								>
 									<>
 										{item.title}
+									
 										{item.title === 'Выкуп товара'
 											? <TabsMarginLeft>
+												{/* <MyPng/> */}
 												<LightningInsideCircle />
 											  </TabsMarginLeft>
 											: ''

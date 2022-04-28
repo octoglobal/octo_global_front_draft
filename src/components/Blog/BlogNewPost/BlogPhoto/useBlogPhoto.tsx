@@ -12,7 +12,7 @@ export const useBlogPhoto = (indexField: number) => {
 
 	const {EditMode} = useAppSelector(state => state.blogReducer);
 
-	const stopClick= (e) => {
+	const stopClick= (e: React.MouseEvent<HTMLElement>) => {
 		if (EditMode.id){
 			e.preventDefault();
 		}
