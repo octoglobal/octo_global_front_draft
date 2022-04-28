@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IStockDataModel} from '@/models/IStockDataModel';
-import {fetchOrderStockData} from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import { fetchOrderReturn, fetchOrderStockData } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 
 interface IInitialState {
 	page: number;
@@ -27,7 +27,12 @@ export const orderStockSlice = createSlice({
 			state.page += 1;
 			state.updatePosts = false;
 			state.stockData = [...state.stockData, ...action.payload];
-		}
+		},
+		[fetchOrderReturn.fulfilled.type]: (state, action: PayloadAction<IStockDataModel[]>) => {
+			if (action.payload?.length && Array.isArray(action.payload)) {
+				state.stockData = action.payload;
+			}
+		},
 	}
 });
 

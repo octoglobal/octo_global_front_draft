@@ -23,3 +23,30 @@ export const fetchOrderStockData = createAsyncThunk(
 		}
 	}
 );
+
+export const fetchOrderReturn = createAsyncThunk(
+	'orderStockSlice/return',
+	async (data: {orderId: number}, thunkAPI) => {
+		try {
+			await octoAxios.get(`/user/send_message/order_return/${data.orderId}`);
+			const { orderStockReducer: {stockData} } = thunkAPI.getState() as {orderStockReducer: {stockData: IStockDataModel[]}};
+			return stockData.filter(item => item.id !== data.orderId);
+		} catch (e) {
+			thunkAPI.rejectWithValue('Error orderStockSlice/return');
+			return 'error';
+		}
+	}
+);
+
+
+export const fetchOrderCheck = createAsyncThunk(
+	'orderStockSlice/check',
+	async (data: {orderId: number}, thunkAPI) => {
+		try {
+			await octoAxios.get(`/user/send_message/order_check/${data.orderId}`);
+		} catch (e) {
+			thunkAPI.rejectWithValue('Error orderStockSlice/return');
+			return 'error';
+		}
+	}
+);
