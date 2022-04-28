@@ -6,7 +6,7 @@ interface IEditMode {
 	id: number | null,
 	open: boolean
 }
-interface IError {
+export interface IError {
 	status: boolean,
 	message: string,
 }

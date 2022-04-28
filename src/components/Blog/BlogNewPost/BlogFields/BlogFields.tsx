@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import {useBlogFieldsStyles} from '@/components/Blog/BlogNewPost/BlogFields/style';
 import { FormProvider } from 'react-hook-form';
 import BlogPreviewFields from '@/components/Blog/BlogNewPost/BlogPreviewFields/BlogPreviewFields';
@@ -6,12 +6,8 @@ import BlogDescription from '@/components/Blog/BlogNewPost/BlogDescription/BlogD
 import BlogTitle from '@/components/Blog/BlogNewPost/BlogTitle/BlogTitle';
 import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import {useBlogFields} from '@/components/Blog/BlogNewPost/BlogFields/useBlogFields';
-
-
 import { useAppSelector } from '@/hooks/useReduxHooks';
 import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
-
-
 
 
 interface IBlogFieldsProps {
