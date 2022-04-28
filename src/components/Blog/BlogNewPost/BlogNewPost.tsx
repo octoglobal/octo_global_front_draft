@@ -4,6 +4,8 @@ import {useBlogNewPostStyles} from '@/components/Blog/BlogNewPost/style';
 import {useBlogNewPost} from '@/components/Blog/BlogNewPost/useBlogNewPost';
 import BlogFields from '@/components/Blog/BlogNewPost/BlogFields/BlogFields';
 
+
+
 const BlogNewPost = () => {
 
 	const {		

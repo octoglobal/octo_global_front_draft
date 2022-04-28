@@ -6,30 +6,30 @@ import {useBlogPreviewFieldsStyles} from '@/components/Blog/BlogNewPost/BlogPrev
 
 interface IBlogPreviewFieldsProps {
 	indexField: number,
-	product: object[],
+	
 }
 
-const BlogPreviewFields: FC<IBlogPreviewFieldsProps> = ({indexField,product={}}) => {
+const BlogPreviewFields: FC<IBlogPreviewFieldsProps> = ({indexField}) => {
 	
 	return (
 		<ContainerMUI>
 			<BlogPhoto
 				indexField={indexField}
-				// photoReady={product.photo}
+			
 			/>
 			<BlogTextField
 				name={`subtitlePhoto${indexField}`}
 				placeholder='Подзаголовок'
-				value={product.body}
+			
 			/>
 			<BlogTextField
 				name={`miniDescPhoto${indexField}`}
 				placeholder='Мини-описание'
-				value={product.title}
+				
 			/>
 			<BlogLink
 				indexField={indexField}
-				value={product.url}
+				
 			/>
 		</ContainerMUI>
 	);

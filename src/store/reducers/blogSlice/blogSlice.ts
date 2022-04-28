@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
 import {IBlogModel} from '@/models/IBlogModel';
-import { fetchAddNewsBlog, fetchNewsData, } from '@/reducers/blogSlice/asyncThunk/blogApi';
+import { fetchAddNewsBlog, fetchNewsData, fetchDeleteBlogItem,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
 
 interface IBlogSlice {
 	page: number;
@@ -8,7 +8,7 @@ interface IBlogSlice {
 	updatePosts: boolean;
 	blogData: IBlogModel[];
 	blogEnd: boolean;
-	EditMode: any;
+	EditMode: object;
 };
 
 interface IFetchNewsFulfilled {
@@ -42,9 +42,21 @@ export const blogSlice = createSlice({
 			});			
 		},
 		updateEditMode: (state,action) => {
-		
 			state.EditMode.id = action.payload.id;
 			state.EditMode.open = action.payload.open;
+		},
+		updateBlogData: (state,action) => {
+
+			const newData = state.blogData.map(blog=>{
+				if (blog.id === action.payload.id){
+				
+					return {...blog, ...action.payload};
+				} 
+				return blog;
+			});
+			state.blogData = newData;
+		
+			
 		},
 	},
 	extraReducers: {
@@ -60,12 +72,20 @@ export const blogSlice = createSlice({
 			} else {
 				state.blogData = [...action.payload.posts];
 			}
-		},	
+		},
+		// [fetchDeleteBlogItem.fulfilled.type]: (state, action) => {
+		
+		// 	state.blogData = state.blogData.filter((blog) => {
+		// 		return blog.id !== action.payload;
+		// 	});
+		// },	
+		
+		
 			
 	}
 });
 
-export const { deletePostItem,updateEditMode } =
+export const { deletePostItem,updateEditMode ,updateBlogData} =
 blogSlice.actions;
 
 export default blogSlice.reducer;

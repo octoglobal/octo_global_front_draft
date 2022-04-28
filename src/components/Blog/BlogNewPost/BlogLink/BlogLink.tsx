@@ -5,13 +5,13 @@ import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 
 interface IBlogLinkProps {
 	indexField: number;
-	value: string
+
 };
 
-const BlogLink: FC<IBlogLinkProps> = ({indexField,value}) => {
+const BlogLink: FC<IBlogLinkProps> = ({indexField}) => {
 
 	const { control } = useFormContext();
-	const text =  value ? value : '';
+	
 	return (
 		<LinkContainerMUI>
 			<TextFieldUI
@@ -24,7 +24,7 @@ const BlogLink: FC<IBlogLinkProps> = ({indexField,value}) => {
 				}}
 				inputProps={{
 					placeholder: '[Купить/https:://........]',
-					defaultValue: text
+					
 				}}
 			/>
 		</LinkContainerMUI>

@@ -1,6 +1,7 @@
 import React, {useMemo, useRef} from 'react';
 import {useFormContext, useWatch} from 'react-hook-form';
 import {IPhotoFormState} from '@/components/Blog/BlogNewPost/BlogFields/useBlogFields';
+import { useAppSelector } from '@/hooks/useReduxHooks';
 
 export const useBlogPhoto = (indexField: number) => {
 	const photo = useWatch({name: `blogPhoto${indexField}`}) as IPhotoFormState;
@@ -9,6 +10,14 @@ export const useBlogPhoto = (indexField: number) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const defaultPhoto = '/image/BlogAddPhoto.jpg';
 
+	const {EditMode} = useAppSelector(state => state.blogReducer);
+
+	const stopClick= (e) => {
+		if (EditMode.id){
+			e.preventDefault();
+		}
+		
+	};
 
 	const photoSrc = useMemo(() => {
 		if (photo?.base64) {
@@ -70,5 +79,7 @@ export const useBlogPhoto = (indexField: number) => {
 		onChangeInput,
 		handleAddPhoto,
 		handleClearPhoto,
+		stopClick,
+		EditMode
 	};
 };

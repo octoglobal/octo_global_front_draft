@@ -4,7 +4,7 @@ import {octoAxios} from '@/lib/http';
 import axios from 'axios';
 import {IBlogModel} from '@/models/IBlogModel';
 
-import { deletePostItem } from '@/store/reducers/blogSlice/blogSlice';
+import { deletePostItem,updateBlogData } from '@/store/reducers/blogSlice/blogSlice';
 
 interface IFetchNewsDataReq {
 	page: number
@@ -130,11 +130,10 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 
 export const fetchUpdateBlog = createAsyncThunk(
 	'blogSlice/update',
-	async (data) => {
-		console.log('fetchUpdateBlog datadatadata',data.data);
-		console.log('fetchUpdateBlog idididid',data.id);
-		try {
+	async (data,{dispatch}) => {
 		
+		try {
+			const formData = new FormData();
 			const sendData = JSON.stringify(
 				{	
 					blogId:data.id,
@@ -159,13 +158,47 @@ export const fetchUpdateBlog = createAsyncThunk(
 					]
 				}
 			);
-			console.log('fetchUpdateBlog sendDatasendDatasendData',sendData);
-			const response = await octoAxios
-				.patch('/admin/blog', sendData);
+
+					
+			formData.append('json_data', sendData);
+			const response = await octoAxios.patch('/admin/blog', formData);
 			
+			if (response.statusText === 'OK'){				
+				
+				const updateData = {	
+					id:data.id,
+					title: data.data.blogTitle,
+					body: data.data.blogDescription,
+					
+					products: [
+						{
+							title: data.data.subtitlePhoto1,
+							body: data.data.miniDescPhoto1,
+							url: data.data.postLink1,
+							photo: data.data.blogPhoto1.base64.split('/image')[1],
+							
+						},
+						{
+							title: data.data.subtitlePhoto2,
+							body: data.data.miniDescPhoto2,
+							url: data.data.postLink2,
+							photo: data.data.blogPhoto2.base64.split('/image')[1]
+						},
+						{
+							title: data.data.subtitlePhoto3,
+							body: data.data.miniDescPhoto3,
+							url: data.data.postLink3,
+							photo: data.data.blogPhoto3.base64.split('/image')[1]
+						},
+					]
+				};
+			
+				dispatch(updateBlogData(updateData));
+				
+			}
 			
 		} catch (e) {
-			console.log('errr');
+			console.log('updateBlogData errr');
 		}
 	}
 );

@@ -6,7 +6,7 @@ import {fetchAddNewsBlog,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/
 
 export interface IPhotoFormState {
 	base64: string,
-	file: File
+	file: File | undefined
 }
 
 export interface IFormData {
@@ -38,8 +38,7 @@ export const useBlogFields = (edit) => {
 		if (edit){
 			
 			try {
-				console.log('edit try',edit);
-			
+				
 				dispatch(fetchUpdateBlog({data: data,id:edit}));
 			} catch (e) {
 				throw new Error('Ошибка запроса');

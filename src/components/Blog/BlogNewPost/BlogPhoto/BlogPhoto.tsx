@@ -6,32 +6,36 @@ import PlusIcon from '@/UIIcon/PlusIcon.svg';
 
 interface IBlogPhotoProps {
 	indexField: number;
-	photoReady: string
+
 }
 
-const BlogPhoto: FC<IBlogPhotoProps> = ({indexField, photoReady}) => {
+const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
 	const {
 		control,
 		photoSrc,
 		inputRef,
+		EditMode,
 		onChangeInput,
 		handleAddPhoto,
 		handleClearPhoto,
-	} = useBlogPhoto(indexField,photoReady);
-	
+		stopClick,
+	} = useBlogPhoto(indexField);
+
+
 	return (
-		<PhotoContainerMUI>
+		<PhotoContainerMUI onClick={(e)=>stopClick(e)}>
+
 			{!photoSrc.defaultPhoto && (
-				<DeleteButtonMUI
+				EditMode? null:<DeleteButtonMUI
 					onClick={handleClearPhoto}
 				>
 					<PlusIcon/>
 				</DeleteButtonMUI>
+				
 			)}
 			<UploadButtonMUI onClick={handleAddPhoto}>
 				<PhotoButtonMUI
 					src={photoSrc.src}
-					// src={'data:image;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7'}
 					alt={`postPhoto${indexField}`}
 				/>
 			</UploadButtonMUI>

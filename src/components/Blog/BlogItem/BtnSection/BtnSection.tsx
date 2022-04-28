@@ -48,7 +48,10 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 	const handleEditMode = ()  => {
 		
 		dispatch(updateEditMode({open: true,id:id}));
-			
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});	
 	};
 
 	return (
