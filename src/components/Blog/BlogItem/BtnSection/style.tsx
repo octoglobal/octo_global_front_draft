@@ -5,8 +5,8 @@ export const useBtnSectionStyles = () => {
 
 	const ButtonIconMUI = styled(Button)(({theme}) => ({
 		display: 'block',
-		width: '24px',
-		height: '33px',
+		// width: '24px',
+		// height: '33px',
 		padding: '0',
 		border: 0,
 		backgroundColor: 'transparent',
@@ -14,8 +14,8 @@ export const useBtnSectionStyles = () => {
 		margin: '0 auto 6px',
 		textAlign: 'center',
 		[theme.breakpoints.down(769)]: {
-			width: '14px',
-			height: '22px',
+			// width: '14px',
+			// height: '22px',
 		}
 	}));
 
