@@ -34,7 +34,7 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 
 	const handlerFetchDelete = (id:number)  => {
 		return ()=>{		
-			dispatch(fetchDeleteBlogItem(id));			
+			dispatch(fetchDeleteBlogItem({id:id}));			
 			setOpenConfirmDialog(false);
 		};
 

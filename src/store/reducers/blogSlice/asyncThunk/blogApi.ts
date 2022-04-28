@@ -50,9 +50,9 @@ export const fetchAddNewsBlog = createAsyncThunk(
 					]
 				}
 			);
-			formData.append('image', data.blogPhoto1.file);
-			formData.append('image', data.blogPhoto2.file);
-			formData.append('image', data.blogPhoto3.file);
+			formData.append('image', data.blogPhoto1.file as File);
+			formData.append('image', data.blogPhoto2.file as File);
+			formData.append('image', data.blogPhoto3.file as File);
 			formData.append('json_data', sendData);
 			const response = await octoAxios
 				.post<IFetchAddNewsRes>('/admin/blog', formData)
@@ -114,23 +114,26 @@ export const fetchNewsData = createAsyncThunk(
 
 export const fetchDeleteBlogItem = createAsyncThunk(
 	'blogSlice/deletePosts',
-	async (id, {dispatch }) => {
+	async (data: {id: number}, {rejectWithValue, dispatch}) => {
+		console.log('delete', data);
 		try {		
-			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: id }});
+			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: data.id }});
 			if (response.statusText === 'OK'){				
-				dispatch(deletePostItem(id));				
+				dispatch(deletePostItem(data.id));				
 			}			
 	
 		} catch (e) {
 			console.log('delete err');
+			rejectWithValue('delete, err');
 		}
 	}
 );
 
 
+
 export const fetchUpdateBlog = createAsyncThunk(
 	'blogSlice/update',
-	async (data,{dispatch}) => {
+	async (data: {data:IFormData, id:number},{dispatch}) => {
 		
 		try {
 			const formData = new FormData();

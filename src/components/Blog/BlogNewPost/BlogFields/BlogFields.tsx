@@ -45,17 +45,10 @@ const BlogFields: FC = ({open}) => {
 			});
 			
 		} else {			
-			methods.reset({	
-
-			});
+			methods.reset({});
 		} 
 		
 	},[EditMode]);
-
-	// console.log('watch',methods.watch());
-
-
-
 
 	return (
 		<ContainerMUI>

@@ -28,7 +28,7 @@ export interface IFormData {
 
 
 
-export const useBlogFields = (edit) => {
+export const useBlogFields = (edit:number) => {
 
 	const dispatch = useAppDispatch();
 	const methods = useForm<IFormData>();

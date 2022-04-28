@@ -2,13 +2,19 @@ import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
 import {IBlogModel} from '@/models/IBlogModel';
 import { fetchAddNewsBlog, fetchNewsData, fetchDeleteBlogItem,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
 
+interface IEditMode {
+	id: number,
+	open: boolean
+}
+
+
 interface IBlogSlice {
 	page: number;
 	pageLimit: number;
 	updatePosts: boolean;
 	blogData: IBlogModel[];
 	blogEnd: boolean;
-	EditMode: object;
+	EditMode: IEditMode;
 };
 
 interface IFetchNewsFulfilled {
