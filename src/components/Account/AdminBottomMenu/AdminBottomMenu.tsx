@@ -28,8 +28,11 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 ) => {
 	const {
 		isChecked,
+		isHideText,
+		handleClickText,
 		handleToggleChecked
 	} = useAdminBottomMenu();
+
 
 	const animation = useMemo(() => {
 		if (isVisibleMenu) return animationSx;
@@ -39,12 +42,15 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 	return (
 		isVisibleComponents ? (
 			<ContainerMUI sx={animation}>
-				{text && (
+				{text && !isHideText && (
 					<TextWrapperMUI>
 						<TextMUI>
 							{text}
 						</TextMUI>
-						<TextIconMUI disableTouchRipple={true}>
+						<TextIconMUI
+							onClick={handleClickText}
+							disableTouchRipple={true}
+						>
 							<WhiteCloseIcon/>
 						</TextIconMUI>
 					</TextWrapperMUI>

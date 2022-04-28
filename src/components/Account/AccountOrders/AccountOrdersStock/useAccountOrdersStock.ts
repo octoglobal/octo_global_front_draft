@@ -41,8 +41,6 @@ export const useAccountOrdersStock = () => {
 
 	const buttonsData = useMemo(() => (
 		[
-			{name: 'Возврат', onClick: () => console.log(1)},
-			{name: 'Проверка товара', onClick: () => console.log(2)},
 			{name: 'Объединить', onClick: () => console.log(3)},
 		]
 	), [innerId]);

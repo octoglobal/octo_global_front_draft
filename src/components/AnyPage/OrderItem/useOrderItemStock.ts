@@ -1,29 +1,33 @@
-import {useUserStore} from '@/hooks/useUserStore';
-import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import {useState} from 'react';
-import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
-import {fetchDeleteOrders} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
+import { useUserStore } from '@/hooks/useUserStore';
+import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
+import { useState } from 'react';
+import { fetchOrderCheck, fetchOrderReturn } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 
-export const useOrderItemStock = () => {
+export const useOrderItemStock = (orderId: number) => {
 
 	const {
 		isAdmin,
 		user: {
-			id
-		}
+			id,
+		},
 	} = useUserStore();
 
 	const {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
 
-	const {
-		orderWaitData
-	} = useAppSelector(state => state.orderWaitReducer);
-
 	const dispatch = useAppDispatch();
-	const [isStatusModal, setIsStatusModal] = useState<boolean>(false);
-	const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false);
+	const [isReturnOrder, setIsReturnOrder] = useState<boolean>(false);
+	const [isReturnSuccess, setIsReturnSuccess] = useState<{state: boolean, text: string}>({
+		state: false,
+		text: 'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией'
+	});
+	const [isCheckOrder, setIsCheckOrder] = useState<{state: boolean, text: string}>({
+		state: false,
+		text: 'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией'
+	});
+	const innerId = isAdmin ? adminSwitchIdToUser ? adminSwitchIdToUser : id : id;
+
 
 	const handleToggleModal = (setState: (prevState: (state: boolean) => boolean) => void) => {
 		return () => {
@@ -31,45 +35,103 @@ export const useOrderItemStock = () => {
 		};
 	};
 
-	const handleSuccessChangeStatus = (id: number) => {
-		return () => {
-			handleToggleModal(setIsStatusModal)();
-			dispatch(orderWaitSlice.actions.sortOrderData(id));
-		};
-	};
+	// const handleSuccessChangeStatus = (id: number) => {
+	// 	return () => {
+	// 		handleToggleModal(setIsStatusModal)();
+	// 		dispatch(orderWaitSlice.actions.sortOrderData(id));
+	// 	};
+	// };
+	//
 
-	const handleDeleteOrder = (orderId: number) => {
+	// const handleDeleteOrder = (orderId: number) => {
+	// 	return () => {
+	// 		if (innerId) {
+	// 			dispatch(fetchDeleteOrders({
+	// 				userId: innerId,
+	// 				orderId: [orderId],
+	// 				ordersData: orderWaitData,
+	// 				successCallback: handleToggleModal(setIsDeleteModal)
+	// 			}));
+	// 		}
+	// 	};
+	// };
+
+	const handleReturnOrder = (orderId: number) => {
 		return () => {
-			const innerId = isAdmin ? adminSwitchIdToUser ?  adminSwitchIdToUser : id : id;
 			if (innerId) {
-				dispatch(fetchDeleteOrders({
-					userId: innerId,
-					orderId: [orderId],
-					ordersData: orderWaitData,
-					successCallback: handleToggleModal(setIsDeleteModal)
-				}));
+				dispatch(fetchOrderReturn({
+					orderId,
+				})).then(response => {
+					const text = response?.payload == 'error' ?
+						'Что-то пошло не так, поопробуйте ещё раз' :
+						'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией';
+					setIsReturnOrder(false);
+					setIsReturnSuccess({
+						state: true,
+						text
+					});
+				});
 			}
 		};
 	};
 
+	const handleCheckOrder = () => {
+		if (orderId) {
+			dispatch(fetchOrderCheck({
+				orderId,
+			})).then(response => {
+				const text = response?.payload == 'error' ?
+					'Что-то пошло не так, поопробуйте ещё раз' :
+					'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией';
+				setIsCheckOrder({
+					state: true,
+					text
+				});
+			});
+		}
+	};
+
 	const dropDownData = [
-		{title: 'Возврат', onClick: () => console.log(1)},
-		{title: 'Проверка товара', onClick: () => console.log(1)},
-		{title: 'Оформить', onClick: () => console.log(1)},
+		{ title: 'Возврат', onClick: handleToggleModal(setIsReturnOrder) },
+		{ title: 'Проверка товара', onClick: handleCheckOrder },
+		{ title: 'Оформить', onClick: () => console.log(1) },
 	];
 
-	const dialogStyles = {};
+	const dialogSuccessReturnProps = {
+		dialogProps: {
+			open: isReturnSuccess.state,
+			onClose: () => setIsReturnSuccess(prevState => ({state: !prevState.state, text: prevState.text})),
+		},
+		containerStyles: {
+			marginTop: '45px',
+		},
+		title: isReturnSuccess.text,
+	};
+
+	const dialogCheckProps = {
+		dialogProps: {
+			open: isCheckOrder.state,
+			onClose: () => setIsCheckOrder(prevState => ({
+				state: !prevState.state,
+				text: prevState.text
+			}))
+		},
+		containerStyles: dialogSuccessReturnProps.containerStyles,
+		title: isCheckOrder.text
+	};
+
 
 	return {
 		isAdmin,
-		isStatusModal,
-		isDeleteModal,
+		isCheckOrder,
 		dropDownData,
-		dialogStyles,
-		setIsStatusModal,
-		setIsDeleteModal,
-		handleDeleteOrder,
+		isReturnOrder,
+		setIsCheckOrder,
+		setIsReturnOrder,
+		handleReturnOrder,
+		handleCheckOrder,
 		handleToggleModal,
-		handleSuccessChangeStatus
+		dialogCheckProps,
+		dialogSuccessReturnProps,
 	};
 };

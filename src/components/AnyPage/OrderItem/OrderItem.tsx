@@ -7,24 +7,21 @@ import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirm
 import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 import {useOrderItemStock} from '@/components/AnyPage/OrderItem/useOrderItemStock';
-import {IDropItem} from '../../../UI/UIComponents/DropDownUI/type';
-import {SxProps} from '@mui/material';
+import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 
 
 type ComponentType = 'wait' | 'stock' | 'send';
 
-const getCustomHooksData = (component: ComponentType) => {
+const getCustomHooksData = (component: ComponentType, orderId: number) => {
 	if (component === 'wait') {
 		const waitData = useOrderItemWait();
 		return waitData;
 	}
 	if (component === 'stock') {
-		const stockData = useOrderItemStock();
+		const stockData = useOrderItemStock(orderId);
 		return stockData;
 	}
 };
-
-
 
 
 interface IOrderItemProps {
@@ -60,12 +57,18 @@ const OrderItem: FC<IOrderItemProps> = (
 		dialogStyles,
 		isDeleteModal,
 		isStatusModal,
+		isReturnOrder,
 		setIsDeleteModal,
 		setIsStatusModal,
+		setIsReturnOrder,
 		handleDeleteOrder,
+		handleReturnOrder,
 		handleToggleModal,
-		handleSuccessChangeStatus
-	} = getCustomHooksData(component) as any;
+		dialogCheckProps,
+
+		dialogSuccessReturnProps,
+		handleSuccessChangeStatus,
+	} = getCustomHooksData(component, id) as any;
 
 
 	return (
@@ -87,23 +90,45 @@ const OrderItem: FC<IOrderItemProps> = (
 					comment={comment}
 				/>
 			</ContainerMUI>
-			{isAdmin && (
-				<ModalConfirmUI
-					open={isDeleteModal}
-					dialogSx={dialogStyles}
-					title='Вы точно хотите удалить?'
-					onClickYes={handleDeleteOrder(id)}
-					onClickNo={handleToggleModal(setIsDeleteModal)}
-					buttonNoText='Нет'
-				/>
+			{component == 'wait' && (
+				<>
+					{isAdmin && (
+						<ModalConfirmUI
+							open={isDeleteModal}
+							dialogSx={dialogStyles}
+							title='Вы точно хотите удалить?'
+							onClickYes={handleDeleteOrder(id)}
+							onClickNo={handleToggleModal(setIsDeleteModal)}
+							buttonNoText='Нет'
+						/>
+					)}
+					{isAdmin && (
+						<OrderStatusModal
+							successCallback={handleSuccessChangeStatus(id)}
+							orderItem={orderItem}
+							open={isStatusModal}
+							onClose={handleToggleModal(setIsStatusModal)}
+						/>
+					)}
+				</>
 			)}
-			{isAdmin && (
-				<OrderStatusModal
-					successCallback={handleSuccessChangeStatus(id)}
-					orderItem={orderItem}
-					open={isStatusModal}
-					onClose={handleToggleModal(setIsStatusModal)}
-				/>
+			{component == 'stock' && (
+				<>
+					<ModalConfirmUI
+						open={isReturnOrder}
+						dialogSx={dialogStyles}
+						title='Вы точно хотите вернуть посылку?'
+						onClickYes={handleReturnOrder(id)}
+						onClickNo={handleToggleModal(setIsReturnOrder)}
+						buttonNoText='Нет'
+					/>
+					<ModalUI
+						{...dialogSuccessReturnProps}
+					/>
+					<ModalUI
+						{...dialogCheckProps}
+					/>
+				</>
 			)}
 		</>
 	);
