@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useBtnSectionStyles } from '@/components/Blog/BlogItem/BtnSection/style';
 import BascetIcon from '../../../../UI/UIIcon/Basket.svg';
 import EditPencilBlueIcon from '../../../../UI/UIIcon/EditPencilBlue.svg';
-import {useUserStore} from '@/hooks/useUserStore';
+
 import ModalConfirmUI from 'UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import { useBtnSection } from './useBtnSection';
 
@@ -10,20 +10,23 @@ interface IBtnSection {
 	id:number
 }
 const BtnSection: FC<IBtnSection> = ({id})=>{
-	const {
-		isAdmin
-	} = useUserStore();
-		
+	
+
 	const {
 		openConfirmDialog,
+		canRender,
 		handlerDialogOpen,
 		handlerFetchDelete,
 		handlerCancel,
 		handleEditMode,		
 	} = useBtnSection(id);
+
+	
+
+
 	return (
 		<>
-			{ isAdmin? <BtnSectionMUI>
+			{ canRender? <BtnSectionMUI>
 				<ButtonIconMUI onClick={handlerDialogOpen}>
 					<BascetIcon/>
 				</ButtonIconMUI>

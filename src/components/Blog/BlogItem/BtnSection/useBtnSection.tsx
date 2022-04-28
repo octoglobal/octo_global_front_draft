@@ -2,14 +2,16 @@ import { useState } from 'react';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import { fetchDeleteBlogItem } from '@/store/reducers/blogSlice/asyncThunk/blogApi';
 import { updateEditMode } from '@/store/reducers/blogSlice/blogSlice';
-
+import {useUserStore} from '@/hooks/useUserStore';
 
 export const useBtnSection = (id:number)=>{
 
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 	const dispatch = useAppDispatch();
-
-
+	const {
+		isAdmin
+	} = useUserStore();
+	const canRender = window.location.pathname === '/' && isAdmin ? false: true;
 	const handlerDialogOpen = () => {		
 		setOpenConfirmDialog(true);
 	};
@@ -37,6 +39,7 @@ export const useBtnSection = (id:number)=>{
 	};
 	return {
 		openConfirmDialog,
+		canRender,
 		handlerDialogOpen,
 		handlerFetchDelete,
 		handlerCancel,
