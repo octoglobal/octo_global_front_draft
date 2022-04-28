@@ -9,14 +9,11 @@ import { useBtnSection } from './useBtnSection';
 interface IBtnSection {
 	id:number
 }
-
-
 const BtnSection: FC<IBtnSection> = ({id})=>{
 	const {
 		isAdmin
 	} = useUserStore();
-	
-	
+		
 	const {
 		openConfirmDialog,
 		handlerDialogOpen,
@@ -33,21 +30,16 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 					
 				<ButtonIconMUI onClick={handleEditMode}>
 					<EditPencilBlueIcon/>
-				</ButtonIconMUI>
-				
-					
+				</ButtonIconMUI>							
 				
 			</BtnSectionMUI>: null}
-			<ModalConfirmUI 
-			
+			<ModalConfirmUI 			
 				open={openConfirmDialog}
 				title="Вы уверены что хотите удалить пост?"
 				onClickYes={handlerFetchDelete(id)}
 				onClickNo={handlerCancel}
 			/>
-		</>
-	
-		
+		</>		
 	);
 };
 const {
