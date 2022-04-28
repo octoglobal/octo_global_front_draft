@@ -6,6 +6,7 @@ import swipeableDrawerSliceReducer from '@/reducers/swipeableDrawerSlice/swipeab
 import blogReducer from '@/reducers/blogSlice/blogSlice';
 import orderWaitReducer from '@/reducers/orderWaitSlice/orderWaitSlice';
 import adminReducer from '@/reducers/adminSlice/adminSlice';
+import orderStockReducer from '@/reducers/orderStockSlice/orderStockSlice';
 
 export const allReducers = {
 	userReducer,
@@ -15,5 +16,6 @@ export const allReducers = {
 	reviewsReducer,
 	translateReducer,
 	orderWaitReducer,
+	orderStockReducer,
 	swipeableDrawerSliceReducer,
 };

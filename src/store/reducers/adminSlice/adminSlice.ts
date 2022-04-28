@@ -20,7 +20,7 @@ interface IInitialState {
 };
 
 const initialState: IInitialState = {
-	adminSwitchIdToUser: 27,
+	adminSwitchIdToUser: null,
 	search: '',
 	hints: [],
 };

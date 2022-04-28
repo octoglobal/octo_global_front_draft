@@ -15,14 +15,14 @@ interface IOrderStatusModal {
 	successCallback: () => void;
 }
 
-const OrderStatusModal: FC<IOrderStatusModal> = ({open, onClose, orderItem}) => {
+const OrderStatusModal: FC<IOrderStatusModal> = ({open, onClose, orderItem, successCallback}) => {
 
 	const {
 		methods,
 		onSubmit,
 		collapseItems,
 		trackNumberProps
-	} = useOrderStatusModal(open, orderItem);
+	} = useOrderStatusModal(open, orderItem, successCallback);
 
 	return (
 		<FormProvider {...methods}>

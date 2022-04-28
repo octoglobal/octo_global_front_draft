@@ -4,22 +4,65 @@ export const useAdminBottomMenuStyles = () => {
 
 	const visible = keyframes`
       from {
-		bottom: -100px;
+		bottom: -50px;
       }
       to {
-		bottom: 51px;
+		bottom: 10px;
       }
 	`;
 
-	const ContainerMUI = styled('div')(() => ({
-		position: 'sticky',
-		bottom: '51px',
-		marginBottom: '51px',
+	const firstVisible = keyframes`
+      from {
+		bottom: -100px;
+      }
+      to {
+		bottom: 0px;
+      }
+	`;
+
+	const animationSx = {
 		animation: `${visible} .1s linear`,
+		bottom: '10px',
+	};
+
+	const ContainerMUI = styled('div')(() => ({
+		maxWidth: '1103px',
+		position: 'sticky',
+		bottom: '0px',
+		marginLeft: '23px',
+		marginBottom: '51px',
+		animation: `${firstVisible} .2s linear`,
+	}));
+
+	const TextWrapperMUI = styled('div')(() => ({
+		textAlign: 'center',
+		padding: '10px',
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		backgroundColor: '#DFE4EC',
+		marginBottom: '15px',
+		borderRadius: '5px',
+	}));
+
+	const TextMUI = styled('p')(() => ({
+		fontSize: '20px',
+		lineHeight: '23px',
+		fontWeight: 300,
+		width: '100%',
+	}));
+
+	const TextIconMUI = styled(Button)(() => ({
+		width: '30px',
+		height: '24px',
+		minWidth: 'auto',
+		padding: 0,
+		'&:hover': {
+			backgroundColor: '#DFE4EC',
+		}
 	}));
 
 	const WrapperMUI = styled('div')(() => ({
-		maxWidth: '1103px',
 		margin: '0 auto',
 		height: '54px',
 		borderRadius: '5px',
@@ -52,9 +95,13 @@ export const useAdminBottomMenuStyles = () => {
 	}));
 
 	return {
+		TextMUI,
 		ButtonMUI,
 		WrapperMUI,
+		animationSx,
+		TextIconMUI,
 		ContainerMUI,
-		ButtonWrapperMUI
+		TextWrapperMUI,
+		ButtonWrapperMUI,
 	};
 };

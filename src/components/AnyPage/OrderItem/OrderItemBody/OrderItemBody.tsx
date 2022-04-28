@@ -7,12 +7,17 @@ import ArrowBlueIcon from '@/UIIcon/Arrow_Blue.svg';
 type OrderItemBodyProps =
 	Pick<IOrderModel, 'tracking_link' | 'trackNumber' | 'comment' | 'title'>
 
-const OrderItemBody: FC<OrderItemBodyProps> = (
+interface IOrderItemBodyProps {
+	visibleTrackNumber?: boolean
+}
+
+const OrderItemBody: FC<OrderItemBodyProps & IOrderItemBodyProps> = (
 	{
 		title,
 		trackNumber,
 		tracking_link,
 		comment,
+		visibleTrackNumber = false,
 	}
 ) => {
 	return (
@@ -24,21 +29,23 @@ const OrderItemBody: FC<OrderItemBodyProps> = (
 				<TitleMUI>
 					{title}
 				</TitleMUI>
-				<LinkContainerMUI>
-					<TrackNumberMUI>
-						{trackNumber}
-					</TrackNumberMUI>
-					<LinkMUI
-						href={tracking_link}
-						target='_blank'
-						rel='noreferrer'
-					>
-						<a>
-							Отследить
-							<ArrowBlueIcon/>
-						</a>
-					</LinkMUI>
-				</LinkContainerMUI>
+				{visibleTrackNumber && (
+					<LinkContainerMUI>
+						<TrackNumberMUI>
+							{trackNumber}
+						</TrackNumberMUI>
+						<LinkMUI
+							href={tracking_link}
+							target='_blank'
+							rel='noreferrer'
+						>
+							<a>
+								Отследить
+								<ArrowBlueIcon/>
+							</a>
+						</LinkMUI>
+					</LinkContainerMUI>
+				)}
 				<CommentMUI>
 					{comment}
 				</CommentMUI>

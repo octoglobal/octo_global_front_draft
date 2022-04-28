@@ -3,29 +3,36 @@ import {useEffect, useMemo} from 'react';
 import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
-
-
-const getSelectArray = (obj: object) => {
-	const trueArray = [];
-	for (const [key, value] of Object.entries(obj)) {
-		if (value) trueArray.push(+key);
-	}
-	return trueArray;
-};
+import {useCustomRouter} from '@/hooks/useCustomRouter';
+import {getSelectArray} from '@/services/services';
 
 
 export const useAccountOrdersWait = () => {
 	const {
 		isAdmin,
+		user: {
+			id
+		}
 	} = useUserStore();
+
+	const {
+		router
+	} = useCustomRouter();
+
 	const {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
+
 	const {
 		page,
 		pageLimit,
 		orderWaitData,
 	} = useAppSelector(state => state.orderWaitReducer);
+
+	const innerId = useMemo(() => (
+	 adminSwitchIdToUser ? adminSwitchIdToUser : id
+	), [adminSwitchIdToUser]);
+
 
 	const dispatch = useAppDispatch();
 	const methods = useForm();
@@ -47,12 +54,12 @@ export const useAccountOrdersWait = () => {
 	), [selectOrdersArray]);
 
 	const handleDeleteItems = () => {
-		if (adminSwitchIdToUser) {
+		if (innerId) {
 			dispatch(fetchDeleteOrders({
-				userId: adminSwitchIdToUser,
+				userId: innerId,
 				orderId: getSelectArray(methods.getValues()),
 				ordersData: orderWaitData,
-				successCallback: () => console.log(123),
+				successCallback: () =>methods.reset({}),
 			}));
 		}
 	};
@@ -61,26 +68,34 @@ export const useAccountOrdersWait = () => {
 		[
 			{name: 'Удалить', onClick: handleDeleteItems},
 		]
-	), []);
+	), [innerId]);
+
+	const getAdminUserData = (id: number) => {
+		dispatch(fetchOrderWaitData(
+			{
+				page,
+				pageLimit,
+				userId: id,
+			}
+		));
+	};
 
 	useEffect(() => {
 		if (page === 1) {
 			if (!isAdmin) {
 				dispatch(fetchOrderWaitData({page, pageLimit}));
-				return;
 			}
-			if (adminSwitchIdToUser) {
-				dispatch(fetchOrderWaitData(
-					{
-						page,
-						pageLimit,
-						userId: adminSwitchIdToUser
-					}
-				));
+			if (isAdmin) {
+				if (adminSwitchIdToUser) {
+					getAdminUserData(adminSwitchIdToUser);
+				}
 			}
-
 		}
-	}, [adminSwitchIdToUser]);
+	}, [adminSwitchIdToUser, page, router]);
+
+	useEffect(() => {
+		methods.reset({});
+	}, [router]);
 
 	return {
 		isAdmin,

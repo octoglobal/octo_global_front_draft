@@ -249,3 +249,18 @@ export const generateAdminHintsData = (data: ISearchAdminModel) => {
 	}
 	return modificationArray.splice(0, 5);
 };
+
+
+export const getLocationWindow = (search: string) => {
+	if (typeof window !== undefined) {
+		return window.location.search?.split(search)[1]?.split('&')[0].replace('%40', '@');
+	}
+};
+
+export const getSelectArray = (obj: object) => {
+	const trueArray = [];
+	for (const [key, value] of Object.entries(obj)) {
+		if (value) trueArray.push(+key);
+	}
+	return trueArray;
+};
