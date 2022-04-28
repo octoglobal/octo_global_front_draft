@@ -47,4 +47,4 @@ ngrok.exe
 /*.idea
 /.idea
 .idea
-
+.vscode
