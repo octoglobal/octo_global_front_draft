@@ -1,30 +1,32 @@
 import React from 'react';
-import {useAccountOrdersWait} from '@/components/Account/AccountOrders/AccountOrdersWait/useAccountOrdersWait';
 import OrderItem from '@/components/AnyPage/OrderItem/OrderItem';
 import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 import { FormProvider } from 'react-hook-form';
+import {useAccountOrdersStock} from '@/components/Account/AccountOrders/AccountOrdersStock/useAccountOrdersStock';
 import AdminBottomMenu from '@/components/Account/AdminBottomMenu/AdminBottomMenu';
 
-const AccountOrdersWait = () => {
+const AccountOrdersStock = () => {
+
 	const {
-		isAdmin,
+		isUserText,
 		methods,
-		isAdminMenu,
+		stockData,
 		buttonsData,
+		isVisibleMenu,
 		isDataLength,
-		orderWaitData,
-	} = useAccountOrdersWait();
+	} = useAccountOrdersStock();
 
 	return (
 		<WrapperOrdersMUI>
 			<FormProvider {...methods}>
-				{isDataLength && (
+				{!!isDataLength && (
 					<ListMUI>
-						{orderWaitData.map(order => (
+						{stockData.map(order => (
 							<OrderItem
-								component='wait'
-								visibleCheckbox={isAdmin}
-								visibleDropDown={isAdmin}
+								component='stock'
+								visibleCheckbox={true}
+								visibleDropDown={true}
+								visibleTrackNumber={false}
 								key={`${order.trackNumber}${order.id}`}
 								orderItem={order}
 							/>
@@ -32,8 +34,8 @@ const AccountOrdersWait = () => {
 					</ListMUI>
 				)}
 				<AdminBottomMenu
-					isVisibleComponents={isAdminMenu}
-					isVisibleMenu={isAdminMenu}
+					isVisibleMenu={isVisibleMenu}
+					text={isUserText}
 					buttons={buttonsData}
 				/>
 			</FormProvider>
@@ -46,4 +48,5 @@ const {
 	WrapperOrdersMUI
 } = useAccountOrdersStyles();
 
-export default React.memo(AccountOrdersWait);
+
+export default React.memo(AccountOrdersStock);

@@ -6,7 +6,7 @@ export const useDropDownItemStyles = () => {
 		minWidth: 'auto',
 		width: '100%',
 		textTransform: 'none',
-		fontSize: '20px',
+		fontSize: '18px',
 		lineHeight: '24px',
 		fontWeight: 300,
 		color: '#000000',

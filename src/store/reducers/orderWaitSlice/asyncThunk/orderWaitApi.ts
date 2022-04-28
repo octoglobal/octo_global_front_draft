@@ -30,7 +30,6 @@ export const fetchOrderWaitData = createAsyncThunk(
 
 			const response = await octoAxios.get<IOrderWaitDataRes>(apiUrl, {params})
 				.then(response => response.data);
-			console.log(response);
 			return {
 				data: response.orders,
 				scrollEmpty: !(response.orders.length === data.pageLimit)
@@ -51,26 +50,27 @@ interface IFetchDeleteData {
 
 export const fetchDeleteOrders = createAsyncThunk(
 	'orderWaitSlice/delete',
-	async (data: IFetchDeleteData, thunkAPI) => {
+	async (data: IFetchDeleteData, {rejectWithValue, getState}) => {
 		try {
 			const sendData = {
 				'userId': data.userId,
 				'orderId': data.orderId,
 			};
+
+			const {orderWaitReducer: {orderWaitData}} = getState() as { orderWaitReducer: { orderWaitData: IOrderModel[] } };
 			const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
 				data: sendData
 			}).then(response => {
 				if (response.data.message === 'success') {
 					data.successCallback();
-					return sortItemArrayInId(data.ordersData, data.orderId);
-
+					return sortItemArrayInId(orderWaitData, data.orderId);
 				} else {
 					return [];
 				}
 			});
 			return response;
 		} catch (e) {
-			return thunkAPI.rejectWithValue('Error orderWaitSlice/delete');
+			return rejectWithValue('Error orderWaitSlice/delete');
 		}
 	}
 );

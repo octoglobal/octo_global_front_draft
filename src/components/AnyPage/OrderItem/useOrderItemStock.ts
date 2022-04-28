@@ -1,10 +1,11 @@
-import {useState} from 'react';
-import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useUserStore} from '@/hooks/useUserStore';
-import {fetchDeleteOrders} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
+import {useState} from 'react';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+import {fetchDeleteOrders} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 
-export const useOrderItemWait = () => {
+export const useOrderItemStock = () => {
+
 	const {
 		isAdmin,
 		user: {
@@ -52,36 +53,12 @@ export const useOrderItemWait = () => {
 	};
 
 	const dropDownData = [
-		{title: 'Удалить', onClick: handleToggleModal(setIsDeleteModal)},
-		{title: 'Перенести', onClick: handleToggleModal(setIsStatusModal)},
+		{title: 'Возврат', onClick: () => console.log(1)},
+		{title: 'Проверка товара', onClick: () => console.log(1)},
+		{title: 'Оформить', onClick: () => console.log(1)},
 	];
 
-
-	const dialogStyles = {
-		'& .MuiDialog-container': {
-			'& .MuiPaper-root': {
-				minWidth: '704px',
-				maxHeight: '353px',
-				height: '100%',
-				width: '100%',
-				'& > div': {
-					height: '100%',
-					padding: '115px 10px',
-					textAlign: 'center',
-					'& > div': {
-						'& > h4': {
-							marginBottom: '70px',
-						},
-						'& > button': {
-							width: '65px !important',
-							padding: '0',
-							minWidth: '65px !important',
-						}
-					}
-				},
-			}
-		}
-	};
+	const dialogStyles = {};
 
 	return {
 		isAdmin,

@@ -5,13 +5,34 @@ import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderI
 import OrderItemBody from '@/components/AnyPage/OrderItem/OrderItemBody/OrderItemBody';
 import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
-
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
+import {useOrderItemStock} from '@/components/AnyPage/OrderItem/useOrderItemStock';
+import {IDropItem} from '../../../UI/UIComponents/DropDownUI/type';
+import {SxProps} from '@mui/material';
+
+
+type ComponentType = 'wait' | 'stock' | 'send';
+
+const getCustomHooksData = (component: ComponentType) => {
+	if (component === 'wait') {
+		const waitData = useOrderItemWait();
+		return waitData;
+	}
+	if (component === 'stock') {
+		const stockData = useOrderItemStock();
+		return stockData;
+	}
+};
+
+
+
 
 interface IOrderItemProps {
 	orderItem: IOrderModel,
 	visibleDropDown: boolean,
 	visibleCheckbox: boolean,
+	visibleTrackNumber?: boolean,
+	component: ComponentType
 }
 
 const OrderItem: FC<IOrderItemProps> = (
@@ -19,6 +40,8 @@ const OrderItem: FC<IOrderItemProps> = (
 		visibleCheckbox,
 		visibleDropDown,
 		orderItem,
+		visibleTrackNumber = true,
+		component
 	}
 ) => {
 
@@ -31,7 +54,6 @@ const OrderItem: FC<IOrderItemProps> = (
 		comment,
 	} = orderItem;
 
-
 	const {
 		isAdmin,
 		dropDownData,
@@ -42,7 +64,8 @@ const OrderItem: FC<IOrderItemProps> = (
 		setIsStatusModal,
 		handleDeleteOrder,
 		handleToggleModal,
-	} = useOrderItemWait();
+		handleSuccessChangeStatus
+	} = getCustomHooksData(component) as any;
 
 
 	return (
@@ -58,6 +81,7 @@ const OrderItem: FC<IOrderItemProps> = (
 				/>
 				<OrderItemBody
 					title={title}
+					visibleTrackNumber={visibleTrackNumber}
 					tracking_link={tracking_link}
 					trackNumber={trackNumber}
 					comment={comment}
@@ -75,7 +99,7 @@ const OrderItem: FC<IOrderItemProps> = (
 			)}
 			{isAdmin && (
 				<OrderStatusModal
-					successCallback={() => console.log(123)}
+					successCallback={handleSuccessChangeStatus(id)}
 					orderItem={orderItem}
 					open={isStatusModal}
 					onClose={handleToggleModal(setIsStatusModal)}

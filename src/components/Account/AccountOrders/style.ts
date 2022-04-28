@@ -14,7 +14,12 @@ export const useAccountOrdersStyles = () => {
 		flexDirection: 'column',
 	}));
 
+	const ListMUI = styled('div')(() => ({
+		marginLeft: '206px',
+	}));
+
 	return {
+		ListMUI,
 		ContainerMUI,
 		WrapperOrdersMUI,
 	};
