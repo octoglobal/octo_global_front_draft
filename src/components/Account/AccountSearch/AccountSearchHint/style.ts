@@ -5,6 +5,7 @@ export const useAccountSearchHintStyles = () => {
 	const ContainerMUI = styled('div')(() => ({
 		display: 'flex',
 		justifyContent: 'space-between',
+		paddingRight: '69px',
 	}));
 
 	const HintItemMUI = styled('div')(() => ({

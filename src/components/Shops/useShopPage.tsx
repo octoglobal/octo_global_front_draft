@@ -51,15 +51,16 @@ export const useShopPage = () => {
 		dispatch(fetchHintsSearchShops({searchValue}));
 	};
 
-	const onSubmit = (data: ISearchData, type: SearchSubmitType = 'search') => {
-		if (type === 'search' && data.search) {
+	const onSubmit = (data: ISearchData | {suggestionIndex: number}, type: SearchSubmitType = 'search') => {
+		const innerData = data as ISearchData;
+		if (type === 'search' && innerData.search) {
 			if (searchHints.length) {
-				dispatch(fetchSearchShops({search: data.search}))
+				dispatch(fetchSearchShops({search: innerData.search}))
 					.then(r => {
 						try {
 							if (getFulfilledInString(r.type)) {
 								methods.reset({
-									search: data.search,
+									search: innerData.search,
 									tags: []
 								});
 							}
@@ -84,7 +85,7 @@ export const useShopPage = () => {
 						if (getFulfilledInString(r.type)) {
 							methods.reset({
 								search: '',
-								tags: data.tags
+								tags: innerData.tags
 							});
 						}
 					} catch (e) {

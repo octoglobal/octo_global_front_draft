@@ -9,6 +9,8 @@ export interface IAdminHintsData extends IHints{
 	trackNumber: null | string,
 	name: null | string,
 	type: 'user' | 'order' | null,
+	id: null | number,
+	title: string,
 }
 
 interface IInitialState {
@@ -26,7 +28,13 @@ const initialState: IInitialState = {
 export const adminSlice = createSlice({
 	name: 'adminSlice',
 	initialState,
-	reducers: {},
+	reducers: {
+		changeAdminId: (state, action: PayloadAction<number>) => {
+			state.adminSwitchIdToUser = action.payload;
+			state.hints = [];
+		}
+
+	},
 	extraReducers: {
 		[fetchUsersInAdmin.fulfilled.type]: (state, action: PayloadAction<IAdminHintsData[]>) => {
 			state.hints = action.payload;

@@ -1,9 +1,6 @@
 import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useUserStore} from '@/hooks/useUserStore';
-import {octoAxios} from '@/lib/http';
-import {IDefaultFetchSuccess} from '../../../types/types';
-import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 import {fetchDeleteOrders} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 
 export const useOrderItemWait = () => {

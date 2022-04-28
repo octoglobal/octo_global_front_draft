@@ -16,7 +16,7 @@ interface ICategorySearchHintsProps {
 	handleChangeActiveSuggestion: (hintCount: number) => () => void;
 	handleMouseEnter: () => void;
 	handleMouseLeave: () => void;
-	handleClickHintItem: (hintName: string) => () => void;
+	handleClickHintItem: (hintName: string, hints: IHints & IAdminHintsData) => () => void;
 	component: 'account' | 'shops',
 }
 
