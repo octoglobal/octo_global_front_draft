@@ -6,19 +6,24 @@ import BlogDescription from '@/components/Blog/BlogNewPost/BlogDescription/BlogD
 import BlogTitle from '@/components/Blog/BlogNewPost/BlogTitle/BlogTitle';
 import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import {useBlogFields} from '@/components/Blog/BlogNewPost/BlogFields/useBlogFields';
+import { useAppSelector } from '@/hooks/useReduxHooks';
+import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
+
 
 interface IBlogFieldsProps {
-	open: boolean
+	open: boolean;
 }
 
-
 const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
-
+	const { blogData,EditMode,error } = useAppSelector(state => state.blogReducer);
+	
 	const {
 		methods,
-		onSubmit
-	} = useBlogFields();
-
+		openModal,
+		onSubmit,
+		changeOpenModal		
+	} = useBlogFields(EditMode.id as number ,blogData,error);
+	
 
 	return (
 		<ContainerMUI>
@@ -28,18 +33,28 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 						<BlogTitle/>
 						<WrapperMUI>
 							<BlogPreviewFields indexField={1}/>
-							<BlogPreviewFields indexField={2}/>
-							<BlogPreviewFields indexField={3}/>
+							<BlogPreviewFields indexField={2} />
+							<BlogPreviewFields indexField={3} />
 						</WrapperMUI>
 						<BlogDescription/>
 						<ButtonContainerMUI>
 							<ButtonUI type='submit'>
-								Сохранить
+								{EditMode.id ? 'Изменить':'Сохранить'}								
 							</ButtonUI>
+							
 						</ButtonContainerMUI>
 					</FormMUI>
 				</FormProvider>
 			</CollapseMUI>
+
+			<ModalUI
+				dialogProps={{
+					open: openModal,
+					onClose:changeOpenModal
+				}}
+				title={error.message}
+			/>
+
 		</ContainerMUI>
 	);
 };

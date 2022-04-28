@@ -6,6 +6,10 @@ import BlogProduct from '@/components/Blog/BlogProduct/BlogProduct';
 import { useBlogItem } from '@/components/Blog/BlogItem/useBlogItem';
 import BlogItemDescription from '@/components/Blog/BlogItemDescription/BlogItemDescription';
 
+
+import { useCustomSize } from '@/hooks/useMedia';
+import BtnSection from './BtnSection/BtnSection';
+
 interface IBlogItemProps extends IBlogModel {
 	viewDescription?: boolean;
 	isTitleSplice?: boolean;
@@ -19,9 +23,10 @@ const BlogItem: FC<IBlogItemProps> = (
 		newPost,
 		viewDescription = true,
 		isTitleSplice = false,
+		id,
 	},
 ) => {
-
+	
 	const {
 		isOpenDesc,
 		modifiedTitle,
@@ -31,8 +36,8 @@ const BlogItem: FC<IBlogItemProps> = (
 		title,
 		viewDescription,
 		isTitleSplice,
-	);
-
+	);	
+	const { isCustomSize } = useCustomSize(1025);
 	return (
 		<ItemMUI sx={dopItemStyle.item}>
 			<WrapperMUI>
@@ -46,19 +51,24 @@ const BlogItem: FC<IBlogItemProps> = (
 							key={`${product.title}${product.url}${index}`}
 							{...product}
 						/>
+						
 					))}
+					
+					{isCustomSize? null :<BtnSection id={id}></BtnSection>}
+					
 				</ProductListMUI>
 				{viewDescription && (
-					<>
+					<BtnSectionWrapperMUI>
 						<ButtonIconMUI onClick={handleToggleDesc}>
 							<ShopsTagsListArrow />
 						</ButtonIconMUI>
+						{isCustomSize? <BtnSection id={id}/> :null}
 						<CollapseDescMUI in={isOpenDesc}>
 							<BlogItemDescription
 								description={body}
 							/>
 						</CollapseDescMUI>
-					</>
+					</BtnSectionWrapperMUI>
 				)}
 			</WrapperMUI>
 		</ItemMUI>
@@ -71,7 +81,8 @@ const {
 	ItemTitleMUI,
 	ButtonIconMUI,
 	ProductListMUI,
-	CollapseDescMUI,
+	CollapseDescMUI,	
+	BtnSectionWrapperMUI,
 } = useBlogItemStyles();
 
 export default React.memo(BlogItem);

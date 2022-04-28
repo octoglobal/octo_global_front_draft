@@ -6,6 +6,7 @@ import PlusIcon from '@/UIIcon/PlusIcon.svg';
 
 interface IBlogPhotoProps {
 	indexField: number;
+
 }
 
 const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
@@ -13,19 +14,24 @@ const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
 		control,
 		photoSrc,
 		inputRef,
+		EditMode,
 		onChangeInput,
 		handleAddPhoto,
 		handleClearPhoto,
+		stopClick,
 	} = useBlogPhoto(indexField);
 
+
 	return (
-		<PhotoContainerMUI>
+		<PhotoContainerMUI onClick={(e)=>stopClick(e)}>
+
 			{!photoSrc.defaultPhoto && (
-				<DeleteButtonMUI
+				EditMode? null:<DeleteButtonMUI
 					onClick={handleClearPhoto}
 				>
 					<PlusIcon/>
 				</DeleteButtonMUI>
+				
 			)}
 			<UploadButtonMUI onClick={handleAddPhoto}>
 				<PhotoButtonMUI

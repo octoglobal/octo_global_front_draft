@@ -4,10 +4,12 @@ import {useBlogNewPostStyles} from '@/components/Blog/BlogNewPost/style';
 import {useBlogNewPost} from '@/components/Blog/BlogNewPost/useBlogNewPost';
 import BlogFields from '@/components/Blog/BlogNewPost/BlogFields/BlogFields';
 
+
+
 const BlogNewPost = () => {
 
-	const {
-		isNewPost,
+	const {		
+		isOpen,
 		handleToggleNewPost
 	} = useBlogNewPost();
 
@@ -24,7 +26,7 @@ const BlogNewPost = () => {
 				</AddButtonWrapperMUI>
 			</AddButtonMUI>
 			<BlogFields
-				open={isNewPost}
+				open={isOpen}
 			/>
 		</>
 	);

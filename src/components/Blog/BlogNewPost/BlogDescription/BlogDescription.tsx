@@ -6,7 +6,7 @@ import {useBlogDescriptionStyles} from '@/components/Blog/BlogNewPost/BlogDescri
 
 const BlogDescription = () => {
 	const { control } = useFormContext();
-
+	
 	return (
 		<TextAreaContainerMUI>
 			<TextFieldUI
@@ -19,6 +19,8 @@ const BlogDescription = () => {
 					minRows: 5,
 					maxRows: 5,
 					multiline: true,
+				
+				
 				}}
 			/>
 		</TextAreaContainerMUI>

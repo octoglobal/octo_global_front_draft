@@ -25,7 +25,7 @@ export const useBlogItemStyles = () => {
 		}
 	}));
 
-	const ButtonIconMUI = styled(Button)(() => ({
+	const ButtonIconMUI = styled(Button)(({theme}) => ({
 		display: 'block',
 		width: '24px',
 		height: '33px',
@@ -35,6 +35,10 @@ export const useBlogItemStyles = () => {
 		minWidth: 'auto',
 		margin: '0 auto 6px',
 		textAlign: 'center',
+		[theme.breakpoints.down(769)]: {
+			width: '14px',
+			height: '22px',
+		}
 	}));
 
 	const ProductListMUI = styled('ul')(({theme}) => ({
@@ -45,11 +49,30 @@ export const useBlogItemStyles = () => {
 		'& > *:last-child': {
 			marginRight: 0,
 		},
+		'& > *:nth-child(3)': {
+			marginRight: 25,
+			[theme.breakpoints.down(769)]: {
+				marginRight: 0,
+			}
+		},
 		[theme.breakpoints.down(769)]: {
 			minHeight: 'auto',
 		}
 	}));
-
+	const BtnSectionMUI = styled('div')(({theme}) => ({
+		[theme.breakpoints.down(1025)]: {
+			position: 'absolute',
+			right: 0,
+			top:0,
+			display: 'flex',
+			width: '50px',
+		}
+	}));
+	const BtnSectionWrapperMUI = styled('div')(({theme}) => ({
+		[theme.breakpoints.down(1025)]: {
+			position: 'relative'
+		}
+	}));
 	const CollapseDescMUI = styled(Collapse)(() => ({
 	}));
 
@@ -60,5 +83,7 @@ export const useBlogItemStyles = () => {
 		ButtonIconMUI,
 		ProductListMUI,
 		CollapseDescMUI,
+		BtnSectionMUI,
+		BtnSectionWrapperMUI,
 	};
 };

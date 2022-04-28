@@ -3,7 +3,16 @@ import TabUnstyled from '@mui/base/TabUnstyled';
 
 import {styled} from '@mui/material';
 
+// import vythunder from '../../../UI/UIIcon/MyPng.png';
+// console.log(vythunder);
 export const useTabsStyle = () => {
+
+	// const MyPng = styled('div')(() => ({
+	// 	width: 30,
+	// 	height: 30,
+	// 	backgroundColor: 'blue',
+	// 	backgroundImage: `(${vythunder.src})`
+	// }));
 
 	const TabWrapperUI = styled('div')(() => ({
 		width: '100%',
@@ -86,6 +95,7 @@ export const useTabsStyle = () => {
 		TabWrapperUI,
 		TabUI,
 		TabsListUI,
-		TabsMarginLeft
+		TabsMarginLeft,
+		// MyPng
 	};
 };

@@ -6,6 +6,7 @@ import {useFormContext} from 'react-hook-form';
 const BlogTitle = () => {
 	const { control } = useFormContext();
 
+	
 	return (
 		<TitleContainerMUI>
 			<TextFieldUI
@@ -14,7 +15,8 @@ const BlogTitle = () => {
 					control,
 				}}
 				inputProps={{
-					placeholder: 'Название поста'
+					placeholder: 'Название поста',
+					
 				}}
 			/>
 		</TitleContainerMUI>
