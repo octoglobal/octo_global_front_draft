@@ -115,7 +115,7 @@ export const fetchNewsData = createAsyncThunk(
 export const fetchDeleteBlogItem = createAsyncThunk(
 	'blogSlice/deletePosts',
 	async (data: {id: number}, {rejectWithValue, dispatch}) => {
-		console.log('delete', data);
+		
 		try {		
 			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: data.id }});
 			if (response.statusText === 'OK'){				
@@ -123,7 +123,7 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 			}			
 	
 		} catch (e) {
-			console.log('delete err');
+		
 			rejectWithValue('delete, err');
 		}
 	}
