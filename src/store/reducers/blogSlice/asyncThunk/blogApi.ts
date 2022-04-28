@@ -124,7 +124,7 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 	
 		} catch (e) {
 		
-			rejectWithValue('delete, err');
+			return rejectWithValue('Произошла ошибка при удалении');
 		}
 	}
 );
@@ -133,7 +133,7 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 
 export const fetchUpdateBlog = createAsyncThunk(
 	'blogSlice/update',
-	async (data: {data:IFormData, id:number},{dispatch}) => {
+	async (data: {data:IFormData, id:number},{dispatch,rejectWithValue}) => {
 		
 		try {
 			const formData = new FormData();
@@ -165,7 +165,8 @@ export const fetchUpdateBlog = createAsyncThunk(
 					
 			formData.append('json_data', sendData);
 			const response = await octoAxios.patch('/admin/blog', formData);
-			
+
+				
 			if (response.statusText === 'OK'){				
 				
 				const updateData = {	
@@ -200,8 +201,9 @@ export const fetchUpdateBlog = createAsyncThunk(
 				
 			}
 			
-		} catch (e) {
-			console.log('updateBlogData errr');
+		} catch (error) {
+			
+			return rejectWithValue('Произошла ошибка при обновлении');
 		}
 	}
 );

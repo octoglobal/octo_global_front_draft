@@ -9,22 +9,34 @@ import {useBlogFields} from '@/components/Blog/BlogNewPost/BlogFields/useBlogFie
 import { HOST } from '@/constants/constants';
 
 import { useAppSelector } from '@/hooks/useReduxHooks';
+import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
+import ModalConfirmUI from 'UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
+import { useState } from 'react';
 
 
 
+interface IBlogFieldsProps {
+	open: boolean;
+}
 
-
-const BlogFields: FC = ({open}) => {
-	const { blogData,EditMode } = useAppSelector(state => state.blogReducer);
+const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
+	const { blogData,EditMode,error } = useAppSelector(state => state.blogReducer);
+	const [openModal, setOpenModal] = useState(false);
 	const {
 		methods,
 		onSubmit
 		
-	} = useBlogFields(EditMode.id);//нужен аргумент едит что бы отредоктировать а не создать
+	} = useBlogFields(EditMode.id as number);
 	
+
+	function changeOpenModal() {
+	
+		setOpenModal(false);
+	}
+
+
 	useEffect(()=>{
 		if (EditMode.id){
-			
 			const PostValue = blogData.filter(post=>post.id === EditMode.id)[0];
 			methods.reset({
 				'blogTitle': PostValue.title,
@@ -50,6 +62,13 @@ const BlogFields: FC = ({open}) => {
 		
 	},[EditMode]);
 
+	useEffect(()=>{
+		if (error.status){
+			setOpenModal(true);
+		}
+		
+	},[error]);
+
 	return (
 		<ContainerMUI>
 			<CollapseMUI in={open}>
@@ -64,14 +83,23 @@ const BlogFields: FC = ({open}) => {
 						<BlogDescription/>
 						<ButtonContainerMUI>
 							<ButtonUI type='submit'>
-								{EditMode.id ? 'Изменить':'Сохранить'}
-								
+								{EditMode.id ? 'Изменить':'Сохранить'}								
 							</ButtonUI>
 							
 						</ButtonContainerMUI>
 					</FormMUI>
 				</FormProvider>
 			</CollapseMUI>
+
+		
+			<ModalUI
+				dialogProps={{
+					open: openModal,
+					onClose:changeOpenModal
+				}}
+				title={error.message}
+			/>
+
 		</ContainerMUI>
 	);
 };

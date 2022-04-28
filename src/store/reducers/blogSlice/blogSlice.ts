@@ -1,12 +1,15 @@
-import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import {IBlogModel} from '@/models/IBlogModel';
-import { fetchAddNewsBlog, fetchNewsData, fetchDeleteBlogItem,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
+import { fetchAddNewsBlog, fetchNewsData, fetchUpdateBlog,fetchDeleteBlogItem} from '@/reducers/blogSlice/asyncThunk/blogApi';
 
 interface IEditMode {
-	id: number,
+	id: number | null,
 	open: boolean
 }
-
+interface IError {
+	status: boolean,
+	message: string,
+}
 
 interface IBlogSlice {
 	page: number;
@@ -15,6 +18,7 @@ interface IBlogSlice {
 	blogData: IBlogModel[];
 	blogEnd: boolean;
 	EditMode: IEditMode;
+	error:IError
 };
 
 interface IFetchNewsFulfilled {
@@ -32,6 +36,10 @@ const initialState: IBlogSlice = {
 	EditMode: {
 		id: null,
 		open:false
+	},
+	error:{
+		status: false,
+		message: ''
 	}
 };
 
@@ -85,7 +93,23 @@ export const blogSlice = createSlice({
 		// 		return blog.id !== action.payload;
 		// 	});
 		// },	
-		
+		[fetchUpdateBlog.pending.type]: (state) => {
+			state.error.status = false;
+			state.error.message = '';
+		  },
+		[fetchUpdateBlog.rejected.type]: (state,action) => {			
+			state.error.status = true;
+			state.error.message = action.payload;
+		},
+
+		[fetchDeleteBlogItem.pending.type]: (state) => {
+			state.error.status = false;
+			state.error.message = '';
+		  },
+		[fetchDeleteBlogItem.rejected.type]: (state,action) => {			
+			state.error.status = true;
+			state.error.message = action.payload;
+		}
 		
 			
 	}
