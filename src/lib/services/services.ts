@@ -214,7 +214,8 @@ export const generateAdminHintsData = (data: ISearchAdminModel) => {
 				name: null,
 				type: null,
 				url: '',
-				title: '',
+				title: 'test',
+				id: null
 			};
 
 			const type = item?.trackNumber || item?.trackNumber ? 'order' : 'user';
@@ -223,8 +224,10 @@ export const generateAdminHintsData = (data: ISearchAdminModel) => {
 				innerObj.userAreaId = item?.userAreaId;
 				innerObj.name = item?.userName;
 				innerObj.email = item?.userEmail;
+				innerObj.id = item.userId;
 				innerObj.orderNumber = item?.longId;
 				innerObj.trackNumber = item?.trackNumber;
+				innerObj.title = item.userEmail;
 				innerObj.url = `${item?.userEmail}${item?.userName}${item?.userAreaId}${item.trackNumber}${item.longId}`;
 			}
 
@@ -233,7 +236,9 @@ export const generateAdminHintsData = (data: ISearchAdminModel) => {
 				innerObj.name = item?.name;
 				innerObj.email = item?.email;
 				innerObj.orderNumber = null;
+				innerObj.id = item.id;
 				innerObj.trackNumber = null;
+				innerObj.title = item.email;
 				innerObj.url = `${item?.email}${item?.name}${item?.personalAreaId}${index}`;
 			}
 			innerObj.type = type;

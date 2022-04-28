@@ -9,7 +9,7 @@ import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 
 interface ICategorySearchProps {
-	onSubmit: (data: ISearchData, type: SearchSubmitType) => void;
+	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void;
 	searchHints: IHints[] | IAdminHintsData[];
 	handleKeyDownEnter: () => void;
 	handleChangeSearchValue: (value: string) => void;
@@ -38,7 +38,8 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 		onSubmit,
 		searchHints,
 		handleKeyDownEnter,
-		handleChangeSearchValue
+		handleChangeSearchValue,
+		component,
 	);
 
 	return (

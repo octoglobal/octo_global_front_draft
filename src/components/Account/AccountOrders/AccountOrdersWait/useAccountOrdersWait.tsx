@@ -80,7 +80,7 @@ export const useAccountOrdersWait = () => {
 			}
 
 		}
-	}, []);
+	}, [adminSwitchIdToUser]);
 
 	return {
 		isAdmin,

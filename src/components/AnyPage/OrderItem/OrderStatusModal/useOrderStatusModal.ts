@@ -57,7 +57,7 @@ export const useOrderStatusModal = (isOpen: boolean, orderItem: IOrderModel) => 
 					statusId: data.orderStatus.value
 				}).then(r => {
 					if (r.data.message === 'success') {
-
+						console.log(123);
 					}
 				});
 			} catch (e) {

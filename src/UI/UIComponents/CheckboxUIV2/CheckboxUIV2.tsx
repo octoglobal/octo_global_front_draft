@@ -4,8 +4,8 @@ import {
 	ControllerProps
 } from 'react-hook-form';
 import {CheckboxProps} from '@mui/material';
-import CheckBoxEmpty from '@/UIIcon/CheckBoxEmptyV2.svg';
-import CheckBoxFill from '@/UIIcon/CheckBoxFillV2.svg';
+import CheckBoxEmpty from '../../UIIcon/CheckboxEmptyV2.svg';
+import CheckBoxFill from '../../UIIcon/CheckBoxFillV2.svg';
 import {useCheckboxUIV2Styles} from './style';
 
 interface ICheckboxUIV2Props {

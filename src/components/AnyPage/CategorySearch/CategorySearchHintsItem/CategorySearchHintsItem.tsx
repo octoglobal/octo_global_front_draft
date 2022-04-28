@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import {IHints} from '@/components/AnyPage/CategorySearch/types';
 import {useCategorySearchHintsItemStyles} from '@/components/AnyPage/CategorySearch/CategorySearchHintsItem/style';
 import {
@@ -15,7 +15,7 @@ interface ICategorySearchHintsItemProps extends IHints {
 	onMouseMove: () => void;
 	activeSuggestion: number;
 	handleChangeActiveSuggestion: (hintCount: number) => () => void;
-	handleClickHintItem: (hintName: string) => () => void;
+	handleClickHintItem: (hintName: string, hints: IHints & IAdminHintsData) => () => void;
 	isAccount: boolean
 }
 
@@ -25,7 +25,6 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 		title,
 		active,
 		hintCount,
-		activeSuggestion,
 		isMouseEnter,
 		handleClickHintItem,
 		handleChangeActiveSuggestion,
@@ -35,7 +34,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 
 	const {
 		activeStyles,
-	} = useCategorySearchHintsItem(active, title, isMouseEnter, activeSuggestion);
+	} = useCategorySearchHintsItem(active, title, isMouseEnter);
 
 	return (
 		<ItemMUI>
@@ -44,7 +43,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				sx={activeStyles}
 				onMouseMove={handleChangeActiveSuggestion(hintCount)}
 				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
-				onClick={handleClickHintItem(title)}
+				onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
 			>
 				{isAccount ? (
 					<AccountSearchHint

@@ -36,7 +36,6 @@ const AccountPage: FC<IAccoutPage> = ({
 
 const {
 	AccountWrapperUI,
-	SearchContainerMUI,
 } = useAccountPageStyle();
 
 export default React.memo(AccountPage);

@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useAccountSearchListTitleStyles = () => {
 
-	const ContainerMUI = styled('div')(({theme}) => ({
+	const ContainerMUI = styled('div')(() => ({
 		padding: '15px 25px 0',
 		marginBottom: '13px',
 		display: 'flex',
@@ -10,7 +10,7 @@ export const useAccountSearchListTitleStyles = () => {
 		justifyContent: 'space-between',
 	}));
 
-	const ItemMUI = styled('div')(({theme}) => ({
+	const ItemMUI = styled('div')(() => ({
 		fontWeight: 400,
 		fontSize: '20px',
 		lineHeight: '24px',

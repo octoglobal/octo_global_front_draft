@@ -42,6 +42,7 @@ const ShopsPage: FC = () => {
 								searchHints={searchHints}
 								handleKeyDownEnter={handleResetHints}
 								handleChangeSearchValue={handleChangeSearchValue}
+								component='shops'
 							/>
 							<CategorySearchSwiperActive
 								category={activeCategory}

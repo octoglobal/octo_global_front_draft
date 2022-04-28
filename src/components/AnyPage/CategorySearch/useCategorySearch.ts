@@ -6,10 +6,11 @@ import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 
 export const useCategorySearch = (
-	onSubmit: (data: ISearchData, type: SearchSubmitType) => void,
+	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void,
 	searchHints: IHints[] | IAdminHintsData[],
 	handleKeyDownEnter: () => void,
 	handleChangeSearchValue: (value: string) => void,
+	component: 'account' | 'shops' = 'shops',
 ) => {
 
 	const {control, setValue} = useFormContext();
@@ -62,12 +63,20 @@ export const useCategorySearch = (
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			//?
-			onSubmit(
-				{
-					search: searchValue, tags: []
-				},
-				'search'
-			);
+			if (component == 'shops') {
+				onSubmit(
+					{
+						search: searchValue, tags: []
+					},
+					'search'
+				);
+			} else {
+				onSubmit(
+					{
+						suggestionIndex: activeSuggestion
+					},
+				);
+			}
 			handleKeyDownEnter();
 		}
 		setActiveSuggestion(0);
@@ -89,12 +98,21 @@ export const useCategorySearch = (
 		handleChangeActiveSuggestion(0)();
 	};
 
-	const handleClickHintItem = (title: string) => {
+	const handleClickHintItem = (title: string, hints: IHints & IAdminHintsData) => {
 		return () => {
-			if (title) {
-				setActiveSuggestion(0);
+			// console.log(hints);
+			if (title && !hints?.email) {
 				setValue('search', title);
 			}
+			if (hints?.email) {
+				setValue('search', `${hints.email}`);
+				onSubmit(
+					{
+						suggestionIndex: activeSuggestion
+					},
+				);
+			}
+			setActiveSuggestion(0);
 		};
 	};
 
