@@ -5,7 +5,7 @@ import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderI
 import OrderItemBody from '@/components/AnyPage/OrderItem/OrderItemBody/OrderItemBody';
 import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
-// import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
+
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 
 interface IOrderItemProps {
