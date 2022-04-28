@@ -1,16 +1,10 @@
-import React, { FC,useState } from 'react';
+import React, { FC } from 'react';
 import { useBtnSectionStyles } from '@/components/Blog/BlogItem/BtnSection/style';
 import BascetIcon from '../../../../UI/UIIcon/Basket.svg';
 import EditPencilBlueIcon from '../../../../UI/UIIcon/EditPencilBlue.svg';
-
 import {useUserStore} from '@/hooks/useUserStore';
 import ModalConfirmUI from 'UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
-
-
-import {useAppDispatch} from '@/hooks/useReduxHooks';
-import { fetchDeleteBlogItem } from '@/store/reducers/blogSlice/asyncThunk/blogApi';
-import { updateEditMode } from '@/store/reducers/blogSlice/blogSlice';
-
+import { useBtnSection } from './useBtnSection';
 
 interface IBtnSection {
 	id:number
@@ -18,42 +12,18 @@ interface IBtnSection {
 
 
 const BtnSection: FC<IBtnSection> = ({id})=>{
-	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
-	const dispatch = useAppDispatch();
-
 	const {
 		isAdmin
 	} = useUserStore();
 	
-
 	
-
-	const handlerDialogOpen = () => {		
-		setOpenConfirmDialog(true);
-	};
-
-	const handlerFetchDelete = (id:number)  => {
-		return ()=>{		
-			dispatch(fetchDeleteBlogItem({id:id}));			
-			setOpenConfirmDialog(false);
-		};
-
-		
-	};
-	const handlerCancel = ():void  => {
-		
-		setOpenConfirmDialog(false);		
-	};
-
-	const handleEditMode = ()  => {
-		
-		dispatch(updateEditMode({open: true,id:id}));
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});	
-	};
-
+	const {
+		openConfirmDialog,
+		handlerDialogOpen,
+		handlerFetchDelete,
+		handlerCancel,
+		handleEditMode,		
+	} = useBtnSection(id);
 	return (
 		<>
 			{ isAdmin? <BtnSectionMUI>
