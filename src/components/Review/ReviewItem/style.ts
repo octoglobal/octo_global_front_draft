@@ -97,7 +97,6 @@ export const useReviewItemStyle = () => {
 		fontSize: '20px',
 		lineHeight: '130%',
 		color: '#000000',
-		wordBreak: 'break-all',
 		[theme.breakpoints.down(501)]: {
 			fontSize: '16px',
 			lineHeight: '19px'

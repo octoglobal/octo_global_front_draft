@@ -1,5 +1,5 @@
 import React, {FC, useMemo} from 'react';
-import {DialogProps} from '@mui/material';
+import {ButtonProps, DialogProps} from '@mui/material';
 import { useModalUIStyles } from './style';
 
 export interface IModalUIProps {
@@ -7,6 +7,7 @@ export interface IModalUIProps {
 	title: string;
 	children?: React.ReactChildren | React.ReactNode;
 	defaultStylesButton?: boolean;
+	buttonProps?: ButtonProps;
 }
 
 const ModalUI: FC<IModalUIProps> = (
@@ -15,8 +16,15 @@ const ModalUI: FC<IModalUIProps> = (
 		children,
 		title,
 		defaultStylesButton = true,
+		buttonProps = {},
 	}
 ) => {
+
+	const handleClickButton = () => {
+		if (dialogProps?.onClose) {
+			dialogProps.onClose('', 'escapeKeyDown');
+		}
+	};
 
 	const ButtonContainer = useMemo(() => {
 		if (defaultStylesButton) return ButtonContainerMUI;
@@ -34,7 +42,10 @@ const ModalUI: FC<IModalUIProps> = (
 				</DialogBodyMUI>
 			)}
 			<ButtonContainer>
-				<ButtonMUI onClick={dialogProps.onClose as () => void}>
+				<ButtonMUI
+					onClick={handleClickButton}
+					{...buttonProps}
+				>
 					Отлично
 				</ButtonMUI>
 			</ButtonContainer>

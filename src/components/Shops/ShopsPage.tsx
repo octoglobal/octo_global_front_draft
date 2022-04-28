@@ -17,12 +17,15 @@ const ShopsPage: FC = () => {
 		allTags,
 		methods,
 		onSubmit,
+		searchHints,
 		activeCategory,
 		isNotFoundShops,
+		handleResetHints,
 		handleResetCategory,
 		handleDeleteCategory,
 		handleChangeCategory,
-		handleClickTagInCard
+		handleClickTagInCard,
+		handleChangeSearchValue
 	} = useShopPage();
 
 	return (
@@ -34,7 +37,12 @@ const ShopsPage: FC = () => {
 						onSubmit={methods.handleSubmit(data => onSubmit(data, 'search'))}
 					>
 						<SearchWrapperMUI>
-							<CategorySearch onSubmit={onSubmit}/>
+							<CategorySearch
+								onSubmit={onSubmit}
+								searchHints={searchHints}
+								handleKeyDownEnter={handleResetHints}
+								handleChangeSearchValue={handleChangeSearchValue}
+							/>
 							<CategorySearchSwiperActive
 								category={activeCategory}
 								handleDeleteCategory={handleDeleteCategory}

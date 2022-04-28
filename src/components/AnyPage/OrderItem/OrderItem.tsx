@@ -5,6 +5,7 @@ import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderI
 import OrderItemBody from '@/components/AnyPage/OrderItem/OrderItemBody/OrderItemBody';
 import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
+
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 
 interface IOrderItemProps {
@@ -15,18 +16,21 @@ interface IOrderItemProps {
 
 const OrderItem: FC<IOrderItemProps> = (
 	{
-		orderItem: {
-			title,
-			longId,
-			id,
-			tracking_link,
-			trackNumber,
-			comment,
-		},
 		visibleCheckbox,
 		visibleDropDown,
+		orderItem,
 	}
 ) => {
+
+	const {
+		title,
+		longId,
+		id,
+		tracking_link,
+		trackNumber,
+		comment,
+	} = orderItem;
+
 
 	const {
 		isAdmin,
@@ -71,6 +75,8 @@ const OrderItem: FC<IOrderItemProps> = (
 			)}
 			{isAdmin && (
 				<OrderStatusModal
+					successCallback={() => console.log(123)}
+					orderItem={orderItem}
 					open={isStatusModal}
 					onClose={handleToggleModal(setIsStatusModal)}
 				/>

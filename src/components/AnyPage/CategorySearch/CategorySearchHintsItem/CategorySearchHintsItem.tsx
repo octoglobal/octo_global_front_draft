@@ -1,11 +1,14 @@
-import React, {FC} from 'react';
+import React, { FC, useMemo } from 'react';
 import {IHints} from '@/components/AnyPage/CategorySearch/types';
 import {useCategorySearchHintsItemStyles} from '@/components/AnyPage/CategorySearch/CategorySearchHintsItem/style';
 import {
 	useCategorySearchHintsItem
 } from '@/components/AnyPage/CategorySearch/CategorySearchHintsItem/useCategorySearchHintsItem';
+import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
+import AccountSearchHint from '@/components/Account/AccountSearch/AccountSearchHint/AccountSearchHint';
 
 interface ICategorySearchHintsItemProps extends IHints {
+	hint: IHints | IAdminHintsData;
 	active: boolean;
 	hintCount: number;
 	isMouseEnter: boolean;
@@ -13,17 +16,20 @@ interface ICategorySearchHintsItemProps extends IHints {
 	activeSuggestion: number;
 	handleChangeActiveSuggestion: (hintCount: number) => () => void;
 	handleClickHintItem: (hintName: string) => () => void;
+	isAccount: boolean
 }
 
 const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	{
+		hint,
 		title,
 		active,
 		hintCount,
 		activeSuggestion,
 		isMouseEnter,
 		handleClickHintItem,
-		handleChangeActiveSuggestion
+		handleChangeActiveSuggestion,
+		isAccount = false,
 	}
 ) => {
 
@@ -40,16 +46,15 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
 				onClick={handleClickHintItem(title)}
 			>
-				{/*{customHint?.length && (*/}
-				{/*	<ItemTextMUI dangerouslySetInnerHTML={{__html: customHint}}/>*/}
-				{/*) : (*/}
-				{/*	<ItemTextMUI>*/}
-				{/*		{title}*/}
-				{/*	</ItemTextMUI>*/}
-				{/*)}*/}
-				<ItemTextMUI>
-					{title}
-				</ItemTextMUI>
+				{isAccount ? (
+					<AccountSearchHint
+						hint={hint as IAdminHintsData}
+					/>
+				) : (
+					<ItemTextMUI>
+						{title}
+					</ItemTextMUI>
+				)}
 			</ButtonMUI>
 		</ItemMUI>
 	);

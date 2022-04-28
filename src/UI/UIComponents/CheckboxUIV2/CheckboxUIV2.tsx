@@ -22,8 +22,8 @@ const CheckboxUIV2: FC<ICheckboxUIV2Props> = ({controller, checkboxProps}) => {
 				<StyleCheckboxMUI
 					icon={<CheckBoxEmpty />}
 					checkedIcon={<CheckBoxFill />}
+					checked={value}
 					{...checkboxProps}
-					value={value}
 					onChange={() => onChange(!value)}
 				/>
 			)}
