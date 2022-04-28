@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {IBlogModel} from '@/models/IBlogModel';
 import { fetchAddNewsBlog, fetchNewsData, fetchUpdateBlog,fetchDeleteBlogItem} from '@/reducers/blogSlice/asyncThunk/blogApi';
 
