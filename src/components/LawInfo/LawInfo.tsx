@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{FC} from 'react';
 import HeaderMargin from '@/components/AnyPage/Header/HeaderMargin/HeaderMargin';
 import { useLawInfoStyle } from './Style';
 
 const {ContainerMUI,H1MUI} = useLawInfoStyle();
 
 
-const LawInfo = () => {
+const LawInfo: FC = () => {
 	return (
 		<ContainerMUI>
 			<HeaderMargin/>			
