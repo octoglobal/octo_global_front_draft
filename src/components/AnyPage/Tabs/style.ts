@@ -10,8 +10,8 @@ export const useTabsStyle = () => {
 	const AnimationName = keyframes`
 	 	
 		 0%{background-position:0% 50%}
-		 50%{background-position:100% 50%}
-		 100%{background-position:0% 50%}
+		 100%{background-position:100% 50%}
+	
 		 `;
 		 
 
@@ -20,8 +20,8 @@ export const useTabsStyle = () => {
 		width: 30,
 		height: 30,		
 		borderRadius: 50,	
-		animation:`${AnimationName} 5s linear infinite`,
-		background: 'linear-gradient(190deg, #F35151 0%, #F35151 20%, #FFCA0D 50%, #F35151 80%, #F35151 100% )',
+		animation:`${AnimationName} 2s linear infinite`,
+		background: 'linear-gradient(210deg, #F35151 0%, #F35151 40%, #FFCA0D 50%, #F35151 70%, #F35151 100% )',
 		backgroundSize: '1000% 100%',
 		
 	}));
