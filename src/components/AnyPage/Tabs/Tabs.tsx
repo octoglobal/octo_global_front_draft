@@ -7,7 +7,7 @@ import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useTabsStyle} from './style';
 import {useMobile} from '@/hooks/useMedia';
 import LightningInsideCircle from '../../../UI/UIIcon/LightningInsideCircle.svg';
-
+import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTransp.svg';
 
 
 type TabsQueryProps = {
@@ -36,7 +36,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		TabUI,
 		TabsListUI,
 		TabsMarginLeft,
-		// MyPng
+		Bg
 	} = useTabsStyle();
 
 	const {isMobile} = useMobile();
@@ -89,8 +89,11 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									
 										{item.title === 'Выкуп товара'
 											? <TabsMarginLeft>
-												{/* <MyPng/> */}
-												<LightningInsideCircle />
+												<Bg>													
+													<LightningInsideCircle44></LightningInsideCircle44>
+												</Bg>
+												{/* <LightningInsideCircle /> */}
+											
 											  </TabsMarginLeft>
 											: ''
 										}
