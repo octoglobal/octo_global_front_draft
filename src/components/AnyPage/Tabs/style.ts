@@ -15,7 +15,7 @@ export const useTabsStyle = () => {
 		 `;
 		 
 
-	const Bg = styled('div')(() => ({
+	const BgMUI = styled('div')(() => ({
 		position: 'relative',
 		width: 30,
 		height: 30,		
@@ -108,6 +108,6 @@ export const useTabsStyle = () => {
 		TabUI,
 		TabsListUI,
 		TabsMarginLeft,
-		Bg
+		BgMUI
 	};
 };

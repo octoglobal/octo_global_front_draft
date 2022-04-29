@@ -36,7 +36,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		TabUI,
 		TabsListUI,
 		TabsMarginLeft,
-		Bg
+		BgMUI
 	} = useTabsStyle();
 
 	const {isMobile} = useMobile();
@@ -89,9 +89,9 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									
 										{item.title === 'Выкуп товара'
 											? <TabsMarginLeft>
-												<Bg>													
+												<BgMUI>													
 													<LightningInsideCircle44></LightningInsideCircle44>
-												</Bg>
+												</BgMUI>
 												{/* <LightningInsideCircle /> */}
 											
 											  </TabsMarginLeft>
