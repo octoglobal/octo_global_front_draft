@@ -198,7 +198,6 @@ export const sortItemArrayInId = (array: unknown, arrayId: number[]) => {
 	for (let i = 0; i < arrayId.length; i++) {
 		filterArray = filterArray.filter((item: {id: number}) => item.id !== arrayId[i]) as [];
 	}
-	console.log(filterArray, array);
 	return filterArray;
 };
 

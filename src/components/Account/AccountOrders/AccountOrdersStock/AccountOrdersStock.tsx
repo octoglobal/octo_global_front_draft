@@ -4,6 +4,7 @@ import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 import { FormProvider } from 'react-hook-form';
 import {useAccountOrdersStock} from '@/components/Account/AccountOrders/AccountOrdersStock/useAccountOrdersStock';
 import AdminBottomMenu from '@/components/Account/AdminBottomMenu/AdminBottomMenu';
+import PackageItem from '@/components/AnyPage/PackageItem/PackageItem';
 
 const AccountOrdersStock = () => {
 
@@ -11,26 +12,40 @@ const AccountOrdersStock = () => {
 		isUserText,
 		methods,
 		stockData,
+		packageData,
 		buttonsData,
 		isVisibleMenu,
 		isDataLength,
+		packageDopDownData,
 	} = useAccountOrdersStock();
 
 	return (
 		<WrapperOrdersMUI>
 			<FormProvider {...methods}>
-				{!!isDataLength && (
+				{!!isDataLength  && (
 					<ListMUI>
-						{stockData.map(order => (
-							<OrderItem
-								component='stock'
-								visibleCheckbox={true}
-								visibleDropDown={true}
-								visibleTrackNumber={false}
-								key={`${order.trackNumber}${order.id}`}
-								orderItem={order}
-							/>
-						))}
+						{stockData.length && (
+							stockData.map(order => (
+								<OrderItem
+									component='stock'
+									visibleCheckbox={true}
+									visibleDropDown={true}
+									visibleTrackNumber={false}
+									key={`${order.trackNumber}${order.id}`}
+									orderItem={order}
+								/>
+							))
+						)}
+						{!!packageData.length && (
+							packageData.map(packageItem => (
+								<PackageItem
+									key={`${packageItem.id}${packageItem.longId}`}
+									component='stock'
+									dropItems={packageDopDownData}
+									packageData={packageItem}
+								/>
+							))
+						)}
 					</ListMUI>
 				)}
 				<AdminBottomMenu

@@ -10,7 +10,7 @@ import {useOrderItemStock} from '@/components/AnyPage/OrderItem/useOrderItemStoc
 import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 
 
-type ComponentType = 'wait' | 'stock' | 'send';
+export type ComponentType = 'wait' | 'stock' | 'send';
 
 const getCustomHooksData = (component: ComponentType, orderId: number) => {
 	if (component === 'wait') {
@@ -29,6 +29,7 @@ interface IOrderItemProps {
 	visibleDropDown: boolean,
 	visibleCheckbox: boolean,
 	visibleTrackNumber?: boolean,
+	visibleTitle?: boolean,
 	component: ComponentType
 }
 
@@ -38,6 +39,7 @@ const OrderItem: FC<IOrderItemProps> = (
 		visibleDropDown,
 		orderItem,
 		visibleTrackNumber = true,
+		visibleTitle = true,
 		component
 	}
 ) => {
@@ -56,6 +58,7 @@ const OrderItem: FC<IOrderItemProps> = (
 		dropDownData,
 		dialogStyles,
 		isDeleteModal,
+		packageData,
 		isStatusModal,
 		isReturnOrder,
 		setIsDeleteModal,
@@ -70,18 +73,21 @@ const OrderItem: FC<IOrderItemProps> = (
 		handleSuccessChangeStatus,
 	} = getCustomHooksData(component, id) as any;
 
+	console.log(packageData);
 
 	return (
 		<>
 			<ContainerMUI>
-				<OrderItemTitle
-					id={id}
-					title={title}
-					longId={longId}
-					visibleCheckbox={visibleCheckbox}
-					visibleDropDown={visibleDropDown}
-					dropItems={dropDownData}
-				/>
+				{visibleTitle && (
+					<OrderItemTitle
+						id={id}
+						title={title}
+						longId={longId}
+						visibleCheckbox={visibleCheckbox}
+						visibleDropDown={visibleDropDown}
+						dropItems={dropDownData}
+					/>
+				)}
 				<OrderItemBody
 					title={title}
 					visibleTrackNumber={visibleTrackNumber}

@@ -63,14 +63,20 @@ export const useOrderItemStock = (orderId: number) => {
 					orderId,
 				})).then(response => {
 					const text = response?.payload == 'error' ?
-						'Что-то пошло не так, поопробуйте ещё раз' :
+						'Что-то пошло не так, попробуйте позже' :
 						'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией';
 					setIsReturnOrder(false);
 					setIsReturnSuccess({
 						state: true,
 						text
 					});
-				});
+				})
+					.catch(() => {
+						setIsReturnSuccess({
+							state: true,
+							text: 'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией',
+						});
+					});
 			}
 		};
 	};
@@ -81,7 +87,7 @@ export const useOrderItemStock = (orderId: number) => {
 				orderId,
 			})).then(response => {
 				const text = response?.payload == 'error' ?
-					'Что-то пошло не так, поопробуйте ещё раз' :
+					'Что-то пошло не так, попробуйте позже' :
 					'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией';
 				setIsCheckOrder({
 					state: true,
