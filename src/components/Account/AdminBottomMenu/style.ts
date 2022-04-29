@@ -13,7 +13,7 @@ export const useAdminBottomMenuStyles = () => {
 
 	const firstVisible = keyframes`
       from {
-		bottom: -100px;
+		bottom: 50px;
       }
       to {
 		bottom: 0px;
