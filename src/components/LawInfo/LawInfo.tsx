@@ -8,12 +8,8 @@ const {ContainerMUI,H1MUI} = useLawInfoStyle();
 const LawInfo = () => {
 	return (
 		<ContainerMUI>
-			<HeaderMargin/>
-			
-			<H1MUI>{'заглушка!'}</H1MUI>
-
-
-			
+			<HeaderMargin/>			
+			<H1MUI>{'заглушка!'}</H1MUI>			
 		</ContainerMUI>
 	);
 };
