@@ -8,18 +8,44 @@ export const useAccountSearchListTitleStyles = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		textAlign: 'left',
+		paddingRight: '69px',
+
+		'& > div':{
+			fontWeight: 400,
+			fontSize: '20px',
+			lineHeight: '24px',
+			color: '#C4C4C4',
+		}
 	}));
 
 	const ItemMUI = styled('div')(() => ({
-		fontWeight: 400,
-		fontSize: '20px',
-		lineHeight: '24px',
-		color: '#C4C4C4',
-		marginRight: '5px',
+		// width: '10%',
+	}));
+	const ItemIdMUI = styled('div')(() => ({
+		width: '10%',
+		
+	}));
+	const ItemEmailMUI = styled('div')(() => ({
+		width: '28%',
+	}));
+	const ItemOrderMUI = styled('div')(() => ({
+		width: '8%',	
+	}));
+	const ItemTrackMUI = styled('div')(() => ({
+		width: '18%',
+	}));
+	const ItemNameMUI = styled('div')(() => ({
+		width: '28%',	
 	}));
 
 	return {
 		ItemMUI,
-		ContainerMUI
+		ContainerMUI,
+		ItemIdMUI,
+		ItemEmailMUI,
+		ItemOrderMUI,
+		ItemTrackMUI,
+		ItemNameMUI
 	};
 };

@@ -16,7 +16,7 @@ const tabsData: ITabsData[] = [
 		link: '/account/orders/stock',
 	},
 	{
-		title: 'Отправлены',
+		title: 'Отправленые',
 		link: '/account/orders/send',
 	},
 	{
