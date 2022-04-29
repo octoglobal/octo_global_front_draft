@@ -1,6 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {octoAxios} from '@/lib/http';
 import {IStockDataModel} from '@/models/IStockDataModel';
+import {sortItemArrayInId} from '@/services/services';
+import {IDefaultFetchSuccess} from '../../../../types/types';
+import {IPackageModel} from '@/models/IPackageModel';
 
 interface IFetchOrderStockData {
 	page: number;
@@ -9,7 +12,11 @@ interface IFetchOrderStockData {
 }
 
 interface IFetchOrderStockDataRes {
-	orders: IStockDataModel
+	orders: IStockDataModel[]
+}
+
+interface IFetchPackageStockDataRes {
+	packages: IPackageModel[]
 }
 
 export const fetchOrderStockData = createAsyncThunk(
@@ -17,7 +24,26 @@ export const fetchOrderStockData = createAsyncThunk(
 	async (data: IFetchOrderStockData, thunkAPI) => {
 		try {
 			const response = await octoAxios.get<IFetchOrderStockDataRes>('/user/orders/are_waiting', {params: data}).then(r => r.data);
-			return response.orders;
+			return {
+				data: response.orders,
+				ordersEnd: !(response.orders.length === data.page_limit)
+			};
+		} catch (e) {
+			thunkAPI.rejectWithValue('Error orderStockSlice/data');
+		}
+	}
+);
+
+
+export const fetchPackageStockData = createAsyncThunk(
+	'orderStockSlice/dataPackage',
+	async (data: IFetchOrderStockData, thunkAPI) => {
+		try {
+			const response = await octoAxios.get<IFetchPackageStockDataRes>('/user/orders/are_waiting', {params: data}).then(r => r.data);
+			return {
+				packageData: response.packages,
+				packageEnd: !(response.packages.length === data.page_limit)
+			};
 		} catch (e) {
 			thunkAPI.rejectWithValue('Error orderStockSlice/data');
 		}
@@ -50,3 +76,37 @@ export const fetchOrderCheck = createAsyncThunk(
 		}
 	}
 );
+
+export const fetchMergeOrders = createAsyncThunk(
+	'orderStockSlice/merge',
+	async (data: {orders: number[]}, thunkAPI) => {
+		try {
+			const { orderStockReducer: {stockData} } = thunkAPI.getState() as {orderStockReducer: {stockData: IStockDataModel[]}};
+			const response = await octoAxios.post<IDefaultFetchSuccess>('/user/package', data);
+			if (response.data.message == 'success') {
+				return sortItemArrayInId(stockData, data.orders);
+			}
+		} catch (e) {
+			thunkAPI.rejectWithValue('Error orderStockSlice/return');
+		}
+	}
+);
+
+export const fetchUnMergePackage = createAsyncThunk(
+	'orderStockSlice/unMerge',
+	async (data: {packageId: number}, thunkAPI) => {
+		try {
+			const {orderStockReducer: {packageData}} = thunkAPI.getState() as {orderStockReducer: {packageData: IPackageModel[]}};
+			const response = await octoAxios.delete<IDefaultFetchSuccess>('/user/package', {data});
+			if (response.data.message == 'success') {
+				const ordersData = packageData.find(item => item.id === data.packageId);
+				return {
+					orderData: ordersData?.orders ? ordersData.orders : [],
+					packageData: packageData.filter(item => item.id !== data.packageId)
+				};
+			}
+		} catch (e) {
+			thunkAPI.rejectWithValue('Error orderStockSlice/return');
+		}
+	}
+)

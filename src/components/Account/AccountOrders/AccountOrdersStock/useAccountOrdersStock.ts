@@ -1,16 +1,20 @@
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useEffect, useMemo} from 'react';
-import {fetchOrderStockData} from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import {
+	fetchMergeOrders,
+	fetchOrderStockData,
+	fetchPackageStockData, fetchUnMergePackage
+} from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {useUserStore} from '@/hooks/useUserStore';
 import {useForm} from 'react-hook-form';
 import {getSelectArray} from '@/services/services';
 
 export const useAccountOrdersStock = () => {
 	const {
-		page,
 		stockData,
+		packageData,
 		pageLimit,
-		packageFetch,
+		ordersEnd,
 	} = useAppSelector(state => state.orderStockReducer);
 
 	const {adminSwitchIdToUser} = useAppSelector(state => state.adminReducer);
@@ -25,8 +29,8 @@ export const useAccountOrdersStock = () => {
 	), [adminSwitchIdToUser]);
 
 	const isDataLength = useMemo(() => (
-		Array.isArray(stockData) && stockData.length
-	), [stockData]);
+		(Array.isArray(stockData) && stockData.length) || packageData.length
+	), [stockData, packageData]);
 
 	const selectOrdersArray = useMemo(() => {
 		if (Object.keys(ordersArray).length) {
@@ -39,9 +43,39 @@ export const useAccountOrdersStock = () => {
 		selectOrdersArray.length >= 2
 	), [selectOrdersArray]);
 
+	const handleMergeOrders = () => {
+		dispatch(
+			fetchMergeOrders({
+				orders: getSelectArray(methods.getValues())
+			})
+		).then(r => {
+			if (Array.isArray(r.payload) && r.payload.length) {
+				methods.reset({});
+			}
+		});
+	};
+
+	const handleUnMargePackage = (id: number | undefined) => {
+		if (id) {
+			console.log(123);
+			dispatch(fetchUnMergePackage({packageId: id}));
+		}
+	};
+
+	const handleAddAddressPackage = (id: number | undefined) => {
+		console.log(id);
+	};
+
 	const buttonsData = useMemo(() => (
 		[
-			{name: 'Объединить', onClick: () => console.log(3)},
+			{name: 'Объединить', onClick: handleMergeOrders},
+		]
+	), [innerId]);
+
+	const packageDopDownData = useMemo(() => (
+		[
+			{title: 'Разъединить', onClick: handleUnMargePackage},
+			{title: 'Оформить', onClick: handleAddAddressPackage},
 		]
 	), [innerId]);
 
@@ -51,12 +85,20 @@ export const useAccountOrdersStock = () => {
 
 
 	useEffect(() => {
-		dispatch(fetchOrderStockData({
-			page,
-			page_limit: pageLimit,
-			package: packageFetch
-		}));
-	}, []);
+		if (ordersEnd) {
+			dispatch(fetchPackageStockData({
+				page: 1,
+				page_limit: pageLimit,
+				package: true
+			}));
+		} else {
+			dispatch(fetchOrderStockData({
+				page: 1,
+				page_limit: pageLimit,
+				package: false
+			}));
+		}
+	}, [ordersEnd]);
 
 	return {
 		methods,
@@ -65,6 +107,8 @@ export const useAccountOrdersStock = () => {
 		isVisibleMenu,
 		buttonsData,
 		isUserText,
-		isDataLength
+		packageData,
+		isDataLength,
+		packageDopDownData
 	};
 };

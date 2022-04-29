@@ -10,11 +10,11 @@ interface IFormStatus {
 }
 
 const collapseItems = [
-	{
-		title: 'Ожидаемые',
-		name: 'wait',
-		value: 0,
-	},
+	// {
+	// 	title: 'Ожидаемые',
+	// 	name: 'wait',
+	// 	value: 0,
+	// },
 	{
 		title: 'На складе',
 		name: 'stock',
