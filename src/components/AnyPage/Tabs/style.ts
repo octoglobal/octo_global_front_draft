@@ -2,17 +2,29 @@ import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabUnstyled from '@mui/base/TabUnstyled';
 
 import {styled} from '@mui/material';
+import { keyframes } from '@mui/system';
 
-// import vythunder from '../../../UI/UIIcon/MyPng.png';
-// console.log(vythunder);
+
+
 export const useTabsStyle = () => {
+	const AnimationName = keyframes`
+	 	
+		 0%{background-position:0% 50%}
+		 100%{background-position:100% 50%}
+	
+		 `;
+		 
 
-	// const MyPng = styled('div')(() => ({
-	// 	width: 30,
-	// 	height: 30,
-	// 	backgroundColor: 'blue',
-	// 	backgroundImage: `(${vythunder.src})`
-	// }));
+	const BgMUI = styled('div')(() => ({
+		position: 'relative',
+		width: 30,
+		height: 30,		
+		borderRadius: 50,	
+		animation:`${AnimationName} 2s linear infinite`,
+		background: 'linear-gradient(210deg, #F35151 0%, #F35151 40%, #FFCA0D 50%, #F35151 70%, #F35151 100% )',
+		backgroundSize: '1000% 100%',
+		
+	}));
 
 	const TabWrapperUI = styled('div')(() => ({
 		width: '100%',
@@ -96,6 +108,6 @@ export const useTabsStyle = () => {
 		TabUI,
 		TabsListUI,
 		TabsMarginLeft,
-		// MyPng
+		BgMUI
 	};
 };
