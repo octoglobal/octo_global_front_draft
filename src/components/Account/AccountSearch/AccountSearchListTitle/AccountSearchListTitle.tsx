@@ -4,28 +4,32 @@ import { useAccountSearchListTitleStyles } from '@/components/Account/AccountSea
 const AccountSearchListTitle = () => {
 	return (
 		<ContainerMUI>
-			<ItemMUI>
+			<ItemIdMUI>
 				User ID
-			</ItemMUI>
-			<ItemMUI>
+			</ItemIdMUI>
+			<ItemEmailMUI>
 				E-Mail
-			</ItemMUI>
-			<ItemMUI>
+			</ItemEmailMUI>
+			<ItemOrderMUI>
 				Order
-			</ItemMUI>
-			<ItemMUI>
+			</ItemOrderMUI>
+			<ItemTrackMUI>
 				Track Number
-			</ItemMUI>
-			<ItemMUI>
+			</ItemTrackMUI>
+			<ItemNameMUI>
 				Name
-			</ItemMUI>
+			</ItemNameMUI>
 		</ContainerMUI>
 	);
 };
 
 const {
-	ItemMUI,
-	ContainerMUI
+	ContainerMUI,
+	ItemIdMUI,
+	ItemEmailMUI,
+	ItemOrderMUI,
+	ItemTrackMUI,
+	ItemNameMUI
 } = useAccountSearchListTitleStyles();
 
 export default React.memo(AccountSearchListTitle);

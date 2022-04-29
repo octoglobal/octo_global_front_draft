@@ -100,7 +100,7 @@ const Footer = () => {
 
 					{!isCustomSize && (
 						<IndexTitleUI
-							href="https://lndex.ru/"
+							href="https://www.index-studio.ru/"
 							rel="noopener noreferrer"
 							target="_blank"
 						>

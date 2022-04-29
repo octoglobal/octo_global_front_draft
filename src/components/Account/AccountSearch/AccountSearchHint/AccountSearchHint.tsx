@@ -9,28 +9,32 @@ interface IAccountSearchHintProps {
 const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint}) => {
 	return (
 		<ContainerMUI>
-			<HintItemMUI>
+			<HintItemuserAreaIdMUI>
 				{hint.userAreaId}
-			</HintItemMUI>
-			<HintItemMUI>
+			</HintItemuserAreaIdMUI>
+			<HintItemEmailMUI>
 				{hint.email}
-			</HintItemMUI>
-			<HintItemMUI>
+			</HintItemEmailMUI>
+			<HintItemOrderMUI>
 				{hint.orderNumber}
-			</HintItemMUI>
-			<HintItemMUI>
+			</HintItemOrderMUI>
+			<HintItemTrackMUI>
 				{hint.trackNumber}
-			</HintItemMUI>
-			<HintItemMUI>
+			</HintItemTrackMUI>
+			<HintItemNameMUI>
 				{hint.name}
-			</HintItemMUI>
+			</HintItemNameMUI>
 		</ContainerMUI>
 	);
 };
 
 const {
-	HintItemMUI,
-	ContainerMUI
+	ContainerMUI,
+	HintItemuserAreaIdMUI,
+	HintItemEmailMUI,
+	HintItemOrderMUI,
+	HintItemTrackMUI,
+	HintItemNameMUI
 } = useAccountSearchHintStyles();
 
 export default React.memo(AccountSearchHint);
