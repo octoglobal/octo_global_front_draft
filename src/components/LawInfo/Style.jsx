@@ -3,8 +3,8 @@ import { styled } from '@mui/material';
 
 export const useLawInfoStyle = () => {
 	const ContainerMUI = styled('div')(() => ({
-		maxWidth: '650px',
-		margin: '15px auto 0'
+		maxWidth: '1200px',
+		marginTop: '15px'
 	}));
 	const H1MUI = styled('h1')(() => ({
 		fontSize: '24px',	
