@@ -1,44 +1,29 @@
-import React, {FC, useEffect} from 'react';
-
+import React, {FC} from 'react';
 import Tabs from '../AnyPage/Tabs/Tabs';
 import AccountUrlArray from './AccountTabsData.json';
-import {useCustomRouter} from '@/hooks/useCustomRouter';
-
 import {useAccountPageStyle} from './style';
-import {useUserStore} from '@/hooks/useUserStore';
+import { useAccount } from '@/components/Account/useAccount';
+import AccountSearch from '@/components/Account/AccountSearch/AccountSearch';
 
 interface IAccoutPage {
 	renderTabs?: boolean,
 	children: React.ReactChild | React.ReactNode,
 }
 
-const AccountPage: FC<IAccoutPage> = ({renderTabs = true, children}) => {
-	const {
-		AccountWrapperUI,
-	} = useAccountPageStyle();
-
-	const {router, pushTo} = useCustomRouter();
+const AccountPage: FC<IAccoutPage> = ({
+	renderTabs = true,
+	children
+}) => {
 
 	const {
-		getUser
-	} = useUserStore();
-
-	// TODO: исправить - пока что захардкожено
-	useEffect(() => {
-		if(router.asPath.includes('info') && !router.asPath.includes('location')) {
-			pushTo(router.asPath, {location: 'ger'});
-		}
-		// if(router.asPath.includes('orders') && !router.asPath.includes('tab')) {
-		// 	pushTo(router.asPath, {tab: 0});
-		// }
-	}, [router.asPath]);
-
-	useEffect(() => {
-		getUser();
-	}, []);
+		isAdmin,
+	} = useAccount();
 
 	return (
 		<AccountWrapperUI>
+			{isAdmin && (
+				<AccountSearch/>
+			)}
 			{renderTabs && (
 				<Tabs
 					data={AccountUrlArray}
@@ -48,5 +33,9 @@ const AccountPage: FC<IAccoutPage> = ({renderTabs = true, children}) => {
 		</AccountWrapperUI>
 	);
 };
+
+const {
+	AccountWrapperUI,
+} = useAccountPageStyle();
 
 export default React.memo(AccountPage);

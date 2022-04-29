@@ -10,9 +10,16 @@ export const useAccountOrdersStyles = () => {
 
 	const WrapperOrdersMUI = styled('div')(() => ({
 		width: '100%',
+		display: 'flex',
+		flexDirection: 'column',
+	}));
+
+	const ListMUI = styled('div')(() => ({
+		marginLeft: '206px',
 	}));
 
 	return {
+		ListMUI,
 		ContainerMUI,
 		WrapperOrdersMUI,
 	};

@@ -3,7 +3,8 @@ import { styled } from '@mui/material';
 export const useAccountOrdersAddStyles = () => {
 
 	const ContainerMUI = styled('div')(() => ({
-		width: '562px'
+		width: '562px',
+		marginLeft: '206px',
 	}));
 
 	const FormMUI = styled('form')(() => ({

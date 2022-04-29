@@ -120,7 +120,7 @@ const AccountUserForm: FC = () => {
 										required: true,
 										// helperText: 'Заполните поле "Телефон"',
 										sx: FormTextFieldUI,
-										// autoFocus: true
+										// autoFocus: true,
 										inputRef: textPhoneRef
 									}}
 									iconProps={{

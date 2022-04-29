@@ -5,14 +5,15 @@ export const useCategorySearchHintsItemStyles = () => {
 	const ItemMUI = styled('li')(() => ({
 		listStyle: 'none',
 		width: '100%',
+		textAlign: 'left',
 	}));
 
 	const ButtonMUI = styled('button')(() => ({
 		width: '100%',
 		padding: '11px 0px 11px 25px',
 		cursor: 'pointer',
-		border: 0,
 		backgroundColor: 'transparent',
+		border: 0,
 		textAlign: 'left',
 	}));
 
@@ -21,6 +22,7 @@ export const useCategorySearchHintsItemStyles = () => {
 		lineHeight: '21px',
 		fontWeight: 400,
 		color: '#000000',
+		border: '1px solid green',
 	}));
 
 	return {

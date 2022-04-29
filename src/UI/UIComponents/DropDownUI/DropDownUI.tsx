@@ -6,10 +6,11 @@ import DropDownItem from './DropDownItem/DropDownItem';
 import {IDropItem} from './type';
 
 interface IDropDownUIProps {
-	dropItems: IDropItem[]
+	dropItems: IDropItem[],
+	itemId?: number,
 }
 
-const DropDownUI: FC<IDropDownUIProps> = ({dropItems}) => {
+const DropDownUI: FC<IDropDownUIProps> = ({dropItems, itemId}) => {
 
 	const {
 		isOpen,
@@ -32,6 +33,7 @@ const DropDownUI: FC<IDropDownUIProps> = ({dropItems}) => {
 							key={`${index}${item.title}`}
 							title={item.title}
 							onClick={item.onClick}
+							itemId={itemId}
 							handleToggleOpen={handleToggleOpen}
 						/>
 					))}

@@ -19,6 +19,10 @@ export const useCustom800 = () => {
 	const isCustom800= useMediaQuery('(max-width: 800px)');
 	return {isCustom800};
 };
+export const useCustom960 = () => {
+	const isCustom960= useMediaQuery('(max-width: 960px)');
+	return {isCustom960};
+};
 
 export const useMobile = () => {
 	const isMobile = useMediaQuery('(max-width: 600px)');

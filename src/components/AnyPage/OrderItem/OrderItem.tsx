@@ -5,76 +5,136 @@ import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderI
 import OrderItemBody from '@/components/AnyPage/OrderItem/OrderItemBody/OrderItemBody';
 import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
-// import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
+import {useOrderItemStock} from '@/components/AnyPage/OrderItem/useOrderItemStock';
+import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
+
+
+export type ComponentType = 'wait' | 'stock' | 'send';
+
+const getCustomHooksData = (component: ComponentType, orderId: number) => {
+	if (component === 'wait') {
+		const waitData = useOrderItemWait();
+		return waitData;
+	}
+	if (component === 'stock') {
+		const stockData = useOrderItemStock(orderId);
+		return stockData;
+	}
+};
+
 
 interface IOrderItemProps {
 	orderItem: IOrderModel,
 	visibleDropDown: boolean,
 	visibleCheckbox: boolean,
+	visibleTrackNumber?: boolean,
+	visibleTitle?: boolean,
+	component: ComponentType
 }
 
 const OrderItem: FC<IOrderItemProps> = (
 	{
-		orderItem: {
-			title,
-			longId,
-			id,
-			tracking_link,
-			trackNumber,
-			comment,
-		},
 		visibleCheckbox,
 		visibleDropDown,
+		orderItem,
+		visibleTrackNumber = true,
+		visibleTitle = true,
+		component
 	}
 ) => {
+
+	const {
+		title,
+		longId,
+		id,
+		tracking_link,
+		trackNumber,
+		comment,
+	} = orderItem;
 
 	const {
 		isAdmin,
 		dropDownData,
 		dialogStyles,
 		isDeleteModal,
+		packageData,
 		isStatusModal,
+		isReturnOrder,
 		setIsDeleteModal,
 		setIsStatusModal,
+		setIsReturnOrder,
 		handleDeleteOrder,
+		handleReturnOrder,
 		handleToggleModal,
-	} = useOrderItemWait();
+		dialogCheckProps,
 
+		dialogSuccessReturnProps,
+		handleSuccessChangeStatus,
+	} = getCustomHooksData(component, id) as any;
+
+	console.log(packageData);
 
 	return (
 		<>
 			<ContainerMUI>
-				<OrderItemTitle
-					id={id}
-					title={title}
-					longId={longId}
-					visibleCheckbox={visibleCheckbox}
-					visibleDropDown={visibleDropDown}
-					dropItems={dropDownData}
-				/>
+				{visibleTitle && (
+					<OrderItemTitle
+						id={id}
+						title={title}
+						longId={longId}
+						visibleCheckbox={visibleCheckbox}
+						visibleDropDown={visibleDropDown}
+						dropItems={dropDownData}
+					/>
+				)}
 				<OrderItemBody
 					title={title}
+					visibleTrackNumber={visibleTrackNumber}
 					tracking_link={tracking_link}
 					trackNumber={trackNumber}
 					comment={comment}
 				/>
 			</ContainerMUI>
-			{isAdmin && (
-				<ModalConfirmUI
-					open={isDeleteModal}
-					dialogSx={dialogStyles}
-					title='Вы точно хотите удалить?'
-					onClickYes={handleDeleteOrder(id)}
-					onClickNo={handleToggleModal(setIsDeleteModal)}
-					buttonNoText='Нет'
-				/>
+			{component == 'wait' && (
+				<>
+					{isAdmin && (
+						<ModalConfirmUI
+							open={isDeleteModal}
+							dialogSx={dialogStyles}
+							title='Вы точно хотите удалить?'
+							onClickYes={handleDeleteOrder(id)}
+							onClickNo={handleToggleModal(setIsDeleteModal)}
+							buttonNoText='Нет'
+						/>
+					)}
+					{isAdmin && (
+						<OrderStatusModal
+							successCallback={handleSuccessChangeStatus(id)}
+							orderItem={orderItem}
+							open={isStatusModal}
+							onClose={handleToggleModal(setIsStatusModal)}
+						/>
+					)}
+				</>
 			)}
-			{isAdmin && (
-				<OrderStatusModal
-					open={isStatusModal}
-					onClose={handleToggleModal(setIsStatusModal)}
-				/>
+			{component == 'stock' && (
+				<>
+					<ModalConfirmUI
+						open={isReturnOrder}
+						dialogSx={dialogStyles}
+						title='Вы точно хотите вернуть посылку?'
+						onClickYes={handleReturnOrder(id)}
+						onClickNo={handleToggleModal(setIsReturnOrder)}
+						buttonNoText='Нет'
+					/>
+					<ModalUI
+						{...dialogSuccessReturnProps}
+					/>
+					<ModalUI
+						{...dialogCheckProps}
+					/>
+				</>
 			)}
 		</>
 	);

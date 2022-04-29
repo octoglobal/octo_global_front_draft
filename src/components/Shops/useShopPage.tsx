@@ -2,10 +2,10 @@ import {useCallback, useEffect} from 'react';
 import {ICategoryItem} from '@/components/Shops/type';
 import {useForm} from 'react-hook-form';
 import {
-	fetchAllTagsShops,
+	fetchAllTagsShops, fetchHintsSearchShops,
 	fetchMoreTagShops,
 	fetchSearchShops,
-	fetchTagShops
+	fetchTagShops,
 } from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {getFulfilledInString} from '@/services/services';
@@ -43,15 +43,24 @@ export const useShopPage = () => {
 		return tagString;
 	};
 
-	const onSubmit = (data: ISearchData, type: SearchSubmitType = 'search') => {
-		if (type === 'search' && data.search) {
+	const handleResetHints = () => {
+		dispatch(shopSlice.actions.changeHintsShops([]));
+	};
+
+	const handleChangeSearchValue = (searchValue: string) => {
+		dispatch(fetchHintsSearchShops({searchValue}));
+	};
+
+	const onSubmit = (data: ISearchData | {suggestionIndex: number}, type: SearchSubmitType = 'search') => {
+		const innerData = data as ISearchData;
+		if (type === 'search' && innerData.search) {
 			if (searchHints.length) {
-				dispatch(fetchSearchShops({search: data.search}))
+				dispatch(fetchSearchShops({search: innerData.search}))
 					.then(r => {
 						try {
 							if (getFulfilledInString(r.type)) {
 								methods.reset({
-									search: data.search,
+									search: innerData.search,
 									tags: []
 								});
 							}
@@ -76,7 +85,7 @@ export const useShopPage = () => {
 						if (getFulfilledInString(r.type)) {
 							methods.reset({
 								search: '',
-								tags: data.tags
+								tags: innerData.tags
 							});
 						}
 					} catch (e) {
@@ -219,11 +228,14 @@ export const useShopPage = () => {
 		allTags,
 		methods,
 		onSubmit,
+		searchHints,
 		activeCategory,
 		isNotFoundShops,
+		handleResetHints,
 		handleResetCategory,
 		handleChangeCategory,
 		handleDeleteCategory,
 		handleClickTagInCard,
+		handleChangeSearchValue,
 	};
 };

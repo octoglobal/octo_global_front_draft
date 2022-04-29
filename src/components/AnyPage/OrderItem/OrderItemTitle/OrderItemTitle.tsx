@@ -19,7 +19,7 @@ type OrderItemTitleProps =
 const OrderItemTitle: FC<OrderItemTitleProps> = (
 	{
 		longId,
-		title,
+		id,
 		visibleCheckbox= true,
 		dropItems,
 		visibleDropDown
@@ -36,7 +36,7 @@ const OrderItemTitle: FC<OrderItemTitleProps> = (
 				{visibleCheckbox ? (
 					<CheckboxUIV2
 						controller={{
-							name: `${title}${longId}`,
+							name: `${id}`,
 							control
 						}}/>
 				) : (
