@@ -42,10 +42,12 @@ const Logotip: FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
-			const element = logoRef.current;
-			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '70' : '300' : '500';
+			const element = logoRef.current; //				мобилка и высона меньше 700	 >700									десктоп		большой планш		
+			const start = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '1% top' : '4% top' : checkMedia(1000, 'innerHeight')? '7% top' :'11% top';
+			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '6% top' : '10% top' : checkMedia(1000, 'innerHeight')? '12% top' :'16% top';
 			const transform = checkMedia(501) ? '25' : '100';
-			console.log(transform);
+		
+			
 			if (element) {
 				gsap.fromTo(element, {
 					opacity: 0,
@@ -56,7 +58,7 @@ const Logotip: FC = () => {
 					transform: 'translateY(0px)',
 					duration: 1,
 					scrollTrigger: {
-						start: 'top top',
+						start: start,
 						markers: false,
 						end: end,
 						scrub: true,

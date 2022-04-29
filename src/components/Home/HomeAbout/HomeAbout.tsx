@@ -25,25 +25,25 @@ const HomeAbout: FC = () => {
 		return {};
 	}, []);
 
-	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const start = checkMedia(501) ? 71 : checkMedia(1025) ? 65 : checkMedia(1181) ? 71 : 61;
-			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '0' : '100' : '500';
-			setTimeout(() => {
-				gsap.timeline({
-					scrollTrigger: {
-						trigger: logoRefElement.current,
-						start: `-${start}px top`,
-						end: end,
-						markers: false,
-						scrub: true,
-						pin: true,
-						toggleActions: 'play none none none'
-					}
-				});
-			}, 4);
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (typeof window !== 'undefined') {
+	// 		const start = checkMedia(501) ? 71 : checkMedia(1025) ? 65 : checkMedia(1181) ? 71 : 61;
+	// 		const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '0' : '100' : '500';
+	// 		setTimeout(() => {
+	// 			gsap.timeline({
+	// 				scrollTrigger: {
+	// 					trigger: logoRefElement.current,
+	// 					start: `-${start}px top`,
+	// 					end: end,
+	// 					markers: false,
+	// 					scrub: true,
+	// 					pin: true,
+	// 					toggleActions: 'play none none none'
+	// 				}
+	// 			});
+	// 		}, 4);
+	// 	}
+	// }, []);
 
 
 	return (

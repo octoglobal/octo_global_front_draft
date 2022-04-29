@@ -22,19 +22,15 @@ const HomeAboutLogo: FC = () => {
 	useEffect(() => {
 		const element = logoRefElement.current;
 		if (typeof window !== 'undefined' && element) {
-			const offsetTop = element.offsetTop;
-			const start = checkMedia(778) ? `-${offsetTop + 70}px top` : 'center 55%';
-			gsap.fromTo(element, {
-				top: '50%',
-				opacity: 1,
-				transform: 'translateY(0px)',
-			}, {
-				transform: 'translateY(-200px)',
+			gsap.fromTo(element, {				
+				opacity: 1,				
+			}, {			
 				opacity: 0,
 				duration: 1,
 				scrollTrigger: {
 					trigger: element,
-					start: start,
+					start:'-30% top',
+					end: '200px',
 					markers: false,
 					scrub: true,
 					toggleActions: 'play none none none',
