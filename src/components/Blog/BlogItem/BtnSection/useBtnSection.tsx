@@ -11,11 +11,8 @@ export const useBtnSection = (id:number)=>{
 	const {
 		isAdmin
 	} = useUserStore();
-
-
 	const canRender =  isAdmin && window.location.pathname !== '/'  ? true: false;
 
-	console.log(canRender);
 	const handlerDialogOpen = () => {		
 		setOpenConfirmDialog(true);
 	};
