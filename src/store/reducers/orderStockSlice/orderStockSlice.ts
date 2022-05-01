@@ -39,6 +39,11 @@ interface IFetchPackageStockData {
 	packageEnd: boolean,
 }
 
+interface IFetchMergeOrders {
+	orderData: IStockDataModel[],
+	packageData: IPackageModel,
+}
+
 interface IFetchUnMergePackage {
 	orderData: IStockDataModel[],
 	packageData: IPackageModel[],
@@ -60,10 +65,11 @@ export const orderStockSlice = createSlice({
 			state.packageEnd = action.payload.packageEnd;
 
 		},
-		[fetchMergeOrders.fulfilled.type]: (state, action: PayloadAction<IStockDataModel[]>) => {
-			if (action.payload?.length && Array.isArray(action.payload)) {
-				state.stockData = action.payload;
-			}
+		[fetchMergeOrders.fulfilled.type]: (state, action: PayloadAction<IFetchMergeOrders>) => {
+			// if (action.payload?.orderData.length && Array.isArray(action.payload.orderData)) {
+			// 	state.stockData = action.payload.orderData;
+			// 	state.packageData = [ action.payload.packageData, ...state.packageData];
+			// }
 		},
 		[fetchUnMergePackage.fulfilled.type]: (state, action: PayloadAction<IFetchUnMergePackage>) => {
 			state.packageData = action.payload.packageData;
