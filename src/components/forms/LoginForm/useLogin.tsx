@@ -2,6 +2,7 @@ import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {fetchUserLogin, IUserLoginReq} from '@/reducers/userSlice/asyncActions/userApi';
 import {FieldValues, SubmitHandler, UseFormSetError} from 'react-hook-form';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
+import { IUserModel } from '@/models/IUserModel';
 
 export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>) => {
 
@@ -26,16 +27,22 @@ export const useLogin = (setError: UseFormSetError<FieldValues | IUserLoginReq>)
 			dispatch(fetchUserLogin(formData))
 				.then(e => {
 					const statusCode = e.payload;
-					switch (statusCode) {
-					case 403:
+
+					if (statusCode == 403) {
 						handleBadResponse();
 						return;
-					case 422:
-						handleBadResponse();
-						return;
-					default:
-						if(router.route === '/login') pushTo('/');
 					}
+					if (statusCode == 422) {
+						handleBadResponse();
+						return;
+					}
+
+					const user = e.payload as {user: IUserModel};
+					if (user.user.statusId === 9) {
+						router.push('/account/orders/wait');
+						return;
+					}
+					if(router.route === '/login') pushTo('/');
 				});
 		}
 	};
