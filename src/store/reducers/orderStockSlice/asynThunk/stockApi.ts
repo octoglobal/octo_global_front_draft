@@ -1,7 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {octoAxios} from '@/lib/http';
 import {IStockDataModel} from '@/models/IStockDataModel';
-import {sortItemArrayInId} from '@/services/services';
+import { findItemInArrayForId, sortItemArrayInId } from '@/services/services';
 import {IDefaultFetchSuccess} from '../../../../types/types';
 import {IPackageModel} from '@/models/IPackageModel';
 
@@ -83,18 +83,15 @@ export const fetchMergeOrders = createAsyncThunk(
 		try {
 			const {orderStockReducer: {stockData}} = thunkAPI.getState() as { orderStockReducer: { stockData: IStockDataModel[] } };
 			const response = await octoAxios.post<{message: string, package: Omit<IPackageModel, 'orders'>}>('/user/package', data);
-			// if (response.data.message == 'success') {
-			// 	return {
-			// 		ordersData: sortItemArrayInId(stockData, data.orders),
-			// 	};
-			// }
-			console.log({
-				ordersData: sortItemArrayInId(stockData, data.orders),
-				packageData: {
-					...response.data.package,
-					orders: [],
-				} as IPackageModel
-			});
+			if (response.data.message == 'success') {
+				return {
+					orderData: sortItemArrayInId(stockData, data.orders),
+					packageData: {
+						...response.data.package,
+						orders: findItemInArrayForId(stockData, data.orders),
+					} as IPackageModel
+				};
+			}
 		} catch (e) {
 			thunkAPI.rejectWithValue('Error orderStockSlice/return');
 		}

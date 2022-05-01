@@ -6,6 +6,8 @@ import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 import AccountOrdersStock from '@/components/Account/AccountOrders/AccountOrdersStock/AccountOrdersStock';
 
 const Stock: NextPage = () => {
+
+
 	return (
 		<AccountPage>
 			<AccountOrders>

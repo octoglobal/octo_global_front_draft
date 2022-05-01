@@ -263,3 +263,16 @@ export const getSelectArray = (obj: object) => {
 	}
 	return trueArray;
 };
+
+export const findItemInArrayForId = (array: unknown, arrayId: number[]) => {
+	const innerArray = [];
+	if (Array.isArray(array)) {
+		for (let i = 0; i < arrayId.length; i++) {
+			const findItem = array.find((item) => item.id == arrayId[i]);
+			if (findItem) {
+				innerArray.push(findItem);
+			}
+		}
+	}
+	return innerArray;
+};

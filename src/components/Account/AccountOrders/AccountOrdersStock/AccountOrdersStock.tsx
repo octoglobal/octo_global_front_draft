@@ -24,7 +24,7 @@ const AccountOrdersStock = () => {
 			<FormProvider {...methods}>
 				{!!isDataLength  && (
 					<ListMUI>
-						{stockData.length && (
+						{!!stockData.length && (
 							stockData.map(order => (
 								<OrderItem
 									component='stock'

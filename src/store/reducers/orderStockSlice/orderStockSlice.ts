@@ -66,10 +66,8 @@ export const orderStockSlice = createSlice({
 
 		},
 		[fetchMergeOrders.fulfilled.type]: (state, action: PayloadAction<IFetchMergeOrders>) => {
-			// if (action.payload?.orderData.length && Array.isArray(action.payload.orderData)) {
-			// 	state.stockData = action.payload.orderData;
-			// 	state.packageData = [ action.payload.packageData, ...state.packageData];
-			// }
+			state.stockData = action.payload.orderData;
+			state.packageData = [ action.payload.packageData, ...state.packageData];
 		},
 		[fetchUnMergePackage.fulfilled.type]: (state, action: PayloadAction<IFetchUnMergePackage>) => {
 			state.packageData = action.payload.packageData;
