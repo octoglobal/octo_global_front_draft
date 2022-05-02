@@ -5,6 +5,7 @@ import {ITabsData} from '@/components/Account/AccountOrders/AccountOrdersTabs/ty
 import {useAccountOrdersTabStyles} from '@/components/Account/AccountOrders/AccountOrdersTabs/style';
 import { useRouter } from 'next/router';
 import { getLocationWindow } from '@/services/services';
+import { useUserStore } from '@/hooks/useUserStore';
 
 const tabsData: ITabsData[] = [
 	{
@@ -29,12 +30,23 @@ const AccountOrdersTabs = () => {
 
 	const router = useRouter();
 	const [query, setQuery] = useState('');
+	const { isAdmin } = useUserStore();
 
 	useEffect(() => {
 		const id = getLocationWindow('userId=');
 		const email = getLocationWindow('userEmail=');
-		setQuery(`?userId=${id}&userEmail=${email}`);
-	}, [router]);
+		let queryStr = '';
+		if (isAdmin) {
+			if (id) {
+				queryStr += `?userId=${id}&`;
+			}
+			if (email) {
+				queryStr += `userEmail=${email}`;
+			}
+			setQuery(queryStr);
+
+		}
+	}, [router, isAdmin]);
 
 	return (
 		<ListMUI>

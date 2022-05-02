@@ -1,7 +1,8 @@
 import { useUserStore } from '@/hooks/useUserStore';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
 import { useState } from 'react';
-import { fetchOrderCheck, fetchOrderReturn } from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import { fetchMergeOrders, fetchOrderCheck, fetchOrderReturn } from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 export const useOrderItemStock = (orderId: number) => {
 
@@ -16,6 +17,7 @@ export const useOrderItemStock = (orderId: number) => {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
 
+	const { router } = useCustomRouter();
 	const dispatch = useAppDispatch();
 	const [isReturnOrder, setIsReturnOrder] = useState<boolean>(false);
 	const [isReturnSuccess, setIsReturnSuccess] = useState<{state: boolean, text: string}>({
@@ -97,10 +99,31 @@ export const useOrderItemStock = (orderId: number) => {
 		}
 	};
 
+	const handleSendOrder = () => {
+		dispatch(
+			fetchMergeOrders({
+				orders: [orderId]
+			})
+		).then((response) => {
+			try {
+				const payload = response.payload as {packageData: {id: number}};
+				const orderId = payload.packageData.id;
+				if (orderId !== undefined) {
+					router.push(
+						'/account/orders/address',
+						// {query: { id: orderId }},
+					);
+				}
+			} catch (e) {
+				throw new Error('Error send order');
+			}
+		});
+	};
+
 	const dropDownData = [
 		{ title: 'Возврат', onClick: handleToggleModal(setIsReturnOrder) },
 		{ title: 'Проверка товара', onClick: handleCheckOrder },
-		{ title: 'Оформить', onClick: () => console.log(1) },
+		{ title: 'Оформить', onClick: handleSendOrder },
 	];
 
 	const dialogSuccessReturnProps = {

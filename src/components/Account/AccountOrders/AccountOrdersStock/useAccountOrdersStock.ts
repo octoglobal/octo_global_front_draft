@@ -48,16 +48,13 @@ export const useAccountOrdersStock = () => {
 			fetchMergeOrders({
 				orders: getSelectArray(methods.getValues())
 			})
-		).then(r => {
-			if (Array.isArray(r.payload) && r.payload.length) {
-				methods.reset({});
-			}
+		).then(() => {
+			methods.reset({});
 		});
 	};
 
 	const handleUnMargePackage = (id: number | undefined) => {
 		if (id) {
-			console.log(123);
 			dispatch(fetchUnMergePackage({packageId: id}));
 		}
 	};
