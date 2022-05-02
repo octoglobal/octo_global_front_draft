@@ -43,8 +43,8 @@ export const useAccountOrdersAddress = () => {
 				octoAxios.post<IDefaultFetchSuccess>('/user/package/address', {
 					'packageId': packageId,
 					'addressId': addressId
-				}).then(resonse => {
-					if (resonse.data.message === 'success') {
+				}).then(response => {
+					if (response.data.message === 'success') {
 						router.push('/account/orders/stock');
 					}
 				});
