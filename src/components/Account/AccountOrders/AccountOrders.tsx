@@ -3,13 +3,19 @@ import AccountOrdersTabs from '@/components/Account/AccountOrders/AccountOrdersT
 import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 
 interface IAccountOrdersProps {
+	isTabs?: boolean
 	children: React.ReactChildren | React.ReactNode;
 }
 
-const AccountOrders: FC<IAccountOrdersProps> = ({children}) => {
+const AccountOrders: FC<IAccountOrdersProps> = (
+	{
+		children,
+		isTabs = true,
+	}
+) => {
 	return (
 		<ContainerMUI>
-			<AccountOrdersTabs/>
+			{isTabs && <AccountOrdersTabs/>}
 			{children}
 		</ContainerMUI>
 	);

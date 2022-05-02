@@ -6,7 +6,7 @@ import AccountOrdersAddress from '@/components/Account/AccountOrdersAddress/Acco
 const Address = () => {
 	return (
 		<AccountPage>
-			<AccountOrders>
+			<AccountOrders isTabs={false}>
 				<AccountOrdersAddress/>
 			</AccountOrders>
 		</AccountPage>
