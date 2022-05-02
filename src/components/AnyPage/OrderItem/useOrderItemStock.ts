@@ -107,11 +107,10 @@ export const useOrderItemStock = (orderId: number) => {
 		).then((response) => {
 			try {
 				const payload = response.payload as {packageData: {id: number}};
-				const orderId = payload.packageData.id;
-				if (orderId !== undefined) {
+				const packageId = payload.packageData.id;
+				if (packageId !== undefined) {
 					router.push(
-						'/account/orders/address',
-						// {query: { id: orderId }},
+						`/account/orders/address?packageId=${packageId}`,
 					);
 				}
 			} catch (e) {

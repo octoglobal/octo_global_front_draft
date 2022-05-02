@@ -11,12 +11,23 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import { translit } from '@/lib/services/services';
+import { SxProps } from '@mui/material';
 
 interface IAddLocationForm {
 	setOpenForm: (prevState : (state: boolean) => boolean) => void
+	isVisibleCancel?: boolean
+	buttonStyles?: SxProps
+	buttonSend?: string;
 }
 
-const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
+const AddLocationForm: FC<IAddLocationForm> = (
+	{
+		setOpenForm,
+		isVisibleCancel = true,
+		buttonStyles = {},
+		buttonSend = '',
+	}
+) => {
 	const {
 		FormUI,
 		FormWrapper,
@@ -153,18 +164,21 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 
 				<FormRowTitle/>
 				<FormRowButtonUI>
-					<ButtonUI
-						style={ButtonCancelUI}
-						variant="text"
-						onClick={handlerCancelButton}
-					>
-						Отмена
-					</ButtonUI>
+					{isVisibleCancel && (
+						<ButtonUI
+							style={ButtonCancelUI}
+							variant="text"
+							onClick={handlerCancelButton}
+						>
+							Отмена
+						</ButtonUI>
+					)}
 					<ButtonUI
 						type="submit"
 						style={ButtonSubmitUI}
+						sx={buttonStyles}
 					>
-						Сохранить
+						{buttonSend ? buttonSend : 'Сохранить'}
 					</ButtonUI>
 				</FormRowButtonUI>
 			</FormWrapper>
