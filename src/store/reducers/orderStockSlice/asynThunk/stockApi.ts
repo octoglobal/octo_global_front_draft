@@ -10,6 +10,8 @@ interface IFetchOrderStockData {
 	page: number;
 	page_limit: number;
 	package: boolean;
+	url: string;
+	userId: number | null;
 }
 
 interface IFetchOrderStockDataRes {
@@ -24,7 +26,12 @@ export const fetchOrderStockData = createAsyncThunk(
 	'orderStockSlice/data',
 	async (data: IFetchOrderStockData, thunkAPI) => {
 		try {
-			const response = await octoAxios.get<IFetchOrderStockDataRes>('/user/orders/are_waiting', {params: data}).then(r => r.data);
+			const response = await octoAxios.get<IFetchOrderStockDataRes>(data.url, {params: {
+				package: data.package,
+				page: data.page,
+				page_limit: data.page_limit,
+				userId: data.userId
+			}}).then(r => r.data);
 			return {
 				data: response.orders,
 				ordersEnd: !(response.orders.length === data.page_limit)
@@ -40,7 +47,13 @@ export const fetchPackageStockData = createAsyncThunk(
 	'orderStockSlice/dataPackage',
 	async (data: IFetchOrderStockData, thunkAPI) => {
 		try {
-			const response = await octoAxios.get<IFetchPackageStockDataRes>('/user/orders/are_waiting', {params: data}).then(r => r.data);
+			const response = await octoAxios.get<IFetchPackageStockDataRes>(data.url, {params: {
+				package: data.package,
+				page: data.page,
+				page_limit: data.page_limit,
+				userId: data.userId
+			}
+			}).then(r => r.data);
 			return {
 				packageData: response.packages,
 				packageEnd: !(response.packages.length === data.page_limit)
@@ -80,10 +93,10 @@ export const fetchOrderCheck = createAsyncThunk(
 
 export const fetchMergeOrders = createAsyncThunk(
 	'orderStockSlice/merge',
-	async (data: { orders: number[] }, thunkAPI) => {
+	async (data: { orders: number[], url: string, userId: number }, thunkAPI) => {
 		try {
 			const {orderStockReducer: {stockData}} = thunkAPI.getState() as { orderStockReducer: { stockData: IStockDataModel[] } };
-			const response = await octoAxios.post<{message: string, package: Omit<IPackageModel, 'orders'>}>('/user/package', data);
+			const response = await octoAxios.post<{message: string, package: Omit<IPackageModel, 'orders'>}>(data.url, data);
 			if (response.data.message == 'success') {
 				return {
 					orderData: sortItemArrayInId(stockData, data.orders),
@@ -101,10 +114,10 @@ export const fetchMergeOrders = createAsyncThunk(
 
 export const fetchUnMergePackage = createAsyncThunk(
 	'orderStockSlice/unMerge',
-	async (data: { packageId: number }, thunkAPI) => {
+	async (data: { packageId: number, url: string, userId: number | null }, thunkAPI) => {
 		try {
 			const {orderStockReducer: {packageData}} = thunkAPI.getState() as { orderStockReducer: { packageData: IPackageModel[] } };
-			const response = await octoAxios.delete<IDefaultFetchSuccess>('/user/package', {data});
+			const response = await octoAxios.delete<IDefaultFetchSuccess>(data.url, {data: {packageId: data.packageId, userId: data.userId}} );
 			if (response.data.message == 'success') {
 				const ordersData = packageData.find(item => item.id === data.packageId);
 				return {
@@ -134,4 +147,4 @@ export const fetchPackageAddAddress = createAsyncThunk(
 			thunkAPI.rejectWithValue('Error orderStockSlice/address');
 		}
 	}
-)
+);

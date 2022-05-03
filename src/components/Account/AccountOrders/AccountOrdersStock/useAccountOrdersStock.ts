@@ -9,6 +9,7 @@ import {useUserStore} from '@/hooks/useUserStore';
 import {useForm} from 'react-hook-form';
 import {getSelectArray} from '@/services/services';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
+import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
 
 export const useAccountOrdersStock = () => {
 	const {
@@ -46,8 +47,11 @@ export const useAccountOrdersStock = () => {
 	), [selectOrdersArray]);
 
 	const handleMergeOrders = () => {
+		const url = isAdmin ? '/admin/packages' : '/user/package';
 		dispatch(
 			fetchMergeOrders({
+				url,
+				userId: innerId,
 				orders: getSelectArray(methods.getValues())
 			})
 		).then(() => {
@@ -57,7 +61,12 @@ export const useAccountOrdersStock = () => {
 
 	const handleUnMargePackage = (id: number | undefined) => {
 		if (id) {
-			dispatch(fetchUnMergePackage({packageId: id}));
+			const url = isAdmin ? '/admin/packages' : '/user/package';
+			dispatch(fetchUnMergePackage({
+				packageId: id,
+				url: url,
+				userId: innerId,
+			}));
 		}
 	};
 
@@ -73,12 +82,19 @@ export const useAccountOrdersStock = () => {
 		]
 	), [innerId]);
 
-	const packageDopDownData = useMemo(() => (
-		[
-			{title: 'Разъединить', onClick: handleUnMargePackage},
-			{title: 'Оформить', onClick: handleAddAddressPackage},
-		]
-	), [innerId]);
+	const packageDopDownData = useMemo(() => {
+		if (!isAdmin) {
+			return [
+				{title: 'Разъединить', onClick: handleUnMargePackage},
+				{title: 'Оформить', onClick: handleAddAddressPackage},
+			];
+		} else {
+			return [
+				{title: 'Удалить', onClick: () => console.log(123)},
+				{title: 'Отказ', onClick: handleUnMargePackage},
+			];
+		}
+	}, [innerId, isAdmin]);
 
 	const isUserText = useMemo(() => (
 		isAdmin ? '' : 'У вас есть возможность объединить все или несколько заказов в одну посылку.'
@@ -86,20 +102,54 @@ export const useAccountOrdersStock = () => {
 
 
 	useEffect(() => {
-		if (ordersEnd) {
-			dispatch(fetchPackageStockData({
-				page: 1,
-				page_limit: pageLimit,
-				package: true
-			}));
-		} else {
-			dispatch(fetchOrderStockData({
-				page: 1,
-				page_limit: pageLimit,
-				package: false
-			}));
+		if (adminSwitchIdToUser) {
+			dispatch(orderStockSlice.actions.resetSlice());
 		}
-	}, [ordersEnd]);
+	}, [adminSwitchIdToUser]);
+
+	useEffect(() => {
+		const url = isAdmin ? 'admin/user/orders/are_waiting' : '/user/orders/are_waiting';
+		const userId = isAdmin ? adminSwitchIdToUser : null;
+		if (isAdmin) {
+			if (adminSwitchIdToUser) {
+				if (ordersEnd) {
+					dispatch(fetchPackageStockData({
+						page: 1,
+						page_limit: pageLimit,
+						package: true,
+						userId,
+						url
+					}));
+				} else {
+					dispatch(fetchOrderStockData({
+						page: 1,
+						page_limit: pageLimit,
+						package: false,
+						userId,
+						url,
+					}));
+				}
+			}
+		} else {
+			if (ordersEnd) {
+				dispatch(fetchPackageStockData({
+					page: 1,
+					page_limit: pageLimit,
+					package: true,
+					userId,
+					url
+				}));
+			} else {
+				dispatch(fetchOrderStockData({
+					page: 1,
+					page_limit: pageLimit,
+					package: false,
+					userId,
+					url,
+				}));
+			}
+		}
+	}, [ordersEnd, isAdmin, adminSwitchIdToUser]);
 
 	return {
 		methods,

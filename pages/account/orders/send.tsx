@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {NextPage} from 'next';
 import AccountPage from '@/components/Account/Account';
 import AccountOrders from '@/components/Account/AccountOrders/AccountOrders';
 import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 
 const Send: NextPage = () => {
+
 	return (
 		<AccountPage>
 			<AccountOrders>
