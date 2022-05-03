@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC, useMemo } from 'react';
 import {IPackageModel} from '@/models/IPackageModel';
 import {usePackageItemStyles} from '@/components/AnyPage/PackageItem/style';
 import OrderItem, {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
@@ -14,19 +14,32 @@ interface IPackageItem {
 const PackageItem: FC<IPackageItem> = ({packageData, component, dropItems, }) => {
 
 	const {
-		longId, orders, id
+		longId, orders, id, statusId
 	} = packageData;
+
+	const isStatus = useMemo(() => (
+		statusId === 2
+	), [statusId]);
 
 	return (
 		<ContainerMUI>
 			<TitleMUI>
-				<TextMUI>
-					Посылка № {longId}
-				</TextMUI>
-				<DropDownUI
-					itemId={id}
-					dropItems={dropItems}
-				/>
+				<TitleTextMUI>
+					<TextMUI>
+						Посылка № {longId}
+					</TextMUI>
+					{isStatus && (
+						<StatusTextMUI>
+							Готовится к отправлению
+						</StatusTextMUI>
+					)}
+				</TitleTextMUI>
+				{!isStatus && (
+					<DropDownUI
+						itemId={id}
+						dropItems={dropItems}
+					/>
+				)}
 			</TitleMUI>
 			{orders.map(order => (
 				<OrderItem
@@ -46,7 +59,9 @@ const PackageItem: FC<IPackageItem> = ({packageData, component, dropItems, }) =>
 const {
 	TextMUI,
 	TitleMUI,
+	TitleTextMUI,
 	ContainerMUI,
+	StatusTextMUI,
 } = usePackageItemStyles();
 
 

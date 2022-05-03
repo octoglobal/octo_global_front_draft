@@ -8,6 +8,7 @@ import {
 import {useUserStore} from '@/hooks/useUserStore';
 import {useForm} from 'react-hook-form';
 import {getSelectArray} from '@/services/services';
+import { useCustomRouter } from '@/hooks/useCustomRouter';
 
 export const useAccountOrdersStock = () => {
 	const {
@@ -19,6 +20,7 @@ export const useAccountOrdersStock = () => {
 
 	const {adminSwitchIdToUser} = useAppSelector(state => state.adminReducer);
 	const {isAdmin, user: {id}} = useUserStore();
+	const { router } = useCustomRouter();
 	const methods = useForm();
 	const ordersArray = methods.watch();
 	const dispatch = useAppDispatch();
@@ -60,7 +62,9 @@ export const useAccountOrdersStock = () => {
 	};
 
 	const handleAddAddressPackage = (id: number | undefined) => {
-		console.log(id);
+		if (id) {
+			router.push(`/account/orders/address?packageId=${id}`);
+		}
 	};
 
 	const buttonsData = useMemo(() => (

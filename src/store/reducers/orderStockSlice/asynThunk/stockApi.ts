@@ -4,6 +4,7 @@ import {IStockDataModel} from '@/models/IStockDataModel';
 import { findItemInArrayForId, sortItemArrayInId } from '@/services/services';
 import {IDefaultFetchSuccess} from '../../../../types/types';
 import {IPackageModel} from '@/models/IPackageModel';
+import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
 
 interface IFetchOrderStockData {
 	page: number;
@@ -113,6 +114,24 @@ export const fetchUnMergePackage = createAsyncThunk(
 			}
 		} catch (e) {
 			thunkAPI.rejectWithValue('Error orderStockSlice/return');
+		}
+	}
+);
+
+export const fetchPackageAddAddress = createAsyncThunk(
+	'orderStockSlice/address',
+	async (data: {packageId: number, addressId: number}, thunkAPI) => {
+		try {
+			const response = await octoAxios.post<IDefaultFetchSuccess>('/user/package/address', {
+				'packageId': data.packageId,
+				'addressId': data.addressId
+			});
+			if (response.data.message == 'success') {
+				thunkAPI.dispatch(orderStockSlice.actions.resetSlice());
+			}
+			return 'success';
+		} catch (e) {
+			thunkAPI.rejectWithValue('Error orderStockSlice/address');
 		}
 	}
 )
