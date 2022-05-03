@@ -52,7 +52,18 @@ interface IFetchUnMergePackage {
 export const orderStockSlice = createSlice({
 	name: 'orderStockSlice',
 	initialState,
-	reducers: {},
+	reducers: {
+		resetSlice(state) {
+			state.page = 1;
+			state.pageLimit = 50;
+			state.stockData = [];
+			state.packageData = [];
+			state.packageEnd = false;
+			state.updatePosts = false;
+			state.packageFetch = false;
+			state.ordersEnd = false;
+		}
+	},
 	extraReducers: {
 		[fetchOrderStockData.fulfilled.type]: (state, action: PayloadAction<IFetchOrderStockData>) => {
 			state.page += 1;

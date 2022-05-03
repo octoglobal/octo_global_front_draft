@@ -1,9 +1,8 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useMemo, useState } from 'react';
-import { octoAxios } from '@/lib/http';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
-import { IDefaultFetchSuccess } from '../../../types/types';
-import { route } from 'next/dist/server/router';
+import { useAppDispatch } from '@/hooks/useReduxHooks';
+import { fetchPackageAddAddress } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 
 interface IFormState {
 	addressSelect: {
@@ -14,6 +13,7 @@ interface IFormState {
 
 export const useAccountOrdersAddress = () => {
 
+	const dispatch = useAppDispatch();
 	const {router} = useCustomRouter();
 	const [isCollapse, setIsCollapse] = useState<boolean>(false);
 
@@ -40,11 +40,11 @@ export const useAccountOrdersAddress = () => {
 		const packageId = router.query?.packageId;
 		if (addressId && packageId) {
 			try {
-				octoAxios.post<IDefaultFetchSuccess>('/user/package/address', {
-					'packageId': packageId,
-					'addressId': addressId
-				}).then(response => {
-					if (response.data.message === 'success') {
+				dispatch(fetchPackageAddAddress({
+					packageId: +packageId,
+					addressId: addressId
+				})).then(response => {
+					if (response.payload == 'success') {
 						router.push('/account/orders/stock');
 					}
 				});

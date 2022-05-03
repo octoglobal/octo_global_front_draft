@@ -1,6 +1,6 @@
 import { useUserStore } from '@/hooks/useUserStore';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { fetchMergeOrders, fetchOrderCheck, fetchOrderReturn } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 
@@ -100,8 +100,11 @@ export const useOrderItemStock = (orderId: number) => {
 	};
 
 	const handleSendOrder = () => {
+		const url = isAdmin ? '/admin/packages' : '/user/package';
 		dispatch(
 			fetchMergeOrders({
+				url: url,
+				userId: adminSwitchIdToUser ? adminSwitchIdToUser : id,
 				orders: [orderId]
 			})
 		).then((response) => {
@@ -119,11 +122,20 @@ export const useOrderItemStock = (orderId: number) => {
 		});
 	};
 
-	const dropDownData = [
-		{ title: 'Возврат', onClick: handleToggleModal(setIsReturnOrder) },
-		{ title: 'Проверка товара', onClick: handleCheckOrder },
-		{ title: 'Оформить', onClick: handleSendOrder },
-	];
+	const dropDownData = useMemo(() => {
+		if (!isAdmin) {
+			return [
+				{ title: 'Возврат', onClick: handleToggleModal(setIsReturnOrder) },
+				{ title: 'Проверка товара', onClick: handleCheckOrder },
+				{ title: 'Оформить', onClick: handleSendOrder },
+			];
+		}
+		return  [
+			{ title: 'Удалить', onClick: () => console.log(1) },
+			{ title: 'Перенести', onClick: () => console.log(1) },
+			{ title: 'Оформить', onClick: handleSendOrder },
+		];
+	}, [isAdmin]);
 
 	const dialogSuccessReturnProps = {
 		dialogProps: {

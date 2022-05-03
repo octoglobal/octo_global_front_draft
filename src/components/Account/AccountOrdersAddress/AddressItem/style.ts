@@ -3,6 +3,7 @@ import { styled } from '@mui/material';
 export const useAddressItemStyles = () => {
 
 	const ContainerMUI = styled('button')(() => ({
+		display: 'block',
 		border: 0,
 		cursor: 'pointer',
 		backgroundColor: 'transparent',
