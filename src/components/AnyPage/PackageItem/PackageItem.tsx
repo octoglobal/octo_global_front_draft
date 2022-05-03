@@ -110,6 +110,7 @@ const PackageItem: FC<IPackageItem> = ({packageData, component, dropItems, }) =>
 					visibleTrackNumber={false}
 					visibleTitle={false}
 					component={component}
+					isBorderBottom={false}
 				/>
 			))}
 		</ContainerMUI>

@@ -30,7 +30,8 @@ interface IOrderItemProps {
 	visibleCheckbox: boolean,
 	visibleTrackNumber?: boolean,
 	visibleTitle?: boolean,
-	component: ComponentType
+	component: ComponentType,
+	isBorderBottom: boolean,
 }
 
 const OrderItem: FC<IOrderItemProps> = (
@@ -40,7 +41,8 @@ const OrderItem: FC<IOrderItemProps> = (
 		orderItem,
 		visibleTrackNumber = true,
 		visibleTitle = true,
-		component
+		component,
+		isBorderBottom = true,
 	}
 ) => {
 
@@ -58,7 +60,6 @@ const OrderItem: FC<IOrderItemProps> = (
 		dropDownData,
 		dialogStyles,
 		isDeleteModal,
-		packageData,
 		isStatusModal,
 		isReturnOrder,
 		setIsDeleteModal,
@@ -73,11 +74,13 @@ const OrderItem: FC<IOrderItemProps> = (
 		handleSuccessChangeStatus,
 	} = getCustomHooksData(component, id) as any;
 
-	console.log(packageData);
 
 	return (
 		<>
-			<ContainerMUI>
+			<ContainerMUI sx={isBorderBottom ? {} : {
+				borderBottom: '0px solid red !important',
+				paddingBottom: '0 !important',
+			}}>
 				{visibleTitle && (
 					<OrderItemTitle
 						id={id}

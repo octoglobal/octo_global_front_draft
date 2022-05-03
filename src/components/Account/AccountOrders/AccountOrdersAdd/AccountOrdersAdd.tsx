@@ -12,6 +12,7 @@ const AccountOrdersAdd = () => {
 
 	const {
 		onSubmit,
+		isMobile,
 		isAddOrder,
 		formMessage,
 		handleSubmit,
@@ -24,11 +25,17 @@ const AccountOrdersAdd = () => {
 	return (
 		<>
 			<ContainerMUI>
+				<PageLabelMUI>
+					+ Добавить
+				</PageLabelMUI>
 				<FormMUI onSubmit={handleSubmit(onSubmit)}>
 					<TextFieldContainerMUI>
 						<TextFieldUI
 							controller={textFieldName.controller}
-							inputProps={textFieldName.inputProps}
+							inputProps={{
+								...textFieldName.inputProps,
+								sx: isMobile ? inputContainerAdaptiveSX : inputContainerSX,
+							}}
 						/>
 					</TextFieldContainerMUI>
 					<TextFieldContainerMUI>
@@ -39,7 +46,10 @@ const AccountOrdersAdd = () => {
 									required: true,
 								},
 							}}
-							inputProps={textFieldTrackNumber.inputProps}
+							inputProps={{
+								...textFieldTrackNumber.inputProps,
+								sx: isMobile ? inputContainerAdaptiveSX :  inputContainerSX,
+							}}
 						/>
 					</TextFieldContainerMUI>
 					<TextAreaContainerMUI>
@@ -49,6 +59,7 @@ const AccountOrdersAdd = () => {
 								...textFieldDesc.inputProps,
 								id: 'outlined-textarea',
 								multiline: true,
+								maxRows: 4,
 							}}
 						/>
 					</TextAreaContainerMUI>
@@ -74,9 +85,12 @@ const AccountOrdersAdd = () => {
 const {
 	FormMUI,
 	ContainerMUI,
+	PageLabelMUI,
+	inputContainerSX,
 	ButtonContainerMUI,
 	TextFieldContainerMUI,
 	TextAreaContainerMUI,
+	inputContainerAdaptiveSX
 } = useAccountOrdersAddStyles();
 
 export default React.memo(AccountOrdersAdd);

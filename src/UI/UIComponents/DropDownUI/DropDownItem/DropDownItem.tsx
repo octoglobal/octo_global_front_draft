@@ -25,7 +25,7 @@ const DropDownItem: FC<IDropDownItemProps> = ({title, onClick, handleToggleOpen,
 };
 
 const {
-	ButtonMUI
+	ButtonMUI,
 } = useDropDownItemStyles();
 
 export default React.memo(DropDownItem);

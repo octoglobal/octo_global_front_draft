@@ -34,7 +34,11 @@ const ModalUI: FC<IModalUIProps> = (
 	}, [defaultStylesButton]);
 
 	return (
-		<DialogMUI {...dialogProps} disableScrollLock>
+		<DialogMUI
+			{...dialogProps}
+			disableScrollLock
+			BackdropComponent={BackDropBlurMUI}
+		>
 			<DialogTitleMUI>
 				{title}
 			</DialogTitleMUI>
@@ -62,6 +66,7 @@ const {
 	DialogMUI,
 	DialogBodyMUI,
 	DialogTitleMUI,
+	BackDropBlurMUI,
 	ButtonContainerMUI,
 } = useModalUIStyles();
 
