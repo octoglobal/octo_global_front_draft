@@ -5,12 +5,12 @@ import {useAccountPageStyle} from './style';
 import { useAccount } from '@/components/Account/useAccount';
 import AccountSearch from '@/components/Account/AccountSearch/AccountSearch';
 
-interface IAccoutPage {
+interface IAccountPage {
 	renderTabs?: boolean,
 	children: React.ReactChild | React.ReactNode,
 }
 
-const AccountPage: FC<IAccoutPage> = ({
+const AccountPage: FC<IAccountPage> = ({
 	renderTabs = true,
 	children
 }) => {

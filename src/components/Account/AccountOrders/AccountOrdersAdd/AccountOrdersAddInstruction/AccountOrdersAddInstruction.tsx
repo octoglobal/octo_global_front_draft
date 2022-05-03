@@ -21,18 +21,18 @@ const AccountOrdersAddInstruction = () => {
 					</a>
 				</Link>
 			</ItemMUI>
-			<ItemMUI>
-				<Link href='/questions'>
-					<a>
-						<IconMUI>
-							<InvoiseIcon/>
-						</IconMUI>
-						<TextMUI>
-							Инвойс
-						</TextMUI>
-					</a>
-				</Link>
-			</ItemMUI>
+			{/*<ItemMUI>*/}
+			{/*	<Link href='/questions'>*/}
+			{/*		<a>*/}
+			{/*			<IconMUI>*/}
+			{/*				<InvoiseIcon/>*/}
+			{/*			</IconMUI>*/}
+			{/*			<TextMUI>*/}
+			{/*				Инвойс*/}
+			{/*			</TextMUI>*/}
+			{/*		</a>*/}
+			{/*	</Link>*/}
+			{/*</ItemMUI>*/}
 		</>
 	);
 };
