@@ -59,7 +59,7 @@ export const fetchAddNewsBlog = createAsyncThunk(
 				.then(r => r.data);
 
 			const response2 = await octoAxios.get<IFetchNewsDataRes>('blog?page=1&page_limit=1');
-			console.log(response2.data.posts[0]);
+		
 			const newId = response2.data.posts[0].id;
 			if (response.message == 'success') {
 				return {

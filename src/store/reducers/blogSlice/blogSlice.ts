@@ -18,7 +18,8 @@ interface IBlogSlice {
 	blogData: IBlogModel[];
 	blogEnd: boolean;
 	EditMode: IEditMode;
-	error:IError
+	error:IError,
+	loading: boolean
 };
 
 interface IFetchNewsFulfilled {
@@ -40,7 +41,8 @@ const initialState: IBlogSlice = {
 	error:{
 		status: false,
 		message: ''
-	}
+	},
+	loading: false
 };
 
 export const blogSlice = createSlice({
@@ -74,8 +76,12 @@ export const blogSlice = createSlice({
 		},
 	},
 	extraReducers: {
+		[fetchAddNewsBlog.pending.type]: (state) => {
+			state.loading = true;
+		},
 		[fetchAddNewsBlog.fulfilled.type]: (state, action: PayloadAction<IBlogModel>) => {
 			state.blogData = [ action.payload, ...state.blogData];
+			state.loading = false;
 		},
 		[fetchNewsData.fulfilled.type]: (state, action: PayloadAction<IFetchNewsFulfilled>) => {
 			state.blogEnd = action.payload.blogEnd;

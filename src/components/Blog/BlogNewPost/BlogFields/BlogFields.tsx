@@ -20,6 +20,7 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 	const {
 		methods,
 		openModal,
+		loading,
 		onSubmit,
 		changeOpenModal		
 	} = useBlogFields(EditMode.id as number ,blogData,error);
@@ -38,7 +39,7 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 						</WrapperMUI>
 						<BlogDescription/>
 						<ButtonContainerMUI>
-							<ButtonUI type='submit'>
+							<ButtonUI type='submit' disabled={loading? true : false} >
 								{EditMode.id ? 'Изменить':'Сохранить'}								
 							</ButtonUI>
 							

@@ -1,6 +1,6 @@
 
 import {useForm} from 'react-hook-form';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useAppDispatch ,useAppSelector} from '@/hooks/useReduxHooks';
 import {fetchAddNewsBlog,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
 import { useState,useEffect } from 'react';
 import { HOST } from '@/constants/constants';
@@ -35,9 +35,10 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 	const [openModal, setOpenModal] = useState(false);
 	const dispatch = useAppDispatch();
 	const methods = useForm<IFormData>();
-
+	const {loading} = useAppSelector(state => state.blogReducer);
+	
 	const onSubmit = (data: IFormData) => {
-		
+	
 		if (edit){			
 			try {
 				dispatch(fetchUpdateBlog({data: data,id:edit}));
@@ -115,6 +116,7 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 	return {
 		methods,
 		openModal,
+		loading,
 		onSubmit,
 		changeOpenModal
 	};
