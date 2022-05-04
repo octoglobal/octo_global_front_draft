@@ -31,7 +31,7 @@ export const useBtnSection = (id:number)=>{
 	};
 
 	const handleEditMode = ()  => {	
-		console.log('edit id', id);	
+	
 		dispatch(updateEditMode({open: true,id:id}));
 		window.scrollTo({
 			top: 0,

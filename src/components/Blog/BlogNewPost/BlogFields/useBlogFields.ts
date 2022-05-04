@@ -76,6 +76,10 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 	useEffect(()=>{
 		if (edit){			
 			const PostValue = blogData.filter(post=>post.id === edit)[0];
+			const isLocalPhoto = PostValue.products[0].photo.match('data:image');
+			const src = (count: number) => {
+				return isLocalPhoto ? PostValue.products[count].photo : `${HOST}/image/${PostValue.products[count].photo}`;
+			};
 		
 			methods.reset({
 				'blogTitle': PostValue.title,
@@ -83,9 +87,9 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 				'postLink2':  PostValue.products[1].url,
 				'postLink3':  PostValue.products[2].url,
 				'blogDescription': PostValue.body,
-				'blogPhoto1': {base64: `${HOST}/image/${PostValue.products[0].photo}`, file: undefined },
-				'blogPhoto2': {base64: `${HOST}/image/${PostValue.products[1].photo}`, file: undefined },
-				'blogPhoto3': {base64: `${HOST}/image/${PostValue.products[2].photo}`, file: undefined },
+				'blogPhoto1': {base64: src(0), file: undefined },
+				'blogPhoto2': {base64: src(1), file: undefined },
+				'blogPhoto3': {base64: src(2), file: undefined },
 				'miniDescPhoto1': PostValue.products[0].body,
 				'miniDescPhoto2': PostValue.products[1].body,
 				'miniDescPhoto3': PostValue.products[2].body,

@@ -21,30 +21,18 @@ export const useBlogPhoto = (indexField: number) => {
 
 	const photoSrc = useMemo(() => {
 		
-
-		if (EditMode.id){
-			if (photo?.base64) {
-				return {
-					src: photo.base64.split('/image')[1].substring(1),
-					defaultPhoto: false
-				};
-			}
+	
+		if (photo?.base64) {
 			return {
-				src: defaultPhoto,
-				defaultPhoto: true,
-			};
-		} else {
-			if (photo?.base64) {
-				return {
-					src: photo.base64,
-					defaultPhoto: false
-				};
-			}
-			return {
-				src: defaultPhoto,
-				defaultPhoto: true,
+				src: photo.base64,
+				defaultPhoto: false
 			};
 		}
+		return {
+			src: defaultPhoto,
+			defaultPhoto: true,
+		};
+		
 
 
 		
