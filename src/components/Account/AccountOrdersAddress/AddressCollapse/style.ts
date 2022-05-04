@@ -2,7 +2,7 @@ import { Collapse, styled } from '@mui/material';
 
 export const useAddressCollapseStyles = () => {
 
-	const CollapseMUI = styled(Collapse)(({theme}) => ({
+	const CollapseMUI = styled(Collapse)(() => ({
 
 	}));
 

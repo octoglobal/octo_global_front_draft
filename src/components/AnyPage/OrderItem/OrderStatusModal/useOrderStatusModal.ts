@@ -1,32 +1,51 @@
 import {FieldValues, SubmitHandler, useForm} from 'react-hook-form';
-import {useEffect} from 'react';
+import {useEffect, useMemo} from 'react';
 import {octoAxios} from '@/lib/http';
 import {IOrderModel} from '@/models/IOrderModel';
 import {IDefaultFetchSuccess} from '../../../../types/types';
+import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
 
 interface IFormStatus {
 	trackNumber: string;
 	orderStatus: { title: string, value: number };
 }
 
-const collapseItems = [
-	// {
-	// 	title: 'Ожидаемые',
-	// 	name: 'wait',
-	// 	value: 0,
-	// },
-	{
-		title: 'На складе',
-		name: 'stock',
-		value: 1,
-	},
-];
 
-
-
-export const useOrderStatusModal = (isOpen: boolean, orderItem: IOrderModel, successCallback: () => void) => {
+export const useOrderStatusModal = (
+	isOpen: boolean,
+	orderItem: IOrderModel,
+	successCallback: () => void,
+	component: ComponentType,
+) => {
 	const methods = useForm<IFormStatus | FieldValues>();
 
+	const collapseItems = useMemo(() => {
+		if (component == 'wait') {
+			return [
+				{
+					title: 'На складе',
+					name: 'stock',
+					value: 1,
+				},
+			];
+		}
+		if (component == 'stock') {
+			return [
+				{
+					title: 'Ожидаемые',
+					name: 'wait',
+					value: 0,
+				},
+			];
+		}
+		return [
+			{
+				title: '',
+				name: '',
+				value: -1,
+			},
+		];
+	}, [component]);
 
 	const trackNumberProps = {
 		controller: {

@@ -12,13 +12,13 @@ import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 
 export type ComponentType = 'wait' | 'stock' | 'send';
 
-const getCustomHooksData = (component: ComponentType, orderId: number) => {
+const getCustomHooksData = (component: ComponentType, orderId: number, orderItem: IOrderModel) => {
 	if (component === 'wait') {
 		const waitData = useOrderItemWait();
 		return waitData;
 	}
 	if (component === 'stock') {
-		const stockData = useOrderItemStock(orderId);
+		const stockData = useOrderItemStock(orderId, orderItem);
 		return stockData;
 	}
 };
@@ -31,7 +31,7 @@ interface IOrderItemProps {
 	visibleTrackNumber?: boolean,
 	visibleTitle?: boolean,
 	component: ComponentType,
-	isBorderBottom: boolean,
+	isBorderBottom?: boolean,
 }
 
 const OrderItem: FC<IOrderItemProps> = (
@@ -72,7 +72,7 @@ const OrderItem: FC<IOrderItemProps> = (
 
 		dialogSuccessReturnProps,
 		handleSuccessChangeStatus,
-	} = getCustomHooksData(component, id) as any;
+	} = getCustomHooksData(component, id, orderItem) as any;
 
 
 	return (
@@ -99,7 +99,7 @@ const OrderItem: FC<IOrderItemProps> = (
 					comment={comment}
 				/>
 			</ContainerMUI>
-			{component == 'wait' && (
+			{(component == 'wait' || component == 'stock') && (
 				<>
 					{isAdmin && (
 						<ModalConfirmUI
@@ -117,6 +117,7 @@ const OrderItem: FC<IOrderItemProps> = (
 							orderItem={orderItem}
 							open={isStatusModal}
 							onClose={handleToggleModal(setIsStatusModal)}
+							component={component}
 						/>
 					)}
 				</>

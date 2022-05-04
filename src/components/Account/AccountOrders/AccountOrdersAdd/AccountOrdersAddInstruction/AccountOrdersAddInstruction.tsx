@@ -1,6 +1,6 @@
 import React from 'react';
 import InstructionIcon from '@/UIIcon/InstructionIcon.svg';
-import InvoiseIcon from '@/UIIcon/InvoiseIcon.svg';
+// import InvoiseIcon from '@/UIIcon/InvoiseIcon.svg';
 import {
 	useAccountOrdersAddInstructionStyles
 } from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountOrdersAddInstruction/style';

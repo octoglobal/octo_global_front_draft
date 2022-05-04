@@ -8,8 +8,8 @@ import {
 import {useUserStore} from '@/hooks/useUserStore';
 import {useForm} from 'react-hook-form';
 import {getSelectArray} from '@/services/services';
-import { useCustomRouter } from '@/hooks/useCustomRouter';
 import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
+import {useOrdersAccount} from '@/hooks/useOrdersAccount';
 
 export const useAccountOrdersStock = () => {
 	const {
@@ -21,10 +21,12 @@ export const useAccountOrdersStock = () => {
 
 	const {adminSwitchIdToUser} = useAppSelector(state => state.adminReducer);
 	const {isAdmin, user: {id}} = useUserStore();
-	const { router } = useCustomRouter();
 	const methods = useForm();
 	const ordersArray = methods.watch();
 	const dispatch = useAppDispatch();
+	const {
+		handlePushOrdersAddress
+	} = useOrdersAccount();
 
 
 	const innerId = useMemo(() => (
@@ -62,19 +64,34 @@ export const useAccountOrdersStock = () => {
 	const handleUnMargePackage = (id: number | undefined) => {
 		if (id) {
 			const url = isAdmin ? '/admin/packages' : '/user/package';
-			dispatch(fetchUnMergePackage({
+			const response = dispatch(fetchUnMergePackage({
 				packageId: id,
 				url: url,
 				userId: innerId,
 			}));
+
+			return response;
 		}
 	};
 
 	const handleAddAddressPackage = (id: number | undefined) => {
 		if (id) {
-			router.push(`/account/orders/address?packageId=${id}`);
+			handlePushOrdersAddress(id);
 		}
 	};
+
+	// const handleDeletePackage = async (id: number | undefined) => {
+	// 	const responseUnMarge = await handleUnMargePackage(id);
+	// 	if (responseUnMarge) {
+	// 		const data = responseUnMarge.payload as {orderData: string};
+	// 		if (Array.isArray(data?.orderData)) {
+	// 			// const onlyIdArray = data.orderData.map(item => item.id);
+	// 			// for (let i = 0; i < onlyIdArray.length; i++) {
+	// 			//
+	// 			// }
+	// 		};
+	// 	};
+	// };
 
 	const buttonsData = useMemo(() => (
 		[
@@ -90,8 +107,9 @@ export const useAccountOrdersStock = () => {
 			];
 		} else {
 			return [
-				{title: 'Удалить', onClick: () => console.log(123)},
-				{title: 'Отказ', onClick: handleUnMargePackage},
+				// {title: 'Удалить', onClick: handleDeletePackage},
+				{title: 'Разъединить', onClick: handleUnMargePackage},
+				{title: 'Оформить', onClick: handleAddAddressPackage},
 			];
 		}
 	}, [innerId, isAdmin]);
