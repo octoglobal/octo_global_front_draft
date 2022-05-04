@@ -375,6 +375,10 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(600)]: {
 			fontSize: '16px',
 		},
+		[theme.breakpoints.down(365)]: {
+			fontSize: '14px',
+			// width: '100%',
+		},
 	}));
 	const FormTableSectionRightMUI  = styled('div')(({theme}) => ({
 		// width: '60%',
@@ -399,7 +403,7 @@ export const useAccountSettingsStyle = () => {
 		
 		
 	}));
-	
+
 	const FormSectionMUI = styled('div')(({theme}) => ({
 		height: '50px',
 		display: 'flex',
@@ -421,7 +425,11 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			fontSize: '16px',
-			width: '166px',
+			// width: '100%',
+		},
+		[theme.breakpoints.down(365)]: {
+			fontSize: '14px',
+			width: '100%',
 		},
 	}));
 	const FormTableSectionTopRightMUI  = styled('div')(({theme}) => ({
@@ -430,16 +438,55 @@ export const useAccountSettingsStyle = () => {
 
 		[theme.breakpoints.down(600)]: {
 			textAlign: 'right',
-			width: '287px',
-		},
-		[theme.breakpoints.down(600)]: {
-			textAlign: 'right',
+			// width: '100px',
 			maxWidth: '227px',
+
+		},
+		[theme.breakpoints.down(365)]: {
+			fontSize: '14px',
+			width: '100%',
+			
 		},
 		
 	}));
-	
 
+	//
+	const MailLeftMUI  = styled('div')(({theme}) => ({
+		width: '177px',
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '400',
+		fontSize: '20px',
+		lineHeight: '23px',
+		color: '#000000',
+
+		[theme.breakpoints.down(600)]: {
+			fontSize: '16px',
+		    // width: '100px',
+			
+		},
+		[theme.breakpoints.down(365)]: {
+			fontSize: '14px',
+		},
+	}));
+
+
+	const MailRightMUI  = styled('div')(({theme}) => ({
+		width: '277px',
+		textAlign: 'left',
+
+		[theme.breakpoints.down(600)]: {
+			textAlign: 'right',
+			// Width: '100%',
+			maxWidth: '227px',
+		},
+		[theme.breakpoints.down(400)]: {
+			// fontSize: '14px',
+			// width: 'auto',
+			// maxWidth: '227px',
+		},
+		
+	}));
 	const TextFieldEmailMUI = styled('div')(({theme}) => ({
 		alignItems: 'center',
 		
@@ -512,6 +559,8 @@ export const useAccountSettingsStyle = () => {
 		FormSectionMUI,
 		FormContainerTopMUI,
 		FormTextFieldContainerMUI,
-		FormContainerBottomMUI
+		FormContainerBottomMUI,
+		MailLeftMUI,
+		MailRightMUI
 	};
 };

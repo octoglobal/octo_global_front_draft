@@ -66,10 +66,10 @@ const AccountUserForm: FC = () => {
 					</FormSectionMUI>
 					
 					<FormSectionMUI>
-						<FormTableSectionTopLeftMUI>
+						<MailLeftMUI>
 							Почта
-						</FormTableSectionTopLeftMUI>
-						<FormTableSectionTopRightMUI>
+						</MailLeftMUI>
+						<MailRightMUI>
 							<FormTextFieldBorderUI selection={false}>
 								<TextFieldEmailMUI>
 									<TextFieldUI
@@ -96,7 +96,7 @@ const AccountUserForm: FC = () => {
 								)} */}
 							</FormTextFieldBorderUI>
 										
-						</FormTableSectionTopRightMUI>
+						</MailRightMUI>
 					</FormSectionMUI>
 				</FormContainerTopMUI>
 
@@ -170,6 +170,8 @@ const {
 	FormSectionMUI,
 	FormContainerTopMUI,
 	FormTextFieldContainerMUI,
+	MailLeftMUI,
+	MailRightMUI
 	
 } = useAccountSettingsStyle();
 
