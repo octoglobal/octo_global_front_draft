@@ -5,6 +5,7 @@ import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 import {getLocationWindow} from '@/services/services';
+import {fetchUserAdmin} from '@/reducers/adminSlice/asyncThunk/adminApi';
 
 export const useAccount = () => {
 	const {router, pushTo} = useCustomRouter();
@@ -46,6 +47,11 @@ export const useAccount = () => {
 		}
 	}, [router, isAdmin]);
 
+	useEffect(() => {
+		if (adminSwitchIdToUser) {
+			dispatch(fetchUserAdmin({userId: adminSwitchIdToUser}));
+		}
+	}, [adminSwitchIdToUser]);
 
 	useEffect(() => {
 		getUser();

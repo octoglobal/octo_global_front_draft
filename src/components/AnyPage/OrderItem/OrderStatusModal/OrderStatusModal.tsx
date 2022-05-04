@@ -7,22 +7,38 @@ import {useOrderStatusModal} from '@/components/AnyPage/OrderItem/OrderStatusMod
 import DropDownCollapseUI from '../../../../UI/UIComponents/DropDownCollapseUI/DropDownCollapseUI';
 import {IOrderModel} from '@/models/IOrderModel';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
+import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
 
 interface IOrderStatusModal {
 	open: boolean,
 	onClose: () => void;
 	orderItem: IOrderModel;
 	successCallback: () => void;
+	component: ComponentType
+
 }
 
-const OrderStatusModal: FC<IOrderStatusModal> = ({open, onClose, orderItem, successCallback}) => {
+const OrderStatusModal: FC<IOrderStatusModal> = (
+	{
+		open,
+		onClose,
+		orderItem,
+		successCallback,
+		component
+	}
+) => {
 
 	const {
 		methods,
 		onSubmit,
 		collapseItems,
 		trackNumberProps
-	} = useOrderStatusModal(open, orderItem, successCallback);
+	} = useOrderStatusModal(
+		open,
+		orderItem,
+		successCallback,
+		component
+	);
 
 	return (
 		<FormProvider {...methods}>

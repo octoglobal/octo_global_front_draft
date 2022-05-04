@@ -1,10 +1,17 @@
-import { useUserStore } from '@/hooks/useUserStore';
-import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
-import { useMemo, useState } from 'react';
-import { fetchMergeOrders, fetchOrderCheck, fetchOrderReturn } from '@/reducers/orderStockSlice/asynThunk/stockApi';
-import { useCustomRouter } from '@/hooks/useCustomRouter';
+import {useUserStore} from '@/hooks/useUserStore';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
+import {useMemo, useState} from 'react';
+import {
+	fetchMergeOrders,
+	fetchOrderCheck,
+	fetchOrderDelete,
+	fetchOrderReturn
+} from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import {IOrderModel} from '@/models/IOrderModel';
+import {orderStockSlice} from '@/reducers/orderStockSlice/orderStockSlice';
+import {useOrdersAccount} from '@/hooks/useOrdersAccount';
 
-export const useOrderItemStock = (orderId: number) => {
+export const useOrderItemStock = (orderId: number, orderItem: IOrderModel) => {
 
 	const {
 		isAdmin,
@@ -17,14 +24,18 @@ export const useOrderItemStock = (orderId: number) => {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
 
-	const { router } = useCustomRouter();
 	const dispatch = useAppDispatch();
+	const {
+		handlePushOrdersAddress
+	} = useOrdersAccount();
+	const [isStatusModal, setIsStatusModal] = useState<boolean>(false);
+	const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false);
 	const [isReturnOrder, setIsReturnOrder] = useState<boolean>(false);
-	const [isReturnSuccess, setIsReturnSuccess] = useState<{state: boolean, text: string}>({
+	const [isReturnSuccess, setIsReturnSuccess] = useState<{ state: boolean, text: string }>({
 		state: false,
 		text: 'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией'
 	});
-	const [isCheckOrder, setIsCheckOrder] = useState<{state: boolean, text: string}>({
+	const [isCheckOrder, setIsCheckOrder] = useState<{ state: boolean, text: string }>({
 		state: false,
 		text: 'Спасибо за обращение \n' + 'Вам на почту придет письмо с подробной информацией'
 	});
@@ -37,26 +48,22 @@ export const useOrderItemStock = (orderId: number) => {
 		};
 	};
 
-	// const handleSuccessChangeStatus = (id: number) => {
-	// 	return () => {
-	// 		handleToggleModal(setIsStatusModal)();
-	// 		dispatch(orderWaitSlice.actions.sortOrderData(id));
-	// 	};
-	// };
-	//
+	const handleSuccessChangeStatus = (id: number) => {
+		return () => {
+			handleToggleModal(setIsStatusModal)();
+			dispatch(orderStockSlice.actions.filterStockData(id));
+		};
+	};
 
-	// const handleDeleteOrder = (orderId: number) => {
-	// 	return () => {
-	// 		if (innerId) {
-	// 			dispatch(fetchDeleteOrders({
-	// 				userId: innerId,
-	// 				orderId: [orderId],
-	// 				ordersData: orderWaitData,
-	// 				successCallback: handleToggleModal(setIsDeleteModal)
-	// 			}));
-	// 		}
-	// 	};
-	// };
+
+	const handleDeleteOrder = (orderId: number) => {
+		return () => {
+			if (innerId || orderId) {
+				dispatch(fetchOrderDelete({order: orderItem}))
+					.then(() => setIsDeleteModal(false));
+			}
+		};
+	};
 
 	const handleReturnOrder = (orderId: number) => {
 		return () => {
@@ -109,12 +116,10 @@ export const useOrderItemStock = (orderId: number) => {
 			})
 		).then((response) => {
 			try {
-				const payload = response.payload as {packageData: {id: number}};
+				const payload = response.payload as { packageData: { id: number } };
 				const packageId = payload.packageData.id;
 				if (packageId !== undefined) {
-					router.push(
-						`/account/orders/address?packageId=${packageId}`,
-					);
+					handlePushOrdersAddress(packageId);
 				}
 			} catch (e) {
 				throw new Error('Error send order');
@@ -125,15 +130,15 @@ export const useOrderItemStock = (orderId: number) => {
 	const dropDownData = useMemo(() => {
 		if (!isAdmin) {
 			return [
-				{ title: 'Возврат', onClick: handleToggleModal(setIsReturnOrder) },
-				{ title: 'Проверка товара', onClick: handleCheckOrder },
-				{ title: 'Оформить', onClick: handleSendOrder },
+				{title: 'Возврат', onClick: handleToggleModal(setIsReturnOrder)},
+				{title: 'Проверка товара', onClick: handleCheckOrder},
+				{title: 'Оформить', onClick: handleSendOrder},
 			];
 		}
-		return  [
-			{ title: 'Удалить', onClick: () => console.log(1) },
-			{ title: 'Перенести', onClick: () => console.log(1) },
-			{ title: 'Оформить', onClick: handleSendOrder },
+		return [
+			{title: 'Удалить', onClick: handleToggleModal(setIsDeleteModal)},
+			{title: 'Перенести', onClick: handleToggleModal(setIsStatusModal)},
+			{title: 'Оформить', onClick: handleSendOrder},
 		];
 	}, [isAdmin]);
 
@@ -166,12 +171,17 @@ export const useOrderItemStock = (orderId: number) => {
 		isCheckOrder,
 		dropDownData,
 		isReturnOrder,
+		isStatusModal,
+		isDeleteModal,
 		setIsCheckOrder,
 		setIsReturnOrder,
+		setIsDeleteModal,
 		handleReturnOrder,
 		handleCheckOrder,
 		handleToggleModal,
+		handleDeleteOrder,
 		dialogCheckProps,
+		handleSuccessChangeStatus,
 		dialogSuccessReturnProps,
 	};
 };
