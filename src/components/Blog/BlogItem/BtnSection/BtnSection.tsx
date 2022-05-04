@@ -11,7 +11,6 @@ interface IBtnSection {
 }
 const BtnSection: FC<IBtnSection> = ({id})=>{
 	
-
 	const {
 		openConfirmDialog,
 		canRender,

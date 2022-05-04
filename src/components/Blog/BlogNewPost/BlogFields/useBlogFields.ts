@@ -38,25 +38,29 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 
 	const onSubmit = (data: IFormData) => {
 		
-		if (edit){
-			
+		if (edit){			
 			try {
-				
 				dispatch(fetchUpdateBlog({data: data,id:edit}));
+				methods.reset({
+					'blogPhoto1': {},
+					'blogPhoto2': {},
+					'blogPhoto3': {},
+				});
 			} catch (e) {
 				throw new Error('Ошибка запроса');
 			}
-		} else {
+		} else {		
 			try {
 				dispatch(fetchAddNewsBlog(data)).then(r => {
-					if (r.type === 'blogSlice/add/fulfilled') {
-						methods.reset({});
+					if (r.type === 'blogSlice/add/fulfilled') {					
+						methods.reset({});					
 						window.scrollTo({
 							behavior: 'smooth',
 							top: 0
-						});
+						});						
 					}
-				});
+				});			
+			
 			} catch (e) {
 				throw new Error('Ошибка запроса');
 			}
@@ -69,9 +73,9 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 
 
 	useEffect(()=>{
-		if (edit){
+		if (edit){			
 			const PostValue = blogData.filter(post=>post.id === edit)[0];
-			
+		
 			methods.reset({
 				'blogTitle': PostValue.title,
 				'postLink1': PostValue.products[0].url,
@@ -90,8 +94,13 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 
 			});
 			
-		} else {			
-			methods.reset({});
+		} else {	
+				
+			methods.reset({
+				'blogPhoto1': {},
+				'blogPhoto2': {},
+				'blogPhoto3': {},
+			});
 		} 
 		
 	},[edit]);

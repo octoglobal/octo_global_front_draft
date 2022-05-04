@@ -57,6 +57,10 @@ export const fetchAddNewsBlog = createAsyncThunk(
 			const response = await octoAxios
 				.post<IFetchAddNewsRes>('/admin/blog', formData)
 				.then(r => r.data);
+
+			const response2 = await octoAxios.get<IFetchNewsDataRes>('blog?page=1&page_limit=1');
+			console.log(response2.data.posts[0]);
+			const newId = response2.data.posts[0].id;
 			if (response.message == 'success') {
 				return {
 					newPost: true,
@@ -64,7 +68,7 @@ export const fetchAddNewsBlog = createAsyncThunk(
 					body: data.blogDescription,
 					createdTime: new Date().toString(),
 					editedTime: null,
-					id: 0,
+					id: newId,
 					products: [
 						{
 							title: data.subtitlePhoto1,
@@ -179,20 +183,21 @@ export const fetchUpdateBlog = createAsyncThunk(
 							title: data.data.subtitlePhoto1,
 							body: data.data.miniDescPhoto1,
 							url: data.data.postLink1,
-							photo: data.data.blogPhoto1.base64.split('/image')[1],
+							photo: data.data.blogPhoto1.base64.split('/image')[1].substring(1),
+							
 							
 						},
 						{
 							title: data.data.subtitlePhoto2,
 							body: data.data.miniDescPhoto2,
 							url: data.data.postLink2,
-							photo: data.data.blogPhoto2.base64.split('/image')[1]
+							photo: data.data.blogPhoto2.base64.split('/image')[1].substring(1)
 						},
 						{
 							title: data.data.subtitlePhoto3,
 							body: data.data.miniDescPhoto3,
 							url: data.data.postLink3,
-							photo: data.data.blogPhoto3.base64.split('/image')[1]
+							photo: data.data.blogPhoto3.base64.split('/image')[1].substring(1)
 						},
 					]
 				};

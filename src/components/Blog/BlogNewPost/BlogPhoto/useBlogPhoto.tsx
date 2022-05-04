@@ -20,16 +20,34 @@ export const useBlogPhoto = (indexField: number) => {
 	};
 
 	const photoSrc = useMemo(() => {
-		if (photo?.base64) {
+		
+
+		if (EditMode.id){
+			if (photo?.base64) {
+				return {
+					src: photo.base64.split('/image')[1].substring(1),
+					defaultPhoto: false
+				};
+			}
 			return {
-				src: photo.base64,
-				defaultPhoto: false
+				src: defaultPhoto,
+				defaultPhoto: true,
+			};
+		} else {
+			if (photo?.base64) {
+				return {
+					src: photo.base64,
+					defaultPhoto: false
+				};
+			}
+			return {
+				src: defaultPhoto,
+				defaultPhoto: true,
 			};
 		}
-		return {
-			src: defaultPhoto,
-			defaultPhoto: true,
-		};
+
+
+		
 	}, [photo]);
 
 	const handleAddPhoto = () => {
