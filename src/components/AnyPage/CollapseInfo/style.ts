@@ -26,6 +26,7 @@ export const useCollapseInfoStyles = () => {
 		lineHeight: '28px',
 		fontWeight: 400,
 		color: '#274D82',
+		textAlign: 'left',
 	}));
 
 

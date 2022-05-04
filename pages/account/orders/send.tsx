@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {NextPage} from 'next';
 import AccountPage from '@/components/Account/Account';
 import AccountOrders from '@/components/Account/AccountOrders/AccountOrders';
