@@ -13,7 +13,9 @@ const AccountOrdersWait = () => {
 		buttonsData,
 		isDataLength,
 		orderWaitData,
+		isVisibleCheckbox,
 	} = useAccountOrdersWait();
+
 
 	return (
 		<WrapperOrdersMUI>
@@ -23,7 +25,7 @@ const AccountOrdersWait = () => {
 						{orderWaitData.map(order => (
 							<OrderItem
 								component='wait'
-								visibleCheckbox={isAdmin}
+								visibleCheckbox={isVisibleCheckbox}
 								visibleDropDown={isAdmin}
 								key={`${order.trackNumber}${order.id}`}
 								orderItem={order}

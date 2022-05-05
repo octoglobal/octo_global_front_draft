@@ -5,34 +5,26 @@ import {useUserStore} from '../../../hooks/useUserStore';
 import {useCustomSize, useCustom800} from '../../../hooks/useMedia';
 
 import {useUserStyle} from './style';
+import {useAppSelector} from '@/hooks/useReduxHooks';
+import {useUser} from '@/components/AnyPage/User/useUser';
 
 interface IUser {
-	cutFio?:boolean
+	cutFio?:boolean;
+	isChangeToAdmin?: boolean;
 }
 
-const User : FC<IUser> = ({cutFio = true}) => {
+const User : FC<IUser> = (
+	{
+		cutFio = true,
+		isChangeToAdmin = false
+	}
+) => {
 
 	const {
-		UserUI,
-		UserAvatarUI,
-		UserFIOUI
-	} = useUserStyle();
-
-	const {isCustomSize} = useCustomSize(680);
-	const {isCustom800} = useCustom800();
-
-	const ellipsisScale = useMemo(
-		() => isCustomSize || isCustom800 ? true : false,
-		[isCustomSize, isCustom800]
-	);
-
-	const {
-		user: {
-			name, surname
-		}
-	} = useUserStore();
-
-	// console.log('cutFio: ', cutFio);
+		userName,
+		userSurname,
+		ellipsisScale,
+	} = useUser(isChangeToAdmin);
 
 	return (
 		<UserUI>
@@ -41,10 +33,19 @@ const User : FC<IUser> = ({cutFio = true}) => {
 					bgcolor: '#274D82'
 				}} />
 			</UserAvatarUI>
-			{/*<UserFIOUI>{cutFio ? ellipsis(name, ellipsisScale) : name} {cutFio ? ellipsis(surname, ellipsisScale) : surname}</UserFIOUI>*/}
-			<UserFIOUI>{ellipsisScale && cutFio ? name : `${name} ${surname}`}</UserFIOUI>
+			<UserFIOUI>
+				{ellipsisScale && cutFio ? userName : (
+					`${userName} ${userSurname}`
+				)}
+			</UserFIOUI>
 		</UserUI>
 	);
 };
+
+const {
+	UserUI,
+	UserAvatarUI,
+	UserFIOUI
+} = useUserStyle();
 
 export default React.memo(User);

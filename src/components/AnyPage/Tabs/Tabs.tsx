@@ -10,6 +10,7 @@ import {useMobile} from '@/hooks/useMedia';
 import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTransp.svg';
 import AccountTabOrderMobile from '@/components/Account/AccountTabOrderMobile/AccountTabOrderMobile';
 import { useMediaQuery } from '@mui/material';
+import {useUserStore} from '@/hooks/useUserStore';
 
 
 type TabsQueryProps = {
@@ -43,14 +44,22 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 
 	const {isMobile} = useMobile();
 	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
+	const {
+		isAdmin
+	} = useUserStore();
 
 	const {router, pushTo} = useCustomRouter();
 
 	const handlerPushToTab = (url: string, query = {}) => {
 		let urlTo = router.pathname;
 		if (url) urlTo = `/account/${url}`;
-
-		pushTo(urlTo, query);
+		if (!isAdmin) {
+			pushTo(urlTo);
+		} else {
+			const pathname = router.asPath;
+			const userId = pathname.split('userId=')[1].split('&')[0]
+			pushTo(urlTo, {userId});
+		}
 	};
 
 	const checkActiveClass = (url: string, query: TabsQueryProps): string => {
@@ -93,7 +102,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									<>
 										{item.title === 'Заказы' && isTouchDevice ? (
 											<AccountTabOrderMobile/>
-										) : (
+										) : item.title == 'Выкуп товара' && isAdmin ? null : (
 											<>
 												{item.title}
 												{item.title === 'Выкуп товара'

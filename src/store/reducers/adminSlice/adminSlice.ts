@@ -35,8 +35,13 @@ export const adminSlice = createSlice({
 		changeAdminId: (state, action: PayloadAction<number>) => {
 			state.adminSwitchIdToUser = action.payload;
 			state.hints = [];
+		},
+		resetDat: (state) => {
+			state.hints = [];
+			state.adminSwitchIdToUser = null;
+			state.search = '';
+			state.adminSwitchUserModel = null;
 		}
-
 	},
 	extraReducers: {
 		[fetchUsersInAdmin.fulfilled.type]: (state, action: PayloadAction<IAdminHintsData[]>) => {

@@ -1,4 +1,4 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useEffect, useMemo} from 'react';
 import { ButtonProps, DialogProps, SxProps } from '@mui/material';
 import { useModalUIStyles } from './style';
 
@@ -9,6 +9,7 @@ export interface IModalUIProps {
 	defaultStylesButton?: boolean;
 	buttonProps?: ButtonProps;
 	containerStyles?: SxProps
+	closeTime?: number;
 }
 
 const ModalUI: FC<IModalUIProps> = (
@@ -18,20 +19,34 @@ const ModalUI: FC<IModalUIProps> = (
 		title,
 		defaultStylesButton = true,
 		buttonProps = {},
-		containerStyles = {}
+		containerStyles = {},
+		closeTime = 0
 	}
 ) => {
 
-	const handleClickButton = () => {
+
+	const handleCloseDialog = () => {
 		if (dialogProps?.onClose) {
 			dialogProps.onClose('', 'escapeKeyDown');
 		}
+	};
+
+	const handleClickButton = () => {
+		handleCloseDialog();
 	};
 
 	const ButtonContainer = useMemo(() => {
 		if (defaultStylesButton) return ButtonContainerMUI;
 		return React.Fragment;
 	}, [defaultStylesButton]);
+
+	useEffect(() => {
+		if (closeTime && dialogProps?.open) {
+			setTimeout(() => {
+				handleCloseDialog();
+			}, closeTime * 1000);
+		}
+	}, [closeTime, dialogProps.open]);
 
 	return (
 		<DialogMUI

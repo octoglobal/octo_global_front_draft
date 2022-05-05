@@ -8,7 +8,7 @@ import {getLocationWindow} from '@/services/services';
 import {fetchUserAdmin} from '@/reducers/adminSlice/asyncThunk/adminApi';
 
 export const useAccount = () => {
-	const {router, pushTo} = useCustomRouter();
+	const {router} = useCustomRouter();
 
 	const {
 		getUser,
@@ -19,17 +19,18 @@ export const useAccount = () => {
 	} = useUserStore();
 
 	const {
-		adminSwitchIdToUser
+		adminSwitchIdToUser,
+		adminSwitchUserModel,
 	} = useAppSelector(state => state.adminReducer);
 
 	const dispatch = useAppDispatch();
 
-	// TODO: исправить - пока что захардкожено
-	useEffect(() => {
-		if(router.asPath.includes('info') && !router.asPath.includes('location')) {
-			pushTo(router.asPath, {location: 'ger'});
-		}
-	}, [router.asPath]);
+	// // TODO: исправить - пока что захардкожено
+	// useEffect(() => {
+	// 	if(router.asPath.includes('info') && !router.asPath.includes('location')) {
+	// 		pushTo(router.asPath, {location: 'ger'});
+	// 	}
+	// }, [router.asPath]);
 
 	useEffect(() => {
 		if (isAdmin) {
@@ -41,8 +42,6 @@ export const useAccount = () => {
 				if (+data.userId === adminSwitchIdToUser) return;
 				dispatch(adminSlice.actions.changeAdminId(+data.userId));
 				dispatch(orderWaitSlice.actions.defaultData());
-			} else {
-				dispatch(adminSlice.actions.changeAdminId(id));
 			}
 		}
 	}, [router, isAdmin]);
@@ -55,10 +54,15 @@ export const useAccount = () => {
 
 	useEffect(() => {
 		getUser();
+		return () => {
+			dispatch(adminSlice.actions.resetDat());
+		};
 	}, []);
 
 
 	return {
 		isAdmin,
+		adminSwitchIdToUser,
+		adminSwitchUserModel
 	};
 };

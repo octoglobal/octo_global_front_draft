@@ -53,6 +53,10 @@ export const useAccountOrdersWait = () => {
 		selectOrdersArray.length >= 2
 	), [selectOrdersArray]);
 
+	const isVisibleCheckbox = useMemo(() => (
+		orderWaitData.length > 1 && isAdmin
+	), [orderWaitData, isAdmin]);
+
 	const handleDeleteItems = () => {
 		if (innerId) {
 			dispatch(fetchDeleteOrders({
@@ -105,5 +109,6 @@ export const useAccountOrdersWait = () => {
 		isDataLength,
 		selectOrdersArray,
 		orderWaitData,
+		isVisibleCheckbox
 	};
 };
