@@ -8,7 +8,7 @@ import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import {useBlogFields} from '@/components/Blog/BlogNewPost/BlogFields/useBlogFields';
 import { useAppSelector } from '@/hooks/useReduxHooks';
 import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
-
+import ModalSpinner from 'UI/UIComponents/ModalSpinner/ModalSpinner';
 
 interface IBlogFieldsProps {
 	open: boolean;
@@ -20,6 +20,7 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 	const {
 		methods,
 		openModal,
+		loading,
 		onSubmit,
 		changeOpenModal		
 	} = useBlogFields(EditMode.id as number ,blogData,error);
@@ -27,10 +28,13 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 
 	return (
 		<ContainerMUI>
+			
+		
 			<CollapseMUI in={open}>
 				<FormProvider {...methods}>
 					<FormMUI onSubmit={methods.handleSubmit(onSubmit)}>
 						<BlogTitle/>
+					
 						<WrapperMUI>
 							<BlogPreviewFields indexField={1}/>
 							<BlogPreviewFields indexField={2} />
@@ -38,7 +42,7 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 						</WrapperMUI>
 						<BlogDescription/>
 						<ButtonContainerMUI>
-							<ButtonUI type='submit'>
+							<ButtonUI type='submit' disabled={loading? true : false} >
 								{EditMode.id ? 'Изменить':'Сохранить'}								
 							</ButtonUI>
 							
@@ -54,7 +58,8 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 				}}
 				title={error.message}
 			/>
-
+			<ModalSpinner open={loading} />
+		
 		</ContainerMUI>
 	);
 };

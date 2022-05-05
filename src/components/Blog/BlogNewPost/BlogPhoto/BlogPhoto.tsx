@@ -24,15 +24,16 @@ const BlogPhoto: FC<IBlogPhotoProps> = ({indexField}) => {
 
 	return (
 		<PhotoContainerMUI onClick={(e)=>stopClick(e)}>
-
+				
 			{!photoSrc.defaultPhoto && (
-				EditMode? null:<DeleteButtonMUI
+				EditMode.id !== null? null:<DeleteButtonMUI
 					onClick={handleClearPhoto}
 				>
 					<PlusIcon/>
 				</DeleteButtonMUI>
 				
 			)}
+		
 			<UploadButtonMUI onClick={handleAddPhoto}>
 				<PhotoButtonMUI
 					src={photoSrc.src}

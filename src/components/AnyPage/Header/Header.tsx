@@ -24,6 +24,7 @@ const Header = () => {
 	const {isAuth} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
 
+
 	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 
 	const {

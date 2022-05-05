@@ -20,7 +20,13 @@
       "title": "Частые вопросы",
       "showAuth": false,
       "href": "/questions"
+    },
+    {
+      "title": "Личный кабинет",
+      "showAuth": true,
+      "href": "/account/info"
     }
+   
   ],
   "mobile": [
     {
@@ -48,6 +54,11 @@
       "title": "Частые вопросы",
       "showAuth": false,
       "href": "/questions"
+    },
+    {
+      "title": "Личный кабинет",
+      "showAuth": true,
+      "href": "/account/info"
     }
   ]
 }

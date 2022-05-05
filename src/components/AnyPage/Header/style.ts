@@ -90,7 +90,7 @@ export const useHeaderStyle = () => {
 			left: '0px !important',
 			width: '239px !important',
 		},
-
+	
 		[theme.breakpoints.down(1241)]: {
 			width: 'auto',
 			justifyContent: 'flex-end',
@@ -104,6 +104,9 @@ export const useHeaderStyle = () => {
 	const LogoMUI = styled('div')(({theme}) => ({
 		marginRight: '180px',
 		// marginTop: '-12px',
+		[theme.breakpoints.down( 1441)]: {
+			marginRight: '50px'
+		},
 		[theme.breakpoints.down(1241)]: {
 			position: 'absolute',
 
@@ -133,7 +136,6 @@ export const useHeaderStyle = () => {
 	}));
 
 	const IconMarginRight = styled('a')(({theme}) => ({
-
 		[theme.breakpoints.between(960, 1241)]: {
 			marginRight: '50px'
 		}

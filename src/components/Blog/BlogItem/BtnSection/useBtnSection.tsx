@@ -30,8 +30,8 @@ export const useBtnSection = (id:number)=>{
 		setOpenConfirmDialog(false);		
 	};
 
-	const handleEditMode = ()  => {
-		
+	const handleEditMode = ()  => {	
+	
 		dispatch(updateEditMode({open: true,id:id}));
 		window.scrollTo({
 			top: 0,

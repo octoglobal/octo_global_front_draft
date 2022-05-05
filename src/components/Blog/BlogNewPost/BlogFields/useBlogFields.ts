@@ -1,6 +1,6 @@
 
 import {useForm} from 'react-hook-form';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useAppDispatch ,useAppSelector} from '@/hooks/useReduxHooks';
 import {fetchAddNewsBlog,fetchUpdateBlog} from '@/reducers/blogSlice/asyncThunk/blogApi';
 import { useState,useEffect } from 'react';
 import { HOST } from '@/constants/constants';
@@ -35,28 +35,33 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 	const [openModal, setOpenModal] = useState(false);
 	const dispatch = useAppDispatch();
 	const methods = useForm<IFormData>();
-
+	const {loading} = useAppSelector(state => state.blogReducer);
+	
 	const onSubmit = (data: IFormData) => {
-		
-		if (edit){
-			
+	
+		if (edit){			
 			try {
-				
 				dispatch(fetchUpdateBlog({data: data,id:edit}));
+				methods.reset({
+					'blogPhoto1': {},
+					'blogPhoto2': {},
+					'blogPhoto3': {},
+				});
 			} catch (e) {
 				throw new Error('Ошибка запроса');
 			}
-		} else {
+		} else {		
 			try {
 				dispatch(fetchAddNewsBlog(data)).then(r => {
-					if (r.type === 'blogSlice/add/fulfilled') {
-						methods.reset({});
+					if (r.type === 'blogSlice/add/fulfilled') {					
+						methods.reset({});					
 						window.scrollTo({
 							behavior: 'smooth',
 							top: 0
-						});
+						});						
 					}
-				});
+				});			
+			
 			} catch (e) {
 				throw new Error('Ошибка запроса');
 			}
@@ -69,18 +74,22 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 
 
 	useEffect(()=>{
-		if (edit){
+		if (edit){			
 			const PostValue = blogData.filter(post=>post.id === edit)[0];
-			
+			const isLocalPhoto = PostValue.products[0].photo.match('data:image');
+			const src = (count: number) => {
+				return isLocalPhoto ? PostValue.products[count].photo : `${HOST}/image/${PostValue.products[count].photo}`;
+			};
+		
 			methods.reset({
 				'blogTitle': PostValue.title,
 				'postLink1': PostValue.products[0].url,
 				'postLink2':  PostValue.products[1].url,
 				'postLink3':  PostValue.products[2].url,
 				'blogDescription': PostValue.body,
-				'blogPhoto1': {base64: `${HOST}/image/${PostValue.products[0].photo}`, file: undefined },
-				'blogPhoto2': {base64: `${HOST}/image/${PostValue.products[1].photo}`, file: undefined },
-				'blogPhoto3': {base64: `${HOST}/image/${PostValue.products[2].photo}`, file: undefined },
+				'blogPhoto1': {base64: src(0), file: undefined },
+				'blogPhoto2': {base64: src(1), file: undefined },
+				'blogPhoto3': {base64: src(2), file: undefined },
 				'miniDescPhoto1': PostValue.products[0].body,
 				'miniDescPhoto2': PostValue.products[1].body,
 				'miniDescPhoto3': PostValue.products[2].body,
@@ -90,8 +99,13 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 
 			});
 			
-		} else {			
-			methods.reset({});
+		} else {	
+			
+			methods.reset({
+				'blogPhoto1': {},
+				'blogPhoto2': {},
+				'blogPhoto3': {},
+			});
 		} 
 		
 	},[edit]);
@@ -106,6 +120,7 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 	return {
 		methods,
 		openModal,
+		loading,
 		onSubmit,
 		changeOpenModal
 	};

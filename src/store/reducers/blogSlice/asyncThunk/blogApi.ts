@@ -15,6 +15,9 @@ interface IFetchAddNewsRes {
 	message: string;
 }
 
+interface IImgPathType {
+	base64: string
+}
 
 export interface IFetchNewsDataRes {
 	page_count: number
@@ -57,6 +60,10 @@ export const fetchAddNewsBlog = createAsyncThunk(
 			const response = await octoAxios
 				.post<IFetchAddNewsRes>('/admin/blog', formData)
 				.then(r => r.data);
+
+			const response2 = await octoAxios.get<IFetchNewsDataRes>('blog?page=1&page_limit=1');
+		
+			const newId = response2.data.posts[0].id;
 			if (response.message == 'success') {
 				return {
 					newPost: true,
@@ -64,7 +71,7 @@ export const fetchAddNewsBlog = createAsyncThunk(
 					body: data.blogDescription,
 					createdTime: new Date().toString(),
 					editedTime: null,
-					id: 0,
+					id: newId,
 					products: [
 						{
 							title: data.subtitlePhoto1,
@@ -89,7 +96,8 @@ export const fetchAddNewsBlog = createAsyncThunk(
 			}
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
-				return thunkAPI.rejectWithValue(e.response?.status);
+				// return thunkAPI.rejectWithValue(e.response?.status);
+				 return thunkAPI.rejectWithValue('Произошла ошибка при добавлении');
 			}
 		}
 	}
@@ -134,7 +142,15 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 export const fetchUpdateBlog = createAsyncThunk(
 	'blogSlice/update',
 	async (data: {data:IFormData, id:number},{dispatch,rejectWithValue}) => {
-		
+
+		const  imgPathType = (data:IImgPathType) :string=>{			
+			if (data.base64.split('/image')[1]) {
+				return data.base64.split('/image')[1];
+			} else {
+				return data.base64;
+			}
+		};
+	
 		try {
 			const formData = new FormData();
 			const sendData = JSON.stringify(
@@ -168,7 +184,7 @@ export const fetchUpdateBlog = createAsyncThunk(
 
 				
 			if (response.statusText === 'OK'){				
-				
+			
 				const updateData = {	
 					id:data.id,
 					title: data.data.blogTitle,
@@ -178,21 +194,22 @@ export const fetchUpdateBlog = createAsyncThunk(
 						{
 							title: data.data.subtitlePhoto1,
 							body: data.data.miniDescPhoto1,
-							url: data.data.postLink1,
-							photo: data.data.blogPhoto1.base64.split('/image')[1],
+							url: data.data.postLink1,						
+							photo: imgPathType(data.data.blogPhoto1),
+							
 							
 						},
 						{
 							title: data.data.subtitlePhoto2,
 							body: data.data.miniDescPhoto2,
-							url: data.data.postLink2,
-							photo: data.data.blogPhoto2.base64.split('/image')[1]
+							url: data.data.postLink2,							
+							photo: imgPathType(data.data.blogPhoto2),
 						},
 						{
 							title: data.data.subtitlePhoto3,
 							body: data.data.miniDescPhoto3,
-							url: data.data.postLink3,
-							photo: data.data.blogPhoto3.base64.split('/image')[1]
+							url: data.data.postLink3,						
+							photo: imgPathType(data.data.blogPhoto3),
 						},
 					]
 				};
@@ -201,9 +218,10 @@ export const fetchUpdateBlog = createAsyncThunk(
 				
 			}
 			
-		} catch (error) {
+		} catch (error) {	
+			console.log(error);
 			
-			return rejectWithValue('Произошла ошибка при обновлении');
+			return rejectWithValue('Произошла ошибка при обновлении',);
 		}
 	}
 );

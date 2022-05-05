@@ -20,6 +20,8 @@ export const useBlogPhoto = (indexField: number) => {
 	};
 
 	const photoSrc = useMemo(() => {
+		
+	
 		if (photo?.base64) {
 			return {
 				src: photo.base64,
@@ -30,6 +32,10 @@ export const useBlogPhoto = (indexField: number) => {
 			src: defaultPhoto,
 			defaultPhoto: true,
 		};
+		
+
+
+		
 	}, [photo]);
 
 	const handleAddPhoto = () => {
