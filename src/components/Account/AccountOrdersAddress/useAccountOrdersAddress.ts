@@ -1,8 +1,9 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useMemo, useState } from 'react';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
-import { useAppDispatch } from '@/hooks/useReduxHooks';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import { fetchPackageAddAddress } from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IFormState {
 	addressSelect: {
@@ -16,6 +17,11 @@ export const useAccountOrdersAddress = () => {
 	const dispatch = useAppDispatch();
 	const {router} = useCustomRouter();
 	const [isCollapse, setIsCollapse] = useState<boolean>(false);
+	const {user: {id}, isAdmin} = useUserStore();
+	const {
+		adminSwitchIdToUser
+	} = useAppSelector(state => state.adminReducer);
+
 
 	const methods = useForm<IFormState>({
 		defaultValues: {
@@ -42,14 +48,20 @@ export const useAccountOrdersAddress = () => {
 	const onSubmit: SubmitHandler<IFormState & FieldValues> = (data) => {
 		const addressId = data.addressSelect.id;
 		const packageId = router.query?.packageId;
+		const userId = isAdmin ? adminSwitchIdToUser : id;
+		const url = isAdmin ? '/admin/package/address' : '/user/package/address';
 		if (addressId && packageId) {
 			try {
 				dispatch(fetchPackageAddAddress({
+					url: url,
 					packageId: +packageId,
-					addressId: addressId
+					addressId: addressId,
+					userId: userId as number,
 				})).then(response => {
 					if (response.payload == 'success') {
-						router.push('/account/orders/stock');
+						router.push('/account/orders/stock', {
+							query: router.query
+						});
 					}
 				});
 			} catch (e) {

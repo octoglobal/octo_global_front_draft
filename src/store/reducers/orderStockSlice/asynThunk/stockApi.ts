@@ -5,6 +5,7 @@ import { findItemInArrayForId, sortItemArrayInId } from '@/services/services';
 import {IDefaultFetchSuccess} from '../../../../types/types';
 import {IPackageModel} from '@/models/IPackageModel';
 import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
+import {IOrderModel} from '@/models/IOrderModel';
 
 interface IFetchOrderStockData {
 	page: number;
@@ -133,11 +134,12 @@ export const fetchUnMergePackage = createAsyncThunk(
 
 export const fetchPackageAddAddress = createAsyncThunk(
 	'orderStockSlice/address',
-	async (data: {packageId: number, addressId: number}, thunkAPI) => {
+	async (data: {packageId: number, addressId: number, userId: number, url: string}, thunkAPI) => {
 		try {
-			const response = await octoAxios.post<IDefaultFetchSuccess>('/user/package/address', {
+			const response = await octoAxios.post<IDefaultFetchSuccess>(data.url, {
 				'packageId': data.packageId,
-				'addressId': data.addressId
+				'addressId': data.addressId,
+				'userId': data.userId,
 			});
 			if (response.data.message == 'success') {
 				thunkAPI.dispatch(orderStockSlice.actions.resetSlice());
@@ -145,6 +147,71 @@ export const fetchPackageAddAddress = createAsyncThunk(
 			return 'success';
 		} catch (e) {
 			thunkAPI.rejectWithValue('Error orderStockSlice/address');
+		}
+	}
+);
+
+export const fetchOrderDelete = createAsyncThunk(
+	'orderStockSlice/deleteOrder',
+	async (data: {order: IOrderModel}, thunkAPI) => {
+		const orderItem = data.order;
+		try {
+			const { orderStockReducer: {stockData} } = thunkAPI.getState() as { orderStockReducer: {stockData: IStockDataModel[]} };
+			const response = await octoAxios.post<IDefaultFetchSuccess>('/admin/orders', {
+				userId: orderItem.userId,
+				track_number:orderItem.trackNumber,
+				title: orderItem.title,
+				comment: orderItem.comment,
+				statusId: 0
+			}).then(r => {
+				if (r.data.message == 'success') {
+					return octoAxios.delete<IDefaultFetchSuccess>(
+						'/admin/orders',
+						{data: {userId: orderItem.userId, orderId: [orderItem.id]}}
+					).then(r => r.data.message);
+				}
+				return 'error';
+			});
+			if (response === 'success') {
+				return stockData.filter(item => item.id !== orderItem.id);
+			}
+			return stockData;
+		} catch (e) {
+			thunkAPI.rejectWithValue('error');
+		}
+	}
+);
+
+export const fetchPackageRemoveAddress = createAsyncThunk(
+	'orderStockSlice/deleteAddressToPackage',
+	async (data: {userId: number, packageId: number}, thunkAPI) => {
+		try {
+			const {orderStockReducer: {packageData}} = thunkAPI.getState() as {orderStockReducer: {packageData: IPackageModel[]}};
+			const response = await octoAxios.delete<IDefaultFetchSuccess>(
+				'/admin/package/address',
+				{data: {
+					userId: data.userId,
+					packageId: data.packageId
+				}}
+			).then(r => {
+				if (r.data.message == 'success') {
+					return packageData.map(item => {
+						if (item.id === data.packageId) {
+							return {
+								...item,
+								address: null,
+								addressId: null,
+								statusId: 2,
+							};
+						}
+						return item;
+					});
+				}
+			}).catch(() => packageData);
+			console.log(response);
+			return response;
+		} catch (e) {
+			thunkAPI.rejectWithValue('error');
 		}
 	}
 );

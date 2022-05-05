@@ -1,11 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IStockDataModel} from '@/models/IStockDataModel';
 import {
-	fetchMergeOrders,
-	fetchOrderStockData,
+	fetchMergeOrders, fetchOrderDelete,
+	fetchOrderStockData, fetchPackageRemoveAddress,
 	fetchPackageStockData, fetchUnMergePackage
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
+import {IOrderModel} from '@/models/IOrderModel';
 
 interface IInitialState {
 	page: number;
@@ -62,6 +63,9 @@ export const orderStockSlice = createSlice({
 			state.updatePosts = false;
 			state.packageFetch = false;
 			state.ordersEnd = false;
+		},
+		filterStockData(state, action: PayloadAction<number>) {
+			state.stockData = state.stockData.filter(item => item.id !== action.payload);
 		}
 	},
 	extraReducers: {
@@ -84,6 +88,12 @@ export const orderStockSlice = createSlice({
 			state.packageData = action.payload.packageData;
 			state.stockData = [ ...action.payload.orderData, ...state.stockData];
 		},
+		[fetchOrderDelete.fulfilled.type]: (state, action: PayloadAction<IStockDataModel[]>) => {
+			state.stockData = action.payload;
+		},
+		[fetchPackageRemoveAddress.fulfilled.type]: (state, action: PayloadAction<IPackageModel[]>) => {
+			state.packageData = action.payload;
+		}
 	}
 });
 
