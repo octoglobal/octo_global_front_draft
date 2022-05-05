@@ -20,8 +20,8 @@ export const useTabsStyle = () => {
 		width: 30,
 		height: 30,		
 		borderRadius: 50,	
-		animation:`${AnimationName} 2s linear infinite`,
-		background: 'linear-gradient(210deg, #F35151 0%, #F35151 40%, #FFCA0D 50%, #F35151 70%, #F35151 100% )',
+		animation:`${AnimationName} 2s linear infinite`,		
+		background: 'linear-gradient(210deg, #F35151 0%, #F35151 45%, #FFCD 50%, #F35151 55%, #F35151 100% )',		
 		backgroundSize: '1000% 100%',
 		
 	}));
