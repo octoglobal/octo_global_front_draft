@@ -46,9 +46,9 @@ export const useAddressItemStyles = () => {
 		fontWeight: 300,
 		marginRight: '15px',
 
-		// wordWrap: 'break-word',
-		// width: 'auto',
-		// display: 'inline-block',
+		wordWrap: 'break-word',
+		width: 'auto',
+		display: 'inline-block',
 
 		[theme.breakpoints.down(501)]: {
 			fontSize: '16px',

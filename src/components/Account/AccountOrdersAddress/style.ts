@@ -41,10 +41,6 @@ export const useAccountOrdersAddressStyles = () => {
 		marginBottom: '25px',
 		marginLeft: '48px',
 
-		[theme.breakpoints.down(1025)]: {
-			marginLeft: '0px',
-		},
-
 		[theme.breakpoints.down(501)]: {
 			fontWeight: '400',
 			fontSize: '20px',

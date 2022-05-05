@@ -12,7 +12,7 @@ const AddressList = () => {
 		isAddresses,
 	} = useAddressList();
 
-	const {isCustomSize} = useCustomSize(501);
+	const {isCustomSize} = useCustomSize(500);
 
 	return (
 		<ListMUI>
