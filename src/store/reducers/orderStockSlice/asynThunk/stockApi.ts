@@ -201,7 +201,7 @@ export const fetchPackageRemoveAddress = createAsyncThunk(
 								...item,
 								address: null,
 								addressId: null,
-								statusId: 2,
+								statusId: 4,
 							};
 						}
 						return item;
@@ -212,6 +212,25 @@ export const fetchPackageRemoveAddress = createAsyncThunk(
 			return response;
 		} catch (e) {
 			thunkAPI.rejectWithValue('error');
+		}
+	}
+);
+
+export const fetchChangeStatusPackageToSend = createAsyncThunk(
+	'orderStockSlice/changeStatus',
+	async (
+		data: {userId: number, trackNumber: string, packageId: number},
+		thunkAPI
+	) => {
+		try {
+			const {orderStockReducer: {packageData}} = thunkAPI.getState() as {orderStockReducer: {packageData: IPackageModel[]}};
+			const response = await octoAxios.post<IDefaultFetchSuccess>('/admin/package_track', data);
+			return {
+				message: response.data.message,
+				packageData: packageData.filter(item => item.id !== data.packageId)
+			};
+		} catch (e) {
+			thunkAPI.rejectWithValue('error orderStockSlice/changeStatus');
 		}
 	}
 );

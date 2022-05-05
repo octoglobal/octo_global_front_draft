@@ -40,7 +40,7 @@ const AccountOrdersStock = () => {
 						{!!packageData.length && (
 							packageData.map(packageItem => (
 								<PackageItem
-									key={`${packageItem.id}${packageItem.longId}`}
+									key={`${packageItem.id}${packageItem.longId}${packageItem}`}
 									component='stock'
 									dropItems={packageDopDownData}
 									packageData={packageItem}

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useMemo} from 'react';
 import {IOrderModel} from '@/models/IOrderModel';
 import {useOrderItemStyles} from '@/components/AnyPage/OrderItem/style';
 import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderItemTitle';
@@ -8,9 +8,10 @@ import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait'
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 import {useOrderItemStock} from '@/components/AnyPage/OrderItem/useOrderItemStock';
 import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
+import {useOrderItemSend} from '@/components/AnyPage/OrderItem/useOrderItemSend';
 
 
-export type ComponentType = 'wait' | 'stock' | 'send';
+export type ComponentType = 'wait' | 'stock' | 'stock2' | 'send';
 
 const getCustomHooksData = (component: ComponentType, orderId: number, orderItem: IOrderModel) => {
 	if (component === 'wait') {
@@ -20,6 +21,10 @@ const getCustomHooksData = (component: ComponentType, orderId: number, orderItem
 	if (component === 'stock') {
 		const stockData = useOrderItemStock(orderId, orderItem);
 		return stockData;
+	}
+	if (component === 'send') {
+		const sendData = useOrderItemSend(orderId, orderItem);
+		return sendData;
 	}
 };
 
@@ -74,13 +79,19 @@ const OrderItem: FC<IOrderItemProps> = (
 		handleSuccessChangeStatus,
 	} = getCustomHooksData(component, id, orderItem) as any;
 
+	const isContainerStyles = useMemo(() => {
+		const isBorderBottomFalseStyles = isBorderBottom ? {} : {
+			borderBottom: '0px solid red !important',
+			paddingBottom: '0 !important',
+		};
+		return {
+			...isBorderBottomFalseStyles,
+		};
+	}, [isBorderBottom]);
 
 	return (
 		<>
-			<ContainerMUI sx={isBorderBottom ? {} : {
-				borderBottom: '0px solid red !important',
-				paddingBottom: '0 !important',
-			}}>
+			<ContainerMUI sx={isContainerStyles}>
 				{visibleTitle && (
 					<OrderItemTitle
 						id={id}

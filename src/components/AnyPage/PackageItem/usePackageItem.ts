@@ -1,31 +1,59 @@
 import {useUserStore} from '@/hooks/useUserStore';
 import {useOrdersAccount} from '@/hooks/useOrdersAccount';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import {useMemo} from 'react';
+import {useMemo, useState} from 'react';
 import {fetchPackageRemoveAddress} from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
 import {IDropItem} from '../../../UI/UIComponents/DropDownUI/type';
+import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
 
-export const usePackageItem = (packageData: IPackageModel, dropItems: IDropItem[]) => {
+export const usePackageItem = (
+	packageData: IPackageModel,
+	dropItems: IDropItem[],
+	component: ComponentType
+) => {
 
 	const {
 		longId, orders, id, statusId
 	} = packageData;
-
 	const {
 		isAdmin
 	} = useUserStore();
-
-
 	const {
 		handlePushOrdersAddress
 	} = useOrdersAccount();
-
 	const {
 		adminSwitchIdToUser
 	} = useAppSelector(state => state.adminReducer);
 	const dispatch = useAppDispatch();
+	const [isChangeStatus, setIsChangeStatus] = useState<boolean>(false);
 
+	const isVisibleAddress = useMemo(() => (
+		!!(packageData?.address)
+	), [packageData]);
+
+	const orderContainerStyles = useMemo(() => (
+		isVisibleAddress ? {
+			'& > *:last-child': {
+				marginBottom: 0,
+			}
+		} : {}
+	), [isVisibleAddress]);
+
+
+	const orderItem = useMemo(() => {
+		return {
+			id: packageData.id,
+			trackNumber: '',
+			statusId: packageData.statusId,
+			createdTime: '',
+			longId: packageData.longId,
+			title: '',
+			tracking_link: '',
+			userId: adminSwitchIdToUser as number,
+			comment: '',
+		};
+	}, [packageData]);
 
 	const isStatus = useMemo(() =>{
 		switch (statusId) {
@@ -57,6 +85,13 @@ export const usePackageItem = (packageData: IPackageModel, dropItems: IDropItem[
 				status: 3,
 				visibleText: true,
 			};
+		case 4:
+			return  {
+				text: 'Отклонено администратором',
+				visible: true,
+				status: 4,
+				visibleText: true,
+			};
 		default:
 			return  {
 				text: '',
@@ -67,8 +102,16 @@ export const usePackageItem = (packageData: IPackageModel, dropItems: IDropItem[
 	}, [statusId]);
 
 	const isDropDownVisible = useMemo(() => (
-		(isStatus.status === 0 || isStatus.status === 1 || (isStatus.status === 2 && isAdmin)) && isStatus.visible
+		(
+			isStatus.status === 0
+			|| isStatus.status === 1
+			|| (isStatus.status === 2 && isAdmin)
+			|| isStatus.status === 4 && isAdmin
+			|| component == 'send' && isAdmin
+		)
+		&& isStatus.visible
 	), [isStatus]);
+
 
 	const handleSendPackage = () => {
 		handlePushOrdersAddress(id);
@@ -84,6 +127,11 @@ export const usePackageItem = (packageData: IPackageModel, dropItems: IDropItem[
 	};
 
 
+	const handleAddTrackNumber = () => {
+		setIsChangeStatus(prevState => !prevState);
+	};
+
+
 	const modificationDropItemArray = useMemo(() => {
 		let dropItemsArray = [];
 		if (statusId === 2 && isAdmin) {
@@ -92,25 +140,50 @@ export const usePackageItem = (packageData: IPackageModel, dropItems: IDropItem[
 				onClick: handleDeleteAddress
 			}, {
 				title: 'Перенести',
-				onClick: () => console.log('321')
+				onClick: handleAddTrackNumber,
 			}];
 		} else if (statusId === 1 && !isAdmin) {
 			dropItemsArray = [{
 				title: 'Оформить',
 				onClick: handleSendPackage
 			}];
-		} else {
+		} else if (statusId === 4 && isAdmin) {
+			dropItemsArray = [
+				...dropItems,
+				{
+					title: 'Перенести',
+					onClick: handleAddTrackNumber
+				}
+			];
+		}
+		// } else if (statusId === 3 && component == 'send')  {
+		// 	dropItemsArray = [
+		// 		// {
+		// 		// 	title: 'Перенести',
+		// 		// 	onClick: handleAddTrackNumber
+		// 		// }
+		// 	];
+		// }
+		else {
 			dropItemsArray = dropItems;
 		}
 		return dropItemsArray;
 	}, [statusId]);
+
+	console.log(modificationDropItemArray);
 
 	return {
 		id,
 		longId,
 		orders,
 		isStatus,
+		orderItem,
+		isChangeStatus,
+		isVisibleAddress,
+		setIsChangeStatus,
 		isDropDownVisible,
+		handleAddTrackNumber,
+		orderContainerStyles,
 		modificationDropItemArray
 	};
 };

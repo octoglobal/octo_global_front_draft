@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IStockDataModel} from '@/models/IStockDataModel';
 import {
+	fetchChangeStatusPackageToSend,
 	fetchMergeOrders, fetchOrderDelete,
 	fetchOrderStockData, fetchPackageRemoveAddress,
 	fetchPackageStockData, fetchUnMergePackage
@@ -93,6 +94,9 @@ export const orderStockSlice = createSlice({
 		},
 		[fetchPackageRemoveAddress.fulfilled.type]: (state, action: PayloadAction<IPackageModel[]>) => {
 			state.packageData = action.payload;
+		},
+		[fetchChangeStatusPackageToSend.fulfilled.type]: (state, action: PayloadAction<{ packageData: IPackageModel[] }>) => {
+			state.packageData = action.payload.packageData;
 		}
 	}
 });
