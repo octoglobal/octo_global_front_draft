@@ -5,7 +5,8 @@ interface ICollapseInfoProps {
 	title: string;
 	description?: string;
 	allLength?: number;
-	index?: number
+	index?: number;
+	children?: React.ReactNode | React.ReactElement
 }
 
 const CollapseInfo: FC<ICollapseInfoProps> = (
@@ -13,10 +14,11 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 		title,
 		description,
 		index,
-		allLength
+		allLength,
+		children
 	}
 ) => {
-
+	console.log('children', children);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleToggleOpen = () => {
@@ -47,15 +49,19 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 		>
 			<ContainerButtonMUI>
 				<CollapseTitleMUI sx={activeTitleStyles}>
-					{title}
+					{title} 
 				</CollapseTitleMUI>
 			</ContainerButtonMUI>
 			<CollapseMUI in={isOpen} onClick={handleToggleOpen}>
-				{description && (
+				{/* {description && (
+					
+				
 					<CollapseDescMUI>
 						{description}
 					</CollapseDescMUI>
-				)}
+				)} */}
+				{children}
+				
 			</CollapseMUI>
 		</ContainerMUI>
 	);

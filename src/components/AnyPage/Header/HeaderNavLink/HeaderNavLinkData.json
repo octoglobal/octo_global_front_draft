@@ -7,9 +7,9 @@
     },
 
     {
-      "title": "Выкуп товара",
+      "title": "Стоимость услуг",
       "showAuth": false,
-      "href": "/account/instruction"
+      "href": "/"
     },
     {
       "title": "Блог",
@@ -41,9 +41,9 @@
       "href": "/shops"
     },
     {
-      "title": "Выкуп товара",
+      "title": "Стоимость услуг",
       "showAuth": false,
-      "href": "/account/instruction"
+      "href": "/"
     },
     {
       "title": "Блог",

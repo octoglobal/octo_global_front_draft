@@ -2,6 +2,9 @@ import React from 'react';
 import HeaderMargin from '@/components/AnyPage/Header/HeaderMargin/HeaderMargin';
 import { styled } from '@mui/material';
 import CollapseInfo from '@/components/AnyPage/CollapseInfo/CollapseInfo';
+import VpnPage from './questionPages/VpnPage';
+import TranslatePage from './questionPages/TranslatePage';
+import AboutTransferPage from './questionPages/AboutTransferPage';
 
 const questionsData = [
 	{
@@ -123,7 +126,7 @@ const questionsData = [
 			'В поиске «Найти больше расширений» напишите VPN и откроется новая вкладка. Выберите понравившийся VPN, скачайте и совершайте покупки! ',
 	},
 	{
-		title: 'Как перевести сайт на русский',
+		title: 'Инструкция по переводу на иностранный язык',
 		description: '1. Яндекс браузер \n' +
 			'Перевести страницу можно быстро, если в дополнительных расширениях указан автоматический перевод страниц. \n' +
 			'Перейдите на иностранный сайт. В правой верхней части экрана появится панель для перевода -- нажмите перевести страницу. ' +
@@ -143,6 +146,10 @@ const questionsData = [
 			'В мобильной версии браузер Safari не предоставляет возможности для перевода. \n' +
 			'Если на Iphone не открывается Safari. Для этого нужно будет скачать браузер Google Chrome. \n',
 	},
+	{
+		title: 'Стоимость почтового отправления в Россию',
+		description: 'fdfdf'
+	},
 ];
 
 
@@ -150,7 +157,20 @@ const Questions = () => {
 	return (
 		<ContainerMUI>
 			<HeaderMargin/>
-			{questionsData.map((item, index) => (
+			
+			<CollapseInfo
+				title={'Инструкция по настройке VPN сервиса для работы на сайте'}
+				children={<VpnPage></VpnPage>}
+			/>
+			<CollapseInfo			
+				title={'Инструкция по переводу на иностранный язык'}
+				children={<TranslatePage></TranslatePage>}
+			/>
+			<CollapseInfo			
+				title={'Стоимость почтового отправления в Россию'}
+				children={<AboutTransferPage></AboutTransferPage>}
+			/>
+			{/* {questionsData.map((item, index) => (
 				<CollapseInfo
 					index={index + 1}
 					allLength={questionsData.length}
@@ -158,7 +178,7 @@ const Questions = () => {
 					title={item.title}
 					description={item.description}
 				/>
-			))}
+			))} */}
 		</ContainerMUI>
 	);
 };
