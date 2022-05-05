@@ -6,7 +6,7 @@ import {ObjectHasOwnProperty} from '@/services/services';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useTabsStyle} from './style';
 import {useMobile} from '@/hooks/useMedia';
-import LightningInsideCircle from '../../../UI/UIIcon/LightningInsideCircle.svg';
+// import LightningInsideCircle from '../../../UI/UIIcon/LightningInsideCircle.svg';
 import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTransp.svg';
 import AccountTabOrderMobile from '@/components/Account/AccountTabOrderMobile/AccountTabOrderMobile';
 import { useMediaQuery } from '@mui/material';

@@ -31,7 +31,7 @@ interface IOrderItemProps {
 	visibleTrackNumber?: boolean,
 	visibleTitle?: boolean,
 	component: ComponentType,
-	isBorderBottom: boolean,
+	isBorderBottom?: boolean,
 }
 
 const OrderItem: FC<IOrderItemProps> = (
