@@ -27,7 +27,7 @@ const TranslatePage = () => {
 					<ImgMUI src="/image/ChromSettingsMore.jpg" alt="crhomSettingsMore" />				
 				</ContainerImgMUI>	
 				<ParagraphMUI>                
-                    В левой части экрана нажмите на значок с тремя <span><ImgMUI src="/image/yandexBurger.jpg" alt="=" /> </span>. Затем откройте интернет-магазин Chrome. 
+                    В левой части экрана нажмите на значок с тремя <SpanMUI><ImgMUI src="/image/yandexBurger.jpg" alt="=" /> </SpanMUI>. Затем откройте интернет-магазин Chrome. 
 				</ParagraphMUI>		
 				<ContainerImgMUI>
 					<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />
@@ -61,6 +61,7 @@ const {
 	ParagraphMUI,
 	ContainerTextMUI,
 	ContainerImgMUI,
-	ImgMUI
+	ImgMUI,
+	SpanMUI
 } = useQuestionPagesStyles();
 export default React.memo(TranslatePage);
