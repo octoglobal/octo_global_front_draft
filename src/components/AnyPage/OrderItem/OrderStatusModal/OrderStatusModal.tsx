@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import ModalUI from '../../../../UI/UIComponents/ModalUI/ModalUI';
 import {useOrderStatusModalStyles} from '@/components/AnyPage/OrderItem/OrderStatusModal/style';
-
 import {FormProvider} from 'react-hook-form';
 import {useOrderStatusModal} from '@/components/AnyPage/OrderItem/OrderStatusModal/useOrderStatusModal';
 import DropDownCollapseUI from '../../../../UI/UIComponents/DropDownCollapseUI/DropDownCollapseUI';
@@ -14,8 +13,8 @@ interface IOrderStatusModal {
 	onClose: () => void;
 	orderItem: IOrderModel;
 	successCallback: () => void;
-	component: ComponentType
-
+	component: ComponentType;
+	packageChange?: boolean;
 }
 
 const OrderStatusModal: FC<IOrderStatusModal> = (
@@ -24,7 +23,8 @@ const OrderStatusModal: FC<IOrderStatusModal> = (
 		onClose,
 		orderItem,
 		successCallback,
-		component
+		component,
+		packageChange = false,
 	}
 ) => {
 
@@ -37,7 +37,8 @@ const OrderStatusModal: FC<IOrderStatusModal> = (
 		open,
 		orderItem,
 		successCallback,
-		component
+		component,
+		packageChange
 	);
 
 	return (

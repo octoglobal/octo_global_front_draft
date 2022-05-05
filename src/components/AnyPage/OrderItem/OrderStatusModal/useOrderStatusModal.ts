@@ -4,6 +4,8 @@ import {octoAxios} from '@/lib/http';
 import {IOrderModel} from '@/models/IOrderModel';
 import {IDefaultFetchSuccess} from '../../../../types/types';
 import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {fetchChangeStatusPackageToSend} from '@/reducers/orderStockSlice/asynThunk/stockApi';
 
 interface IFormStatus {
 	trackNumber: string;
@@ -16,7 +18,9 @@ export const useOrderStatusModal = (
 	orderItem: IOrderModel,
 	successCallback: () => void,
 	component: ComponentType,
+	packageChange: boolean
 ) => {
+	const dispatch = useAppDispatch();
 	const methods = useForm<IFormStatus | FieldValues>();
 
 	const collapseItems = useMemo(() => {
@@ -35,6 +39,15 @@ export const useOrderStatusModal = (
 					title: 'Ожидаемые',
 					name: 'wait',
 					value: 0,
+				},
+			];
+		}
+		if (component == 'stock2') {
+			return [
+				{
+					title: 'Отправленые',
+					name: 'send',
+					value: 2,
 				},
 			];
 		}
@@ -59,26 +72,43 @@ export const useOrderStatusModal = (
 	};
 
 	useEffect(() => {
-		if (orderItem.trackNumber && isOpen) {
+		if (orderItem.trackNumber && isOpen && !packageChange) {
 			methods.setValue('trackNumber', orderItem.trackNumber);
 		}
-	}, [orderItem, isOpen]);
+	}, [orderItem, isOpen, packageChange]);
 
 
 	const onSubmit: SubmitHandler<IFormStatus | FieldValues> = (data) => {
 		if (data?.trackNumber && data?.orderStatus?.value !== undefined) {
 			try {
-				octoAxios.post<IDefaultFetchSuccess>('/admin/orders', {
-					userId: orderItem.userId,
-					track_number:orderItem.trackNumber,
-					title: orderItem.title,
-					comment: orderItem.comment,
-					statusId: data.orderStatus.value
-				}).then(r => {
-					if (r.data.message === 'success') {
-						successCallback();
-					}
-				});
+				const trackNumber = methods.getValues('trackNumber');
+				if (packageChange) {
+					dispatch(fetchChangeStatusPackageToSend({
+						userId: orderItem.userId,
+						packageId: orderItem.id,
+						trackNumber: trackNumber
+					}))
+						.then(r => {
+							if (r.payload) {
+								const data = r.payload as {message: 'success'};
+								if (data.message == 'success') {
+									successCallback();
+								}
+							}
+						});
+				} else {
+					octoAxios.post<IDefaultFetchSuccess>('/admin/orders', {
+						userId: orderItem.userId,
+						track_number: trackNumber ? trackNumber : orderItem.trackNumber,
+						title: orderItem.title,
+						comment: orderItem.comment,
+						statusId: data.orderStatus.value
+					}).then(r => {
+						if (r.data.message === 'success') {
+							successCallback();
+						}
+					});
+				}
 			} catch (e) {
 				throw new Error('Error change status');
 			}

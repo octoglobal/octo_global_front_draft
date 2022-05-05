@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import {Link, styled} from '@mui/material';
 
 export const usePackageItemStyles = () => {
 
@@ -19,6 +19,34 @@ export const usePackageItemStyles = () => {
 			fontSize: '16px',
 			lineHeight: '18px',
 		}
+	}));
+
+	const TrackNumberMUI = styled('span')(() => ({
+		fontSize: '18px',
+		lineHeight: '21px',
+		fontWeight: 400,
+		marginLeft: '20px',
+		color: '#000000',
+	}));
+
+	const TrackNumberLinkMUI = styled(Link)(() => ({
+		display: 'flex',
+		textDecoration: 'none',
+	}));
+
+	const TrackNumberLinkTextMUI = styled('div')(() => ({
+		fontSize: '20px',
+		lineHeight: '23px',
+		fontWeight: 400,
+		marginLeft: '10px',
+		color: '#274D82',
+		cursor: 'pointer',
+	}));
+
+	const TrackNumberIconMUI = styled(Link)(() => ({
+		marginLeft: '10px',
+		width: '24px',
+		height: '24px',
 	}));
 
 	const TitleMUI = styled('div')(({theme}) => ({
@@ -49,14 +77,40 @@ export const usePackageItemStyles = () => {
 		}
 	}));
 
-	// const DropDownMUI = styled('div')(({theme}) => ({
-	// }));
+	const OrdersContainerMUI = styled('div')(() => ({
+	}));
+
+	const AddressContainerMUI = styled('div')(() => ({
+		margin: '15px 0px',
+		marginLeft: '190px',
+	}));
+
+	const AddressRowMUI = styled('div')(() => ({
+		display: 'flex',
+	}));
+
+	const AddressTextMUI = styled('span')(() => ({
+		fontSize: '20px',
+		lineHeight: '24px',
+		fontWeight: 300,
+		color: '#000000',
+		marginRight: '15px',
+	}));
+
 
 	return {
 		TextMUI,
 		TitleMUI,
 		ContainerMUI,
 		TitleTextMUI,
+		AddressRowMUI,
+		AddressTextMUI,
 		StatusTextMUI,
+		TrackNumberMUI,
+		TrackNumberIconMUI,
+		OrdersContainerMUI,
+		AddressContainerMUI,
+		TrackNumberLinkTextMUI,
+		TrackNumberLinkMUI,
 	};
 };
