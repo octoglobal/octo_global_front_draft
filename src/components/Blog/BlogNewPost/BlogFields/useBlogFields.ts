@@ -100,7 +100,7 @@ export const useBlogFields = (edit:number,blogData:IBlogModel[],error:IError) =>
 			});
 			
 		} else {	
-			console.log('@@@');
+			
 			methods.reset({
 				'blogPhoto1': {},
 				'blogPhoto2': {},

@@ -86,7 +86,7 @@ export const blogSlice = createSlice({
 			state.loading = false;
 		},
 		[fetchAddNewsBlog.rejected.type]: (state, action) => {
-			console.log(action.payload);
+			
 			state.error.status = true;
 			state.error.message = action.payload;
 			state.loading = false;
@@ -115,8 +115,8 @@ export const blogSlice = createSlice({
 		[fetchUpdateBlog.rejected.type]: (state,action) => {			
 			state.error.status = true;
 			state.error.message = action.payload;
-			state.EditMode.id = null;
-			state.EditMode.open = false;
+			// state.EditMode.id = null;
+			// state.EditMode.open = false;
 		},
 
 		[fetchDeleteBlogItem.pending.type]: (state) => {
@@ -124,7 +124,7 @@ export const blogSlice = createSlice({
 			state.error.message = '';
 		  },
 		[fetchDeleteBlogItem.rejected.type]: (state,action) => {
-				
+			console.log('!!!!!!!');
 			state.error.status = true;
 			state.error.message = action.payload;
 		}

@@ -184,7 +184,8 @@ export const fetchUpdateBlog = createAsyncThunk(
 							title: data.data.subtitlePhoto1,
 							body: data.data.miniDescPhoto1,
 							url: data.data.postLink1,
-							photo: data.data.blogPhoto1.base64.split('/image')[1].substring(1),
+							// photo: data.data.blogPhoto1.base64.split('/image')[1].substring(1),
+							photo: data.data.blogPhoto1.base64,
 							
 							
 						},
@@ -192,13 +193,13 @@ export const fetchUpdateBlog = createAsyncThunk(
 							title: data.data.subtitlePhoto2,
 							body: data.data.miniDescPhoto2,
 							url: data.data.postLink2,
-							photo: data.data.blogPhoto2.base64.split('/image')[1].substring(1)
+							photo: data.data.blogPhoto2.base64
 						},
 						{
 							title: data.data.subtitlePhoto3,
 							body: data.data.miniDescPhoto3,
 							url: data.data.postLink3,
-							photo: data.data.blogPhoto3.base64.split('/image')[1].substring(1)
+							photo: data.data.blogPhoto3.base64
 						},
 					]
 				};
@@ -207,9 +208,10 @@ export const fetchUpdateBlog = createAsyncThunk(
 				
 			}
 			
-		} catch (error) {
+		} catch (error) {	
+			console.log(error);
 			
-			return rejectWithValue('Произошла ошибка при обновлении');
+			return rejectWithValue('Произошла ошибка при обновлении',);
 		}
 	}
 );

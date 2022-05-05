@@ -22,8 +22,7 @@ export const useBlogFieldsStyles = () => {
 		justifyContent: 'flex-end',
 		'& > button': {
 			maxWidth: '135px',
-			height: '32px',
-			opacity: '0.8',
+			height: '32px',			
 			marginBottom: 0,
 		}
 	}));
