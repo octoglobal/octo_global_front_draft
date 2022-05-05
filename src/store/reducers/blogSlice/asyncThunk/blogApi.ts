@@ -15,6 +15,9 @@ interface IFetchAddNewsRes {
 	message: string;
 }
 
+interface IImgPathType {
+	base64: string
+}
 
 export interface IFetchNewsDataRes {
 	page_count: number
@@ -139,7 +142,15 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 export const fetchUpdateBlog = createAsyncThunk(
 	'blogSlice/update',
 	async (data: {data:IFormData, id:number},{dispatch,rejectWithValue}) => {
-		
+
+		const  imgPathType = (data:IImgPathType) :string=>{			
+			if (data.base64.split('/image')[1]) {
+				return data.base64.split('/image')[1];
+			} else {
+				return data.base64;
+			}
+		};
+	
 		try {
 			const formData = new FormData();
 			const sendData = JSON.stringify(
@@ -173,7 +184,7 @@ export const fetchUpdateBlog = createAsyncThunk(
 
 				
 			if (response.statusText === 'OK'){				
-				
+			
 				const updateData = {	
 					id:data.id,
 					title: data.data.blogTitle,
@@ -183,23 +194,22 @@ export const fetchUpdateBlog = createAsyncThunk(
 						{
 							title: data.data.subtitlePhoto1,
 							body: data.data.miniDescPhoto1,
-							url: data.data.postLink1,
-							// photo: data.data.blogPhoto1.base64.split('/image')[1].substring(1),
-							photo: data.data.blogPhoto1.base64,
+							url: data.data.postLink1,						
+							photo: imgPathType(data.data.blogPhoto1),
 							
 							
 						},
 						{
 							title: data.data.subtitlePhoto2,
 							body: data.data.miniDescPhoto2,
-							url: data.data.postLink2,
-							photo: data.data.blogPhoto2.base64
+							url: data.data.postLink2,							
+							photo: imgPathType(data.data.blogPhoto2),
 						},
 						{
 							title: data.data.subtitlePhoto3,
 							body: data.data.miniDescPhoto3,
-							url: data.data.postLink3,
-							photo: data.data.blogPhoto3.base64
+							url: data.data.postLink3,						
+							photo: imgPathType(data.data.blogPhoto3),
 						},
 					]
 				};
