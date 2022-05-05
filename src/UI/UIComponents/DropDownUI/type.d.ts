@@ -1,4 +1,4 @@
 export interface IDropItem {
-	onClick: () => void;
+	onClick: (id?: number | undefined) => void;
 	title: string;
 }

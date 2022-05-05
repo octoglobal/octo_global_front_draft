@@ -23,8 +23,7 @@ const Header = () => {
 	const {isMobile} = useMobile();
 	const {isAuth} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
-	// const {isCustomSize} = useCustomSize(1440);
-	// const {isCustomSizeMobile} = useCustomSize(700);
+
 
 	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 

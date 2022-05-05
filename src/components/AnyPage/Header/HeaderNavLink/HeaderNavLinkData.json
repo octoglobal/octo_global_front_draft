@@ -9,7 +9,7 @@
     {
       "title": "Выкуп товара",
       "showAuth": false,
-      "href": "/"
+      "href": "/account/instruction"
     },
     {
       "title": "Блог",
@@ -43,7 +43,7 @@
     {
       "title": "Выкуп товара",
       "showAuth": false,
-      "href": "/#"
+      "href": "/account/instruction"
     },
     {
       "title": "Блог",

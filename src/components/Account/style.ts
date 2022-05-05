@@ -12,7 +12,7 @@ export const useAccountPageStyle = () => {
 		},
 
 		'& .TabsListUnstyled-root button': {
-			margin: '0 50px',
+			margin: '0 27.5px',
 			flexWrap: 'wrap',
 		},
 
@@ -34,7 +34,13 @@ export const useAccountPageStyle = () => {
 		}
 	}));
 
+	const SearchContainerMUI = styled('div')(() => ({
+		maxWidth: '686px',
+		margin: '0 auto 42px',
+	}));
+
 	return {
-		AccountWrapperUI
+		AccountWrapperUI,
+		SearchContainerMUI
 	};
 };

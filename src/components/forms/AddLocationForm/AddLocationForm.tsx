@@ -11,12 +11,25 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import { translit } from '@/lib/services/services';
+import { SxProps } from '@mui/material';
 
 interface IAddLocationForm {
 	setOpenForm: (prevState : (state: boolean) => boolean) => void
+	isVisibleCancel?: boolean
+	isAddressProperty?: boolean // флаг, который показываем нам, что мы пришли со странички оформления продукта (компонента - AccountOrdersAddress)
+	buttonStyles?: SxProps
+	buttonSend?: string;
 }
 
-const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
+const AddLocationForm: FC<IAddLocationForm> = (
+	{
+		setOpenForm,
+		isVisibleCancel = true,
+		isAddressProperty = false,
+		buttonStyles = {},
+		buttonSend = '',
+	}
+) => {
 	const {
 		FormUI,
 		FormWrapper,
@@ -61,7 +74,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
-			<FormWrapper>
+			<FormWrapper increaseFormField={isAddressProperty}>
 				<FormRowTitle>Имя</FormRowTitle>
 				<FormRowTextField>
 					<TextFieldUI
@@ -143,7 +156,7 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
-							helperText: 'Только латинские цифры и буквы',
+							helperText: isAddressProperty ? '' : 'Только латинские цифры и буквы',
 						}}
 						regexProps={{
 							regex: addressRegex,
@@ -153,18 +166,21 @@ const AddLocationForm: FC<IAddLocationForm> = ({setOpenForm}) => {
 
 				<FormRowTitle/>
 				<FormRowButtonUI>
-					<ButtonUI
-						style={ButtonCancelUI}
-						variant="text"
-						onClick={handlerCancelButton}
-					>
-						Отмена
-					</ButtonUI>
+					{isVisibleCancel && (
+						<ButtonUI
+							style={ButtonCancelUI}
+							variant="text"
+							onClick={handlerCancelButton}
+						>
+							Отмена
+						</ButtonUI>
+					)}
 					<ButtonUI
 						type="submit"
 						style={ButtonSubmitUI}
+						sx={buttonStyles}
 					>
-						Сохранить
+						{buttonSend ? buttonSend : 'Сохранить'}
 					</ButtonUI>
 				</FormRowButtonUI>
 			</FormWrapper>

@@ -136,11 +136,11 @@ export const useHeaderStyle = () => {
 	}));
 
 	const IconMarginRight = styled('a')(({theme}) => ({
-		[theme.breakpoints.between(600, 1241)]: {
+		[theme.breakpoints.between(960, 1241)]: {
 			marginRight: '50px'
 		}
 	}));
-	const UserWrapperUI = styled('div')(() => ({
+	const UserWrapperUI = styled('div')(({theme}) => ({
 		// height: '28px',
 		// width: '28px',
 
@@ -179,6 +179,12 @@ export const useHeaderStyle = () => {
 		'& span, .MuiAvatar-root': {
 			height: '28px',
 			width: '28px',
+		},
+		[theme.breakpoints.down(960)]: {
+			'& ': {
+				marginRight: '10px',
+				display: 'none'
+			},
 		}
 	}));
 

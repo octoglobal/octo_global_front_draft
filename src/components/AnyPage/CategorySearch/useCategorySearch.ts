@@ -1,15 +1,18 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {useFormContext, useWatch} from 'react-hook-form';
 import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
-import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import {fetchHintsSearchShops} from '@/reducers/shopsSlice/asyncThunk/asyncThunk';
-import {shopSlice} from '@/reducers/shopsSlice/shopsSlice';
+import { IHints } from '@/components/AnyPage/CategorySearch/types';
+import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 
-export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubmitType) => void) => {
+export const useCategorySearch = (
+	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void,
+	searchHints: IHints[] | IAdminHintsData[],
+	handleKeyDownEnter: () => void,
+	handleChangeSearchValue: (value: string) => void,
+	component: 'account' | 'shops' = 'shops',
+) => {
 
-	const { searchHints } = useAppSelector(state => state.shopReducer);
-	const dispatch = useAppDispatch();
 	const {control, setValue} = useFormContext();
 	const searchValue = useWatch({name: 'search'});
 	const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -59,13 +62,22 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 		}
 		if (e.key === 'Enter') {
 			e.preventDefault();
-			onSubmit(
-				{
-					search: searchValue, tags: []
-				},
-				'search'
-			);
-			dispatch(shopSlice.actions.changeHintsShops([]));
+			//?
+			if (component == 'shops') {
+				onSubmit(
+					{
+						search: searchValue, tags: []
+					},
+					'search'
+				);
+			} else {
+				onSubmit(
+					{
+						suggestionIndex: activeSuggestion
+					},
+				);
+			}
+			handleKeyDownEnter();
 		}
 		setActiveSuggestion(0);
 	};
@@ -86,32 +98,29 @@ export const useCategorySearch = (onSubmit: (data: ISearchData, type: SearchSubm
 		handleChangeActiveSuggestion(0)();
 	};
 
-	const handleClickHintItem = (title: string) => {
+	const handleClickHintItem = (title: string, hints: IHints & IAdminHintsData) => {
 		return () => {
-			if (title) {
-				setActiveSuggestion(0);
+			// console.log(hints);
+			if (title && !hints?.email) {
 				setValue('search', title);
 			}
+			if (hints?.email) {
+				setValue('search', `${hints.email}`);
+				onSubmit(
+					{
+						suggestionIndex: activeSuggestion
+					},
+				);
+			}
+			setActiveSuggestion(0);
 		};
 	};
 
 	useEffect(() => {
 		if (!activeSuggestion && searchValue) {
-			// try {
-			// 	octoAxios.get<IHintsResponse>(`/shops?search_suggestions=${searchValue}`).then(response => {
-			// 		const hintsResponse = response.data.search_suggestions_results;
-			// 		if (hintsResponse) {
-			// 			setHintsData(hintsResponse);
-			// 			dispatch(shopSlice.actions.changeFoundShops(!hintsResponse.length));
-			// 		}
-			// 	});
-			// } catch (e) {
-			// 	console.log(e);
-			// }
-			dispatch(fetchHintsSearchShops({searchValue}));
+			handleChangeSearchValue(searchValue);
 		}
 		if (!searchValue && searchHints.length) {
-			// setHintsData([]);
 			setActiveSuggestion(0);
 		}
 	}, [searchValue]);

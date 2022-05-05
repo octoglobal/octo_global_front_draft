@@ -16,15 +16,26 @@ export const useUserStyle = () => {
 		marginRight: '9px',
 	}));
 
-	const UserFIOUI = styled('div')(() => ({
+	const UserFIOUI = styled('div')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '18px',
-		// overflow: 'hidden',
-		// width: '165px',
+		maxWidth: '165px',
 		lineHeight: '21px',
 		textAlign: 'center',
 		color: '#000000',
+
+		whiteSpace:   'nowrap',	  /* Текст не переносится */
+		overflow: 	  'hidden',	  /* Обрезаем всё за пределами блока */
+		textOverflow: 'ellipsis', /* Добавляем многоточие */
+
+		[theme.breakpoints.down(600)]: {
+			maxWidth: 	  '460px',
+			whiteSpace:   'wrap',	  /* Текст не переносится */
+			// overflow: 	  'visible',	  /* Обрезаем всё за пределами блока */
+			textOverflow: 'clip', /* Добавляем многоточие */
+		}
+		
 	}));
 
 	return {

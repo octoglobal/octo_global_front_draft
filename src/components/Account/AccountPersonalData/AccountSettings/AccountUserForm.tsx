@@ -66,10 +66,10 @@ const AccountUserForm: FC = () => {
 					</FormSectionMUI>
 					
 					<FormSectionMUI>
-						<FormTableSectionTopLeftMUI>
+						<MailLeftMUI>
 							Почта
-						</FormTableSectionTopLeftMUI>
-						<FormTableSectionTopRightMUI>
+						</MailLeftMUI>
+						<MailRightMUI>
 							<FormTextFieldBorderUI selection={false}>
 								<TextFieldEmailMUI>
 									<TextFieldUI
@@ -96,7 +96,7 @@ const AccountUserForm: FC = () => {
 								)} */}
 							</FormTextFieldBorderUI>
 										
-						</FormTableSectionTopRightMUI>
+						</MailRightMUI>
 					</FormSectionMUI>
 				</FormContainerTopMUI>
 
@@ -120,7 +120,7 @@ const AccountUserForm: FC = () => {
 										required: true,
 										// helperText: 'Заполните поле "Телефон"',
 										sx: FormTextFieldUI,
-										// autoFocus: true
+										// autoFocus: true,
 										inputRef: textPhoneRef
 									}}
 									iconProps={{
@@ -170,6 +170,8 @@ const {
 	FormSectionMUI,
 	FormContainerTopMUI,
 	FormTextFieldContainerMUI,
+	MailLeftMUI,
+	MailRightMUI
 	
 } = useAccountSettingsStyle();
 

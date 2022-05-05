@@ -3,6 +3,7 @@ import {useMemo, useState} from 'react';
 import {octoAxios} from '@/lib/http';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+import { useMediaQuery } from '@mui/material';
 
 interface IFormData {
 	title: string;
@@ -19,6 +20,7 @@ export const useAccountOrdersAdd = () => {
 	const [isAddOrder, setIsAddOrder] = useState<boolean>(false);
 	const {control, handleSubmit, reset} = useForm<IFormData | FieldValues>();
 	const [formMessage, setFormMessage] = useState<string>('');
+	const isMobile = useMediaQuery('(max-width: 1025px)');
 
 	const handleToggleOrder = () => {
 		setIsAddOrder(prevState => !prevState);
@@ -87,6 +89,7 @@ export const useAccountOrdersAdd = () => {
 
 	return {
 		control,
+		isMobile,
 		onSubmit,
 		isAddOrder,
 		formMessage,

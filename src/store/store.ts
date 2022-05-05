@@ -27,6 +27,8 @@ const persistConfig = {
 		'reviewsReducer',
 		'adminReducer',
 		'orderWaitReducer',
+		'orderSendReducer',
+		'orderStockReducer',
 		'swipeableDrawerSliceReducer',
 	],
 };

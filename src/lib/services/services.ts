@@ -1,4 +1,6 @@
 import {ChangeEvent} from 'react';
+import { IOrdersSearchAdmin, ISearchAdminModel, IUserSearchAdmin } from '@/models/ISearchAdminModel';
+import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 export const checkValidArray = (arr: Array<unknown>): boolean => Array.isArray(arr) && !!arr?.length;
 
@@ -127,7 +129,7 @@ export const ellipsis = (string : string, count : number) : string => {
 export const addZero = (n : number | string) : number | string => {
 	if (n < 10) {
 		return `0${n}`;
-	} 
+	}
 	else {
 		return n;
 	}
@@ -189,4 +191,88 @@ export const ToRusDate = (date : string) : string => {
 	// console.log('month: ', local.toLocaleString("ru", options));
 
 	return `${timeLocal} ${dateLocal}`;
+};
+
+export const sortItemArrayInId = (array: unknown, arrayId: number[]) => {
+	let filterArray = array as [];
+	for (let i = 0; i < arrayId.length; i++) {
+		filterArray = filterArray.filter((item: {id: number}) => item.id !== arrayId[i]) as [];
+	}
+	return filterArray;
+};
+
+export const generateAdminHintsData = (data: ISearchAdminModel) => {
+	const modificationArray: IAdminHintsData[] = [];
+	for (const [, value] of Object.entries(data)) {
+		value.forEach((item: IOrdersSearchAdmin & IUserSearchAdmin, index: number) => {
+			const innerObj: IAdminHintsData = {
+				userAreaId: null,
+				email: null,
+				orderNumber: null,
+				trackNumber: null,
+				name: null,
+				type: null,
+				url: '',
+				title: 'test',
+				id: null
+			};
+
+			const type = item?.trackNumber || item?.trackNumber ? 'order' : 'user';
+
+			if (type == 'order') {
+				innerObj.userAreaId = item?.userAreaId;
+				innerObj.name = item?.userName;
+				innerObj.email = item?.userEmail;
+				innerObj.id = item.userId;
+				innerObj.orderNumber = item?.longId;
+				innerObj.trackNumber = item?.trackNumber;
+				innerObj.title = item.userEmail;
+				innerObj.url = `${item?.userEmail}${item?.userName}${item?.userAreaId}${item.trackNumber}${item.longId}`;
+			}
+
+			if (type == 'user') {
+				innerObj.userAreaId = item?.personalAreaId;
+				innerObj.name = item?.name;
+				innerObj.email = item?.email;
+				innerObj.orderNumber = null;
+				innerObj.id = item.id;
+				innerObj.trackNumber = null;
+				innerObj.title = item.email;
+				innerObj.url = `${item?.email}${item?.name}${item?.personalAreaId}${index}`;
+			}
+			innerObj.type = type;
+
+			modificationArray.push(innerObj);
+
+		});
+	}
+	return modificationArray.splice(0, 5);
+};
+
+
+export const getLocationWindow = (search: string) => {
+	if (typeof window !== undefined) {
+		return window.location.search?.split(search)[1]?.split('&')[0].replace('%40', '@');
+	}
+};
+
+export const getSelectArray = (obj: object) => {
+	const trueArray = [];
+	for (const [key, value] of Object.entries(obj)) {
+		if (value) trueArray.push(+key);
+	}
+	return trueArray;
+};
+
+export const findItemInArrayForId = (array: unknown, arrayId: number[]) => {
+	const innerArray = [];
+	if (Array.isArray(array)) {
+		for (let i = 0; i < arrayId.length; i++) {
+			const findItem = array.find((item) => item.id == arrayId[i]);
+			if (findItem) {
+				innerArray.push(findItem);
+			}
+		}
+	}
+	return innerArray;
 };

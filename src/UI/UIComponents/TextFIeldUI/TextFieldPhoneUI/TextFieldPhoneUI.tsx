@@ -88,7 +88,7 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 							shrink: true,
 						}}
 						InputProps={{
-							endAdornment: iconProps?.editIcon ? (<InputAdornment onClick={handlerIconClick} position="start"><EditPencil /></InputAdornment>) : '',
+							endAdornment: iconProps?.editIcon ? (<InputAdornment onClick={handlerIconClick} position="start" disablePointerEvents={true}><EditPencil /></InputAdornment>) : '',
 						}}
 					/>
 					// 	)}

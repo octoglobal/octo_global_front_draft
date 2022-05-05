@@ -18,7 +18,7 @@ const ContentLayoutUI = styled('div', {
 	// padding: '0 80px',
 	margin: '0 auto',
 
-	[theme.breakpoints.down(1024)]: {
+	[theme.breakpoints.down(1025)]: {
 		padding: !disabledPadding ? '15px' : '0',
 	},
 

@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
+import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {IOrderModel} from '@/models/IOrderModel';
 
 interface IInitialState {
@@ -45,7 +45,10 @@ export const orderWaitSlice = createSlice({
 			state.scrollEmpty = action.payload.scrollEmpty;
 			state.page += 1;
 			state.updateData = false;
-		}
+		},
+		[fetchDeleteOrders.fulfilled.type]: (state, action: PayloadAction<IOrderModel[]>) => {
+			state.orderWaitData = action.payload;
+		},
 	}
 });
 

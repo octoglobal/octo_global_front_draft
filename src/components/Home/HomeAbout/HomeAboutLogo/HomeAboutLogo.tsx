@@ -4,7 +4,6 @@ import OctoGlobal from '../../../../UI/UIIcon/OctoGlobalLogo.svg';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-
 if (typeof window !== 'undefined') {
 	gsap.registerPlugin(ScrollTrigger);
 }
@@ -22,9 +21,9 @@ const HomeAboutLogo: FC = () => {
 	useEffect(() => {
 		const element = logoRefElement.current;
 		if (typeof window !== 'undefined' && element) {
-			gsap.fromTo(element, {				
-				opacity: 1,				
-			}, {			
+			gsap.fromTo(element, {
+				opacity: 1,
+			}, {
 				opacity: 0,
 				duration: 1,
 				scrollTrigger: {

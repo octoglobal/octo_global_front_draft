@@ -1,11 +1,10 @@
-import React, { FC,  useMemo, useRef } from 'react';
+import React, { FC, useMemo, useRef } from 'react';
 import Container from '@/components/Container/Container';
 import HomeAboutLogo from '@/components/Home/HomeAbout/HomeAboutLogo/HomeAboutLogo';
 import HomeAboutText from '@/components/Home/HomeAbout/HomeAboutText/HomeAboutText';
 import {useHomeAboutStyles} from '@/components/Home/HomeAbout/style';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
 
 if (typeof window !== 'undefined') {
 	gsap.registerPlugin(ScrollTrigger);

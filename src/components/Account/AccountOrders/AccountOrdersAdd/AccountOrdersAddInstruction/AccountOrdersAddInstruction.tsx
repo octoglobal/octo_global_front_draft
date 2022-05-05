@@ -1,6 +1,6 @@
 import React from 'react';
 import InstructionIcon from '@/UIIcon/InstructionIcon.svg';
-import InvoiseIcon from '@/UIIcon/InvoiseIcon.svg';
+// import InvoiseIcon from '@/UIIcon/InvoiseIcon.svg';
 import {
 	useAccountOrdersAddInstructionStyles
 } from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountOrdersAddInstruction/style';
@@ -21,18 +21,18 @@ const AccountOrdersAddInstruction = () => {
 					</a>
 				</Link>
 			</ItemMUI>
-			<ItemMUI>
-				<Link href='/questions'>
-					<a>
-						<IconMUI>
-							<InvoiseIcon/>
-						</IconMUI>
-						<TextMUI>
-							Инвойс
-						</TextMUI>
-					</a>
-				</Link>
-			</ItemMUI>
+			{/*<ItemMUI>*/}
+			{/*	<Link href='/questions'>*/}
+			{/*		<a>*/}
+			{/*			<IconMUI>*/}
+			{/*				<InvoiseIcon/>*/}
+			{/*			</IconMUI>*/}
+			{/*			<TextMUI>*/}
+			{/*				Инвойс*/}
+			{/*			</TextMUI>*/}
+			{/*		</a>*/}
+			{/*	</Link>*/}
+			{/*</ItemMUI>*/}
 		</>
 	);
 };

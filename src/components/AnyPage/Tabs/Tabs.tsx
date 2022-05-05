@@ -8,6 +8,8 @@ import {useTabsStyle} from './style';
 import {useMobile} from '@/hooks/useMedia';
 // import LightningInsideCircle from '../../../UI/UIIcon/LightningInsideCircle.svg';
 import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTransp.svg';
+import AccountTabOrderMobile from '@/components/Account/AccountTabOrderMobile/AccountTabOrderMobile';
+import { useMediaQuery } from '@mui/material';
 
 
 type TabsQueryProps = {
@@ -40,6 +42,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 	} = useTabsStyle();
 
 	const {isMobile} = useMobile();
+	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
 
 	const {router, pushTo} = useCustomRouter();
 
@@ -82,21 +85,27 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 								<TabUI
 									key={i}
 									className={checkActiveClass(item.url, item.query)}
-									onClick={() => handlerPushToTab(item.url, item.query)}
+									onClick={() => {
+										if (item.title === 'Заказы' && isTouchDevice) return;
+										handlerPushToTab(item.url, item.query);
+									}}
 								>
 									<>
-										{item.title}
-									
-										{item.title === 'Выкуп товара'
-											? <TabsMarginLeft>
-												<BgMUI>													
-													<LightningInsideCircle44></LightningInsideCircle44>
-												</BgMUI>
-												{/* <LightningInsideCircle /> */}
-											
-											  </TabsMarginLeft>
-											: ''
-										}
+										{item.title === 'Заказы' && isTouchDevice ? (
+											<AccountTabOrderMobile/>
+										) : (
+											<>
+												{item.title}
+												{item.title === 'Выкуп товара'
+													? <TabsMarginLeft>
+														<BgMUI>
+															<LightningInsideCircle44></LightningInsideCircle44>
+														</BgMUI>
+													</TabsMarginLeft>
+													: ''
+												}
+											</>
+										)}
 									</>
 								</TabUI>
 							) : null}

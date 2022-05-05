@@ -14,7 +14,7 @@ const AccountOrdersTabItem: FC<ITabsData> = ({title, link}) => {
 	} = useCustomRouter();
 
 	const dopItemStyles = useMemo(() => {
-		if (getPathName() === link) return itemActive;
+		if (getPathName().match(link.split('?')[0])) return itemActive;
 		return {};
 	}, [router]);
 

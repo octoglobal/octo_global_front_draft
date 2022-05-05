@@ -1,18 +1,24 @@
 import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useUserStore} from '@/hooks/useUserStore';
-import {octoAxios} from '@/lib/http';
-import {IDefaultFetchSuccess} from '../../../types/types';
+import {fetchDeleteOrders} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 
 export const useOrderItemWait = () => {
 	const {
-		isAdmin
+		isAdmin,
+		user: {
+			id
+		}
 	} = useUserStore();
 
 	const {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
+
+	const {
+		orderWaitData
+	} = useAppSelector(state => state.orderWaitReducer);
 
 	const dispatch = useAppDispatch();
 	const [isStatusModal, setIsStatusModal] = useState<boolean>(false);
@@ -24,23 +30,23 @@ export const useOrderItemWait = () => {
 		};
 	};
 
+	const handleSuccessChangeStatus = (id: number) => {
+		return () => {
+			handleToggleModal(setIsStatusModal)();
+			dispatch(orderWaitSlice.actions.sortOrderData(id));
+		};
+	};
+
 	const handleDeleteOrder = (orderId: number) => {
 		return () => {
-			try {
-				const sendData = {
-					'userId': adminSwitchIdToUser,
-					'orderId': orderId
-				};
-				octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
-					data: sendData
-				}).then(response => {
-					if (response.data.message === 'success') {
-						handleToggleModal(setIsDeleteModal);
-						dispatch(orderWaitSlice.actions.sortOrderData(orderId));
-					}
-				});
-			} catch (e) {
-				throw new Error('Error delete order');
+			const innerId = isAdmin ? adminSwitchIdToUser ?  adminSwitchIdToUser : id : id;
+			if (innerId) {
+				dispatch(fetchDeleteOrders({
+					userId: innerId,
+					orderId: [orderId],
+					ordersData: orderWaitData,
+					successCallback: handleToggleModal(setIsDeleteModal)
+				}));
 			}
 		};
 	};
@@ -86,6 +92,7 @@ export const useOrderItemWait = () => {
 		setIsStatusModal,
 		setIsDeleteModal,
 		handleDeleteOrder,
-		handleToggleModal
+		handleToggleModal,
+		handleSuccessChangeStatus
 	};
 };

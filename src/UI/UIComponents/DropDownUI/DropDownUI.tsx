@@ -1,18 +1,22 @@
 import React, {FC} from 'react';
-import DorpDownIcon from '@/UIIcon/DropDownIcon.svg';
+import DropDownIcon from '@/UIIcon/DropDownIcon.svg';
+import DropDownAdaptiveIcon from '../../UIIcon/SmallMenuIcon.svg';
 import {useDropDownStyles} from './style';
 import {useDropDownUI} from './useDropDownUI';
 import DropDownItem from './DropDownItem/DropDownItem';
 import {IDropItem} from './type';
 
 interface IDropDownUIProps {
-	dropItems: IDropItem[]
+	dropItems: IDropItem[],
+	itemId?: number,
+	CustomIcon?: FC,
 }
 
-const DropDownUI: FC<IDropDownUIProps> = ({dropItems}) => {
+const DropDownUI: FC<IDropDownUIProps> = ({dropItems, itemId}) => {
 
 	const {
 		isOpen,
+		isMobile,
 		handleToggleOpen
 	} = useDropDownUI();
 
@@ -23,7 +27,11 @@ const DropDownUI: FC<IDropDownUIProps> = ({dropItems}) => {
 				onClick={handleToggleOpen}
 				disableTouchRipple={true}
 			>
-				<DorpDownIcon/>
+				{isMobile ? (
+					<DropDownAdaptiveIcon/>
+				) : (
+					<DropDownIcon/>
+				)}
 			</IconButtonMUI>
 			{isOpen && (
 				<ButtonContainerMUI>
@@ -32,6 +40,7 @@ const DropDownUI: FC<IDropDownUIProps> = ({dropItems}) => {
 							key={`${index}${item.title}`}
 							title={item.title}
 							onClick={item.onClick}
+							itemId={itemId}
 							handleToggleOpen={handleToggleOpen}
 						/>
 					))}

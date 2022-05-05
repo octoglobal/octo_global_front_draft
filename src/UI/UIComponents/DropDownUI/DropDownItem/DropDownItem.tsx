@@ -2,14 +2,20 @@ import React, {FC} from 'react';
 import {IDropItem} from '../type';
 import {useDropDownItemStyles} from './style';
 
-const DropDownItem: FC<IDropItem & {handleToggleOpen: () => void}> = ({title, onClick, handleToggleOpen}) => {
 
+interface IDropDownItemProps extends IDropItem{
+	handleToggleOpen: () => void,
+	itemId: number | undefined
+}
+
+const DropDownItem: FC<IDropDownItemProps> = ({title, onClick, handleToggleOpen, itemId}) => {
 	const handleClickItem = () => {
-		onClick();
+		onClick(itemId);
 		setTimeout(() => {
 			handleToggleOpen();
 		}, 300);
 	};
+
 
 	return (
 		<ButtonMUI onClick={handleClickItem}>
@@ -19,7 +25,7 @@ const DropDownItem: FC<IDropItem & {handleToggleOpen: () => void}> = ({title, on
 };
 
 const {
-	ButtonMUI
+	ButtonMUI,
 } = useDropDownItemStyles();
 
 export default React.memo(DropDownItem);
