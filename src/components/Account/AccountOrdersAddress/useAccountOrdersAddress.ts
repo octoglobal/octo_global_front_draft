@@ -32,6 +32,10 @@ export const useAccountOrdersAddress = () => {
 	), [addressSelect]);
 
 	const handleToggleCollapse = () => {
+		methods.setValue('addressSelect', {
+			text: undefined,
+			id: undefined,
+		});
 		setIsCollapse(prevState => !prevState);
 	};
 

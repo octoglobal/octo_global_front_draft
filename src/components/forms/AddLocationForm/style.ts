@@ -11,18 +11,30 @@ export const useAddLocationFormStyle = () => {
 		}
 	}));
 
-	const FormWrapper = styled('div')(({theme}) => ({
+	const FormWrapper = styled('div', {
+		shouldForwardProp: (prop) => prop !== 'increaseFormField',
+	})<{increaseFormField?: boolean}>(({theme, increaseFormField = false}) => ({
 		width: '100%',
 		height: '100%',
 
 		display: 'grid',
-		gridTemplateColumns: '87px 451px',
+		gridTemplateColumns: `87px ${increaseFormField ? 501 : 451}px`,
 		gridTemplateRows: 'auto auto auto auto auto',
-		gridColumnGap: '21px',
-		gridRowGap: '10px',
+		gridColumnGap: `${increaseFormField ? 39 : 21}px`,
+		gridRowGap: `${increaseFormField ? 15 : 10}px`,
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(660)]: {
+			gridTemplateColumns: '87px auto',
+		},
+
+		[theme.breakpoints.down(501)]: {
 			gridTemplateColumns: 'auto',
+			gridTemplateRows: 'auto auto auto auto',
+			gridRowGap: `${increaseFormField ? 10 : 15}px`,
+
+			'& > div:last-child': {
+				marginTop: '10px',
+			}
 		}
 	}));
 
@@ -35,7 +47,7 @@ export const useAddLocationFormStyle = () => {
 		color: '#000000',
 		paddingTop: '13px',
 
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(501)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
 
