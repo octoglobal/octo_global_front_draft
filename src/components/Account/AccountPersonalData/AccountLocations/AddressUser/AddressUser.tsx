@@ -25,14 +25,6 @@ const AddressUser: FC<IAddressUser> = ({
 }) => {
 
 	const {
-		FormUI,
-		FormWrapperUI,
-		FormRowTitleUI,
-		FormRowTextUI,
-		FormIconUI
-	} = useAddressUserStyle();
-
-	const {
 		user: {
 			statusId
 		}
@@ -41,17 +33,12 @@ const AddressUser: FC<IAddressUser> = ({
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
 	const handlerDialogState = () => {
-		console.log('handlerDialogState: ');
 		setOpenConfirmDialog(prevState => !prevState);
 	};
 
-	console.log('openConfirmDialog: ', openConfirmDialog);
-
 	const handlerConfirm = (idDelete : number) : void => {
-		// return () => {
 		handlerDeleteLocation(idDelete);
 		handlerDialogState();
-		// };
 	};
 
 	const handlerCancel = () : void => {
@@ -91,5 +78,13 @@ const AddressUser: FC<IAddressUser> = ({
 		</>
 	);
 };
+
+const {
+	FormUI,
+	FormWrapperUI,
+	FormRowTitleUI,
+	FormRowTextUI,
+	FormIconUI
+} = useAddressUserStyle();
 
 export default React.memo(AddressUser);

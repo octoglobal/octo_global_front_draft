@@ -10,9 +10,7 @@ export const useAccountLocationStyle = () => {
 		display: 'flex',
 		justifyContent: 'center',
 
-		// [theme.breakpoints.down(400)]: {
-		// 	width: '350px'
-		// },
+		marginBottom: '25px',
 	}));
 
 	const AddressListMUI = styled('div')(() => ({
@@ -50,8 +48,8 @@ export const useAccountLocationStyle = () => {
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		padding: '15px 30px 30px',
-		
+		// padding: '15px 30px 30px',
+
 		'& .TabsUnstyled-root': {
 			width: '100%',
 		},
@@ -64,12 +62,10 @@ export const useAccountLocationStyle = () => {
 		},
 
 		'& .TabsListUnstyled-root button': {
-			margin: '0 15px',
+			marginRight: '0 25px',
+			fontSize: '20px',
+			lineHeight: '23px',
 		},
-
-		// '& form:last-child': {
-		// 	marginBottom: '0',
-		// },
 
 		[theme.breakpoints.down(600)]: {
 			padding: '10px',
@@ -126,16 +122,24 @@ export const useAccountLocationStyle = () => {
 	}));
 
 	const LocationButtonsUI = styled('div', {
-		shouldForwardProp: (prop) => prop !== 'justifyAlign',
-	})<{ justifyAlign?: boolean }>(({justifyAlign = false, theme}) => ({
+		shouldForwardProp: (prop) => prop !== 'justifyAlign' && prop !== 'addMargin',
+	})<{ justifyAlign?: boolean, addMargin?: boolean }>(({justifyAlign = false, addMargin = false, theme}) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
 		justifyContent: justifyAlign ? 'center' : 'flex-end',
 		width: '100%',
 
+		marginBottom: addMargin ? '25px' : '0',
+
+		'& button:first-child:hover': {
+			background: 'inherit',
+		},
+
 		[theme.breakpoints.down(500)]: {
 			justifyContent: justifyAlign ? 'center' : 'flex-end',
+			marginBottom: '0',
+			marginTop: '5px',
 		}
 	}));
 
@@ -207,7 +211,7 @@ export const useAccountLocationStyle = () => {
 	const ButtonAdd: React.CSSProperties = {
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '300',
+		fontWeight: '400',
 		fontSize: '14px',
 		lineHeight: '16px',
 		textAlign: 'center',
@@ -223,17 +227,19 @@ export const useAccountLocationStyle = () => {
 	const ButtonShowAll: React.CSSProperties = {
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
-		fontWeight: '300',
-		fontSize: '16px',
-		lineHeight: '19px',
+		fontWeight: '400',
+		fontSize: '14px',
+		lineHeight: '16px',
 		textAlign: 'center',
 		color: '#274D82',
 		background: 'inherit',
 
-		width: '236px',
+		display: 'block',
+
+		width: 'auto',
 		height: '32px',
 		padding: '0',
-		margin: '0'
+		margin: '0 25px 0 0'
 	};
 
 	return {

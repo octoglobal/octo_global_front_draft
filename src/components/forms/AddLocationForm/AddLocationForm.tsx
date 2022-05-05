@@ -156,7 +156,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 							type: 'text',
 							required: true,
 							sx: FormTextFieldUI,
-							helperText: isAddressProperty ? '' : 'Только латинские цифры и буквы',
+							helperText: isAddressProperty ? '' : 'Только латинские буквы и цифры',
 						}}
 						regexProps={{
 							regex: addressRegex,

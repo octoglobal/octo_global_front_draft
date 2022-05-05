@@ -5,21 +5,23 @@ export const useAddressUserStyle = () => {
 	const FormUI = styled('div')(({theme}) => ({
 		display: 'flex',
 
-		margin: '0px 0 20px',
-		borderBottom: '2px solid #274D82',
+		// margin: '0px 0 20px',
+		// marginBottom: '5px',
+		borderBottom: '2px solid rgba(39, 77, 130, 0.5)',
+		marginTop: '20px',
 
 		'&:first-child': {
 			marginTop: '0px',
 		},
 
 		[theme.breakpoints.down(500)]: {
-			marginTop: '24px',
+			// marginTop: '24px',
 			marginBottom: '15px',
 			width: '100%',
 
-			'&:first-child': {
-				marginTop: '33px',
-			},
+			// '&:first-child': {
+			// 	// marginTop: '33px',
+			// },
 		}
 	}));
 
