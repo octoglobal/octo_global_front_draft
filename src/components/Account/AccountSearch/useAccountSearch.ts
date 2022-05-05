@@ -6,21 +6,29 @@ import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {getLocationWindow} from '@/services/services';
+import {useEffect} from 'react';
 
 export const useAccountSearch = () => {
 	const {
 		hints,
+		adminSwitchUserModel,
 	} = useAppSelector(state => state.adminReducer);
+
 	const {
 		router
 	} = useCustomRouter();
 	const dispatch = useAppDispatch();
-	const methods = useForm({
-		defaultValues: {
-			search: getLocationWindow('userEmail=')
-		}
-	});
 
+	const methods = useForm();
+
+	useEffect(() => {
+		if (adminSwitchUserModel) {
+			const search = methods.getValues('search');
+			if (search !== adminSwitchUserModel.email) {
+				methods.setValue('search', adminSwitchUserModel.email);
+			}
+		}
+	}, [adminSwitchUserModel]);
 
 	const onSubmit = async (data: {suggestionIndex: number} | ISearchData) => {
 		if (Array.isArray(hints)) {
@@ -29,7 +37,7 @@ export const useAccountSearch = () => {
 			if (item?.id) {
 				await dispatch(orderWaitSlice.actions.defaultData());
 				dispatch(adminSlice.actions.changeAdminId(item.id));
-				router.push(router.pathname, {query: {userId: item.id, userEmail: item.email}});
+				router.push(router.pathname, {query: {userId: item.id}});
 			}
 		}
 	};

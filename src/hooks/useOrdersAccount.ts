@@ -15,7 +15,7 @@ export const useOrdersAccount = () => {
 
 	const handlePushOrdersAddress = (packageId: number) => {
 		if (adminSwitchIdToUser && adminSwitchUserModel) {
-			router.push(`/account/orders/address?packageId=${packageId}&userId=${adminSwitchIdToUser}&userEmail=${adminSwitchUserModel.email}`);
+			router.push(`/account/orders/address?packageId=${packageId}&userId=${adminSwitchIdToUser}`);
 		} else {
 			router.push(`/account/orders/address?packageId=${packageId}`);
 		}

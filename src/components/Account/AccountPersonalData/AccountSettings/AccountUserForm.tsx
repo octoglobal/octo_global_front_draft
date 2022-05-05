@@ -9,16 +9,22 @@ import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
 import {ObjectHasOwnProperty} from '@/services/services';
+import {useAppSelector} from '@/hooks/useReduxHooks';
 
 const AccountUserForm: FC = () => {
 
 	const textPhoneRef = useRef<HTMLInputElement | null>(null);
 
-	const {handleSubmit, control, setValue, setError, formState: {dirtyFields, isSubmitted}} = useForm();
+	const {handleSubmit, getValues, control, setValue, setError, formState: {dirtyFields, isSubmitted}} = useForm();
 
 	const {
 		user: {personalAreaId, verifiedEmail, email, phone},
+		isAdmin
 	} = useUserStore();
+
+	const {
+		adminSwitchUserModel
+	} = useAppSelector(state => state.adminReducer);
 
 	const dirtyPhone = useMemo(
 		() => dirtyFields.phone,
@@ -27,9 +33,7 @@ const AccountUserForm: FC = () => {
 
 	const {
 		onSubmitUser,
-		// handlerConfirmEmail,
 		handlerEditClick,
-		// showEmailPromt
 	} = useAccountSettings(setError, verifiedEmail);
 
 	useEffect(() => {
@@ -42,8 +46,29 @@ const AccountUserForm: FC = () => {
 		[isSubmitted, dirtyPhone]
 	);
 
-	// console.log('isSubmitForm: ', isSubmitForm);
+	const userAreaId = useMemo(() => {
+		if (isAdmin && adminSwitchUserModel) {
+			return adminSwitchUserModel.personalAreaId;
+		} else {
+			return personalAreaId;
+		}
+	}, [personalAreaId, adminSwitchUserModel]);
 
+	const userEmail = useMemo(() => {
+		if (isAdmin && adminSwitchUserModel) {
+			return adminSwitchUserModel.email;
+		} else {
+			return email;
+		}
+	}, [personalAreaId, adminSwitchUserModel]);
+
+	const userPhone = useMemo(() => {
+		if (isAdmin && adminSwitchUserModel) {
+			return adminSwitchUserModel.phone;
+		} else {
+			return phone;
+		}
+	}, [personalAreaId, adminSwitchUserModel]);
 
 	useEffect(() => {
 		if (dirtyPhone && ObjectHasOwnProperty(textPhoneRef, 'current')) {
@@ -52,19 +77,33 @@ const AccountUserForm: FC = () => {
 		}
 	}, [dirtyPhone]);
 
+	useEffect(() => {
+		if (isAdmin) {
+			const data = getValues();
+			const emailValue = data?.email;
+			const phoneValue = data?.phone;
+			if (userEmail !== emailValue) {
+				setValue('email', userEmail);
+			}
+			if (userPhone !== phoneValue) {
+				setValue('phone', userPhone);
+			}
+		}
+	}, [userEmail, userPhone]);
+
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
 			<FormTableUI>
 				<FormContainerTopMUI>
 					<FormSectionMUI>
 						<FormTableSectionTopLeftMUI>
-							Номер кабинета	
+							Номер кабинета
 						</FormTableSectionTopLeftMUI>
 						<FormTableSectionTopRightMUI>
-							<FormTableTextUI>#{personalAreaId}</FormTableTextUI>
+							<FormTableTextUI>#{userAreaId}</FormTableTextUI>
 						</FormTableSectionTopRightMUI>
 					</FormSectionMUI>
-					
+
 					<FormSectionMUI>
 						<MailLeftMUI>
 							Почта
@@ -76,7 +115,7 @@ const AccountUserForm: FC = () => {
 										controller={{
 											name: 'email',
 											control,
-											defaultValue: email,
+											defaultValue: userEmail,
 											// rules: {required: true},
 										}}
 										inputProps={{
@@ -95,7 +134,7 @@ const AccountUserForm: FC = () => {
 									</HelperBoxUI>
 								)} */}
 							</FormTextFieldBorderUI>
-										
+
 						</MailRightMUI>
 					</FormSectionMUI>
 				</FormContainerTopMUI>
@@ -111,7 +150,7 @@ const AccountUserForm: FC = () => {
 									controller={{
 										name: 'phone',
 										control,
-										defaultValue: phone || '',
+										defaultValue: userPhone || '',
 										rules: {required: true},
 									}}
 									inputProps={{
@@ -130,14 +169,12 @@ const AccountUserForm: FC = () => {
 										onClick: handlerEditClick,
 									}}
 								/>
-							</FormTextFieldContainerMUI> 
+							</FormTextFieldContainerMUI>
 						</FormTextFieldBorderUI>
-
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
-
 				{isSubmitForm && (<>
-					<FormTableEndUI>	
+					<FormTableEndUI>
 						<ButtonUI
 							type="submit"
 							style={FormButtonUI}
@@ -172,7 +209,7 @@ const {
 	FormTextFieldContainerMUI,
 	MailLeftMUI,
 	MailRightMUI
-	
+
 } = useAccountSettingsStyle();
 
 export default React.memo(AccountUserForm);

@@ -4,6 +4,7 @@ import ModalUI from '../../../../../UI/UIComponents/ModalUI/ModalUI';
 interface IAccountAddModalProps {
 	open: boolean;
 	onClose: () => void;
+	setState?: () => void;
 }
 
 const AccountAddModal: FC<IAccountAddModalProps> = ({ open, onClose }) => {
@@ -13,6 +14,7 @@ const AccountAddModal: FC<IAccountAddModalProps> = ({ open, onClose }) => {
 				open: open,
 				onClose,
 			}}
+			closeTime={5}
 			title='Заказ добавлен'/>
 	);
 };

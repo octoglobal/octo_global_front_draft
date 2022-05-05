@@ -96,6 +96,7 @@ export const useAccountOrdersAdd = () => {
 		handleSubmit,
 		textFieldDesc,
 		textFieldName,
+		setIsAddOrder,
 		handleToggleOrder,
 		textFieldTrackNumber,
 	};

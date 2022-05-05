@@ -5,28 +5,39 @@ import AccountUserForm from '@/components/Account/AccountPersonalData/AccountSet
 import AccountPasswordForm from '@/components/Account/AccountPersonalData/AccountSettings/AccountPasswordForm';
 
 import {useAccountSettingsStyle} from './style';
+import {useUserStore} from '@/hooks/useUserStore';
 
 const AccountSettings: FC = () => {
+
 	const {
-		FormTableUserUI,
-		SettingsWrapperUI,
-		FormsWrapperBoxUI,
-	} = useAccountSettingsStyle();
+		isAdmin
+	} = useUserStore();
 
 	return (
 		<SettingsWrapperUI>
-			{/* TODO: вынести форму в другой файл */}
 			<FormsWrapperBoxUI>
-
 				<FormTableUserUI>
-					<User cutFio={false}/>
+					<User
+						cutFio={false}
+						isChangeToAdmin={true}
+					/>
 				</FormTableUserUI>
 				<AccountUserForm />
-				<AccountPasswordForm />
-
+				{isAdmin ? (
+					<AdminMarginBottomMUI/>
+				) : (
+					<AccountPasswordForm />
+				)}
 			</FormsWrapperBoxUI>
 		</SettingsWrapperUI>
 	);
 };
+
+const {
+	FormTableUserUI,
+	SettingsWrapperUI,
+	FormsWrapperBoxUI,
+	AdminMarginBottomMUI
+} = useAccountSettingsStyle();
 
 export default React.memo(AccountSettings);

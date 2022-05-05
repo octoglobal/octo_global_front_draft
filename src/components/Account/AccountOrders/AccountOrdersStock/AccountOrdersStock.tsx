@@ -29,7 +29,7 @@ const AccountOrdersStock = () => {
 							stockData.map(order => (
 								<OrderItem
 									component='stock'
-									visibleCheckbox={true}
+									visibleCheckbox={stockData.length > 1}
 									visibleDropDown={true}
 									visibleTrackNumber={false}
 									key={`${order.trackNumber}${order.id}`}
