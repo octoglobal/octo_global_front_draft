@@ -15,7 +15,7 @@ export const useBlogNewPost = () => {
 
 	useEffect(() => {
 		if (isOpen) {			
-			dispatch(updateEditMode({open:false,id:null}));
+			dispatch(updateEditMode({open:false,id:null}));				
 		}
 	}, [blogData]);
 
