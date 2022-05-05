@@ -17,11 +17,11 @@ export const useHomeAboutTextStyles = () => {
 			marginRight: '0px',
 		}
 	}));
-
+	
 	const ParagraphMUI = styled('p')(({theme}) => ({
 		fontSize: '20px',
 		lineHeight: '32px',
-		marginBottom: '50px',
+		marginBottom: '15px',
 		fontWeight: 300,
 		maxWidth: '749px',
 		[theme.breakpoints.down(1321)]: {
@@ -45,7 +45,11 @@ export const useHomeAboutTextStyles = () => {
 			lineHeight: '16px',
 		},
 	}));
-
+	const SpanMUI = styled('span')(() => ({
+		color: '#274D82',
+		
+		fontWeight: 400,
+	}));
 	const LinkTitleMUI = styled('h4')(({theme}) => ({
 		marginBottom: '22px',
 		fontSize: '32px',
@@ -101,9 +105,11 @@ export const useHomeAboutTextStyles = () => {
 				height: '33px',
 			},
 		}
+		
 	}));
-
+	
 	return {
+		SpanMUI,
 		ParagraphMUI,
 		ContainerMUI,
 		LinkItemMUI,

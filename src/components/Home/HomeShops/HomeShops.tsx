@@ -26,7 +26,7 @@ const HomeShops = () => {
 			<Container>
 				<TitleMUI>
 					<HomeSectionTitle
-						title={isTablet ? 'Магазины' : 'Магазины с которыми мы работаем'}
+						title='Список магазинов для шопинга'
 					/>
 				</TitleMUI>
 			</Container>
