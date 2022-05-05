@@ -93,7 +93,8 @@ export const fetchAddNewsBlog = createAsyncThunk(
 			}
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
-				return thunkAPI.rejectWithValue(e.response?.status);
+				// return thunkAPI.rejectWithValue(e.response?.status);
+				 return thunkAPI.rejectWithValue('Произошла ошибка при добавлении');
 			}
 		}
 	}

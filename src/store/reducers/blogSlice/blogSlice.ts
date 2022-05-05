@@ -78,10 +78,19 @@ export const blogSlice = createSlice({
 	extraReducers: {
 		[fetchAddNewsBlog.pending.type]: (state) => {
 			state.loading = true;
+			state.error.status = false;
+			state.error.message = '';
 		},
 		[fetchAddNewsBlog.fulfilled.type]: (state, action: PayloadAction<IBlogModel>) => {
 			state.blogData = [ action.payload, ...state.blogData];
 			state.loading = false;
+		},
+		[fetchAddNewsBlog.rejected.type]: (state, action) => {
+			console.log(action.payload);
+			state.error.status = true;
+			state.error.message = action.payload;
+			state.loading = false;
+			
 		},
 		[fetchNewsData.fulfilled.type]: (state, action: PayloadAction<IFetchNewsFulfilled>) => {
 			state.blogEnd = action.payload.blogEnd;
@@ -106,13 +115,16 @@ export const blogSlice = createSlice({
 		[fetchUpdateBlog.rejected.type]: (state,action) => {			
 			state.error.status = true;
 			state.error.message = action.payload;
+			state.EditMode.id = null;
+			state.EditMode.open = false;
 		},
 
 		[fetchDeleteBlogItem.pending.type]: (state) => {
 			state.error.status = false;
 			state.error.message = '';
 		  },
-		[fetchDeleteBlogItem.rejected.type]: (state,action) => {			
+		[fetchDeleteBlogItem.rejected.type]: (state,action) => {
+				
 			state.error.status = true;
 			state.error.message = action.payload;
 		}
