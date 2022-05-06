@@ -28,10 +28,8 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 		return  {};
 	}, [isOpen]);
 
-	const lastItemStyles = useMemo(() => {
-		console.log('!!!end', end);
-		if (end ) {
-			console.log('!!!');
+	const lastItemStyles = useMemo(() => {		
+		if (end ) {			
 			return {
 				borderBottom: 0,
 			};
@@ -50,16 +48,8 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 					{title} 
 				</CollapseTitleMUI>
 			</ContainerButtonMUI>
-			<CollapseMUI in={isOpen} onClick={handleToggleOpen}>
-				{/* {description && (
-					
-				
-					<CollapseDescMUI>
-						{description}
-					</CollapseDescMUI>
-				)} */}
-				{children}
-				
+			<CollapseMUI in={isOpen} onClick={handleToggleOpen}>				
+				{children}				
 			</CollapseMUI>
 		</ContainerMUI>
 	);
@@ -68,7 +58,6 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 const {
 	CollapseMUI,
 	ContainerMUI,
-	CollapseDescMUI,
 	CollapseTitleMUI,
 	ContainerButtonMUI,
 } = useCollapseInfoStyles();

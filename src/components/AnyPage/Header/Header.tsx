@@ -83,8 +83,16 @@ const Header = () => {
 											width: '20ch',
 										},
 									}}
-								>
-									{navArray.desktop.map((option) => (
+								> 	
+									{isCustomSize? navArray.tablet.map((option) => (
+										<MenuItem
+											key={option.title}
+											selected={option.title === 'Pyxis'}
+											onClick={handlerPushToNav(option.href)}
+										>
+											{option.title}
+										</MenuItem>
+									)) : navArray.desktop.map((option) => (
 										<MenuItem
 											key={option.title}
 											selected={option.title === 'Pyxis'}
@@ -93,6 +101,7 @@ const Header = () => {
 											{option.title}
 										</MenuItem>
 									))}
+									
 								</Menu>
 							</HeaderBurgerButtonMUI>
 						)}

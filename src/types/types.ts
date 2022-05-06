@@ -62,6 +62,7 @@ interface IHeaderNavItem {
 export interface IHeaderNavItemsData {
 	desktop: IHeaderNavItem[],
 	mobile: IHeaderNavItem[]
+	tablet: IHeaderNavItem[]
 }
 
 export interface IReviewAdd {

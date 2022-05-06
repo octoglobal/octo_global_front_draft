@@ -20,6 +20,30 @@
       "title": "Частые вопросы",
       "showAuth": false,
       "href": "/questions"
+    }
+   
+  ],
+  "tablet": [
+    {
+      "title": "Магазины",
+      "showAuth": false,
+      "href": "/shops"
+    },
+
+    {
+      "title": "Стоимость услуг",
+      "showAuth": false,
+      "href": "/"
+    },
+    {
+      "title": "Блог",
+      "showAuth": false,
+      "href": "/blog"
+    },
+    {
+      "title": "Частые вопросы",
+      "showAuth": false,
+      "href": "/questions"
     },
     {
       "title": "Личный кабинет",
@@ -54,11 +78,6 @@
       "title": "Частые вопросы",
       "showAuth": false,
       "href": "/questions"
-    },
-    {
-      "title": "Личный кабинет",
-      "showAuth": true,
-      "href": "/account/info"
     }
   ]
 }
