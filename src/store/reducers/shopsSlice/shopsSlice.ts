@@ -40,6 +40,7 @@ export const shopSlice = createSlice({
 			state.isNotFoundShops = action.payload;
 		},
 		changeHintsShops(state, action: PayloadAction<IHints[]>) {
+			console.log('!!!!!!!!!!!!!!!!!!!!!!!-------');
 			state.searchHints = action.payload;
 		},
 		resetSlice(state) {

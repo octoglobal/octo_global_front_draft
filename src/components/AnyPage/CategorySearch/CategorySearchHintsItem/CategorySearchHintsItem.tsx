@@ -39,22 +39,27 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const searchValue = useWatch({name: 'search'});
 
-	console.log('searchValue',searchValue);
 
-	const editTextValue = (title:string,searchValue:string) =>{
+	const editTextValue = (title: string | null | undefined,searchValue:string) =>{		
+		if (searchValue && title){
+
+			const startF = title.indexOf(searchValue);
 		
-		if (searchValue){
+
 			const c = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
-			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase()) ;
-			const middleText = title.toLocaleLowerCase().slice(result?.index,result?.index+searchValue.length);
+			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
+			const middleText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
+			
+			// console.log('ищу 'startF),'result',result);
 			return <ItemTextMUI>
 				{c[0]}			
 				<TextMarkMUI>{middleText}</TextMarkMUI>
 				{c[1]}
 			</ItemTextMUI>;
 		} else {
-			return null;
+			return <>
+			</>;
 		}
 		
 	};
@@ -68,15 +73,17 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
 				onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
 			>
+				
 				{isAccount ? (
 					<AccountSearchHint
 						hint={hint as IAdminHintsData}
+						markText={editTextValue}
+						searchValue={searchValue}
 					/>
 				) : (
-					<ItemTextMUI>
-						{/* {title}			 */}
-						{searchValue? editTextValue(title,searchValue): title}
-					
+					<ItemTextMUI>	
+						{/* {title}				 */}
+						{editTextValue(title,searchValue)}					
 					</ItemTextMUI>
 				)}
 			</ButtonMUI>

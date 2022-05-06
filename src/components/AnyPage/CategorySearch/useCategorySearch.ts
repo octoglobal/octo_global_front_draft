@@ -123,6 +123,11 @@ export const useCategorySearch = (
 		if (!searchValue && searchHints.length) {
 			setActiveSuggestion(0);
 		}
+
+		
+		if (!searchValue){					
+			handleKeyDownEnter();
+		}
 	}, [searchValue]);
 
 	return {

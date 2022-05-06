@@ -1,3 +1,4 @@
+
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
 import { fetchUsersInAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
@@ -7,7 +8,7 @@ import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {getLocationWindow} from '@/services/services';
 
-export const useAccountSearch = () => {
+export const useAccountSearch = () => {	
 	const {
 		hints,
 	} = useAppSelector(state => state.adminReducer);
@@ -37,11 +38,14 @@ export const useAccountSearch = () => {
 	const handleChangeInputValue = (text: string) => {
 		dispatch(fetchUsersInAdmin({text}));
 	};
-
+	const handleClearInputValue = () => {
+		dispatch(adminSlice.actions.clearAdminHints());
+	};
 	return {
 		hints,
 		methods,
 		onSubmit,
-		handleChangeInputValue
+		handleChangeInputValue,
+		handleClearInputValue
 	};
 };

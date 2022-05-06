@@ -29,11 +29,11 @@ export const useCategorySearchHintsItemStyles = () => {
 		}
 		
 	}));
-	const TextMarkMUI = styled('div')(() => ({
+	const TextMarkMUI = styled('p')(() => ({		
+		fontWeight: 'bold',
 		color: 'red'
-		
-		
 	}));
+	
 	return {
 		ItemMUI,
 		ButtonMUI,

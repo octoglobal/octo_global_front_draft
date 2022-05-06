@@ -3,26 +3,33 @@ import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 import { useAccountSearchHintStyles } from '@/components/Account/AccountSearch/AccountSearchHint/style';
 
 interface IAccountSearchHintProps {
-	hint: IAdminHintsData
+	hint: IAdminHintsData,
+	markText: ()=> React.ReactNode | null,
+	searchValue: string
 }
 
-const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint}) => {
+const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchValue}) => {
 	return (
 		<ContainerMUI>
 			<HintItemuserAreaIdMUI>
-				{hint.userAreaId}
+				{/* {hint.userAreaId} */}
+				{markText(hint.userAreaId?.toString() ,searchValue)}
 			</HintItemuserAreaIdMUI>
 			<HintItemEmailMUI>
-				{hint.email}
+				{/* {hint.email} */}
+				{markText(hint.email ,searchValue)}
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
-				{hint.orderNumber}
+				{/* {hint.orderNumber} */}
+				{markText(hint.orderNumber?.toString() ,searchValue)}
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
-				{hint.trackNumber}
+				{/* {hint.trackNumber} */}
+				{markText(hint.trackNumber?.toString() ,searchValue)}
 			</HintItemTrackMUI>
 			<HintItemNameMUI>
-				{hint.name}
+				{/* {hint.name} */}
+				{markText(hint.name ,searchValue)}
 			</HintItemNameMUI>
 		</ContainerMUI>
 	);

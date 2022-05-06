@@ -50,6 +50,7 @@ const CategorySearchHints: FC<ICategorySearchHintsProps> = (
 						<AccountSearchListTitle/>
 					)}
 					{hintsData.map((hint, index) => (
+						
 						<CategorySearchHintsItem
 							key={hint.url}
 							url={hint.url}
