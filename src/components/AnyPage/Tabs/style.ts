@@ -13,17 +13,17 @@ export const useTabsStyle = () => {
 		 100%{background-position:100% 50%}
 	
 		 `;
-		 
+
 
 	const BgMUI = styled('div')(() => ({
 		position: 'relative',
 		width: 30,
-		height: 30,		
-		borderRadius: 50,	
-		animation:`${AnimationName} 2s linear infinite`,		
-		background: 'linear-gradient(210deg, #F35151 0%, #F35151 45%, #FFCD 50%, #F35151 55%, #F35151 100% )',		
+		height: 30,
+		borderRadius: 50,
+		animation:`${AnimationName} 2s linear infinite`,
+		background: 'linear-gradient(210deg, #F35151 0%, #F35151 45%, #FFCD 50%, #F35151 55%, #F35151 100% )',
 		backgroundSize: '1000% 100%',
-		
+
 	}));
 
 	const TabWrapperUI = styled('div')(() => ({
@@ -32,9 +32,11 @@ export const useTabsStyle = () => {
 		justifyContent: 'center',
 	}));
 
-	const TabUI = styled(TabUnstyled)(({theme}) => ({
+	const TabUI = styled(TabUnstyled, {
+		shouldForwardProp: (prop) => prop !== 'active',
+	})<{active?: boolean}>(({active, theme}) => ({
 		fontStyle: 'normal',
-		fontWeight: '300',
+		fontWeight: active ? '400' : '300',
 		fontSize: '24px',
 		lineHeight: '28px',
 		alignItems: 'center',
@@ -51,34 +53,28 @@ export const useTabsStyle = () => {
 		justifyContent: 'center',
 		fontFamily: 'Roboto',
 
-		'&.Mui-selected': {
-			fontWeight: '400',
-			fontSize: '24px',
-			lineHeight: '28px',
-
-			color: '#000000',
-
-			[theme.breakpoints.down(781)]: {
-				fontFamily: 'Roboto',
-				fontSize: '20px',
-				lineHeight: '21px',
-			},
-			[theme.breakpoints.down(404)]: {
-				fontFamily: 'Roboto',
-				fontSize: '16px',
-				lineHeight: '19px',
-			},
-		},
+		// '&.Mui-selected': {
+		// 	// fontWeight: '400',
+		//
+		// 	[theme.breakpoints.down(781)]: {
+		// 		fontFamily: 'Roboto',
+		// 		fontSize: '20px',
+		// 		lineHeight: '21px',
+		// 	},
+		// 	[theme.breakpoints.down(404)]: {
+		// 		fontFamily: 'Roboto',
+		// 		fontSize: '16px',
+		// 		lineHeight: '19px',
+		// 	},
+		// },
 
 		[theme.breakpoints.down(781)]: {
 			fontSize: '20px',
 			lineHeight: '21px',
-			color: '#000000',
 		},
-		[theme.breakpoints.down(404)]: {
+		[theme.breakpoints.down(500)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
-			color: '#000000',
 		},
 	}));
 
@@ -95,7 +91,7 @@ export const useTabsStyle = () => {
 			flexWrap: 'wrap',
 			borderBottom: '1px solid #C4C4C4',
 			minWidth: '0px',
-		}
+		},
 	}));
 	const TabsMarginLeft = styled(TabsListUnstyled)(() => ({
 		margin: '0px 0px -6px 6px',

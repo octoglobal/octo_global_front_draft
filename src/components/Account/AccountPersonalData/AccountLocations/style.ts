@@ -84,8 +84,11 @@ export const useAccountLocationStyle = () => {
 
 			'& .TabsListUnstyled-root button': {
 				margin: '0 10px 0 0	',
+
+				fontSize: '16px',
+				lineHeight: '19px',
 			},
-		}
+		},
 	}));
 
 	const LocationContentUI = styled('div')(({theme}) => ({

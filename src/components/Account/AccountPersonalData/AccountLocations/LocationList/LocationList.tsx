@@ -11,7 +11,7 @@ interface ILocationList {
 	showAll: boolean;
 }
 
-const LocationList : FC<ILocationList> = ({showAll, addresses}) => {
+const LocationList: FC<ILocationList> = ({showAll, addresses}) => {
 	const dispatch = useAppDispatch();
 
 	const hasAddress = useMemo(() => typeof addresses !== 'undefined', [addresses]);
@@ -26,17 +26,15 @@ const LocationList : FC<ILocationList> = ({showAll, addresses}) => {
 	return (
 		<ListMUI>
 			{hasAddress && addresses.slice(0, !showAll ? 2 : addresses?.length).map((address) => (
-				<>
-					<AddressUser
-						key={address.id}
-						id={address.id}
-						name={address.name}
-						surname={address.surname}
-						phone={address.phone}
-						location={address.address_string}
-						handlerDeleteLocation={handlerDeleteLocation}
-					/>
-				</>
+				<AddressUser
+					key={address.id}
+					id={address.id}
+					name={address.name}
+					surname={address.surname}
+					phone={address.phone}
+					location={address.address_string}
+					handlerDeleteLocation={handlerDeleteLocation}
+				/>
 			))}
 		</ListMUI>
 	);
