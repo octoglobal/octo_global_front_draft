@@ -22,9 +22,9 @@ const HomeAboutLogo: FC = () => {
 		const element = logoRefElement.current;
 		if (typeof window !== 'undefined' && element) {
 			gsap.fromTo(element, {
-				opacity: 1,
+				
 			}, {
-				opacity: 0,
+				
 				duration: 1,
 				scrollTrigger: {
 					trigger: element,

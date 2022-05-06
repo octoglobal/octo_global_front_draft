@@ -2,21 +2,19 @@ import React, { FC, useMemo, useState } from 'react';
 import { useCollapseInfoStyles } from '@/components/AnyPage/CollapseInfo/style';
 
 interface ICollapseInfoProps {
-	title: string;
-	description?: string;
-	allLength?: number;
-	index?: number
+	title: string;	
+	end?: boolean,
+	children?: React.ReactNode | React.ReactElement | React.ReactChild,
 }
 
 const CollapseInfo: FC<ICollapseInfoProps> = (
 	{
-		title,
-		description,
-		index,
-		allLength
+		title,		
+		end,
+		children
 	}
 ) => {
-
+	
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleToggleOpen = () => {
@@ -30,14 +28,14 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 		return  {};
 	}, [isOpen]);
 
-	const lastItemStyles = useMemo(() => {
-		if (index === allLength) {
+	const lastItemStyles = useMemo(() => {		
+		if (end ) {			
 			return {
 				borderBottom: 0,
 			};
 		}
 		return  {};
-	}, [index, allLength]);
+	}, [end]);
 
 
 	return (
@@ -47,15 +45,11 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 		>
 			<ContainerButtonMUI>
 				<CollapseTitleMUI sx={activeTitleStyles}>
-					{title}
+					{title} 
 				</CollapseTitleMUI>
 			</ContainerButtonMUI>
-			<CollapseMUI in={isOpen} onClick={handleToggleOpen}>
-				{description && (
-					<CollapseDescMUI>
-						{description}
-					</CollapseDescMUI>
-				)}
+			<CollapseMUI in={isOpen} onClick={handleToggleOpen}>				
+				{children}				
 			</CollapseMUI>
 		</ContainerMUI>
 	);
@@ -64,7 +58,6 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 const {
 	CollapseMUI,
 	ContainerMUI,
-	CollapseDescMUI,
 	CollapseTitleMUI,
 	ContainerButtonMUI,
 } = useCollapseInfoStyles();

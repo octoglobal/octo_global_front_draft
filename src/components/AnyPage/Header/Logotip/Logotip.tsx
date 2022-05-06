@@ -44,7 +44,7 @@ const Logotip: FC = () => {
 		if (typeof window !== 'undefined') {
 			const element = logoRef.current; //				мобилка и высона меньше 700	 >700									десктоп		большой планш		
 			const start = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '1% top' : '4% top' : checkMedia(1000, 'innerHeight')? '7% top' :'11% top';
-			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '6% top' : '10% top' : checkMedia(1000, 'innerHeight')? '12% top' :'16% top';
+			const end = checkMedia(778) ? checkMedia(700, 'innerHeight') ? '6% top' : '10% top' : checkMedia(1000, 'innerHeight')? '17% top' :'16% top';
 			const transform = checkMedia(501) ? '25' : '100';
 			if (element) {
 				gsap.fromTo(element, {

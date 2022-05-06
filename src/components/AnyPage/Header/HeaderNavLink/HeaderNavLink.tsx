@@ -1,7 +1,7 @@
 import React, {FC, useMemo} from 'react';
 import { useUserStore } from '@/hooks/useUserStore';
 
-import {useMobile} from '@/hooks/useMedia';
+import {useMobile ,useTablet} from '@/hooks/useMedia';
 import CustomLinkUI from '../../../../UI/UIComponents/LinkUI/LinkUI';
 import HeaderNavLinkArray from './HeaderNavLinkData.json';
 import {IHeaderNavItemsData} from '../../../../types/types';
@@ -18,11 +18,17 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 		isAuth
 	} = useUserStore();
 
-	const {isMobile} = useMobile();
+	const {isMobile,} = useMobile();
+	const {isTablet} = useTablet();
 
-	const navLinksArray = useMemo(
-		() => isMobile ? navDataArray.mobile : navDataArray.desktop,
-		[isMobile]
+	const navLinksArray = useMemo(() =>{
+		console.log('isTablet',isTablet);
+		if (isTablet){
+			return navDataArray.tablet;
+		} else {
+			return isMobile ? navDataArray.mobile : navDataArray.desktop;
+		}
+	},[isMobile,isTablet]
 	);
 
 	return (
