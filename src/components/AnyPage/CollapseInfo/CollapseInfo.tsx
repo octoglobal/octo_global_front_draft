@@ -2,23 +2,19 @@ import React, { FC, useMemo, useState } from 'react';
 import { useCollapseInfoStyles } from '@/components/AnyPage/CollapseInfo/style';
 
 interface ICollapseInfoProps {
-	title: string;
-	description?: string;
-	allLength?: number;
-	index?: number;
-	children?: React.ReactNode | React.ReactElement
+	title: string;	
+	end?: boolean,
+	children?: React.ReactNode | React.ReactElement | React.ReactChild,
 }
 
 const CollapseInfo: FC<ICollapseInfoProps> = (
 	{
-		title,
-		description,
-		index,
-		allLength,
+		title,		
+		end,
 		children
 	}
 ) => {
-	console.log('children', children);
+	
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const handleToggleOpen = () => {
@@ -33,13 +29,15 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 	}, [isOpen]);
 
 	const lastItemStyles = useMemo(() => {
-		if (index === allLength) {
+		console.log('!!!end', end);
+		if (end ) {
+			console.log('!!!');
 			return {
 				borderBottom: 0,
 			};
 		}
 		return  {};
-	}, [index, allLength]);
+	}, [end]);
 
 
 	return (

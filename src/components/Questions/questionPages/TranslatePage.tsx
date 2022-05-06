@@ -31,25 +31,30 @@ const TranslatePage = () => {
 				</ParagraphMUI>		
 				<ContainerImgMUI>
 					<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />
-				</ContainerImgMUI>		
-
+				</ContainerImgMUI>
 				<ParagraphMUI>     
-                    В новой вкладке откроется окно. В поиске по магазину напишите «переводчик». Выберите его и скачайте. В поисковой строке выберите нужный сайт для шопинга.           
+                    В новой вкладке откроется окно. В поиске по магазину напишите «переводчик». Выберите его и скачайте.<br></br> В поисковой строке выберите нужный сайт для шопинга.           
 				</ParagraphMUI>	 
 			</ContainerTextMUI>
             
-			<ContainerTextMUI>
-				
+			<ContainerTextMUI>				
 				<H3MUI>3. Mozilla Firefox</H3MUI>
 				<ParagraphMUI>
-                    Откройте браузер В верхней части экрана откройте меню. Затем перейдите в «Дополнения».  
-				</ParagraphMUI>	
+                    Откройте браузер<br></br>В верхней части экрана откройте меню. Затем перейдите в «Дополнения».  
+				</ParagraphMUI>				
 				<ContainerImgMUI>
 					<ImgMUI src="/image/MozilaSettings.jpg" alt="mazila themes" />
 				</ContainerImgMUI>
 				<ParagraphMUI>
-                    Откройте браузер В верхней части экрана откройте меню. Затем перейдите в «Дополнения».  
+					В поисковой строке напишите «Переводчик». Затем откроется новое окно с разными переводчиками. Выберите понравившийся и перезапустите браузер. 
 				</ParagraphMUI>	
+			</ContainerTextMUI>
+
+			<ContainerTextMUI>				
+				<H3MUI>4. Safari</H3MUI>
+				<ParagraphMUI>				
+					В мобильной версии сайта iPhone, браузер Safari не предоставляет возможности для перевода. Для этого Вам нужно будет скачать Google Chrome и нажать на значок перевода
+				</ParagraphMUI>					
 			</ContainerTextMUI>
 		</ContainerMUI>
 	);

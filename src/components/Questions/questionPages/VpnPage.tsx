@@ -6,7 +6,7 @@ const VpnPage = () => {
 		<ContainerMUI>
 			<ContainerTextMUI>
 				<H3MUI>1. Яндекс браузер</H3MUI>
-				<ParagraphMUI>В правом верхнем углу нажмите на этот значок <SpanMUI><ImgMUI src="/image/yandexBurger.jpg" alt="=" /> </SpanMUI> выберите настройки – перейдите в Дополнения. </ParagraphMUI>			
+				<ParagraphMUI> Откройте браузер. В правом верхнем углу нажмите на этот значок <SpanMUI><ImgMUI src="/image/yandexBurger.jpg" alt="=" /> </SpanMUI> выберите настройки – перейдите в Дополнения. </ParagraphMUI>			
 
 				<ContainerImgMUI >
 					<ImgMUI src="/image/yandexDop.jpg" alt="img" />
@@ -22,12 +22,11 @@ const VpnPage = () => {
 			</ContainerTextMUI>
 			<ContainerTextMUI>
 				<H3MUI>2. Google Chrome</H3MUI>
-				<ParagraphMUI>апустите браузер. В правой верхней части экрана нажмите на кнопку с дополнительными функциями. В открывшемся окне выберите Дополнительные инструменты – Расширения.</ParagraphMUI>
+				<ParagraphMUI>Запустите браузер. В правой верхней части экрана нажмите на кнопку с дополнительными функциями. В открывшемся окне выберите Дополнительные инструменты – Расширения.</ParagraphMUI>
 		
 				<ContainerImgMUI>
 					<ImgMUI src="/image/ChromSettings.jpg" alt="img" />
-					<ImgMUI src="/image/ChromSettingsMore.jpg" alt="img" />
-				
+					<ImgMUI src="/image/ChromSettingsMore.jpg" alt="img" />				
 				</ContainerImgMUI>
 				<ParagraphMUI>В расширениях перейдите на интернет-магазин Chrome. В строке «Поиск по магазину» напишите VPN  и скачайте.</ParagraphMUI>
 				<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />

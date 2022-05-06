@@ -159,17 +159,22 @@ const Questions = () => {
 			<HeaderMargin/>
 			
 			<CollapseInfo
-				title={'Инструкция по настройке VPN сервиса для работы на сайте'}
-				children={<VpnPage></VpnPage>}
-			/>
+				title={'Инструкция по настройке VPN сервиса для работы на сайте'}				
+			>
+				<VpnPage/>
+			</CollapseInfo>
 			<CollapseInfo			
 				title={'Инструкция по переводу на иностранный язык'}
-				children={<TranslatePage></TranslatePage>}
-			/>
+				
+			>
+				<TranslatePage/>
+			</CollapseInfo>
 			<CollapseInfo			
 				title={'Стоимость почтового отправления в Россию'}
-				children={<AboutTransferPage></AboutTransferPage>}
-			/>
+				end={true}
+			>
+				<AboutTransferPage></AboutTransferPage>
+			</CollapseInfo>
 			{/* {questionsData.map((item, index) => (
 				<CollapseInfo
 					index={index + 1}
