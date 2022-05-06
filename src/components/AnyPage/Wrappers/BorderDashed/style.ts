@@ -28,7 +28,7 @@ export const useBorderDashedStyle = () => {
 	}));
 
 	const ContentMUI = styled('div')(({theme}) => ({
-		padding: '25px 30px 30px',
+		padding: '25px 30px',
 
 		[theme.breakpoints.down(500)]: {
 			padding: '25px 15px',

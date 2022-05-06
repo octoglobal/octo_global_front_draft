@@ -6,6 +6,7 @@ import AddLocationForm from '@/components/forms/AddLocationForm/AddLocationForm'
 import {useAccountLocationStyle} from '@/components/Account/AccountPersonalData/AccountLocations/style';
 import {useUserStore} from '@/hooks/useUserStore';
 import LocationList from '@/components/Account/AccountPersonalData/AccountLocations/LocationList/LocationList';
+import {useCustomSize} from '@/hooks/useMedia';
 
 const LocationForm: FC = () => {
 	const {
@@ -13,6 +14,8 @@ const LocationForm: FC = () => {
 			addresses
 		}
 	} = useUserStore();
+
+	const {isCustomSize} = useCustomSize(500);
 
 	const [openForm, setOpenForm] = useState<boolean>(false);
 	const [showAllLoc, setAllLoc] = useState<boolean>(false);
@@ -67,6 +70,7 @@ const LocationForm: FC = () => {
 				<Collapse in={hasLocation ? true : openForm}>
 					<AddLocationForm
 						setOpenForm={handlerToggleState(setOpenForm)}
+						textFieldStyles={isCustomSize ? TextFieldMobileSx : {}}
 					/>
 				</Collapse>
 			</>
@@ -80,5 +84,6 @@ const {
 	LocationFormUI,
 	LocationButtonsUI,
 	ButtonAdd,
-	ButtonShowAll
+	ButtonShowAll,
+	TextFieldMobileSx
 } = useAccountLocationStyle();

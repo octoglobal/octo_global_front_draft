@@ -2,7 +2,7 @@ import {styled} from '@mui/material';
 
 export const useTextFieldUIStyle = () => {
 
-	const TextFieldUI = styled('div')(() => ({
+	const TextFieldUI = styled('div')(({theme}) => ({
 		width: '100%',
 		position: 'relative',
 
@@ -38,6 +38,13 @@ export const useTextFieldUIStyle = () => {
 		'& .MuiButtonBase:hover': {
 			backgroundColor: 'transparent !important',
 		},
+
+		[theme.breakpoints.down(500)]: {
+			'& .MuiFormHelperText-root': {
+				fontSize: '12px !important',
+				lineHeight: '14px',
+			},
+		}
 
 	}));
 

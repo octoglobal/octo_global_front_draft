@@ -110,6 +110,10 @@ export const useAccountLocationStyle = () => {
 			marginBottom: '25px',
 		},
 
+		'& .MuiCollapse-root ': {
+			width: '100%',
+		},
+
 		[theme.breakpoints.down(500)]: {
 			'& button': {
 				alignSelf: 'flex-end',
@@ -130,7 +134,7 @@ export const useAccountLocationStyle = () => {
 		justifyContent: justifyAlign ? 'center' : 'flex-end',
 		width: '100%',
 
-		marginBottom: addMargin ? '25px' : '0',
+		marginBottom: addMargin ? '10px' : '0',
 
 		'& button:first-child:hover': {
 			background: 'inherit',
@@ -218,8 +222,8 @@ export const useAccountLocationStyle = () => {
 
 		width: '150px',
 		height: '32px',
-		padding: '8px 15px',
-		margin: '0',
+		padding: '8px 14px',
+		margin: '0 0 0 25px'
 		// marginLeft: '25px'
 		// alignSelf: 'flex-end'
 	};
@@ -239,7 +243,15 @@ export const useAccountLocationStyle = () => {
 		width: 'auto',
 		height: '32px',
 		padding: '0',
-		margin: '0 25px 0 0'
+		margin: '0'
+	};
+
+	const TextFieldMobileSx = {
+		height: '37px !important',
+
+		'& .MuiOutlinedInput-root input': {
+			height: '37px !important',
+		}
 	};
 
 	return {
@@ -255,6 +267,7 @@ export const useAccountLocationStyle = () => {
 		LocationFormUI,
 		LocationButtonsUI,
 		ButtonAdd,
-		ButtonShowAll
+		ButtonShowAll,
+		TextFieldMobileSx
 	};
 };
