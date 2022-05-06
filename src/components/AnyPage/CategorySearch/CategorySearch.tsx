@@ -41,7 +41,7 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 		handleChangeSearchValue,
 		component,
 	);
-
+	
 	return (
 		<>
 			<SearchContainerMUI>

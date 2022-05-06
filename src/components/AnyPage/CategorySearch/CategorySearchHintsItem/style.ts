@@ -17,17 +17,27 @@ export const useCategorySearchHintsItemStyles = () => {
 		textAlign: 'left',
 	}));
 
-	const ItemTextMUI = styled('div')(() => ({
-		fontSize: '14px',
+	const ItemTextMUI = styled('div')(({theme}) => ({
+		fontSize: '18px',
 		lineHeight: '21px',
 		fontWeight: 400,
 		color: '#000000',
-		border: '1px solid green',
+		display: 'flex',
+		flexDirection:'row',		
+		[theme.breakpoints.down(500)]:{
+			fontSize: '14px',
+		}
+		
 	}));
-
+	const TextMarkMUI = styled('div')(() => ({
+		color: 'red'
+		
+		
+	}));
 	return {
 		ItemMUI,
 		ButtonMUI,
 		ItemTextMUI,
+		TextMarkMUI
 	};
 };

@@ -37,8 +37,8 @@ const CategorySearchHints: FC<ICategorySearchHintsProps> = (
 	const isAccount = useMemo(() => (
 		component === 'account'
 	), [component]);
-
-
+	
+	
 	return (
 		isVisibleHints ? (
 			<ContainerMUI>
