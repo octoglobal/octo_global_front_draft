@@ -24,7 +24,8 @@ export const useQuestionPagesStyles = () => {
 	}));
 	const H3MUI = styled('h3')(() => ({		
 		fontSize: 20,
-		fontWeight: 400
+		fontWeight: 400,
+		marginLeft:10
 	}));
 	const ParagraphMUI = styled('p')(({theme}) => ({
 		fontSize: 20,
