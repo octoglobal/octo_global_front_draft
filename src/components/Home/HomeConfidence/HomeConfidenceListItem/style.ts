@@ -6,7 +6,7 @@ export const useHomeConfidenceListItemStyles = () => {
 		fontSize: '20px',
 		lineHeight: '32px',
 		fontWeight: 300,
-		marginBottom: '15px',
+		marginBottom: '25px',
 		position: 'relative',
 		maxWidth: '770px',
 		'&::after': {
