@@ -1,14 +1,16 @@
 import React, {FC, useState} from 'react';
 
-import Tabs from '../../../AnyPage/Tabs/Tabs';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
 import AccountUrlArray from './AccountTabsLocationData.json';
 import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 
 import {useAccountLocationStyle} from './style';
 import BorderDashed from '@/components/AnyPage/Wrappers/BorderDashed/BorderDashed';
+import {useTabsStyle} from '@/components/AnyPage/Tabs/style';
 
 const AccountLocations: FC = () => {
 	const [openRules, setOpenRules] = useState<boolean>(false);
+	const [selCountry, setSelCountry] = useState<string>('ger');
 
 	const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
 		return () => {
@@ -16,11 +18,34 @@ const AccountLocations: FC = () => {
 		};
 	};
 
+	const handlerCountryState = (countryShort: string) => {
+		return () => {
+			setSelCountry(countryShort);
+		};
+	};
+
 	return (
 		<LocationWrapperUI>
 			<BorderDashed title="Адрес для интернет магазина">
 				<LocationContainerUI>
-					<Tabs data={AccountUrlArray}/>
+					{/*<Tabs data={AccountUrlArray}/>*/}
+
+					<TabWrapperUI>
+						<TabsUnstyled>
+							<TabsListUI>
+								{AccountUrlArray.map((item) => (
+									<TabUI
+										key={item.title}
+										active={selCountry === item.query.location}
+										onClick={handlerCountryState(item.query.location)}
+									>
+										{item.title}
+									</TabUI>
+								))}
+							</TabsListUI>
+						</TabsUnstyled>
+					</TabWrapperUI>
+
 					<LocationContentUI>
 						<>
 							<LocationAddressUI>
@@ -50,3 +75,9 @@ const {
 	LocationContentUI,
 	LocationContainerUI,
 } = useAccountLocationStyle();
+
+const {
+	TabWrapperUI,
+	TabUI,
+	TabsListUI,
+} = useTabsStyle();

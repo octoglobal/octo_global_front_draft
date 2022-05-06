@@ -27,20 +27,13 @@ interface ITabsProps {
 	data: Array<{
 		title: string,
 		url: string,
+		baseUrl?: string,
 		query: ITabsQueryProps | object,
 		showMobile: boolean
 	}>
 }
 
 const Tabs: FC<ITabsProps> = ({data}) => {
-
-	const {
-		TabWrapperUI,
-		TabUI,
-		TabsListUI,
-		TabsMarginLeft,
-		BgMUI
-	} = useTabsStyle();
 
 	const {isMobile} = useMobile();
 	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
@@ -62,22 +55,25 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		}
 	};
 
-	const checkActiveClass = (url: string, query: TabsQueryProps): string => {
+	const checkActiveClass = (url: string, query: TabsQueryProps, baseUrl = ''): boolean => {
 
 		const location = ObjectHasOwnProperty(query, 'location') ? query.location : '';
 
 		if (url) {
 			if (router.asPath.includes(url)) {
-				return 'Mui-selected';
+				// return 'Mui-selected';
+				return true;
 			}
+			if(baseUrl && router.asPath.includes(baseUrl))return true;
+
 		}
 		if (location) {
 			if (router?.query?.location === location) {
-				return 'Mui-selected';
+				// return 'Mui-selected';
+				return true;
 			}
 		}
-
-		return '';
+		return false;
 	};
 
 	const checkShowingTab = useCallback((flag: boolean): boolean => {
@@ -93,7 +89,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 							{checkShowingTab(item.showMobile) ? (
 								<TabUI
 									key={i}
-									className={checkActiveClass(item.url, item.query)}
+									active={checkActiveClass(item.url, item.query, item?.baseUrl)}
 									onClick={() => {
 										if (item.title === 'Заказы' && isTouchDevice) return;
 										handlerPushToTab(item.url);
@@ -125,5 +121,13 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		</TabWrapperUI>
 	);
 };
+
+const {
+	TabWrapperUI,
+	TabUI,
+	TabsListUI,
+	TabsMarginLeft,
+	BgMUI
+} = useTabsStyle();
 
 export default React.memo(Tabs);
