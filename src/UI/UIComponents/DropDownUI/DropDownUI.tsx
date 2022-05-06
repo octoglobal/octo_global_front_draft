@@ -5,14 +5,22 @@ import {useDropDownStyles} from './style';
 import {useDropDownUI} from './useDropDownUI';
 import DropDownItem from './DropDownItem/DropDownItem';
 import {IDropItem} from './type';
+import {SxProps} from '@mui/material';
 
 interface IDropDownUIProps {
 	dropItems: IDropItem[],
 	itemId?: number,
 	CustomIcon?: FC,
+	containerStyles?: SxProps
 }
 
-const DropDownUI: FC<IDropDownUIProps> = ({dropItems, itemId}) => {
+const DropDownUI: FC<IDropDownUIProps> = (
+	{
+		dropItems,
+		itemId,
+		containerStyles = {}
+	}
+) => {
 
 	const {
 		isOpen,
@@ -34,7 +42,7 @@ const DropDownUI: FC<IDropDownUIProps> = ({dropItems, itemId}) => {
 				)}
 			</IconButtonMUI>
 			{isOpen && (
-				<ButtonContainerMUI>
+				<ButtonContainerMUI sx={containerStyles}>
 					{dropItems.map((item, index) => (
 						<DropDownItem
 							key={`${index}${item.title}`}

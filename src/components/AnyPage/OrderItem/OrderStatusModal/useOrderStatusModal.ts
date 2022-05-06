@@ -17,7 +17,7 @@ export const useOrderStatusModal = (
 	isOpen: boolean,
 	orderItem: IOrderModel,
 	successCallback: () => void,
-	component: ComponentType,
+	component: ComponentType | 'stock2',
 	packageChange: boolean
 ) => {
 	const dispatch = useAppDispatch();

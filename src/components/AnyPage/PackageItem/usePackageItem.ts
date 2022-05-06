@@ -2,10 +2,11 @@ import {useUserStore} from '@/hooks/useUserStore';
 import {useOrdersAccount} from '@/hooks/useOrdersAccount';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useMemo, useState} from 'react';
-import {fetchPackageRemoveAddress} from '@/reducers/orderStockSlice/asynThunk/stockApi';
+import {fetchDeletePackage, fetchPackageRemoveAddress} from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
 import {IDropItem} from '../../../UI/UIComponents/DropDownUI/type';
 import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
+import {fetchDeletePackageInSend, fetchDeleteTrackNumber} from '@/reducers/orderSendSlice/asyncThunk/orderSendApi';
 
 export const usePackageItem = (
 	packageData: IPackageModel,
@@ -27,6 +28,8 @@ export const usePackageItem = (
 	} = useAppSelector(state => state.adminReducer);
 	const dispatch = useAppDispatch();
 	const [isChangeStatus, setIsChangeStatus] = useState<boolean>(false);
+	const [isDeletePackageModal, setIsDeletePackageModal] = useState<boolean>(false);
+	const [isDeleteTrackNumberModal, setIsDeleteTrackNumberModal] = useState<boolean>(false);
 
 	const isVisibleAddress = useMemo(() => (
 		!!(packageData?.address)
@@ -118,7 +121,7 @@ export const usePackageItem = (
 	};
 
 	const handleDeleteAddress = () => {
-		if (adminSwitchIdToUser) {
+		if (adminSwitchIdToUser && id) {
 			dispatch(fetchPackageRemoveAddress({
 				packageId: id,
 				userId: adminSwitchIdToUser
@@ -126,11 +129,43 @@ export const usePackageItem = (
 		}
 	};
 
-
 	const handleAddTrackNumber = () => {
 		setIsChangeStatus(prevState => !prevState);
 	};
 
+	const handleToggleDeleteModal = () => {
+		setIsDeletePackageModal(prevState => !prevState);
+	};
+
+	const handleToggleDeleteTrackNumberModal = () => {
+		setIsDeleteTrackNumberModal(prevState => !prevState);
+	};
+
+
+	const handleDeletePackage = () => {
+		if (id && adminSwitchIdToUser) {
+			const fetchDelete = component == 'stock'
+				? fetchDeletePackage
+				: fetchDeletePackageInSend;
+			dispatch(fetchDelete({
+				packageId: id,
+				userId: adminSwitchIdToUser
+			})).then(() => {
+				handleToggleDeleteModal();
+			});
+		}
+	};
+
+	const handleDeleteTrackNumber = () => {
+		if (id && adminSwitchIdToUser) {
+			dispatch(fetchDeleteTrackNumber({
+				userId: adminSwitchIdToUser,
+				packageId: id,
+			})).then(() => {
+				handleToggleDeleteTrackNumberModal();
+			});
+		}
+	};
 
 	const modificationDropItemArray = useMemo(() => {
 		let dropItemsArray = [];
@@ -155,22 +190,29 @@ export const usePackageItem = (
 					onClick: handleAddTrackNumber
 				}
 			];
-		}
-		// } else if (statusId === 3 && component == 'send')  {
-		// 	dropItemsArray = [
-		// 		// {
-		// 		// 	title: 'Перенести',
-		// 		// 	onClick: handleAddTrackNumber
-		// 		// }
-		// 	];
-		// }
-		else {
+		} else if (statusId === 3 && component == 'send')  {
+			dropItemsArray = [
+				{
+					title: 'Удалить трек номер',
+					onClick: handleToggleDeleteTrackNumberModal,
+				}
+			];
+		} else {
 			dropItemsArray = dropItems;
+		}
+
+		if (isAdmin) {
+			return [
+				...dropItemsArray,
+				{
+					title: 'Удалить',
+					onClick: handleToggleDeleteModal
+				}
+			];
 		}
 		return dropItemsArray;
 	}, [statusId]);
 
-	console.log(modificationDropItemArray);
 
 	return {
 		id,
@@ -182,7 +224,13 @@ export const usePackageItem = (
 		isVisibleAddress,
 		setIsChangeStatus,
 		isDropDownVisible,
+		isDeletePackageModal,
+		handleDeletePackage,
 		handleAddTrackNumber,
+		handleToggleDeleteModal,
+		isDeleteTrackNumberModal,
+		handleDeleteTrackNumber,
+		handleToggleDeleteTrackNumberModal,
 		orderContainerStyles,
 		modificationDropItemArray
 	};

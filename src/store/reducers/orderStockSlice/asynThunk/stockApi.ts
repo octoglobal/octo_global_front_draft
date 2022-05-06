@@ -6,6 +6,7 @@ import {IDefaultFetchSuccess} from '../../../../types/types';
 import {IPackageModel} from '@/models/IPackageModel';
 import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
 import {IOrderModel} from '@/models/IOrderModel';
+import packageItem from '@/components/AnyPage/PackageItem/PackageItem';
 
 interface IFetchOrderStockData {
 	page: number;
@@ -157,21 +158,11 @@ export const fetchOrderDelete = createAsyncThunk(
 		const orderItem = data.order;
 		try {
 			const { orderStockReducer: {stockData} } = thunkAPI.getState() as { orderStockReducer: {stockData: IStockDataModel[]} };
-			const response = await octoAxios.post<IDefaultFetchSuccess>('/admin/orders', {
-				userId: orderItem.userId,
-				track_number:orderItem.trackNumber,
-				title: orderItem.title,
-				comment: orderItem.comment,
-				statusId: 0
-			}).then(r => {
-				if (r.data.message == 'success') {
-					return octoAxios.delete<IDefaultFetchSuccess>(
-						'/admin/orders',
-						{data: {userId: orderItem.userId, orderId: [orderItem.id]}}
-					).then(r => r.data.message);
-				}
-				return 'error';
-			});
+			const response = await octoAxios.delete<IDefaultFetchSuccess>(
+				'/admin/orders',
+				{data: {userId: orderItem.userId, orderId: [orderItem.id]}}
+			).then(r => r.data.message);
+
 			if (response === 'success') {
 				return stockData.filter(item => item.id !== orderItem.id);
 			}
@@ -232,5 +223,20 @@ export const fetchChangeStatusPackageToSend = createAsyncThunk(
 		} catch (e) {
 			thunkAPI.rejectWithValue('error orderStockSlice/changeStatus');
 		}
+	}
+);
+
+export const fetchDeletePackage = createAsyncThunk(
+	'orderStockSlice/deletePackage',
+	async (
+		data: {userId: number, packageId: number},
+		thunkAPI
+	) => {
+		const {orderStockReducer: {packageData}} = thunkAPI.getState() as {orderStockReducer: {packageData: IPackageModel[]}};
+		const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/package_with_orders', {data});
+		if (response.data.message === 'success') {
+			return packageData.filter(item => item.id !== data.packageId);
+		}
+		return packageData;
 	}
 );

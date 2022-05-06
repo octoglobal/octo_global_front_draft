@@ -50,14 +50,14 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 
 	const {router, pushTo} = useCustomRouter();
 
-	const handlerPushToTab = (url: string, query = {}) => {
+	const handlerPushToTab = (url: string) => {
 		let urlTo = router.pathname;
 		if (url) urlTo = `/account/${url}`;
 		if (!isAdmin) {
 			pushTo(urlTo);
 		} else {
 			const pathname = router.asPath;
-			const userId = pathname.split('userId=')[1].split('&')[0]
+			const userId = pathname.split('userId=')[1].split('&')[0];
 			pushTo(urlTo, {userId});
 		}
 	};
@@ -96,7 +96,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									className={checkActiveClass(item.url, item.query)}
 									onClick={() => {
 										if (item.title === 'Заказы' && isTouchDevice) return;
-										handlerPushToTab(item.url, item.query);
+										handlerPushToTab(item.url);
 									}}
 								>
 									<>

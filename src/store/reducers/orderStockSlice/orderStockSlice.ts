@@ -1,13 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IStockDataModel} from '@/models/IStockDataModel';
 import {
-	fetchChangeStatusPackageToSend,
+	fetchChangeStatusPackageToSend, fetchDeletePackage,
 	fetchMergeOrders, fetchOrderDelete,
 	fetchOrderStockData, fetchPackageRemoveAddress,
 	fetchPackageStockData, fetchUnMergePackage
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
-import {IOrderModel} from '@/models/IOrderModel';
 
 interface IInitialState {
 	page: number;
@@ -97,6 +96,9 @@ export const orderStockSlice = createSlice({
 		},
 		[fetchChangeStatusPackageToSend.fulfilled.type]: (state, action: PayloadAction<{ packageData: IPackageModel[] }>) => {
 			state.packageData = action.payload.packageData;
+		},
+		[fetchDeletePackage.fulfilled.type]: (state, action: PayloadAction<IPackageModel[]>) => {
+			state.packageData = action.payload;
 		}
 	}
 });

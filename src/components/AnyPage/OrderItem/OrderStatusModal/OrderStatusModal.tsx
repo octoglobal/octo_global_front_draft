@@ -13,7 +13,7 @@ interface IOrderStatusModal {
 	onClose: () => void;
 	orderItem: IOrderModel;
 	successCallback: () => void;
-	component: ComponentType;
+	component: ComponentType | 'stock2';
 	packageChange?: boolean;
 }
 
