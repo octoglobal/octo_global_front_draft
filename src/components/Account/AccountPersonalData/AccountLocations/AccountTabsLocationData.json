@@ -22,13 +22,5 @@
             "location": "fin"
         },
         "showMobile": true
-    },
-    {
-        "title": "Россия",
-        "url": "",
-        "query": {
-            "location": "rus"
-        },
-        "showMobile": true
     }
 ]
