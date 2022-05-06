@@ -48,7 +48,7 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
-	const AdminMarginBottomMUI = styled('div')(({theme}) => ({
+	const AdminMarginBottomMUI = styled('div')(() => ({
 		marginBottom: '15px',
 	}));
 

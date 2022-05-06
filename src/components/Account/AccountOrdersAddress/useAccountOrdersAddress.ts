@@ -59,9 +59,11 @@ export const useAccountOrdersAddress = () => {
 					userId: userId as number,
 				})).then(response => {
 					if (response.payload == 'success') {
-						router.push('/account/orders/stock', {
-							query: router.query
-						});
+						if (isAdmin) {
+							router.push(`/account/orders/stock?userId=${router.query?.userId}`);
+						} else {
+							router.push('/account/orders/stock');
+						}
 					}
 				});
 			} catch (e) {

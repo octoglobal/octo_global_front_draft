@@ -1,9 +1,10 @@
 import {FieldValues, useForm} from 'react-hook-form';
 import {useMemo, useState} from 'react';
 import {octoAxios} from '@/lib/http';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 import { useMediaQuery } from '@mui/material';
+import {useUserStore} from '@/hooks/useUserStore';
 
 interface IFormData {
 	title: string;
@@ -17,10 +18,13 @@ interface IAddOrderSuccess {
 
 export const useAccountOrdersAdd = () => {
 	const dispatch = useAppDispatch();
-	const [isAddOrder, setIsAddOrder] = useState<boolean>(false);
-	const {control, handleSubmit, reset} = useForm<IFormData | FieldValues>();
-	const [formMessage, setFormMessage] = useState<string>('');
 	const isMobile = useMediaQuery('(max-width: 1025px)');
+	const {control, handleSubmit, reset} = useForm<IFormData | FieldValues>();
+	const {isAdmin} = useUserStore();
+	const {adminSwitchIdToUser} = useAppSelector(state => state.adminReducer);
+
+	const [isAddOrder, setIsAddOrder] = useState<boolean>(false);
+	const [formMessage, setFormMessage] = useState<string>('');
 
 	const handleToggleOrder = () => {
 		setIsAddOrder(prevState => !prevState);
@@ -66,7 +70,15 @@ export const useAccountOrdersAdd = () => {
 
 
 	const onSubmit = async (data: IFormData | FieldValues) => {
-		await octoAxios.post<IAddOrderSuccess>('/user/orders', data)
+		const url = isAdmin ? '/admin/orders' : '/user/orders';
+		const sendData = isAdmin ?
+			{
+				...data,
+				statusId: 0,
+				userId: adminSwitchIdToUser
+			}
+			: data;
+		await octoAxios.post<IAddOrderSuccess>(url, sendData)
 			.then(response => {
 				if (response.data.message === 'success') {
 					setFormMessage('Посылка успешно добавлена');

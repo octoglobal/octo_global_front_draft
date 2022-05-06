@@ -35,7 +35,7 @@ export const useAccountPageStyle = () => {
 	}));
 
 	const SearchContainerMUI = styled('div')(() => ({
-		maxWidth: '686px',
+		maxWidth: '976px',
 		margin: '0 auto',
 		height: '100%',
 	}));

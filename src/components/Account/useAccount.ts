@@ -13,9 +13,6 @@ export const useAccount = () => {
 	const {
 		getUser,
 		isAdmin,
-		user: {
-			id
-		}
 	} = useUserStore();
 
 	const {
@@ -54,9 +51,6 @@ export const useAccount = () => {
 
 	useEffect(() => {
 		getUser();
-		return () => {
-			dispatch(adminSlice.actions.resetDat());
-		};
 	}, []);
 
 

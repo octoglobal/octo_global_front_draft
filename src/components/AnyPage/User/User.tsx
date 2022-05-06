@@ -1,11 +1,6 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC} from 'react';
 import {Avatar} from '@mui/material';
-
-import {useUserStore} from '../../../hooks/useUserStore';
-import {useCustomSize, useCustom800} from '../../../hooks/useMedia';
-
 import {useUserStyle} from './style';
-import {useAppSelector} from '@/hooks/useReduxHooks';
 import {useUser} from '@/components/AnyPage/User/useUser';
 
 interface IUser {

@@ -26,8 +26,6 @@ export const useAccountOrdersSend = () => {
 		!!(sendData.length && Array.isArray(sendData))
 	), [sendData]);
 
-	console.log(sendData);
-
 	useEffect(() => {
 		if (updateData) {
 			if (isAdmin) {
