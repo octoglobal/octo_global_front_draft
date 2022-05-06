@@ -49,8 +49,13 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			const c = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
-			const middleText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
-			
+			let middleText ;
+			if (result?.index !== null && result?.index !== undefined) {
+				middleText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
+			} else {
+				
+				middleText = '';
+			}
 			// console.log('ищу 'startF),'result',result);
 			return <ItemTextMUI>
 				{c[0]}			

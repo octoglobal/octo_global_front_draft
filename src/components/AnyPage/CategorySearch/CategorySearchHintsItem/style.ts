@@ -31,7 +31,7 @@ export const useCategorySearchHintsItemStyles = () => {
 	}));
 	const TextMarkMUI = styled('p')(() => ({		
 		fontWeight: 'bold',
-		color: 'red'
+		// color: 'red'
 	}));
 	
 	return {
