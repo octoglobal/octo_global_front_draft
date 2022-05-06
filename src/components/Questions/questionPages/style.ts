@@ -48,8 +48,8 @@ export const useQuestionPagesStyles = () => {
 	const SvgBlockMUI = styled('div')(({theme}) => ({
 		minWidth: 32,
 		height: 24,
-		marginRight: 10,
-		
+		maxWidth:32,		
+		marginRight: 10,		
 		[theme.breakpoints.down(500)]:{
 			display: 'none'
 		}
