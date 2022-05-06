@@ -84,11 +84,11 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		<TabWrapperUI>
 			<TabsUnstyled defaultValue={router.asPath}>
 				<TabsListUI>
-					{data.map((item, i) => (
-						<>
+					{data.map((item) => (
+						<React.Fragment key={item.title}>
 							{checkShowingTab(item.showMobile) ? (
 								<TabUI
-									key={i}
+									// key={i}
 									active={checkActiveClass(item.url, item.query, item?.baseUrl)}
 									onClick={() => {
 										if (item.title === 'Заказы' && isTouchDevice) return;
@@ -114,7 +114,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									</>
 								</TabUI>
 							) : null}
-						</>
+						</React.Fragment>
 					))}
 				</TabsListUI>
 			</TabsUnstyled>
