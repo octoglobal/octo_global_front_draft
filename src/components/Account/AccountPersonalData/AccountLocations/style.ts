@@ -135,6 +135,7 @@ export const useAccountLocationStyle = () => {
 		width: '100%',
 
 		marginBottom: addMargin ? '10px' : '0',
+		marginTop: !addMargin ? '10px' : '0',
 
 		'& button:first-child:hover': {
 			background: 'inherit',

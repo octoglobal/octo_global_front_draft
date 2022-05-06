@@ -79,6 +79,8 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		});
 	}, []);
 
+	console.log('isAddressProperty: ', isAddressProperty);
+
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
 			<FormWrapper increaseFormField={isAddressProperty}>
