@@ -11,6 +11,7 @@ interface IOrderSendState {
 	pageLimit: number;
 	sendData: IPackageModel[],
 	updateData: boolean;
+	sendDataEnd: boolean;
 }
 
 const initialState: IOrderSendState = {
@@ -18,6 +19,7 @@ const initialState: IOrderSendState = {
 	pageLimit: 50,
 	sendData: [],
 	updateData: true,
+	sendDataEnd: false,
 };
 
 export const orderSendSlice = createSlice({
@@ -28,11 +30,16 @@ export const orderSendSlice = createSlice({
 			state.page = 1;
 			state.sendData = [];
 			state.updateData = true;
+			state.sendDataEnd = false;
+		},
+		updateData(state) {
+			state.updateData = true;
 		}
 	},
 	extraReducers: {
-		[fetchOrdersSendData.fulfilled.type]: (state, action: PayloadAction<IPackageModel[]>) => {
-			state.sendData = [...state.sendData, ...action.payload];
+		[fetchOrdersSendData.fulfilled.type]: (state, action: PayloadAction<{data: IPackageModel[], sendDataEnd: boolean}>) => {
+			state.sendData = [...state.sendData, ...action.payload.data];
+			state.sendDataEnd = action.payload.sendDataEnd;
 			state.page += 1;
 			state.updateData = false;
 		},

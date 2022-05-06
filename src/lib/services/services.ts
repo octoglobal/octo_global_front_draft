@@ -278,3 +278,14 @@ export const findItemInArrayForId = (array: unknown, arrayId: number[]) => {
 	}
 	return innerArray;
 };
+
+export const onScroll = (event: Event, callback: () => void) => {
+	const window = event.currentTarget as Window;
+	if (window) {
+		const bodyHeight = document.body.offsetHeight / 100 * 70;
+		const offsetTop = window.scrollY + window.innerHeight;
+		if (offsetTop > bodyHeight) {
+			callback();
+		}
+	}
+};

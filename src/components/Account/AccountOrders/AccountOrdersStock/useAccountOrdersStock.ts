@@ -7,16 +7,19 @@ import {
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {useUserStore} from '@/hooks/useUserStore';
 import {useForm} from 'react-hook-form';
-import {getSelectArray} from '@/services/services';
+import {getSelectArray, onScroll} from '@/services/services';
 import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
 import {useOrdersAccount} from '@/hooks/useOrdersAccount';
 
 export const useAccountOrdersStock = () => {
 	const {
+		page,
 		stockData,
 		packageData,
 		pageLimit,
 		ordersEnd,
+		packageEnd,
+		updatePosts,
 	} = useAppSelector(state => state.orderStockReducer);
 
 	const {adminSwitchIdToUser} = useAppSelector(state => state.adminReducer);
@@ -47,6 +50,11 @@ export const useAccountOrdersStock = () => {
 	const isVisibleMenu = useMemo(() => (
 		selectOrdersArray.length >= 2
 	), [selectOrdersArray]);
+
+	const isVisiblePlaceholder = useMemo(() => (
+		packageEnd && ordersEnd && !stockData?.length && !packageData?.length
+	), [packageEnd, ordersEnd, stockData, packageData]);
+
 
 	const handleMergeOrders = () => {
 		const url = isAdmin ? '/admin/packages' : '/user/package';
@@ -80,19 +88,6 @@ export const useAccountOrdersStock = () => {
 		}
 	};
 
-	// const handleDeletePackage = async (id: number | undefined) => {
-	// 	const responseUnMarge = await handleUnMargePackage(id);
-	// 	if (responseUnMarge) {
-	// 		const data = responseUnMarge.payload as {orderData: string};
-	// 		if (Array.isArray(data?.orderData)) {
-	// 			// const onlyIdArray = data.orderData.map(item => item.id);
-	// 			// for (let i = 0; i < onlyIdArray.length; i++) {
-	// 			//
-	// 			// }
-	// 		};
-	// 	};
-	// };
-
 	const buttonsData = useMemo(() => (
 		[
 			{name: 'Объединить', onClick: handleMergeOrders},
@@ -107,7 +102,6 @@ export const useAccountOrdersStock = () => {
 			];
 		} else {
 			return [
-				// {title: 'Удалить', onClick: handleDeletePackage},
 				{title: 'Разъединить', onClick: handleUnMargePackage},
 				{title: 'Оформить', onClick: handleAddAddressPackage},
 			];
@@ -118,56 +112,55 @@ export const useAccountOrdersStock = () => {
 		isAdmin ? '' : 'У вас есть возможность объединить все или несколько заказов в одну посылку.'
 	), [isAdmin]);
 
-
-	useEffect(() => {
-		if (adminSwitchIdToUser) {
-			dispatch(orderStockSlice.actions.resetSlice());
-		}
-	}, [adminSwitchIdToUser]);
-
-	useEffect(() => {
+	const getStockData = () => {
 		const url = isAdmin ? 'admin/user/orders/are_waiting' : '/user/orders/are_waiting';
-		const userId = isAdmin ? adminSwitchIdToUser : null;
-		if (isAdmin) {
-			if (adminSwitchIdToUser) {
-				if (ordersEnd) {
-					dispatch(fetchPackageStockData({
-						page: 1,
-						page_limit: pageLimit,
-						package: true,
-						userId,
-						url
-					}));
-				} else {
-					dispatch(fetchOrderStockData({
-						page: 1,
-						page_limit: pageLimit,
-						package: false,
-						userId,
-						url,
-					}));
-				}
+		const userId = adminSwitchIdToUser;
+		if (ordersEnd && !packageEnd) {
+			dispatch(fetchPackageStockData({
+				page: page,
+				page_limit: pageLimit,
+				package: true,
+				userId,
+				url
+			}));
+		}
+		if (!ordersEnd) {
+			dispatch(fetchOrderStockData({
+				page: page,
+				page_limit: pageLimit,
+				package: false,
+				userId,
+				url,
+			}));
+		}
+	};
+
+	useEffect(() => {
+		if (ordersEnd) {
+			dispatch(orderStockSlice.actions.ordersEmptyInDatabase());
+		}
+	}, [ordersEnd]);
+
+	useEffect(() => {
+		if (updatePosts) {
+			if (isAdmin && adminSwitchIdToUser) {
+				getStockData();
 			}
-		} else {
-			if (ordersEnd) {
-				dispatch(fetchPackageStockData({
-					page: 1,
-					page_limit: pageLimit,
-					package: true,
-					userId,
-					url
-				}));
-			} else {
-				dispatch(fetchOrderStockData({
-					page: 1,
-					page_limit: pageLimit,
-					package: false,
-					userId,
-					url,
-				}));
+			if (!isAdmin) {
+				getStockData();
 			}
 		}
-	}, [ordersEnd, isAdmin, adminSwitchIdToUser]);
+	}, [adminSwitchIdToUser, updatePosts, ordersEnd, packageEnd]);
+
+
+	useEffect(() => {
+		window.addEventListener('scroll', (e) => onScroll(e,
+			() => dispatch(orderStockSlice.actions.updatePost())));
+		return () => {
+			window.removeEventListener('scroll', (e) => onScroll(e,
+				() => dispatch(orderStockSlice.actions.updatePost())));
+		};
+	}, []);
 
 	return {
 		methods,
@@ -178,6 +171,8 @@ export const useAccountOrdersStock = () => {
 		isUserText,
 		packageData,
 		isDataLength,
-		packageDopDownData
+		packageDopDownData,
+		isVisiblePlaceholder,
+
 	};
 };

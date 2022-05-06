@@ -21,7 +21,7 @@ export const useCategorySearch = (
 
 
 	const isHintsData = useMemo(() => (
-		Array.isArray(searchHints) && searchHints.length
+		Array.isArray(searchHints) && searchHints?.length
 	), [searchHints]);
 
 	const isVisibleHints = useMemo(() => (
@@ -120,7 +120,7 @@ export const useCategorySearch = (
 		if (!activeSuggestion && searchValue) {
 			handleChangeSearchValue(searchValue);
 		}
-		if (!searchValue && searchHints.length) {
+		if (!searchValue && searchHints?.length) {
 			setActiveSuggestion(0);
 		}
 	}, [searchValue]);

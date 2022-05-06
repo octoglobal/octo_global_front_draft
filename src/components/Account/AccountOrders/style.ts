@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import {Link, styled} from '@mui/material';
 
 export const useAccountOrdersStyles = () => {
 
@@ -25,9 +25,31 @@ export const useAccountOrdersStyles = () => {
 		}
 	}));
 
+	const PlaceholderWrapperMUI = styled('div')(() => ({
+		margin: '11px 0 51px 138px'
+	}));
+
+	const PlaceholderTextMUI = styled('p')(() => ({
+		fontSize: '24px',
+		lineHeight: '28px',
+		fontWeight: 400,
+		color: 'rgba(0, 0, 0, 0.5)',
+	}));
+
+	const PlaceholderLinkMUI = styled(Link)(() => ({
+		color: '#274D82',
+		fontSize: '24px',
+		lineHeight: '28px',
+		fontWeight: 400,
+		textDecoration: 'none',
+	}));
+
 	return {
 		ListMUI,
 		ContainerMUI,
 		WrapperOrdersMUI,
+		PlaceholderTextMUI,
+		PlaceholderLinkMUI,
+		PlaceholderWrapperMUI
 	};
 };

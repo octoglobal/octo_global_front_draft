@@ -20,7 +20,7 @@ const initialState: IInitialState = {
 	pageLimit: 50,
 	orderWaitData: [],
 	scrollEmpty: false,
-	updateData: false,
+	updateData: true,
 };
 
 export const orderWaitSlice = createSlice({
@@ -32,16 +32,19 @@ export const orderWaitSlice = createSlice({
 			state.pageLimit = 50;
 			state.orderWaitData = [];
 			state.scrollEmpty = false;
-			state.updateData = false;
+			state.updateData = true;
 		},
 		sortOrderData(state, action: PayloadAction<number>) {
 			state.orderWaitData = state.orderWaitData
 				.filter(order => order.id !== action.payload);
+		},
+		updateData(state) {
+			state.updateData = true;
 		}
 	},
 	extraReducers: {
 		[fetchOrderWaitData.fulfilled.type]: (state, action: PayloadAction<IFetchOrderWaitDataFulfilled>) => {
-			state.orderWaitData = action.payload.data;
+			state.orderWaitData = [...state.orderWaitData, ...action.payload.data];
 			state.scrollEmpty = action.payload.scrollEmpty;
 			state.page += 1;
 			state.updateData = false;

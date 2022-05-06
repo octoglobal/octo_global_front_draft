@@ -3,14 +3,20 @@ import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 import {useAccountOrdersSend} from '@/components/Account/AccountOrders/AccountOrdersSend/useAccountOrdersSend';
 import PackageItem from '@/components/AnyPage/PackageItem/PackageItem';
 import { FormProvider, useForm } from 'react-hook-form';
+import AccountOrdersPlaceholder
+	from '@/components/Account/AccountOrders/AccountOrdersPlaceholder/AccountOrdersPlaceholder';
 
 const AccountOrdersSend = () => {
 
 	const {
+		isAdmin,
 		sendData,
+		sendDataEnd,
 		isSendDataArray,
 	} = useAccountOrdersSend();
 	const methods = useForm();
+
+	console.log(isSendDataArray, sendDataEnd);
 
 	return (
 		<WrapperOrdersMUI>
@@ -28,6 +34,13 @@ const AccountOrdersSend = () => {
 						))}
 					</ListMUI>
 				)}
+				{!isSendDataArray && sendDataEnd && (
+					<PlaceholderWrapperMUI>
+						<AccountOrdersPlaceholder
+							text={isAdmin ? 'У пользователя нет заказов' : 'У вас еще нет заказов'}
+						/>
+					</PlaceholderWrapperMUI>
+				)}
 			</FormProvider>
 		</WrapperOrdersMUI>
 	);
@@ -35,7 +48,8 @@ const AccountOrdersSend = () => {
 
 const {
 	ListMUI,
-	WrapperOrdersMUI
+	WrapperOrdersMUI,
+	PlaceholderWrapperMUI
 } = useAccountOrdersStyles();
 
 export default React.memo(AccountOrdersSend);

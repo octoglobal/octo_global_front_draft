@@ -21,12 +21,8 @@ export const fetchOrderWaitData = createAsyncThunk(
 	async (data: IOrderWaitData, thunkAPI) => {
 		try {
 			const apiUrl = data?.userId ? '/admin/user/orders/expected' : '/user/orders/expected';
-			const params = data?.userId ? (
-				{page: data.page, page_limit: data.pageLimit, userId: data.userId}
-			) : (
-				{page: data.page, page_limit: data.pageLimit}
-			);
-
+			const params = data?.userId ? ({page: data.page, page_limit: data.pageLimit, userId: data.userId}) :
+				({page: data.page, page_limit: data.pageLimit});
 
 			const response = await octoAxios.get<IOrderWaitDataRes>(apiUrl, {params})
 				.then(response => response.data);

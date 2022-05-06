@@ -25,9 +25,9 @@ const initialState: IInitialState = {
 	stockData: [],
 	packageData: [],
 	packageEnd: false,
-	updatePosts: false,
-	packageFetch: false,
 	ordersEnd: false,
+	updatePosts: true,
+	packageFetch: false,
 };
 
 interface IFetchOrderStockData {
@@ -56,16 +56,23 @@ export const orderStockSlice = createSlice({
 	reducers: {
 		resetSlice(state) {
 			state.page = 1;
-			state.pageLimit = 50;
 			state.stockData = [];
 			state.packageData = [];
 			state.packageEnd = false;
-			state.updatePosts = false;
+			state.updatePosts = true;
 			state.packageFetch = false;
 			state.ordersEnd = false;
 		},
 		filterStockData(state, action: PayloadAction<number>) {
 			state.stockData = state.stockData.filter(item => item.id !== action.payload);
+		},
+		ordersEmptyInDatabase(state) {
+			state.updatePosts = true;
+			state.ordersEnd = true;
+			state.page = 1;
+		},
+		updatePost(state) {
+			state.updatePosts = true;
 		}
 	},
 	extraReducers: {
@@ -78,7 +85,8 @@ export const orderStockSlice = createSlice({
 		[fetchPackageStockData.fulfilled.type]: (state, action: PayloadAction<IFetchPackageStockData>) => {
 			state.packageData = [...state.packageData, ...action.payload.packageData];
 			state.packageEnd = action.payload.packageEnd;
-
+			state.updatePosts = false;
+			state.page += 1;
 		},
 		[fetchMergeOrders.fulfilled.type]: (state, action: PayloadAction<IFetchMergeOrders>) => {
 			state.stockData = action.payload.orderData;

@@ -50,7 +50,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 			pushTo(urlTo);
 		} else {
 			const pathname = router.asPath;
-			const userId = pathname.split('userId=')[1].split('&')[0];
+			const userId = pathname?.split('userId=')[1]?.split('&')[0];
 			pushTo(urlTo, {userId});
 		}
 	};

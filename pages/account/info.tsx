@@ -13,5 +13,4 @@ const Account: NextPage = () => {
 	);
 };
 
-// export default React.memo(Account);
 export default React.memo(WithAuth(Account));

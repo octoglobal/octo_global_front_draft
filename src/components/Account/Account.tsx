@@ -29,7 +29,7 @@ const AccountPage: FC<IAccountPage> = ({
 					<AccountSearch/>
 				</SearchContainerMUI>
 			)}
-			{isAdmin && adminSwitchIdToUser && adminSwitchUserModel && (
+			{!!(isAdmin && adminSwitchIdToUser && adminSwitchUserModel) && (
 				<>
 					{renderTabs && (
 						<Tabs
