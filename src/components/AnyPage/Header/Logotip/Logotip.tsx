@@ -57,7 +57,7 @@ const Logotip: FC = () => {
 					duration: 1,
 					scrollTrigger: {
 						start: start,
-						markers: true,
+						markers: false,
 						end: end,
 						scrub: true,
 					}
