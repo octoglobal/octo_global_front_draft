@@ -44,7 +44,11 @@ export const useFormsStyle = () => {
 
 	const FormsInput = styled('div')(({theme}) => ({
 		marginBottom: '20px',
-		
+
+		'& .MuiFormHelperText-root': {
+			marginTop: '5px',
+		},
+
 		[theme.breakpoints.down(500)]: {
 			marginBottom: '15px',
 		}
@@ -127,6 +131,10 @@ export const useFormsStyle = () => {
 		}
 	};
 
+	const TextFieldSx = {
+		height: '40px',
+	};
+
 	const checkboxItemModificationWrapper = {
 		alignItems: 'flex-start'
 	};
@@ -143,6 +151,7 @@ export const useFormsStyle = () => {
 		FormsDescription,
 		FormHelperErrorUI,
 		checkboxItemModificationWrapper,
-		TextAreaUI
+		TextAreaUI,
+		TextFieldSx
 	};
 };

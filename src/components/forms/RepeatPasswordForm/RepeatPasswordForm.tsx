@@ -11,9 +11,9 @@ import {IRepeatPasswordForm} from '../../../types/types';
 
 const RepeatPasswordForm : FC<IRepeatPasswordForm> = ({token}) => {
 
-	const {handleSubmit, control} = useForm();
+	const {handleSubmit, control, setError} = useForm();
 
-	const {onSubmit} = useRepeatPasswordForm(token);
+	const {onSubmit} = useRepeatPasswordForm(token, setError);
 
 	const {
 		FormsWrapperBox,
