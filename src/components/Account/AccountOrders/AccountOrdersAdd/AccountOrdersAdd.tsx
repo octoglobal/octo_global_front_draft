@@ -74,10 +74,12 @@ const AccountOrdersAdd = () => {
 				</FormMUI>
 				<AccountOrdersAddInstruction />
 			</ContainerMUI>
-			<AccountAddModal
-				open={isAddOrder}
-				onClose={() => setIsAddOrder(false)}
-			/>
+			{isAddOrder && (
+				<AccountAddModal
+					open={isAddOrder}
+					onClose={() => setIsAddOrder(false)}
+				/>
+			)}
 		</>
 	);
 };

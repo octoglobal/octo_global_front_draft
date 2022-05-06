@@ -4,7 +4,8 @@ import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/a
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
-import {getSelectArray} from '@/services/services';
+import {getSelectArray, onScroll} from '@/services/services';
+import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
 
 
 export const useAccountOrdersWait = () => {
@@ -26,17 +27,18 @@ export const useAccountOrdersWait = () => {
 	const {
 		page,
 		pageLimit,
+		updateData,
+		scrollEmpty,
 		orderWaitData,
 	} = useAppSelector(state => state.orderWaitReducer);
-
-	const innerId = useMemo(() => (
-	 adminSwitchIdToUser ? adminSwitchIdToUser : id
-	), [adminSwitchIdToUser]);
-
 
 	const dispatch = useAppDispatch();
 	const methods = useForm();
 	const ordersArray = methods.watch();
+
+	const innerId = useMemo(() => (
+	 adminSwitchIdToUser ? adminSwitchIdToUser : id
+	), [adminSwitchIdToUser]);
 
 	const isDataLength = useMemo(() => (
 		!!(orderWaitData.length && Array.isArray(orderWaitData))
@@ -84,8 +86,22 @@ export const useAccountOrdersWait = () => {
 		));
 	};
 
+
 	useEffect(() => {
-		if (page === 1) {
+		window.addEventListener('scroll', (e) => onScroll(
+			e,
+			() => dispatch(orderWaitSlice.actions.updateData())
+		));
+		return () => {
+			window.removeEventListener('scroll', (e) => onScroll(
+				e,
+				() => dispatch(orderWaitSlice.actions.updateData())
+			));
+		};
+	}, []);
+
+	useEffect(() => {
+		if (updateData && !scrollEmpty) {
 			if (!isAdmin) {
 				dispatch(fetchOrderWaitData({page, pageLimit}));
 			}
@@ -95,7 +111,7 @@ export const useAccountOrdersWait = () => {
 				}
 			}
 		}
-	}, [adminSwitchIdToUser, page, router]);
+	}, [adminSwitchIdToUser, updateData]);
 
 	useEffect(() => {
 		methods.reset({});
@@ -104,6 +120,7 @@ export const useAccountOrdersWait = () => {
 	return {
 		isAdmin,
 		methods,
+		scrollEmpty,
 		buttonsData,
 		isAdminMenu,
 		isDataLength,

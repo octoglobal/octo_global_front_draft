@@ -5,10 +5,13 @@ import { FormProvider } from 'react-hook-form';
 import {useAccountOrdersStock} from '@/components/Account/AccountOrders/AccountOrdersStock/useAccountOrdersStock';
 import AdminBottomMenu from '@/components/Account/AdminBottomMenu/AdminBottomMenu';
 import PackageItem from '@/components/AnyPage/PackageItem/PackageItem';
+import AccountOrdersPlaceholder
+	from '@/components/Account/AccountOrders/AccountOrdersPlaceholder/AccountOrdersPlaceholder';
 
 const AccountOrdersStock = () => {
 
 	const {
+		isAdmin,
 		isUserText,
 		methods,
 		stockData,
@@ -17,6 +20,7 @@ const AccountOrdersStock = () => {
 		isVisibleMenu,
 		isDataLength,
 		packageDopDownData,
+		isVisiblePlaceholder,
 	} = useAccountOrdersStock();
 
 
@@ -49,6 +53,13 @@ const AccountOrdersStock = () => {
 						)}
 					</ListMUI>
 				)}
+				{isVisiblePlaceholder && (
+					<PlaceholderWrapperMUI>
+						<AccountOrdersPlaceholder
+							text={isAdmin ? 'У пользователя нет заказов' : 'У вас еще нет заказов'}
+						/>
+					</PlaceholderWrapperMUI>
+				)}
 				<AdminBottomMenu
 					isVisibleMenu={isVisibleMenu}
 					text={isUserText}
@@ -61,7 +72,8 @@ const AccountOrdersStock = () => {
 
 const {
 	ListMUI,
-	WrapperOrdersMUI
+	WrapperOrdersMUI,
+	PlaceholderWrapperMUI
 } = useAccountOrdersStyles();
 
 
