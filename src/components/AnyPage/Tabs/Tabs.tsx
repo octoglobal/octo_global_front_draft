@@ -97,7 +97,9 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 								>
 									<>
 										{item.title === 'Заказы' && isTouchDevice ? (
-											<AccountTabOrderMobile/>
+											<AccountTabOrderMobile
+												active={checkActiveClass(item.url, item.query, item?.baseUrl)}
+											/>
 										) : item.title == 'Выкуп товара' && isAdmin ? null : (
 											<>
 												{item.title}

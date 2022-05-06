@@ -71,12 +71,10 @@ export const useTabsStyle = () => {
 		[theme.breakpoints.down(781)]: {
 			fontSize: '20px',
 			lineHeight: '21px',
-			color: '#000000',
 		},
-		[theme.breakpoints.down(404)]: {
+		[theme.breakpoints.down(500)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
-			color: '#000000',
 		},
 	}));
 
@@ -93,7 +91,7 @@ export const useTabsStyle = () => {
 			flexWrap: 'wrap',
 			borderBottom: '1px solid #C4C4C4',
 			minWidth: '0px',
-		}
+		},
 	}));
 	const TabsMarginLeft = styled(TabsListUnstyled)(() => ({
 		margin: '0px 0px -6px 6px',

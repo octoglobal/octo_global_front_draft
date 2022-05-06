@@ -10,14 +10,21 @@ export const useAccountTabOrderMobileStyles = () => {
 		position: 'relative',
 	}));
 
-	const TextMUI = styled('button')(() => ({
-		fontSize: '20px',
+	const TextMUI = styled('button', {
+		shouldForwardProp: (prop) => prop !== 'active',
+	})<{active?: boolean}>(({active, theme}) => ({
+		fontSize: '24px',
 		border: 0,
-		lineHeight: '24px',
+		lineHeight: '28px',
 		color: '#000000',
-		fontWeight: 300,
+		fontWeight: active ? 400 : 300,
 		backgroundColor: 'transparent',
 		margin: '0 !important',
+
+		[theme.breakpoints.down(500)]: {
+			fontSize: '16px',
+			lineHeight: '19px',
+		}
 	}));
 
 	const DropDownWrapperMUI = styled('div')(() => ({
