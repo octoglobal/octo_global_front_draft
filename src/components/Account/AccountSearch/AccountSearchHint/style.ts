@@ -11,9 +11,7 @@ export const useAccountSearchHintStyles = () => {
 			fontSize: '20px',
 			lineHeight: '24px',
 			fontWeight: 300,
-			whiteSpace: 'nowrap',
-			overflow: 'hidden',
-			textOverflow: 'ellipsis'
+		
 		}
 	}));
 
@@ -21,21 +19,52 @@ export const useAccountSearchHintStyles = () => {
 		fontSize: '20px',
 		lineHeight: '24px',
 		fontWeight: 300,
+			
 	}));
-	const HintItemuserAreaIdMUI = styled('div')(() => ({
+	const HintItemuserAreaIdMUI = styled('div')(({theme}) => ({
 		width: '10%',
+		[theme.breakpoints.down(769)]: {
+			width: '100%',
+			gridArea: 'a'
+		}
+		
 	}));
-	const HintItemEmailMUI = styled('div')(() => ({
-		width: '28%',
+	const HintItemEmailMUI = styled('div')(({theme}) => ({
+		width: '28%',	
+		[theme.breakpoints.down(769)]: {
+			width: '100%',
+		
+			gridArea: 'd',		
+		
+		}
 	}));
-	const HintItemOrderMUI = styled('div')(() => ({
+	const HintItemOrderMUI = styled('div')(({theme}) => ({
 		width: '8%',
+		
+		[theme.breakpoints.down(769)]: {
+			width: '100%',
+			gridArea: 'c',
+			display: 'flex',
+			justifyContent: 'end',
+			alignItems: 'end'
+						
+		}
 	}));
-	const HintItemTrackMUI = styled('div')(() => ({
+	const HintItemTrackMUI = styled('div')(({theme}) => ({
 		width: '18%',
+		
+		[theme.breakpoints.down(769)]: {
+			width: '100%',
+			gridArea: 'b',
+		}
 	}));
-	const HintItemNameMUI = styled('div')(() => ({
+	const HintItemNameMUI = styled('div')(({theme}) => ({
 		width: '28%',
+		
+		[theme.breakpoints.down(769)]: {
+			width: '100%',
+			gridArea: 'e',
+		}
 	}));
 
 	return {

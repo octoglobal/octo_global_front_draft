@@ -41,7 +41,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const editTextValue = (title: string | null | undefined,searchValue:string) =>{		
 		if (searchValue && title){	
-
+			
 			const c = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
@@ -49,11 +49,11 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			if (result?.index !== null && result?.index !== undefined) {
 				middleText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
 			} else {				
-				middleText = '';
+				middleText = null;
 			}			
 			return <ItemTextMUI>
-				{c[0]}			
-				<TextMarkMUI>{middleText}</TextMarkMUI>
+				{c[0]}
+				{middleText?<TextMarkMUI>{middleText}</TextMarkMUI>:null}			
 				{c[1]}
 			</ItemTextMUI>;
 		} else {
@@ -80,8 +80,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 						searchValue={searchValue}
 					/>
 				) : (
-					<ItemTextMUI>	
-						{/* {title}				 */}
+					<ItemTextMUI>						
 						{editTextValue(title,searchValue)}					
 					</ItemTextMUI>
 				)}
