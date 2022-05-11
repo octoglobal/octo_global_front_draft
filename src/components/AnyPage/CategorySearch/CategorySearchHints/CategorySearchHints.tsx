@@ -38,7 +38,7 @@ const CategorySearchHints: FC<ICategorySearchHintsProps> = (
 		component === 'account'
 	), [component]);
 	
-	
+
 	return (
 		isVisibleHints ? (
 			<ContainerMUI>

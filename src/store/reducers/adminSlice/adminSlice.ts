@@ -37,7 +37,7 @@ export const adminSlice = createSlice({
 			state.hints = [];
 		},
 		clearAdminHints: (state) => {
-			console.log('dfdfdf');	
+			console.log('dfdfdf очистка');	
 			state.hints = [];
 		}
 

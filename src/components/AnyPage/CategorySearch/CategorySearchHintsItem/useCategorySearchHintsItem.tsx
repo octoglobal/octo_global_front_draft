@@ -12,7 +12,7 @@ export const useCategorySearchHintsItem = (active: boolean, title: string, isMou
 	useEffect(() => {
 		if (active) {
 			if (!isMouseEnter) {
-				setValue('search', title);
+				setValue('search', title);				
 			}
 		}
 	}, [active, isMouseEnter]);

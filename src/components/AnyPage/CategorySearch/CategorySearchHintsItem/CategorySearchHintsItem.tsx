@@ -38,13 +38,9 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	
 	const searchValue = useWatch({name: 'search'});
-
-
+	
 	const editTextValue = (title: string | null | undefined,searchValue:string) =>{		
-		if (searchValue && title){
-
-			const startF = title.indexOf(searchValue);
-		
+		if (searchValue && title){	
 
 			const c = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
@@ -52,11 +48,9 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			let middleText ;
 			if (result?.index !== null && result?.index !== undefined) {
 				middleText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
-			} else {
-				
+			} else {				
 				middleText = '';
-			}
-			// console.log('ищу 'startF),'result',result);
+			}			
 			return <ItemTextMUI>
 				{c[0]}			
 				<TextMarkMUI>{middleText}</TextMarkMUI>

@@ -39,8 +39,7 @@ export const shopSlice = createSlice({
 		changeFoundShops(state, action: PayloadAction<boolean>) {
 			state.isNotFoundShops = action.payload;
 		},
-		changeHintsShops(state, action: PayloadAction<IHints[]>) {
-			console.log('!!!!!!!!!!!!!!!!!!!!!!!-------');
+		changeHintsShops(state, action: PayloadAction<IHints[]>) {			
 			state.searchHints = action.payload;
 		},
 		resetSlice(state) {

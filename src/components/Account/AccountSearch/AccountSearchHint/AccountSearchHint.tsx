@@ -4,7 +4,7 @@ import { useAccountSearchHintStyles } from '@/components/Account/AccountSearch/A
 
 interface IAccountSearchHintProps {
 	hint: IAdminHintsData,
-	markText: ()=> React.ReactNode | null,
+	markText: (title: string | undefined | null, searchValue: string) => FC | React.ReactElement,
 	searchValue: string
 }
 
