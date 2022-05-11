@@ -13,7 +13,7 @@ export const useCategorySearchHinstStyles = () => {
 		top: 0,
 		[theme.breakpoints.down(769)]: {
 			maxHeight: 300,
-			overflow: 'scroll'
+			overflowY: 'auto'
 		}
 		
 	}));

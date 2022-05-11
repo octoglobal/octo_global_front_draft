@@ -32,34 +32,36 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 		
 	// };
 
-	const tn = markText(hint.trackNumber?.toString().toLocaleUpperCase() ,searchValue);
-	console.log(tn);
+	// const tn = markText(hint.trackNumber?.toString() ,searchValue);
+	// console.log(tn);
+
 	return (
 		<ContainerMUI>
 			<HintItemuserAreaIdMUI>
 				{/* {ellipsis(hint.userAreaId.toString() , 5)} */}
-				{markText(hint.userAreaId?.toString() ,searchValue) }
+				{markText(hint.userAreaId?.toString() ,searchValue , 15) }
 				{/* { ellipsis( toStr(markText(hint.userAreaId?.toString() ,searchValue)), 7)} */}
 			</HintItemuserAreaIdMUI>
 			<HintItemEmailMUI>
 				{/* {hint.email} */}
-				{markText(hint.email ,searchValue)}
+				{markText(hint.email ,searchValue , 20)}
 				{/* { ellipsis( toStr(markText(hint.email ,searchValue)), 15)} */}
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
 				{/* {hint.orderNumber} */}
-				{markText(hint.orderNumber?.toString() ,searchValue)}
+				{markText(hint.orderNumber?.toString() ,searchValue , 15)}
 				{/* { ellipsis( toStr(markText(hint.orderNumber?.toString() ,searchValue)), 10)} */}
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
 				{/* {hint.trackNumber} */}
-				{/* {markText(hint.trackNumber?.toString().toLocaleUpperCase() ,searchValue)} */}
-				{tn}
+				{markText(hint.trackNumber?.toString() ,searchValue , 15)}
+			
+				{/* {ellipsis(tn, 3)} */}
 				{/* { ellipsis( toStr(markText(hint.trackNumber?.toString() ,searchValue)), 10)} */}
 			</HintItemTrackMUI>
 			<HintItemNameMUI>
 				{/* {hint.name} */}
-				{markText(hint.name ,searchValue)}
+				{markText(hint.name ,searchValue , 20)}
 				{/* { ellipsis( toStr(markText(hint.name ,searchValue)), 15)} */}
 			</HintItemNameMUI>
 		</ContainerMUI>

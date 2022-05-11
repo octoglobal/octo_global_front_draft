@@ -7,6 +7,7 @@ import {
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 import AccountSearchHint from '@/components/Account/AccountSearch/AccountSearchHint/AccountSearchHint';
 import {useWatch} from 'react-hook-form';
+import { ellipsis } from '@/lib/services/services';
 interface ICategorySearchHintsItemProps extends IHints {
 	hint: IHints | IAdminHintsData;
 	active: boolean;
@@ -39,26 +40,25 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const searchValue = useWatch({name: 'search'});
 	
-	const editTextValue = (title: string | null | undefined,searchValue:string) =>{		
+	const editTextValue = (title: string | null | undefined,searchValue:string, count:number) =>{		
 		if (searchValue && title){	
-			
-			const c = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
+			const t= ellipsis(title, count);
+			const c = t.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
 			let markText ;
 			if (result?.index !== null && result?.index !== undefined) {
 				markText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
 			} else {				
-				markText = null;
-			}			
-			return <><ItemTextMUI>
-				{c[0]}
-				{markText?<TextMarkMUI>{markText}</TextMarkMUI>:null}			
+				markText = '';
+			}				
+			return <ItemTextMUI>{c[0]}
+				{markText?<TextMarkMUI>{`${markText}`}</TextMarkMUI>:null}			
 				{c[1]}
-			</ItemTextMUI></> ;
+				
+			 </ItemTextMUI> ;
 		} else {
-			return <>
-			</>;
+			return '';
 		}
 		
 	};
@@ -81,7 +81,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 					/>
 				) : (
 					<ItemTextMUI>						
-						{editTextValue(title,searchValue)}					
+						{editTextValue(title,searchValue ,title.length)}					
 					</ItemTextMUI>
 				)}
 			</ButtonMUI>
