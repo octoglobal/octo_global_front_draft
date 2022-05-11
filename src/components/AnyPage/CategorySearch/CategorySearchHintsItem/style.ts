@@ -41,7 +41,7 @@ export const useCategorySearchHintsItemStyles = () => {
 				"d d d e e e"	`,
 				gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr',				
 				gap: 10,			
-				padding: '5px 5px 15px 0px',
+				padding: '0px 5px 5px 0px',
 				marginBottom: 0,
 				fontWeight: 300,				
 			},

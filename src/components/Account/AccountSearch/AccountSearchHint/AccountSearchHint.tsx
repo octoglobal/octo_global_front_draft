@@ -32,12 +32,13 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 		
 	// };
 
-	
+	const tn = markText(hint.trackNumber?.toString().toLocaleUpperCase() ,searchValue);
+	console.log(tn);
 	return (
 		<ContainerMUI>
 			<HintItemuserAreaIdMUI>
 				{/* {ellipsis(hint.userAreaId.toString() , 5)} */}
-				{ellipsis(markText(hint.userAreaId?.toString() ,searchValue) , 5)}
+				{markText(hint.userAreaId?.toString() ,searchValue) }
 				{/* { ellipsis( toStr(markText(hint.userAreaId?.toString() ,searchValue)), 7)} */}
 			</HintItemuserAreaIdMUI>
 			<HintItemEmailMUI>
@@ -52,7 +53,8 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
 				{/* {hint.trackNumber} */}
-				{markText(hint.trackNumber?.toString() ,searchValue)}
+				{/* {markText(hint.trackNumber?.toString().toLocaleUpperCase() ,searchValue)} */}
+				{tn}
 				{/* { ellipsis( toStr(markText(hint.trackNumber?.toString() ,searchValue)), 10)} */}
 			</HintItemTrackMUI>
 			<HintItemNameMUI>

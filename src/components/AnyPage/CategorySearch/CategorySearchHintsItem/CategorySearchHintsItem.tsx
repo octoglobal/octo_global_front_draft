@@ -45,17 +45,17 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			const c = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
-			let middleText ;
+			let markText ;
 			if (result?.index !== null && result?.index !== undefined) {
-				middleText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
+				markText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
 			} else {				
-				middleText = null;
+				markText = null;
 			}			
-			return <ItemTextMUI>
+			return <><ItemTextMUI>
 				{c[0]}
-				{middleText?<TextMarkMUI>{middleText}</TextMarkMUI>:null}			
+				{markText?<TextMarkMUI>{markText}</TextMarkMUI>:null}			
 				{c[1]}
-			</ItemTextMUI>;
+			</ItemTextMUI></> ;
 		} else {
 			return <>
 			</>;
