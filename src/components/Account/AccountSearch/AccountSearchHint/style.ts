@@ -32,8 +32,7 @@ export const useAccountSearchHintStyles = () => {
 	const HintItemEmailMUI = styled('div')(({theme}) => ({
 		width: '28%',	
 		[theme.breakpoints.down(769)]: {
-			width: '100%',
-		
+			width: '100%',		
 			gridArea: 'd',		
 		
 		}

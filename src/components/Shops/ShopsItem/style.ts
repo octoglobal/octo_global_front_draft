@@ -1,4 +1,4 @@
-import {Link, styled} from '@mui/material';
+import {Hidden, Link, styled} from '@mui/material';
 
 export const useShopsItemStyles = () => {
 
@@ -39,14 +39,18 @@ export const useShopsItemStyles = () => {
 	}));
 
 	const PhotoMUI = styled('img')(({theme}) => ({
+		position: 'relative',
 		maxWidth: '336px',
 		maxHeight: '208px',
+		minWidth: '336px',
+		minHeight: '208px',
 		width: '100%',
 		height: '100%',
 		objectFit: 'cover',
 		marginBottom: '20px',
 		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
 		transition: '.2s all linear',
+	
 		[theme.breakpoints.down(768)]: {
 			objectFit: 'contain',
 		},
@@ -60,6 +64,22 @@ export const useShopsItemStyles = () => {
 			minWidth: 'auto',
 		}
 	}));
+
+	const ImagePlaceholderMUI = styled('div')(() => ({
+		position: 'absolute',
+		zIndex: 1,
+		maxWidth: '336px',
+		maxHeight: '208px',
+		minWidth: '336px',
+		minHeight: '208px',
+		width: '100%',
+		height: '100%',
+		backgroundColor: '#fff',		
+		// borderRadius: '8px',
+		overflow: 'hidden',
+		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
+	}));
+
 
 	const TextWrapperMUI = styled('div')(({theme}) => ({
 		marginBottom: '15px',
@@ -81,12 +101,14 @@ export const useShopsItemStyles = () => {
 			marginBottom: '10px',
 		}
 	}));
-
+	
+	
 	return {
 		LinkMUI,
 		ItemMUI,
 		PhotoMUI,
 		TitleMUI,
 		TextWrapperMUI,
+		ImagePlaceholderMUI
 	};
 };
