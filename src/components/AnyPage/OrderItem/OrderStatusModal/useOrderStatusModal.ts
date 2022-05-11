@@ -64,10 +64,11 @@ export const useOrderStatusModal = (
 		controller: {
 			name: 'trackNumber',
 			control: methods.control,
-			rules: {required: true},
+			rules: {required: true, maxLength: 14},
 		},
 		inputProps: {
-			placeholder: 'Трек номер'
+			placeholder: 'Трек номер',
+			disabled: component === 'wait' || component === 'stock',
 		}
 	};
 

@@ -9,10 +9,13 @@ export const useModalUIStyles = () => {
 			'& .MuiPaper-root': {
 				backgroundColor: '#F1F4F9',
 				boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.15)',
-				padding: '115px 10px',
-				borderRadius: 0,
-				minWidth: '704px',
-				minHeight: '353px',
+				borderRadius: '15px',
+				// padding: '115px 10px',
+				padding: 0,
+				maxWidth: '573px',
+				maxHeight: '232px',
+				width: '100%',
+				height: '100%',
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
@@ -45,7 +48,7 @@ export const useModalUIStyles = () => {
 
 	const ButtonContainerMUI = styled('div')(({theme}) => ({
 		maxWidth: '135px',
-		margin: '68px auto 0',
+		margin: '98px auto 0',
 		[theme.breakpoints.down(1025)]: {
 			marginTop: '27px',
 		}

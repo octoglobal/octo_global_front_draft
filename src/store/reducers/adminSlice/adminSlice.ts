@@ -36,7 +36,7 @@ export const adminSlice = createSlice({
 			state.adminSwitchIdToUser = action.payload;
 			state.hints = [];
 		},
-		resetDat: (state) => {
+		resetData: (state) => {
 			state.hints = [];
 			state.adminSwitchIdToUser = null;
 			state.search = '';

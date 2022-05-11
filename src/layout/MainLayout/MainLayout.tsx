@@ -8,6 +8,8 @@ import {useUserStore} from '@/hooks/useUserStore';
 import Theme from '../../theme/theme';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import ScrollTop from '@/components/AnyPage/ScrollTop/ScrollTop';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
+import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 interface MainLayout {
 	children: React.ReactChild | React.ReactNode;
 }
@@ -15,12 +17,23 @@ interface MainLayout {
 const MainLayout: FC<MainLayout> = ({children}) => {
 
 	useUpdateRefresh();
-	const {getUser} = useUserStore();
+	const {getUser, isAdmin} = useUserStore();
 	const {router} = useCustomRouter();
+	const { adminSwitchIdToUser } = useAppSelector(state => state.adminReducer);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		getUser();
 	}, []);
+
+	useEffect(() => {
+		if (isAdmin && router) {
+			const isAccountLocation = router.pathname.match('account');
+			if (!isAccountLocation && adminSwitchIdToUser) {
+				dispatch(adminSlice.actions.resetData());
+			}
+		}
+	}, [router]);
 
 	const disabledPadding = useMemo(() => router.route === '/', [router.route]);
 	const disabledMargin = useMemo(() => router.route === '/', [router.route]);

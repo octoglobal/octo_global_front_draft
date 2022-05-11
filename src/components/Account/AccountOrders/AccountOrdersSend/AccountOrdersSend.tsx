@@ -7,7 +7,6 @@ import AccountOrdersPlaceholder
 	from '@/components/Account/AccountOrders/AccountOrdersPlaceholder/AccountOrdersPlaceholder';
 
 const AccountOrdersSend = () => {
-
 	const {
 		isAdmin,
 		sendData,
@@ -16,10 +15,11 @@ const AccountOrdersSend = () => {
 	} = useAccountOrdersSend();
 	const methods = useForm();
 
-	console.log(isSendDataArray, sendDataEnd);
-
 	return (
 		<WrapperOrdersMUI>
+			<PageLabelMUI>
+				Отправленые
+			</PageLabelMUI>
 			<FormProvider {...methods}>
 				{isSendDataArray && (
 					<ListMUI>
@@ -48,6 +48,7 @@ const AccountOrdersSend = () => {
 
 const {
 	ListMUI,
+	PageLabelMUI,
 	WrapperOrdersMUI,
 	PlaceholderWrapperMUI
 } = useAccountOrdersStyles();

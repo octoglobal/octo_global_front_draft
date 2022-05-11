@@ -7,6 +7,8 @@ import FormSuccessMessage from '@/components/AnyPage/FormSuccessMessage/FormSucc
 import AccountOrdersAddInstruction
 	from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountOrdersAddInstruction/AccountOrdersAddInstruction';
 import AccountAddModal from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountAddModal/AccountAddModal';
+import AccountAddInfo from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountAddInfo/AccountAddInfo';
+import {useAccountOrdersStyles} from '@/components/Account/AccountOrders/style';
 
 const AccountOrdersAdd = () => {
 
@@ -26,7 +28,7 @@ const AccountOrdersAdd = () => {
 		<>
 			<ContainerMUI>
 				<PageLabelMUI>
-					+ Добавить
+					Добавить заказ
 				</PageLabelMUI>
 				<FormMUI onSubmit={handleSubmit(onSubmit)}>
 					<TextFieldContainerMUI>
@@ -44,6 +46,7 @@ const AccountOrdersAdd = () => {
 								...textFieldTrackNumber.controller,
 								rules: {
 									required: true,
+									maxLength: 14,
 								},
 							}}
 							inputProps={{
@@ -66,6 +69,9 @@ const AccountOrdersAdd = () => {
 					<FormSuccessMessage
 						message={formMessage}
 					/>
+					<InfoContainerMUI>
+						<AccountAddInfo/>
+					</InfoContainerMUI>
 					<ButtonContainerMUI>
 						<ButtonUI type='submit'>
 							Добавить
@@ -74,7 +80,7 @@ const AccountOrdersAdd = () => {
 				</FormMUI>
 				<AccountOrdersAddInstruction />
 			</ContainerMUI>
-			{isAddOrder && (
+			{true && (
 				<AccountAddModal
 					open={isAddOrder}
 					onClose={() => setIsAddOrder(false)}
@@ -87,12 +93,16 @@ const AccountOrdersAdd = () => {
 const {
 	FormMUI,
 	ContainerMUI,
-	PageLabelMUI,
 	inputContainerSX,
+	InfoContainerMUI,
 	ButtonContainerMUI,
 	TextFieldContainerMUI,
 	TextAreaContainerMUI,
 	inputContainerAdaptiveSX
 } = useAccountOrdersAddStyles();
+
+const {
+	PageLabelMUI
+} = useAccountOrdersStyles();
 
 export default React.memo(AccountOrdersAdd);

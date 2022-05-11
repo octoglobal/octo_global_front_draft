@@ -185,10 +185,6 @@ export const usePackageItem = (
 		} else if (statusId === 4 && isAdmin) {
 			dropItemsArray = [
 				...dropItems,
-				{
-					title: 'Перенести',
-					onClick: handleAddTrackNumber
-				}
 			];
 		} else if (statusId === 3 && component == 'send')  {
 			dropItemsArray = [

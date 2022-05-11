@@ -26,6 +26,9 @@ const AccountOrdersStock = () => {
 
 	return (
 		<WrapperOrdersMUI>
+			<PageLabelMUI>
+				На складе
+			</PageLabelMUI>
 			<FormProvider {...methods}>
 				{!!isDataLength  && (
 					<ListMUI>
@@ -72,6 +75,7 @@ const AccountOrdersStock = () => {
 
 const {
 	ListMUI,
+	PageLabelMUI,
 	WrapperOrdersMUI,
 	PlaceholderWrapperMUI
 } = useAccountOrdersStyles();

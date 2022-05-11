@@ -1,6 +1,8 @@
 import React, {FC, useEffect, useMemo} from 'react';
-import { ButtonProps, DialogProps, SxProps } from '@mui/material';
+import {ButtonProps, DialogProps, SxProps, Theme} from '@mui/material';
 import { useModalUIStyles } from './style';
+import {StyledComponent} from '@emotion/styled';
+import {MUIStyledCommonProps} from '@mui/system';
 
 export interface IModalUIProps {
 	dialogProps: DialogProps;
@@ -8,8 +10,9 @@ export interface IModalUIProps {
 	children?: React.ReactChildren | React.ReactNode;
 	defaultStylesButton?: boolean;
 	buttonProps?: ButtonProps;
-	containerStyles?: SxProps
+	containerStyles?: SxProps;
 	closeTime?: number;
+	DialogContainerMUI?: StyledComponent<DialogProps>;
 }
 
 const ModalUI: FC<IModalUIProps> = (
@@ -20,7 +23,8 @@ const ModalUI: FC<IModalUIProps> = (
 		defaultStylesButton = true,
 		buttonProps = {},
 		containerStyles = {},
-		closeTime = 0
+		closeTime = 0,
+		DialogContainerMUI = DialogMUI,
 	}
 ) => {
 
@@ -42,14 +46,17 @@ const ModalUI: FC<IModalUIProps> = (
 
 	useEffect(() => {
 		if (closeTime && dialogProps?.open) {
-			setTimeout(() => {
+			const handleTimeoutClose = setTimeout(() => {
 				handleCloseDialog();
 			}, closeTime * 1000);
+			return () => {
+				clearTimeout(handleTimeoutClose);
+			};
 		}
 	}, [closeTime, dialogProps.open]);
 
 	return (
-		<DialogMUI
+		<DialogContainerMUI
 			{...dialogProps}
 			disableScrollLock
 			BackdropComponent={BackDropBlurMUI}
@@ -70,7 +77,7 @@ const ModalUI: FC<IModalUIProps> = (
 					Отлично
 				</ButtonMUI>
 			</ButtonContainer>
-		</DialogMUI>
+		</DialogContainerMUI>
 	);
 };
 

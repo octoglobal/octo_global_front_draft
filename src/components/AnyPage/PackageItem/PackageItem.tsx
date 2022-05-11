@@ -68,7 +68,7 @@ const PackageItem: FC<IPackageItem> = (
 						</StatusTextMUI>
 					)}
 					{isVisibleTrackNumber && (
-						<>
+						<TrackNumberContainerMUI>
 							<TrackNumberMUI>{packageData.trackNumber}</TrackNumberMUI>
 							<TrackNumberLinkMUI
 								rel='noreferrer'
@@ -82,7 +82,7 @@ const PackageItem: FC<IPackageItem> = (
 									<ArrowRightIcon/>
 								</TrackNumberIconMUI>
 							</TrackNumberLinkMUI>
-						</>
+						</TrackNumberContainerMUI>
 					)}
 				</TitleTextMUI>
 				{isDropDownVisible && (
@@ -169,6 +169,7 @@ const {
 	AddressContainerMUI,
 	TrackNumberLinkMUI,
 	TrackNumberLinkTextMUI,
+	TrackNumberContainerMUI,
 	TrackNumberIconMUI,
 	AddressRowMUI,
 } = usePackageItemStyles();
