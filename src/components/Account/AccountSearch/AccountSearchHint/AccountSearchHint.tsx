@@ -5,7 +5,7 @@ import { ellipsis } from '@/lib/services/services';
 
 interface IAccountSearchHintProps {
 	hint: IAdminHintsData,
-	markText: (title: string | undefined | null, searchValue: string) => FC | React.ReactElement,
+	markText: (title: string | undefined | null, searchValue: string, count: number) => FC | React.ReactElement,
 	searchValue: string
 }
 
