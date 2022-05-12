@@ -10,7 +10,8 @@ const AccountSearch = () => {
 		hints,
 		methods,
 		onSubmit,
-		handleChangeInputValue
+		handleChangeInputValue,
+		handleClearInputValue
 	} = useAccountSearch();
 
 	return (
@@ -18,7 +19,7 @@ const AccountSearch = () => {
 			<SearchContainerMUI>
 				<CategorySearch
 					component='account'
-					handleKeyDownEnter={() => console.log(123)}
+					handleKeyDownEnter={() => handleClearInputValue()}
 					searchHints={hints}
 					onSubmit={onSubmit}
 					handleChangeSearchValue={handleChangeInputValue}

@@ -4,11 +4,11 @@ import {fetchUserAdmin, fetchUsersInAdmin} from '@/reducers/adminSlice/asyncThun
 import {IUserModel} from '@/models/IUserModel';
 
 export interface IAdminHintsData extends IHints{
-	userAreaId: null | number,
+	userAreaId: null | number ,
 	email: null | string,
 	orderNumber: null | number,
 	trackNumber: null | string,
-	name: null | string,
+	name: string,
 	type: 'user' | 'order' | null,
 	id: null | number,
 	title: string,
@@ -36,6 +36,9 @@ export const adminSlice = createSlice({
 			state.adminSwitchIdToUser = action.payload;
 			state.hints = [];
 		},
+		clearAdminHints: (state) => {
+			state.hints = [];
+    },
 		resetDat: (state) => {
 			state.hints = [];
 			state.adminSwitchIdToUser = null;

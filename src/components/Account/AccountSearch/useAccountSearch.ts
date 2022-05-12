@@ -1,3 +1,4 @@
+
 import { useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
 import { fetchUsersInAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
@@ -9,7 +10,7 @@ import {useEffect} from 'react';
 import {orderStockSlice} from '@/reducers/orderStockSlice/orderStockSlice';
 import {orderSendSlice} from '@/reducers/orderSendSlice/orderSendSlice';
 
-export const useAccountSearch = () => {
+export const useAccountSearch = () => {	
 	const {
 		hints,
 		adminSwitchUserModel,
@@ -49,11 +50,14 @@ export const useAccountSearch = () => {
 	const handleChangeInputValue = (text: string) => {
 		dispatch(fetchUsersInAdmin({text}));
 	};
-
+	const handleClearInputValue = () => {
+		dispatch(adminSlice.actions.clearAdminHints());
+	};
 	return {
 		hints,
 		methods,
 		onSubmit,
-		handleChangeInputValue
+		handleChangeInputValue,
+		handleClearInputValue
 	};
 };
