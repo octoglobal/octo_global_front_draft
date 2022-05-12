@@ -210,7 +210,7 @@ export const generateAdminHintsData = (data: ISearchAdminModel) => {
 				email: null,
 				orderNumber: null,
 				trackNumber: null,
-				name: null,
+				name: '',
 				type: null,
 				url: '',
 				title: 'test',
