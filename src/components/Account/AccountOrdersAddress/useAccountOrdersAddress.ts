@@ -21,7 +21,7 @@ export const useAccountOrdersAddress = () => {
 	const {
 		adminSwitchIdToUser
 	} = useAppSelector(state => state.adminReducer);
-
+	const [isSuccessModal, setIsSuccessModal] = useState<boolean>(false);
 
 	const methods = useForm<IFormState>({
 		defaultValues: {
@@ -59,16 +59,20 @@ export const useAccountOrdersAddress = () => {
 					userId: userId as number,
 				})).then(response => {
 					if (response.payload == 'success') {
-						if (isAdmin) {
-							router.push(`/account/orders/stock?userId=${router.query?.userId}`);
-						} else {
-							router.push('/account/orders/stock');
-						}
+						setIsSuccessModal(true);
 					}
 				});
 			} catch (e) {
 				throw new Error('fetch error add address to package');
 			}
+		}
+	};
+
+	const handlePushStock = () => {
+		if (isAdmin) {
+			router.push(`/account/orders/stock?userId=${router.query?.userId}`);
+		} else {
+			router.push('/account/orders/stock');
 		}
 	};
 
@@ -83,7 +87,10 @@ export const useAccountOrdersAddress = () => {
 		onSubmit,
 		isCollapse,
 		setIsCollapse,
+		isSuccessModal,
+		handlePushStock,
 		isAddressSelect,
+		setIsSuccessModal,
 		handleToggleCollapse
 	};
 };

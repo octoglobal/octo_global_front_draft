@@ -11,11 +11,12 @@ const AccountAddModal: FC<IAccountAddModalProps> = ({ open, onClose }) => {
 	return (
 		<ModalUI
 			dialogProps={{
-				open: true,
+				open: open,
 				onClose,
 			}}
 			closeTime={5}
-			title='Посылка успешно оформлена Отследить ее можно на вкладке отправленные'/>
+			title={'Посылка успешно оформлена \n' + 'Отследить ее можно на вкладке ожидаемые'}
+		/>
 	);
 };
 

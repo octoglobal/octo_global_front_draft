@@ -110,7 +110,7 @@ export const usePackageItemStyles = () => {
 
 	const AddressContainerMUI = styled('div')(({theme}) => ({
 		margin: '15px 0px',
-		marginLeft: '190px',
+		marginLeft: '193px',
 		[theme.breakpoints.down(769)]: {
 			margin: '10px 0 10px 105px',
 		},

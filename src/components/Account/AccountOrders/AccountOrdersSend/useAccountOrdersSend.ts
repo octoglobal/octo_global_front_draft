@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import {useEffect, useMemo} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {fetchOrdersSendData} from '@/reducers/orderSendSlice/asyncThunk/orderSendApi';
 import {useUserStore} from '@/hooks/useUserStore';
 import {onScroll} from '@/services/services';
@@ -25,6 +25,7 @@ export const useAccountOrdersSend = () => {
 	} = useAppSelector(state => state.adminReducer);
 
 	const dispatch = useAppDispatch();
+	const [isDeleteTrackNumberSuccess, setIsDeleteTrackNumberSuccess] = useState<boolean>(false);
 
 	const isSendDataArray = useMemo(() => (
 		!!(sendData.length && Array.isArray(sendData))
@@ -65,6 +66,8 @@ export const useAccountOrdersSend = () => {
 		isAdmin,
 		sendData,
 		sendDataEnd,
-		isSendDataArray
+		isSendDataArray,
+		isDeleteTrackNumberSuccess,
+		setIsDeleteTrackNumberSuccess
 	};
 };

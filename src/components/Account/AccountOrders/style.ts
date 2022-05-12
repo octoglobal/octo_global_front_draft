@@ -36,6 +36,7 @@ export const useAccountOrdersStyles = () => {
 
 	const ListMUI = styled('div')(({theme}) => ({
 		marginLeft: '206px',
+		minHeight: '400px',
 		[theme.breakpoints.down(1200)]: {
 			marginLeft: '106px',
 		},

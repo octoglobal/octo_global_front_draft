@@ -173,6 +173,5 @@ export const useAccountOrdersStock = () => {
 		isDataLength,
 		packageDopDownData,
 		isVisiblePlaceholder,
-
 	};
 };

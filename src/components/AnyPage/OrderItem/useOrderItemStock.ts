@@ -148,7 +148,7 @@ export const useOrderItemStock = (orderId: number, orderItem: IOrderModel) => {
 			onClose: () => setIsReturnSuccess(prevState => ({state: !prevState.state, text: prevState.text})),
 		},
 		containerStyles: {
-			marginTop: '45px',
+			// marginTop: '45px',
 		},
 		title: isReturnSuccess.text,
 	};
@@ -173,6 +173,7 @@ export const useOrderItemStock = (orderId: number, orderItem: IOrderModel) => {
 		isReturnOrder,
 		isStatusModal,
 		isDeleteModal,
+		setIsStatusModal,
 		setIsCheckOrder,
 		setIsReturnOrder,
 		setIsDeleteModal,

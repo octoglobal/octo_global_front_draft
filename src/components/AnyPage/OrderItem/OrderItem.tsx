@@ -3,12 +3,12 @@ import {IOrderModel} from '@/models/IOrderModel';
 import {useOrderItemStyles} from '@/components/AnyPage/OrderItem/style';
 import OrderItemTitle from '@/components/AnyPage/OrderItem/OrderItemTitle/OrderItemTitle';
 import OrderItemBody from '@/components/AnyPage/OrderItem/OrderItemBody/OrderItemBody';
-import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import {useOrderItemWait} from '@/components/AnyPage/OrderItem/useOrderItemWait';
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 import {useOrderItemStock} from '@/components/AnyPage/OrderItem/useOrderItemStock';
 import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 import {useOrderItemSend} from '@/components/AnyPage/OrderItem/useOrderItemSend';
+import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 
 
 export type ComponentType = 'wait' | 'stock' | 'send';
@@ -27,6 +27,33 @@ const getCustomHooksData = (component: ComponentType, orderId: number, orderItem
 		return sendData;
 	}
 };
+
+// const dialogStyles = {
+// 	'& .MuiDialog-container': {
+// 		'& .MuiPaper-root': {
+// 			borderRadius: '15px',
+// 			minWidth: '704px',
+// 			maxHeight: '353px',
+// 			height: '100%',
+// 			width: '100%',
+// 			'& > div': {
+// 				height: '100%',
+// 				padding: '115px 10px',
+// 				textAlign: 'center',
+// 				'& > div': {
+// 					'& > h4': {
+// 						marginBottom: '70px',
+// 					},
+// 					'& > button': {
+// 						width: '65px !important',
+// 						padding: '0',
+// 						minWidth: '65px !important',
+// 					}
+// 				}
+// 			},
+// 		}
+// 	}
+// };
 
 
 interface IOrderItemProps {
@@ -63,7 +90,6 @@ const OrderItem: FC<IOrderItemProps> = (
 	const {
 		isAdmin,
 		dropDownData,
-		dialogStyles,
 		isDeleteModal,
 		isStatusModal,
 		isReturnOrder,
@@ -87,6 +113,9 @@ const OrderItem: FC<IOrderItemProps> = (
 			...isBorderBottomFalseStyles,
 		};
 	}, [isBorderBottom]);
+
+	const isWait = useMemo(() => component == 'wait', [component]);
+
 
 	return (
 		<>
@@ -112,35 +141,45 @@ const OrderItem: FC<IOrderItemProps> = (
 			{(component == 'wait' || component == 'stock') && (
 				<>
 					{isAdmin && (
-						<ModalConfirmUI
-							open={isDeleteModal}
-							dialogSx={dialogStyles}
-							title='Вы точно хотите удалить?'
+						<OrderDeleteModal
+							dialogProps={{
+								open: isDeleteModal,
+								onClose: handleToggleModal(setIsDeleteModal)
+							}}
+							title='Вы точно хотите удалить заказ?'
+							buttonNoText='Нет'
 							onClickYes={handleDeleteOrder(id)}
 							onClickNo={handleToggleModal(setIsDeleteModal)}
-							buttonNoText='Нет'
 						/>
 					)}
 					{isAdmin && (
 						<OrderStatusModal
+							title={isWait ?
+								'Чтобы продолжить перенесите из ожидаемых на склад '
+								: 'Чтобы продолжить перенесите из склада в ожидаемые'
+							}
 							successCallback={handleSuccessChangeStatus(id)}
 							orderItem={orderItem}
 							open={isStatusModal}
-							onClose={handleToggleModal(setIsStatusModal)}
+							onClose={() => setIsStatusModal(false)}
 							component={component}
+							visibleDropDown={false}
+							buttonText={'Отлично'}
+							submitStatus={isWait ? 1 : 0}
 						/>
 					)}
 				</>
 			)}
 			{component == 'stock' && (
 				<>
-					<ModalConfirmUI
-						open={isReturnOrder}
-						dialogSx={dialogStyles}
+					<OrderDeleteModal
+						dialogProps={{
+							open: isReturnOrder,
+							onClose: handleToggleModal(setIsDeleteModal)
+						}}
 						title='Вы точно хотите вернуть заказ?'
 						onClickYes={handleReturnOrder(id)}
 						onClickNo={handleToggleModal(setIsReturnOrder)}
-						buttonNoText='Нет'
 					/>
 					<ModalUI
 						{...dialogSuccessReturnProps}

@@ -10,21 +10,29 @@ import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
 
 interface IOrderStatusModal {
 	open: boolean,
+	title: string;
+	submitStatus?: number;
 	onClose: () => void;
 	orderItem: IOrderModel;
 	successCallback: () => void;
 	component: ComponentType | 'stock2';
 	packageChange?: boolean;
+	visibleDropDown?: boolean;
+	buttonText?: string;
 }
 
 const OrderStatusModal: FC<IOrderStatusModal> = (
 	{
 		open,
 		onClose,
+		title = '',
 		orderItem,
 		successCallback,
 		component,
 		packageChange = false,
+		visibleDropDown = true,
+		buttonText = 'Отлично',
+		submitStatus = 0,
 	}
 ) => {
 
@@ -38,15 +46,15 @@ const OrderStatusModal: FC<IOrderStatusModal> = (
 		orderItem,
 		successCallback,
 		component,
-		packageChange
+		packageChange,
+		submitStatus
 	);
 
 	return (
 		<FormProvider {...methods}>
 			<FormMUI onSubmit={methods.handleSubmit(onSubmit)}>
 				<ModalUI
-					title={'Для продолжения добавьте трек номер\n' +
-						'и перенесите статус заказа'}
+					title={title}
 					defaultStylesButton={false}
 					dialogProps={{
 						open,
@@ -56,7 +64,12 @@ const OrderStatusModal: FC<IOrderStatusModal> = (
 					buttonProps={{
 						type: 'submit',
 						onClick: methods.handleSubmit(onSubmit),
+						sx: {
+							minWidth: '163px',
+							opacity: 1,
+						}
 					}}
+					buttonText={buttonText}
 				>
 					<ContainerMUI>
 						<TextFieldContainerMUI>
@@ -64,13 +77,15 @@ const OrderStatusModal: FC<IOrderStatusModal> = (
 								{...trackNumberProps}
 							/>
 						</TextFieldContainerMUI>
-						<DropDownContainerMUI>
-							<DropDownCollapseUI
-								title='Статус заказа'
-								required={true}
-								collapseItems={collapseItems}
-							/>
-						</DropDownContainerMUI>
+						{visibleDropDown && (
+							<DropDownContainerMUI>
+								<DropDownCollapseUI
+									title='Статус заказа'
+									required={true}
+									collapseItems={collapseItems}
+								/>
+							</DropDownContainerMUI>
+						)}
 					</ContainerMUI>
 				</ModalUI>
 			</FormMUI>

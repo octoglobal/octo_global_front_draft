@@ -10,8 +10,7 @@ export const useModalUIStyles = () => {
 				backgroundColor: '#F1F4F9',
 				boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.15)',
 				borderRadius: '15px',
-				// padding: '115px 10px',
-				padding: 0,
+				padding: '5px',
 				maxWidth: '573px',
 				maxHeight: '232px',
 				width: '100%',
@@ -20,10 +19,14 @@ export const useModalUIStyles = () => {
 				justifyContent: 'center',
 				alignItems: 'center',
 				flexDirection: 'column',
-				[theme.breakpoints.down(1025)]: {
+				[theme.breakpoints.down(769)]: {
 					minWidth: '319px',
 					minHeight: '140px',
+					height: 'auto',
 					padding: '20px 30px',
+				},
+				[theme.breakpoints.down(350)]: {
+					minWidth: '290px',
 				}
 			}
 		},
@@ -39,7 +42,7 @@ export const useModalUIStyles = () => {
 		[theme.breakpoints.down(1025)]: {
 			fontSize: '16px',
 			lineHeight: '18px',
-		}
+		},
 	}));
 
 	const DialogBodyMUI = styled('div')(() => ({
@@ -48,8 +51,8 @@ export const useModalUIStyles = () => {
 
 	const ButtonContainerMUI = styled('div')(({theme}) => ({
 		maxWidth: '135px',
-		margin: '98px auto 0',
-		[theme.breakpoints.down(1025)]: {
+		margin: '48px auto 0',
+		[theme.breakpoints.down(769)]: {
 			marginTop: '27px',
 		}
 	}));

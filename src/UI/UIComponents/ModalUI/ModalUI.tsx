@@ -2,7 +2,6 @@ import React, {FC, useEffect, useMemo} from 'react';
 import {ButtonProps, DialogProps, SxProps, Theme} from '@mui/material';
 import { useModalUIStyles } from './style';
 import {StyledComponent} from '@emotion/styled';
-import {MUIStyledCommonProps} from '@mui/system';
 
 export interface IModalUIProps {
 	dialogProps: DialogProps;
@@ -13,6 +12,9 @@ export interface IModalUIProps {
 	containerStyles?: SxProps;
 	closeTime?: number;
 	DialogContainerMUI?: StyledComponent<DialogProps>;
+	buttonText?: string;
+	titleStyle?: SxProps;
+	buttonClick?: () => void;
 }
 
 const ModalUI: FC<IModalUIProps> = (
@@ -22,16 +24,23 @@ const ModalUI: FC<IModalUIProps> = (
 		title,
 		defaultStylesButton = true,
 		buttonProps = {},
+		titleStyle = {},
 		containerStyles = {},
 		closeTime = 0,
 		DialogContainerMUI = DialogMUI,
+		buttonText = 'Отлично',
+		buttonClick
 	}
 ) => {
 
 
 	const handleCloseDialog = () => {
 		if (dialogProps?.onClose) {
-			dialogProps.onClose('', 'escapeKeyDown');
+			if (buttonClick) {
+				buttonClick();
+			} else {
+				dialogProps.onClose('', 'escapeKeyDown');
+			}
 		}
 	};
 
@@ -58,10 +67,10 @@ const ModalUI: FC<IModalUIProps> = (
 	return (
 		<DialogContainerMUI
 			{...dialogProps}
-			disableScrollLock
+			disableScrollLock={false}
 			BackdropComponent={BackDropBlurMUI}
 		>
-			<DialogTitleMUI>
+			<DialogTitleMUI sx={titleStyle}>
 				{title}
 			</DialogTitleMUI>
 			{children && (
@@ -74,7 +83,7 @@ const ModalUI: FC<IModalUIProps> = (
 					onClick={handleClickButton}
 					{...buttonProps}
 				>
-					Отлично
+					{buttonText}
 				</ButtonMUI>
 			</ButtonContainer>
 		</DialogContainerMUI>

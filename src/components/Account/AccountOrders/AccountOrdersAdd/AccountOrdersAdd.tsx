@@ -47,6 +47,7 @@ const AccountOrdersAdd = () => {
 								rules: {
 									required: true,
 									maxLength: 14,
+									pattern: /^[a-zA-Z0-9]+$/g
 								},
 							}}
 							inputProps={{
@@ -80,7 +81,7 @@ const AccountOrdersAdd = () => {
 				</FormMUI>
 				<AccountOrdersAddInstruction />
 			</ContainerMUI>
-			{true && (
+			{isAddOrder && (
 				<AccountAddModal
 					open={isAddOrder}
 					onClose={() => setIsAddOrder(false)}

@@ -24,7 +24,7 @@ export const useDropDownStyles = () => {
 		borderRadius: '8px',
 		boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.15)',
 		[theme.breakpoints.down(769)]: {
-			width: '133px',
+			width: '135px',
 		}
 	}));
 

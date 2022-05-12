@@ -63,11 +63,13 @@ const AccountOrdersStock = () => {
 						/>
 					</PlaceholderWrapperMUI>
 				)}
-				<AdminBottomMenu
-					isVisibleMenu={isVisibleMenu}
-					text={isUserText}
-					buttons={buttonsData}
-				/>
+				{!!isDataLength && (
+					<AdminBottomMenu
+						isVisibleMenu={isVisibleMenu}
+						text={isUserText}
+						buttons={buttonsData}
+					/>
+				)}
 			</FormProvider>
 		</WrapperOrdersMUI>
 	);

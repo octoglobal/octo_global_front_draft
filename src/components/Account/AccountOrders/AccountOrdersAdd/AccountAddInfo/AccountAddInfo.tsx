@@ -10,7 +10,7 @@ const AccountAddInfo = () => {
 			</IconMUI>
 			<TextMUI>
 				<TextPartOneSpanMUI>
-					Чтобы мы не потеряли ваш заказ пришлите нам на почту&nbsp;
+					Чтобы мы не потеряли ваш заказ, пришлите нам на почту&nbsp;
 				</TextPartOneSpanMUI>
 				<EmailLinkMUI
 					href='mailto:delivery@octo.global'

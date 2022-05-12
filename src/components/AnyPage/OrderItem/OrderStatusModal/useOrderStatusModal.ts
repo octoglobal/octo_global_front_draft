@@ -18,7 +18,8 @@ export const useOrderStatusModal = (
 	orderItem: IOrderModel,
 	successCallback: () => void,
 	component: ComponentType | 'stock2',
-	packageChange: boolean
+	packageChange: boolean,
+	submitStatus: number
 ) => {
 	const dispatch = useAppDispatch();
 	const methods = useForm<IFormStatus | FieldValues>();
@@ -64,7 +65,7 @@ export const useOrderStatusModal = (
 		controller: {
 			name: 'trackNumber',
 			control: methods.control,
-			rules: {required: true, maxLength: 14},
+			rules: {required: true, maxLength: 14, pattern: /^[a-zA-Z0-9]+$/g},
 		},
 		inputProps: {
 			placeholder: 'Трек номер',
@@ -80,7 +81,7 @@ export const useOrderStatusModal = (
 
 
 	const onSubmit: SubmitHandler<IFormStatus | FieldValues> = (data) => {
-		if (data?.trackNumber && data?.orderStatus?.value !== undefined) {
+		if (data?.trackNumber && (data?.orderStatus?.value !== undefined || submitStatus !== undefined)) {
 			try {
 				const trackNumber = methods.getValues('trackNumber');
 				if (packageChange) {
@@ -98,12 +99,13 @@ export const useOrderStatusModal = (
 							}
 						});
 				} else {
+					const statusId = data?.orderStatus?.value ? data?.orderStatus?.value : submitStatus;
 					octoAxios.post<IDefaultFetchSuccess>('/admin/orders', {
 						userId: orderItem.userId,
 						track_number: trackNumber ? trackNumber : orderItem.trackNumber,
 						title: orderItem.title,
 						comment: orderItem.comment,
-						statusId: data.orderStatus.value
+						statusId: statusId,
 					}).then(r => {
 						if (r.data.message === 'success') {
 							successCallback();

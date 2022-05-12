@@ -5,17 +5,15 @@ export const useOrderStatusModalStyles = () => {
 	const ContainerMUI = styled('div')(() => ({
 		marginTop: '25px',
 		width: '100%',
-		maxWidth: '552px',
-		margin: '25px auto',
+		maxWidth: '269px',
+		margin: '19px auto 30px',
 	}));
 
 	const FormMUI = styled('form')(() => ({
 	}));
 
 	const TextFieldContainerMUI = styled('div')(() => ({
-		marginBottom: '16px',
 		width: '100%',
-		margin: '0 auto 16px',
 		'& > div': {
 			'& > div.MuiFormControl-root': {
 				backgroundColor: '#F1F4F9',
@@ -26,8 +24,7 @@ export const useOrderStatusModalStyles = () => {
 	const DialogSx = {
 		'& > div': {
 			'& > div': {
-				padding: '0 !important',
-				minHeight: '410px !important',
+				backgroundColor: '#F1F4F9',
 			}
 		}
 	};
