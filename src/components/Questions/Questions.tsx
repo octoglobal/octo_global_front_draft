@@ -49,7 +49,7 @@ const Questions = () => {
 				<VpnPage/>
 			</CollapseInfo>
 			<CollapseInfo			
-				title={'Инструкция по переводу на иностранный язык'}
+				title={'Как перевести сайт на русский'}
 				open={openTranslate}
 			>
 				<TranslatePage/>

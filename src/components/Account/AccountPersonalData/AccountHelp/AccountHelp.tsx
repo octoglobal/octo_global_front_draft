@@ -57,7 +57,7 @@ const AccountHelp: FC = () => {
 						{isCustomSize ? <TranslateSmall /> : <Translate />}
 					</HelpImageMUI>
 					<HelperTextMUI>
-						<LinkUI href='/questions?translate'>Как перевести страницу на русский</LinkUI>						
+						<LinkUI href='/questions?translate'>Как перевести сайт на русский</LinkUI>						
 					</HelperTextMUI>
 				</HelpItemMUI>
 			</HelpWrapperMUI>
