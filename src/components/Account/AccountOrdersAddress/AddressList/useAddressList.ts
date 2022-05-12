@@ -16,12 +16,18 @@ export const useAddressList = () => {
 		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
 
-	const isAddresses = useMemo(() => (
-		!!(Array.isArray(addresses) && addresses?.length)
-	), [addresses]);
+	const isAddresses = useMemo(() => {
+		if (isAdmin && adminSwitchUserModel) {
+			return !!(Array.isArray(adminSwitchUserModel.addresses) && adminSwitchUserModel.addresses?.length);
+		}
+		if (!isAdmin) {
+			return !!(Array.isArray(addresses) && addresses?.length);
+		}
+	}, [addresses, isAdmin, adminSwitchUserModel]);
 
 	const addressesArray = useMemo(() => {
 		if (isAdmin) {
+			console.log('test', adminSwitchUserModel);
 			if (adminSwitchUserModel) {
 				return adminSwitchUserModel.addresses;
 			}
@@ -30,9 +36,6 @@ export const useAddressList = () => {
 			return  addresses;
 		}
 	}, [isAdmin, adminSwitchUserModel, adminSwitchIdToUser]);
-
-	console.log(adminSwitchIdToUser, adminSwitchUserModel);
-
 
 	return {
 		addresses: addressesArray,

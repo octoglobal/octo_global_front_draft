@@ -4,6 +4,7 @@ import AddressList from '@/components/Account/AccountOrdersAddress/AddressList/A
 import {FormProvider} from 'react-hook-form';
 import {useAccountOrdersAddress} from '@/components/Account/AccountOrdersAddress/useAccountOrdersAddress';
 import AddressCollapse from '@/components/Account/AccountOrdersAddress/AddressCollapse/AddressCollapse';
+import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 
 const AccountOrdersAddress = () => {
 
@@ -12,7 +13,10 @@ const AccountOrdersAddress = () => {
 		onSubmit,
 		isCollapse,
 		setIsCollapse,
-		handleToggleCollapse
+		isSuccessModal,
+		handlePushStock,
+		setIsSuccessModal,
+		handleToggleCollapse,
 	} = useAccountOrdersAddress();
 
 
@@ -39,7 +43,6 @@ const AccountOrdersAddress = () => {
 								</>
 							)}
 						</ActionsMUI>
-
 					</FormMUI>
 				</FormProvider>
 				<AddressCollapse
@@ -49,6 +52,19 @@ const AccountOrdersAddress = () => {
 					}}
 				/>
 			</WrapperMUI>
+			{isSuccessModal && (
+				<ModalUI
+					dialogProps={{
+						open: isSuccessModal,
+						onClose: setIsSuccessModal,
+					}}
+					title='Посылка оформлена'
+					buttonText='На склад'
+					containerStyles={{minWidth: '165px'}}
+					buttonClick={handlePushStock}
+					buttonProps={{sx: {minWidth: '165px', opacity: 1}}}
+				/>
+			)}
 		</ContainerMUI>
 	);
 };

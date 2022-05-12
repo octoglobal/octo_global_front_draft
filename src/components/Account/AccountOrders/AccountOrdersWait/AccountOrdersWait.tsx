@@ -22,6 +22,9 @@ const AccountOrdersWait = () => {
 
 	return (
 		<WrapperOrdersMUI>
+			<PageLabelMUI>
+				Ожидаемые
+			</PageLabelMUI>
 			<FormProvider {...methods}>
 				{isDataLength && (
 					<ListMUI>
@@ -64,6 +67,7 @@ const AccountOrdersWait = () => {
 
 const {
 	ListMUI,
+	PageLabelMUI,
 	WrapperOrdersMUI,
 	PlaceholderTextMUI,
 	PlaceholderLinkMUI,

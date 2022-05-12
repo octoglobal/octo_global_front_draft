@@ -12,10 +12,14 @@ interface IDropDownUIProps {
 	itemId?: number,
 	CustomIcon?: FC,
 	containerStyles?: SxProps
+	externalOpen?: boolean;
+	setExternalOpen?: (state: false) => void;
 }
 
 const DropDownUI: FC<IDropDownUIProps> = (
 	{
+		externalOpen = undefined,
+		setExternalOpen,
 		dropItems,
 		itemId,
 		containerStyles = {}
@@ -26,7 +30,7 @@ const DropDownUI: FC<IDropDownUIProps> = (
 		isOpen,
 		isMobile,
 		handleToggleOpen
-	} = useDropDownUI();
+	} = useDropDownUI(externalOpen, setExternalOpen);
 
 	return (
 		<ContainerMUI>

@@ -56,39 +56,11 @@ export const useOrderItemWait = () => {
 		{title: 'Перенести', onClick: handleToggleModal(setIsStatusModal)},
 	];
 
-
-	const dialogStyles = {
-		'& .MuiDialog-container': {
-			'& .MuiPaper-root': {
-				minWidth: '704px',
-				maxHeight: '353px',
-				height: '100%',
-				width: '100%',
-				'& > div': {
-					height: '100%',
-					padding: '115px 10px',
-					textAlign: 'center',
-					'& > div': {
-						'& > h4': {
-							marginBottom: '70px',
-						},
-						'& > button': {
-							width: '65px !important',
-							padding: '0',
-							minWidth: '65px !important',
-						}
-					}
-				},
-			}
-		}
-	};
-
 	return {
 		isAdmin,
 		isStatusModal,
 		isDeleteModal,
 		dropDownData,
-		dialogStyles,
 		setIsStatusModal,
 		setIsDeleteModal,
 		handleDeleteOrder,

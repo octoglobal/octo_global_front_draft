@@ -5,21 +5,24 @@ import PackageItem from '@/components/AnyPage/PackageItem/PackageItem';
 import { FormProvider, useForm } from 'react-hook-form';
 import AccountOrdersPlaceholder
 	from '@/components/Account/AccountOrders/AccountOrdersPlaceholder/AccountOrdersPlaceholder';
+import ModalUI from '../../../../UI/UIComponents/ModalUI/ModalUI';
 
 const AccountOrdersSend = () => {
-
 	const {
 		isAdmin,
 		sendData,
 		sendDataEnd,
 		isSendDataArray,
+		isDeleteTrackNumberSuccess,
+		setIsDeleteTrackNumberSuccess,
 	} = useAccountOrdersSend();
 	const methods = useForm();
 
-	console.log(isSendDataArray, sendDataEnd);
-
 	return (
 		<WrapperOrdersMUI>
+			<PageLabelMUI>
+				Отправленные
+			</PageLabelMUI>
 			<FormProvider {...methods}>
 				{isSendDataArray && (
 					<ListMUI>
@@ -30,6 +33,7 @@ const AccountOrdersSend = () => {
 								component='send'
 								dropItems={[]}
 								isVisibleTrackNumber={true}
+								onDeleteTrackNumber={() => setIsDeleteTrackNumberSuccess(true)}
 							/>
 						))}
 					</ListMUI>
@@ -42,12 +46,23 @@ const AccountOrdersSend = () => {
 					</PlaceholderWrapperMUI>
 				)}
 			</FormProvider>
+			{isDeleteTrackNumberSuccess && (
+				<ModalUI
+					dialogProps={{
+						open: isDeleteTrackNumberSuccess,
+						onClose: () => setIsDeleteTrackNumberSuccess(false),
+					}}
+					title='Посылка отправлена обратно на склад'
+					buttonText='Отлично'
+				/>
+			)}
 		</WrapperOrdersMUI>
 	);
 };
 
 const {
 	ListMUI,
+	PageLabelMUI,
 	WrapperOrdersMUI,
 	PlaceholderWrapperMUI
 } = useAccountOrdersStyles();

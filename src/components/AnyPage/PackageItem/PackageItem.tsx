@@ -8,13 +8,14 @@ import {usePackageItem} from '@/components/AnyPage/PackageItem/usePackageItem';
 import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/OrderStatusModal';
 import ArrowRightIcon from '../../../UI/UIIcon/Arrow_Blue.svg';
 import {SxProps} from '@mui/material';
-import ModalConfirmUI from '../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
+import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 
 interface IPackageItem {
 	component: ComponentType,
 	packageData: IPackageModel
 	dropItems: IDropItem[],
 	isVisibleTrackNumber?: boolean,
+	onDeleteTrackNumber?: () => void;
 }
 
 const PackageItem: FC<IPackageItem> = (
@@ -23,6 +24,7 @@ const PackageItem: FC<IPackageItem> = (
 		component,
 		dropItems,
 		isVisibleTrackNumber = false,
+		onDeleteTrackNumber
 	}
 ) => {
 
@@ -32,6 +34,7 @@ const PackageItem: FC<IPackageItem> = (
 		longId,
 		isStatus,
 		orderItem,
+		isMobile,
 		isChangeStatus,
 		isVisibleAddress,
 		isDropDownVisible,
@@ -46,6 +49,7 @@ const PackageItem: FC<IPackageItem> = (
 		handleToggleDeleteTrackNumberModal,
 	} = usePackageItem(packageData, dropItems, component);
 
+
 	const isVisibleStatus = useMemo(() => (
 		isStatus.visible && isStatus.visibleText && !isVisibleTrackNumber
 	), [isStatus, isVisibleTrackNumber]);
@@ -54,6 +58,13 @@ const PackageItem: FC<IPackageItem> = (
 		if (component == 'send') return {width: '200px'};
 		return {};
 	}, [component]);
+
+	const handleConfirmDeleteTrackNumber = () => {
+		handleDeleteTrackNumber();
+		if (onDeleteTrackNumber) {
+			onDeleteTrackNumber();
+		}
+	};
 
 	return (
 		<ContainerMUI>
@@ -68,7 +79,7 @@ const PackageItem: FC<IPackageItem> = (
 						</StatusTextMUI>
 					)}
 					{isVisibleTrackNumber && (
-						<>
+						<TrackNumberContainerMUI>
 							<TrackNumberMUI>{packageData.trackNumber}</TrackNumberMUI>
 							<TrackNumberLinkMUI
 								rel='noreferrer'
@@ -82,7 +93,7 @@ const PackageItem: FC<IPackageItem> = (
 									<ArrowRightIcon/>
 								</TrackNumberIconMUI>
 							</TrackNumberLinkMUI>
-						</>
+						</TrackNumberContainerMUI>
 					)}
 				</TitleTextMUI>
 				{isDropDownVisible && (
@@ -127,30 +138,39 @@ const PackageItem: FC<IPackageItem> = (
 			)}
 			{isChangeStatus && (
 				<OrderStatusModal
+					title={
+						isMobile ? 'Перед оформлением посылки не забудьте указать трек номер' :
+							'Перед оформлением посылки не забудьте \n' + 'указать трек номер'
+					}
 					successCallback={handleAddTrackNumber}
 					orderItem={orderItem}
 					open={isChangeStatus}
 					onClose={handleAddTrackNumber}
 					component={'stock2'}
 					packageChange={true}
+					visibleDropDown={false}
 				/>
 			)}
 			{isDeletePackageModal && (
-				<ModalConfirmUI
-					open={isDeletePackageModal}
+				<OrderDeleteModal
+					dialogProps={{
+						open: isDeletePackageModal,
+						onClose: handleToggleDeleteModal,
+					}}
 					title='Вы точно хотите удалить посылку?'
 					onClickYes={handleDeletePackage}
 					onClickNo={handleToggleDeleteModal}
-					buttonNoText='Нет'
 				/>
 			)}
 			{isDeleteTrackNumberModal && (
-				<ModalConfirmUI
-					open={isDeleteTrackNumberModal}
+				<OrderDeleteModal
+					dialogProps={{
+						open: isDeleteTrackNumberModal,
+						onClose: handleToggleDeleteTrackNumberModal
+					}}
 					title='Вы точно хотите удалить трек номер с этой посылки?'
-					onClickYes={handleDeleteTrackNumber}
+					onClickYes={handleConfirmDeleteTrackNumber}
 					onClickNo={handleToggleDeleteTrackNumberModal}
-					buttonNoText='Нет'
 				/>
 			)}
 		</ContainerMUI>
@@ -169,6 +189,7 @@ const {
 	AddressContainerMUI,
 	TrackNumberLinkMUI,
 	TrackNumberLinkTextMUI,
+	TrackNumberContainerMUI,
 	TrackNumberIconMUI,
 	AddressRowMUI,
 } = usePackageItemStyles();

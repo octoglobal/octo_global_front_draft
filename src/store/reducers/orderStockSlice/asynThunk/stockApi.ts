@@ -56,7 +56,6 @@ export const fetchPackageStockData = createAsyncThunk(
 				userId: data.userId
 			}
 			}).then(r => r.data);
-			console.log(response);
 			return {
 				packageData: response.packages,
 				packageEnd: !(response.packages.length === data.page_limit),

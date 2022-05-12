@@ -19,6 +19,7 @@ export const useAccountTabOrderMobileStyles = () => {
 		color: '#000000',
 		fontWeight: active ? 400 : 300,
 		backgroundColor: 'transparent',
+		cursor: 'pointer',
 		margin: '0 !important',
 
 		[theme.breakpoints.down(500)]: {
@@ -32,6 +33,11 @@ export const useAccountTabOrderMobileStyles = () => {
 			'& > button': {
 				padding: 0,
 				margin: '0 0 0 5px !important',
+			},
+			'& > div': {
+				'& > button': {
+					margin: '0 !important',
+				}
 			}
 		}
 	}));

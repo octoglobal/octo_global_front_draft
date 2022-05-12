@@ -26,6 +26,9 @@ const AccountOrdersStock = () => {
 
 	return (
 		<WrapperOrdersMUI>
+			<PageLabelMUI>
+				На складе
+			</PageLabelMUI>
 			<FormProvider {...methods}>
 				{!!isDataLength  && (
 					<ListMUI>
@@ -60,11 +63,13 @@ const AccountOrdersStock = () => {
 						/>
 					</PlaceholderWrapperMUI>
 				)}
-				<AdminBottomMenu
-					isVisibleMenu={isVisibleMenu}
-					text={isUserText}
-					buttons={buttonsData}
-				/>
+				{!!isDataLength && (
+					<AdminBottomMenu
+						isVisibleMenu={isVisibleMenu}
+						text={isUserText}
+						buttons={buttonsData}
+					/>
+				)}
 			</FormProvider>
 		</WrapperOrdersMUI>
 	);
@@ -72,6 +77,7 @@ const AccountOrdersStock = () => {
 
 const {
 	ListMUI,
+	PageLabelMUI,
 	WrapperOrdersMUI,
 	PlaceholderWrapperMUI
 } = useAccountOrdersStyles();

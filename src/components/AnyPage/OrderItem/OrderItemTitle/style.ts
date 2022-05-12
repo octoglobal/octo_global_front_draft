@@ -33,7 +33,7 @@ export const useOrderTitleStyles = () => {
 			marginLeft: '10px',
 			fontSize: '16px',
 			lineHeight: '18px',
-		}
+		},
 	}));
 
 	return {

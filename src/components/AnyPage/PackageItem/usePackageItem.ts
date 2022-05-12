@@ -7,6 +7,7 @@ import {IPackageModel} from '@/models/IPackageModel';
 import {IDropItem} from '../../../UI/UIComponents/DropDownUI/type';
 import {ComponentType} from '@/components/AnyPage/OrderItem/OrderItem';
 import {fetchDeletePackageInSend, fetchDeleteTrackNumber} from '@/reducers/orderSendSlice/asyncThunk/orderSendApi';
+import {useMediaQuery} from '@mui/material';
 
 export const usePackageItem = (
 	packageData: IPackageModel,
@@ -27,6 +28,8 @@ export const usePackageItem = (
 		adminSwitchIdToUser
 	} = useAppSelector(state => state.adminReducer);
 	const dispatch = useAppDispatch();
+
+	const isMobile = useMediaQuery('(max-width: 450px)');
 	const [isChangeStatus, setIsChangeStatus] = useState<boolean>(false);
 	const [isDeletePackageModal, setIsDeletePackageModal] = useState<boolean>(false);
 	const [isDeleteTrackNumberModal, setIsDeleteTrackNumberModal] = useState<boolean>(false);
@@ -167,6 +170,7 @@ export const usePackageItem = (
 		}
 	};
 
+
 	const modificationDropItemArray = useMemo(() => {
 		let dropItemsArray = [];
 		if (statusId === 2 && isAdmin) {
@@ -185,15 +189,11 @@ export const usePackageItem = (
 		} else if (statusId === 4 && isAdmin) {
 			dropItemsArray = [
 				...dropItems,
-				{
-					title: 'Перенести',
-					onClick: handleAddTrackNumber
-				}
 			];
 		} else if (statusId === 3 && component == 'send')  {
 			dropItemsArray = [
 				{
-					title: 'Удалить трек номер',
+					title: 'Переместить',
 					onClick: handleToggleDeleteTrackNumberModal,
 				}
 			];
@@ -220,6 +220,7 @@ export const usePackageItem = (
 		orders,
 		isStatus,
 		orderItem,
+		isMobile,
 		isChangeStatus,
 		isVisibleAddress,
 		setIsChangeStatus,
@@ -232,6 +233,7 @@ export const usePackageItem = (
 		handleDeleteTrackNumber,
 		handleToggleDeleteTrackNumberModal,
 		orderContainerStyles,
-		modificationDropItemArray
+		modificationDropItemArray,
+		setIsDeleteTrackNumberModal,
 	};
 };

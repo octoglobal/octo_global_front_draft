@@ -10,19 +10,22 @@ export const useDropDownStyles = () => {
 
 	const OverlayModalMUI = styled(Dialog)(() => ({
 		opacity: 0,
-		zIndex: 5,
+		zIndex: 1,
 	}));
 
-	const ButtonContainerMUI = styled('div')(() => ({
+	const ButtonContainerMUI = styled('div')(({theme}) => ({
 		position: 'absolute',
 		right: 0,
 		top: '40px',
-		zIndex: 10,
+		zIndex: 2,
 		padding: '5px 0',
 		width: '176px',
 		backgroundColor: '#FFFFFF',
 		borderRadius: '8px',
-		boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.15)'
+		boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.15)',
+		[theme.breakpoints.down(769)]: {
+			width: '135px',
+		}
 	}));
 
 	const ContainerMUI = styled('div')(() => ({

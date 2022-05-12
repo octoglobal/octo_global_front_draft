@@ -5,21 +5,28 @@ export const useAccountOrdersAddStyles = () => {
 	const ContainerMUI = styled('div')(({theme}) => ({
 		width: '562px',
 		marginLeft: '206px',
+		[theme.breakpoints.down(1380)]: {
+			marginLeft: '106px'
+		},
+		[theme.breakpoints.down(1255)]: {
+			marginLeft: '56px'
+		},
+		[theme.breakpoints.down(1255)]: {
+			marginLeft: '56px'
+		},
 		[theme.breakpoints.down(1025)]: {
 			marginLeft: '0px',
 			width: '100%',
 		}
 	}));
 
-	const PageLabelMUI = styled('h2')(({theme}) => ({
-		[theme.breakpoints.up(1025)]: {
-			display: 'none',
-		},
-		fontSize: '14px',
-		lineHeight: '16px',
-		fontWeight: 400,
-		color: '#274D82',
-		marginBottom: '15px',
+	const InfoContainerMUI = styled('div')(({theme}) => ({
+		display: 'none',
+		[theme.breakpoints.down(1025)]: {
+			display: 'block',
+			width: '100%',
+			marginBottom: '20px',
+		}
 	}));
 
 	const FormMUI = styled('form')(({theme}) => ({
@@ -29,6 +36,7 @@ export const useAccountOrdersAddStyles = () => {
 		marginBottom: '25px',
 		[theme.breakpoints.down(1025)]: {
 			marginBottom: '17px',
+			// alignItems: 'flex-start',
 		}
 	}));
 
@@ -123,11 +131,11 @@ export const useAccountOrdersAddStyles = () => {
 	return {
 		FormMUI,
 		ContainerMUI,
-		PageLabelMUI,
 		inputContainerSX,
 		ButtonContainerMUI,
 		TextFieldContainerMUI,
 		TextAreaContainerMUI,
+		InfoContainerMUI,
 		inputContainerAdaptiveSX
 	};
 };

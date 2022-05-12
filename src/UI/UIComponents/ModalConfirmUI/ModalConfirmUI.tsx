@@ -11,7 +11,8 @@ interface IModalConfirmUI {
 	onClickYes: () => void,
 	onClickNo: () => void,
 	buttonNoText?: string;
-	dialogSx?: SxProps
+	dialogSx?: SxProps;
+	dialogTitleSx?: SxProps
 }
 
 const ModalConfirmUI: FC<IModalConfirmUI> = (
@@ -21,7 +22,9 @@ const ModalConfirmUI: FC<IModalConfirmUI> = (
 		onClickYes,
 		onClickNo,
 		buttonNoText,
-		dialogSx = {}}
+		dialogSx = {},
+		dialogTitleSx = {}
+	}
 ) => {
 
 	const {
@@ -43,7 +46,11 @@ const ModalConfirmUI: FC<IModalConfirmUI> = (
 			disableScrollLock
 		>
 			<ModalUI>
-				<DialogTitleUI>{title}</DialogTitleUI>
+				<DialogTitleUI
+					sx={dialogTitleSx}
+				>
+					{title}
+				</DialogTitleUI>
 				<DialogActionsUI>
 					<ButtonUI
 						style={ButtonConfirmUI}
