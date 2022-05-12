@@ -43,8 +43,8 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const editTextValue = (title: string | null | undefined,searchValue:string, count:number) =>{		
 		if (searchValue && title){	
-			const sortTitle= ellipsis(title, count);
-			const textsArr = sortTitle.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
+			const shortTitle= ellipsis(title, count);
+			const textsArr = shortTitle.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
 			let markText ;
@@ -53,7 +53,11 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			} else {				
 				markText = '';
 			}	
-			return <>{textsArr[0]}<TextMarkMUI>{markText}</TextMarkMUI>{textsArr[1]}</>; 			
+			if (markText.length>count){
+				textsArr[0] = '';
+			}
+			console.log(textsArr);
+			return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
 			
 		} else {
 			return '';
