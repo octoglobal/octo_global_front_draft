@@ -1,17 +1,19 @@
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useCollapseInfoStyles } from '@/components/AnyPage/CollapseInfo/style';
 
 interface ICollapseInfoProps {
 	title: string;	
 	end?: boolean,
 	children?: React.ReactNode | React.ReactElement | React.ReactChild,
+	open: boolean
 }
 
 const CollapseInfo: FC<ICollapseInfoProps> = (
 	{
 		title,		
 		end,
-		children
+		children,
+		open
 	}
 ) => {
 	
@@ -37,7 +39,9 @@ const CollapseInfo: FC<ICollapseInfoProps> = (
 		return  {};
 	}, [end]);
 
-
+	useEffect(()=>{
+		setIsOpen(open);
+	},[open]);
 	return (
 		<ContainerMUI
 			sx={lastItemStyles}

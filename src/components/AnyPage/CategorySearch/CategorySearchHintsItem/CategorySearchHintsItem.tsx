@@ -55,8 +55,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			}	
 			if (markText.length>count){
 				textsArr[0] = '';
-			}
-			console.log(textsArr);
+			}			
 			return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
 			
 		} else {
