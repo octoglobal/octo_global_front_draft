@@ -46,7 +46,7 @@ const Footer = () => {
 
 				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Общая информация</FooterColumnTitleUI>
-					<FooterColumnTextUI>О нас</FooterColumnTextUI>
+					<FooterColumnTextUI href='/aboutus'>О нас</FooterColumnTextUI>
 					<FooterColumnTextUI>Контакты</FooterColumnTextUI>
 					<FooterColumnTextUI href='/lawinfo'>Юридическая информация</FooterColumnTextUI>
 				</FooterColumnBlockUI>

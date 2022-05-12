@@ -1,4 +1,4 @@
-import {styled, Typography} from '@mui/material';
+import {styled} from '@mui/material';
 
 export const useAccountHelpStyle = () => {
 
@@ -49,7 +49,7 @@ export const useAccountHelpStyle = () => {
 		
 	}));
 
-	const HelperTextMUI = styled(Typography)(({theme}) => ({
+	const HelperTextMUI = styled('div')(({theme}) => ({
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
@@ -60,6 +60,9 @@ export const useAccountHelpStyle = () => {
 		textAlign: 'center',
 		marginTop: '8px',
 		width: '220px',	
+		'&>a':{
+			color: '#274D82',
+		},
 		[theme.breakpoints.down(1024)]: {
 			fontSize: '16px',
 			width: '100%',

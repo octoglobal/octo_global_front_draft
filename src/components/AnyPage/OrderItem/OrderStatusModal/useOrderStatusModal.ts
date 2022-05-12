@@ -46,7 +46,7 @@ export const useOrderStatusModal = (
 		if (component == 'stock2') {
 			return [
 				{
-					title: 'Отправленые',
+					title: 'Отправленные',
 					name: 'send',
 					value: 2,
 				},

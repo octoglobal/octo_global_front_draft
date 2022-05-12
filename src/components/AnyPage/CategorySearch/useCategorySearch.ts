@@ -20,19 +20,21 @@ export const useCategorySearch = (
 	const [isMouseEnter, setIsMouseEnter] = useState(false);
 
 
+
 	const isHintsData = useMemo(() => (
 		Array.isArray(searchHints) && searchHints?.length
+
 	), [searchHints]);
 
 	const isVisibleHints = useMemo(() => (
-		!!(isHintsData && isFocus)
+		!!(isHintsData && isFocus && searchValue)
 	), [isFocus, isHintsData]);
 
 
 	const handleChangeFocus = (state: boolean) => {
 		return () => {
 			if (!state) {
-				setTimeout(function() {
+				setTimeout(function() {					
 					setIsFocus(state);
 				}.bind(this), 150);
 				return;
@@ -100,7 +102,7 @@ export const useCategorySearch = (
 
 	const handleClickHintItem = (title: string, hints: IHints & IAdminHintsData) => {
 		return () => {
-			// console.log(hints);
+		
 			if (title && !hints?.email) {
 				setValue('search', title);
 			}
@@ -122,6 +124,12 @@ export const useCategorySearch = (
 		}
 		if (!searchValue && searchHints?.length) {
 			setActiveSuggestion(0);
+		}
+
+		
+		if (!searchValue){		
+			
+			handleKeyDownEnter();
 		}
 	}, [searchValue]);
 

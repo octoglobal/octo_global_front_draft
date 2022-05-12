@@ -12,7 +12,7 @@ const OctoIconsUI = styled('span')(() => ({
 	width: 'auto',
 	display: 'flex',
 	flexDirection: 'row',
-	alignItems: 'baseline',
+	alignItems: 'center',
 	visibility: 'hidden',
 
 	'& svg': {

@@ -6,7 +6,8 @@ import {
 } from '@/components/AnyPage/CategorySearch/CategorySearchHintsItem/useCategorySearchHintsItem';
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 import AccountSearchHint from '@/components/Account/AccountSearch/AccountSearchHint/AccountSearchHint';
-
+import {useWatch} from 'react-hook-form';
+import { ellipsis } from '@/lib/services/services';
 interface ICategorySearchHintsItemProps extends IHints {
 	hint: IHints | IAdminHintsData;
 	active: boolean;
@@ -28,14 +29,41 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 		isMouseEnter,
 		handleClickHintItem,
 		handleChangeActiveSuggestion,
-		isAccount = false,
+		isAccount = false,		
 	}
 ) => {
 
 	const {
 		activeStyles,
+		isCustomSize,
 	} = useCategorySearchHintsItem(active, title, isMouseEnter);
-
+	
+	
+	const searchValue = useWatch({name: 'search'});
+	
+	const editTextValue = (title: string | null | undefined,searchValue:string, count:number) =>{		
+		if (searchValue && title){	
+			const shortTitle= ellipsis(title, count);
+			const textsArr = shortTitle.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
+			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
+		
+			let markText ;
+			if (result?.index !== null && result?.index !== undefined) {
+				markText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
+			} else {				
+				markText = '';
+			}	
+			if (markText.length>count){
+				textsArr[0] = '';
+			}			
+			return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
+			
+		} else {
+			return '';
+		}
+		
+	};
+	
 	return (
 		<ItemMUI>
 			<ButtonMUI
@@ -45,13 +73,17 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
 				onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
 			>
+				
 				{isAccount ? (
 					<AccountSearchHint
 						hint={hint as IAdminHintsData}
+						markText={editTextValue}
+						searchValue={searchValue}
+						isCustomSize={isCustomSize}
 					/>
 				) : (
-					<ItemTextMUI>
-						{title}
+					<ItemTextMUI>						
+						{editTextValue(title,searchValue ,title.length)}					
 					</ItemTextMUI>
 				)}
 			</ButtonMUI>
@@ -62,7 +94,9 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 const {
 	ItemMUI,
 	ButtonMUI,
-	ItemTextMUI
+	ItemTextMUI,
+	TextMarkMUI,
+	
 } = useCategorySearchHintsItemStyles();
 
 export default React.memo(CategorySearchHintsItem);
