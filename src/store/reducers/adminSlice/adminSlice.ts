@@ -38,8 +38,8 @@ export const adminSlice = createSlice({
 		},
 		clearAdminHints: (state) => {
 			state.hints = [];
-    },
-		resetDat: (state) => {
+    	},
+		resetData: (state) => {
 			state.hints = [];
 			state.adminSwitchIdToUser = null;
 			state.search = '';
