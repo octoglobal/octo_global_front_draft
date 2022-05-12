@@ -10,6 +10,7 @@
     {
         "title": "Заказы",
         "url": "orders/wait",
+        "baseUrl": "orders",
         "query": {
 
         },

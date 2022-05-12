@@ -18,7 +18,7 @@ const AccountOrdersAdd = () => {
 		handleSubmit,
 		textFieldName,
 		textFieldDesc,
-		handleToggleOrder,
+		setIsAddOrder,
 		textFieldTrackNumber,
 	} = useAccountOrdersAdd();
 
@@ -74,10 +74,12 @@ const AccountOrdersAdd = () => {
 				</FormMUI>
 				<AccountOrdersAddInstruction />
 			</ContainerMUI>
-			<AccountAddModal
-				open={isAddOrder}
-				onClose={handleToggleOrder}
-			/>
+			{isAddOrder && (
+				<AccountAddModal
+					open={isAddOrder}
+					onClose={() => setIsAddOrder(false)}
+				/>
+			)}
 		</>
 	);
 };

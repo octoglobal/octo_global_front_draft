@@ -48,6 +48,10 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
+	const AdminMarginBottomMUI = styled('div')(() => ({
+		marginBottom: '15px',
+	}));
+
 	const FormTableUI = styled('div')(({theme}) => ({
 		width: '100%',
 
@@ -88,7 +92,7 @@ export const useAccountSettingsStyle = () => {
 
 	const FormTableUserUI = styled('div')(({theme}) => ({
 		marginBottom: '12px',
-		
+
 		[theme.breakpoints.down(600)]: {
 			marginBottom: '6px',
 		},
@@ -119,7 +123,7 @@ export const useAccountSettingsStyle = () => {
 
 		// width: '50%',
 		[theme.breakpoints.down(600)]: {
-			fontSize: '16px'	
+			fontSize: '16px'
 		},
 
 	}));
@@ -307,7 +311,7 @@ export const useAccountSettingsStyle = () => {
 		},
 
 		'& .MuiOutlinedInput-root': {
-		
+
 			'& input': {
 				padding: '9px 14px 11px 14px',
 				fontStyle: 'normal',
@@ -342,7 +346,7 @@ export const useAccountSettingsStyle = () => {
 
 		},
 	}));
-	
+
 	const FormContainerBottomMUI = styled('div')(({theme}) => ({
 		marginBottom: '0px',
 
@@ -357,7 +361,7 @@ export const useAccountSettingsStyle = () => {
 		alignItems: 'center',
 
 		[theme.breakpoints.down(600)]: {
-			height: '40px',	
+			height: '40px',
 			justifyContent: 'space-between',
 
 		},
@@ -384,12 +388,12 @@ export const useAccountSettingsStyle = () => {
 		// width: '60%',
 		width: '287px',
 		textAlign: 'left',
-		
+
 		[theme.breakpoints.down(600)]: {
 			textAlign: 'right',
-		
+
 			'& > * .MuiOutlinedInput-root': {
-			
+
 				'& input': {
 					padding: '5px 5px 3px 5px',
 					fontSize: '16px'
@@ -400,8 +404,8 @@ export const useAccountSettingsStyle = () => {
 			textAlign: 'right',
 			maxWidth: '227px',
 		},
-		
-		
+
+
 	}));
 
 	const FormSectionMUI = styled('div')(({theme}) => ({
@@ -445,9 +449,9 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(365)]: {
 			fontSize: '14px',
 			width: '100%',
-			
+
 		},
-		
+
 	}));
 
 	//
@@ -463,7 +467,7 @@ export const useAccountSettingsStyle = () => {
 		[theme.breakpoints.down(600)]: {
 			fontSize: '16px',
 		    // width: '100px',
-			
+
 		},
 		[theme.breakpoints.down(365)]: {
 			fontSize: '14px',
@@ -485,43 +489,43 @@ export const useAccountSettingsStyle = () => {
 			// width: 'auto',
 			// maxWidth: '227px',
 		},
-		
+
 	}));
 	const TextFieldEmailMUI = styled('div')(({theme}) => ({
 		alignItems: 'center',
-		
+
 		'& * .MuiOutlinedInput-root': {
-			
+
 			'& input': {
 				padding: '0px !important',
 				fontSize: '20px',
-			
+
 			},
 		},
 		[theme.breakpoints.down(600)]: {
-		
+
 			'& * .MuiOutlinedInput-root': {
-			
+
 				'& input': {
 					fontSize: '16px !important',
 					textAlign: 'right'
 				},
 			},
 		},
-		
+
 	}));
 
 	const FormTextFieldContainerMUI = styled('div')(({theme}) => ({
 
 		'& > * .MuiOutlinedInput-root': {
-			
+
 			'& input': {
 				fontSize: '20px',
 			},
 		},
 		[theme.breakpoints.down(600)]: {
 			'& > * .MuiOutlinedInput-root': {
-			
+
 				'& input': {
 					fontSize: '16px !important',
 					padding: '5px 5px 3px 5px',
@@ -561,6 +565,7 @@ export const useAccountSettingsStyle = () => {
 		FormTextFieldContainerMUI,
 		FormContainerBottomMUI,
 		MailLeftMUI,
-		MailRightMUI
+		MailRightMUI,
+		AdminMarginBottomMUI
 	};
 };

@@ -2,6 +2,9 @@ import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useEffect, useMemo} from 'react';
 import {fetchOrdersSendData} from '@/reducers/orderSendSlice/asyncThunk/orderSendApi';
 import {useUserStore} from '@/hooks/useUserStore';
+import {onScroll} from '@/services/services';
+import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+import {orderSendSlice} from '@/reducers/orderSendSlice/orderSendSlice';
 
 export const useAccountOrdersSend = () => {
 
@@ -14,10 +17,11 @@ export const useAccountOrdersSend = () => {
 		sendData,
 		pageLimit,
 		updateData,
+		sendDataEnd,
 	} = useAppSelector(state => state.orderSendReducer);
 
 	const {
-		adminSwitchIdToUser
+		adminSwitchIdToUser,
 	} = useAppSelector(state => state.adminReducer);
 
 	const dispatch = useAppDispatch();
@@ -26,10 +30,8 @@ export const useAccountOrdersSend = () => {
 		!!(sendData.length && Array.isArray(sendData))
 	), [sendData]);
 
-	console.log(sendData);
-
 	useEffect(() => {
-		if (updateData) {
+		if (updateData && !sendDataEnd) {
 			if (isAdmin) {
 				if (adminSwitchIdToUser) {
 					dispatch(fetchOrdersSendData({
@@ -50,8 +52,19 @@ export const useAccountOrdersSend = () => {
 		}
 	}, [isAdmin, adminSwitchIdToUser, updateData]);
 
+	useEffect(() => {
+		window.addEventListener('scroll', (e) => onScroll(e,
+			() => dispatch(orderSendSlice.actions.updateData())));
+		return () => {
+			window.removeEventListener('scroll', (e) => onScroll(e,
+				() => dispatch(orderWaitSlice.actions.updateData())));
+		};
+	}, []);
+
 	return {
+		isAdmin,
 		sendData,
+		sendDataEnd,
 		isSendDataArray
 	};
 };

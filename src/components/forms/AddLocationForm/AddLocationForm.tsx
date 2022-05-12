@@ -19,6 +19,7 @@ interface IAddLocationForm {
 	isAddressProperty?: boolean // флаг, который показываем нам, что мы пришли со странички оформления продукта (компонента - AccountOrdersAddress)
 	buttonStyles?: SxProps
 	buttonSend?: string;
+	textFieldStyles?: SxProps
 }
 
 const AddLocationForm: FC<IAddLocationForm> = (
@@ -28,6 +29,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		isAddressProperty = false,
 		buttonStyles = {},
 		buttonSend = '',
+		textFieldStyles = {},
 	}
 ) => {
 	const {
@@ -65,12 +67,19 @@ const AddLocationForm: FC<IAddLocationForm> = (
 
 	const addressRegex = useMemo(() => new RegExp(/[^A-Za-z0-9#?!:;,.-_+= ]/gi), []);
 
+	const TextFieldStyles = useMemo(
+		() => ({...FormTextFieldUI, ...textFieldStyles} as SxProps),
+		[textFieldStyles]
+	);
+
 	useEffect(() => {
 		setError('address', {
 			type: 'string',
 			message: '',
 		});
 	}, []);
+
+	console.log('isAddressProperty: ', isAddressProperty);
 
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
@@ -90,7 +99,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 							type: 'text',
 							required: true,
 							// helperText: 'Заполните поле "Почта"',
-							sx: FormTextFieldUI,
+							sx: TextFieldStyles,
 						}}
 						regexProps={{
 							regex: addressRegex,
@@ -112,7 +121,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 							name: 'surname',
 							type: 'text',
 							required: true,
-							sx: FormTextFieldUI,
+							sx: TextFieldStyles,
 							// helperText: 'Заполните поле "Почта"',
 						}}
 						regexProps={{
@@ -135,7 +144,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 							name: 'phone',
 							type: 'text',
 							required: true,
-							sx: FormTextFieldUI,
+							sx: TextFieldStyles,
 							// helperText: 'Заполните поле "Почта"',
 						}}
 					/>
@@ -155,8 +164,8 @@ const AddLocationForm: FC<IAddLocationForm> = (
 							name: 'address',
 							type: 'text',
 							required: true,
-							sx: FormTextFieldUI,
-							helperText: isAddressProperty ? '' : 'Только латинские цифры и буквы',
+							sx: TextFieldStyles,
+							helperText: isAddressProperty ? '' : 'Только латинские буквы и цифры',
 						}}
 						regexProps={{
 							regex: addressRegex,

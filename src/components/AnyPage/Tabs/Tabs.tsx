@@ -10,6 +10,7 @@ import {useMobile} from '@/hooks/useMedia';
 import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTransp.svg';
 import AccountTabOrderMobile from '@/components/Account/AccountTabOrderMobile/AccountTabOrderMobile';
 import { useMediaQuery } from '@mui/material';
+import {useUserStore} from '@/hooks/useUserStore';
 
 
 type TabsQueryProps = {
@@ -26,6 +27,7 @@ interface ITabsProps {
 	data: Array<{
 		title: string,
 		url: string,
+		baseUrl?: string,
 		query: ITabsQueryProps | object,
 		showMobile: boolean
 	}>
@@ -33,42 +35,45 @@ interface ITabsProps {
 
 const Tabs: FC<ITabsProps> = ({data}) => {
 
-	const {
-		TabWrapperUI,
-		TabUI,
-		TabsListUI,
-		TabsMarginLeft,
-		BgMUI
-	} = useTabsStyle();
-
 	const {isMobile} = useMobile();
 	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
+	const {
+		isAdmin
+	} = useUserStore();
 
 	const {router, pushTo} = useCustomRouter();
 
-	const handlerPushToTab = (url: string, query = {}) => {
+	const handlerPushToTab = (url: string) => {
 		let urlTo = router.pathname;
 		if (url) urlTo = `/account/${url}`;
-
-		pushTo(urlTo, query);
+		if (!isAdmin) {
+			pushTo(urlTo);
+		} else {
+			const pathname = router.asPath;
+			const userId = pathname?.split('userId=')[1]?.split('&')[0];
+			pushTo(urlTo, {userId});
+		}
 	};
 
-	const checkActiveClass = (url: string, query: TabsQueryProps): string => {
+	const checkActiveClass = (url: string, query: TabsQueryProps, baseUrl = ''): boolean => {
 
 		const location = ObjectHasOwnProperty(query, 'location') ? query.location : '';
 
 		if (url) {
 			if (router.asPath.includes(url)) {
-				return 'Mui-selected';
+				// return 'Mui-selected';
+				return true;
 			}
+			if(baseUrl && router.asPath.includes(baseUrl))return true;
+
 		}
 		if (location) {
 			if (router?.query?.location === location) {
-				return 'Mui-selected';
+				// return 'Mui-selected';
+				return true;
 			}
 		}
-
-		return '';
+		return false;
 	};
 
 	const checkShowingTab = useCallback((flag: boolean): boolean => {
@@ -79,21 +84,23 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		<TabWrapperUI>
 			<TabsUnstyled defaultValue={router.asPath}>
 				<TabsListUI>
-					{data.map((item, i) => (
-						<>
+					{data.map((item) => (
+						<React.Fragment key={item.title}>
 							{checkShowingTab(item.showMobile) ? (
 								<TabUI
-									key={i}
-									className={checkActiveClass(item.url, item.query)}
+									// key={i}
+									active={checkActiveClass(item.url, item.query, item?.baseUrl)}
 									onClick={() => {
 										if (item.title === 'Заказы' && isTouchDevice) return;
-										handlerPushToTab(item.url, item.query);
+										handlerPushToTab(item.url);
 									}}
 								>
 									<>
 										{item.title === 'Заказы' && isTouchDevice ? (
-											<AccountTabOrderMobile/>
-										) : (
+											<AccountTabOrderMobile
+												active={checkActiveClass(item.url, item.query, item?.baseUrl)}
+											/>
+										) : item.title == 'Выкуп товара' && isAdmin ? null : (
 											<>
 												{item.title}
 												{item.title === 'Выкуп товара'
@@ -109,12 +116,20 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 									</>
 								</TabUI>
 							) : null}
-						</>
+						</React.Fragment>
 					))}
 				</TabsListUI>
 			</TabsUnstyled>
 		</TabWrapperUI>
 	);
 };
+
+const {
+	TabWrapperUI,
+	TabUI,
+	TabsListUI,
+	TabsMarginLeft,
+	BgMUI
+} = useTabsStyle();
 
 export default React.memo(Tabs);

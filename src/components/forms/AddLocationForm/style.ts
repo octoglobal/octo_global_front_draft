@@ -18,9 +18,9 @@ export const useAddLocationFormStyle = () => {
 		height: '100%',
 
 		display: 'grid',
-		gridTemplateColumns: `87px ${increaseFormField ? 501 : 451}px`,
+		gridTemplateColumns: `87px ${increaseFormField ? 501 : 471}px`,
 		gridTemplateRows: 'auto auto auto auto auto',
-		gridColumnGap: `${increaseFormField ? 39 : 21}px`,
+		gridColumnGap: `${increaseFormField ? 39 : 39}px`,
 		gridRowGap: `${increaseFormField ? 15 : 10}px`,
 
 		[theme.breakpoints.down(660)]: {

@@ -27,8 +27,13 @@ export const useAccountPersonalDataStyle = () => {
 			flexDirection: 'column',
 		}
 	}));
+	const AccountLocationsMUI = styled('div')(() => ({
+		// border: '1px solid red',
+	}));
+
 
 	return {
-		PersonalDataWrapperUI
+		PersonalDataWrapperUI,
+		AccountLocationsMUI
 	};
 };

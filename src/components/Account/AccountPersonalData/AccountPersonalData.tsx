@@ -6,6 +6,8 @@ import AccountLocations from './AccountLocations/AccountLocations';
 
 import {useAccountPersonalDataStyle} from './style';
 import AccountHelp from '@/components/Account/AccountPersonalData/AccountHelp/AccountHelp';
+import AccountUserLocation
+	from '@/components/Account/AccountPersonalData/AccountLocations/AccountUserLocation/AccountUserLocation';
 
 const AccountPersonalData: FC = () => {
 
@@ -13,7 +15,10 @@ const AccountPersonalData: FC = () => {
 		<>
 			<PersonalDataWrapperUI>
 				<AccountSettings/>
-				<AccountLocations/>
+				<AccountLocationsMUI>
+					<AccountLocations/>
+					<AccountUserLocation />
+				</AccountLocationsMUI>
 			</PersonalDataWrapperUI>
 			<AccountHelp/>
 		</>
@@ -22,4 +27,7 @@ const AccountPersonalData: FC = () => {
 
 export default React.memo(AccountPersonalData);
 
-const {PersonalDataWrapperUI} = useAccountPersonalDataStyle();
+const {
+	PersonalDataWrapperUI,
+	AccountLocationsMUI
+} = useAccountPersonalDataStyle();

@@ -37,10 +37,14 @@ export const adminSlice = createSlice({
 			state.hints = [];
 		},
 		clearAdminHints: (state) => {
-			
 			state.hints = [];
+    },
+		resetDat: (state) => {
+			state.hints = [];
+			state.adminSwitchIdToUser = null;
+			state.search = '';
+			state.adminSwitchUserModel = null;
 		}
-
 	},
 	extraReducers: {
 		[fetchUsersInAdmin.fulfilled.type]: (state, action: PayloadAction<IAdminHintsData[]>) => {

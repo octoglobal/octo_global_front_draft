@@ -1,17 +1,16 @@
 import React, {FC, useState} from 'react';
 
-import Tabs from '../../../AnyPage/Tabs/Tabs';
-import LocationForm from './LocationForm/LocationForm';
-import {useCustomRouter} from '@/hooks/useCustomRouter';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
 import AccountUrlArray from './AccountTabsLocationData.json';
 import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 
 import {useAccountLocationStyle} from './style';
+import BorderDashed from '@/components/AnyPage/Wrappers/BorderDashed/BorderDashed';
+import {useTabsStyle} from '@/components/AnyPage/Tabs/style';
 
 const AccountLocations: FC = () => {
-	const {router} = useCustomRouter();
-
 	const [openRules, setOpenRules] = useState<boolean>(false);
+	const [selCountry, setSelCountry] = useState<string>('ger');
 
 	const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
 		return () => {
@@ -19,32 +18,50 @@ const AccountLocations: FC = () => {
 		};
 	};
 
+	const handlerCountryState = (countryShort: string) => {
+		return () => {
+			setSelCountry(countryShort);
+		};
+	};
+
 	return (
 		<LocationWrapperUI>
-			<BorderWrapperUI>
+			<BorderDashed title="Адрес для интернет магазина">
 				<LocationContainerUI>
-					<TypographyUI>Адреса</TypographyUI>
-					<Tabs data={AccountUrlArray}/>
+					{/*<Tabs data={AccountUrlArray}/>*/}
+
+					<TabWrapperUI>
+						<TabsUnstyled>
+							<TabsListUI>
+								{AccountUrlArray.map((item) => (
+									<TabUI
+										key={item.title}
+										active={selCountry === item.query.location}
+										onClick={handlerCountryState(item.query.location)}
+									>
+										{item.title}
+									</TabUI>
+								))}
+							</TabsListUI>
+						</TabsUnstyled>
+					</TabWrapperUI>
+
 					<LocationContentUI>
-						{router?.query?.location === 'rus' ? (
-							<LocationForm />
-						) : (
-							<>
-								<LocationAddressUI>
-									101 Lukens drive suite H, New Castle,
-									Delaware (DE) 19720 <br />+1-929-999-57-97
-								</LocationAddressUI>
+						<>
+							<LocationAddressUI>
+								101 Lukens drive suite H, New Castle,
+								Delaware (DE) 19720 <br/>+1-929-999-57-97
+							</LocationAddressUI>
 
-								<LocationButtonUI onClick={handlerToggleState(setOpenRules)}>
-									Как заполнять адрес для доставки
-								</LocationButtonUI>
+							<LocationButtonUI onClick={handlerToggleState(setOpenRules)}>
+								Как заполнять адрес для доставки
+							</LocationButtonUI>
 
-								<AccountLocationRules openRules={openRules}/>
-							</>
-						)}
+							<AccountLocationRules openRules={openRules}/>
+						</>
 					</LocationContentUI>
 				</LocationContainerUI>
-			</BorderWrapperUI>
+			</BorderDashed>
 		</LocationWrapperUI>
 	);
 };
@@ -52,11 +69,15 @@ const AccountLocations: FC = () => {
 export default React.memo(AccountLocations);
 
 const {
-	TypographyUI,
 	LocationButtonUI,
-	BorderWrapperUI,
 	LocationWrapperUI,
 	LocationAddressUI,
 	LocationContentUI,
 	LocationContainerUI,
 } = useAccountLocationStyle();
+
+const {
+	TabWrapperUI,
+	TabUI,
+	TabsListUI,
+} = useTabsStyle();

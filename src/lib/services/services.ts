@@ -242,10 +242,12 @@ export const generateAdminHintsData = (data: ISearchAdminModel) => {
 			}
 			innerObj.type = type;
 
-			modificationArray.push(innerObj);
-
+			const findItem = modificationArray.find(item => item.id == innerObj.id);
+			if (!findItem) {
+				modificationArray.push(innerObj);
+			}
 		});
-	}
+ 	}
 	return modificationArray.splice(0, 5);
 };
 
@@ -275,4 +277,15 @@ export const findItemInArrayForId = (array: unknown, arrayId: number[]) => {
 		}
 	}
 	return innerArray;
+};
+
+export const onScroll = (event: Event, callback: () => void) => {
+	const window = event.currentTarget as Window;
+	if (window) {
+		const bodyHeight = document.body.offsetHeight / 100 * 70;
+		const offsetTop = window.scrollY + window.innerHeight;
+		if (offsetTop > bodyHeight) {
+			callback();
+		}
+	}
 };

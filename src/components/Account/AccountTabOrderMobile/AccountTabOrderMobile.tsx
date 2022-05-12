@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { useAccountTabOrderMobileStyles } from '@/components/Account/AccountTabOrderMobile/style';
 import DropDownUI from '../../../UI/UIComponents/DropDownUI/DropDownUI';
 import { useCustomRouter } from '@/hooks/useCustomRouter';
 import SmallMenuIcon from '../../../UI/UIIcon/SmallMenuIcon.svg';
 
-
-const AccountTabOrderMobile = () => {
+const AccountTabOrderMobile : FC<{active?: boolean}> = ({active = false}) => {
 
 	const {
 		pushTo,
@@ -20,7 +19,7 @@ const AccountTabOrderMobile = () => {
 
 	return (
 		<ContainerMUI>
-			<TextMUI>
+			<TextMUI active={active}>
 				Заказы
 			</TextMUI>
 			<DropDownWrapperMUI>

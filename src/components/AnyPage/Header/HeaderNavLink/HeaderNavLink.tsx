@@ -22,7 +22,7 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 	const {isTablet} = useTablet();
 
 	const navLinksArray = useMemo(() =>{
-	
+
 		if (isTablet){
 			return navDataArray.tablet;
 		} else {

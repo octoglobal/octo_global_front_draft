@@ -11,7 +11,7 @@ import ModalUI from '../../../UI/UIComponents/ModalUI/ModalUI';
 import {useOrderItemSend} from '@/components/AnyPage/OrderItem/useOrderItemSend';
 
 
-export type ComponentType = 'wait' | 'stock' | 'stock2' | 'send';
+export type ComponentType = 'wait' | 'stock' | 'send';
 
 const getCustomHooksData = (component: ComponentType, orderId: number, orderItem: IOrderModel) => {
 	if (component === 'wait') {
@@ -74,7 +74,6 @@ const OrderItem: FC<IOrderItemProps> = (
 		handleReturnOrder,
 		handleToggleModal,
 		dialogCheckProps,
-
 		dialogSuccessReturnProps,
 		handleSuccessChangeStatus,
 	} = getCustomHooksData(component, id, orderItem) as any;
@@ -138,7 +137,7 @@ const OrderItem: FC<IOrderItemProps> = (
 					<ModalConfirmUI
 						open={isReturnOrder}
 						dialogSx={dialogStyles}
-						title='Вы точно хотите вернуть посылку?'
+						title='Вы точно хотите вернуть заказ?'
 						onClickYes={handleReturnOrder(id)}
 						onClickNo={handleToggleModal(setIsReturnOrder)}
 						buttonNoText='Нет'

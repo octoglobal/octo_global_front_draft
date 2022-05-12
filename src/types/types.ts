@@ -46,6 +46,11 @@ export interface ISendRecoveryPass extends IRepeatPasswordForm{
 	password: string
 }
 
+export interface IRepeatPasswordFormError {
+	password: string
+	repeatPassword: string
+}
+
 export interface IAccountUpdateUser {
 	email: string,
 	phone: string

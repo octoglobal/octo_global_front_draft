@@ -17,25 +17,45 @@ const AccountPage: FC<IAccountPage> = ({
 
 	const {
 		isAdmin,
+		adminSwitchIdToUser,
+		adminSwitchUserModel,
 	} = useAccount();
+
 
 	return (
 		<AccountWrapperUI>
 			{isAdmin && (
-				<AccountSearch/>
+				<SearchContainerMUI>
+					<AccountSearch/>
+				</SearchContainerMUI>
 			)}
-			{renderTabs && (
-				<Tabs
-					data={AccountUrlArray}
-				/>
+			{!!(isAdmin && adminSwitchIdToUser && adminSwitchUserModel) && (
+				<>
+					{renderTabs && (
+						<Tabs
+							data={AccountUrlArray}
+						/>
+					)}
+					{children}
+				</>
 			)}
-			{children}
+			{!isAdmin && (
+				<>
+					{renderTabs && (
+						<Tabs
+							data={AccountUrlArray}
+						/>
+					)}
+					{children}
+				</>
+			)}
 		</AccountWrapperUI>
 	);
 };
 
 const {
 	AccountWrapperUI,
+	SearchContainerMUI,
 } = useAccountPageStyle();
 
 export default React.memo(AccountPage);

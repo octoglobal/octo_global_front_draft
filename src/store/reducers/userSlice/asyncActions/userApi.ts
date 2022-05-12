@@ -157,15 +157,16 @@ export const fetchRecoveryPassword = createAsyncThunk(
 			const dataSend = {
 				password: data.password
 			};
-			const response = await octoAxios.post('/password_recovery', dataSend, {
+			return await octoAxios.post('/password_recovery', dataSend, {
 				headers: {
 					'Authorization': `Bearer ${data.token}`
 				}
 			});
-			// console.log(response);
-
-		} catch (e) {
-			// console.log('e: ', e);
+		} catch (err) {
+			if (axios.isAxiosError(err)) {
+				return thunkAPI.rejectWithValue(err.response?.status);
+			}
+			return thunkAPI.rejectWithValue(400);
 		}
 	}
 );
