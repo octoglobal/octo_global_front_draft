@@ -5,6 +5,7 @@ export const useShopsItemStyles = () => {
 	const LinkMUI = styled(Link)(({theme}) => ({
 		textDecoration: 'none',
 		display: 'block',
+		
 		[theme.breakpoints.down(1250)]: {
 			minHeight: '270px',
 		},
@@ -14,6 +15,7 @@ export const useShopsItemStyles = () => {
 	}));
 
 	const ItemMUI = styled('div')(({theme}) => ({
+		position: 'relative',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -49,8 +51,7 @@ export const useShopsItemStyles = () => {
 		objectFit: 'cover',
 		marginBottom: '20px',
 		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
-		transition: '.2s all linear',
-	
+		transition: '.2s all linear',	
 		[theme.breakpoints.down(768)]: {
 			objectFit: 'contain',
 		},
@@ -65,8 +66,10 @@ export const useShopsItemStyles = () => {
 		}
 	}));
 
-	const ImagePlaceholderMUI = styled('div')(() => ({
+	const ImagePlaceholderMUI = styled('div')(({theme}) => ({
 		position: 'absolute',
+		top: 25,
+		left:10,
 		zIndex: 1,
 		maxWidth: '336px',
 		maxHeight: '208px',
@@ -78,6 +81,10 @@ export const useShopsItemStyles = () => {
 		// borderRadius: '8px',
 		overflow: 'hidden',
 		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
+		[theme.breakpoints.down(768)]: {
+			top: 20,
+			left:6,
+		},	
 	}));
 
 
