@@ -11,8 +11,6 @@ interface IAccountSearchHintProps {
 }
 
 
-
-
 const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchValue,isCustomSize}) => {
 	
 	const tn = markText(hint.trackNumber?.toString() ,searchValue , 15);
@@ -22,10 +20,10 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 	return (
 		<ContainerMUI>
 			<HintItemuserAreaIdMUI>				
-			 {isCustomSize?'id': null} {markText(hint.userAreaId?.toString() ,searchValue , 15) }				
+			 {isCustomSize?'id': null} {markText(hint.userAreaId?.toString() ,searchValue , 8) }				
 			</HintItemuserAreaIdMUI>
 			<HintItemEmailMUI>				
-				{markText(hint.email ,searchValue , 19)}				
+				{markText(hint.email ,searchValue , 17)}				
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
 				{isCustomSize? on?on : 'нет номера':on}				
@@ -34,7 +32,7 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 				{isCustomSize? tn?tn : 'нет номера':on}			
 			</HintItemTrackMUI>
 			<HintItemNameMUI>			
-				{markText(hint.name ,searchValue , 19)}			
+				{markText(hint.name ,searchValue , 17)}			
 			</HintItemNameMUI>
 		</ContainerMUI>
 	);
