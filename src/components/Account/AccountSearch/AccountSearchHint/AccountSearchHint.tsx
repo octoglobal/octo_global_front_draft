@@ -13,8 +13,8 @@ interface IAccountSearchHintProps {
 
 const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchValue,isCustomSize}) => {
 	
-	const tn = markText(hint.trackNumber?.toString() ,searchValue , 15);
-	const on = markText(hint.orderNumber?.toString() ,searchValue , 15);
+	const trackNumber = markText(hint.trackNumber?.toString() ,searchValue , 15);
+	const ordernumver = markText(hint.orderNumber?.toString() ,searchValue , 15);
 	
 
 	return (
@@ -26,10 +26,10 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 				{markText(hint.email ,searchValue , 17)}				
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
-				{isCustomSize? on?on : 'нет заказа':on}				
+				{isCustomSize? ordernumver?ordernumver : 'нет заказа':ordernumver}				
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
-				{isCustomSize? tn?tn : 'нет номера':tn}			
+				{isCustomSize? trackNumber?trackNumber : 'нет номера':trackNumber}			
 			</HintItemTrackMUI>
 			<HintItemNameMUI>				
 				{markText(hint.name ,searchValue , hint.name.length)}			
