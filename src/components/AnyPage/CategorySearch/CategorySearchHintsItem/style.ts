@@ -54,29 +54,22 @@ export const useCategorySearchHintsItemStyles = () => {
 		lineHeight: '21px',
 		fontWeight: 400,
 		color: '#000000',
-		display: 'flex',		
-		[theme.breakpoints.down(769)]:{		
+		display: 'flex',	
 		
-			whiteSpace: 'nowrap', /* Текст не переносится */
-			overflow: 'hidden', /* Обрезаем всё за пределами блока */
-			textOverflow: '-',			
-			fontSize: '16px'
+		[theme.breakpoints.down(500)]:{
+			fontSize: '14px',
 		},
-		
-		// [theme.breakpoints.down(500)]:{
-		// 	fontSize: '14px',
-		// },
 		
 	}));
 	const TextMarkMUI = styled('span')(() => ({		
-		fontWeight: 'bold',
-		// color: 'red'
+		fontWeight: 'bold',		
 	}));
 	
 	return {
 		ItemMUI,
 		ButtonMUI,
 		ItemTextMUI,
-		TextMarkMUI
+		TextMarkMUI,
+		
 	};
 };

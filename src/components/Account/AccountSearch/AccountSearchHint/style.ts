@@ -2,7 +2,7 @@ import { styled } from '@mui/material';
 
 export const useAccountSearchHintStyles = () => {
 
-	const ContainerMUI = styled('div')(() => ({
+	const ContainerMUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		paddingRight: '69px',
@@ -11,7 +11,10 @@ export const useAccountSearchHintStyles = () => {
 			fontSize: '20px',
 			lineHeight: '24px',
 			fontWeight: 300,
-		
+			[theme.breakpoints.down(769)]: {
+				fontSize: '16px'
+				
+			}
 		}
 	}));
 
@@ -25,7 +28,8 @@ export const useAccountSearchHintStyles = () => {
 		width: '10%',
 		[theme.breakpoints.down(769)]: {
 			width: '100%',
-			gridArea: 'a'
+			gridArea: 'a',
+			
 		}
 		
 	}));
@@ -33,28 +37,31 @@ export const useAccountSearchHintStyles = () => {
 		width: '28%',	
 		[theme.breakpoints.down(769)]: {
 			width: '100%',		
-			gridArea: 'd',		
+			gridArea: 'd',	
+				
 		
 		}
 	}));
 	const HintItemOrderMUI = styled('div')(({theme}) => ({
 		width: '8%',
-		
+		textTransform: 'uppercase',
 		[theme.breakpoints.down(769)]: {
 			width: '100%',
 			gridArea: 'c',
 			display: 'flex',
 			justifyContent: 'end',
-			alignItems: 'end'
+			alignItems: 'end',
+		
 						
 		}
 	}));
 	const HintItemTrackMUI = styled('div')(({theme}) => ({
 		width: '18%',
-		
+		textTransform: 'uppercase',
 		[theme.breakpoints.down(769)]: {
 			width: '100%',
 			gridArea: 'b',
+			
 		}
 	}));
 	const HintItemNameMUI = styled('div')(({theme}) => ({
@@ -63,6 +70,7 @@ export const useAccountSearchHintStyles = () => {
 		[theme.breakpoints.down(769)]: {
 			width: '100%',
 			gridArea: 'e',
+		
 		}
 	}));
 

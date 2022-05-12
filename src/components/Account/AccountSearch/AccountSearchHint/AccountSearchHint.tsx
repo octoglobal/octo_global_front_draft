@@ -1,68 +1,40 @@
 import React, { FC } from 'react';
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 import { useAccountSearchHintStyles } from '@/components/Account/AccountSearch/AccountSearchHint/style';
-import { ellipsis } from '@/lib/services/services';
+
 
 interface IAccountSearchHintProps {
 	hint: IAdminHintsData,
-	markText: (title: string | undefined | null, searchValue: string, count: number) => FC | React.ReactElement,
-	searchValue: string
+	markText: (title: string | undefined | null, searchValue: string, count: number) => FC | React.ReactElement | string,
+	searchValue: string,
+	isCustomSize: boolean,
 }
 
 
 
 
-const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchValue}) => {
-
-	// const toStr = (elem): string | undefined=>{	
+const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchValue,isCustomSize}) => {
 	
-	// 	if (elem.props.children) {		
-	// 		const res = [];	
-	// 		for (let i = 0; i < elem.props.children.length; i++) {
-	// 			if ( typeof (elem.props.children[i]) === 'object' && elem.props.children[i] !== null){
-	// 				res.push(elem.props.children[i].props.children);
-	// 			} else {
-	// 				res.push(elem.props.children[i]);
-	// 			}					
-	// 		}
-			
-	// 		return res.join('') ;
-	// 	}
-	// 	return undefined;	
-		
-	// };
-
-	// const tn = markText(hint.trackNumber?.toString() ,searchValue);
-	// console.log(tn);
+	const tn = markText(hint.trackNumber?.toString() ,searchValue , 15);
+	const on = markText(hint.orderNumber?.toString() ,searchValue , 15);
+	
 
 	return (
 		<ContainerMUI>
-			<HintItemuserAreaIdMUI>
-				{/* {ellipsis(hint.userAreaId.toString() , 5)} */}
-				{markText(hint.userAreaId?.toString() ,searchValue , 15) }
-				{/* { ellipsis( toStr(markText(hint.userAreaId?.toString() ,searchValue)), 7)} */}
+			<HintItemuserAreaIdMUI>				
+			 {isCustomSize?'id': null} {markText(hint.userAreaId?.toString() ,searchValue , 15) }				
 			</HintItemuserAreaIdMUI>
-			<HintItemEmailMUI>
-				{/* {hint.email} */}
-				{markText(hint.email ,searchValue , 20)}
-				{/* { ellipsis( toStr(markText(hint.email ,searchValue)), 15)} */}
+			<HintItemEmailMUI>				
+				{markText(hint.email ,searchValue , 19)}				
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
-				{/* {hint.orderNumber} */}
-				{markText(hint.orderNumber?.toString() ,searchValue , 15)}
-				{/* { ellipsis( toStr(markText(hint.orderNumber?.toString() ,searchValue)), 10)} */}
+				{isCustomSize? on?on : 'нет номера':on}				
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
-				{/* {hint.trackNumber} */}
-				{markText(hint.trackNumber?.toString() ,searchValue , 15)}
-			
-				{/* {ellipsis(tn, 3)} */}
-				{/* { ellipsis( toStr(markText(hint.trackNumber?.toString() ,searchValue)), 10)} */}
+				{isCustomSize? tn?tn : 'нет номера':on}			
 			</HintItemTrackMUI>
-			<HintItemNameMUI>
-				{/* {hint.name} */}
-				{markText(hint.name ,searchValue , 20)}
-				{/* { ellipsis( toStr(markText(hint.name ,searchValue)), 15)} */}
+			<HintItemNameMUI>			
+				{markText(hint.name ,searchValue , 19)}			
 			</HintItemNameMUI>
 		</ContainerMUI>
 	);

@@ -35,6 +35,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 
 	const {
 		activeStyles,
+		isCustomSize,
 	} = useCategorySearchHintsItem(active, title, isMouseEnter);
 	
 	
@@ -51,12 +52,9 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				markText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
 			} else {				
 				markText = '';
-			}				
-			return <ItemTextMUI>{c[0]}
-				{markText?<TextMarkMUI>{`${markText}`}</TextMarkMUI>:null}			
-				{c[1]}
-				
-			 </ItemTextMUI> ;
+			}	
+			return <>{c[0]}<TextMarkMUI>{markText}</TextMarkMUI>{c[1]}</>; 			
+			
 		} else {
 			return '';
 		}
@@ -78,6 +76,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 						hint={hint as IAdminHintsData}
 						markText={editTextValue}
 						searchValue={searchValue}
+						isCustomSize={isCustomSize}
 					/>
 				) : (
 					<ItemTextMUI>						
@@ -93,7 +92,8 @@ const {
 	ItemMUI,
 	ButtonMUI,
 	ItemTextMUI,
-	TextMarkMUI
+	TextMarkMUI,
+	
 } = useCategorySearchHintsItemStyles();
 
 export default React.memo(CategorySearchHintsItem);
