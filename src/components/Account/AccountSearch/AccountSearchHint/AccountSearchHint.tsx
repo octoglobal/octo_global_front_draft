@@ -26,13 +26,13 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 				{markText(hint.email ,searchValue , 17)}				
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
-				{isCustomSize? on?on : 'нет номера':on}				
+				{isCustomSize? on?on : 'нет заказа':on}				
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
-				{isCustomSize? tn?tn : 'нет номера':on}			
+				{isCustomSize? tn?tn : 'нет номера':tn}			
 			</HintItemTrackMUI>
-			<HintItemNameMUI>			
-				{markText(hint.name ,searchValue , 17)}			
+			<HintItemNameMUI>				
+				{markText(hint.name ,searchValue , hint.name.length)}			
 			</HintItemNameMUI>
 		</ContainerMUI>
 	);

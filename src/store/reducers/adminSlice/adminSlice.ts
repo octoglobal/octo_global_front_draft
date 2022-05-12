@@ -8,7 +8,7 @@ export interface IAdminHintsData extends IHints{
 	email: null | string,
 	orderNumber: null | number,
 	trackNumber: null | string,
-	name: null | string,
+	name: string,
 	type: 'user' | 'order' | null,
 	id: null | number,
 	title: string,

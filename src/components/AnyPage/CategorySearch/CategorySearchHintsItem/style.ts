@@ -17,7 +17,7 @@ export const useCategorySearchHintsItemStyles = () => {
 		border: 0,
 		textAlign: 'left',
 		
-		[theme.breakpoints.down(769)]: {		
+		[theme.breakpoints.down(770)]: {		
 			paddingBottom: 0,		
 			padding: '10px 10px 10px 10px',		
 			position:'relative',
@@ -34,7 +34,7 @@ export const useCategorySearchHintsItemStyles = () => {
 		},
 		
 		'&>div':{
-			[theme.breakpoints.down(769)]: {
+			[theme.breakpoints.down(770)]: {
 				display: 'grid',
 				gridTemplateAreas: `
 				"a a b b c c"

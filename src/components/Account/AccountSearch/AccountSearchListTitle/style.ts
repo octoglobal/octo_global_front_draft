@@ -16,7 +16,7 @@ export const useAccountSearchListTitleStyles = () => {
 			lineHeight: '24px',
 			color: '#C4C4C4',
 		},
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(770)]: {
 			display: 'none',		
 		}
 
