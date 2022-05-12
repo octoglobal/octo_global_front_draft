@@ -12,6 +12,7 @@ import DopServicesIconSmall from '@/UIIcon/DopServicesIconSmall.svg';
 
 import { useAccountHelpStyle } from './style';
 import { useCustomSize } from '@/hooks/useMedia';
+import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 
 const AccountHelp: FC = () => {
 	const { isCustomSize } = useCustomSize(600);
@@ -27,7 +28,9 @@ const AccountHelp: FC = () => {
 							<DopServicesIcon />
 						)}
 					</HelpImageMUI>
-					<HelperTextMUI>Дополнительные услуги</HelperTextMUI>
+					<HelperTextMUI>
+						<LinkUI href='/questions'>Дополнительные услуги</LinkUI>						
+					</HelperTextMUI>
 				</HelpItemMUI>
 
 				<HelpItemMUI>
@@ -35,7 +38,7 @@ const AccountHelp: FC = () => {
 						{isCustomSize ? <Box3Small /> : <Box3 />}
 					</HelpImageMUI>
 					<HelperTextMUI>
-                        Стоимость почтового отправления
+						<LinkUI href='/questions?transfer'> Стоимость почтового отправления</LinkUI>					
 					</HelperTextMUI>
 				</HelpItemMUI>
 
@@ -43,7 +46,10 @@ const AccountHelp: FC = () => {
 					<HelpImageMUI>
 						{isCustomSize ? <VPNsmall /> : <VPN />}
 					</HelpImageMUI>
-					<HelperTextMUI>Как подключить VPN</HelperTextMUI>
+					<HelperTextMUI>
+						<LinkUI href='/questions?vpn'>Как подключить VPN</LinkUI>
+					</HelperTextMUI>			
+					
 				</HelpItemMUI>
 
 				<HelpItemMUI>
@@ -51,7 +57,7 @@ const AccountHelp: FC = () => {
 						{isCustomSize ? <TranslateSmall /> : <Translate />}
 					</HelpImageMUI>
 					<HelperTextMUI>
-                        Как перевести страницу на русский
+						<LinkUI href='/questions?translate'>Как перевести страницу на русский</LinkUI>						
 					</HelperTextMUI>
 				</HelpItemMUI>
 			</HelpWrapperMUI>
