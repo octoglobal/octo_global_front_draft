@@ -40,7 +40,6 @@ export default React.memo(AccountInstruction);
 const {
 	WrapperMUI,
 	HeaderMUI,
-	FooterMUI,
 	FooterButtonMUI,
 	ULMUI,
 	LIMUI,
