@@ -42,8 +42,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	const searchValue = useWatch({name: 'search'});
 	
 	const editTextValue = (title: string | null | undefined,searchValue:string, count:number) =>{		
-		if (searchValue && title){	
-			// const shortTitle= ellipsis(title, count);
+		if (searchValue && title){				
 			const textsArr = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
@@ -57,7 +56,7 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 				textsArr[0] = '';
 			}			
 			return <>{textsArr[0]}<TextMarkMUI>{markText }</TextMarkMUI>{textsArr[1]}</>; 			
-			// return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
+			
 			
 		} else {
 			return '';
