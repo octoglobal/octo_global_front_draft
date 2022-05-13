@@ -43,8 +43,8 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const editTextValue = (title: string | null | undefined,searchValue:string, count:number) =>{		
 		if (searchValue && title){	
-			const shortTitle= ellipsis(title, count);
-			const textsArr = shortTitle.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
+			// const shortTitle= ellipsis(title, count);
+			const textsArr = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
 			let markText ;
@@ -56,7 +56,8 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			if (markText.length>count){
 				textsArr[0] = '';
 			}			
-			return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
+			return <>{textsArr[0]}<TextMarkMUI>{markText }</TextMarkMUI>{textsArr[1]}</>; 			
+			// return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
 			
 		} else {
 			return '';
@@ -66,27 +67,34 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	return (
 		<ItemMUI>
-			<ButtonMUI
-				type='submit'
-				sx={activeStyles}
-				onMouseMove={handleChangeActiveSuggestion(hintCount)}
-				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
-				onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
-			>
-				
-				{isAccount ? (
+			{isAccount ? 			
+				<LinkMUI
+					type='submit'
+					sx={activeStyles}
+					onMouseMove={handleChangeActiveSuggestion(hintCount)}
+					onMouseEnter={handleChangeActiveSuggestion(hintCount)}
+					onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
+				>
 					<AccountSearchHint
 						hint={hint as IAdminHintsData}
 						markText={editTextValue}
 						searchValue={searchValue}
 						isCustomSize={isCustomSize}
-					/>
-				) : (
+					/>				
+				</LinkMUI>			
+			 : 
+				<ButtonMUI
+					type='submit'
+					sx={activeStyles}
+					onMouseMove={handleChangeActiveSuggestion(hintCount)}
+					onMouseEnter={handleChangeActiveSuggestion(hintCount)}
+					onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
+				>
 					<ItemTextMUI>						
 						{editTextValue(title,searchValue ,title.length)}					
-					</ItemTextMUI>
-				)}
-			</ButtonMUI>
+					</ItemTextMUI>				
+				</ButtonMUI>}
+				
 		</ItemMUI>
 	);
 };
@@ -96,6 +104,7 @@ const {
 	ButtonMUI,
 	ItemTextMUI,
 	TextMarkMUI,
+	LinkMUI
 	
 } = useCategorySearchHintsItemStyles();
 

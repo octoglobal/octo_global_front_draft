@@ -24,8 +24,7 @@ const ShopsItem: FC<IShopsModel & IHandleClickTagInCard> = (
 	), [photo]);
 
 
-	const handleImageLoaded  = ()=>{
-		console.log('img loaded');
+	const handleImageLoaded  = ()=>{		
 		setImg(true);
 	};
 
