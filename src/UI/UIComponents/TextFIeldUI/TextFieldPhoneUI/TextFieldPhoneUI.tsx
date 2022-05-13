@@ -74,7 +74,7 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 						value={value}
 						// onChange={(e) => onChange(e.target.value)}
 						onChange={(e) => {
-							PhoneMask(e, value, onChange)
+							PhoneMask(e, value, onChange);
 						}}
 						onKeyDown={(e : React.KeyboardEvent<HTMLInputElement>) => {
 							if(e.key === 'Backspace' && value.length === 3) {

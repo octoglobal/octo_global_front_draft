@@ -6,6 +6,7 @@ import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldPasswordUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/AccountSettings/style';
 import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
+import {useUserStore} from '@/hooks/useUserStore';
 
 const AccountPasswordForm : FC = () => {
 
@@ -25,17 +26,35 @@ const AccountPasswordForm : FC = () => {
 
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError, formState: {isSubmitted}} = useForm();
+	const {handleSubmit, control, setError, formState: {isSubmitted}, reset} = useForm();
 
 	const {
 		onSubmitPassword,
 		isSubmitFormSuccess
-	} = useAccountSettings(setError);
+	} = useAccountSettings(setError, false, reset);
+
+	const {
+		isAdmin
+	} = useUserStore();
 
 	const isSubmitForm = useMemo(
 		() => isSubmitted && isSubmitFormSuccess,
 		[isSubmitted, isSubmitFormSuccess]
 	);
+
+	const passwordLabel = useMemo(() => {
+		if (isAdmin) {
+			return {
+				firstLabel: 'Новый пароль',
+				secondLabel: 'Повторить пароль',
+			};
+		} else {
+			return {
+				firstLabel: 'Старый пароль',
+				secondLabel: 'Новый пароль',
+			};
+		}
+	}, [isAdmin]);
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitPassword)}>
@@ -43,7 +62,7 @@ const AccountPasswordForm : FC = () => {
 
 				<FormTableTopSectionMUI>
 					<FormTableSectionLeftMUI >
-						Смена пароля	
+						Смена пароля
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI>
@@ -57,7 +76,7 @@ const AccountPasswordForm : FC = () => {
 									}}
 									inputProps={{
 										// label: 'Старый пароль',
-										placeholder: 'Старый пароль',
+										placeholder: passwordLabel.firstLabel,
 										name: 'oldPassword',
 										type: 'password',
 										required: true,
@@ -66,14 +85,14 @@ const AccountPasswordForm : FC = () => {
 										// autoFocus: true,
 									}}
 								/>
-							</FormTextFieldContainerMUI>	
+							</FormTextFieldContainerMUI>
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
-				
+
 				<FormTableTopSectionMUI>
 					<FormTableSectionLeftMUI>
-							
+
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI>
@@ -87,18 +106,21 @@ const AccountPasswordForm : FC = () => {
 									}}
 									inputProps={{
 										// label: 'Новый пароль',
-										placeholder: 'Новый пароль',
+										placeholder: passwordLabel.secondLabel,
 										name: 'newPassword',
 										type: 'password',
 										required: true,
 										// helperText: 'Заполните поле "Пароль"',
-										sx: FormTextFieldUI,
+										sx: {
+											...FormTextFieldUI,
+											marginTop: '10px',
+										},
 										// autoFocus: true,
 									}}
 								/>
 							</FormTextFieldContainerMUI>
-							
-				
+
+
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>

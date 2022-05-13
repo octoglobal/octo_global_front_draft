@@ -1,14 +1,16 @@
 import React, {FC, useState, useMemo} from 'react';
-import {TextField, TextFieldProps} from '@mui/material';
+import {InputAdornment, TextField, TextFieldProps} from '@mui/material';
 import {Controller, ControllerProps} from 'react-hook-form';
 
 import {useMobile} from '@/hooks/useMedia';
 import {useTextFieldUIStyle} from './style';
+import EditPencil from '@/UIIcon/EditPencil.svg';
 
 interface IIconsProps {
-	defaultIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
-	activeIcon: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
-	onClick: () => void;
+	visibleIcon?: boolean,
+	defaultIcon?: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
+	activeIcon?: React.ElementType<React.ComponentPropsWithRef<'svg'>>,
+	onClick?: () => void;
 }
 
 interface IRegexProps {
@@ -44,7 +46,7 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 	const IconComponent = iconProps?.defaultIcon as React.ElementType;
 
 	const handlerIconClick = () => {
-		if(hasIconProps) {
+		if(hasIconProps && iconProps?.onClick) {
 			iconProps?.onClick();
 			setIconActive(prevState => !prevState);
 		}
@@ -78,6 +80,10 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 						// helperText={error ? error : ( inputProps?.helperText || '' )}
 						// helperText={inputProps?.helperText || error ? error.message ? error.message : inputProps?.helperText : ''}
 						error={!!error}
+						InputProps={{
+							endAdornment: iconProps?.visibleIcon ?
+								(<InputAdornment onClick={handlerIconClick} position="start" disablePointerEvents={true}><EditPencil /></InputAdornment>) : ''
+						}}
 					/>
 				)}
 			/>

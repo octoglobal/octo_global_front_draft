@@ -1,12 +1,12 @@
-import React, {FC, useEffect, useMemo, useRef} from 'react';
-import {Box} from '@mui/material';
+import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
+import {Avatar, Box} from '@mui/material';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import EditPencil from '@/UIIcon/EditPencil.svg';
 import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
 import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/AccountSettings/style';
-import {useForm} from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
 import {ObjectHasOwnProperty} from '@/services/services';
 import {useAppSelector} from '@/hooks/useReduxHooks';
@@ -14,27 +14,56 @@ import {useAppSelector} from '@/hooks/useReduxHooks';
 const AccountUserForm: FC = () => {
 
 	const textPhoneRef = useRef<HTMLInputElement | null>(null);
-
-	const {handleSubmit, getValues, control, setValue, setError, formState: {dirtyFields, isSubmitted}} = useForm();
+	const textEmailRef = useRef<HTMLInputElement | null>(null);
+	const textNameRef = useRef<HTMLInputElement | null>(null);
+	const textSurnameRef = useRef<HTMLInputElement | null>(null);
 
 	const {
-		user: {personalAreaId, verifiedEmail, email, phone},
+		handleSubmit,
+		getValues,
+		control,
+		setValue,
+		setError,
+		formState: {dirtyFields, isSubmitted},
+		reset
+	} = useForm<FieldValues>();
+
+	const {
+		user: {personalAreaId, verifiedEmail, email, phone, name, surname},
 		isAdmin
 	} = useUserStore();
 
 	const {
-		adminSwitchUserModel
+		adminSwitchUserModel,
+		adminSwitchIdToUser
 	} = useAppSelector(state => state.adminReducer);
+
+	const [  , setIsEditNameAndSurname] = useState<boolean>(false);
 
 	const dirtyPhone = useMemo(
 		() => dirtyFields.phone,
 		[dirtyFields.phone]
 	);
 
+	const dirtyEmail = useMemo(
+		() => dirtyFields.email,
+		[dirtyFields.email]
+	);
+
+	const dirtyName = useMemo(
+		() => dirtyFields?.name,
+		[dirtyFields?.name]
+	);
+
+	const dirtySurname = useMemo(
+		() => dirtyFields?.surname,
+		[dirtyFields?.surname]
+	);
+
 	const {
 		onSubmitUser,
 		handlerEditClick,
-	} = useAccountSettings(setError, verifiedEmail);
+	} = useAccountSettings(setError, verifiedEmail, reset);
 
 	useEffect(() => {
 		if (email) setValue('email', email);
@@ -42,9 +71,10 @@ const AccountUserForm: FC = () => {
 	}, []);
 
 	const isSubmitForm = useMemo(
-		() => !isSubmitted && dirtyPhone,
-		[isSubmitted, dirtyPhone]
+		() => !isSubmitted && (dirtyPhone || dirtyEmail || dirtyName || dirtySurname),
+		[isSubmitted, dirtyPhone, dirtyEmail, dirtyName, dirtySurname]
 	);
+
 
 	const userAreaId = useMemo(() => {
 		if (isAdmin && adminSwitchUserModel) {
@@ -78,22 +108,105 @@ const AccountUserForm: FC = () => {
 	}, [dirtyPhone]);
 
 	useEffect(() => {
+		if (dirtyEmail && ObjectHasOwnProperty(textEmailRef, 'current')) {
+			const emailFieldRef = textEmailRef.current as HTMLInputElement | null;
+			if (emailFieldRef) emailFieldRef.focus();
+		}
+	}, [dirtyEmail]);
+
+	useEffect(() => {
+		if (dirtyName && ObjectHasOwnProperty(textNameRef, 'current')) {
+			const nameFieldRef = textNameRef.current as HTMLInputElement | null;
+			if (nameFieldRef) nameFieldRef.focus();
+		}
+	}, [dirtyName]);
+
+	useEffect(() => {
+		if (dirtySurname && ObjectHasOwnProperty(textSurnameRef, 'current')) {
+			const surnameFieldRef = textSurnameRef.current as HTMLInputElement | null;
+			if (surnameFieldRef) surnameFieldRef.focus();
+		}
+	}, [dirtySurname]);
+
+	useEffect(() => {
 		if (isAdmin) {
 			const data = getValues();
 			const emailValue = data?.email;
 			const phoneValue = data?.phone;
+			const nameValue = data?.name;
+			const surnameValue = data?.surname;
+			console.log(data, userEmail, userPhone, phoneValue);
 			if (userEmail !== emailValue) {
-				setValue('email', userEmail);
+				setValue('email', userEmail ? userEmail : '');
 			}
 			if (userPhone !== phoneValue) {
-				setValue('phone', userPhone);
+				setValue('phone', userPhone ? userPhone : '');
+			}
+			if (adminSwitchUserModel?.name !== nameValue) {
+				setValue('name', adminSwitchUserModel?.name);
+			}
+			if (adminSwitchUserModel?.surname !== surnameValue) {
+				setValue('surname', adminSwitchUserModel?.surname);
 			}
 		}
-	}, [userEmail, userPhone]);
+	}, [adminSwitchIdToUser, userPhone, userEmail, adminSwitchUserModel?.name, adminSwitchUserModel?.surname]);
+
+	useEffect(() => {
+		reset({});
+	}, [adminSwitchIdToUser]);
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitUser)}>
 			<FormTableUI>
+				{isAdmin && (
+					<AdminAvatarContainerMUI>
+						<Avatar
+							sx={{
+								bgcolor: '#274D82',
+								marginRight: '8px',
+							}}
+						/>
+						<FormTextFieldBorderUI selection={true} focusBorder={true}>
+							<TextFieldNameMUI>
+								<TextFieldUI
+									controller={{
+										name: 'name',
+										control,
+										defaultValue: adminSwitchUserModel?.name,
+									}}
+									inputProps={{
+										name: 'name',
+										sx: {
+											...FormTextFieldUI,
+											padding: '10px 0 10px 10px',
+											marginRight: '10px',
+										},
+										inputRef: textNameRef,
+									}}
+								/>
+							</TextFieldNameMUI>
+						</FormTextFieldBorderUI>
+						<FormTextFieldBorderUI selection={true} focusBorder={true}>
+							<TextFieldNameMUI>
+								<TextFieldUI
+									controller={{
+										name: 'surname',
+										control,
+										defaultValue: adminSwitchUserModel?.surname,
+									}}
+									inputProps={{
+										name: 'name',
+										sx: {
+											...FormTextFieldUI,
+											padding: '10px 0 10px 10px',
+										},
+										inputRef: textSurnameRef
+									}}
+								/>
+							</TextFieldNameMUI>
+						</FormTextFieldBorderUI>
+					</AdminAvatarContainerMUI>
+				)}
 				<FormContainerTopMUI>
 					<FormSectionMUI>
 						<FormTableSectionTopLeftMUI>
@@ -109,22 +222,27 @@ const AccountUserForm: FC = () => {
 							Почта
 						</MailLeftMUI>
 						<MailRightMUI>
-							<FormTextFieldBorderUI selection={false}>
+							<FormTextFieldBorderUI selection={!email} focusBorder={true}>
 								<TextFieldEmailMUI>
 									<TextFieldUI
 										controller={{
 											name: 'email',
 											control,
 											defaultValue: userEmail,
-											// rules: {required: true},
 										}}
 										inputProps={{
 											name: 'email',
 											type: 'email',
-											// required: true,
 											helperText: verifiedEmail ? 'Почта не подтверждена' : '',
-											sx: FormTextFieldUI,
-											disabled: true
+											sx: {
+												...FormTextFieldUI,
+												padding: '10px 0 10px 10px',
+											},
+											disabled: !isAdmin,
+											inputRef: textEmailRef,
+										}}
+										iconProps={{
+											visibleIcon: isAdmin,
 										}}
 									/>
 								</TextFieldEmailMUI>
@@ -134,7 +252,6 @@ const AccountUserForm: FC = () => {
 									</HelperBoxUI>
 								)} */}
 							</FormTextFieldBorderUI>
-
 						</MailRightMUI>
 					</FormSectionMUI>
 				</FormContainerTopMUI>
@@ -151,15 +268,13 @@ const AccountUserForm: FC = () => {
 										name: 'phone',
 										control,
 										defaultValue: userPhone || '',
-										rules: {required: true},
+										rules: {required: false},
 									}}
 									inputProps={{
 										name: 'phone',
 										type: 'tel',
-										required: true,
-										// helperText: 'Заполните поле "Телефон"',
+										required: false,
 										sx: FormTextFieldUI,
-										// autoFocus: true,
 										inputRef: textPhoneRef
 									}}
 									iconProps={{
@@ -183,11 +298,8 @@ const AccountUserForm: FC = () => {
 						</ButtonUI>
 					</FormTableEndUI>
 				</>)}
-
 			</FormTableUI>
 		</Box>
-
-
 	);
 };
 
@@ -202,6 +314,8 @@ const {
 	FormTableSectionRightMUI,
 	FormTableTopSectionMUI,
 	TextFieldEmailMUI,
+	TextFieldNameMUI,
+	AdminAvatarContainerMUI,
 	FormTableSectionTopLeftMUI,
 	FormTableSectionTopRightMUI,
 	FormSectionMUI,
@@ -209,7 +323,6 @@ const {
 	FormTextFieldContainerMUI,
 	MailLeftMUI,
 	MailRightMUI
-
 } = useAccountSettingsStyle();
 
 export default React.memo(AccountUserForm);
