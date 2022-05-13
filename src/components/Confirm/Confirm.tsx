@@ -41,6 +41,8 @@ const BoxWrapperUI = styled('div')(({theme}) => ({
 		color: '#274D82',
 		cursor: 'pointer',
 		fontWeight: 500,
+		wordWrap: 'break-word', 
+		overflowWrap: 'break-word',
 	},
 
 	'& svg': {
@@ -87,8 +89,7 @@ const Confirm = () => {
 						</ButtonUI>
 					</BoxWrapperUI>
 				</BoxUI>
-			</h1>}
-			{!isUserConfirm && <h1>false</h1>}
+			</h1>}			
 		</div>
 	);
 };
