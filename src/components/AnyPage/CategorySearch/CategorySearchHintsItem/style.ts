@@ -56,7 +56,7 @@ export const useCategorySearchHintsItemStyles = () => {
 		backgroundColor: 'transparent',
 		border: 0,
 		textAlign: 'left',
-		
+		display: 'block',
 		[theme.breakpoints.down(770)]: {		
 			paddingBottom: 0,		
 			padding: '10px 10px 10px 10px',		
