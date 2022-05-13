@@ -77,7 +77,6 @@ export const useQuestionPagesStyles = () => {
 		marginBottom: '30px',
 		maxWidth: '1190px',
 		marginLeft: '15px',
-
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '300',
@@ -98,6 +97,7 @@ export const useQuestionPagesStyles = () => {
 
 	const LIMUI = styled('li')(() => ({
 		// listStyleType: 'decimal',
+		marginBottom: 10
 	}));
 
 	return {
