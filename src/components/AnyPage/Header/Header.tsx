@@ -17,6 +17,7 @@ import {useCustomSize} from '@/hooks/useMedia';
 import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
 import {useHeader} from '@/components/AnyPage/Header/useHeader';
 import {SUPPORT_PHONE_RU} from '@/constants/constants';
+import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 
 const Header = () => {
 
@@ -106,9 +107,14 @@ const Header = () => {
 							</HeaderBurgerButtonMUI>
 						)}
 
+					
 						<LogoMUI>
-							<Logotip/>
+							<LinkUI>
+								<Logotip/>
+							</LinkUI>	
+						
 						</LogoMUI>
+					
 
 						<HeaderNavUI>
 

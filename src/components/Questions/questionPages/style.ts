@@ -6,6 +6,7 @@ export const useQuestionPagesStyles = () => {
 
 	const ContainerMUI = styled('section')(() => ({
 		// color: 'red'
+		padding: '0 10px',
 		
 	}));
 	const ContainerTextMUI = styled('div')(() => ({
@@ -70,6 +71,35 @@ export const useQuestionPagesStyles = () => {
 		}
 		
 	}));
+
+	const ULMUI = styled('ul')(({theme}) => ({
+		listStyleType: 'decimal',
+		marginBottom: '30px',
+		maxWidth: '1190px',
+		marginLeft: '15px',
+		fontFamily: 'Roboto',
+		fontStyle: 'normal',
+		fontWeight: '300',
+		fontSize: '20px',
+		lineHeight: '23.44px',
+		color: '#000000',
+
+		[theme.breakpoints.down(501)]: {
+			fontWeight: '300',
+			fontSize: '16px',
+			lineHeight: '19px',
+			color: '#000000',
+			marginLeft: '20px',
+			marginBottom: '12px',
+			// marginBottom: '32px',
+		}
+	}));
+
+	const LIMUI = styled('li')(() => ({
+		// listStyleType: 'decimal',
+		marginBottom: 10
+	}));
+
 	return {
 		ContainerMUI,
 		H3MUI,
@@ -79,6 +109,8 @@ export const useQuestionPagesStyles = () => {
 		ImgMUI,
 		ContetntLineMUI,
 		SvgBlockMUI,
-		SpanMUI
+		SpanMUI,
+		ULMUI,
+		LIMUI
 	};
 };

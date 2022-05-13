@@ -22,13 +22,13 @@ const listData: IHomeWorkExpListItemProps[] = [
 		top: 100,
 	},
 	{
-		title: 'Консолидируйте несколько покупок в одну посылку',
+		title: 'Объединяйте несколько покупок в одну посылку',
 		icon: HomeWorkExpIconCons,
 		animation: true,
 		top: 200,
 	},
 	{
-		title: 'Отправляем вам по почте',
+		title: 'Получайте заказы по почте',
 		icon: HomeWorkExpIconSending,
 		animation: true,
 		top: 300,

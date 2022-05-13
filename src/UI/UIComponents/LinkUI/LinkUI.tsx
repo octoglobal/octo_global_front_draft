@@ -30,6 +30,7 @@ const CustomLinkUI : FC<ICustomLinkUI> = ({
 			href={href}
 		>
 			<LinkUI
+				href={href}
 				type={type}
 				onClick={handlerClick}
 			>
