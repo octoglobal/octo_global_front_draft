@@ -109,7 +109,7 @@ const Header = () => {
 
 					
 						<LogoMUI>
-							<LinkUI>
+							<LinkUI href='/'>
 								<Logotip/>
 							</LinkUI>	
 						
