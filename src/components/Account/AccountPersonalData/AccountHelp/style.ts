@@ -63,6 +63,12 @@ export const useAccountHelpStyle = () => {
 		'&>a':{
 			color: '#274D82',
 		},
+		'&>a:visited':{
+			color: '#274D82',
+		},
+		'&>a:link':{
+			color: '#274D82',
+		},
 		[theme.breakpoints.down(1024)]: {
 			fontSize: '16px',
 			width: '100%',

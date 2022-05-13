@@ -101,7 +101,7 @@ export const useHeaderStyle = () => {
 		}
 	}));
 
-	const LogoMUI = styled('div')(({theme}) => ({
+	const LogoMUI = styled('a')(({theme}) => ({
 		marginRight: '180px',
 		// marginTop: '-12px',
 		[theme.breakpoints.down( 1441)]: {
