@@ -26,10 +26,10 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 				{markText(hint.email ,searchValue )}				
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
-				{isCustomSize? ordernumver?ordernumver : 'нет заказа':ordernumver}				
+				{isCustomSize? ordernumver?ordernumver :<PMUI>нет заказа</PMUI> :ordernumver}				
 			</HintItemOrderMUI>
 			<HintItemTrackMUI>
-				{isCustomSize? trackNumber?trackNumber : 'нет номера':trackNumber}			
+				{isCustomSize? trackNumber?trackNumber : <PMUI>нет номера</PMUI>:trackNumber}			
 			</HintItemTrackMUI>
 			<HintItemNameMUI>				
 				{markText(hint.name ,searchValue)}			
@@ -44,7 +44,8 @@ const {
 	HintItemEmailMUI,
 	HintItemOrderMUI,
 	HintItemTrackMUI,
-	HintItemNameMUI
+	HintItemNameMUI,
+	PMUI
 } = useAccountSearchHintStyles();
 
 export default React.memo(AccountSearchHint);

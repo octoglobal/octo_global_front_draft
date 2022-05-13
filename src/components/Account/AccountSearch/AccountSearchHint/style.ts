@@ -62,9 +62,10 @@ export const useAccountSearchHintStyles = () => {
 		textTransform: 'uppercase',
 		[theme.breakpoints.down(770)]: {
 			width: '100%',
-			gridArea: 'b',
-			
-		}
+			gridArea: 'b',			
+		},
+		
+		
 	}));
 	const HintItemNameMUI = styled('div')(({theme}) => ({
 		width: '28%',
@@ -75,7 +76,13 @@ export const useAccountSearchHintStyles = () => {
 		
 		}
 	}));
+	const PMUI = styled('div')(({theme}) => ({
+		[theme.breakpoints.down(400)]: {
+			fontSize: '15px',					
+		},
+		
 
+	}));
 	return {
 		HintItemMUI,
 		ContainerMUI,
@@ -84,5 +91,6 @@ export const useAccountSearchHintStyles = () => {
 		HintItemOrderMUI,
 		HintItemTrackMUI,
 		HintItemNameMUI,
+		PMUI
 	};
 };
