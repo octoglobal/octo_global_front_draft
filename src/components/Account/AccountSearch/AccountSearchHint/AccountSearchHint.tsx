@@ -5,7 +5,7 @@ import { useAccountSearchHintStyles } from '@/components/Account/AccountSearch/A
 
 interface IAccountSearchHintProps {
 	hint: IAdminHintsData,
-	markText: (title: string | undefined | null, searchValue: string, count: number) => FC | React.ReactElement | string,
+	markText: (title: string | undefined | null, searchValue: string) => FC | React.ReactElement | string,
 	searchValue: string,
 	isCustomSize: boolean,
 }
@@ -13,17 +13,17 @@ interface IAccountSearchHintProps {
 
 const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchValue,isCustomSize}) => {
 	
-	const trackNumber = markText(hint.trackNumber?.toString() ,searchValue , 15);
-	const ordernumver = markText(hint.orderNumber?.toString() ,searchValue , 15);
+	const trackNumber = markText(hint.trackNumber?.toString() ,searchValue );
+	const ordernumver = markText(hint.orderNumber?.toString() ,searchValue );
 	
 
 	return (
 		<ContainerMUI>
 			<HintItemuserAreaIdMUI>				
-			 {isCustomSize?'id': null} {markText(hint.userAreaId?.toString() ,searchValue , 8) }				
+			 {isCustomSize?'id': null} {markText(hint.userAreaId?.toString() ,searchValue ) }				
 			</HintItemuserAreaIdMUI>
 			<HintItemEmailMUI>				
-				{markText(hint.email ,searchValue , 17)}				
+				{markText(hint.email ,searchValue )}				
 			</HintItemEmailMUI>
 			<HintItemOrderMUI>
 				{isCustomSize? ordernumver?ordernumver : 'нет заказа':ordernumver}				
@@ -32,7 +32,7 @@ const AccountSearchHint: FC<IAccountSearchHintProps> = ({hint, markText,searchVa
 				{isCustomSize? trackNumber?trackNumber : 'нет номера':trackNumber}			
 			</HintItemTrackMUI>
 			<HintItemNameMUI>				
-				{markText(hint.name ,searchValue , hint.name.length)}			
+				{markText(hint.name ,searchValue)}			
 			</HintItemNameMUI>
 		</ContainerMUI>
 	);

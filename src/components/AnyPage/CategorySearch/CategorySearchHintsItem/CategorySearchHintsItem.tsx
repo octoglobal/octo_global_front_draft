@@ -7,7 +7,7 @@ import {
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 import AccountSearchHint from '@/components/Account/AccountSearch/AccountSearchHint/AccountSearchHint';
 import {useWatch} from 'react-hook-form';
-import { ellipsis } from '@/lib/services/services';
+
 interface ICategorySearchHintsItemProps extends IHints {
 	hint: IHints | IAdminHintsData;
 	active: boolean;
@@ -41,10 +41,9 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const searchValue = useWatch({name: 'search'});
 	
-	const editTextValue = (title: string | null | undefined,searchValue:string, count:number) =>{		
-		if (searchValue && title){	
-			const shortTitle= ellipsis(title, count);
-			const textsArr = shortTitle.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
+	const editTextValue = (title: string | null | undefined,searchValue:string, ) =>{		
+		if (searchValue && title){				
+			const textsArr = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
 			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
 			let markText ;
@@ -53,10 +52,9 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 			} else {				
 				markText = '';
 			}	
-			if (markText.length>count){
-				textsArr[0] = '';
-			}			
-			return <>{textsArr[0]}<TextMarkMUI>{ellipsis(markText, count)}</TextMarkMUI>{textsArr[1]}</>; 			
+						
+			return <>{textsArr[0]}<TextMarkMUI>{markText }</TextMarkMUI>{textsArr[1]}</>; 			
+			
 			
 		} else {
 			return '';
@@ -66,27 +64,34 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	return (
 		<ItemMUI>
-			<ButtonMUI
-				type='submit'
-				sx={activeStyles}
-				onMouseMove={handleChangeActiveSuggestion(hintCount)}
-				onMouseEnter={handleChangeActiveSuggestion(hintCount)}
-				onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
-			>
-				
-				{isAccount ? (
+			{isAccount ? 			
+				<LinkMUI
+					type='submit'
+					sx={activeStyles}
+					onMouseMove={handleChangeActiveSuggestion(hintCount)}
+					onMouseEnter={handleChangeActiveSuggestion(hintCount)}
+					onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
+				>
 					<AccountSearchHint
 						hint={hint as IAdminHintsData}
 						markText={editTextValue}
 						searchValue={searchValue}
 						isCustomSize={isCustomSize}
-					/>
-				) : (
+					/>				
+				</LinkMUI>			
+			 : 
+				<ButtonMUI
+					type='submit'
+					sx={activeStyles}
+					onMouseMove={handleChangeActiveSuggestion(hintCount)}
+					onMouseEnter={handleChangeActiveSuggestion(hintCount)}
+					onClick={handleClickHintItem(title, hint as IHints & IAdminHintsData)}
+				>
 					<ItemTextMUI>						
-						{editTextValue(title,searchValue ,title.length)}					
-					</ItemTextMUI>
-				)}
-			</ButtonMUI>
+						{editTextValue(title,searchValue)}					
+					</ItemTextMUI>				
+				</ButtonMUI>}
+				
 		</ItemMUI>
 	);
 };
@@ -96,6 +101,7 @@ const {
 	ButtonMUI,
 	ItemTextMUI,
 	TextMarkMUI,
+	LinkMUI
 	
 } = useCategorySearchHintsItemStyles();
 
