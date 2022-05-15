@@ -1,18 +1,27 @@
 import {useCallback} from 'react';
 
-import {FieldValues, SubmitHandler, UseFormSetError} from 'react-hook-form';
+import {FieldValues, SubmitHandler, UseFormReset, UseFormSetError} from 'react-hook-form';
 // import {useUserStore} from '@/hooks/useUserStore';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {
 	fetchChangePassword,
 	fetchChangeUser,
 	fetchUserAutoLogin, fetchVerificMessage,
 } from '@/reducers/userSlice/asyncActions/userApi';
-import {IAccountUpdateUser, IUpdatePassword, IUpdatePhone} from '../../../../types/types';
+import {IAccountUpdateUser, IUpdatePassword} from '../../../../types/types';
 import {useState} from 'react';
+import {useUserStore} from '@/hooks/useUserStore';
+import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 
-export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean) => {
+export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean, reset?: UseFormReset<FieldValues>) => {
 
+	const {
+		isAdmin
+	} = useUserStore();
+	const {
+		adminSwitchIdToUser,
+		adminSwitchUserModel,
+	} = useAppSelector(state => state.adminReducer);
 	const dispatch = useAppDispatch();
 
 	const [showEmailPromt, setShowPromt] = useState(!verifiedEmail);
@@ -58,15 +67,30 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 
 	const onSubmitUser : SubmitHandler<FieldValues> = (data) => {
 		const formData = data as IAccountUpdateUser;
+		const url = isAdmin ? `/admin/user/${adminSwitchIdToUser}` : '/user';
+		const sendObject = {} as IAccountUpdateUser;
 
-		const sendObject : IUpdatePhone = {
-			phone: formData.phone
-		};
+		if (formData.email != adminSwitchUserModel?.email) {
+			sendObject.email = formData.email;
+		}
 
-		if(sendObject.phone) {
-			dispatch(fetchChangeUser(sendObject))
+		if (formData.phone != adminSwitchUserModel?.phone) {
+			sendObject.phone = formData.phone;
+		}
+
+		if (formData.name != adminSwitchUserModel?.name) {
+			sendObject.name = formData.name;
+		}
+
+		if (formData.surname != adminSwitchUserModel?.surname) {
+			sendObject.surname = formData.surname;
+		}
+
+		if(sendObject?.phone || sendObject?.email || sendObject?.name || sendObject?.surname) {
+			dispatch(fetchChangeUser({data: sendObject, url: url}))
 				.then(e => {
-					const statusCode = e.payload;
+					const response = e.payload as {data: {status?: number, data?: string, message?: 'success', changes?: {name?: boolean, surname?: boolean, phone?: boolean, email?: boolean}}};
+					const statusCode = response?.data.status;
 					switch (statusCode) {
 					case 403:
 						handleBadResponseUser();
@@ -74,8 +98,54 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 					case 422:
 						handleBadResponseUser();
 						return;
+					case 409:
+						if (response.data == 'user with this phone already exists') {
+							setError('phone', {type: 'string', message: 'Номер телефона занят'});
+						}
+						if (response.data == 'user with this email already exists') {
+							setError('email', {type: 'string', message: 'Почта занята'});
+						}
+						return;
 					default:
-						dispatch(fetchUserAutoLogin());
+						if (response?.data.message == 'success') {
+							const emailField = response?.data?.changes?.email;
+							const phoneField = response?.data?.changes?.phone;
+							const currentPhone = adminSwitchUserModel?.phone ? adminSwitchUserModel?.phone : '';
+							const currentEmail = adminSwitchUserModel?.email ? adminSwitchUserModel?.email : '';
+							const isUseEmail = typeof emailField === 'boolean' && !emailField;
+							const isUserPhone = typeof phoneField === 'boolean' && !phoneField;
+
+							if (!isAdmin) {
+								dispatch(fetchUserAutoLogin());
+							}
+
+							if (reset) {
+								reset({
+									phone: !isUserPhone ? formData.phone : currentPhone,
+									email: !isUseEmail ? formData.email : currentEmail,
+									name: formData.name,
+									surname: formData.surname,
+								});
+							}
+
+							if (isUseEmail) {
+								setError('email', {type: 'string', message: 'Почта занята'});
+							}
+							if (isUserPhone) {
+								setError('phone', {type: 'string', message: 'Номер телефона занят'});
+							}
+
+							if (isAdmin) {
+								dispatch(adminSlice.actions.changeEmailAndPhone(
+									{
+										phone: !isUserPhone ? formData.phone : currentPhone,
+										email: !isUseEmail ? formData.email : currentEmail,
+										name: formData.name as string,
+										surname: formData.surname as string,
+									}
+								));
+							}
+						}
 					}
 				});
 		}
@@ -95,17 +165,30 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 
 	const onSubmitPassword : SubmitHandler<FieldValues> = (data) => {
 		const formData = data;
+		const url = isAdmin ? `/admin/user/${adminSwitchIdToUser}` : '/password_change';
 
-		const sendObject : IUpdatePassword = {
+		if (isAdmin) {
+			if (data.oldPassword !== data.newPassword) {
+				handleBadResponsePassword();
+				return;
+			}
+		}
+
+		const sendObject : IUpdatePassword | {password: string} = isAdmin ? {
+			password: formData.newPassword,
+		} : {
 			old_password: formData.oldPassword,
 			new_password: formData.newPassword,
 		};
 
 		if(formData.oldPassword && formData.newPassword) {
-			dispatch(fetchChangePassword(sendObject))
+			dispatch(fetchChangePassword({
+				data: sendObject,
+				url: url,
+				isAdmin: isAdmin
+			}))
 				.then(e => {
 					const statusCode = e.payload;
-					console.log('statusCode: ', statusCode);
 					switch (statusCode) {
 					case 403:
 						handleBadResponsePassword();
@@ -116,7 +199,13 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 					case 200:
 					default:
 						setSuccess(true);
-						dispatch(fetchUserAutoLogin());
+						if (!isAdmin) dispatch(fetchUserAutoLogin());
+						if (reset) {
+							reset({
+								oldPassword: '',
+								newPassword: '',
+							});
+						}
 					}
 				})
 				.catch(e => {

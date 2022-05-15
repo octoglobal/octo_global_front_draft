@@ -48,6 +48,15 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
+	const AdminAvatarContainerMUI = styled('div')(() => ({
+		marginBottom: '12px',
+		display: 'flex',
+		alignItems: 'center',
+		'& > *:nth-of-type(2n)': {
+			marginRight: '10px',
+		}
+	}));
+
 	const AdminMarginBottomMUI = styled('div')(() => ({
 		marginBottom: '15px',
 	}));
@@ -61,6 +70,7 @@ export const useAccountSettingsStyle = () => {
 		// gridColumnGap: '20px',
 		// gridRowGap: '20px',
 		// marginBottom: '15px',
+		marginBottom: '12px',
 
 		[theme.breakpoints.down(500)]: {
 			gridTemplateColumns: 'auto auto',
@@ -170,9 +180,7 @@ export const useAccountSettingsStyle = () => {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
-		// height: '50px',
-		// marginRight: '5px',
-		marginTop: '5px'
+		marginTop: '15px'
 	}));
 
 	const FormButtonUI = {
@@ -227,7 +235,7 @@ export const useAccountSettingsStyle = () => {
 			// border: 'none',
 			// boxShadow: 'none',
 
-			border: selection ? '1px solid #DFE4EC' : '',
+			border: selection ? '1px solid #DFE4EC' : '1px solid #FFFFFF',
 			// border: selection ? '5px solid red' : '',
 			boxSizing: 'border-box',
 			boxShadow: selection ? '0px 4px 4px rgba(0, 0, 0, 0.03)' : 'none',
@@ -456,7 +464,7 @@ export const useAccountSettingsStyle = () => {
 
 	//
 	const MailLeftMUI  = styled('div')(({theme}) => ({
-		width: '177px',
+		width: '167px',
 		fontFamily: 'Roboto',
 		fontStyle: 'normal',
 		fontWeight: '400',
@@ -476,7 +484,7 @@ export const useAccountSettingsStyle = () => {
 
 
 	const MailRightMUI  = styled('div')(({theme}) => ({
-		width: '277px',
+		width: '295px',
 		textAlign: 'left',
 
 		[theme.breakpoints.down(600)]: {
@@ -515,6 +523,10 @@ export const useAccountSettingsStyle = () => {
 
 	}));
 
+	const TextFieldNameMUI = styled(TextFieldEmailMUI)(() => ({
+		maxWidth: '202px',
+	}));
+
 	const FormTextFieldContainerMUI = styled('div')(({theme}) => ({
 
 		'& > * .MuiOutlinedInput-root': {
@@ -541,6 +553,7 @@ export const useAccountSettingsStyle = () => {
 		FormButtonUI,
 		FormTextFieldUI,
 		FormTextFieldWrapperUI,
+		AdminAvatarContainerMUI,
 		FormTextFieldPasswordWrapperUI,
 		FormTextFieldBorderUI,
 		FormTextFieldFocusBorder,
@@ -558,6 +571,7 @@ export const useAccountSettingsStyle = () => {
 		FormTableSectionRightMUI,
 		FormTableTopSectionMUI,
 		TextFieldEmailMUI,
+		TextFieldNameMUI,
 		FormTableSectionTopLeftMUI,
 		FormTableSectionTopRightMUI,
 		FormSectionMUI,
