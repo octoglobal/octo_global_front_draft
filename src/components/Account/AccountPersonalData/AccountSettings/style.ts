@@ -57,6 +57,19 @@ export const useAccountSettingsStyle = () => {
 		}
 	}));
 
+	const UserAdminNameSurnameMUI = styled('h4')(() => ({
+		fontSize: '18px',
+		fontWeight: 300,
+		maxWidth: '165px',
+		lineHeight: '21px',
+		textAlign: 'center',
+		color: '#000000',
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		marginRight: '10px',
+	}));
+
 	const AdminMarginBottomMUI = styled('div')(() => ({
 		marginBottom: '15px',
 	}));
@@ -525,6 +538,11 @@ export const useAccountSettingsStyle = () => {
 
 	const TextFieldNameMUI = styled(TextFieldEmailMUI)(() => ({
 		maxWidth: '202px',
+		'& > div': {
+			'& > div': {
+				maxWidth: '202px',
+			}
+		}
 	}));
 
 	const FormTextFieldContainerMUI = styled('div')(({theme}) => ({
@@ -576,6 +594,7 @@ export const useAccountSettingsStyle = () => {
 		FormTableSectionTopRightMUI,
 		FormSectionMUI,
 		FormContainerTopMUI,
+		UserAdminNameSurnameMUI,
 		FormTextFieldContainerMUI,
 		FormContainerBottomMUI,
 		MailLeftMUI,
