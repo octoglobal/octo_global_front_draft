@@ -33,13 +33,15 @@ export const useAddressUserStyle = () => {
 
 		display: 'grid',
 		// gridTemplateColumns: '87px 451px',
-		gridTemplateColumns: '87px 1fr',
+		gridTemplateColumns: '87px 440px',
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '36px',
 		gridRowGap: '20px',
 
 		padding: '0 30px',
-
+		[theme.breakpoints.down(700)]: {
+			gridTemplateColumns: '87px 1fr',
+		},
 		[theme.breakpoints.down(650)]: {
 			marginBottom: '0px',
 

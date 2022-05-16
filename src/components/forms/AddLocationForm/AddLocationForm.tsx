@@ -12,6 +12,7 @@ import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import { translit } from '@/lib/services/services';
 import { SxProps } from '@mui/material';
+import { useAppSelector } from '@/hooks/useReduxHooks';
 
 interface IAddLocationForm {
 	setOpenForm: (prevState : (state: boolean) => boolean) => void
@@ -43,13 +44,20 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		FormRowButtonUI,
 	} = useAddLocationFormStyle();
 
-	const { handleSubmit, control, setError,reset } = useForm();
+	const { handleSubmit, control, setError,reset } = useForm();	
+	
+
 
 	const {
-		user: {
-			name, surname,
-			phone,
-		}
+		// user: {
+		// 	name, surname,
+		// 	phone
+		// },
+		isAdmin,
+		userPhone,
+		userName,
+		userSurname,
+		adminSwitchIdToUser
 	} = useUserStore();
 
 	const {onSubmit} = useAddLocation();
@@ -80,6 +88,11 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		});
 	}, []);
 
+	// для очистки полей при смене пользователя из под админа по не работает
+	// useEffect(() => {
+	// 	console.log('u34923894293439');
+	// 	reset({});
+	// }, [adminSwitchIdToUser]);
 	
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
@@ -90,7 +103,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 						controller={{
 							name: 'name',
 							control,
-							defaultValue: translit(name),
+							defaultValue: translit(userName),
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -113,7 +126,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 						controller={{
 							name: 'surname',
 							control,
-							defaultValue: translit(surname),
+							defaultValue: translit(userSurname),
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -136,7 +149,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 						controller={{
 							name: 'phone',
 							control,
-							defaultValue: phone,
+							defaultValue: userPhone,
 							rules: { required: true },
 						}}
 						inputProps={{

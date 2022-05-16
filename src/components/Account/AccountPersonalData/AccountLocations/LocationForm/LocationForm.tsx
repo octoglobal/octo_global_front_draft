@@ -10,9 +10,11 @@ import {useCustomSize} from '@/hooks/useMedia';
 
 const LocationForm: FC = () => {
 	const {
-		user: {
-			addresses
-		},		
+		Iuser: {
+			addresses,
+			id
+		},
+		isAdmin				
 	} = useUserStore();	
 
 	
@@ -38,6 +40,8 @@ const LocationForm: FC = () => {
 				<LocationList
 					addresses={addresses}
 					showAll={showAllLoc}
+					isAdmin={isAdmin}
+					userId={id}
 				/>
 
 				<LocationButtonsUI

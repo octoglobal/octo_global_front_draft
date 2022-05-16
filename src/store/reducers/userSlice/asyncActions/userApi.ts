@@ -33,7 +33,8 @@ export interface IUserAddresReq {
 }
 
 interface IAddressDelete {
-	address_id: number
+	address_id: number,
+	userId?:number
 }
 
 
@@ -197,20 +198,41 @@ export const fetchAddAddress = createAsyncThunk(
 
 			// console.log('response: ', response);
 			return response;
-		} catch (e) {
-			// console.log('e: ', e);
-			return rejectWithValue('Произошла ошибка при добавлении адреса');
+		} catch (err) {
+			
+			if (axios.isAxiosError(err)) {
+			
+				return rejectWithValue(err.response?.status);
+			}
+		
 		}
 	}
 );
 
 export const fetchDeleteAddress = createAsyncThunk(
 	'/address/delete',
-	// TODO: добавитьтип адресса к удалению адреса
-	async (data: IAddressDelete, thunkAPI) => {
+	// TODO: добавитьтип адресса к удалению адреса	
+	async (data: IAddressDelete, thunkAPI) => {		
 		try {
 			// console.log('data: ', data);
 			const response = await octoAxios.delete('/user/address', {data});
+			// console.log('response: ', response);
+			// const response
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Ошибка apu address/delete');
+		}
+	}
+);
+export const fetchDeleteAddressAdmin = createAsyncThunk(
+	'/address/AdminDelete',
+	// TODO: добавитьтип адресса к удалению адреса
+	
+	async (data: IAddressDelete, thunkAPI) => {
+		console.log('DELETE ', data);
+		try {
+			console.log('data: ', data);
+			const response = await octoAxios.delete('/admin/user/address', {data});
 			// console.log('response: ', response);
 			// const response
 			return response;

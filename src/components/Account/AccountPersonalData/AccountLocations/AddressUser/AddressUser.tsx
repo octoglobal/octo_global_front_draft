@@ -22,7 +22,7 @@ const AddressUser: FC<IAddressUser> = ({id, name, surname, phone, location, hand
 	// 		statusId
 	// 	}
 	// } = useUserStore();
-
+	
 	const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
 
 	const handlerDialogState = () => {
