@@ -1,5 +1,9 @@
-import {FieldValues, useForm} from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import {useEffect, useMemo} from 'react';
+import { useUserStore } from '@/hooks/useUserStore';
+import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
+import { fetchAdminAddPaymentInUser } from '@/reducers/paymentSlice/asyncThunk/paymentApi';
+import { usePayment } from '@/hooks/usePayment';
 
 interface IPaymentFormState {
 	plus: string;
@@ -8,10 +12,13 @@ interface IPaymentFormState {
 }
 
 export const usePaymentForm = () => {
+
 	const {
 		control,
 		watch,
-		setValue
+		setValue,
+		reset,
+		handleSubmit,
 	} = useForm<IPaymentFormState | FieldValues>({
 		defaultValues: {
 			minus: '',
@@ -20,6 +27,20 @@ export const usePaymentForm = () => {
 		}
 	});
 
+	const {
+		user
+	} = useUserStore();
+
+	const {
+		adminSwitchIdToUser
+	} = useAppSelector(state => state.adminReducer);
+
+	const {
+		statusMessage,
+		handleResetStatusMessagePaymentReducer,
+	} = usePayment();
+
+	const dispatch = useAppDispatch();
 	const formValues = watch();
 
 	const minusValue = useMemo(() => {
@@ -29,6 +50,33 @@ export const usePaymentForm = () => {
 	const plusValue = useMemo(() => {
 		return formValues.plus;
 	}, [formValues.plus]);
+
+	const onSubmit: SubmitHandler<IPaymentFormState | FieldValues> = (data) => {
+		if (
+			(
+				data.minus &&
+				typeof +data.minus === 'number' &&
+				+data.minus
+			)
+			||
+			(
+				data.plus &&
+				typeof +data.plus === 'number'
+				&& +data.plus
+			)
+		) {
+			const userId = adminSwitchIdToUser ? adminSwitchIdToUser : user?.id;
+			const sendData = {
+				userId: userId,
+				comment: data.comment,
+				amount: data.minus ? -(+data.minus) : +data.plus,
+			};
+			dispatch(fetchAdminAddPaymentInUser(sendData))
+				.then(() => reset({}));
+			return;
+		}
+		handleResetStatusMessagePaymentReducer('Введите корректные значения');
+	};
 
 	useEffect(() => {
 		if (minusValue.length) {
@@ -42,7 +90,11 @@ export const usePaymentForm = () => {
 		}
 	}, [plusValue]);
 
+
 	return {
 		control,
+		onSubmit,
+		handleSubmit,
+		statusMessage,
 	};
 };

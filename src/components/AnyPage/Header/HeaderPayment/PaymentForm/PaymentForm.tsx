@@ -7,11 +7,14 @@ const PaymentForm = () => {
 
 	const {
 		control,
+		onSubmit,
+		handleSubmit,
+		statusMessage,
 	} = usePaymentForm();
 
 	return (
 		<ContainerMUI>
-			<FormContainerMUI>
+			<FormContainerMUI onSubmit={handleSubmit(onSubmit)}>
 				<TextFieldMUI color='#23D16A'>
 					<TextFieldUI
 						controller={{
@@ -40,7 +43,10 @@ const PaymentForm = () => {
 							}}
 						/>
 					</TextFieldMUI>
-					<SubmitButtonMUI>
+					<StatusMessageMUI>
+						{statusMessage}
+					</StatusMessageMUI>
+					<SubmitButtonMUI type='submit'>
 						Применить
 					</SubmitButtonMUI>
 				</TextFieldCommentContainerMUI>
@@ -50,6 +56,9 @@ const PaymentForm = () => {
 							name: 'minus',
 							control,
 							defaultValue: '',
+							rules: {
+								pattern: /[0-9]*/,
+							}
 						}}
 						inputProps={{
 							placeholder: '-',
@@ -66,6 +75,7 @@ const {
 	SubmitButtonMUI,
 	FormContainerMUI,
 	TextFieldMUI,
+	StatusMessageMUI,
 	TextFieldCommentContainerMUI,
 } = usePaymentFormStyles();
 

@@ -42,9 +42,16 @@ export const usePaymentFormStyles = () => {
 		alignItems: 'flex-end'
 	}));
 
+	const StatusMessageMUI = styled('p')(() => ({
+		fontSize: '14px',
+		lineHeight: '16px',
+		marginTop: '3px',
+		minHeight: '16px',
+	}));
+
 
 	const SubmitButtonMUI = styled(ButtonUI)(() => ({
-		marginTop: '15px',
+		marginTop: '4px',
 		maxWidth: '135px',
 		fontWeight: 400,
 		fontSize: '14px',
@@ -59,6 +66,7 @@ export const usePaymentFormStyles = () => {
 		SubmitButtonMUI,
 		TextFieldMUI,
 		FormContainerMUI,
+		StatusMessageMUI,
 		TextFieldCommentContainerMUI,
 	};
 };
