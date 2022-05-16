@@ -14,6 +14,7 @@ export const useLocationListStyle = () => {
 		'&::-webkit-scrollbar': {
 			height: '4px',
 			width: '4px',
+			backgroundColor: '#CCC',
 		  },
 
 		'&::-webkit-scrollbar-thumb': {
