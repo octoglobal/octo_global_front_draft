@@ -14,7 +14,7 @@ const AccountAddModal: FC<IAccountAddModalProps> = ({ open, onClose }) => {
 				open: open,
 				onClose,
 			}}
-			closeTime={5}
+			closeTime={3}
 			title={'Посылка успешно оформлена \n' + 'Отследить ее можно на вкладке ожидаемые'}
 		/>
 	);
