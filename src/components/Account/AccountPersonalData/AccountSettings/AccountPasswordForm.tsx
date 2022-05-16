@@ -1,11 +1,12 @@
 import React, {FC, useMemo} from 'react';
-import {Box} from '@mui/material';
+import {Box, useMediaQuery} from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldPasswordUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPasswordUI/TextFieldPasswordUI';
 import {useAccountSettingsStyle} from '@/components/Account/AccountPersonalData/AccountSettings/style';
 import {useAccountSettings} from '@/components/Account/AccountPersonalData/AccountSettings/useAccountSettings';
+import {useUserStore} from '@/hooks/useUserStore';
 
 const AccountPasswordForm : FC = () => {
 
@@ -16,6 +17,7 @@ const AccountPasswordForm : FC = () => {
 		FormTextFieldUI,
 		FormTextFieldBorderUI,
 		HelperBoxUI,
+		FormTextFieldAdaptiveUI,
 		FormTableTopSectionMUI,
 		FormTableSectionLeftMUI,
 		FormTableSectionRightMUI,
@@ -25,17 +27,38 @@ const AccountPasswordForm : FC = () => {
 
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError, formState: {isSubmitted}} = useForm();
+	const {handleSubmit, control, setError, formState: {isSubmitted}, reset} = useForm();
 
 	const {
 		onSubmitPassword,
 		isSubmitFormSuccess
-	} = useAccountSettings(setError);
+	} = useAccountSettings(setError, false, reset);
+
+	const {
+		isAdmin
+	} = useUserStore();
 
 	const isSubmitForm = useMemo(
 		() => isSubmitted && isSubmitFormSuccess,
 		[isSubmitted, isSubmitFormSuccess]
 	);
+
+	const isMobile = useMediaQuery('(max-width: 599px)');
+
+	const passwordLabel = useMemo(() => {
+		if (isAdmin) {
+			return {
+				firstLabel: 'Новый пароль',
+				secondLabel: 'Повторить пароль',
+			};
+		} else {
+			return {
+				firstLabel: 'Старый пароль',
+				secondLabel: 'Новый пароль',
+			};
+		}
+	}, [isAdmin]);
+
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitPassword)}>
@@ -43,7 +66,7 @@ const AccountPasswordForm : FC = () => {
 
 				<FormTableTopSectionMUI>
 					<FormTableSectionLeftMUI >
-						Смена пароля	
+						Смена пароля
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI>
@@ -57,23 +80,26 @@ const AccountPasswordForm : FC = () => {
 									}}
 									inputProps={{
 										// label: 'Старый пароль',
-										placeholder: 'Старый пароль',
+										placeholder: passwordLabel.firstLabel,
 										name: 'oldPassword',
 										type: 'password',
 										required: true,
 										helperText: 'Заполните поле "Пароль"',
-										sx: FormTextFieldUI,
+										sx: {
+											...FormTextFieldUI,
+											...FormTextFieldAdaptiveUI(isMobile),
+										},
 										// autoFocus: true,
 									}}
 								/>
-							</FormTextFieldContainerMUI>	
+							</FormTextFieldContainerMUI>
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
-				
+
 				<FormTableTopSectionMUI>
 					<FormTableSectionLeftMUI>
-							
+
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
 						<FormTextFieldBorderUI>
@@ -87,18 +113,22 @@ const AccountPasswordForm : FC = () => {
 									}}
 									inputProps={{
 										// label: 'Новый пароль',
-										placeholder: 'Новый пароль',
+										placeholder: passwordLabel.secondLabel,
 										name: 'newPassword',
 										type: 'password',
 										required: true,
 										// helperText: 'Заполните поле "Пароль"',
-										sx: FormTextFieldUI,
+										sx: {
+											...FormTextFieldUI,
+											marginTop: isMobile ? '30px' : '10px',
+											...FormTextFieldAdaptiveUI(isMobile),
+										},
 										// autoFocus: true,
 									}}
 								/>
 							</FormTextFieldContainerMUI>
-							
-				
+
+
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
@@ -110,7 +140,10 @@ const AccountPasswordForm : FC = () => {
 				<FormContainerBottomMUI>
 					<FormContainerTopMUI>
 						<FormTableEndUI>
-							<ButtonUI type="submit" style={FormButtonUI}>
+							<ButtonUI
+								type="submit"
+								style={FormButtonUI}
+							>
 								Сохранить
 							</ButtonUI>
 						</FormTableEndUI>

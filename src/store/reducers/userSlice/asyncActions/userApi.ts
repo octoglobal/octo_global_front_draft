@@ -19,7 +19,7 @@ export interface IUserLoginReq {
 export interface IUserChange {
 	name?: string;
 	surname?: string;
-	phone: string;
+	phone?: string;
 }
 interface IUserDefaultRes {
 	message: string
@@ -93,9 +93,11 @@ export const fetchUserAutoLogin = createAsyncThunk(
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
-				return thunkAPI.rejectWithValue(`Ошибка api user/autologin 400 ${err.response?.status}`);
+				return {
+					message: thunkAPI.rejectWithValue(`${err.response?.status}`),
+				};
 			}
-			return thunkAPI.rejectWithValue('Ошибка api user/autologin 400');
+			return thunkAPI.rejectWithValue('422');
 		}
 	}
 );
@@ -122,12 +124,12 @@ export const fetchUserLogin = createAsyncThunk(
 
 export const fetchChangeUser = createAsyncThunk(
 	'user/change',
-	async(data: IUserChange, thunkAPI) => {
+	async(data: {data: IUserChange, url: string}, thunkAPI) => {
 		try {
-			return await octoAxios.patch('/user', data);
+			return await octoAxios.patch(data.url, data.data);
 		} catch (err : unknown) {
 			if (axios.isAxiosError(err)) {
-				return thunkAPI.rejectWithValue(err.response?.status);
+				return thunkAPI.rejectWithValue(err.response);
 			}
 			return thunkAPI.rejectWithValue(400);
 		}
@@ -136,13 +138,15 @@ export const fetchChangeUser = createAsyncThunk(
 
 export const fetchChangePassword = createAsyncThunk(
 	'password/chang',
-	async(data : IUpdatePassword, thunkAPI) => {
+	async(data : {data: IUpdatePassword | {password: string}, url: string, isAdmin: boolean}, thunkAPI) => {
 		try {
-			return await octoAxios.post('/password_change', data);
+			if (data.isAdmin) {
+				return await octoAxios.patch(data.url, data.data);
+			} else {
+				return await octoAxios.post(data.url, data.data);
+			}
 		} catch (err) {
-			// console.log('fetchChangePassword: ', err);
 			if (axios.isAxiosError(err)) {
-				// console.log('isAxiosError', err.response);
 				return thunkAPI.rejectWithValue(err.response?.status);
 			}
 			return thunkAPI.rejectWithValue(400);

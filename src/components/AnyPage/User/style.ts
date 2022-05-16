@@ -35,8 +35,9 @@ export const useUserStyle = () => {
 			// overflow: 	  'visible',	  /* Обрезаем всё за пределами блока */
 			textOverflow: 'clip', /* Добавляем многоточие */
 		}
-		
+
 	}));
+
 
 	return {
 		UserUI,

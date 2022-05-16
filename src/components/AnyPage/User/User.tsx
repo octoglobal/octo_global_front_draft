@@ -11,7 +11,7 @@ interface IUser {
 const User : FC<IUser> = (
 	{
 		cutFio = true,
-		isChangeToAdmin = false
+		isChangeToAdmin = false,
 	}
 ) => {
 
@@ -42,5 +42,6 @@ const {
 	UserAvatarUI,
 	UserFIOUI
 } = useUserStyle();
+
 
 export default React.memo(User);

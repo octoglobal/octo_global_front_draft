@@ -53,7 +53,9 @@ export interface IRepeatPasswordFormError {
 
 export interface IAccountUpdateUser {
 	email: string,
-	phone: string
+	phone: string,
+	name?: string;
+	surname?: string;
 }
 
 export type IUpdatePhone = Omit<IAccountUpdateUser, 'email'>;

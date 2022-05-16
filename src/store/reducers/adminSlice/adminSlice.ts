@@ -44,6 +44,17 @@ export const adminSlice = createSlice({
 			state.adminSwitchIdToUser = null;
 			state.search = '';
 			state.adminSwitchUserModel = null;
+		},
+		changeEmailAndPhone: (state, action: PayloadAction<{phone: string, email: string, name: string, surname: string}>) => {
+			if (state.adminSwitchUserModel) {
+				state.adminSwitchUserModel = {
+					...state.adminSwitchUserModel,
+					phone: action.payload.phone,
+					email: action.payload.email,
+					name: action.payload.name,
+					surname: action.payload.surname,
+				};
+			}
 		}
 	},
 	extraReducers: {

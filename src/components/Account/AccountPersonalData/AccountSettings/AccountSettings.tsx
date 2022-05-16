@@ -8,26 +8,22 @@ import {useAccountSettingsStyle} from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 
 const AccountSettings: FC = () => {
-
 	const {
 		isAdmin
 	} = useUserStore();
-
 	return (
 		<SettingsWrapperUI>
 			<FormsWrapperBoxUI>
-				<FormTableUserUI>
-					<User
-						cutFio={false}
-						isChangeToAdmin={true}
-					/>
+				<FormTableUserUI sx={{marginBottom: isAdmin ? '0 !important' : ''}}>
+					{!isAdmin && (
+						<User
+							cutFio={false}
+							isChangeToAdmin={true}
+						/>
+					)}
 				</FormTableUserUI>
 				<AccountUserForm />
-				{isAdmin ? (
-					<AdminMarginBottomMUI/>
-				) : (
-					<AccountPasswordForm />
-				)}
+				<AccountPasswordForm />
 			</FormsWrapperBoxUI>
 		</SettingsWrapperUI>
 	);
@@ -37,7 +33,6 @@ const {
 	FormTableUserUI,
 	SettingsWrapperUI,
 	FormsWrapperBoxUI,
-	AdminMarginBottomMUI
 } = useAccountSettingsStyle();
 
 export default React.memo(AccountSettings);
