@@ -140,8 +140,8 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 									{
 										phone: !isUserPhone ? formData.phone : currentPhone,
 										email: !isUseEmail ? formData.email : currentEmail,
-										name: formData.name as string,
-										surname: formData.surname as string,
+										name: formData.name ? formData.name : adminSwitchUserModel?.name as string,
+										surname: formData.surname ? formData.surname : adminSwitchUserModel?.surname as string,
 									}
 								));
 							}

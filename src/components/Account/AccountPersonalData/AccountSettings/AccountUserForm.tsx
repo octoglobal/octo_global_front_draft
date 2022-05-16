@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
-import {Avatar, Box} from '@mui/material';
+import {Avatar, Box, useMediaQuery} from '@mui/material';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
 import EditPencil from '@/UIIcon/EditPencil.svg';
@@ -39,6 +39,8 @@ const AccountUserForm: FC = () => {
 	} = useAppSelector(state => state.adminReducer);
 
 	const [isEditFIO, setIsEditFIO] = useState<boolean>(false);
+
+	const isMobile = useMediaQuery('(max-width: 599px)');
 
 	const dirtyPhone = useMemo(
 		() => dirtyFields.phone,
@@ -153,6 +155,13 @@ const AccountUserForm: FC = () => {
 	}, [adminSwitchIdToUser, userPhone, userEmail, adminSwitchUserModel?.name, adminSwitchUserModel?.surname]);
 
 	useEffect(() => {
+		if (isEditFIO) {
+			setValue('name', adminSwitchUserModel?.name);
+			setValue('surname', adminSwitchUserModel?.surname);
+		}
+	}, [isEditFIO]);
+
+	useEffect(() => {
 		reset({});
 	}, [adminSwitchIdToUser]);
 
@@ -182,7 +191,6 @@ const AccountUserForm: FC = () => {
 												sx: {
 													...FormTextFieldUI,
 													padding: '10px 0 10px 10px',
-													marginRight: '10px',
 												},
 												inputRef: textNameRef,
 											}}
@@ -214,7 +222,7 @@ const AccountUserForm: FC = () => {
 								<UserAdminNameSurnameMUI>{adminSwitchUserModel?.name}</UserAdminNameSurnameMUI>
 								<UserAdminNameSurnameMUI>{adminSwitchUserModel?.surname}</UserAdminNameSurnameMUI>
 								<button
-									style={{border: 0, backgroundColor: 'transparent', cursor: 'pointer'}}
+									style={{border: 0, backgroundColor: 'transparent', cursor: 'pointer', height: '24px'}}
 									onClick={() => setIsEditFIO(true)}
 								>
 									<EditPencil/>
@@ -233,13 +241,13 @@ const AccountUserForm: FC = () => {
 						</FormTableSectionTopRightMUI>
 					</FormSectionMUI>
 
-					<FormSectionMUI>
+					<FormSectionMUI sx={{marginBottom: isMobile ? '5px' : ''}}>
 						<MailLeftMUI>
 							Почта
 						</MailLeftMUI>
 						<MailRightMUI>
 							<FormTextFieldBorderUI selection={!email} focusBorder={true}>
-								<TextFieldEmailMUI>
+								<TextFieldEmailMUI selection={!isAdmin}>
 									<TextFieldUI
 										controller={{
 											name: 'email',
@@ -252,7 +260,8 @@ const AccountUserForm: FC = () => {
 											helperText: verifiedEmail ? 'Почта не подтверждена' : '',
 											sx: {
 												...FormTextFieldUI,
-												padding: '10px 0 10px 10px',
+												height: isMobile ? '37px !important' : '',
+												padding: isMobile ? '6px 0 6px 10px' : '10px 0 10px 10px',
 											},
 											disabled: !isAdmin,
 											inputRef: textEmailRef,
@@ -290,7 +299,16 @@ const AccountUserForm: FC = () => {
 										name: 'phone',
 										type: 'tel',
 										required: false,
-										sx: FormTextFieldUI,
+										sx: {
+											...FormTextFieldUI,
+											height: isMobile ? '37px !important' : '',
+											'& > div':
+												{
+													'& > input': {
+														padding: isMobile ? '6px 0 6px 10px !important' : ''
+													}
+												}
+										},
 										inputRef: textPhoneRef
 									}}
 									iconProps={{

@@ -1,5 +1,5 @@
 import React, {FC, useMemo} from 'react';
-import {Box} from '@mui/material';
+import {Box, useMediaQuery} from '@mui/material';
 import {useForm} from 'react-hook-form';
 
 import ButtonUI from '../../../../UI/UIComponents/ButtonUI/ButtonUI';
@@ -17,6 +17,7 @@ const AccountPasswordForm : FC = () => {
 		FormTextFieldUI,
 		FormTextFieldBorderUI,
 		HelperBoxUI,
+		FormTextFieldAdaptiveUI,
 		FormTableTopSectionMUI,
 		FormTableSectionLeftMUI,
 		FormTableSectionRightMUI,
@@ -42,6 +43,8 @@ const AccountPasswordForm : FC = () => {
 		[isSubmitted, isSubmitFormSuccess]
 	);
 
+	const isMobile = useMediaQuery('(max-width: 599px)');
+
 	const passwordLabel = useMemo(() => {
 		if (isAdmin) {
 			return {
@@ -55,6 +58,7 @@ const AccountPasswordForm : FC = () => {
 			};
 		}
 	}, [isAdmin]);
+
 
 	return (
 		<Box component="form" onSubmit={handleSubmit(onSubmitPassword)}>
@@ -81,7 +85,10 @@ const AccountPasswordForm : FC = () => {
 										type: 'password',
 										required: true,
 										helperText: 'Заполните поле "Пароль"',
-										sx: FormTextFieldUI,
+										sx: {
+											...FormTextFieldUI,
+											...FormTextFieldAdaptiveUI(isMobile),
+										},
 										// autoFocus: true,
 									}}
 								/>
@@ -113,7 +120,8 @@ const AccountPasswordForm : FC = () => {
 										// helperText: 'Заполните поле "Пароль"',
 										sx: {
 											...FormTextFieldUI,
-											marginTop: '10px',
+											marginTop: isMobile ? '30px' : '10px',
+											...FormTextFieldAdaptiveUI(isMobile),
 										},
 										// autoFocus: true,
 									}}
@@ -132,7 +140,10 @@ const AccountPasswordForm : FC = () => {
 				<FormContainerBottomMUI>
 					<FormContainerTopMUI>
 						<FormTableEndUI>
-							<ButtonUI type="submit" style={FormButtonUI}>
+							<ButtonUI
+								type="submit"
+								style={FormButtonUI}
+							>
 								Сохранить
 							</ButtonUI>
 						</FormTableEndUI>

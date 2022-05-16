@@ -14,7 +14,7 @@ const AccountSettings: FC = () => {
 	return (
 		<SettingsWrapperUI>
 			<FormsWrapperBoxUI>
-				<FormTableUserUI>
+				<FormTableUserUI sx={{marginBottom: isAdmin ? '0 !important' : ''}}>
 					{!isAdmin && (
 						<User
 							cutFio={false}
