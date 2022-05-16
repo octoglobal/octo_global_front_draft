@@ -49,7 +49,7 @@ export const useUserStore = () => {
 	return {
 		user,
 		isAuth,
-		isAdmin,
+		isAdmin,		
 		getUser: fetchUser,
 	};
 };

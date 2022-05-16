@@ -192,7 +192,7 @@ export const fetchRecoveryMessage = createAsyncThunk(
 export const fetchAddAddress = createAsyncThunk(
 	'address/add',
 	async(data: AddressFetchObject, {rejectWithValue}) => {
-		try {
+		try {		
 			const response = await octoAxios.post('/user/address', data);
 
 			// console.log('response: ', response);

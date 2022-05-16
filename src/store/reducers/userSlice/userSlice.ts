@@ -1,19 +1,14 @@
-import {createSlice, PayloadAction, current} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {
 	fetchUserAutoLogin,
 	fetchUserLogin,
-	fetchUserLogout,
-	fetchAddAddress
+	fetchUserLogout,	
 } from '@/reducers/userSlice/asyncActions/userApi';
 import {IUserModel} from '@/models/IUserModel';
-interface IError {
-	status: boolean,
-	message: string,
-}
+
 export interface IUserSlice {
 	user: IUserModel,
-	// error:IError,
-	// loading: boolean
+	
 }
 
 const initialState: IUserSlice = {
@@ -32,6 +27,7 @@ const initialState: IUserSlice = {
 		username: '',
 		verifiedEmail: false
 	},
+	
 	
 };
 
@@ -69,25 +65,6 @@ export const userSlice = createSlice({
 		[fetchUserLogout.fulfilled.type]: (state) => {
 			state.user = initialState.user;
 		},
-
-		[fetchAddAddress.pending.type]: (state) => {
-			console.log('!!!!!!!!!!pending',current(state));			
-			// state.error.status = false;
-			// state.error.message = '';
-		},
-		[fetchAddAddress.fulfilled.type]: (state,action) => {			
-			console.log('!!!!!!!!!!fulfilled',current(state),action.payload);
-			// state.error.status = false;
-			// state.error.message = '';
-		},
-		[fetchAddAddress.rejected.type]: (state,action) => {			
-			console.log('!!!!!!!!!!rejected',current(state),action.payload);
-			// state.error.status = true;
-			// state.error.message = action.payload;
-		},
-
-
-
 	},
 });
 

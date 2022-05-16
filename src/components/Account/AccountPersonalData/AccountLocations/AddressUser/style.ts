@@ -18,7 +18,7 @@ export const useAddressUserStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			// marginTop: '24px',
 			marginBottom: '15px',
-			width: '100%',
+			width: '98%',
 
 			// '&:first-child': {
 			// 	// marginTop: '33px',
@@ -33,7 +33,7 @@ export const useAddressUserStyle = () => {
 
 		display: 'grid',
 		// gridTemplateColumns: '87px 451px',
-		gridTemplateColumns: '87px 440px',
+		gridTemplateColumns: '87px 1fr',
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '36px',
 		gridRowGap: '20px',

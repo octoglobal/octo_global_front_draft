@@ -1,4 +1,4 @@
-import React, {FC, useState, useMemo} from 'react';
+import React, {FC, useState, useMemo, useEffect} from 'react';
 
 import {Collapse, Divider} from '@mui/material';
 import ButtonUI from '../../../../../UI/UIComponents/ButtonUI/ButtonUI';
@@ -12,9 +12,10 @@ const LocationForm: FC = () => {
 	const {
 		user: {
 			addresses
-		}
-	} = useUserStore();
+		},		
+	} = useUserStore();	
 
+	
 	const {isCustomSize} = useCustomSize(500);
 
 	const [openForm, setOpenForm] = useState<boolean>(false);
