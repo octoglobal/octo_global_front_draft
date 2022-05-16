@@ -18,6 +18,7 @@ import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
 import {useHeader} from '@/components/AnyPage/Header/useHeader';
 import {SUPPORT_PHONE_RU} from '@/constants/constants';
 import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
+import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
 
 const Header = () => {
 
@@ -84,7 +85,7 @@ const Header = () => {
 											width: '20ch',
 										},
 									}}
-								> 	
+								>
 									{isCustomSize? navArray.tablet.map((option) => (
 										<MenuItem
 											key={option.title}
@@ -102,19 +103,19 @@ const Header = () => {
 											{option.title}
 										</MenuItem>
 									))}
-									
+
 								</Menu>
 							</HeaderBurgerButtonMUI>
 						)}
 
-					
+
 						<LogoMUI>
 							<LinkUI href='/'>
 								<Logotip/>
-							</LinkUI>	
-						
+							</LinkUI>
+
 						</LogoMUI>
-					
+
 
 						<HeaderNavUI>
 
@@ -195,7 +196,7 @@ const Header = () => {
 												</Grow>
 											)}
 										</Popper>
-
+										<HeaderPayment/>
 									</UserWrapperUI>
 								)}
 							</>

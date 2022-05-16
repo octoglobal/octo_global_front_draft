@@ -8,8 +8,13 @@ import {useAccountPersonalDataStyle} from './style';
 import AccountHelp from '@/components/Account/AccountPersonalData/AccountHelp/AccountHelp';
 import AccountUserLocation
 	from '@/components/Account/AccountPersonalData/AccountLocations/AccountUserLocation/AccountUserLocation';
+import {useUserStore} from '@/hooks/useUserStore';
 
 const AccountPersonalData: FC = () => {
+
+	const {
+		isAdmin
+	} = useUserStore();
 
 	return (
 		<>
@@ -20,7 +25,9 @@ const AccountPersonalData: FC = () => {
 					<AccountUserLocation />
 				</AccountLocationsMUI>
 			</PersonalDataWrapperUI>
-			<AccountHelp/>
+			{!isAdmin && (
+				<AccountHelp/>
+			)}
 		</>
 	);
 };
