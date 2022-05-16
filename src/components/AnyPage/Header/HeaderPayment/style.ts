@@ -26,9 +26,11 @@ export const useHeaderPaymentStyles = () => {
 	}));
 
 	const MenuListMUI = styled(Menu)(() => ({
+		maxWidth: '1440px',
+		margin: '0 auto',
 		'& .MuiPaper-root': {
 			transition: 'none !important',
-			right: '64px !important',
+			right: '80px !important',
 			width: '514px',
 			borderRadius: '8px',
 			boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.15)',
