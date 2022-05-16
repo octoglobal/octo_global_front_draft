@@ -9,8 +9,8 @@ export const useAddressUserStyle = () => {
 		// marginBottom: '5px',
 		borderBottom: '2px solid rgba(39, 77, 130, 0.5)',
 		marginTop: '20px',
-		paddingBottom: '15px',
-		paddingRight: '20px',
+		paddingBottom: '15px',		
+		width: '95%',
 		'&:first-child': {
 			marginTop: '0px',
 		},

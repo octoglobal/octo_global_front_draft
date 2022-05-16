@@ -140,9 +140,7 @@ export const useAccountLocationStyle = () => {
 		marginBottom: addMargin ? '10px' : '0',
 		marginTop: !addMargin ? '10px' : '0',
 
-		'& button:first-child:hover': {
-			background: 'inherit',
-		},
+		
 
 		[theme.breakpoints.down(500)]: {
 			justifyContent: justifyAlign ? 'center' : 'flex-end',

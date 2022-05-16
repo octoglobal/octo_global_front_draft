@@ -43,14 +43,14 @@ const LocationForm: FC = () => {
 					addMargin={ openForm}
 					justifyAlign={!addresses.length}
 				>
-					{addresses && addresses.length > 2 && (
+					{/* {addresses && addresses.length > 2 && (
 						<ButtonUI
 							sx={ButtonShowAll}
 							onClick={handlerToggleState(setAllLoc)}
 						>
 							{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
 						</ButtonUI>
-					)}
+					)} */}
 					{addresses.length > 0 ? (
 						<>
 							{!openForm && (
