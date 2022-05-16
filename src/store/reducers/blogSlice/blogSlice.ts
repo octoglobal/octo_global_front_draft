@@ -124,7 +124,7 @@ export const blogSlice = createSlice({
 			state.error.message = '';
 		  },
 		[fetchDeleteBlogItem.rejected.type]: (state,action) => {
-			console.log('!!!!!!!');
+			
 			state.error.status = true;
 			state.error.message = action.payload;
 		}

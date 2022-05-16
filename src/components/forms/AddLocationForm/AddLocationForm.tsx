@@ -1,5 +1,5 @@
 import React, {FC, useMemo, useEffect} from 'react';
-import {FieldValues, useForm} from 'react-hook-form';
+import {FieldValues, useForm } from 'react-hook-form';
 
 import {useMobile} from '@/hooks/useMedia';
 import {useAddLocation} from './useAddLocation';
@@ -43,7 +43,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		FormRowButtonUI,
 	} = useAddLocationFormStyle();
 
-	const { handleSubmit, control, setError } = useForm();
+	const { handleSubmit, control, setError,reset } = useForm();
 
 	const {
 		user: {
@@ -63,6 +63,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 	const wrapperSubmit = (formData : FieldValues) => {
 		onSubmit(formData);
 		setOpenForm(prevState => !prevState);
+		reset({});
 	};
 
 	const addressRegex = useMemo(() => new RegExp(/[^A-Za-z0-9#?!:;,.-_+= ]/gi), []);
@@ -79,7 +80,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		});
 	}, []);
 
-
+	
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
 			<FormWrapper increaseFormField={isAddressProperty}>

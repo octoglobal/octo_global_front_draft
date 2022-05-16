@@ -89,7 +89,7 @@ export const fetchUserAutoLogin = createAsyncThunk(
 	async (__, thunkAPI) => {
 		try {
 			const response = await octoAxios.get('/user');
-			// console.log('пошел запрос: ', response);
+			// console.log('пошел запрос: ', response.data);
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
@@ -187,7 +187,7 @@ export const fetchRecoveryMessage = createAsyncThunk(
 
 export const fetchAddAddress = createAsyncThunk(
 	'address/add',
-	async(data: AddressFetchObject, thinkAPI) => {
+	async(data: AddressFetchObject, {rejectWithValue}) => {
 		try {
 			const response = await octoAxios.post('/user/address', data);
 
@@ -195,6 +195,7 @@ export const fetchAddAddress = createAsyncThunk(
 			return response;
 		} catch (e) {
 			// console.log('e: ', e);
+			return rejectWithValue('Произошла ошибка при добавлении адреса');
 		}
 	}
 );
