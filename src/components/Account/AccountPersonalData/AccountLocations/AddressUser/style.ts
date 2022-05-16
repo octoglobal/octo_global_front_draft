@@ -10,7 +10,7 @@ export const useAddressUserStyle = () => {
 		borderBottom: '2px solid rgba(39, 77, 130, 0.5)',
 		marginTop: '20px',
 		paddingBottom: '15px',
-
+		paddingRight: '20px',
 		'&:first-child': {
 			marginTop: '0px',
 		},
@@ -32,7 +32,8 @@ export const useAddressUserStyle = () => {
 		// marginTop: '25px',
 
 		display: 'grid',
-		gridTemplateColumns: '87px 451px',
+		// gridTemplateColumns: '87px 451px',
+		gridTemplateColumns: '87px 440px',
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '36px',
 		gridRowGap: '20px',

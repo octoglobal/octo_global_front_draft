@@ -25,7 +25,7 @@ const LocationList: FC<ILocationList> = ({showAll, addresses}) => {
 
 	return (
 		<ListMUI>
-			{hasAddress && addresses.slice(0, !showAll ? 2 : addresses?.length).map((address) => (
+			{hasAddress && addresses.map((address) => (
 				<AddressUser
 					key={address.id}
 					id={address.id}
