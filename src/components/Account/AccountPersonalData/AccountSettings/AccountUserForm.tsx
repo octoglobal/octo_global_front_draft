@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useMemo, useRef, useState} from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import {Avatar, Box} from '@mui/material';
 import TextFieldUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import TextFieldPhoneUI from '../../../../UI/UIComponents/TextFIeldUI/TextFieldPhoneUI/TextFieldPhoneUI';
@@ -29,7 +29,7 @@ const AccountUserForm: FC = () => {
 	} = useForm<FieldValues>();
 
 	const {
-		user: {personalAreaId, verifiedEmail, email, phone, name, surname},
+		user: {personalAreaId, verifiedEmail, email, phone},
 		isAdmin
 	} = useUserStore();
 
@@ -38,7 +38,7 @@ const AccountUserForm: FC = () => {
 		adminSwitchIdToUser
 	} = useAppSelector(state => state.adminReducer);
 
-	const [  , setIsEditNameAndSurname] = useState<boolean>(false);
+	const [isEditFIO, setIsEditFIO] = useState<boolean>(false);
 
 	const dirtyPhone = useMemo(
 		() => dirtyFields.phone,
@@ -148,6 +148,7 @@ const AccountUserForm: FC = () => {
 			if (adminSwitchUserModel?.surname !== surnameValue) {
 				setValue('surname', adminSwitchUserModel?.surname);
 			}
+			setIsEditFIO(false);
 		}
 	}, [adminSwitchIdToUser, userPhone, userEmail, adminSwitchUserModel?.name, adminSwitchUserModel?.surname]);
 
@@ -166,45 +167,60 @@ const AccountUserForm: FC = () => {
 								marginRight: '8px',
 							}}
 						/>
-						<FormTextFieldBorderUI selection={true} focusBorder={true}>
-							<TextFieldNameMUI>
-								<TextFieldUI
-									controller={{
-										name: 'name',
-										control,
-										defaultValue: adminSwitchUserModel?.name,
-									}}
-									inputProps={{
-										name: 'name',
-										sx: {
-											...FormTextFieldUI,
-											padding: '10px 0 10px 10px',
-											marginRight: '10px',
-										},
-										inputRef: textNameRef,
-									}}
-								/>
-							</TextFieldNameMUI>
-						</FormTextFieldBorderUI>
-						<FormTextFieldBorderUI selection={true} focusBorder={true}>
-							<TextFieldNameMUI>
-								<TextFieldUI
-									controller={{
-										name: 'surname',
-										control,
-										defaultValue: adminSwitchUserModel?.surname,
-									}}
-									inputProps={{
-										name: 'name',
-										sx: {
-											...FormTextFieldUI,
-											padding: '10px 0 10px 10px',
-										},
-										inputRef: textSurnameRef
-									}}
-								/>
-							</TextFieldNameMUI>
-						</FormTextFieldBorderUI>
+						{isEditFIO ? (
+							<>
+								<FormTextFieldBorderUI selection={true} focusBorder={true}>
+									<TextFieldNameMUI>
+										<TextFieldUI
+											controller={{
+												name: 'name',
+												control,
+												defaultValue: adminSwitchUserModel?.name,
+											}}
+											inputProps={{
+												name: 'name',
+												sx: {
+													...FormTextFieldUI,
+													padding: '10px 0 10px 10px',
+													marginRight: '10px',
+												},
+												inputRef: textNameRef,
+											}}
+										/>
+									</TextFieldNameMUI>
+								</FormTextFieldBorderUI>
+								<FormTextFieldBorderUI selection={true} focusBorder={true}>
+									<TextFieldNameMUI>
+										<TextFieldUI
+											controller={{
+												name: 'surname',
+												control,
+												defaultValue: adminSwitchUserModel?.surname,
+											}}
+											inputProps={{
+												name: 'name',
+												sx: {
+													...FormTextFieldUI,
+													padding: '10px 0 10px 10px',
+												},
+												inputRef: textSurnameRef
+											}}
+										/>
+									</TextFieldNameMUI>
+								</FormTextFieldBorderUI>
+							</>
+						) : (
+							<>
+								<UserAdminNameSurnameMUI>{adminSwitchUserModel?.name}</UserAdminNameSurnameMUI>
+								<UserAdminNameSurnameMUI>{adminSwitchUserModel?.surname}</UserAdminNameSurnameMUI>
+								<button
+									style={{border: 0, backgroundColor: 'transparent', cursor: 'pointer'}}
+									onClick={() => setIsEditFIO(true)}
+								>
+									<EditPencil/>
+								</button>
+							</>
+						)}
 					</AdminAvatarContainerMUI>
 				)}
 				<FormContainerTopMUI>
@@ -261,7 +277,7 @@ const AccountUserForm: FC = () => {
 						Телефон
 					</FormTableSectionLeftMUI>
 					<FormTableSectionRightMUI>
-						<FormTextFieldBorderUI selection={!phone} focusBorder={true}>
+						<FormTextFieldBorderUI selection={isAdmin ? !!phone : !phone} focusBorder={true}>
 							<FormTextFieldContainerMUI>
 								<TextFieldPhoneUI
 									controller={{
@@ -317,6 +333,7 @@ const {
 	TextFieldNameMUI,
 	AdminAvatarContainerMUI,
 	FormTableSectionTopLeftMUI,
+	UserAdminNameSurnameMUI,
 	FormTableSectionTopRightMUI,
 	FormSectionMUI,
 	FormContainerTopMUI,
