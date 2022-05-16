@@ -93,9 +93,11 @@ export const fetchUserAutoLogin = createAsyncThunk(
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
-				return thunkAPI.rejectWithValue(`Ошибка api user/autologin 400 ${err.response?.status}`);
+				return {
+					message: thunkAPI.rejectWithValue(`${err.response?.status}`),
+				};
 			}
-			return thunkAPI.rejectWithValue('Ошибка api user/autologin 400');
+			return thunkAPI.rejectWithValue('422');
 		}
 	}
 );
