@@ -58,7 +58,11 @@ const AccountOrdersAdd = () => {
 					</TextFieldContainerMUI>
 					<TextAreaContainerMUI>
 						<TextFieldUI
-							controller={textFieldDesc.controller}
+							controller={{
+								...textFieldDesc.controller,
+								rules: {required: false},
+								defaultValue: ''
+							}}
 							inputProps={{
 								...textFieldDesc.inputProps,
 								id: 'outlined-textarea',
