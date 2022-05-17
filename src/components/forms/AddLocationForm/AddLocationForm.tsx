@@ -68,14 +68,15 @@ const AddLocationForm: FC<IAddLocationForm> = (
 	// 	setOpenForm(prevState => !prevState);
 	// };
 
+	console.log('userName',userName);
+
 	const wrapperSubmit = (formData : FieldValues) => {
 		if (isAdmin && adminSwitchUserModel){
 
 		 const r =	onSubmit(formData,isAdmin,adminSwitchUserModel.id);
 			 r.then(err=>{
 				console.log('error', err);
-				if (!err){
-					console.log('ошибки нет из админа закрываем');
+				if (!err){					
 					   setOpenForm(false);
 					   reset({});
 				} 
@@ -85,8 +86,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		 const r = onSubmit(formData);		 
 		 r.then(err=>{
 			 console.log('error', err);
-			 if (!err){
-				 console.log('ошибки нет закрываем');
+			 if (!err){				
 					setOpenForm(false);
 					reset({});
 			 } 
@@ -111,11 +111,14 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		});
 	}, []);
 	
-	// для очистки полей при смене пользователя из под админа по не работает
-	// useEffect(() => {
-	// 	console.log('u34923894293439');
-	// 	reset({});
-	// }, [adminSwitchIdToUser]);
+	// смена пользователя, чистим поля
+	useEffect(() => {
+		console.log('смена пользователя, чистим поля');
+		reset({});
+	}, [userName]);
+
+	
+	
 	
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
