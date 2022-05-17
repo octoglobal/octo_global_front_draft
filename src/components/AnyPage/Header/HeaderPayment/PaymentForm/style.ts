@@ -13,7 +13,7 @@ export const usePaymentFormStyles = () => {
 
 	const TextFieldMUI = styled('div', {
 		shouldForwardProp: (prop) => prop !== 'success',
-	})<{color?: string, maxWidth?: boolean}>(({color, maxWidth, theme}) => ({
+	})<{color?: string, maxWidth?: boolean}>(({color, maxWidth}) => ({
 		maxWidth: maxWidth ? '92px' : 'auto',
 		'& > div': {
 			'& .MuiFormControl-root': {

@@ -2,7 +2,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import {useEffect, useMemo} from 'react';
 import { useUserStore } from '@/hooks/useUserStore';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
-import {fetchAdminAddPaymentInUser, fetchHistoryBalanceOperation} from '@/reducers/paymentSlice/asyncThunk/paymentApi';
+import {fetchAdminAddPaymentInUser} from '@/reducers/paymentSlice/asyncThunk/paymentApi';
 import { usePayment } from '@/hooks/usePayment';
 
 interface IPaymentFormState {
