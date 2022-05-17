@@ -45,6 +45,14 @@ export const adminSlice = createSlice({
 			state.search = '';
 			state.adminSwitchUserModel = null;
 		},
+		changeUserBalance: (state, action: PayloadAction<number>) => {
+			if (state.adminSwitchUserModel) {
+				state.adminSwitchUserModel = {
+					...state.adminSwitchUserModel,
+					balance: state.adminSwitchUserModel.balance + action.payload,
+				};
+			}
+		},
 		changeEmailAndPhone: (state, action: PayloadAction<{phone: string, email: string, name: string, surname: string}>) => {
 			if (state.adminSwitchUserModel) {
 				state.adminSwitchUserModel = {

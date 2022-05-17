@@ -2,7 +2,7 @@ import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import {useEffect, useMemo} from 'react';
 import { useUserStore } from '@/hooks/useUserStore';
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
-import { fetchAdminAddPaymentInUser } from '@/reducers/paymentSlice/asyncThunk/paymentApi';
+import {fetchAdminAddPaymentInUser, fetchHistoryBalanceOperation} from '@/reducers/paymentSlice/asyncThunk/paymentApi';
 import { usePayment } from '@/hooks/usePayment';
 
 interface IPaymentFormState {
@@ -37,7 +37,9 @@ export const usePaymentForm = () => {
 
 	const {
 		statusMessage,
+		handleGetHistoryOperation,
 		handleResetStatusMessagePaymentReducer,
+		handleUpdateUserBalance,
 	} = usePayment();
 
 	const dispatch = useAppDispatch();
@@ -69,10 +71,19 @@ export const usePaymentForm = () => {
 			const sendData = {
 				userId: userId,
 				comment: data.comment,
-				amount: data.minus ? -(+data.minus) : +data.plus,
+				amount: (data.minus ? -(+data.minus) : +data.plus) * 100,
 			};
 			dispatch(fetchAdminAddPaymentInUser(sendData))
-				.then(() => reset({}));
+				.then((r) => {
+					const response = r.payload as {message: string | 'Платеж успешно проведён'};
+					const message = response.message;
+					if (message == 'Платеж успешно проведён') {
+						reset({});
+						handleGetHistoryOperation();
+						handleUpdateUserBalance(sendData.amount);
+						handleResetStatusMessagePaymentReducer('Платеж успешно проведён');
+					}
+				});
 			return;
 		}
 		handleResetStatusMessagePaymentReducer('Введите корректные значения');

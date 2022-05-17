@@ -5,7 +5,7 @@ import AddPayIcon from '@/UIIcon/AddPayIcon.svg';
 export const useHeaderPaymentStyles = () => {
 
 	const ContainerMUI = styled('div')(() => ({
-		marginLeft: '41px',
+		marginLeft: '21px',
 		display: 'flex',
 		alignItems: 'center',
 		position: 'relative',
@@ -25,7 +25,7 @@ export const useHeaderPaymentStyles = () => {
 		backgroundColor: 'transparent',
 	}));
 
-	const MenuListMUI = styled(Menu)(() => ({
+	const MenuListMUI = styled(Menu)(({theme}) => ({
 		maxWidth: '1440px',
 		margin: '0 auto',
 		'& .MuiPaper-root': {
@@ -36,6 +36,9 @@ export const useHeaderPaymentStyles = () => {
 			boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.15)',
 			top: '61px !important',
 			left: 'auto !important',
+			[theme.breakpoints.down(1025)]: {
+				right: '15px !important',
+			}
 		}
 	}));
 

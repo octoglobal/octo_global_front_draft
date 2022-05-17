@@ -90,7 +90,7 @@ export const useHeaderStyle = () => {
 			left: '0px !important',
 			width: '239px !important',
 		},
-	
+
 		[theme.breakpoints.down(1241)]: {
 			width: 'auto',
 			justifyContent: 'flex-end',
@@ -137,7 +137,7 @@ export const useHeaderStyle = () => {
 
 	const IconMarginRight = styled('a')(({theme}) => ({
 		[theme.breakpoints.between(960, 1241)]: {
-			marginRight: '50px'
+			marginRight: '10px'
 		}
 	}));
 	const UserWrapperUI = styled('div')(({theme}) => ({
