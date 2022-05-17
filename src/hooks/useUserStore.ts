@@ -27,7 +27,7 @@ export const useUserStore = () => {
 			return adminSwitchUserModel.phone;
 		} else if (user) {			
 			return user.phone ;
-		}
+		} 
 	}, [adminSwitchIdToUser, adminSwitchUserModel]);
 
 
@@ -38,6 +38,8 @@ export const useUserStore = () => {
 			return adminSwitchUserModel.name;
 		} else if (user) {			
 			return user.name;
+		}else {
+			return '';
 		}
 	}, [ adminSwitchIdToUser,adminSwitchUserModel]);
 
@@ -46,6 +48,8 @@ export const useUserStore = () => {
 			return adminSwitchUserModel.surname;
 		} else if (user) {	
 			return user.surname;
+		}else {
+			return '';
 		}
 	}, [ adminSwitchIdToUser,adminSwitchUserModel]);
 
