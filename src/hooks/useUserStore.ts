@@ -25,8 +25,8 @@ export const useUserStore = () => {
 	const userPhone = useMemo(() => {
 		if (isAdmin && adminSwitchUserModel) {
 			return adminSwitchUserModel.phone;
-		} else {			
-			return user.phone;
+		} else if (user) {			
+			return user.phone ;
 		}
 	}, [adminSwitchIdToUser, adminSwitchUserModel]);
 
@@ -36,7 +36,7 @@ export const useUserStore = () => {
 		if (isAdmin && adminSwitchUserModel) {
 			
 			return adminSwitchUserModel.name;
-		} else {			
+		} else if (user) {			
 			return user.name;
 		}
 	}, [ adminSwitchIdToUser,adminSwitchUserModel]);
@@ -44,7 +44,7 @@ export const useUserStore = () => {
 	const userSurname = useMemo(() => {
 		if (isAdmin && adminSwitchUserModel) {
 			return adminSwitchUserModel.surname;
-		} else {	
+		} else if (user) {	
 			return user.surname;
 		}
 	}, [ adminSwitchIdToUser,adminSwitchUserModel]);
