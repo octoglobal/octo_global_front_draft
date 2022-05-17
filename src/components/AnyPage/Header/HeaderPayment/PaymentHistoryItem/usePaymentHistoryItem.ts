@@ -1,6 +1,6 @@
 import {useMemo, useState} from 'react';
 
-export const usePaymentHistoryItem = (amount: number, createdTime: string) => {
+export const usePaymentHistoryItem = (amount: number) => {
 
 	const [isCollapseOpen, seIsCollapseOpen] = useState<boolean>(false);
 

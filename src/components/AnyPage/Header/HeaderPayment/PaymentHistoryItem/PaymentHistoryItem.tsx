@@ -14,7 +14,7 @@ const PaymentHistoryItem: FC<IPaymentModel> = ({amount, comment, createdTime}) =
 		commentOpenStyle,
 		payTextMarginStyle,
 		handleToggleCollapse,
-	} = usePaymentHistoryItem(amount, createdTime);
+	} = usePaymentHistoryItem(amount);
 
 	return (
 		<ContainerMUI>
