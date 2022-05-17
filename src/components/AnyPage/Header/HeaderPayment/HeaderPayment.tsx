@@ -7,6 +7,7 @@ import PaymentForm from '@/components/AnyPage/Header/HeaderPayment/PaymentForm/P
 import { usePaymentFormStyles } from '@/components/AnyPage/Header/HeaderPayment/PaymentForm/style';
 import ModalUI from '../../../../UI/UIComponents/ModalUI/ModalUI';
 import PaymentHistoryList from '@/components/AnyPage/Header/HeaderPayment/PaymentHistoryList/PaymentHistoryList';
+import PaymentUserBalance from '@/components/AnyPage/Header/HeaderPayment/PaymentUserBalance/PaymentUserBalance';
 
 const HeaderPayment = () => {
 	const {
@@ -15,7 +16,6 @@ const HeaderPayment = () => {
 
 	const {
 		isMenuOpen,
-		userBalance,
 		statusMessage,
 		handleToggleMenuOpen,
 		handleSendUserEmailReq,
@@ -29,9 +29,7 @@ const HeaderPayment = () => {
 				onClick={handleToggleMenuOpen}
 				disableRipple
 			>
-				<BalanceTextMUI>
-					{userBalance} €
-				</BalanceTextMUI>
+				<PaymentUserBalance/>
 				<ArrowUI/>
 			</BalanceTextButtonMUI>
 			<MenuListMUI
@@ -56,7 +54,7 @@ const HeaderPayment = () => {
 				)}
 				<PaymentHistoryList/>
 			</MenuListMUI>
-			{!isAdmin && (
+			{!isAdmin && !!statusMessage && (
 				<ModalUI
 					dialogProps={{
 						open: !!statusMessage,
@@ -74,7 +72,6 @@ const {
 	MenuListMUI,
 	ContainerMUI,
 	ButtonSendMUI,
-	BalanceTextMUI,
 	BalanceTextButtonMUI,
 } = useHeaderPaymentStyles();
 

@@ -26,16 +26,29 @@ export const getFulfilledInString = (str: string) => {
 // 	return trueArr;
 // };
 
-// export function ToRusDate(date) {
-// 	const adDate = new Date(date),
-// 		options = {
-// 			month: 'long',
-// 			day: 'numeric',
-// 			hour: 'numeric',
-// 			minute: 'numeric'
-// 		}
-// 	return adDate.toLocaleString("ru", options);
-// }
+export function ToDefaultDate(date: string) {
+	const adDate = new Date(date),
+		options = {
+			month: 'numeric',
+			day: 'numeric',
+			year: 'numeric'
+		};
+	const dateArray = adDate.toLocaleString('ru', options as object).split('.');
+	const day = dateArray[0];
+	const mount = dateArray[1];
+	const year = dateArray[2].substring(2,);
+	return `${day}.${mount}.${year}`;
+}
+
+export function ToDefaultTime(date: string) {
+	const adDate = new Date(date),
+		options = {
+			hour: 'numeric',
+			minute: 'numeric'
+		};
+	return adDate.toLocaleString('ru', options as object);
+}
+
 //
 // export function formatDate(date) {
 // 	return date.getFullYear() + '/' +

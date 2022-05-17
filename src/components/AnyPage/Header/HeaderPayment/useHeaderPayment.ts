@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import {useEffect} from 'react';
 import { usePayment } from '@/hooks/usePayment';
 
 export const useHeaderPayment = () => {
 
 	const {
-		userBalance,
+		isOpenPaymentForm,
 		statusMessage,
 		handleSendUserEmailReq,
+		handleTogglePaymentForm,
 		handleResetStatusMessagePaymentReducer,
 	} = usePayment();
 
-	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
 	const handleToggleMenuOpen = () => {
-		setIsMenuOpen(prevState => !prevState);
+		handleTogglePaymentForm();
 	};
 
 	useEffect(() => {
@@ -28,8 +28,7 @@ export const useHeaderPayment = () => {
 	}, [statusMessage]);
 
 	return {
-		isMenuOpen,
-		userBalance,
+		isMenuOpen: isOpenPaymentForm,
 		statusMessage,
 		handleToggleMenuOpen,
 		handleSendUserEmailReq,

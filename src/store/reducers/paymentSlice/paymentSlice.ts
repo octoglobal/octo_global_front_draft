@@ -1,14 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-	fetchAdminAddPaymentInUser,
+	fetchAdminAddPaymentInUser, fetchHistoryBalanceOperation,
 	fetchSendPaymentMessageInEmail,
 } from '@/reducers/paymentSlice/asyncThunk/paymentApi';
+import {IPaymentModel} from '@/models/IPaymentModel';
 
 interface IPaymentSliceInitialState {
 	currentCourseEuro: number;
 	balance: number;
-	historyBalance: number[];
+	historyBalance: IPaymentModel[];
 	statusMessage: string;
+	loadingHistoryBalance: boolean;
+	isOpenPaymentForm: boolean;
 }
 
 const initialState: IPaymentSliceInitialState = {
@@ -16,6 +19,8 @@ const initialState: IPaymentSliceInitialState = {
 	balance: 15100,
 	historyBalance: [],
 	statusMessage: '',
+	loadingHistoryBalance: true,
+	isOpenPaymentForm: false,
 };
 
 export const paymentSlice = createSlice({
@@ -24,17 +29,21 @@ export const paymentSlice = createSlice({
 	reducers: {
 		resetStatusMessage (state, action: PayloadAction<string>) {
 			state.statusMessage = action.payload;
+		},
+		togglePaymentForm (state) {
+			state.isOpenPaymentForm = !state.isOpenPaymentForm;
 		}
 	},
 	extraReducers: {
-		[fetchAdminAddPaymentInUser.fulfilled.type]: (state, action: PayloadAction<{message: string}>) => {
-			state.statusMessage = action.payload.message;
-		},
 		[fetchSendPaymentMessageInEmail.fulfilled.type]: (state, action: PayloadAction<string>) => {
 			state.statusMessage = action.payload;
 		},
 		[fetchSendPaymentMessageInEmail.rejected.type]: (state, action: PayloadAction<string>) => {
 			state.statusMessage = action.payload;
+		},
+		[fetchHistoryBalanceOperation.fulfilled.type]: (state, action: PayloadAction<IPaymentModel[]>) => {
+			state.historyBalance = action.payload;
+			state.loadingHistoryBalance = false;
 		}
 	}
 });
