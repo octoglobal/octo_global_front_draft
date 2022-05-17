@@ -3,10 +3,11 @@ import { fetchUserAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
 import { fetchAddAddressAdminForUser } from './../../../store/reducers/userSlice/asyncActions/userApi';
 import {
 	IUserAddresReq,
-	
+	fetchAddAddress
 } from '@/reducers/userSlice/asyncActions/userApi';
+import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
 import { useAppDispatch } from '@/hooks/useReduxHooks';
-
+import {AddressFetchObject} from '../../../types/types';
 import { translit } from '@/lib/services/services';
 
 
@@ -80,6 +81,29 @@ export const useAddLocation = (
 				});
 				return err;
 
+			}else {
+				const sendObject : AddressFetchObject = {
+					name: translit(formData.name),
+					surname: translit(formData.surname),
+					address_string: formData.address,
+					phone: formData.phone,
+					latitude: '4.5321',
+					longitude: '98.7456',
+				};
+				dispatch(fetchAddAddress(sendObject)).then((e) => {
+					const statusCode = e.payload;
+	
+					console.log('statusCode: ', statusCode);
+					// switch (statusCode) {
+					// 	case 403:
+					// 		handleBadResponse();
+					// 		return;
+					// 	case 422:
+					// 		handleBadResponse();
+					// }
+	
+					dispatch(fetchUserAutoLogin());
+				});
 			}
 			
 		}
