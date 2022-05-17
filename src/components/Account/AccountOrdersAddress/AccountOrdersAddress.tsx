@@ -60,6 +60,7 @@ const AccountOrdersAddress = () => {
 					}}
 					title='Посылка оформлена'
 					buttonText='На склад'
+					closeTime={3}
 					containerStyles={{minWidth: '165px'}}
 					buttonClick={handlePushStock}
 					buttonProps={{sx: {minWidth: '165px', opacity: 1}}}

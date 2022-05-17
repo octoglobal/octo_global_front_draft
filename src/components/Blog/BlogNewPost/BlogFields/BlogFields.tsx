@@ -57,6 +57,7 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 					onClose:changeOpenModal
 				}}
 				title={error.message}
+				closeTime={3}
 			/>
 			<ModalSpinner open={loading} />
 		

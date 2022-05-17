@@ -56,6 +56,7 @@ const OrderStatusModal: FC<IOrderStatusModal> = (
 				<ModalUI
 					title={title}
 					defaultStylesButton={false}
+					closeTime={3}
 					dialogProps={{
 						open,
 						onClose,
