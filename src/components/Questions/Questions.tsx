@@ -63,8 +63,7 @@ const Questions = () => {
 
 		
 			<CollapseInfo			
-				title={'Стоимость почтового отправления в Россию'}
-				end={true}
+				title={'Стоимость почтового отправления в Россию'}				
 				open={openTransferPage}
 			>
 				<AboutTransferPage/>
@@ -108,6 +107,7 @@ const Questions = () => {
 			<CollapseInfo			
 				title={'Как перевести сайт на русский'}
 				open={openTranslate}
+				end={true}
 			>
 				<TranslatePage/>
 			</CollapseInfo>
