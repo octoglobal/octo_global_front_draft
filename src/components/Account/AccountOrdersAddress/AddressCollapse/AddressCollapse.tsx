@@ -6,8 +6,8 @@ import {useMobile} from '@/hooks/useMedia';
 
 interface IAddressCollapseProps {
 	collapseProps: CollapseProps
-	setOpenForm: (prevState : (state: boolean) => boolean) => void
-}
+	setOpenForm: (state: boolean)=>void
+};
 
 const AddressCollapse: FC<IAddressCollapseProps> = ({collapseProps, setOpenForm}) => {
 	const {isMobile} = useMobile();

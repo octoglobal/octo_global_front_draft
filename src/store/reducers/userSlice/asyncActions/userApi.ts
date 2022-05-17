@@ -245,7 +245,7 @@ export const fetchDeleteAddressAdmin = createAsyncThunk(
 export const fetchAddAddressAdminForUser = createAsyncThunk(
 	'/address/AdminDeleteUser',
 	
-	async (data, thunkAPI) => {		
+	async (data:object, thunkAPI) => {		
 		try {			
 			const response = await octoAxios.post('/admin/user/address', data);	
 			return response;

@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { fetchUserAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
-import { IAddressModel } from '@/models/IAddressModel';
 import { fetchAddAddressAdminForUser } from './../../../store/reducers/userSlice/asyncActions/userApi';
 import {
 	IUserAddresReq,
-	fetchAddAddress,
+	
 } from '@/reducers/userSlice/asyncActions/userApi';
 import { useAppDispatch } from '@/hooks/useReduxHooks';
-import {fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
-import {AddressFetchObject} from '../../../types/types';
+
 import { translit } from '@/lib/services/services';
+
+
+export interface IAddressModelSendAdmin {
+    readonly userId: number,
+    readonly name: string,
+    readonly surname: string,
+    readonly latitude: string,
+    readonly phone: string,
+    readonly longitude: string,
+    readonly address_string: string,
+}
 
 export const useAddLocation = (
 	// setError?: UseFormSetError<FieldValues | IUserAddresReq>
@@ -40,9 +49,9 @@ export const useAddLocation = (
 		
 		if (formData.name && formData.surname && formData.phone && formData.address) {
 			
-			if (isAdmin){	
+			if (isAdmin && userId){	
 				let err = null;			
-				const sendObject: IAddressModel = {
+				const sendObject: IAddressModelSendAdmin = {
 					userId: userId,
 					name: translit(formData.name),
 					surname: translit(formData.surname),
@@ -53,8 +62,8 @@ export const useAddLocation = (
 				};
 				
 			 await	dispatch(fetchAddAddressAdminForUser(sendObject)).then((e) => {
-					const statusCode = e.payload;
-						
+					const statusCode = e.payload as {status:number};
+					console.log(e);
 					// switch (statusCode) {
 					// 	case 403:
 					// 		handleBadResponse();
@@ -71,34 +80,6 @@ export const useAddLocation = (
 				});
 				return err;
 
-			}else {
-				let err = null;
-				const sendObject : AddressFetchObject = {
-					name: translit(formData.name),
-					surname: translit(formData.surname),
-					address_string: formData.address,
-					phone: formData.phone,
-					latitude: '4.5321',
-					longitude: '98.7456',
-				};
-			 await	dispatch(fetchAddAddress(sendObject)).then((e) => {
-					const statusCode = e.payload;
-					
-					// switch (statusCode) {
-					// 	case 403:
-					// 		handleBadResponse();
-					// 		return;
-					// 	case 422:
-					// 		handleBadResponse();
-					// }
-					if (statusCode.status !== 200){
-						
-						err = true;
-						setErrAdd(true);
-					}
-					dispatch(fetchUserAutoLogin());
-				});
-				return err;
 			}
 			
 		}
