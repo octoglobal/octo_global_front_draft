@@ -12,9 +12,10 @@ import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import { translit } from '@/lib/services/services';
 import { SxProps } from '@mui/material';
+import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
 
 interface IAddLocationForm {
-	setOpenForm: (prevState : (state: boolean) => boolean) => void
+	setOpenForm: (state: boolean)=> void
 	isVisibleCancel?: boolean
 	isAddressProperty?: boolean // флаг, который показываем нам, что мы пришли со странички оформления продукта (компонента - AccountOrdersAddress)
 	buttonStyles?: SxProps
@@ -59,23 +60,41 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		adminSwitchUserModel
 	} = useUserStore();
 
-	const {onSubmit} = useAddLocation();
+	const {onSubmit,errAdd,setErrAdd} = useAddLocation();
 
 	const {isMobile} = useMobile();
 
-	const handlerCancelButton = () => {
-		setOpenForm(prevState => !prevState);
-	};
+	// const handlerCancelButton = () => {
+	// 	setOpenForm(prevState => !prevState);
+	// };
 
 	const wrapperSubmit = (formData : FieldValues) => {
 		if (isAdmin && adminSwitchUserModel){
-			onSubmit(formData,isAdmin,adminSwitchUserModel.id);
+
+		 const r =	onSubmit(formData,isAdmin,adminSwitchUserModel.id);
+			 r.then(err=>{
+				console.log('error', err);
+				if (!err){
+					console.log('ошибки нет из админа закрываем');
+					   setOpenForm(false);
+					   reset({});
+				} 
+			});
+
 		}else {
-			onSubmit(formData);
+		 const r = onSubmit(formData);		 
+		 r.then(err=>{
+			 console.log('error', err);
+			 if (!err){
+				 console.log('ошибки нет закрываем');
+					setOpenForm(false);
+					reset({});
+			 } 
+		 });
 		}
-	
-		setOpenForm(prevState => !prevState);
-		reset({});
+		
+		// setOpenForm(prevState => !prevState);
+		// reset({});
 	};
 
 	const addressRegex = useMemo(() => new RegExp(/[^A-Za-z0-9#?!:;,.-_+= ]/gi), []);
@@ -91,7 +110,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 			message: '',
 		});
 	}, []);
-
+	
 	// для очистки полей при смене пользователя из под админа по не работает
 	// useEffect(() => {
 	// 	console.log('u34923894293439');
@@ -191,12 +210,16 @@ const AddLocationForm: FC<IAddLocationForm> = (
 				</FormRowTextField>
 
 				<FormRowTitle/>
+
+		
+
 				<FormRowButtonUI>
 					{isVisibleCancel && (
 						<ButtonUI
 							style={ButtonCancelUI}
 							variant="text"
-							onClick={handlerCancelButton}
+							onClick={()=>setOpenForm(false)}
+							// onClick={handlerCancelButton}
 						>
 							Отмена
 						</ButtonUI>
@@ -210,7 +233,13 @@ const AddLocationForm: FC<IAddLocationForm> = (
 					</ButtonUI>
 				</FormRowButtonUI>
 			</FormWrapper>
-
+			<ModalUI
+				dialogProps={{
+					open: errAdd,
+					onClose: () => setErrAdd(false),
+				}}				
+				title={'Произошла ошибка'}
+			/>
 		</FormUI>
 	);
 };

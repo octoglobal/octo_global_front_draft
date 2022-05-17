@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { fetchUserAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
 import { IAddressModel } from '@/models/IAddressModel';
 import { fetchAddAddressAdminForUser } from './../../../store/reducers/userSlice/asyncActions/userApi';
@@ -14,7 +15,7 @@ export const useAddLocation = (
 	// setError?: UseFormSetError<FieldValues | IUserAddresReq>
 ) => {
 	const dispatch = useAppDispatch();
-
+	const [ errAdd, setErrAdd] = useState(false);
 	//
 	// const setErrorFields = (fieldName: keyof IUserAddresReq, message: string) => {
 	// 	setError(fieldName, {
@@ -30,7 +31,7 @@ export const useAddLocation = (
 	// 	setErrorFields('');
 	// };
 
-	const onSubmit = (data:object, isAdmin?:boolean,userId?:number) => {
+	const onSubmit = async (data:object, isAdmin?:boolean,userId?:number) => {
 		
 		const formData = data as IUserAddresReq;
 		// TODO: добавить проверки и всякие дополнения к данным формы
@@ -39,7 +40,8 @@ export const useAddLocation = (
 		
 		if (formData.name && formData.surname && formData.phone && formData.address) {
 			
-			if (isAdmin){				
+			if (isAdmin){	
+				let err = null;			
 				const sendObject: IAddressModel = {
 					userId: userId,
 					name: translit(formData.name),
@@ -50,10 +52,9 @@ export const useAddLocation = (
 					longitude: '',
 				};
 				
-				dispatch(fetchAddAddressAdminForUser(sendObject)).then((e) => {
+			 await	dispatch(fetchAddAddressAdminForUser(sendObject)).then((e) => {
 					const statusCode = e.payload;
-	
-					console.log('statusCode fetchAddAddressAdminForUser: ', statusCode);				
+						
 					// switch (statusCode) {
 					// 	case 403:
 					// 		handleBadResponse();
@@ -61,12 +62,17 @@ export const useAddLocation = (
 					// 	case 422:
 					// 		handleBadResponse();
 					// }
-					
+					if (statusCode.status !== 200){
+						
+						err = true;
+						setErrAdd(true);
+					}
 					dispatch(fetchUserAdmin({userId:userId}));
 				});
-
+				return err;
 
 			}else {
+				let err = null;
 				const sendObject : AddressFetchObject = {
 					name: translit(formData.name),
 					surname: translit(formData.surname),
@@ -75,10 +81,9 @@ export const useAddLocation = (
 					latitude: '4.5321',
 					longitude: '98.7456',
 				};
-				dispatch(fetchAddAddress(sendObject)).then((e) => {
+			 await	dispatch(fetchAddAddress(sendObject)).then((e) => {
 					const statusCode = e.payload;
-	
-					console.log('statusCode: ', statusCode);
+					
 					// switch (statusCode) {
 					// 	case 403:
 					// 		handleBadResponse();
@@ -86,9 +91,14 @@ export const useAddLocation = (
 					// 	case 422:
 					// 		handleBadResponse();
 					// }
-	
+					if (statusCode.status !== 200){
+						
+						err = true;
+						setErrAdd(true);
+					}
 					dispatch(fetchUserAutoLogin());
 				});
+				return err;
 			}
 			
 		}
@@ -96,5 +106,7 @@ export const useAddLocation = (
 
 	return {
 		onSubmit,
+		setErrAdd,
+		errAdd
 	};
 };

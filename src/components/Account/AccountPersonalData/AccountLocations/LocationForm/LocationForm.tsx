@@ -1,4 +1,4 @@
-import React, {FC, useState, useMemo} from 'react';
+import React, {FC, useState, useMemo, useEffect} from 'react';
 
 import {Collapse, Divider} from '@mui/material';
 import ButtonUI from '../../../../../UI/UIComponents/ButtonUI/ButtonUI';
@@ -28,12 +28,14 @@ const LocationForm: FC = () => {
 		[addresses]
 	);
 
-	const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
-		return () => {
-			setState(prevState => !prevState);
-		};
-	};
-	
+	// const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
+	// 	return () => {
+	// 		setState(prevState => !prevState);
+	// 	};
+	// };
+	useEffect(()=>{
+		console.log('openForm',openForm);
+	},[openForm]);
 	return (
 		<LocationFormUI>
 			<>
@@ -61,7 +63,8 @@ const LocationForm: FC = () => {
 							{!openForm && (
 								<ButtonUI
 									sx={ButtonAdd}
-									onClick={handlerToggleState(setOpenForm)}
+									onClick={()=>setOpenForm(true)}
+									// onClick={handlerToggleState(setOpenForm)}
 								>
 									Добавить адрес
 								</ButtonUI>
@@ -74,7 +77,8 @@ const LocationForm: FC = () => {
 
 				<Collapse in={hasLocation ? true : openForm}>
 					<AddLocationForm
-						setOpenForm={handlerToggleState(setOpenForm)}
+						// setOpenForm={handlerToggleState(setOpenForm)}
+						setOpenForm={setOpenForm}
 						textFieldStyles={isCustomSize ? TextFieldMobileSx : {}}
 					/>
 				</Collapse>
