@@ -1,5 +1,6 @@
+import { fetchUserAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
+import { IAddressModel } from '@/models/IAddressModel';
 import { fetchAddAddressAdminForUser } from './../../../store/reducers/userSlice/asyncActions/userApi';
-import { FieldValues, SubmitHandler } from 'react-hook-form';
 import {
 	IUserAddresReq,
 	fetchAddAddress,
@@ -29,7 +30,7 @@ export const useAddLocation = (
 	// 	setErrorFields('');
 	// };
 
-	const onSubmit: SubmitHandler<FieldValues> = (data, isAdmin,id) => {
+	const onSubmit = (data:object, isAdmin?:boolean,userId?:number) => {
 		
 		const formData = data as IUserAddresReq;
 		// TODO: добавить проверки и всякие дополнения к данным формы
@@ -38,10 +39,9 @@ export const useAddLocation = (
 		
 		if (formData.name && formData.surname && formData.phone && formData.address) {
 			
-			if (isAdmin){
-				console.log('isAdmin',isAdmin);
-				const sendObject : AddressFetchObject = {
-					userId: id,
+			if (isAdmin){				
+				const sendObject: IAddressModel = {
+					userId: userId,
 					name: translit(formData.name),
 					surname: translit(formData.surname),
 					address_string: formData.address,
@@ -53,7 +53,7 @@ export const useAddLocation = (
 				dispatch(fetchAddAddressAdminForUser(sendObject)).then((e) => {
 					const statusCode = e.payload;
 	
-					console.log('statusCode: ', statusCode);
+					console.log('statusCode fetchAddAddressAdminForUser: ', statusCode);				
 					// switch (statusCode) {
 					// 	case 403:
 					// 		handleBadResponse();
@@ -61,8 +61,8 @@ export const useAddLocation = (
 					// 	case 422:
 					// 		handleBadResponse();
 					// }
-	
-					dispatch(fetchUserAutoLogin());
+					
+					dispatch(fetchUserAdmin({userId:userId}));
 				});
 
 

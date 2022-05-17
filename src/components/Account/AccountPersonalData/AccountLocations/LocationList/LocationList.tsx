@@ -5,7 +5,7 @@ import {fetchDeleteAddress, fetchDeleteAddressAdmin, fetchUserAutoLogin} from '@
 import {useLocationListStyle} from '@/components/Account/AccountPersonalData/AccountLocations/LocationList/style';
 import AddressUser from '@/components/Account/AccountPersonalData/AccountLocations/AddressUser/AddressUser';
 import {IAddressModel} from '@/models/IAddressModel';
-
+import { fetchUserAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
 interface ILocationList {
 	addresses: IAddressModel[];
 	showAll: boolean;
@@ -25,8 +25,8 @@ const LocationList: FC<ILocationList> = ({showAll, addresses, isAdmin,userId}) =
 					userId: userId,
 				}))
 				.then(() => {
-					
-					dispatch(fetchUserAutoLogin());
+					dispatch(fetchUserAdmin({userId:userId}));
+					// dispatch(fetchUserAutoLogin());
 					
 				});
 		} else {

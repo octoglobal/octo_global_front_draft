@@ -21,7 +21,7 @@ const LocationForm: FC = () => {
 	const {isCustomSize} = useCustomSize(500);
 
 	const [openForm, setOpenForm] = useState<boolean>(false);
-	const [showAllLoc, setAllLoc] = useState<boolean>(false);
+	const [showAllLoc] = useState<boolean>(false);
 
 	const hasLocation = useMemo(
 		() => !addresses.length,
@@ -33,7 +33,7 @@ const LocationForm: FC = () => {
 			setState(prevState => !prevState);
 		};
 	};
-
+	
 	return (
 		<LocationFormUI>
 			<>
@@ -89,6 +89,6 @@ const {
 	LocationFormUI,
 	LocationButtonsUI,
 	ButtonAdd,
-	ButtonShowAll,
+	
 	TextFieldMobileSx
 } = useAccountLocationStyle();

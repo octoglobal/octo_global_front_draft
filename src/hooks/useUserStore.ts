@@ -1,12 +1,6 @@
-import { fetchUserAdmin } from '@/reducers/adminSlice/asyncThunk/adminApi';
-import {useEffect, useMemo} from 'react';
+import { useMemo} from 'react';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-
 import {fetchUserAutoLogin} from '@/store/reducers/userSlice/asyncActions/userApi';
-
-
-import {adminSlice} from '@/reducers/adminSlice/adminSlice';
-
 
 export const useUserStore = () => {
 	const {user} = useAppSelector(state => state.userReducer);

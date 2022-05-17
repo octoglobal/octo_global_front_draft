@@ -69,8 +69,12 @@ const AddLocationForm: FC<IAddLocationForm> = (
 	};
 
 	const wrapperSubmit = (formData : FieldValues) => {
-		
-		onSubmit(formData,isAdmin,adminSwitchUserModel.id);
+		if (isAdmin && adminSwitchUserModel){
+			onSubmit(formData,isAdmin,adminSwitchUserModel.id);
+		}else {
+			onSubmit(formData);
+		}
+	
 		setOpenForm(prevState => !prevState);
 		reset({});
 	};
