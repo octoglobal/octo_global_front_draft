@@ -4,6 +4,10 @@ import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 
 import {fetchUserAutoLogin} from '@/store/reducers/userSlice/asyncActions/userApi';
 
+
+import {adminSlice} from '@/reducers/adminSlice/adminSlice';
+
+
 export const useUserStore = () => {
 	const {user} = useAppSelector(state => state.userReducer);
 	const dispatch = useAppDispatch();
@@ -23,13 +27,14 @@ export const useUserStore = () => {
 	} = useAppSelector(state => state.adminReducer);
 
 	const Iuser = adminSwitchUserModel||user;
-	// console.log('Iuser',Iuser.id);
+	// console.log('Iuser',Iuser);
+	// console.log('reload&&&',Iuser);
 
 
 	const userPhone = useMemo(() => {
 		if (isAdmin && adminSwitchUserModel) {
 			return adminSwitchUserModel.phone;
-		} else {
+		} else {			
 			return user.phone;
 		}
 	}, [adminSwitchIdToUser, adminSwitchUserModel]);
@@ -40,7 +45,7 @@ export const useUserStore = () => {
 		if (isAdmin && adminSwitchUserModel) {
 			
 			return adminSwitchUserModel.name;
-		} else {
+		} else {			
 			return user.name;
 		}
 	}, [ adminSwitchIdToUser,adminSwitchUserModel]);
@@ -48,7 +53,7 @@ export const useUserStore = () => {
 	const userSurname = useMemo(() => {
 		if (isAdmin && adminSwitchUserModel) {
 			return adminSwitchUserModel.surname;
-		} else {
+		} else {	
 			return user.surname;
 		}
 	}, [ adminSwitchIdToUser,adminSwitchUserModel]);
@@ -102,7 +107,8 @@ export const useUserStore = () => {
 		user,
 		Iuser,
 		isAuth,
-		isAdmin,		
+		isAdmin,
+		adminSwitchUserModel,		
 		getUser: fetchUser,
 	};
 };

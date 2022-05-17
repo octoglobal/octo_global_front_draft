@@ -88,6 +88,7 @@ export const fetchUserLogout = createAsyncThunk(
 export const fetchUserAutoLogin = createAsyncThunk(
 	'user/autologin',
 	async (__, thunkAPI) => {
+		console.log('auto login');
 		try {
 			const response = await octoAxios.get('/user');
 			// console.log('пошел запрос: ', response.data);
@@ -225,19 +226,46 @@ export const fetchDeleteAddress = createAsyncThunk(
 	}
 );
 export const fetchDeleteAddressAdmin = createAsyncThunk(
-	'/address/AdminDelete',
+	'/address/AdminDeleteUser',
 	// TODO: добавитьтип адресса к удалению адреса
 	
 	async (data: IAddressDelete, thunkAPI) => {
 		console.log('DELETE ', data);
-		try {
-			console.log('data: ', data);
+		try {			
 			const response = await octoAxios.delete('/admin/user/address', {data});
 			// console.log('response: ', response);
 			// const response
 			return response;
 		} catch (e) {
 			return thunkAPI.rejectWithValue('Ошибка apu address/delete');
+		}
+	}
+);
+
+
+export const fetchAddAddressAdminForUser = createAsyncThunk(
+	'/address/AdminDeleteUser',
+	// TODO: добавитьтип адресса к удалению адреса
+	
+	async (data: IAddressDelete, thunkAPI) => {
+
+		// {
+		// 	"userId": 1,
+		// 	"name": "borya", 
+		// 	"surname": "razaty",
+		// 	"address_string": "chelyabinsk, dom 5",
+		// 	"phone": "+7123123123",
+		// 	"latitude": "4.5321",
+		// 	"longitude": "98.7456"
+		// }
+		console.log('ADD post admin for user ', data);
+		try {			
+			const response = await octoAxios.post('/admin/user/address', data);
+			console.log('response: ', response);
+			
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Ошибка api /admin/user/address');
 		}
 	}
 );

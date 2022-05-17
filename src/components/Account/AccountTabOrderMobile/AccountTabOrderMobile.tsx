@@ -29,7 +29,7 @@ const AccountTabOrderMobile : FC<{active?: boolean}> = ({active = false}) => {
 	const dropItems = [
 		{title: 'Ожидаемые', onClick: () => handlePush('/account/orders/wait')},
 		{title: 'На складе', onClick: () => handlePush('/account/orders/stock')},
-		{title: 'Отправлены', onClick: () => handlePush('/account/orders/send')},
+		{title: 'Отправленые', onClick: () => handlePush('/account/orders/send')},
 		{title: '+ Добавить', onClick: () => handlePush('/account/orders/add')},
 	];
 

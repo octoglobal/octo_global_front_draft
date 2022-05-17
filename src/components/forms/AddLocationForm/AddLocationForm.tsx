@@ -57,7 +57,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		userPhone,
 		userName,
 		userSurname,
-		adminSwitchIdToUser
+		adminSwitchUserModel
 	} = useUserStore();
 
 	const {onSubmit} = useAddLocation();
@@ -69,7 +69,8 @@ const AddLocationForm: FC<IAddLocationForm> = (
 	};
 
 	const wrapperSubmit = (formData : FieldValues) => {
-		onSubmit(formData);
+		
+		onSubmit(formData,isAdmin,adminSwitchUserModel.id);
 		setOpenForm(prevState => !prevState);
 		reset({});
 	};
