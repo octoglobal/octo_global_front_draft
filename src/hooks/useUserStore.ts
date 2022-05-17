@@ -21,9 +21,6 @@ export const useUserStore = () => {
 	} = useAppSelector(state => state.adminReducer);
 
 	const Iuser = adminSwitchUserModel||user;
-	// console.log('Iuser',Iuser);
-	// console.log('reload&&&',Iuser);
-
 
 	const userPhone = useMemo(() => {
 		if (isAdmin && adminSwitchUserModel) {

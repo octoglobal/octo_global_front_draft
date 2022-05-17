@@ -68,14 +68,13 @@ const AddLocationForm: FC<IAddLocationForm> = (
 	// 	setOpenForm(prevState => !prevState);
 	// };
 
-	console.log('userName',userName);
 
 	const wrapperSubmit = (formData : FieldValues) => {
 		if (isAdmin && adminSwitchUserModel){
 
 		 const r =	onSubmit(formData,isAdmin,adminSwitchUserModel.id);
 			 r.then(err=>{
-				console.log('error', err);
+				
 				if (!err){					
 					   setOpenForm(false);
 					   reset({});
@@ -85,7 +84,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		}else {
 		 const r = onSubmit(formData);		 
 		 r.then(err=>{
-			 console.log('error', err);
+			
 			 if (!err){				
 					setOpenForm(false);
 					reset({});
@@ -110,10 +109,9 @@ const AddLocationForm: FC<IAddLocationForm> = (
 			message: '',
 		});
 	}, []);
-	
+
 	// смена пользователя, чистим поля
-	useEffect(() => {
-		console.log('смена пользователя, чистим поля');
+	useEffect(() => {		
 		reset({});
 	}, [userName]);
 
