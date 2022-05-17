@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useEffect, useMemo} from 'react';
+import React, {FC, useCallback,  useMemo} from 'react';
 
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {fetchDeleteAddress, fetchDeleteAddressAdmin, fetchUserAutoLogin} from '@/reducers/userSlice/asyncActions/userApi';
@@ -13,7 +13,7 @@ interface ILocationList {
 	userId: number
 }
 
-const LocationList: FC<ILocationList> = ({showAll, addresses, isAdmin,userId}) => {
+const LocationList: FC<ILocationList> = ({ addresses, isAdmin,userId}) => {
 	const dispatch = useAppDispatch();	
 	const hasAddress = useMemo(() => typeof addresses !== 'undefined', [addresses]);
 	

@@ -12,7 +12,6 @@ import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import { translit } from '@/lib/services/services';
 import { SxProps } from '@mui/material';
-import { useAppSelector } from '@/hooks/useReduxHooks';
 
 interface IAddLocationForm {
 	setOpenForm: (prevState : (state: boolean) => boolean) => void
