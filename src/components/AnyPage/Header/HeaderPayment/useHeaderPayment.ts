@@ -19,10 +19,6 @@ export const useHeaderPayment = () => {
 
 	const isMobile = useMediaQuery('(max-width: 768px)');
 
-	const {
-		isAdmin
-	} = useUserStore();
-
 
 	const handleToggleMenuOpen = () => {
 		handleTogglePaymentForm();
