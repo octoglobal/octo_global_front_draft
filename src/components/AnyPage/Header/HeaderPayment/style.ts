@@ -22,7 +22,7 @@ export const useHeaderPaymentStyles = () => {
 		lineHeight: '21px',
 		fontWeight: 400,
 		color: '#000000',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
 			height: '19px',
@@ -36,7 +36,7 @@ export const useHeaderPaymentStyles = () => {
 		width: '100% !important',
 		border: 0,
 		backgroundColor: 'transparent',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			display: 'none',
 		}
 	}));
@@ -55,7 +55,7 @@ export const useHeaderPaymentStyles = () => {
 			[theme.breakpoints.down(1025)]: {
 				right: '15px !important',
 			},
-			[theme.breakpoints.down(769)]: {
+			[theme.breakpoints.down(969)]: {
 				backgroundColor: 'rgba(0, 0, 0, 0)',
 				boxShadow: 'none',
 				width: '100%',
@@ -66,6 +66,10 @@ export const useHeaderPaymentStyles = () => {
 				// paddingTop: '58px',
 			}
 		},
+		[theme.breakpoints.down(969)]: {
+			maxWidth: '345px',
+			margin: '0 auto',
+		}
 	}));
 
 	const ButtonSendMUI = styled(MenuItem)(({theme}) => ({
@@ -77,7 +81,7 @@ export const useHeaderPaymentStyles = () => {
 		height: '30px',
 		justifyContent: 'center',
 		alignItems: 'center',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
 			height: '32px',
@@ -111,6 +115,20 @@ export const useHeaderPaymentStyles = () => {
 		padding: '5px',
 	}));
 
+	const ContainerAddPaymentMobileMUI = styled('a')(() => ({
+		display: 'flex',
+		alignItems: 'center',
+	}));
+
+	const AddPaymentMobileMUI = styled('a')(() => ({
+		fontSize: '16px',
+		lineHeight: '18px',
+		fontWeight: 300,
+		textDecoration: 'underline',
+		color: '#274D82',
+		margin: '10px 0 17px 10px',
+	}));
+
 	return {
 		PayIconMUI,
 		MenuListMUI,
@@ -120,6 +138,8 @@ export const useHeaderPaymentStyles = () => {
 		BackDropBlurMUI,
 		CloseModalButtonMUI,
 		ContainerMobileMUI,
+		AddPaymentMobileMUI,
 		BalanceTextButtonMUI,
+		ContainerAddPaymentMobileMUI,
 	};
 };

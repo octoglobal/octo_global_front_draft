@@ -19,7 +19,7 @@ export const usePaymentHistoryListStyles = () => {
 		maxHeight: '45vh',
 		'& > *:last-child': {
 		},
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			maxHeight: 'none',
 			'& > *:nth-child(3)': {
 				marginBottom: hiddenList ? '0px' : '15px',
