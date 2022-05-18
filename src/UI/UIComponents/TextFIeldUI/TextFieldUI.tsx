@@ -29,12 +29,6 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 
 	const {isMobile} = useMobile();
 
-	const {
-		TextFieldUI,
-		TextFieldStyle,
-		TextFieldMobileStyle,
-	} = useTextFieldUIStyle();
-
 	const hasIconProps = useMemo(
 		() => typeof iconProps !== 'undefined',
 		[iconProps]
@@ -62,7 +56,7 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 	};
 
 	return (
-		<TextFieldUI>
+		<TextFieldContainerUI>
 			<Controller
 				name={controller.name}
 				control={controller.control}
@@ -92,8 +86,14 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 			{/*		{iconActive ? <IconComponent /> : <IconComponentActive/>}*/}
 			{/*	</IconUI>*/}
 			{/*)}*/}
-		</TextFieldUI>
+		</TextFieldContainerUI>
 	);
 };
+
+const {
+	TextFieldUI: TextFieldContainerUI,
+	TextFieldStyle,
+	TextFieldMobileStyle,
+} = useTextFieldUIStyle();
 
 export default React.memo(TextFieldUI);

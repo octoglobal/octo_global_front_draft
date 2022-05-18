@@ -17,6 +17,9 @@ import ResetPasswordForm from '@/components/forms/ResetPasswordForm/ResetPasswor
 import LoginPromt from '@/components/AnyPage/AuthFormPromt/LoginPromt/LoginPromt';
 import SignUpPromt from '@/components/AnyPage/AuthFormPromt/SignUpPromt/SignUpPromt';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
+import {usePayment} from '@/hooks/usePayment';
+import {useHeaderPaymentStyles} from '@/components/AnyPage/Header/HeaderPayment/style';
+import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
 
 const MenuAuthContent: FC = () => {
 	const { isAuth } = useUserStore();
@@ -30,6 +33,11 @@ const MenuAuthContent: FC = () => {
 		UserUI,
 		ExitLinkUI,
 	} = useMenuAuthContentStyle();
+
+	const {
+		userBalance,
+		handleTogglePaymentForm,
+	} = usePayment();
 
 	const {
 		toggleDrawer,
@@ -67,6 +75,11 @@ const MenuAuthContent: FC = () => {
 						<UserUI onClick={handlerPushToAccount}>
 							<User cutFio={false} />
 						</UserUI>
+						{isAuth && (
+							<BalanceTextMUI onClick={handleTogglePaymentForm}>
+								{userBalance} €
+							</BalanceTextMUI>
+						)}
 						<MenuLinksUI>
 							<HeaderNavLink toggleOpenMenu={toggleDrawer} />
 							{isAuth && (
@@ -143,8 +156,13 @@ const MenuAuthContent: FC = () => {
 					</>
 				)}
 			</>
+			<HeaderPayment/>
 		</ContentLayoutUI>
 	);
 };
+
+const {
+	BalanceTextMUI
+} = useHeaderPaymentStyles();
 
 export default React.memo(MenuAuthContent);

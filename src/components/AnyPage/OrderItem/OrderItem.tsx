@@ -164,7 +164,7 @@ const OrderItem: FC<IOrderItemProps> = (
 							onClose={() => setIsStatusModal(false)}
 							component={component}
 							visibleDropDown={false}
-							buttonText={'Отлично'}
+							buttonText={isWait ? 'На склад' : 'В ожидаемые'}
 							submitStatus={isWait ? 1 : 0}
 						/>
 					)}

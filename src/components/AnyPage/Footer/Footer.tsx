@@ -110,7 +110,11 @@ const Footer = () => {
 				</FooterColumnBlockUI>
 
 				{isCustomSize && (
-					<IndexTitleUI>
+					<IndexTitleUI
+						href="https://www.index-studio.ru/"
+						rel="noopener noreferrer"
+						target="_blank"
+					>
 						Разработано студией INDEX
 					</IndexTitleUI>
 				)}

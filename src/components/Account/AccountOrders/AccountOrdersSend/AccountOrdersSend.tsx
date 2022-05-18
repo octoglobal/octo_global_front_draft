@@ -52,6 +52,7 @@ const AccountOrdersSend = () => {
 						open: isDeleteTrackNumberSuccess,
 						onClose: () => setIsDeleteTrackNumberSuccess(false),
 					}}
+					closeTime={3}
 					title='Посылка отправлена обратно на склад'
 					buttonText='Отлично'
 				/>

@@ -31,6 +31,8 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 	},[isMobile,isTablet]
 	);
 
+
+
 	return (
 		<>
 			{navLinksArray.filter(item => isAuth ? true : item.showAuth === isAuth).map((option) => (

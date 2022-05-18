@@ -25,16 +25,19 @@ const initialState: IUserSlice = {
 		registrationTime: '',
 		surname: '',
 		username: '',
-		verifiedEmail: false
-	},
-	
-	
+		verifiedEmail: false,
+		balance: 0,
+	}
 };
 
 export const userSlice = createSlice({
 	name: 'user/info',
 	initialState,
-	reducers: {},
+	reducers: {
+		updateBalance (state, action: PayloadAction<number>) {
+			state.user.balance += action.payload;
+		}
+	},
 	// extraReducers: (builder) => {
 	extraReducers: {
 		// builder.addCase(fetchUserLogin.fulfilled, (state, data: PayloadAction<IUserSlice>) => {

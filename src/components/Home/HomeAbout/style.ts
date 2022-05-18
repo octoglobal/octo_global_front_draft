@@ -7,7 +7,7 @@ export const useHomeAboutStyles = () => {
 		flexDirection: 'row',
 		alignItems: 'center',
 		marginBottom: '30px',
-		height: '100vh',
+		height: '95vh',
 		position: 'relative',
 		[theme.breakpoints.down(1321)]: {
 			justifyContent: 'space-between',
@@ -18,6 +18,7 @@ export const useHomeAboutStyles = () => {
 			alignItems: 'center',
 		},
 		[theme.breakpoints.down(501)]: {
+			marginBottom: '10px',
 			// height: 'calc(100vh + 40px)',
 		}
 	}));

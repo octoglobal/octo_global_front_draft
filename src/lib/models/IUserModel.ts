@@ -14,4 +14,5 @@ export interface IUserModel {
 	readonly surname: string;
 	readonly username: string;
 	readonly verifiedEmail: boolean;
+	readonly balance: number;
 }
