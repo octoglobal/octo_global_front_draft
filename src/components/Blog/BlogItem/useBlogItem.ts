@@ -25,8 +25,8 @@ export const useBlogItem = (title: string, viewDescription?: boolean, isTitleSpl
 	const modifiedTitle = useMemo(() => {
 		if (isTitleSplice) {
 			// Вот тут менять!!!!
-			// return title;
-			return reduceString(title,10);
+			return title;
+			// return reduceString(title,10);
 		}
 		return title;
 	}, [isTitleSplice]);
