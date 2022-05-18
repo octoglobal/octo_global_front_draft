@@ -32,7 +32,8 @@ export const usePaymentForm = () => {
 	} = useUserStore();
 
 	const {
-		adminSwitchIdToUser
+		adminSwitchIdToUser,
+		adminSwitchUserModel
 	} = useAppSelector(state => state.adminReducer);
 
 	const {
@@ -68,22 +69,27 @@ export const usePaymentForm = () => {
 			)
 		) {
 			const userId = adminSwitchIdToUser ? adminSwitchIdToUser : user?.id;
+			const userBalance = adminSwitchUserModel?.balance ? adminSwitchUserModel?.balance : 0;
 			const sendData = {
 				userId: userId,
 				comment: data.comment,
-				amount: (data.minus ? -(+data.minus) : +data.plus) * 100,
+				amount: +((data.minus ? -(+data.minus) : +data.plus) * 100).toFixed(2),
 			};
-			dispatch(fetchAdminAddPaymentInUser(sendData))
-				.then((r) => {
-					const response = r.payload as {message: string | 'Платеж успешно проведён'};
-					const message = response.message;
-					if (message == 'Платеж успешно проведён') {
-						reset({});
-						handleGetHistoryOperation();
-						handleUpdateUserBalance(sendData.amount);
-						handleResetStatusMessagePaymentReducer('Платеж успешно проведён');
-					}
-				});
+			if (userBalance + sendData?.amount >= 0) {
+				dispatch(fetchAdminAddPaymentInUser(sendData))
+					.then((r) => {
+						const response = r.payload as {message: string | 'Платеж успешно проведён'};
+						const message = response.message;
+						if (message == 'Платеж успешно проведён') {
+							reset({});
+							handleGetHistoryOperation();
+							handleUpdateUserBalance(sendData.amount);
+							handleResetStatusMessagePaymentReducer('Платеж успешно проведён');
+						}
+					});
+				return;
+			}
+			handleResetStatusMessagePaymentReducer('Недостаточно средств на балансе!');
 			return;
 		}
 		handleResetStatusMessagePaymentReducer('Введите корректные значения');

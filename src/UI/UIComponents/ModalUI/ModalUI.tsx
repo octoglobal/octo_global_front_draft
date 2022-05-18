@@ -15,6 +15,7 @@ export interface IModalUIProps {
 	buttonText?: string;
 	titleStyle?: SxProps;
 	buttonClick?: () => void;
+	loading?: boolean;
 }
 
 const ModalUI: FC<IModalUIProps> = (
@@ -29,7 +30,8 @@ const ModalUI: FC<IModalUIProps> = (
 		closeTime = 0,
 		DialogContainerMUI = DialogMUI,
 		buttonText = 'Отлично',
-		buttonClick
+		buttonClick,
+		loading = false,
 	}
 ) => {
 
@@ -70,22 +72,29 @@ const ModalUI: FC<IModalUIProps> = (
 			disableScrollLock={false}
 			BackdropComponent={BackDropBlurMUI}
 		>
-			<DialogTitleMUI sx={titleStyle}>
-				{title}
-			</DialogTitleMUI>
-			{children && (
-				<DialogBodyMUI>
-					{children}
-				</DialogBodyMUI>
+			{!loading && (
+				<>
+					<DialogTitleMUI sx={titleStyle}>
+						{title}
+					</DialogTitleMUI>
+					{children && (
+						<DialogBodyMUI>
+							{children}
+						</DialogBodyMUI>
+					)}
+					<ButtonContainer sx={containerStyles}>
+						<ButtonMUI
+							onClick={handleClickButton}
+							{...buttonProps}
+						>
+							{buttonText}
+						</ButtonMUI>
+					</ButtonContainer>
+				</>
 			)}
-			<ButtonContainer sx={containerStyles}>
-				<ButtonMUI
-					onClick={handleClickButton}
-					{...buttonProps}
-				>
-					{buttonText}
-				</ButtonMUI>
-			</ButtonContainer>
+			{loading && (
+				<CircularProgressMUI/>
+			)}
 		</DialogContainerMUI>
 	);
 };
@@ -99,6 +108,7 @@ const {
 	DialogTitleMUI,
 	BackDropBlurMUI,
 	ButtonContainerMUI,
+	CircularProgressMUI,
 } = useModalUIStyles();
 
 export default React.memo(ModalUI);

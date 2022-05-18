@@ -1,4 +1,4 @@
-import { Backdrop, Dialog, styled } from '@mui/material';
+import {Backdrop, CircularProgress, Dialog, styled} from '@mui/material';
 import ButtonUI from '../ButtonUI/ButtonUI';
 
 export const useModalUIStyles = () => {
@@ -87,12 +87,18 @@ export const useModalUIStyles = () => {
 		zIndex: '-1',
 	});
 
+	const CircularProgressMUI = styled(CircularProgress)(() => ({
+		width: '60px !important',
+		height: '60px !important'
+	}));
+
 	return {
 		DialogMUI,
 		ButtonMUI,
 		DialogBodyMUI,
 		DialogTitleMUI,
 		BackDropBlurMUI,
-		ButtonContainerMUI
+		ButtonContainerMUI,
+		CircularProgressMUI
 	};
 };

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {usePaymentHistoryList} from '@/components/AnyPage/Header/HeaderPayment/PaymentHistoryList/usePaymentHistoryList';
 import {usePaymentHistoryListStyles} from '@/components/AnyPage/Header/HeaderPayment/PaymentHistoryList/style';
 import PaymentHistoryItem from '@/components/AnyPage/Header/HeaderPayment/PaymentHistoryItem/PaymentHistoryItem';
 
-const PaymentHistoryList = () => {
+interface IPaymentHistoryListProps {
+	isMobile: boolean;
+}
+
+const PaymentHistoryList: FC<IPaymentHistoryListProps> = ({isMobile = false}) => {
 
 	const {
+		isListHidden,
+		handleIsOpenList,
 		userHistoryBalance,
 		isHistoryBalanceArray,
 	} = usePaymentHistoryList();
@@ -18,7 +24,7 @@ const PaymentHistoryList = () => {
 			)}
 			{!!isHistoryBalanceArray && (
 				!!userHistoryBalance.length && (
-					<ListMUI>
+					<ListMUI hiddenList={isListHidden}>
 						{userHistoryBalance.map(balanceItem => (
 							<PaymentHistoryItem
 								key={balanceItem.id}
@@ -28,6 +34,11 @@ const PaymentHistoryList = () => {
 					</ListMUI>
 				)
 			)}
+			{isListHidden && isMobile && (
+				<MoreItemButtonMUI onClick={handleIsOpenList}>
+					Загрузить ещё <BottomArrowMUI/>
+				</MoreItemButtonMUI>
+			)}
 		</ContainerMUI>
 	);
 };
@@ -35,6 +46,8 @@ const PaymentHistoryList = () => {
 const {
 	ListMUI,
 	ContainerMUI,
+	BottomArrowMUI,
+	MoreItemButtonMUI,
 	CircularProgressMUI,
 } = usePaymentHistoryListStyles();
 
