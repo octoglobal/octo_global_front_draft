@@ -78,6 +78,7 @@ export const usePayment = () => {
 		userBalance: normalBalance,
 		userHistoryBalance: historyBalance,
 		loadingHistoryBalance,
+		isAdmin,
 		handleSendUserEmailReq,
 		handleTogglePaymentForm,
 		handleUpdateUserBalance,
