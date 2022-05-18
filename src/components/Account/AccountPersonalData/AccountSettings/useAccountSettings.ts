@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 
-import {FieldValues, SubmitHandler, UseFormReset, UseFormSetError} from 'react-hook-form';
+import {FieldValues, SubmitHandler, UseFormReset, UseFormSetError, UseFormClearErrors} from 'react-hook-form';
 // import {useUserStore} from '@/hooks/useUserStore';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {
@@ -13,8 +13,8 @@ import {useState} from 'react';
 import {useUserStore} from '@/hooks/useUserStore';
 import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 
-export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean, reset?: UseFormReset<FieldValues>) => {
-
+export const useAccountSettings = (clearErrors:UseFormClearErrors<FieldValues>,setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean, reset?: UseFormReset<FieldValues>) => {
+	
 	const {
 		isAdmin,
 		user
@@ -102,11 +102,12 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 						handleBadResponseUser();
 						return;
 					case 409:
-						console.log('!!!!!!409');
+						
 						if (response.data == 'user with this phone already exists') {
 							setError('phone', {type: 'string', message: 'Номер телефона занят'});
 							setTimeout(()=>{
-								setError('phone', {type: 'string', message: ''});
+								
+								clearErrors();								
 							},3000);
 							if (!isAdmin){			
 								
@@ -123,6 +124,11 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 						}
 						if (response.data == 'user with this email already exists') {
 							setError('email', {type: 'string', message: 'Почта занята'});
+							setTimeout(()=>{
+								
+								clearErrors();
+								
+							},3000);
 						}
 						return;
 					default:
@@ -149,16 +155,18 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 
 							if (isUseEmail) {
 								setError('email', {type: 'string', message: 'Почта занята'});
+								setTimeout(()=>{									
+									clearErrors();
+								},3000);
 							}
 							if (isUserPhone) {
 								setError('phone', {type: 'string', message: 'Номер телефона занят'});
-								setTimeout(()=>{
-									setError('phone', {type: 'string', message: ''});
+								setTimeout(()=>{									
+									clearErrors();
 								},3000);
 							}
 
-							if (isAdmin) {
-								
+							if (isAdmin) {								
 								dispatch(adminSlice.actions.changeEmailAndPhone(
 									{
 										phone: !isUserPhone ? formData.phone : currentPhone,

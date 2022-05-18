@@ -27,12 +27,12 @@ const AccountPasswordForm : FC = () => {
 
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError, reset} = useForm();
-
+	const {handleSubmit, control, setError, reset, clearErrors } = useForm();
+	
 	const {
 		onSubmitPassword,
 		isSubmitFormSuccess
-	} = useAccountSettings(setError, false, reset);
+	} = useAccountSettings(clearErrors,setError, false, reset,  );
 
 	const {
 		isAdmin
