@@ -8,6 +8,7 @@ import ModalUI from '../../../../UI/UIComponents/ModalUI/ModalUI';
 import PaymentHistoryList from '@/components/AnyPage/Header/HeaderPayment/PaymentHistoryList/PaymentHistoryList';
 import PaymentUserBalance from '@/components/AnyPage/Header/HeaderPayment/PaymentUserBalance/PaymentUserBalance';
 import CloseModalIcon from '@/UIIcon/CloseModalIcon.svg';
+import { Box } from '@mui/material';
 
 
 const HeaderPayment = () => {
@@ -44,12 +45,22 @@ const HeaderPayment = () => {
 				onClose={handleToggleMenuOpen}
 			>
 				{isMobile && (
-					<ContainerMobileMUI>
-						<CloseModalButtonMUI onClick={handleToggleMenuOpen}>
-							<CloseModalIcon/>
-						</CloseModalButtonMUI>
-						<PaymentUserBalance/>
-					</ContainerMobileMUI>
+					<>
+						<ContainerMobileMUI>
+							<CloseModalButtonMUI onClick={handleToggleMenuOpen}>
+								<CloseModalIcon/>
+							</CloseModalButtonMUI>
+						</ContainerMobileMUI>
+						<Box
+							component='div'
+							sx={{
+								paddingLeft: '15px',
+								marginTop: '58px',
+								marginBottom: '23px',
+							}}>
+							<PaymentUserBalance/>
+						</Box>
+					</>
 				)}
 				{!isAdmin && (
 					<>
