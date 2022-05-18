@@ -9,7 +9,7 @@
     {
       "title": "Стоимость услуг",
       "showAuth": false,
-      "href": "/"
+      "href": "/questions?transfer"
     },
     {
       "title": "Блог",
@@ -33,7 +33,7 @@
     {
       "title": "Стоимость услуг",
       "showAuth": false,
-      "href": "/"
+      "href": "/questions?transfer"
     },
     {
       "title": "Блог",
@@ -67,7 +67,7 @@
     {
       "title": "Стоимость услуг",
       "showAuth": false,
-      "href": "/"
+      "href": "/questions?transfer"
     },
     {
       "title": "Блог",

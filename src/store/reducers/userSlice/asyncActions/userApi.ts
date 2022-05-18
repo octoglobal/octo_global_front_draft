@@ -33,7 +33,8 @@ export interface IUserAddresReq {
 }
 
 interface IAddressDelete {
-	address_id: number
+	address_id: number,
+	userId?:number
 }
 
 
@@ -86,10 +87,10 @@ export const fetchUserLogout = createAsyncThunk(
 
 export const fetchUserAutoLogin = createAsyncThunk(
 	'user/autologin',
-	async (__, thunkAPI) => {
+	async (__, thunkAPI) => {		
 		try {
 			const response = await octoAxios.get('/user');
-			// console.log('пошел запрос: ', response);
+			// console.log('пошел запрос: ', response.data);
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
@@ -191,22 +192,27 @@ export const fetchRecoveryMessage = createAsyncThunk(
 
 export const fetchAddAddress = createAsyncThunk(
 	'address/add',
-	async(data: AddressFetchObject, thinkAPI) => {
-		try {
+	async(data: AddressFetchObject, {rejectWithValue}) => {
+		try {		
 			const response = await octoAxios.post('/user/address', data);
 
 			// console.log('response: ', response);
 			return response;
-		} catch (e) {
-			// console.log('e: ', e);
+		} catch (err) {
+			
+			if (axios.isAxiosError(err)) {
+			
+				return rejectWithValue(err.response?.status);
+			}
+		
 		}
 	}
 );
 
 export const fetchDeleteAddress = createAsyncThunk(
 	'/address/delete',
-	// TODO: добавитьтип адресса к удалению адреса
-	async (data: IAddressDelete, thunkAPI) => {
+	// TODO: добавитьтип адресса к удалению адреса	
+	async (data: IAddressDelete, thunkAPI) => {		
 		try {
 			// console.log('data: ', data);
 			const response = await octoAxios.delete('/user/address', {data});
@@ -215,6 +221,36 @@ export const fetchDeleteAddress = createAsyncThunk(
 			return response;
 		} catch (e) {
 			return thunkAPI.rejectWithValue('Ошибка apu address/delete');
+		}
+	}
+);
+export const fetchDeleteAddressAdmin = createAsyncThunk(
+	'/address/AdminDeleteUser',
+	// TODO: добавитьтип адресса к удалению адреса
+	
+	async (data: IAddressDelete, thunkAPI) => {
+		
+		try {			
+			const response = await octoAxios.delete('/admin/user/address', {data});
+			// console.log('response: ', response);
+			// const response
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Ошибка apu address/delete');
+		}
+	}
+);
+
+
+export const fetchAddAddressAdminForUser = createAsyncThunk(
+	'/address/AdminDeleteUser',
+	
+	async (data:object, thunkAPI) => {		
+		try {			
+			const response = await octoAxios.post('/admin/user/address', data);	
+			return response;
+		} catch (e) {
+			return thunkAPI.rejectWithValue('Ошибка api /admin/user/address');
 		}
 	}
 );

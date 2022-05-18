@@ -53,12 +53,21 @@ const Questions = () => {
 			>
 				<HowItWorks/>
 			</CollapseInfo>
+
 			<CollapseInfo
-				title={'Запрещенные товары'}				
+				title={'Стоимость наших услуг '}				
 				open={false}
 			>
-				<BlockProduct/>
+				<CostServices/>
 			</CollapseInfo>
+
+		
+			<CollapseInfo			
+				title={'Стоимость почтового отправления в Россию'}				
+				open={openTransferPage}
+			>
+				<AboutTransferPage/>
+			</CollapseInfo>	
 
 			<CollapseInfo
 				title={'Пополнение личного счета'}				
@@ -67,19 +76,18 @@ const Questions = () => {
 				<ReplenishmentPersonalAccaunt/>
 			</CollapseInfo>
 
+			<CollapseInfo
+				title={'Запрещенные товары'}				
+				open={false}
+			>
+				<BlockProduct/>
+			</CollapseInfo>
 
 			<CollapseInfo
 				title={'Таможенные пошлины'}				
 				open={false}
 			>								
 				<CustomsDuties/>
-			</CollapseInfo>
-
-			<CollapseInfo
-				title={'Стоимость наших услуг '}				
-				open={false}
-			>
-				<CostServices/>
 			</CollapseInfo>
 
 			<CollapseInfo
@@ -95,19 +103,17 @@ const Questions = () => {
 			>
 				<VpnPage/>
 			</CollapseInfo>
+			
 			<CollapseInfo			
 				title={'Как перевести сайт на русский'}
 				open={openTranslate}
+				end={true}
 			>
 				<TranslatePage/>
 			</CollapseInfo>
-			<CollapseInfo			
-				title={'Стоимость почтового отправления в Россию'}
-				end={true}
-				open={openTransferPage}
-			>
-				<AboutTransferPage/>
-			</CollapseInfo>			
+
+			
+
 		</ContainerMUI>
 	);
 };

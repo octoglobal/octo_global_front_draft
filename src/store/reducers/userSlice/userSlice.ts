@@ -2,12 +2,13 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {
 	fetchUserAutoLogin,
 	fetchUserLogin,
-	fetchUserLogout
+	fetchUserLogout,	
 } from '@/reducers/userSlice/asyncActions/userApi';
 import {IUserModel} from '@/models/IUserModel';
 
 export interface IUserSlice {
-	user: IUserModel
+	user: IUserModel,
+	
 }
 
 const initialState: IUserSlice = {
@@ -66,7 +67,7 @@ export const userSlice = createSlice({
 		},
 		[fetchUserLogout.fulfilled.type]: (state) => {
 			state.user = initialState.user;
-		}
+		},
 	},
 });
 

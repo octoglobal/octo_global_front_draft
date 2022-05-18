@@ -26,7 +26,7 @@ const AccountLocations: FC = () => {
 
 	return (
 		<LocationWrapperUI>
-			<BorderDashed title="Адрес для интернет магазина">
+			<BorderDashed title="Адрес для интернет-магазина">
 				<LocationContainerUI>
 					{/*<Tabs data={AccountUrlArray}/>*/}
 

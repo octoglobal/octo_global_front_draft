@@ -17,7 +17,7 @@ const ButtonUI : FC<ButtonProps> = (props) => {
 
 	const buttonStyle = useMemo(() => {
 		const propsStyles = props?.sx ? props.sx : {};
-		const adaptiveStyles = isMobile ? ButtonMobileStyle : ButtonStyle
+		const adaptiveStyles = isMobile ? ButtonMobileStyle : ButtonStyle;
 		return {
 			...adaptiveStyles,
 			...propsStyles

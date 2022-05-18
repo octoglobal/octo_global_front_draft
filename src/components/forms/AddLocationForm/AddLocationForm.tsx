@@ -1,5 +1,5 @@
 import React, {FC, useMemo, useEffect} from 'react';
-import {FieldValues, useForm} from 'react-hook-form';
+import {FieldValues, useForm } from 'react-hook-form';
 
 import {useMobile} from '@/hooks/useMedia';
 import {useAddLocation} from './useAddLocation';
@@ -12,9 +12,10 @@ import { useAddLocationFormStyle } from './style';
 import {useUserStore} from '@/hooks/useUserStore';
 import { translit } from '@/lib/services/services';
 import { SxProps } from '@mui/material';
+import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
 
 interface IAddLocationForm {
-	setOpenForm: (prevState : (state: boolean) => boolean) => void
+	setOpenForm: (state: boolean)=> void
 	isVisibleCancel?: boolean
 	isAddressProperty?: boolean // флаг, который показываем нам, что мы пришли со странички оформления продукта (компонента - AccountOrdersAddress)
 	buttonStyles?: SxProps
@@ -43,26 +44,56 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		FormRowButtonUI,
 	} = useAddLocationFormStyle();
 
-	const { handleSubmit, control, setError } = useForm();
+	const { handleSubmit, control, setError,reset } = useForm();	
+	
+
 
 	const {
-		user: {
-			name, surname,
-			phone,
-		}
+		// user: {
+		// 	name, surname,
+		// 	phone
+		// },
+		isAdmin,
+		userPhone,
+		userName,
+		userSurname,
+		adminSwitchUserModel
 	} = useUserStore();
 
-	const {onSubmit} = useAddLocation();
+	const {onSubmit,errAdd,setErrAdd} = useAddLocation();
 
 	const {isMobile} = useMobile();
 
-	const handlerCancelButton = () => {
-		setOpenForm(prevState => !prevState);
-	};
+	// const handlerCancelButton = () => {
+	// 	setOpenForm(prevState => !prevState);
+	// };
+
 
 	const wrapperSubmit = (formData : FieldValues) => {
-		onSubmit(formData);
-		setOpenForm(prevState => !prevState);
+		if (isAdmin && adminSwitchUserModel){
+
+		 const r =	onSubmit(formData,isAdmin,adminSwitchUserModel.id);
+			 r.then(err=>{
+				
+				if (!err){					
+					   setOpenForm(false);
+					   reset({});
+				} 
+			});
+
+		}else {
+		 const r = onSubmit(formData);		 
+		 r.then(err=>{
+			
+			 if (!err){				
+					setOpenForm(false);
+					reset({});
+			 } 
+		 });
+		}
+		
+		// setOpenForm(prevState => !prevState);
+		// reset({});
 	};
 
 	const addressRegex = useMemo(() => new RegExp(/[^A-Za-z0-9#?!:;,.-_+= ]/gi), []);
@@ -79,7 +110,14 @@ const AddLocationForm: FC<IAddLocationForm> = (
 		});
 	}, []);
 
+	// смена пользователя, чистим поля
+	useEffect(() => {		
+		reset({});
+	}, [userName]);
 
+	
+	
+	
 	return (
 		<FormUI onSubmit={handleSubmit(wrapperSubmit)}>
 			<FormWrapper increaseFormField={isAddressProperty}>
@@ -89,7 +127,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 						controller={{
 							name: 'name',
 							control,
-							defaultValue: translit(name),
+							defaultValue: translit(userName),
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -112,7 +150,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 						controller={{
 							name: 'surname',
 							control,
-							defaultValue: translit(surname),
+							defaultValue: translit(userSurname),
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -135,7 +173,7 @@ const AddLocationForm: FC<IAddLocationForm> = (
 						controller={{
 							name: 'phone',
 							control,
-							defaultValue: phone,
+							defaultValue: userPhone,
 							rules: { required: true },
 						}}
 						inputProps={{
@@ -173,12 +211,16 @@ const AddLocationForm: FC<IAddLocationForm> = (
 				</FormRowTextField>
 
 				<FormRowTitle/>
+
+		
+
 				<FormRowButtonUI>
 					{isVisibleCancel && (
 						<ButtonUI
 							style={ButtonCancelUI}
 							variant="text"
-							onClick={handlerCancelButton}
+							onClick={()=>setOpenForm(false)}
+							// onClick={handlerCancelButton}
 						>
 							Отмена
 						</ButtonUI>
@@ -192,7 +234,13 @@ const AddLocationForm: FC<IAddLocationForm> = (
 					</ButtonUI>
 				</FormRowButtonUI>
 			</FormWrapper>
-
+			<ModalUI
+				dialogProps={{
+					open: errAdd,
+					onClose: () => setErrAdd(false),
+				}}				
+				title={'Произошла ошибка'}
+			/>
 		</FormUI>
 	);
 };

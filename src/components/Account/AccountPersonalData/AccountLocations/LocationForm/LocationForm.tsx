@@ -10,53 +10,59 @@ import {useCustomSize} from '@/hooks/useMedia';
 
 const LocationForm: FC = () => {
 	const {
-		user: {
-			addresses
-		}
-	} = useUserStore();
+		Iuser: {
+			addresses,
+			id
+		},
+		isAdmin				
+	} = useUserStore();	
 
+	
 	const {isCustomSize} = useCustomSize(500);
 
 	const [openForm, setOpenForm] = useState<boolean>(false);
-	const [showAllLoc, setAllLoc] = useState<boolean>(false);
+	const [showAllLoc] = useState<boolean>(false);
 
 	const hasLocation = useMemo(
 		() => !addresses.length,
 		[addresses]
 	);
 
-	const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
-		return () => {
-			setState(prevState => !prevState);
-		};
-	};
-
+	// const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
+	// 	return () => {
+	// 		setState(prevState => !prevState);
+	// 	};
+	// };
+	
 	return (
 		<LocationFormUI>
 			<>
 				<LocationList
 					addresses={addresses}
 					showAll={showAllLoc}
+					isAdmin={isAdmin}
+					userId={id}
 				/>
 
 				<LocationButtonsUI
 					addMargin={ openForm}
 					justifyAlign={!addresses.length}
 				>
-					{addresses && addresses.length > 2 && (
+					{/* {addresses && addresses.length > 2 && (
 						<ButtonUI
 							sx={ButtonShowAll}
 							onClick={handlerToggleState(setAllLoc)}
 						>
 							{!showAllLoc ? 'Показать все адреса' : 'Скрыть все адреса'}
 						</ButtonUI>
-					)}
+					)} */}
 					{addresses.length > 0 ? (
 						<>
 							{!openForm && (
 								<ButtonUI
 									sx={ButtonAdd}
-									onClick={handlerToggleState(setOpenForm)}
+									onClick={()=>setOpenForm(true)}
+									// onClick={handlerToggleState(setOpenForm)}
 								>
 									Добавить адрес
 								</ButtonUI>
@@ -69,7 +75,8 @@ const LocationForm: FC = () => {
 
 				<Collapse in={hasLocation ? true : openForm}>
 					<AddLocationForm
-						setOpenForm={handlerToggleState(setOpenForm)}
+						// setOpenForm={handlerToggleState(setOpenForm)}
+						setOpenForm={setOpenForm}
 						textFieldStyles={isCustomSize ? TextFieldMobileSx : {}}
 					/>
 				</Collapse>
@@ -84,6 +91,6 @@ const {
 	LocationFormUI,
 	LocationButtonsUI,
 	ButtonAdd,
-	ButtonShowAll,
+	
 	TextFieldMobileSx
 } = useAccountLocationStyle();

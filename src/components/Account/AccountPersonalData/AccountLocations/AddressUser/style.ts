@@ -9,8 +9,8 @@ export const useAddressUserStyle = () => {
 		// marginBottom: '5px',
 		borderBottom: '2px solid rgba(39, 77, 130, 0.5)',
 		marginTop: '20px',
-		paddingBottom: '15px',
-
+		paddingBottom: '15px',		
+		width: '95%',
 		'&:first-child': {
 			marginTop: '0px',
 		},
@@ -18,7 +18,7 @@ export const useAddressUserStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			// marginTop: '24px',
 			marginBottom: '15px',
-			width: '100%',
+			width: '98%',
 
 			// '&:first-child': {
 			// 	// marginTop: '33px',
@@ -32,13 +32,16 @@ export const useAddressUserStyle = () => {
 		// marginTop: '25px',
 
 		display: 'grid',
-		gridTemplateColumns: '87px 451px',
+		// gridTemplateColumns: '87px 451px',
+		gridTemplateColumns: '87px 440px',
 		gridTemplateRows: 'auto auto auto auto auto',
 		gridColumnGap: '36px',
 		gridRowGap: '20px',
 
 		padding: '0 30px',
-
+		[theme.breakpoints.down(700)]: {
+			gridTemplateColumns: '87px 1fr',
+		},
 		[theme.breakpoints.down(650)]: {
 			marginBottom: '0px',
 
