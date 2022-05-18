@@ -1,7 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import { usePayment } from '@/hooks/usePayment';
 import {useMediaQuery} from '@mui/material';
-import {useUserStore} from '@/hooks/useUserStore';
 
 export const useHeaderPayment = () => {
 
@@ -18,10 +17,6 @@ export const useHeaderPayment = () => {
 	} = usePayment();
 
 	const isMobile = useMediaQuery('(max-width: 768px)');
-
-	const {
-		isAdmin
-	} = useUserStore();
 
 
 	const handleToggleMenuOpen = () => {
