@@ -38,9 +38,9 @@ const AccountPasswordForm : FC = () => {
 		isAdmin
 	} = useUserStore();
 
-	const isSubmitForm = useMemo(
-		() => isSubmitted && isSubmitFormSuccess,
-		[isSubmitted, isSubmitFormSuccess]
+	const isSubmitForm = useMemo(		
+		() =>  isSubmitFormSuccess,
+		[ isSubmitFormSuccess]
 	);
 
 	const isMobile = useMediaQuery('(max-width: 599px)');
@@ -134,7 +134,7 @@ const AccountPasswordForm : FC = () => {
 				</FormTableTopSectionMUI>
 				{isSubmitForm &&
 					<HelperBoxUI>
-						Пароль успешно изменен
+						Пароль успешно изменен 
 					</HelperBoxUI>
 				}
 				<FormContainerBottomMUI>

@@ -166,7 +166,7 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 	const onSubmitPassword : SubmitHandler<FieldValues> = (data) => {
 		const formData = data;
 		const url = isAdmin ? `/admin/user/${adminSwitchIdToUser}` : '/password_change';
-
+		
 		if (isAdmin) {
 			if (data.oldPassword !== data.newPassword) {
 				handleBadResponsePassword();
@@ -180,24 +180,24 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 			old_password: formData.oldPassword,
 			new_password: formData.newPassword,
 		};
-
+		
 		if(formData.oldPassword && formData.newPassword) {
+			
 			dispatch(fetchChangePassword({
 				data: sendObject,
 				url: url,
 				isAdmin: isAdmin
 			}))
 				.then(e => {
-					const statusCode = e.payload;
-					switch (statusCode) {
-					case 403:
+					const statusCode = e.payload as {status:number} ;					
+					switch (statusCode.status) {
+					case 403 :					
 						handleBadResponsePassword();
 						return;
 					case 422:
 						handleBadResponseUser();
 						return;
-					case 200:
-					default:
+					case 200:						
 						setSuccess(true);
 						if (!isAdmin) dispatch(fetchUserAutoLogin());
 						if (reset) {
@@ -205,7 +205,21 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 								oldPassword: '',
 								newPassword: '',
 							});
+							setTimeout(()=>{
+								setSuccess(false);
+							},3000);
+							
 						}
+						break;
+					default:
+						// setSuccess(true);
+						// if (!isAdmin) dispatch(fetchUserAutoLogin());
+						// if (reset) {
+						// 	reset({
+						// 		// oldPassword: '',
+						// 		newPassword: '',
+						// 	});
+						// }
 					}
 				})
 				.catch(e => {
