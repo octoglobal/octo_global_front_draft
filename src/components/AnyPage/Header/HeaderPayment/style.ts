@@ -1,4 +1,4 @@
-import {Button, Menu, MenuItem, styled} from '@mui/material';
+import {Backdrop, Button, Menu, MenuItem, styled} from '@mui/material';
 import AddPayIcon from '@/UIIcon/AddPayIcon.svg';
 
 
@@ -9,6 +9,12 @@ export const useHeaderPaymentStyles = () => {
 		display: 'flex',
 		alignItems: 'center',
 		position: 'relative',
+	}));
+
+	const ContainerMobileMUI = styled('div')(() => ({
+		marginTop: '58px',
+		marginBottom: '23px',
+		padding: '0 15px',
 	}));
 
 	const BalanceTextMUI = styled('div')(({theme}) => ({
@@ -50,16 +56,16 @@ export const useHeaderPaymentStyles = () => {
 				right: '15px !important',
 			},
 			[theme.breakpoints.down(769)]: {
+				backgroundColor: 'rgba(0, 0, 0, 0)',
+				boxShadow: 'none',
 				width: '100%',
 				maxWidth: 'none',
 				margin: 'auto',
-				top: '58 !important',
+				top: '0px !important',
 				right: '0px !important',
+				// paddingTop: '58px',
 			}
 		},
-		[theme.breakpoints.down(769)]: {
-			backgroundColor: 'rgba(0, 0, 0, 0.1)'
-		}
 	}));
 
 	const ButtonSendMUI = styled(MenuItem)(({theme}) => ({
@@ -68,12 +74,13 @@ export const useHeaderPaymentStyles = () => {
 		fontWeight: 300,
 		color: '#000000',
 		textAlign: 'center',
+		height: '30px',
 		justifyContent: 'center',
 		alignItems: 'center',
 		[theme.breakpoints.down(769)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
-			height: '30px',
+			height: '32px',
 			padding: 0,
 			minHeight: 'auto',
 		}
@@ -85,12 +92,34 @@ export const useHeaderPaymentStyles = () => {
 		height: '22px',
 	}));
 
+	const BackDropBlurMUI = styled(Backdrop, {
+		name: 'MuiModal',
+		slot: 'Backdrop',
+		overridesResolver: (props, styles) => {
+			return styles.backdrop;
+		},
+	})({
+		backdropFilter: 'blur(1px)',
+	});
+
+	const CloseModalButtonMUI = styled(Button)(() => ({
+		position: 'absolute',
+		cursor: 'pointer',
+		right: '10px',
+		top: '15px',
+		minWidth: 'auto',
+		padding: '5px',
+	}));
+
 	return {
 		PayIconMUI,
 		MenuListMUI,
 		ContainerMUI,
 		ButtonSendMUI,
 		BalanceTextMUI,
+		BackDropBlurMUI,
+		CloseModalButtonMUI,
+		ContainerMobileMUI,
 		BalanceTextButtonMUI,
 	};
 };

@@ -19,13 +19,13 @@ import {useHeader} from '@/components/AnyPage/Header/useHeader';
 import {SUPPORT_PHONE_RU} from '@/constants/constants';
 import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
+import {useAppSelector} from '@/hooks/useReduxHooks';
 
 const Header = () => {
 
 	const {isMobile} = useMobile();
-	const {isAuth} = useUserStore();
+	const {isAuth, isAdmin} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
-
 
 	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
 
@@ -57,6 +57,10 @@ const Header = () => {
 		anchorRef,
 		open,
 	} = useHeader();
+
+	const {
+		adminSwitchIdToUser
+	} = useAppSelector(state => state.adminReducer);
 
 	return (
 		<>
@@ -184,7 +188,7 @@ const Header = () => {
 																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
 																	данные</MenuItem>
 																<MenuItem
-																	onClick={handlerPushAccount('/account/orders', {tab: '0'})}>Заказы</MenuItem>
+																	onClick={handlerPushAccount('/account/orders/wait')}>Заказы</MenuItem>
 																<MenuItem
 																	// onClick={()=>{}}
 																>Выкуп товара</MenuItem>
@@ -196,7 +200,12 @@ const Header = () => {
 												</Grow>
 											)}
 										</Popper>
-										<HeaderPayment/>
+										{!isAdmin && (
+											<HeaderPayment/>
+										)}
+										{isAdmin && adminSwitchIdToUser && (
+											<HeaderPayment/>
+										)}
 									</UserWrapperUI>
 								)}
 							</>

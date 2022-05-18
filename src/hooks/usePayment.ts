@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
-import {useMemo} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import { paymentSlice } from '@/reducers/paymentSlice/paymentSlice';
 import {
 	fetchHistoryBalanceOperation,
@@ -28,6 +28,8 @@ export const usePayment = () => {
 		user
 	} = useUserStore();
 
+	const [isOpenModal, setIsOpenModal] = useState(false);
+
 	const dispatch = useAppDispatch();
 
 	const normalCourseEuro = useMemo(() => {
@@ -41,7 +43,10 @@ export const usePayment = () => {
 			if (isAdmin && adminSwitchUserModel) {
 				return (adminSwitchUserModel.balance / 100).toFixed(2);
 			}
-			return (user?.balance / 100).toFixed(2);
+			if (!isAdmin) {
+				return (user?.balance / 100).toFixed(2);
+			}
+			return 0;
 		}
 	}, [user?.balance]);
 
@@ -52,16 +57,24 @@ export const usePayment = () => {
 		dispatch(userSlice.actions.updateBalance(sum));
 	};
 
+	const handleResetHistoryBalance = () => {
+		dispatch(paymentSlice.actions.resetHistoryBalance());
+	};
+
 	const handleTogglePaymentForm = () => {
 		dispatch(paymentSlice.actions.togglePaymentForm());
 	};
 
 	const handleSendUserEmailReq = () => {
 		dispatch(fetchSendPaymentMessageInEmail());
+		setIsOpenModal(true);
 	};
 
 	const handleResetStatusMessagePaymentReducer = (status = '') => {
 		dispatch(paymentSlice.actions.resetStatusMessage(status));
+		if (isOpenModal) {
+			setIsOpenModal(false);
+		}
 	};
 
 	const handleGetHistoryOperation = () => {
@@ -71,8 +84,10 @@ export const usePayment = () => {
 	};
 
 	return {
+		isOpenModal,
 		isOpenPaymentForm,
 		statusMessage,
+		adminSwitchIdToUser,
 		handleGetHistoryOperation,
 		euroCourse: normalCourseEuro,
 		userBalance: normalBalance,
@@ -81,6 +96,7 @@ export const usePayment = () => {
 		handleSendUserEmailReq,
 		handleTogglePaymentForm,
 		handleUpdateUserBalance,
+		handleResetHistoryBalance,
 		handleResetStatusMessagePaymentReducer,
 	};
 };

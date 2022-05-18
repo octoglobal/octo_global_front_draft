@@ -32,7 +32,11 @@ export const paymentSlice = createSlice({
 		},
 		togglePaymentForm (state) {
 			state.isOpenPaymentForm = !state.isOpenPaymentForm;
-		}
+		},
+		resetHistoryBalance (state) {
+			state.historyBalance = [];
+			state.loadingHistoryBalance = true;
+		},
 	},
 	extraReducers: {
 		[fetchSendPaymentMessageInEmail.fulfilled.type]: (state, action: PayloadAction<string>) => {

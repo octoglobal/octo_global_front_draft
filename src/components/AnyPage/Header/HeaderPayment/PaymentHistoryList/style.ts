@@ -1,4 +1,5 @@
-import {CircularProgress, styled} from '@mui/material';
+import {Button, CircularProgress, styled} from '@mui/material';
+import BottomArrow from '@/UIIcon/BottomArrow.svg';
 
 export const usePaymentHistoryListStyles = () => {
 
@@ -9,13 +10,23 @@ export const usePaymentHistoryListStyles = () => {
 		padding: '0px 15px',
 	}));
 
-	const ListMUI = styled(ContainerMUI)(() => ({
+	const ListMUI = styled(ContainerMUI, {
+		shouldForwardProp: (prop) => !!prop
+	})<{hiddenList?: boolean}>(({theme, hiddenList}) => ({
 		marginTop: '25px',
 		width: '100%',
 		padding: 0,
 		maxHeight: '45vh',
 		'& > *:last-child': {
-			marginBottom: '0',
+		},
+		[theme.breakpoints.down(769)]: {
+			maxHeight: 'none',
+			'& > *:nth-child(3)': {
+				marginBottom: hiddenList ? '0px' : '15px',
+			},
+			'& > *:nth-child(1n + 4)': {
+				display: hiddenList ? 'none' : 'visible',
+			},
 		}
 	}));
 
@@ -25,9 +36,25 @@ export const usePaymentHistoryListStyles = () => {
 		marginTop: '25px',
 	}));
 
+	const MoreItemButtonMUI = styled(Button)(() => ({
+		textTransform: 'none',
+		fontWeight: 400,
+		fontSize: '14px',
+		lineHeight: '16px',
+		color: '#C4C4C4',
+		padding: '2px',
+		marginTop: '25px',
+	}));
+
+	const BottomArrowMUI = styled(BottomArrow)(() => ({
+		marginLeft: '10px',
+	}));
+
 	return {
 		ListMUI,
 		ContainerMUI,
+		BottomArrowMUI,
+		MoreItemButtonMUI,
 		CircularProgressMUI,
 	};
 };

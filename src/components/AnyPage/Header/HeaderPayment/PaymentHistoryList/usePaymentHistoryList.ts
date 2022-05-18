@@ -1,5 +1,5 @@
 import {usePayment} from '@/hooks/usePayment';
-import {useEffect, useMemo} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
 export const usePaymentHistoryList = () => {
 
@@ -9,9 +9,15 @@ export const usePaymentHistoryList = () => {
 		loadingHistoryBalance,
 	} = usePayment();
 
+	const [isListHidden, setIsListHidden] = useState<boolean>(true);
+
 	const isHistoryBalanceArray = useMemo(() => (
 		(!loadingHistoryBalance && (Array.isArray(userHistoryBalance)))
 	), [userHistoryBalance, loadingHistoryBalance]);
+
+	const handleIsOpenList = () => {
+		setIsListHidden(false);
+	};
 
 
 	useEffect(() => {
@@ -19,6 +25,8 @@ export const usePaymentHistoryList = () => {
 	}, []);
 
 	return {
+		isListHidden,
+		handleIsOpenList,
 		userHistoryBalance,
 		isHistoryBalanceArray
 	};

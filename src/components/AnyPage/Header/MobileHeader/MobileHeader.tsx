@@ -49,6 +49,7 @@ const MobileHeader: FC = () => {
 			<SwipeableDrawerUI
 				anchor="left"
 				open={open}
+				id='userDrawer'
 				// onOpen={() => setOpenMenu(true)}
 				// onClose={() => setOpenMenu(false)}
 				onOpen={() => toggleDrawer(true)}
