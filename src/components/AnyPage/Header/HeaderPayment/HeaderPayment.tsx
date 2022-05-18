@@ -41,7 +41,7 @@ const HeaderPayment = () => {
 				MenuListProps={{
 					'aria-labelledby': 'long-button',
 				}}
-				disableScrollLock={true}
+				disableScrollLock={!isMobile}
 				BackdropComponent={BackDropBlurMUI}
 				onClose={handleToggleMenuOpen}
 			>
@@ -73,7 +73,7 @@ const HeaderPayment = () => {
 					dialogProps={{
 						open: isOpenModal,
 						onClose: () => handleResetStatusMessagePaymentReducer(''),
-						
+
 					}}
 					loading={!statusMessage}
 					title={statusMessage}

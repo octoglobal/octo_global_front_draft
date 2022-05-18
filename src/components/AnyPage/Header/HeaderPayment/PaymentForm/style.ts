@@ -9,7 +9,7 @@ export const usePaymentFormStyles = () => {
 
 	const FormContainerMUI = styled('form')(({theme}) => ({
 		display: 'flex',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			flexWrap: 'wrap',
 		}
 	}));
@@ -37,7 +37,7 @@ export const usePaymentFormStyles = () => {
 				}
 			}
 		},
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			order: color == '#23D16A' ? 1 : color === '#F35151' ? 2 : 3,
 			width: color == '#23D16A' ? '47.5%' : color === '#F35151' ? '47.7%' : '100%',
 			marginRight: color == '#23D16A' ? '15px' : 0,
@@ -57,7 +57,7 @@ export const usePaymentFormStyles = () => {
 		flexDirection: 'column',
 		width: '100%',
 		alignItems: 'flex-end',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			margin: '0',
 			width:' 100%',
 			order: 3,
@@ -70,7 +70,7 @@ export const usePaymentFormStyles = () => {
 		lineHeight: '16px',
 		marginTop: '3px',
 		minHeight: '16px',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			order: 4,
 			fontSize: '12px',
 			lineHeight: '12px',
@@ -87,7 +87,7 @@ export const usePaymentFormStyles = () => {
 		lineHeight: '16px',
 		height: '32px',
 		marginBottom: 0,
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			order: 5,
 		}
 	}));

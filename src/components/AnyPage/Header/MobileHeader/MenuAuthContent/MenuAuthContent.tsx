@@ -22,7 +22,7 @@ import {useHeaderPaymentStyles} from '@/components/AnyPage/Header/HeaderPayment/
 import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
 
 const MenuAuthContent: FC = () => {
-	const { isAuth } = useUserStore();
+	const { isAuth, isAdmin } = useUserStore();
 	const dispatch = useAppDispatch();
 
 	const {
@@ -36,6 +36,7 @@ const MenuAuthContent: FC = () => {
 
 	const {
 		userBalance,
+		adminSwitchIdToUser,
 		handleTogglePaymentForm,
 	} = usePayment();
 
@@ -75,10 +76,17 @@ const MenuAuthContent: FC = () => {
 						<UserUI onClick={handlerPushToAccount}>
 							<User cutFio={false} />
 						</UserUI>
-						{isAuth && (
-							<BalanceTextMUI onClick={handleTogglePaymentForm}>
-								{userBalance} €
-							</BalanceTextMUI>
+						{isAuth && (!isAdmin || (isAdmin && adminSwitchIdToUser)) && (
+							<ContainerAddPaymentMobileMUI onClick={handleTogglePaymentForm}>
+								<BalanceTextMUI>
+									{userBalance} €
+								</BalanceTextMUI>
+								{isAdmin && (
+									<AddPaymentMobileMUI>
+										пополнить
+									</AddPaymentMobileMUI>
+								)}
+							</ContainerAddPaymentMobileMUI>
 						)}
 						<MenuLinksUI>
 							<HeaderNavLink toggleOpenMenu={toggleDrawer} />
@@ -162,7 +170,9 @@ const MenuAuthContent: FC = () => {
 };
 
 const {
-	BalanceTextMUI
+	BalanceTextMUI,
+	AddPaymentMobileMUI,
+	ContainerAddPaymentMobileMUI,
 } = useHeaderPaymentStyles();
 
 export default React.memo(MenuAuthContent);

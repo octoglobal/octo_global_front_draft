@@ -56,7 +56,7 @@ const ModalUI: FC<IModalUIProps> = (
 	}, [defaultStylesButton]);
 
 	useEffect(() => {
-		if (closeTime && dialogProps?.open) {
+		if (closeTime && dialogProps?.open && !loading) {
 			const handleTimeoutClose = setTimeout(() => {
 				handleCloseDialog();
 			}, closeTime * 1000);
@@ -64,7 +64,7 @@ const ModalUI: FC<IModalUIProps> = (
 				clearTimeout(handleTimeoutClose);
 			};
 		}
-	}, [closeTime, dialogProps.open]);
+	}, [closeTime, dialogProps.open, loading]);
 
 	return (
 		<DialogContainerMUI

@@ -8,6 +8,7 @@ import {
 import {useUserStore} from '@/hooks/useUserStore';
 import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 import {userSlice} from '@/reducers/userSlice/userSlice';
+import {useMediaQuery} from '@mui/material';
 
 export const usePayment = () => {
 	const {
@@ -29,6 +30,7 @@ export const usePayment = () => {
 	} = useUserStore();
 
 	const [isOpenModal, setIsOpenModal] = useState(false);
+	const isTablet = useMediaQuery('(max-width: 768px)');
 
 	const dispatch = useAppDispatch();
 
@@ -61,12 +63,16 @@ export const usePayment = () => {
 		dispatch(paymentSlice.actions.resetHistoryBalance());
 	};
 
+	const handleOpenPaymentForm = () => {
+		dispatch(paymentSlice.actions.openPaymentForm());
+	};
+
 	const handleTogglePaymentForm = () => {
 		dispatch(paymentSlice.actions.togglePaymentForm());
 	};
 
 	const handleSendUserEmailReq = () => {
-		dispatch(fetchSendPaymentMessageInEmail());
+		dispatch(fetchSendPaymentMessageInEmail({isTablet}));
 		setIsOpenModal(true);
 	};
 
@@ -84,6 +90,7 @@ export const usePayment = () => {
 	};
 
 	return {
+		isAdmin,
 		isOpenModal,
 		isOpenPaymentForm,
 		statusMessage,
@@ -93,9 +100,9 @@ export const usePayment = () => {
 		userBalance: normalBalance,
 		userHistoryBalance: historyBalance,
 		loadingHistoryBalance,
-		isAdmin,
 		handleSendUserEmailReq,
 		handleTogglePaymentForm,
+		handleOpenPaymentForm,
 		handleUpdateUserBalance,
 		handleResetHistoryBalance,
 		handleResetStatusMessagePaymentReducer,

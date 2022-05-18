@@ -30,6 +30,9 @@ export const paymentSlice = createSlice({
 		resetStatusMessage (state, action: PayloadAction<string>) {
 			state.statusMessage = action.payload;
 		},
+		openPaymentForm (state) {
+			state.isOpenPaymentForm = true;
+		},
 		togglePaymentForm (state) {
 			state.isOpenPaymentForm = !state.isOpenPaymentForm;
 		},

@@ -23,10 +23,10 @@ export const fetchAdminAddPaymentInUser = createAsyncThunk(
 
 export const fetchSendPaymentMessageInEmail = createAsyncThunk(
 	'paymentSlice/email',
-	async (_, thunkAPI) => {
+	async (data: {isTablet: boolean}, thunkAPI) => {
 		try {
 			const response = await octoAxios.get<IDefaultFetchSuccess>('/user/send_message/add_balance');
-			return response.data?.message === 'success' ? 'Запрос успешно создан' : '';
+			return response.data?.message === 'success' ? `Заявка на пополнение успешно отправлена. ${!data.isTablet ? '\n' : ''}` + 'Наш менеджер свяжется с вами в ближайшее время.' : '';
 		} catch (e) {
 			return thunkAPI.rejectWithValue('Ошибка при отправке запроса, повторите позже.');
 		}

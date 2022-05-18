@@ -20,27 +20,20 @@ import {SUPPORT_PHONE_RU} from '@/constants/constants';
 import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
 import {useAppSelector} from '@/hooks/useReduxHooks';
+import {usePayment} from '@/hooks/usePayment';
 
 const Header = () => {
+
+	const {
+		adminSwitchIdToUser
+	} = useAppSelector(state => state.adminReducer);
 
 	const {isMobile} = useMobile();
 	const {isAuth, isAdmin} = useUserStore();
 	const {isCustomSize} = useCustomSize(1240);
+	const {isCustomSize: isTablet} = useCustomSize(959);
 
 	const navArray: IHeaderNavItemsData = HeaderNavLinksArray;
-
-	const {
-		HeaderMarginMUI,
-		HeaderBurgerButtonMUI,
-		HeaderWrapperUI,
-		HeaderContentMUI,
-		HeaderNavUI,
-		UserWrapperUI,
-		ButtonLoginUI,
-		ArrowUI,
-		LogoMUI,
-		IconMarginRight
-	} = useHeaderStyle();
 
 	const {
 		handlerPushToNav,
@@ -59,8 +52,9 @@ const Header = () => {
 	} = useHeader();
 
 	const {
-		adminSwitchIdToUser
-	} = useAppSelector(state => state.adminReducer);
+		handleOpenPaymentForm,
+	} = usePayment();
+
 
 	return (
 		<>
@@ -85,20 +79,51 @@ const Header = () => {
 									onClose={handleCloseBurger}
 									PaperProps={{
 										style: {
-											maxHeight: 48 * 4.5,
+											maxHeight: '268px',
 											width: '20ch',
 										},
 									}}
 								>
-									{isCustomSize? navArray.tablet.map((option) => (
-										<MenuItem
-											key={option.title}
-											selected={option.title === 'Pyxis'}
-											onClick={handlerPushToNav(option.href)}
-										>
-											{option.title}
-										</MenuItem>
-									)) : navArray.desktop.map((option) => (
+									{isCustomSize? (
+										<>
+											{navArray.tablet.map((option) => (
+												<MenuItem
+													key={option.title}
+													selected={option.title === 'Pyxis'}
+													onClick={handlerPushToNav(option.href)}
+												>
+													{option.title}
+												</MenuItem>
+											))}
+											{isAuth && (
+												<>
+													{(!isAdmin || (isAdmin && adminSwitchIdToUser)) && isTablet && (
+														<MenuItem
+															key={'payment'}
+															onClick={() => {
+																handleCloseBurger();
+																handleOpenPaymentForm();
+															}}
+														>
+															Кошелёк
+														</MenuItem>
+													)}
+													<MenuItem
+														key='exit'
+														sx={{
+															color: '#203f69'
+														}}
+														onClick={() => {
+															handlerLogout();
+															handleCloseBurger();
+														}}
+													>
+														Выход
+													</MenuItem>
+												</>
+											)}
+										</>
+									) : navArray.desktop.map((option) => (
 										<MenuItem
 											key={option.title}
 											selected={option.title === 'Pyxis'}
@@ -218,5 +243,18 @@ const Header = () => {
 		</>
 	);
 };
+
+const {
+	HeaderMarginMUI,
+	HeaderBurgerButtonMUI,
+	HeaderWrapperUI,
+	HeaderContentMUI,
+	HeaderNavUI,
+	UserWrapperUI,
+	ButtonLoginUI,
+	ArrowUI,
+	LogoMUI,
+	IconMarginRight
+} = useHeaderStyle();
 
 export default React.memo(Header);
