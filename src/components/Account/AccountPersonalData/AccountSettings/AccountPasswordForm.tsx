@@ -27,7 +27,7 @@ const AccountPasswordForm : FC = () => {
 
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError, formState: {isSubmitted}, reset} = useForm();
+	const {handleSubmit, control, setError, reset} = useForm();
 
 	const {
 		onSubmitPassword,
