@@ -9,6 +9,7 @@ export const useHeaderPayment = () => {
 		isOpenPaymentForm,
 		statusMessage,
 		adminSwitchIdToUser,
+		userBalance,
 		handleSendUserEmailReq,
 		handleTogglePaymentForm,
 		handleResetHistoryBalance,
@@ -45,10 +46,10 @@ export const useHeaderPayment = () => {
 			const domNext = document.querySelector('#__next') as HTMLDivElement;
 			const domDrawer = document.querySelector('#userDrawer') as HTMLDivElement;
 			if (domNext) {
-				domNext.style.filter = isOpenPaymentForm ? 'blur(18px)' : '';
+				domNext.style.filter = isOpenPaymentForm ? 'blur(8px)' : '';
 			}
 			if (domDrawer) {
-				domDrawer.style.filter = isOpenPaymentForm ? 'blur(18px)' : '';
+				domDrawer.style.filter = isOpenPaymentForm ? 'blur(8px)' : '';
 				domDrawer.style.backgroundColor = `${isOpenPaymentForm ? '#FFFFFF' : ''}`;
 			}
 		}
@@ -57,6 +58,7 @@ export const useHeaderPayment = () => {
 	return {
 		isMobile,
 		isOpenModal,
+		userBalance,
 		isMenuOpen: isOpenPaymentForm,
 		statusMessage,
 		handleToggleMenuOpen,

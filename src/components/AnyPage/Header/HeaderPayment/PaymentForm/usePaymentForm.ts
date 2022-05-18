@@ -97,13 +97,13 @@ export const usePaymentForm = () => {
 
 	useEffect(() => {
 		if (minusValue.length) {
-			if (plusValue) setValue('plus', '');
+			setValue('plus', '');
 		}
 	}, [minusValue]);
 
 	useEffect(() => {
 		if (plusValue.length) {
-			if (minusValue) setValue('minus', '');
+			setValue('minus', '');
 		}
 	}, [plusValue]);
 

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC, useMemo } from 'react';
 import {useHeaderPaymentStyles} from '@/components/AnyPage/Header/HeaderPayment/style';
 import {usePayment} from '@/hooks/usePayment';
 
@@ -9,9 +9,13 @@ const PaymentUserBalance: FC = () => {
 		userBalance
 	} = usePayment();
 
+	const currentBalance = useMemo(() => (
+		userBalance ? userBalance : 0
+	), [userBalance]);
+
 	return (
 		<BalanceTextMUI>
-			{userBalance ? userBalance : 0} €
+			{currentBalance} €
 		</BalanceTextMUI>
 	);
 };

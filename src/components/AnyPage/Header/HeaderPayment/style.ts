@@ -1,4 +1,4 @@
-import {Backdrop, Button, Menu, MenuItem, styled} from '@mui/material';
+import {Button, Menu, MenuItem, styled} from '@mui/material';
 import AddPayIcon from '@/UIIcon/AddPayIcon.svg';
 
 
@@ -63,12 +63,18 @@ export const useHeaderPaymentStyles = () => {
 				margin: 'auto',
 				top: '0px !important',
 				right: '0px !important',
-				// paddingTop: '58px',
+				paddingTop: '63px',
+			},
+			[theme.breakpoints.down(551)]: {
+				paddingTop: '0px',
 			}
 		},
 		[theme.breakpoints.down(969)]: {
 			maxWidth: '345px',
 			margin: '0 auto',
+			'& .MuiBackdrop-root': {
+				backgroundColor: 'rgba(255, 255, 255, 0.5)',
+			}
 		},
 		[theme.breakpoints.down(601)]: {
 			maxWidth: 'none',
@@ -100,16 +106,6 @@ export const useHeaderPaymentStyles = () => {
 		height: '22px',
 	}));
 
-	const BackDropBlurMUI = styled(Backdrop, {
-		name: 'MuiModal',
-		slot: 'Backdrop',
-		overridesResolver: (props, styles) => {
-			return styles.backdrop;
-		},
-	})({
-		backdropFilter: 'blur(1px)',
-	});
-
 	const CloseModalButtonMUI = styled(Button)(() => ({
 		position: 'absolute',
 		cursor: 'pointer',
@@ -122,6 +118,7 @@ export const useHeaderPaymentStyles = () => {
 	const ContainerAddPaymentMobileMUI = styled('a')(() => ({
 		display: 'flex',
 		alignItems: 'center',
+		cursor: 'pointer',
 	}));
 
 	const AddPaymentMobileMUI = styled('a')(() => ({
@@ -139,7 +136,6 @@ export const useHeaderPaymentStyles = () => {
 		ContainerMUI,
 		ButtonSendMUI,
 		BalanceTextMUI,
-		BackDropBlurMUI,
 		CloseModalButtonMUI,
 		ContainerMobileMUI,
 		AddPaymentMobileMUI,
