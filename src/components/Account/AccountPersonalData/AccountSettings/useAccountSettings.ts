@@ -158,7 +158,7 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 							}
 
 							if (isAdmin) {
-								console.log('3712732892738972 9');
+								
 								dispatch(adminSlice.actions.changeEmailAndPhone(
 									{
 										phone: !isUserPhone ? formData.phone : currentPhone,
