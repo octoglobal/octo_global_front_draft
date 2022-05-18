@@ -11,6 +11,7 @@ import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTra
 import AccountTabOrderMobile from '@/components/Account/AccountTabOrderMobile/AccountTabOrderMobile';
 import { useMediaQuery } from '@mui/material';
 import {useUserStore} from '@/hooks/useUserStore';
+import EuroExchange from '../EuroExchange/EuroExchange';
 
 
 type TabsQueryProps = {
@@ -83,6 +84,8 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 	return (
 		<TabWrapperUI>
 			<TabsUnstyled defaultValue={router.asPath}>
+				
+				<EuroExchange></EuroExchange>
 				<TabsListUI>
 					{data.map((item) => (
 						<React.Fragment key={item.title}>
