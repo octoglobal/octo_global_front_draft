@@ -52,7 +52,6 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 		if(regexProps?.ucFirst) {
 			value = e.target.value.replace(regexProps.regex, (u) => u.toUpperCase());
 		}
-		console.log(value);
 		onChange(value);
 	};
 
