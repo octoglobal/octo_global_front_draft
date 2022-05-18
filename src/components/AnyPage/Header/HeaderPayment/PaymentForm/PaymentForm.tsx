@@ -34,7 +34,6 @@ const PaymentForm = () => {
 							controller={{
 								name: 'comment',
 								control,
-								defaultValue: '',
 							}}
 							inputProps={{
 								placeholder: 'Назначение платежа',
@@ -53,7 +52,6 @@ const PaymentForm = () => {
 						controller={{
 							name: 'minus',
 							control,
-							defaultValue: '',
 						}}
 						inputProps={{
 							placeholder: '-',

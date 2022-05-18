@@ -41,7 +41,7 @@ export const usePayment = () => {
 	}, [currentCourseEuro]);
 
 	const normalBalance = useMemo(() => {
-		if (user?.balance) {
+		if (user?.balance || adminSwitchUserModel?.balance) {
 			if (isAdmin && adminSwitchUserModel) {
 				return (adminSwitchUserModel.balance / 100).toFixed(2);
 			}

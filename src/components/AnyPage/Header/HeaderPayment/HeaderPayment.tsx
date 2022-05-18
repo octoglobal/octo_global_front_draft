@@ -25,7 +25,6 @@ const HeaderPayment = () => {
 		handleResetStatusMessagePaymentReducer,
 	} = useHeaderPayment();
 
-
 	return (
 		<ContainerMUI>
 			<BalanceTextButtonMUI
