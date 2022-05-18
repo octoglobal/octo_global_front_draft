@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 
-import {FieldValues, SubmitHandler, UseFormReset, UseFormSetError} from 'react-hook-form';
+import {FieldValues, SubmitHandler, UseFormReset, UseFormSetError, UseFormClearErrors} from 'react-hook-form';
 // import {useUserStore} from '@/hooks/useUserStore';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {
@@ -13,10 +13,11 @@ import {useState} from 'react';
 import {useUserStore} from '@/hooks/useUserStore';
 import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 
-export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean, reset?: UseFormReset<FieldValues>) => {
-
+export const useAccountSettings = (clearErrors:UseFormClearErrors<FieldValues>,setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean, reset?: UseFormReset<FieldValues>) => {
+	
 	const {
-		isAdmin
+		isAdmin,
+		user
 	} = useUserStore();
 	const {
 		adminSwitchIdToUser,
@@ -66,10 +67,9 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 	};
 
 	const onSubmitUser : SubmitHandler<FieldValues> = (data) => {
-		const formData = data as IAccountUpdateUser;
+		const formData = data as IAccountUpdateUser;		
 		const url = isAdmin ? `/admin/user/${adminSwitchIdToUser}` : '/user';
-		const sendObject = {} as IAccountUpdateUser;
-
+		const sendObject = {} as IAccountUpdateUser;		
 		if (formData.email != adminSwitchUserModel?.email) {
 			sendObject.email = formData.email;
 		}
@@ -87,10 +87,13 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 		}
 
 		if(sendObject?.phone || sendObject?.email || sendObject?.name || sendObject?.surname) {
+		
 			dispatch(fetchChangeUser({data: sendObject, url: url}))
 				.then(e => {
-					const response = e.payload as {data: {status?: number, data?: string, message?: 'success', changes?: {name?: boolean, surname?: boolean, phone?: boolean, email?: boolean}}};
-					const statusCode = response?.data.status;
+				
+					const response = e.payload as {data: {status?: number, data?: string, message?: 'success', changes?: {name?: boolean, surname?: boolean, phone?: boolean, email?: boolean}}, status:number};
+					const statusCode = response?.status;				
+					
 					switch (statusCode) {
 					case 403:
 						handleBadResponseUser();
@@ -99,11 +102,33 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 						handleBadResponseUser();
 						return;
 					case 409:
+						
 						if (response.data == 'user with this phone already exists') {
 							setError('phone', {type: 'string', message: 'Номер телефона занят'});
+							setTimeout(()=>{
+								
+								clearErrors();								
+							},3000);
+							if (!isAdmin){			
+								
+								if (reset) {
+									reset({
+										phone: user.phone,
+									
+									},{
+										keepErrors: true
+									});
+								}
+							}
+
 						}
 						if (response.data == 'user with this email already exists') {
 							setError('email', {type: 'string', message: 'Почта занята'});
+							setTimeout(()=>{
+								
+								clearErrors();
+								
+							},3000);
 						}
 						return;
 					default:
@@ -130,12 +155,18 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 
 							if (isUseEmail) {
 								setError('email', {type: 'string', message: 'Почта занята'});
+								setTimeout(()=>{									
+									clearErrors();
+								},3000);
 							}
 							if (isUserPhone) {
 								setError('phone', {type: 'string', message: 'Номер телефона занят'});
+								setTimeout(()=>{									
+									clearErrors();
+								},3000);
 							}
 
-							if (isAdmin) {
+							if (isAdmin) {								
 								dispatch(adminSlice.actions.changeEmailAndPhone(
 									{
 										phone: !isUserPhone ? formData.phone : currentPhone,
@@ -166,7 +197,7 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 	const onSubmitPassword : SubmitHandler<FieldValues> = (data) => {
 		const formData = data;
 		const url = isAdmin ? `/admin/user/${adminSwitchIdToUser}` : '/password_change';
-
+		
 		if (isAdmin) {
 			if (data.oldPassword !== data.newPassword) {
 				handleBadResponsePassword();
@@ -180,24 +211,24 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 			old_password: formData.oldPassword,
 			new_password: formData.newPassword,
 		};
-
+		
 		if(formData.oldPassword && formData.newPassword) {
+			
 			dispatch(fetchChangePassword({
 				data: sendObject,
 				url: url,
 				isAdmin: isAdmin
 			}))
 				.then(e => {
-					const statusCode = e.payload;
-					switch (statusCode) {
-					case 403:
+					const statusCode = e.payload as {status:number} ;					
+					switch (statusCode.status) {
+					case 403 :					
 						handleBadResponsePassword();
 						return;
 					case 422:
 						handleBadResponseUser();
 						return;
-					case 200:
-					default:
+					case 200:						
 						setSuccess(true);
 						if (!isAdmin) dispatch(fetchUserAutoLogin());
 						if (reset) {
@@ -205,7 +236,21 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 								oldPassword: '',
 								newPassword: '',
 							});
+							setTimeout(()=>{
+								setSuccess(false);
+							},3000);
+							
 						}
+						break;
+					default:
+						// setSuccess(true);
+						// if (!isAdmin) dispatch(fetchUserAutoLogin());
+						// if (reset) {
+						// 	reset({
+						// 		// oldPassword: '',
+						// 		newPassword: '',
+						// 	});
+						// }
 					}
 				})
 				.catch(e => {

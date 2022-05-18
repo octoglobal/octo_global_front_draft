@@ -8,25 +8,25 @@ export const useBlogItem = (title: string, viewDescription?: boolean, isTitleSpl
 		setIsOpenDesc(prevState => !prevState);
 	};
 	
-	const reduceString = (text:string, limit:number):string => {
-		text = text.trim();
-		if( text.length <= limit) return text;
+	// const reduceString = (text:string, limit:number):string => {
+	// 	text = text.trim();
+	// 	if( text.length <= limit) return text;
 
-		text = text.slice( 0, limit);
-		const lastSpace = text.lastIndexOf(' ');
+	// 	text = text.slice( 0, limit);
+	// 	const lastSpace = text.lastIndexOf(' ');
 
-		if( lastSpace > 0) {
-			text = text.substring(0, lastSpace);
-		}
-		return text + '...';
-	};
+	// 	if( lastSpace > 0) {
+	// 		text = text.substring(0, lastSpace);
+	// 	}
+	// 	return text + '...';
+	// };
 	// const windowInnerWidth = window.innerWidth
 	
 	const modifiedTitle = useMemo(() => {
 		if (isTitleSplice) {
 			// Вот тут менять!!!!
-			// return title;
-			return reduceString(title,10);
+			return title;
+			// return reduceString(title,10);
 		}
 		return title;
 	}, [isTitleSplice]);

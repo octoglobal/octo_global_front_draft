@@ -25,7 +25,8 @@ const AccountUserForm: FC = () => {
 		setValue,
 		setError,
 		formState: {dirtyFields, isSubmitted},
-		reset
+		reset,
+		clearErrors
 	} = useForm<FieldValues>();
 
 	const {
@@ -65,7 +66,7 @@ const AccountUserForm: FC = () => {
 	const {
 		onSubmitUser,
 		handlerEditClick,
-	} = useAccountSettings(setError, verifiedEmail, reset);
+	} = useAccountSettings(clearErrors,setError, verifiedEmail, reset,);
 
 	useEffect(() => {
 		if (email) setValue('email', email);
@@ -153,6 +154,16 @@ const AccountUserForm: FC = () => {
 			setIsEditFIO(false);
 		}
 	}, [adminSwitchIdToUser, userPhone, userEmail, adminSwitchUserModel?.name, adminSwitchUserModel?.surname]);
+
+	// useEffect(()=>{
+	// 	const data = getValues();
+	// 	const phoneValue = data?.phone;
+	// 	console.log('dfdfdf',userPhone);
+	// 	if (userPhone !== phoneValue) {
+	// 		setValue('phone', userPhone ? userPhone : '');
+	// 	}
+	// },[dirtyPhone]);
+
 
 	useEffect(() => {
 		if (isEditFIO) {

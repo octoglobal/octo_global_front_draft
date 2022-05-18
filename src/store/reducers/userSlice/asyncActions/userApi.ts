@@ -148,7 +148,7 @@ export const fetchChangePassword = createAsyncThunk(
 			}
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
-				return thunkAPI.rejectWithValue(err.response?.status);
+				return thunkAPI.rejectWithValue(err.response);
 			}
 			return thunkAPI.rejectWithValue(400);
 		}

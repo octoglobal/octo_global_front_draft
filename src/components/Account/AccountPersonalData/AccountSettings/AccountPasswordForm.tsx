@@ -27,20 +27,20 @@ const AccountPasswordForm : FC = () => {
 
 	} = useAccountSettingsStyle();
 
-	const {handleSubmit, control, setError, formState: {isSubmitted}, reset} = useForm();
-
+	const {handleSubmit, control, setError, reset, clearErrors } = useForm();
+	
 	const {
 		onSubmitPassword,
 		isSubmitFormSuccess
-	} = useAccountSettings(setError, false, reset);
+	} = useAccountSettings(clearErrors,setError, false, reset,  );
 
 	const {
 		isAdmin
 	} = useUserStore();
 
-	const isSubmitForm = useMemo(
-		() => isSubmitted && isSubmitFormSuccess,
-		[isSubmitted, isSubmitFormSuccess]
+	const isSubmitForm = useMemo(		
+		() =>  isSubmitFormSuccess,
+		[ isSubmitFormSuccess]
 	);
 
 	const isMobile = useMediaQuery('(max-width: 599px)');
@@ -134,7 +134,7 @@ const AccountPasswordForm : FC = () => {
 				</FormTableTopSectionMUI>
 				{isSubmitForm &&
 					<HelperBoxUI>
-						Пароль успешно изменен
+						Пароль успешно изменен 
 					</HelperBoxUI>
 				}
 				<FormContainerBottomMUI>
