@@ -69,6 +69,10 @@ export const useHeaderPaymentStyles = () => {
 		[theme.breakpoints.down(969)]: {
 			maxWidth: '345px',
 			margin: '0 auto',
+		},
+		[theme.breakpoints.down(601)]: {
+			maxWidth: 'none',
+			margin: 0,
 		}
 	}));
 
