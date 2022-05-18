@@ -30,7 +30,7 @@ export const usePaymentHistoryItemStyles = () => {
 			fontSize: '14px',
 			lineHeight: '16px',
 			fontWeight: 400,
-			marginRight: '10px',
+			marginRight: '5px',
 		}
 	}));
 
@@ -48,6 +48,10 @@ export const usePaymentHistoryItemStyles = () => {
 		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
+			maxWidth: '189px',
+		},
+		[theme.breakpoints.down(350)]: {
+			maxWidth: '169px',
 		}
 	}));
 
@@ -61,6 +65,7 @@ export const usePaymentHistoryItemStyles = () => {
 		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
+			minWidth: '50px',
 		}
 	}));
 

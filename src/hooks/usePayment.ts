@@ -50,7 +50,7 @@ export const usePayment = () => {
 			}
 			return 0;
 		}
-	}, [user?.balance]);
+	}, [user?.balance, adminSwitchUserModel]);
 
 	const handleUpdateUserBalance = (sum: number) => {
 		if (isAdmin && adminSwitchUserModel) {

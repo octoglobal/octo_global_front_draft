@@ -21,12 +21,10 @@ const PaymentForm = () => {
 							name: 'plus',
 							control,
 							defaultValue: '',
-							rules: {
-								pattern: /[0-9]*/,
-							}
 						}}
 						inputProps={{
 							placeholder: '+',
+							type: 'number',
 						}}
 					/>
 				</TextFieldMUI>
@@ -56,12 +54,10 @@ const PaymentForm = () => {
 							name: 'minus',
 							control,
 							defaultValue: '',
-							rules: {
-								pattern: /[0-9]*/,
-							}
 						}}
 						inputProps={{
 							placeholder: '-',
+							type: 'number',
 						}}
 					/>
 				</TextFieldMUI>

@@ -31,6 +31,13 @@ export const usePaymentFormStyles = () => {
 							lineHeight: '19px'
 						},
 					},
+					'& > input[type=number]': {
+						'-moz-appearance': 'textfield',
+					},
+					'& > input::-webkit-outer-spin-button, input::-webkit-inner-spin-button': {
+						'-webkit-appearance': 'none',
+						margin: 0,
+					},
 					'& > fieldset': {
 						border: `1px solid ${color}`,
 					}
@@ -39,7 +46,7 @@ export const usePaymentFormStyles = () => {
 		},
 		[theme.breakpoints.down(969)]: {
 			order: color == '#23D16A' ? 1 : color === '#F35151' ? 2 : 3,
-			width: color == '#23D16A' ? '47.5%' : color === '#F35151' ? '47.7%' : '100%',
+			width: color == '#23D16A' ? 'calc(50% - 8px)' : color === '#F35151' ? 'calc(50% - 8px)' : '100%',
 			marginRight: color == '#23D16A' ? '15px' : 0,
 			'& > div': {
 				'& .MuiFormControl-root': {
@@ -47,6 +54,8 @@ export const usePaymentFormStyles = () => {
 					backgroundColor: 'rgba(0, 0, 0, 0.0)',
 				}
 			},
+		},
+		[theme.breakpoints.down(350)]: {
 		}
 	}));
 

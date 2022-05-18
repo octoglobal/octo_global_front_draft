@@ -42,7 +42,6 @@ const HeaderPayment = () => {
 					'aria-labelledby': 'long-button',
 				}}
 				disableScrollLock={!isMobile}
-				BackdropComponent={BackDropBlurMUI}
 				onClose={handleToggleMenuOpen}
 			>
 				{isMobile && (
@@ -77,7 +76,7 @@ const HeaderPayment = () => {
 					}}
 					loading={!statusMessage}
 					title={statusMessage}
-					closeTime={3}
+					closeTime={8}
 				/>
 			)}
 		</ContainerMUI>
@@ -89,7 +88,6 @@ const {
 	MenuListMUI,
 	ContainerMUI,
 	ButtonSendMUI,
-	BackDropBlurMUI,
 	CloseModalButtonMUI,
 	ContainerMobileMUI,
 	BalanceTextButtonMUI,

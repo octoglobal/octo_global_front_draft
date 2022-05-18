@@ -54,6 +54,8 @@ export const usePaymentForm = () => {
 		return formValues.plus;
 	}, [formValues.plus]);
 
+	console.log(formValues);
+
 	const onSubmit: SubmitHandler<IPaymentFormState | FieldValues> = (data) => {
 		if (
 			(
