@@ -12,8 +12,8 @@ export const useHeaderPaymentStyles = () => {
 	}));
 
 	const ContainerMobileMUI = styled('div')(() => ({
-		marginTop: '58px',
-		marginBottom: '23px',
+		// marginTop: '58px',
+		// marginBottom: '23px',
 		padding: '0 15px',
 	}));
 
