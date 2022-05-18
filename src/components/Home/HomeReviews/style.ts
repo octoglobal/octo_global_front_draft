@@ -26,10 +26,10 @@ export const useHomeReviewsStyles = () => {
 			flexDirection: 'column',
 			flexWrap: 'no-wrap',
 			alignItems: 'center',
-			justifyContent: 'flex-start',
-			'& > *:last-child': {
-				display: 'none',
-			},
+			justifyContent: 'flex-start',			
+			'&> *:nth-child(1n+4)':{
+				display: 'none',				
+			}
 		},
 		[theme.breakpoints.down(350)]: {
 			marginBottom: '20px',

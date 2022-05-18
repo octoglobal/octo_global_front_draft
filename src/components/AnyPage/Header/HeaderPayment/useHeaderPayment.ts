@@ -9,6 +9,7 @@ export const useHeaderPayment = () => {
 		handleSendUserEmailReq,
 		handleTogglePaymentForm,
 		handleResetStatusMessagePaymentReducer,
+		isAdmin
 	} = usePayment();
 
 
@@ -17,7 +18,7 @@ export const useHeaderPayment = () => {
 	};
 
 	useEffect(() => {
-		if (statusMessage) {
+		if (statusMessage && isAdmin) {
 			setTimeout(() => {
 				handleResetStatusMessagePaymentReducer();
 			}, 3000);

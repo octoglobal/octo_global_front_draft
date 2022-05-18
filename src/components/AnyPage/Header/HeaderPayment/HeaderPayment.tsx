@@ -58,8 +58,10 @@ const HeaderPayment = () => {
 					dialogProps={{
 						open: !!statusMessage,
 						onClose: () => handleResetStatusMessagePaymentReducer(''),
+						
 					}}
 					title={statusMessage}
+					closeTime={3}
 				/>
 			)}
 		</ContainerMUI>
