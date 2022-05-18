@@ -16,7 +16,8 @@ import {adminSlice} from '@/reducers/adminSlice/adminSlice';
 export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verifiedEmail?: boolean, reset?: UseFormReset<FieldValues>) => {
 
 	const {
-		isAdmin
+		isAdmin,
+		user
 	} = useUserStore();
 	const {
 		adminSwitchIdToUser,
@@ -66,10 +67,9 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 	};
 
 	const onSubmitUser : SubmitHandler<FieldValues> = (data) => {
-		const formData = data as IAccountUpdateUser;
+		const formData = data as IAccountUpdateUser;		
 		const url = isAdmin ? `/admin/user/${adminSwitchIdToUser}` : '/user';
-		const sendObject = {} as IAccountUpdateUser;
-
+		const sendObject = {} as IAccountUpdateUser;		
 		if (formData.email != adminSwitchUserModel?.email) {
 			sendObject.email = formData.email;
 		}
@@ -87,10 +87,13 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 		}
 
 		if(sendObject?.phone || sendObject?.email || sendObject?.name || sendObject?.surname) {
+		
 			dispatch(fetchChangeUser({data: sendObject, url: url}))
 				.then(e => {
-					const response = e.payload as {data: {status?: number, data?: string, message?: 'success', changes?: {name?: boolean, surname?: boolean, phone?: boolean, email?: boolean}}};
-					const statusCode = response?.data.status;
+				
+					const response = e.payload as {data: {status?: number, data?: string, message?: 'success', changes?: {name?: boolean, surname?: boolean, phone?: boolean, email?: boolean}}, status:number};
+					const statusCode = response?.status;				
+					
 					switch (statusCode) {
 					case 403:
 						handleBadResponseUser();
@@ -99,8 +102,24 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 						handleBadResponseUser();
 						return;
 					case 409:
+						console.log('!!!!!!409');
 						if (response.data == 'user with this phone already exists') {
 							setError('phone', {type: 'string', message: 'Номер телефона занят'});
+							setTimeout(()=>{
+								setError('phone', {type: 'string', message: ''});
+							},3000);
+							if (!isAdmin){			
+								
+								if (reset) {
+									reset({
+										phone: user.phone,
+									
+									},{
+										keepErrors: true
+									});
+								}
+							}
+
 						}
 						if (response.data == 'user with this email already exists') {
 							setError('email', {type: 'string', message: 'Почта занята'});
@@ -133,9 +152,13 @@ export const useAccountSettings = (setError: UseFormSetError<FieldValues>, verif
 							}
 							if (isUserPhone) {
 								setError('phone', {type: 'string', message: 'Номер телефона занят'});
+								setTimeout(()=>{
+									setError('phone', {type: 'string', message: ''});
+								},3000);
 							}
 
 							if (isAdmin) {
+								console.log('3712732892738972 9');
 								dispatch(adminSlice.actions.changeEmailAndPhone(
 									{
 										phone: !isUserPhone ? formData.phone : currentPhone,

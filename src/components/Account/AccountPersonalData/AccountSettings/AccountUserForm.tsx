@@ -154,6 +154,16 @@ const AccountUserForm: FC = () => {
 		}
 	}, [adminSwitchIdToUser, userPhone, userEmail, adminSwitchUserModel?.name, adminSwitchUserModel?.surname]);
 
+	// useEffect(()=>{
+	// 	const data = getValues();
+	// 	const phoneValue = data?.phone;
+	// 	console.log('dfdfdf',userPhone);
+	// 	if (userPhone !== phoneValue) {
+	// 		setValue('phone', userPhone ? userPhone : '');
+	// 	}
+	// },[dirtyPhone]);
+
+
 	useEffect(() => {
 		if (isEditFIO) {
 			setValue('name', adminSwitchUserModel?.name);
