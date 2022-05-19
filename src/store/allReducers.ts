@@ -9,6 +9,7 @@ import adminReducer from '@/reducers/adminSlice/adminSlice';
 import orderStockReducer from '@/reducers/orderStockSlice/orderStockSlice';
 import orderSendReducer from '@/reducers/orderSendSlice/orderSendSlice';
 import paymentReducer from '@/reducers/paymentSlice/paymentSlice';
+import euroSlice from '@/reducers/euroExchangeRate/eutoSlice';
 
 export const allReducers = {
 	userReducer,
@@ -22,4 +23,5 @@ export const allReducers = {
 	orderStockReducer,
 	paymentReducer,
 	swipeableDrawerSliceReducer,
+	euroSlice,
 };

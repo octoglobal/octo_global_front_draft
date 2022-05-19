@@ -7,7 +7,6 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {FieldValues, useForm} from 'react-hook-form';
 import EditPencil from '@/UIIcon/EditPencil.svg';
 
-
 const EuroExchange = () => {
 
 	const {		
@@ -16,7 +15,8 @@ const EuroExchange = () => {
 	const {
 		setEditMode,
 		isEditMode,
-		onSubmitEuroPrice
+		onSubmitEuroPrice,
+		value,
 	} = useEuroExchange();
 
 	const {
@@ -27,7 +27,7 @@ const EuroExchange = () => {
 		
 	} = useForm<FieldValues>();
 
-	console.log('434',watch('price'));
+	console.log('rate',watch('rate'));
 
 
 	return (
@@ -41,10 +41,13 @@ const EuroExchange = () => {
 								<TextFieldEuroMUI>
 									<TextFieldUI
 										controller={{
-											name: 'price',
+											name: 'rate',
 											control,
-											defaultValue: '00.00',
+											defaultValue: value,
 										}}
+										inputProps={{
+											name: 'rate',
+											type: 'number',}}
 										
 									/>
 								</TextFieldEuroMUI>
@@ -62,7 +65,7 @@ const EuroExchange = () => {
 					 <>
 					 <BlockWrap>
 					 	<LabelMUI>Курс евро: &euro;  </LabelMUI>
-								<ParagraphMUI>75,32</ParagraphMUI>
+								<ParagraphMUI>{value}</ParagraphMUI>
 					 	<IcoMUI onClick={()=>{setEditMode(true);}}>
 							 <EditPencil/>
 						 </IcoMUI>
@@ -74,7 +77,7 @@ const EuroExchange = () => {
 					:
 					<InfoBlockMUI>
 						<LabelMUI>Курс евро: &euro;  </LabelMUI>
-						<ParagraphMUI>75,32</ParagraphMUI>
+						<ParagraphMUI>{value}</ParagraphMUI>
 						<IcoMUI>
 							{'INFO ico'}
 							
