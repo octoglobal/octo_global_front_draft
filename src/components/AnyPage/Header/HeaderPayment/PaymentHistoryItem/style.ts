@@ -26,11 +26,11 @@ export const usePaymentHistoryItemStyles = () => {
 		color: color,
 		marginRight: '25px',
 		minWidth: '70px',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
 			fontWeight: 400,
-			marginRight: '10px',
+			marginRight: '5px',
 		}
 	}));
 
@@ -45,9 +45,13 @@ export const usePaymentHistoryItemStyles = () => {
 		color: '#000000',
 		flexGrow: 1,
 		transition: '.2s all linear',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
+			maxWidth: '189px',
+		},
+		[theme.breakpoints.down(350)]: {
+			maxWidth: '169px',
 		}
 	}));
 
@@ -58,9 +62,10 @@ export const usePaymentHistoryItemStyles = () => {
 		minWidth: '77px',
 		textAlign: 'right',
 		fontWeight: 300,
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
+			minWidth: '50px',
 		}
 	}));
 

@@ -9,6 +9,7 @@ export const useHeaderPayment = () => {
 		isOpenPaymentForm,
 		statusMessage,
 		adminSwitchIdToUser,
+		userBalance,
 		handleSendUserEmailReq,
 		handleTogglePaymentForm,
 		handleResetHistoryBalance,
@@ -16,7 +17,7 @@ export const useHeaderPayment = () => {
 		isAdmin
 	} = usePayment();
 
-	const isMobile = useMediaQuery('(max-width: 768px)');
+	const isMobile = useMediaQuery('(max-width: 959px)');
 
 
 	const handleToggleMenuOpen = () => {
@@ -44,9 +45,11 @@ export const useHeaderPayment = () => {
 		if (isMobile) {
 			const domNext = document.querySelector('#__next') as HTMLDivElement;
 			const domDrawer = document.querySelector('#userDrawer') as HTMLDivElement;
-			if (domNext && domDrawer) {
-				domNext.style.filter = isOpenPaymentForm ? 'blur(18px)' : '';
-				domDrawer.style.filter = isOpenPaymentForm ? 'blur(18px)' : '';
+			if (domNext) {
+				domNext.style.filter = isOpenPaymentForm ? 'blur(8px)' : '';
+			}
+			if (domDrawer) {
+				domDrawer.style.filter = isOpenPaymentForm ? 'blur(8px)' : '';
 				domDrawer.style.backgroundColor = `${isOpenPaymentForm ? '#FFFFFF' : ''}`;
 			}
 		}
@@ -55,6 +58,7 @@ export const useHeaderPayment = () => {
 	return {
 		isMobile,
 		isOpenModal,
+		userBalance,
 		isMenuOpen: isOpenPaymentForm,
 		statusMessage,
 		handleToggleMenuOpen,

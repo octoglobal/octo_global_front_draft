@@ -1,4 +1,4 @@
-import {Backdrop, Button, Menu, MenuItem, styled} from '@mui/material';
+import {Button, Menu, MenuItem, styled} from '@mui/material';
 import AddPayIcon from '@/UIIcon/AddPayIcon.svg';
 
 
@@ -12,8 +12,8 @@ export const useHeaderPaymentStyles = () => {
 	}));
 
 	const ContainerMobileMUI = styled('div')(() => ({
-		marginTop: '58px',
-		marginBottom: '23px',
+		// marginTop: '58px',
+		// marginBottom: '23px',
 		padding: '0 15px',
 	}));
 
@@ -22,7 +22,7 @@ export const useHeaderPaymentStyles = () => {
 		lineHeight: '21px',
 		fontWeight: 400,
 		color: '#000000',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
 			height: '19px',
@@ -36,7 +36,7 @@ export const useHeaderPaymentStyles = () => {
 		width: '100% !important',
 		border: 0,
 		backgroundColor: 'transparent',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			display: 'none',
 		}
 	}));
@@ -55,7 +55,7 @@ export const useHeaderPaymentStyles = () => {
 			[theme.breakpoints.down(1025)]: {
 				right: '15px !important',
 			},
-			[theme.breakpoints.down(769)]: {
+			[theme.breakpoints.down(969)]: {
 				backgroundColor: 'rgba(0, 0, 0, 0)',
 				boxShadow: 'none',
 				width: '100%',
@@ -63,9 +63,23 @@ export const useHeaderPaymentStyles = () => {
 				margin: 'auto',
 				top: '0px !important',
 				right: '0px !important',
-				// paddingTop: '58px',
+				paddingTop: '63px',
+			},
+			[theme.breakpoints.down(551)]: {
+				paddingTop: '0px',
 			}
 		},
+		[theme.breakpoints.down(969)]: {
+			maxWidth: '345px',
+			margin: '0 auto',
+			'& .MuiBackdrop-root': {
+				backgroundColor: 'rgba(255, 255, 255, 0.5)',
+			}
+		},
+		[theme.breakpoints.down(601)]: {
+			maxWidth: 'none',
+			margin: 0,
+		}
 	}));
 
 	const ButtonSendMUI = styled(MenuItem)(({theme}) => ({
@@ -77,7 +91,7 @@ export const useHeaderPaymentStyles = () => {
 		height: '30px',
 		justifyContent: 'center',
 		alignItems: 'center',
-		[theme.breakpoints.down(769)]: {
+		[theme.breakpoints.down(969)]: {
 			fontSize: '14px',
 			lineHeight: '16px',
 			height: '32px',
@@ -92,16 +106,6 @@ export const useHeaderPaymentStyles = () => {
 		height: '22px',
 	}));
 
-	const BackDropBlurMUI = styled(Backdrop, {
-		name: 'MuiModal',
-		slot: 'Backdrop',
-		overridesResolver: (props, styles) => {
-			return styles.backdrop;
-		},
-	})({
-		backdropFilter: 'blur(1px)',
-	});
-
 	const CloseModalButtonMUI = styled(Button)(() => ({
 		position: 'absolute',
 		cursor: 'pointer',
@@ -111,15 +115,31 @@ export const useHeaderPaymentStyles = () => {
 		padding: '5px',
 	}));
 
+	const ContainerAddPaymentMobileMUI = styled('a')(() => ({
+		display: 'flex',
+		alignItems: 'center',
+		cursor: 'pointer',
+	}));
+
+	const AddPaymentMobileMUI = styled('a')(() => ({
+		fontSize: '16px',
+		lineHeight: '18px',
+		fontWeight: 300,
+		textDecoration: 'underline',
+		color: '#274D82',
+		margin: '10px 0 17px 10px',
+	}));
+
 	return {
 		PayIconMUI,
 		MenuListMUI,
 		ContainerMUI,
 		ButtonSendMUI,
 		BalanceTextMUI,
-		BackDropBlurMUI,
 		CloseModalButtonMUI,
 		ContainerMobileMUI,
+		AddPaymentMobileMUI,
 		BalanceTextButtonMUI,
+		ContainerAddPaymentMobileMUI,
 	};
 };

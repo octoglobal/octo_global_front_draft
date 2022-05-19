@@ -8,6 +8,7 @@ import ModalUI from '../../../../UI/UIComponents/ModalUI/ModalUI';
 import PaymentHistoryList from '@/components/AnyPage/Header/HeaderPayment/PaymentHistoryList/PaymentHistoryList';
 import PaymentUserBalance from '@/components/AnyPage/Header/HeaderPayment/PaymentUserBalance/PaymentUserBalance';
 import CloseModalIcon from '@/UIIcon/CloseModalIcon.svg';
+import { Box } from '@mui/material';
 
 
 const HeaderPayment = () => {
@@ -25,7 +26,6 @@ const HeaderPayment = () => {
 		handleResetStatusMessagePaymentReducer,
 	} = useHeaderPayment();
 
-
 	return (
 		<ContainerMUI>
 			<BalanceTextButtonMUI
@@ -41,17 +41,26 @@ const HeaderPayment = () => {
 				MenuListProps={{
 					'aria-labelledby': 'long-button',
 				}}
-				disableScrollLock={true}
-				BackdropComponent={BackDropBlurMUI}
+				disableScrollLock={!isMobile}
 				onClose={handleToggleMenuOpen}
 			>
 				{isMobile && (
-					<ContainerMobileMUI>
-						<CloseModalButtonMUI onClick={handleToggleMenuOpen}>
-							<CloseModalIcon/>
-						</CloseModalButtonMUI>
-						<PaymentUserBalance/>
-					</ContainerMobileMUI>
+					<>
+						<ContainerMobileMUI>
+							<CloseModalButtonMUI onClick={handleToggleMenuOpen}>
+								<CloseModalIcon/>
+							</CloseModalButtonMUI>
+						</ContainerMobileMUI>
+						<Box
+							component='div'
+							sx={{
+								paddingLeft: '15px',
+								marginTop: '58px',
+								marginBottom: '23px',
+							}}>
+							<PaymentUserBalance/>
+						</Box>
+					</>
 				)}
 				{!isAdmin && (
 					<>
@@ -73,11 +82,11 @@ const HeaderPayment = () => {
 					dialogProps={{
 						open: isOpenModal,
 						onClose: () => handleResetStatusMessagePaymentReducer(''),
-						
+
 					}}
 					loading={!statusMessage}
 					title={statusMessage}
-					closeTime={3}
+					closeTime={8}
 				/>
 			)}
 		</ContainerMUI>
@@ -89,7 +98,6 @@ const {
 	MenuListMUI,
 	ContainerMUI,
 	ButtonSendMUI,
-	BackDropBlurMUI,
 	CloseModalButtonMUI,
 	ContainerMobileMUI,
 	BalanceTextButtonMUI,
