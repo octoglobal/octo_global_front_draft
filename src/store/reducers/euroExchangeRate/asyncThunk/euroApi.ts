@@ -11,11 +11,14 @@ interface IDataEuro {
 
 export const fetchEuroRate = createAsyncThunk(	
 	'eutoSlice/getRate',
-	async function (_, {  rejectWithValue }) {
+	async  (_, {  rejectWithValue })=> {
 		
 		try {
-			const res = await octoAxios.get('/exchange_rate');		
-			return res;
+			const res = await octoAxios.get('/exchange_rate');
+			if (res.status === 200){
+				// return res;
+			}		
+			
 		} catch (error) {
 			return rejectWithValue('ошибка получениея евро рейт');
 		}
@@ -24,13 +27,15 @@ export const fetchEuroRate = createAsyncThunk(
 
 export const fetchSetEuroRate = createAsyncThunk(
 	'eutoSlice/setRate',
-	async function (data:IDataEuro, { dispatch,  rejectWithValue }) {
+	async  (data:IDataEuro, { dispatch,  rejectWithValue })=> {
 		
 		try {
-			const res = await octoAxios.post('/admin/exchange_rate',data);
+			const res = await octoAxios.post('/admin/exchange_rate',data);			
+			if (res.status === 200){
+				dispatch(updateRate(data.value));
+			}
 			
-			dispatch(updateRate(data.value));
-			return res;
+			// return res;
 		} catch (error) {
 			
 			return rejectWithValue('ошибка set евро рейт');

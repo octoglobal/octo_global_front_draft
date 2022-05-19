@@ -27,7 +27,7 @@ export const euroSlice = createSlice({
 	},
 	extraReducers: {		
 		[fetchEuroRate.pending.type]: (state) => {
-			// console.log('пошел запрос');
+			console.log('пошел запрос');
 		},
 		[fetchEuroRate.fulfilled.type]: (state, action) => {
 		

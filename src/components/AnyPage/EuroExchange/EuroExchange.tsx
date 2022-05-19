@@ -5,9 +5,19 @@ import { useEuroExchange } from './useEuroExchange';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import {FieldValues, useForm} from 'react-hook-form';
+import { useMobile } from '@/hooks/useMedia';
 import EditPencil from '@/UIIcon/EditPencil.svg';
+import Info from '@/UIIcon/Info.svg';
+
 
 const EuroExchange = () => {
+
+
+	
+	const {
+		isMobile
+	} = useMobile();
+
 
 	const {		
 		isAdmin,
@@ -27,13 +37,13 @@ const EuroExchange = () => {
 
 
 	return (
-		<ContainerMUI>
+		<ContainerMUI admin={isAdmin}>
 			<FormMUI  onSubmit={handleSubmit(onSubmitEuroPrice)} >
 				{isAdmin? 
 					isEditMode?
 					 <>
 							<BlockWrap>
-								<LabelMUI onClick={()=>{setEditMode(false);}}>Курс евро: &euro;  </LabelMUI>
+								<LabelMUI admin={isAdmin} onClick={()=>{setEditMode(false);}}>Курс евро: &euro;  </LabelMUI>
 								<TextFieldEuroMUI>
 									<TextFieldUI
 										controller={{
@@ -52,7 +62,7 @@ const EuroExchange = () => {
 							</BlockWrap>
 							<ButtonUI
 								type="submit"
-								style={FormButtonUI}
+								style={FormButtonUI(isMobile)}
 							>
 								Сохранить
 							</ButtonUI>
@@ -60,8 +70,8 @@ const EuroExchange = () => {
 					 :
 					 <>
 					 <BlockWrap>
-					 	<LabelMUI>Курс евро: &euro;  </LabelMUI>
-								<ParagraphMUI>{value}</ParagraphMUI>
+					 	<LabelMUI admin={isAdmin}  >Курс евро: &euro;  </LabelMUI>
+								<ParagraphMUI admin={isAdmin}>{value}</ParagraphMUI>
 					 	<IcoMUI onClick={()=>{setEditMode(true);}}>
 							 <EditPencil/>
 						 </IcoMUI>
@@ -72,20 +82,14 @@ const EuroExchange = () => {
 				 </>
 					:
 					<InfoBlockMUI>
-						<LabelMUI>Курс евро: &euro;  </LabelMUI>
-						<ParagraphMUI>{value}</ParagraphMUI>
-						<IcoMUI>
-							{'INFO ico'}
-							
-						</IcoMUI>
+						<LabelMUI admin={isAdmin}>Курс евро: &euro;  </LabelMUI>
+						<ParagraphMUI admin={isAdmin}>{value}</ParagraphMUI>
+						<IconMUI>
+							<Info></Info>													
+						</IconMUI>
 					</InfoBlockMUI>
-				}
-				
-				
-				{/* <>
-					<ParagraphMUI>75,32</ParagraphMUI><IcoMUI onClick={()=>{setEditMode(true);}}><EditPencil/></IcoMUI>
-				</> */}
-						
+				}				
+							
 				
 			</FormMUI>
 			
@@ -102,6 +106,7 @@ const {
 	FormMUI,
 	FormButtonUI,
 	IcoMUI,
+	IconMUI,
 	TextFieldEuroMUI,
 	BlockWrap,
 	InfoBlockMUI,

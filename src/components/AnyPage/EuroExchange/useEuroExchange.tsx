@@ -16,16 +16,16 @@ export const useEuroExchange = () => {
 		
 		const value = data.rate * 100;
 
-		dispatch(fetchSetEuroRate({
-			currency: 'EUR',
-			value: +value.toFixed(2),
+		// dispatch(fetchSetEuroRate({
+		// 	currency: 'EUR',
+		// 	value: +value.toFixed(2),
 			
-		}));
+		// }));
 		setEditMode(false);
 	};
 	
 	useEffect(()=>{
-		dispatch(fetchEuroRate());
+		// dispatch(fetchEuroRate());
 	},[]);
 
 	return {	
