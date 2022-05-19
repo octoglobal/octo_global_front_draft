@@ -11,7 +11,8 @@ import LightningInsideCircle44 from '../../../UI/UIIcon/LightningInsideCircleTra
 import AccountTabOrderMobile from '@/components/Account/AccountTabOrderMobile/AccountTabOrderMobile';
 import { useMediaQuery } from '@mui/material';
 import {useUserStore} from '@/hooks/useUserStore';
-import EuroExchange from '../EuroExchange/EuroExchange';
+// import EuroExchange from '../EuroExchange/EuroExchange';
+import EuroExchange from '@/components/AnyPage/EuroExchange/EuroExchange';
 
 
 type TabsQueryProps = {

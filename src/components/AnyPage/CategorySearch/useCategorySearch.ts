@@ -5,6 +5,8 @@ import { IHints } from '@/components/AnyPage/CategorySearch/types';
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 
+import { useMobile } from '@/hooks/useMedia';
+
 export const useCategorySearch = (
 	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void,
 	searchHints: IHints[] | IAdminHintsData[],
@@ -19,8 +21,11 @@ export const useCategorySearch = (
 	const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
 	const [isMouseEnter, setIsMouseEnter] = useState(false);
 
-
-
+	const {
+		isMobile
+	} = useMobile();
+	
+	
 	const isHintsData = useMemo(() => (
 		Array.isArray(searchHints) && searchHints?.length
 
@@ -146,6 +151,8 @@ export const useCategorySearch = (
 		handleChangeFocus,
 		setActiveSuggestion,
 		handleClickHintItem,
-		handleChangeActiveSuggestion
+		handleChangeActiveSuggestion,
+	
+		isMobile,
 	};
 };
