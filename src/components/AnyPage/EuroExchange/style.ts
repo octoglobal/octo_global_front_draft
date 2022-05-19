@@ -1,12 +1,20 @@
-import {styled} from '@mui/material';
 import { padding } from '@mui/system';
+import {styled} from '@mui/material';
+
 
 
 
 export const useEuroExchangeStyles = () => {
 
 	const ContainerMUI = styled('div')(() => ({
-		display: 'flex'
+		display: 'flex',
+				
+	}));
+	
+	const BlockWrap = styled('div')(() => ({
+		display: 'flex',
+		alignItems: 'center',
+		marginBottom: 12,		
 	}));
 	const ParagraphMUI = styled('p')(() => ({
 		fontSize: 20,
@@ -16,10 +24,13 @@ export const useEuroExchangeStyles = () => {
 	const LabelMUI = styled('label')(() => ({
 		fontSize: 20,
 		fontWeight: 300,
+		marginRight: 5,
 		
 	}));
-	const FormMUI = styled('label')(() => ({
-		display: 'flex'
+	const FormMUI = styled('form')(() => ({
+		display: 'flex',
+		flexDirection: 'column',		
+		alignItems: 'center'
 		
 	}));
 	const FormButtonUI = {
@@ -31,7 +42,34 @@ export const useEuroExchangeStyles = () => {
 		display: 'flex'
 		
 	}));
-
+	const TextFieldEuroMUI = styled('div')(() => ({
+		display: 'flex',
+		width: 74,
+		height: 27,		
+		alignItems:'cneter',
+		justifyContent: 'center',		
+		'& > div': {
+			'& > div': {
+				height: 27,
+				'& > div': {
+					// height: 27,
+					'& > input': {
+						height: 27,
+						// height: '10px !important',
+						// margin: '0px 0px',
+						padding: '0px 3px',
+						fontWeight: 300
+					}
+				}
+			}
+		}
+		
+	}));
+	const InfoBlockMUI = styled('div')(() => ({
+		display: 'flex',
+		alignItems: 'center',
+		
+	}));
 	return {
 		ContainerMUI,
 		ParagraphMUI,
@@ -39,5 +77,8 @@ export const useEuroExchangeStyles = () => {
 		FormMUI,
 		FormButtonUI,
 		IcoMUI,
+		TextFieldEuroMUI,
+		BlockWrap,
+		InfoBlockMUI
 	};
 };

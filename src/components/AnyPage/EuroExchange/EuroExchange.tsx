@@ -4,36 +4,89 @@ import { useUserStore } from '@/hooks/useUserStore';
 import { useEuroExchange } from './useEuroExchange';
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+import {FieldValues, useForm} from 'react-hook-form';
+import EditPencil from '@/UIIcon/EditPencil.svg';
 
 
 const EuroExchange = () => {
 
-	const {
-		
+	const {		
 		isAdmin,
 	} = useUserStore();
 	const {
 		setEditMode,
-		editMode,
+		isEditMode,
+		onSubmitEuroPrice
 	} = useEuroExchange();
 
-    
+	const {
+		handleSubmit,
+		control,
+		watch,
+		
+		
+	} = useForm<FieldValues>();
+
+	console.log('434',watch('price'));
+
+
 	return (
 		<ContainerMUI>
-			<FormMUI >
-				<LabelMUI>Курс евро: &euro;  </LabelMUI>                
-				{isAdmin?
-					editMode?
-						<> <input type="text" defaultValue={'75,32'}/><ButtonUI
-							type="submit"
-							style={FormButtonUI}
-						>
-							Сохранить
-						</ButtonUI></>: <><ParagraphMUI>75,32</ParagraphMUI><IcoMUI onClick={()=>{setEditMode(true);}}>{'EDIT ICO'}</IcoMUI></> 
+			<FormMUI  onSubmit={handleSubmit(onSubmitEuroPrice)} >
+				{isAdmin? 
+					isEditMode?
+					 <>
+							<BlockWrap>
+								<LabelMUI onClick={()=>{setEditMode(false);}}>Курс евро: &euro;  </LabelMUI>
+								<TextFieldEuroMUI>
+									<TextFieldUI
+										controller={{
+											name: 'price',
+											control,
+											defaultValue: '00.00',
+										}}
+										
+									/>
+								</TextFieldEuroMUI>
+					
+				
+							</BlockWrap>
+							<ButtonUI
+								type="submit"
+								style={FormButtonUI}
+							>
+								Сохранить
+							</ButtonUI>
+						</>
+					 :
+					 <>
+					 <BlockWrap>
+					 	<LabelMUI>Курс евро: &euro;  </LabelMUI>
+								<ParagraphMUI>75,32</ParagraphMUI>
+					 	<IcoMUI onClick={()=>{setEditMode(true);}}>
+							 <EditPencil/>
+						 </IcoMUI>
+			 
+		 
+					 </BlockWrap>
+					 
+				 </>
 					:
-					<><ParagraphMUI>75,32</ParagraphMUI>{'INFO ICO'}</>
+					<InfoBlockMUI>
+						<LabelMUI>Курс евро: &euro;  </LabelMUI>
+						<ParagraphMUI>75,32</ParagraphMUI>
+						<IcoMUI>
+							{'INFO ico'}
+							
+						</IcoMUI>
+					</InfoBlockMUI>
+				}
+				
+				
+				{/* <>
+					<ParagraphMUI>75,32</ParagraphMUI><IcoMUI onClick={()=>{setEditMode(true);}}><EditPencil/></IcoMUI>
+				</> */}
 						
-				}				
 				
 			</FormMUI>
 			
@@ -49,7 +102,10 @@ const {
 	LabelMUI,
 	FormMUI,
 	FormButtonUI,
-	IcoMUI
+	IcoMUI,
+	TextFieldEuroMUI,
+	BlockWrap,
+	InfoBlockMUI,
 } = useEuroExchangeStyles();
 
 
