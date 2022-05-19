@@ -1,3 +1,4 @@
+import { IDefaultFetchSuccess } from './../../../../types/types';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {octoAxios} from '@/lib/http';
 import { updateRate } from '../eutoSlice';
@@ -16,7 +17,7 @@ export const fetchEuroRate = createAsyncThunk(
 		try {
 			const res = await octoAxios.get('/exchange_rate');
 			if (res.status === 200){
-				// return res;
+				return res;
 			}		
 			
 		} catch (error) {
@@ -27,15 +28,15 @@ export const fetchEuroRate = createAsyncThunk(
 
 export const fetchSetEuroRate = createAsyncThunk(
 	'eutoSlice/setRate',
-	async  (data:IDataEuro, { dispatch,  rejectWithValue })=> {
+	async  (data:IDataEuro, {   rejectWithValue })=> {
 		
 		try {
-			const res = await octoAxios.post('/admin/exchange_rate',data);			
+			const res = await octoAxios.post<IDefaultFetchSuccess>('/admin/exchange_rate',data);			
 			if (res.status === 200){
-				dispatch(updateRate(data.value));
+				
+				return data.value;
 			}
 			
-			// return res;
 		} catch (error) {
 			
 			return rejectWithValue('ошибка set евро рейт');

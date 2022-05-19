@@ -23,22 +23,24 @@ export const useEuroExchange = () => {
 	  };
 
 
+	  useEffect(()=>{
+		  console.log('!!!!test');
+		dispatch(fetchEuroRate());
+	},[]);
 
 	const onSubmitEuroPrice:SubmitHandler<FieldValues> = (data)=>{
 		
 		const value = data.rate * 100;
 
-		// dispatch(fetchSetEuroRate({
-		// 	currency: 'EUR',
-		// 	value: +value.toFixed(2),
+		dispatch(fetchSetEuroRate({
+			currency: 'EUR',
+			value: +value.toFixed(2),
 			
-		// }));
+		}));
 		setEditMode(false);
 	};
 	
-	useEffect(()=>{
-		// dispatch(fetchEuroRate());
-	},[]);
+	
 
 	return {	
 		isEditMode,
