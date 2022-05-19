@@ -21,13 +21,9 @@ const EuroExchange = () => {
 
 	const {
 		handleSubmit,
-		control,
-		watch,
-		
-		
+		control,		
 	} = useForm<FieldValues>();
-
-	console.log('rate',watch('rate'));
+	
 
 
 	return (

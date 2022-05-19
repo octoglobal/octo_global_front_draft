@@ -14,14 +14,12 @@ export const useEuroExchange = () => {
 	
 	const onSubmitEuroPrice:SubmitHandler<FieldValues> = (data)=>{
 		
-		// console.log('data.rate', parseInt(data.rate).toFixed(2));
-		// console.log('data.rate',data.rate.toFixed(2));
-
-		const value = Number(data.rate).toFixed(2) * 100;
+		const value = data.rate * 100;
 
 		dispatch(fetchSetEuroRate({
 			currency: 'EUR',
-			value: value
+			value: +value.toFixed(2),
+			
 		}));
 		setEditMode(false);
 	};

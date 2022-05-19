@@ -53,12 +53,20 @@ export const useEuroExchangeStyles = () => {
 				height: 27,
 				'& > div': {
 					// height: 27,
+					'& > input[type=number]': {
+						'-moz-appearance': 'textfield',
+					},
+					'& > input::-webkit-outer-spin-button, input::-webkit-inner-spin-button': {
+						'-webkit-appearance': 'none',
+						// margin: 0,
+					},
 					'& > input': {
 						height: 27,
 						// height: '10px !important',
 						// margin: '0px 0px',
 						padding: '0px 3px',
 						fontWeight: 300
+						
 					}
 				}
 			}
