@@ -50,7 +50,8 @@ export const useEuroExchangeStyles = () => {
 	}));
 
 	
-	const FormMUI = styled('form')(({theme}) => ({
+	const FormMUI = styled('form',{shouldForwardProp:(prop)=>prop !== 'admin'})
+	<{admin?: boolean}>(({theme, admin = false}) => ({
 		display: 'flex',
 		flexDirection: 'column',		
 		alignItems: 'center',
@@ -59,7 +60,7 @@ export const useEuroExchangeStyles = () => {
 		[theme.breakpoints.down(500)]: {
 			flexDirection: 'row',
 			justifyContent: 'space-between',
-			// width: '100%',
+			width: admin? '100%': null,
 		},
 		
 	}));
@@ -166,10 +167,13 @@ export const useEuroExchangeStyles = () => {
 		alignItems: 'center',
 		
 	}));
+
+
+
 	return {
 		ContainerMUI,
 		ParagraphMUI,
-		LabelMUI,
+		LabelMUI,		
 		FormMUI,
 		FormButtonUI,
 		IcoMUI,

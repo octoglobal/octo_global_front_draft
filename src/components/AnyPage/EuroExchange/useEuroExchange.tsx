@@ -5,13 +5,25 @@ import { fetchEuroRate,fetchSetEuroRate } from '@/store/reducers/euroExchangeRat
 
 export const useEuroExchange = () => {
 	
-
+	const [open, setOpen] = useState(false);
 	const [isEditMode, setEditMode] = useState(false);
 	const dispatch = useAppDispatch();
 	const {
 		value
 	} = useAppSelector(state => state.euroSlice);
 	
+
+	const handleTooltipClose = () => {
+		console.log('close');
+		setOpen(false);
+	  };
+	
+	  const handleTooltipOpen = () => {
+		setOpen((prev)=>!prev);
+	  };
+
+
+
 	const onSubmitEuroPrice:SubmitHandler<FieldValues> = (data)=>{
 		
 		const value = data.rate * 100;
@@ -32,6 +44,9 @@ export const useEuroExchange = () => {
 		isEditMode,
 		setEditMode,
 		onSubmitEuroPrice,
-		value
+		value,
+		open,
+		handleTooltipClose,
+		handleTooltipOpen,
 	};
 };
