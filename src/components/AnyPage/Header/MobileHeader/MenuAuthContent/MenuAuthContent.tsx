@@ -66,7 +66,7 @@ const MenuAuthContent: FC = () => {
 		pushTo('/account/info');
 	};
 
-	// TODO: ужасное нечитаемое поправить завтра
+	
 	return (
 		<ContentLayoutUI
 			disabledPadding={true}
@@ -84,7 +84,7 @@ const MenuAuthContent: FC = () => {
 						{isAuth && (!isAdmin || (isAdmin && adminSwitchIdToUser)) && (
 							<ContainerAddPaymentMobileMUI onClick={handleTogglePaymentForm}>
 								<BalanceTextMUI>
-									{userBalance} €
+									{userBalance ? userBalance : 0} €
 								</BalanceTextMUI>
 								{isAdmin && (
 									<AddPaymentMobileMUI>

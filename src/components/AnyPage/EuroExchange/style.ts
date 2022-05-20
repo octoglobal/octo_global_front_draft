@@ -168,11 +168,7 @@ export const useEuroExchangeStyles = () => {
 		},
 		'&>label':{
 			paddingTop: 5
-		},
-		// '&>*':{
-		// 	paddingTop: 5
-		// },
-		
+		},	
 	}));
 
 

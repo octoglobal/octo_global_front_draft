@@ -15,7 +15,8 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 	const navDataArray : IHeaderNavItemsData = HeaderNavLinkArray;
 
 	const {
-		isAuth
+		isAuth,
+		isAdmin
 	} = useUserStore();
 
 	const {isMobile,} = useMobile();
@@ -31,15 +32,33 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 	},[isMobile,isTablet]
 	);
 
+	const linksArrAuth = navLinksArray.filter(item => {		
+		
+		if ( isAdmin && item.showAdmin){
+			console.log('!admin');
+			return item;
+		} else if (isAuth  && !isAdmin){
+			console.log('!isAuth && item.showAuth && !isAdmin');
+			return item;
+		} else if (!isAuth  && !isAdmin && !item.showAuth){{
+			return item;
+		}}
+		
+	});
 
 
 	return (
-		<>
-			{navLinksArray.filter(item => isAuth ? true : item.showAuth === isAuth).map((option) => (
+		<> 
+			{linksArrAuth.map((option) => (
 				<CustomLinkUI key={option.title} href={option.href} onClick={toggleOpenMenu}>
 					{option.title}
 				</CustomLinkUI>
 			))}
+			{/* {navLinksArray.filter(item => isAuth ? true : item.showAuth === isAuth).map((option) => (
+				<CustomLinkUI key={option.title} href={option.href} onClick={toggleOpenMenu}>
+					{option.title}
+				</CustomLinkUI>
+			))} */}
 		</>
 	);
 };

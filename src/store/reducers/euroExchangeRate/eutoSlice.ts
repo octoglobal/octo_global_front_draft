@@ -26,7 +26,7 @@ export const euroSlice = createSlice({
 	},
 	extraReducers: {		
 		[fetchEuroRate.pending.type]: (state) => {
-			console.log('пошел запрос');
+			// console.log('пошел запрос');
 		},
 		[fetchEuroRate.fulfilled.type]: (state, action) => {		
 			state.value = action.payload.data.exchange_rate[0].value / 100;
@@ -40,7 +40,7 @@ export const euroSlice = createSlice({
 			
 		},
 		[fetchSetEuroRate.fulfilled.type]: (state, action) => {
-			console.log('запрос fetchSetEuroRate ok',action);
+			// console.log('запрос fetchSetEuroRate ok',action);
 			state.value =action.payload / 100;
 			
 		},
