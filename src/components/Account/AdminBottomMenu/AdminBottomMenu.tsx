@@ -1,4 +1,4 @@
-import React, {FC, useMemo, useState} from 'react';
+import React, {FC, useMemo} from 'react';
 import {useAdminBottomMenuStyles} from '@/components/Account/AdminBottomMenu/style';
 import AdminMenuCheckboxIcon from '@/UIIcon/AdminMenuCheckbox.svg';
 import AdminMenuCheckboxEmptyIcon from '@/UIIcon/AdminMenuCheckboxEmpty.svg';
@@ -9,7 +9,8 @@ import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/Or
 
 export interface IAdminMenuButton {
 	name: string;
-	onClick: () => void;
+	onClick: (forDel?:boolean) => void;
+	isModalOpen?: boolean;
 }
 
 interface IAdminBottomMenuProps {
@@ -41,8 +42,7 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 	}, [isVisibleMenu]);
  
 	const btnObj = buttons[0];
-	console.log('btnObj',btnObj);
-	console.log('isModalOpen',btnObj.isModalOpen);
+	
 
 	return (
 		isVisibleComponents ? (
@@ -86,10 +86,10 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 						))}
 					</ButtonWrapperMUI>
 				
-
+							
 					<OrderDeleteModal
 						dialogProps={{
-							open: btnObj.isModalOpen,
+							open: !!btnObj.isModalOpen,
 							onClose: ()=>btnObj.onClick(false)
 						}}
 						title='Вы точно хотите удлать заказы?'
