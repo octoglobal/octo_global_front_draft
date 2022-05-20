@@ -33,16 +33,21 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 	);
 
 	const linksArrAuth = navLinksArray.filter(item => {		
+		console.log(navLinksArray);
+		if (isMobile){
+			if ( isAdmin && item.showAdmin){
+			
+				return item;
+			} else if (isAuth  && !isAdmin){
+				
+				return item;
+			} else if (!isAuth  && !isAdmin && !item.showAuth){{
+				return item;
+			}}
+		} else {
+			return item;
+		}
 		
-		if ( isAdmin && item.showAdmin){
-			
-			return item;
-		} else if (isAuth  && !isAdmin){
-			
-			return item;
-		} else if (!isAuth  && !isAdmin && !item.showAuth){{
-			return item;
-		}}
 		
 	});
 
