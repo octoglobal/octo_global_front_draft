@@ -7,7 +7,7 @@ export const useEuroExchangeStyles = () => {
 	<{admin?: boolean}>(({theme, admin = false}) => ({
 		display: 'flex',	
 		
-		[theme.breakpoints.down(500)]: {
+		[theme.breakpoints.down(600)]: {
 			display: 'flex',
 			
 			justifyContent: admin ? 'flex-start': 'center',
@@ -55,8 +55,6 @@ export const useEuroExchangeStyles = () => {
 		display: 'flex',
 		flexDirection: 'column',		
 		alignItems: 'center',
-		paddingTop: '5px',
-		
 		[theme.breakpoints.down(500)]: {
 			flexDirection: 'row',
 			justifyContent: 'space-between',
@@ -165,6 +163,15 @@ export const useEuroExchangeStyles = () => {
 	const InfoBlockMUI = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
+		'&>p':{
+			paddingTop: 5
+		},
+		'&>label':{
+			paddingTop: 5
+		},
+		// '&>*':{
+		// 	paddingTop: 5
+		// },
 		
 	}));
 
