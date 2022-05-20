@@ -35,10 +35,10 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 	const linksArrAuth = navLinksArray.filter(item => {		
 		
 		if ( isAdmin && item.showAdmin){
-			console.log('!admin');
+			
 			return item;
 		} else if (isAuth  && !isAdmin){
-			console.log('!isAuth && item.showAuth && !isAdmin');
+			
 			return item;
 		} else if (!isAuth  && !isAdmin && !item.showAuth){{
 			return item;

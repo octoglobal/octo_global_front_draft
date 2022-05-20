@@ -4,6 +4,7 @@ import Basket from '../../../../../UI/UIIcon/Basket.svg';
 import ModalConfirmUI from '../../../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 
 import {useAddressUserStyle} from './style';
+import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 // import {useUserStore} from '@/hooks/useUserStore';
 
 interface IAddressUser {
@@ -61,13 +62,19 @@ const AddressUser: FC<IAddressUser> = ({id, name, surname, phone, location, hand
 					<Basket/>
 				</FormIconUI>
 				{/*// )}*/}
-			</FormUI>
-			<ModalConfirmUI
-				open={openConfirmDialog}
+			</FormUI>			
+			<OrderDeleteModal
 				title="Вы уверены что хотите удалить адрес?"
+				buttonNoText='Нет'
 				onClickYes={() => handlerConfirm(id)}
 				onClickNo={handlerCancel}
+				dialogProps={{
+					open: openConfirmDialog,
+					
+				}}
 			/>
+
+			
 		</>
 	);
 };

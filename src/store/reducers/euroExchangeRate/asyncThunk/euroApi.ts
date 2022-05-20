@@ -1,7 +1,7 @@
 import { IDefaultFetchSuccess } from './../../../../types/types';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {octoAxios} from '@/lib/http';
-import { updateRate } from '../eutoSlice';
+
 
 
 
