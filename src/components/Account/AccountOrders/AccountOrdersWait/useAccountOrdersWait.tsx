@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import {useEffect, useMemo} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
@@ -36,6 +36,10 @@ export const useAccountOrdersWait = () => {
 	const methods = useForm();
 	const ordersArray = methods.watch();
 
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+
 	const innerId = useMemo(() => (
 	 adminSwitchIdToUser ? adminSwitchIdToUser : id
 	), [adminSwitchIdToUser]);
@@ -59,22 +63,33 @@ export const useAccountOrdersWait = () => {
 		orderWaitData.length > 1 && isAdmin
 	), [orderWaitData, isAdmin]);
 
-	const handleDeleteItems = () => {
-		if (innerId) {
-			dispatch(fetchDeleteOrders({
-				userId: innerId,
-				orderId: getSelectArray(methods.getValues()),
-				ordersData: orderWaitData,
-				successCallback: () =>methods.reset({}),
-			}));
+	const handleDeleteItems = (forDel?:boolean) => {
+	
+		if (forDel){		
+			if (innerId) {
+				dispatch(fetchDeleteOrders({
+					userId: innerId,
+					orderId: getSelectArray(methods.getValues()),
+					ordersData: orderWaitData,
+					successCallback: () =>methods.reset({}),
+				}));
+				setIsModalOpen(false);
+			}
+		} else {		
+			if (isModalOpen){
+				setIsModalOpen(false);
+			} else {
+				setIsModalOpen(true);
+			}
 		}
+		
 	};
 
 	const buttonsData = useMemo(() => (
 		[
-			{name: 'Удалить', onClick: handleDeleteItems},
+			{name: 'Удалить', onClick: handleDeleteItems, isModalOpen:isModalOpen },
 		]
-	), [innerId]);
+	), [innerId,isModalOpen]);
 
 	const getAdminUserData = (id: number) => {
 		dispatch(fetchOrderWaitData(

@@ -9,6 +9,7 @@ import OrderStatusModal from '@/components/AnyPage/OrderItem/OrderStatusModal/Or
 import ArrowRightIcon from '../../../UI/UIIcon/Arrow_Blue.svg';
 import {SxProps} from '@mui/material';
 import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
+import { DEFAULT_MIN_VERSION } from 'tls';
 
 interface IPackageItem {
 	component: ComponentType,
@@ -105,18 +106,42 @@ const PackageItem: FC<IPackageItem> = (
 				)}
 			</TitleMUI>
 			<OrdersContainerMUI sx={orderContainerStyles as SxProps}>
+				
 				{orders.map(order => (
-					<OrderItem
-						key={`${order.id}${order.longId}`}
-						orderItem={order}
-						visibleDropDown={false}
-						visibleCheckbox={false}
-						visibleTrackNumber={false}
-						visibleTitle={false}
-						component={component}
-						isBorderBottom={false}
-					/>
+					<>
+						<OrderItem
+							key={`${order.id}${order.longId}`}
+							orderItem={order}
+							visibleDropDown={false}
+							visibleCheckbox={false}
+							visibleTrackNumber={false}
+							visibleTitle={false}
+							component={component}
+							isBorderBottom={false}
+						/>
+						
+					</>
+					
 				))}
+				<OrdersDitailsContainerMUI>
+					{orders.map(order => {
+				 return	<OrdersLineContainerMUI key={`${order.id}${order.longId}`}>
+							<OrdersLineItemContainerMUI>
+								{'Заказ № '}{order.longId}																
+							</OrdersLineItemContainerMUI>
+							<OrdersLineItemContainerMUI>
+								{order.title}
+							</OrdersLineItemContainerMUI>
+							<OrdersLineItemTrackContainerMUI>
+								{order.trackNumber}
+							</OrdersLineItemTrackContainerMUI>
+						</OrdersLineContainerMUI>;	
+						
+					})}
+				</OrdersDitailsContainerMUI>
+				
+				
+				
 			</OrdersContainerMUI>
 			{isVisibleAddress && (
 				<AddressContainerMUI>
@@ -192,6 +217,10 @@ const {
 	TrackNumberContainerMUI,
 	TrackNumberIconMUI,
 	AddressRowMUI,
+	OrdersDitailsContainerMUI,
+	OrdersLineContainerMUI,
+	OrdersLineItemContainerMUI,
+	OrdersLineItemTrackContainerMUI
 } = usePackageItemStyles();
 
 

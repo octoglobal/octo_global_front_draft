@@ -136,7 +136,74 @@ export const usePackageItemStyles = () => {
 		}
 	}));
 
+	const OrdersDitailsContainerMUI = styled('div')(({theme}) => ({
+		marginTop: '50px',
+		marginBottom: 20,
+		marginLeft: 194,
+		display: 'flex',
+		flexDirection: 'column',
+		borderBottom: '2px solid #C4C4C4',
+		[theme.breakpoints.down(750)]:{
+			marginLeft: 0,
+			borderBottom: 'none',
+		},
+		[theme.breakpoints.down(500)]:{
+			
+			marginTop: '32px',
+			marginBottom: 0,
+			
+		}
+		
+	}));
 
+
+	const OrdersLineContainerMUI = styled('div')(({theme}) => ({		
+		display: 'flex',
+		alignItems: 'center',
+		marginBottom: 14,
+		[theme.breakpoints.down(500)]:{
+			display: 'grid',
+			gridTemplateColumns: '1fr 1fr',
+			gridTemplateAreas:
+				`
+				"a a"
+				"b b"
+				`
+		}
+			
+	}));
+
+	const OrdersLineItemContainerMUI = styled('div')(({theme}) => ({		
+		fontSize: 20,
+		fontWeight: 400,
+		marginRight: '32px',
+		maxWidth: '220px',
+		minWidth: 220,
+		whiteSpace: 'nowrap',
+		overflow: 'hidden',
+		textOverflow: 'ellipsis',
+		[theme.breakpoints.down(1220)]:{
+			maxWidth: '200px',
+			minWidth: 200,
+		},
+		[theme.breakpoints.down(1180)]:{
+			maxWidth: '180px',
+			minWidth: 180,
+		},
+		[theme.breakpoints.down(1180)]:{
+			maxWidth: '150px',
+			minWidth: 150,
+		},
+	}));
+	const OrdersLineItemTrackContainerMUI = styled('div')(({theme}) => ({		
+		fontSize: 18,
+		fontWeight: 500,
+		[theme.breakpoints.down(500)]:{
+			fontSize: 12,
+			color: '#C4C4C4',
+		}
+		
+	}));
 	return {
 		TextMUI,
 		TitleMUI,
@@ -148,9 +215,13 @@ export const usePackageItemStyles = () => {
 		TrackNumberMUI,
 		TrackNumberIconMUI,
 		OrdersContainerMUI,
+		OrdersDitailsContainerMUI,
 		AddressContainerMUI,
 		TrackNumberLinkTextMUI,
 		TrackNumberContainerMUI,
 		TrackNumberLinkMUI,
+		OrdersLineContainerMUI,
+		OrdersLineItemContainerMUI,
+		OrdersLineItemTrackContainerMUI
 	};
 };
