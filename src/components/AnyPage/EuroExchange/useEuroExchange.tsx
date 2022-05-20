@@ -14,7 +14,7 @@ export const useEuroExchange = () => {
 	
 
 	const handleTooltipClose = () => {
-		console.log('close');
+	
 		setOpen(false);
 	  };
 	
@@ -24,7 +24,7 @@ export const useEuroExchange = () => {
 
 
 	  useEffect(()=>{
-		  console.log('!!!!test');
+		
 		dispatch(fetchEuroRate());
 	},[]);
 
