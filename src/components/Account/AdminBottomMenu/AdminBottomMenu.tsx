@@ -1,10 +1,11 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC, useMemo, useState} from 'react';
 import {useAdminBottomMenuStyles} from '@/components/Account/AdminBottomMenu/style';
 import AdminMenuCheckboxIcon from '@/UIIcon/AdminMenuCheckbox.svg';
 import AdminMenuCheckboxEmptyIcon from '@/UIIcon/AdminMenuCheckboxEmpty.svg';
 import {useAdminBottomMenu} from '@/components/Account/AdminBottomMenu/useAdminBottomMenu';
 import WhiteCloseIcon from '@/UIIcon/WhiteCloseIcon.svg';
 import {Checkbox} from '@mui/material';
+import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 
 export interface IAdminMenuButton {
 	name: string;
@@ -38,6 +39,10 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 		if (isVisibleMenu) return animationSx;
 		return  {};
 	}, [isVisibleMenu]);
+ 
+	const btnObj = buttons[0];
+	console.log('btnObj',btnObj);
+	console.log('isModalOpen',btnObj.isModalOpen);
 
 	return (
 		isVisibleComponents ? (
@@ -70,15 +75,30 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 						checkedIcon={<AdminMenuCheckboxIcon/>}
 					/>
 					<ButtonWrapperMUI>
+						
 						{buttons.map((button, index) => (
 							<ButtonMUI
 								key={`${button.name}${index}`}
-								onClick={() => button.onClick()}
-							>
+								onClick={() => button.onClick(false)}
+							> 
 								{button.name}
 							</ButtonMUI>
 						))}
 					</ButtonWrapperMUI>
+				
+
+					<OrderDeleteModal
+						dialogProps={{
+							open: btnObj.isModalOpen,
+							onClose: ()=>btnObj.onClick(false)
+						}}
+						title='Вы точно хотите удлать заказы?'
+						onClickNo={()=>btnObj.onClick(false)}
+						onClickYes={() => btnObj.onClick(true)}
+
+					/>
+
+
 				</WrapperMUI>
 			</ContainerMUI>
 		) : null
