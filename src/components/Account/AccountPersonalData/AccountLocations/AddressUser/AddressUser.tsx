@@ -1,8 +1,5 @@
 import React, {FC, useState} from 'react';
-
 import Basket from '../../../../../UI/UIIcon/Basket.svg';
-import ModalConfirmUI from '../../../../../UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
-
 import {useAddressUserStyle} from './style';
 import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 // import {useUserStore} from '@/hooks/useUserStore';
