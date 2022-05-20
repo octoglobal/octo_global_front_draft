@@ -209,16 +209,27 @@ const Header = () => {
 																aria-labelledby="composition-button"
 																onKeyDown={handleListKeyDown}
 															>
-																{/* <MenuItem
+																{isAdmin? null: <MenuItem
 																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
-																	данные</MenuItem>
-																<MenuItem
+																	данные
+																</MenuItem>}
+																{isAdmin? null:<MenuItem
+																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
+																	данные
+																</MenuItem>}
+																
+																{isAdmin? null:<MenuItem
 																	onClick={handlerPushAccount('/account/orders/wait')}>
 																		Заказы
-																</MenuItem> */}
-																{/* <MenuItem
+																</MenuItem>}
+
+																{isAdmin? null:<MenuItem
 																	// onClick={()=>{}}
-																>Выкуп товара</MenuItem> */}
+																>Выкуп товара</MenuItem>}
+																
+
+
+
 																<MenuItem
 																	onClick={handlerLogout} style={{color: '#274D82'}} >Выход</MenuItem>
 															</MenuList>
