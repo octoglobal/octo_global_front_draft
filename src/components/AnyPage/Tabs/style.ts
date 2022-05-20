@@ -52,7 +52,7 @@ export const useTabsStyle = () => {
 		display: 'flex',
 		justifyContent: 'center',
 		fontFamily: 'Roboto',
-
+		
 		// '&.Mui-selected': {
 		// 	// fontWeight: '400',
 		//
@@ -68,6 +68,11 @@ export const useTabsStyle = () => {
 		// 	},
 		// },
 
+		[theme.breakpoints.down(870)]: {
+			margin: '0 10px !important',
+		},
+
+		
 		[theme.breakpoints.down(781)]: {
 			fontSize: '20px',
 			lineHeight: '21px',
@@ -92,18 +97,26 @@ export const useTabsStyle = () => {
 			borderBottom: '1px solid #C4C4C4',
 			minWidth: '0px',
 		},
+		// [theme.breakpoints.down(800)]: {
+		// 	flexDirection:'column'
+		// },
 	}));
 	const TabsMarginLeft = styled(TabsListUnstyled)(() => ({
 		margin: '0px 0px -6px 6px',
 		alignItems: 'baseline',
 
+	}));	
+	const TabLineMUI = styled('div')(() => ({
+		width: '100%',
+		display: 'flex',
+		justifyContent: 'center',
 	}));
-
 	return {
 		TabWrapperUI,
 		TabUI,
 		TabsListUI,
 		TabsMarginLeft,
-		BgMUI
+		BgMUI,
+		TabLineMUI
 	};
 };

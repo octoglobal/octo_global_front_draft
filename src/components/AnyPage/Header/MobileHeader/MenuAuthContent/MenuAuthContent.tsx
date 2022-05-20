@@ -20,6 +20,7 @@ import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
 import {usePayment} from '@/hooks/usePayment';
 import {useHeaderPaymentStyles} from '@/components/AnyPage/Header/HeaderPayment/style';
 import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
+import EuroExchange from '@/components/AnyPage/EuroExchange/EuroExchange';
 
 const MenuAuthContent: FC = () => {
 	const { isAuth, isAdmin } = useUserStore();
@@ -65,21 +66,25 @@ const MenuAuthContent: FC = () => {
 		pushTo('/account/info');
 	};
 
-	// TODO: ужасное нечитаемое поправить завтра
+	
 	return (
 		<ContentLayoutUI
 			disabledPadding={true}
-		>
+		>	
+		
+			
 			<>
 				{isAuth ? (
 					<>
 						<UserUI onClick={handlerPushToAccount}>
 							<User cutFio={false} />
 						</UserUI>
+						{isAdmin?<EuroExchange></EuroExchange>:null}
+						
 						{isAuth && (!isAdmin || (isAdmin && adminSwitchIdToUser)) && (
 							<ContainerAddPaymentMobileMUI onClick={handleTogglePaymentForm}>
 								<BalanceTextMUI>
-									{userBalance} €
+									{userBalance ? userBalance : 0} €
 								</BalanceTextMUI>
 								{isAdmin && (
 									<AddPaymentMobileMUI>

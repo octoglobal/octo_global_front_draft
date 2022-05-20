@@ -2,9 +2,8 @@ import React, { FC } from 'react';
 import { useBtnSectionStyles } from '@/components/Blog/BlogItem/BtnSection/style';
 import BascetIcon from '../../../../UI/UIIcon/Basket.svg';
 import EditPencilBlueIcon from '../../../../UI/UIIcon/EditPencilBlue.svg';
-
-import ModalConfirmUI from 'UI/UIComponents/ModalConfirmUI/ModalConfirmUI';
 import { useBtnSection } from './useBtnSection';
+import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 
 interface IBtnSection {
 	id:number
@@ -35,8 +34,13 @@ const BtnSection: FC<IBtnSection> = ({id})=>{
 				</ButtonIconMUI>							
 				
 			</BtnSectionMUI>: null}
-			<ModalConfirmUI 			
-				open={openConfirmDialog}
+			
+			<OrderDeleteModal
+				dialogProps={{
+					open: openConfirmDialog,
+					
+				}}
+				buttonNoText='Нет'
 				title="Вы уверены что хотите удалить пост?"
 				onClickYes={handlerFetchDelete(id)}
 				onClickNo={handlerCancel}

@@ -7,7 +7,7 @@ import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
 import { IHints } from '@/components/AnyPage/CategorySearch/types';
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
-
+import EuroExchange from '@/components/AnyPage/EuroExchange/EuroExchange';
 interface ICategorySearchProps {
 	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void;
 	searchHints: IHints[] | IAdminHintsData[];
@@ -33,17 +33,24 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 		handleMouseLeave,
 		handleChangeFocus,
 		handleClickHintItem,
-		handleChangeActiveSuggestion
+		handleChangeActiveSuggestion,
+	
+		isMobile,
 	} = useCategorySearch(
 		onSubmit,
 		searchHints,
 		handleKeyDownEnter,
 		handleChangeSearchValue,
 		component,
-	);
+	);	
 	
+
 	return (
-		<>
+		<SearchContainerWrapperMUI>
+			<EuroPositionMUI>
+				{isMobile?null:<EuroExchange/>	}	
+			</EuroPositionMUI> 
+			
 			<SearchContainerMUI>
 				<Controller
 					name='search'
@@ -74,13 +81,15 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 					handleChangeActiveSuggestion={handleChangeActiveSuggestion}
 				/>
 			)}
-		</>
+		</SearchContainerWrapperMUI>
 	);
 };
 
 const {
 	SearchContainerMUI,
-	TextFieldSearch
+	TextFieldSearch,
+	SearchContainerWrapperMUI,
+	EuroPositionMUI
 } = useCategorySearchStyles();
 
 

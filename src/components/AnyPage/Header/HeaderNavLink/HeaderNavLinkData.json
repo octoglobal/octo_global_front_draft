@@ -56,27 +56,32 @@
     {
       "title": "Заказы",
       "showAuth": true,
+      "showAdmin": false,
       "href": "/account/orders/wait"
     },
 
     {
       "title": "Магазины",
       "showAuth": false,
+      "showAdmin": false,
       "href": "/shops"
     },
     {
       "title": "Стоимость услуг",
       "showAuth": false,
+      "showAdmin": false,
       "href": "/questions?transfer"
     },
     {
       "title": "Блог",
       "showAuth": false,
+      "showAdmin": true,
       "href": "/blog"
     },
     {
       "title": "Частые вопросы",
       "showAuth": false,
+      "showAdmin": false,
       "href": "/questions"
     }
   ]

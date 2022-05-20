@@ -1,7 +1,17 @@
 import {styled, TextField} from '@mui/material';
 
 export const useCategorySearchStyles = () => {
-
+	
+	const SearchContainerWrapperMUI = styled('div')(() => ({
+		position: 'relative'
+	}));
+	
+	const EuroPositionMUI = styled('div')(() => ({
+		// position: 'absolute',
+		// top: 8,
+		// left: -210
+		marginBottom: 20
+	}));
 	const SearchContainerMUI = styled('div')(({theme}) => ({
 		marginBottom: '5px',
 		'& > div': {
@@ -28,6 +38,8 @@ export const useCategorySearchStyles = () => {
 
 	return {
 		TextFieldSearch,
-		SearchContainerMUI
+		SearchContainerMUI,
+		SearchContainerWrapperMUI,
+		EuroPositionMUI
 	};
 };
