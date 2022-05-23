@@ -23,8 +23,8 @@ const AccountPasswordForm : FC = () => {
 		FormTableSectionRightMUI,
 		FormTextFieldContainerMUI,
 		FormContainerTopMUI,
-		FormContainerBottomMUI
-
+		FormContainerBottomMUI,
+		MarginTopMUI,
 	} = useAccountSettingsStyle();
 
 	const {handleSubmit, control, setError, reset, clearErrors } = useForm();
@@ -132,10 +132,14 @@ const AccountPasswordForm : FC = () => {
 						</FormTextFieldBorderUI>
 					</FormTableSectionRightMUI>
 				</FormTableTopSectionMUI>
+				
 				{isSubmitForm &&
+				<MarginTopMUI>
 					<HelperBoxUI>
 						Пароль успешно изменен 
 					</HelperBoxUI>
+				</MarginTopMUI>
+				
 				}
 				<FormContainerBottomMUI>
 					<FormContainerTopMUI>

@@ -16,10 +16,12 @@ export const useHomeAboutStyles = () => {
 			flexDirection: 'column-reverse',
 			justifyContent: 'center',
 			alignItems: 'center',
+			height: '100%',
 		},
 		[theme.breakpoints.down(501)]: {
 			marginBottom: '10px',
 			// height: 'calc(100vh + 40px)',
+			
 		}
 	}));
 

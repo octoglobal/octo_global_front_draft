@@ -103,7 +103,7 @@ const EuroExchange = () => {
 									PopperProps={{
 										disablePortal: true,
 								  }}
-									title="Когда человек сознательно или интуитивно выбирает себе в жизни какую-то цель, жизненную задачу, он невольно дает себе оценку. По тому, ради чего человек ">
+									title="По данному курсу евро Вы можете зачислить валюту на свой лич­ный счет в Octo Glob­al.">
 									<IconMUI onClick={handleTooltipOpen}>
 										<Info></Info>													
 									</IconMUI>

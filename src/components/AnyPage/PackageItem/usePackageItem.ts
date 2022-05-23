@@ -14,7 +14,11 @@ export const usePackageItem = (
 	dropItems: IDropItem[],
 	component: ComponentType
 ) => {
+	const [open, setOpen] = useState(false);
 
+	const handleClick = () => {
+	  setOpen(!open);
+	};
 	const {
 		longId, orders, id, statusId
 	} = packageData;
@@ -235,5 +239,7 @@ export const usePackageItem = (
 		orderContainerStyles,
 		modificationDropItemArray,
 		setIsDeleteTrackNumberModal,
+		handleClick,
+		open
 	};
 };

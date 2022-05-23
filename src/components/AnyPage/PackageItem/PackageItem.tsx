@@ -11,6 +11,15 @@ import {SxProps} from '@mui/material';
 import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
 // import { DEFAULT_MIN_VERSION } from 'tls';
 
+
+
+
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+
+import ArrowClose from '@/UIIcon/ArrowClose.svg';
+import ArrowOpen from '@/UIIcon/ArrowOpen.svg';
+
 interface IPackageItem {
 	component: ComponentType,
 	packageData: IPackageModel
@@ -48,6 +57,8 @@ const PackageItem: FC<IPackageItem> = (
 		modificationDropItemArray,
 		handleDeleteTrackNumber,
 		handleToggleDeleteTrackNumberModal,
+		handleClick,
+		open
 	} = usePackageItem(packageData, dropItems, component);
 
 
@@ -66,47 +77,61 @@ const PackageItem: FC<IPackageItem> = (
 			onDeleteTrackNumber();
 		}
 	};
-
+	
 	return (
 		<ContainerMUI>
 			<TitleMUI>
-				<TitleTextMUI>
-					<TextMUI>
+				<FlexEndMUI>
+					<TitleTextMUI>
+						<TextMUI>
 						Посылка № {longId}
-					</TextMUI>
-					{isVisibleStatus && (
-						<StatusTextMUI>
-							{isStatus.text}
-						</StatusTextMUI>
-					)}
-					{isVisibleTrackNumber && (
-						<TrackNumberContainerMUI>
-							<TrackNumberMUI>{packageData.trackNumber}</TrackNumberMUI>
-							<TrackNumberLinkMUI
-								rel='noreferrer'
-								href={packageData.tracking_link as string}
-								target='_blank'
-							>
-								<TrackNumberLinkTextMUI>
+						</TextMUI>
+						{isVisibleStatus && (
+							<StatusTextMUI>
+								{isStatus.text}
+							</StatusTextMUI>
+						)}
+						{isVisibleTrackNumber && (
+							<TrackNumberContainerMUI>
+								<TrackNumberMUI>{packageData.trackNumber}</TrackNumberMUI>
+								<TrackNumberLinkMUI
+									rel='noreferrer'
+									href={packageData.tracking_link as string}
+									target='_blank'
+								>
+									<TrackNumberLinkTextMUI>
 									Отследить
-								</TrackNumberLinkTextMUI>
-								<TrackNumberIconMUI>
-									<ArrowRightIcon/>
-								</TrackNumberIconMUI>
-							</TrackNumberLinkMUI>
-						</TrackNumberContainerMUI>
-					)}
-				</TitleTextMUI>
+									</TrackNumberLinkTextMUI>
+									<TrackNumberIconMUI>
+										<ArrowRightIcon/>
+									</TrackNumberIconMUI>
+								</TrackNumberLinkMUI>
+							</TrackNumberContainerMUI>
+						)}
+					</TitleTextMUI>
+			
+					<ListItemButtonMUI disableRipple={true}  onClick={handleClick}>
+						{open ? <ArrowOpen></ArrowOpen> :   <ArrowClose></ArrowClose>}
+					</ListItemButtonMUI>
+				</FlexEndMUI>
+				
 				{isDropDownVisible && (
+					
 					<DropDownUI
 						itemId={id}
 						containerStyles={sendPageStyleDropDownUI}
 						dropItems={modificationDropItemArray}
 					/>
+					
+					
 				)}
-			</TitleMUI>
-			<OrdersContainerMUI sx={orderContainerStyles as SxProps}>
 				
+			</TitleMUI>
+
+			
+			<OrdersContainerMUI sx={orderContainerStyles as SxProps}>			
+
+
 				{orders.map(order => (
 					<>
 						<OrderItem
@@ -123,22 +148,28 @@ const PackageItem: FC<IPackageItem> = (
 					</>
 					
 				))}
-				<OrdersDitailsContainerMUI>
-					{orders.map(order => {
-				 return	<OrdersLineContainerMUI key={`${order.id}${order.longId}`}>
-							<OrdersLineItemContainerMUI>
-								{'Заказ № '}{order.longId}																
-							</OrdersLineItemContainerMUI>
-							<OrdersLineItemContainerMUI>
-								{order.title}
-							</OrdersLineItemContainerMUI>
-							<OrdersLineItemTrackContainerMUI>
-								{order.trackNumber}
-							</OrdersLineItemTrackContainerMUI>
-						</OrdersLineContainerMUI>;	
+				<Collapse in={open} timeout="auto" unmountOnExit>
+					<List component="div" disablePadding>					
+						<OrdersDitailsContainerMUI>
+							{orders.map(order => {
+										 return	<OrdersLineContainerMUI key={`${order.id}${order.longId}`}>
+									<OrdersLineItemContainerMUI>
+										{'Заказ № '}{order.longId}																
+									</OrdersLineItemContainerMUI>
+									<OrdersLineItemContainerMUI>
+										{order.title}
+									</OrdersLineItemContainerMUI>
+									<OrdersLineItemTrackContainerMUI>
+										{order.trackNumber}
+									</OrdersLineItemTrackContainerMUI>
+								</OrdersLineContainerMUI>;	
 						
-					})}
-				</OrdersDitailsContainerMUI>
+							})}
+						</OrdersDitailsContainerMUI>
+					
+					</List>
+				</Collapse>
+			
 				
 				
 				
@@ -220,7 +251,9 @@ const {
 	OrdersDitailsContainerMUI,
 	OrdersLineContainerMUI,
 	OrdersLineItemContainerMUI,
-	OrdersLineItemTrackContainerMUI
+	OrdersLineItemTrackContainerMUI,
+	ListItemButtonMUI,
+	FlexEndMUI,
 } = usePackageItemStyles();
 
 

@@ -29,7 +29,7 @@ const AccountHelp: FC = () => {
 						)}
 					</HelpImageMUI>
 					<HelperTextMUI>
-						<LinkUI href='/questions'>Дополнительные услуги</LinkUI>						
+						<LinkUI href='/questions?costServices'>Дополнительные услуги</LinkUI>						
 					</HelperTextMUI>
 				</HelpItemMUI>
 

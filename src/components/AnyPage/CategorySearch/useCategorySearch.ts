@@ -3,9 +3,10 @@ import {useFormContext, useWatch} from 'react-hook-form';
 import {ISearchData, SearchSubmitType} from '@/components/Shops/useShopPage';
 import { IHints } from '@/components/AnyPage/CategorySearch/types';
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
-
+import { useUserStore } from '@/hooks/useUserStore';
 
 import { useMobile } from '@/hooks/useMedia';
+import { useRouter } from 'next/router';
 
 export const useCategorySearch = (
 	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void,
@@ -25,7 +26,20 @@ export const useCategorySearch = (
 		isMobile
 	} = useMobile();
 	
+	const {		
+		isAdmin,
+	} = useUserStore();
+
 	
+	
+	
+
+	const isAccount = useMemo(() => (
+		useRouter().pathname?.split('/')[1] === 'account'
+	), [useRouter]);
+	
+
+
 	const isHintsData = useMemo(() => (
 		Array.isArray(searchHints) && searchHints?.length
 
@@ -152,7 +166,8 @@ export const useCategorySearch = (
 		setActiveSuggestion,
 		handleClickHintItem,
 		handleChangeActiveSuggestion,
-	
+		isAdmin,
 		isMobile,
+		isAccount
 	};
 };

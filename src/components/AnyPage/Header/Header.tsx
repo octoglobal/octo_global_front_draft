@@ -209,10 +209,10 @@ const Header = () => {
 																aria-labelledby="composition-button"
 																onKeyDown={handleListKeyDown}
 															>
-																{isAdmin? null: <MenuItem
+																{/* {isAdmin? null: <MenuItem
 																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
 																	данные
-																</MenuItem>}
+																</MenuItem>} */}
 																{isAdmin? null:<MenuItem
 																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
 																	данные

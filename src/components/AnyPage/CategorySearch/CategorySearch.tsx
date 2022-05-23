@@ -34,8 +34,9 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 		handleChangeFocus,
 		handleClickHintItem,
 		handleChangeActiveSuggestion,
-	
+		isAdmin,
 		isMobile,
+		isAccount,
 	} = useCategorySearch(
 		onSubmit,
 		searchHints,
@@ -47,9 +48,10 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 
 	return (
 		<SearchContainerWrapperMUI>
-			<EuroPositionMUI>
+			{isAdmin && isAccount?<EuroPositionMUI>
 				{isMobile?null:<EuroExchange/>	}	
-			</EuroPositionMUI> 
+			</EuroPositionMUI>: null}
+			 
 			
 			<SearchContainerMUI>
 				<Controller

@@ -19,6 +19,7 @@ const Questions = () => {
 	const [openVPN, setOpenVPN] = useState(false);
 	const [openTranslate, setOpenTranslate] = useState(false);
 	const [openTransferPage, setOpenTransferPage] = useState(false);
+	const [costServices, setOpenСostServicesPage] = useState(false);
 	const router = useRouter();
 
 
@@ -26,21 +27,25 @@ const Questions = () => {
 		const key = Object.keys(router.query)[0];
 		switch (key) {
 		case 'translate':
-			console.log('translate');
+			
 			setOpenTranslate(true);
 			break;
 		case 'transfer':
-			console.log('transfer');
+			
 			setOpenTransferPage(true);
 			break;
 		case 'vpn':
-			console.log('vpn');
+			
 			setOpenVPN(true);
+			break;
+		case 'costServices':
+			
+			setOpenСostServicesPage(true);
 			break;
 		default:
 			break;
 		}
-		console.log('router',Object.keys(router.query)[0]);
+		// console.log('router',Object.keys(router.query)[0]);
 		
 	},[router]);
 
@@ -56,7 +61,7 @@ const Questions = () => {
 
 			<CollapseInfo
 				title={'Стоимость наших услуг '}				
-				open={false}
+				open={costServices}
 			>
 				<CostServices/>
 			</CollapseInfo>
