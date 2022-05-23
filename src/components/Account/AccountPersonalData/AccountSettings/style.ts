@@ -587,7 +587,14 @@ export const useAccountSettingsStyle = () => {
 			}
 		},
 	}));
-
+	const MarginTopMUI = styled('div')(({theme}) => ({
+		[theme.breakpoints.down(600)]:{
+			marginTop: 23,
+			marginBottom: -25,
+		}
+		
+	}));
+	
 	return {
 		UserFIOUI,
 		FormTableUI,
@@ -624,6 +631,7 @@ export const useAccountSettingsStyle = () => {
 		FormContainerBottomMUI,
 		MailLeftMUI,
 		MailRightMUI,
-		AdminMarginBottomMUI
+		AdminMarginBottomMUI,
+		MarginTopMUI,
 	};
 };
