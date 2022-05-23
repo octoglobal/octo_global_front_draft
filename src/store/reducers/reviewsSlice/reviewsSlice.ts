@@ -1,6 +1,6 @@
 import {IReviewsModel} from '@/models/IReviewsModel';
-import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
-import {fetchAddReviewsMobile, fetchMoreReviews, fetchReviews,fetchDeleteReview} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
+import {createSlice,  PayloadAction} from '@reduxjs/toolkit';
+import {fetchAddReviewsMobile, fetchMoreReviews, fetchReviews} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
 
 export interface IReviewsSlice {
 	reviews: IReviewsModel[] | [],

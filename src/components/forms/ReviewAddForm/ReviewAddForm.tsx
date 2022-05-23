@@ -9,11 +9,11 @@ import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 import {useReviewAddFormStyle} from '@/components/forms/ReviewAddForm/style';
 import {TAddReview} from '../../../types/types';
-import {useAppDispatch} from '@/hooks/useReduxHooks';
+// import {useAppDispatch} from '@/hooks/useReduxHooks';
 // import { toggleDrawer } from '@/store/reducers/swipeableDrawerSlice/swipeableDrawerSlice';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
-import {fetchAddReviewsMobile} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
-import {useUserStore} from '@/hooks/useUserStore';
+// import {fetchAddReviewsMobile} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
+// import {useUserStore} from '@/hooks/useUserStore';
 
 interface IReviewAddForm {
 	defaultText?:string
@@ -47,7 +47,7 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 			getReviews(currentPage);
 			setShowPromt(true);
 		} else {
-			const text = getValues('text');
+			// const text = getValues('text');
 			// dispatch(fetchAddReviewsMobile({
 			// 	text,
 			// 	userName: user.name,
