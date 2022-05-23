@@ -186,6 +186,15 @@ export const usePackageItemStyles = () => {
 		whiteSpace: 'nowrap',
 		overflow: 'hidden',
 		textOverflow: 'ellipsis',
+
+		'&:nth-child(2)':{
+			[theme.breakpoints.down(500)]:{
+			
+				textAlign: 'end',
+	
+			},
+		},
+
 		[theme.breakpoints.down(1220)]:{
 			maxWidth: '200px',
 			minWidth: 200,
@@ -199,7 +208,9 @@ export const usePackageItemStyles = () => {
 			minWidth: 150,
 		},
 		[theme.breakpoints.down(500)]:{
-			fontSize: '16px'
+			fontSize: '16px',
+			// textAlign: 'end',
+
 		},
 	}));
 	const OrdersLineItemTrackContainerMUI = styled('div')(({theme}) => ({		
