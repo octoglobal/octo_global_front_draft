@@ -1,6 +1,6 @@
 import {IReviewsModel} from '@/models/IReviewsModel';
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchAddReviewsMobile, fetchMoreReviews, fetchReviews} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
+import {createSlice, current, PayloadAction} from '@reduxjs/toolkit';
+import {fetchAddReviewsMobile, fetchMoreReviews, fetchReviews,fetchDeleteReview} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
 
 export interface IReviewsSlice {
 	reviews: IReviewsModel[] | [],
@@ -57,7 +57,12 @@ export const reviewsSlice = createSlice({
 		},
 		changeNewReviewsMobile: (state) => {
 			state.isNewReviewsMobile = false;
-		}
+		},
+		deleteReview: (state, action)=>{
+			state.reviews = state.reviews.filter((item) => {
+				return item.id !== action.payload;
+			  });
+		},
 	},
 	extraReducers: {
 		[fetchReviews.fulfilled.type]: (state, data: PayloadAction<IReviewsGet>) => {
@@ -82,10 +87,10 @@ export const reviewsSlice = createSlice({
 			state.updateReviews = false;
 			state.isNewReviewsMobile = true;
 			state.reviews = [ data.payload, ...state.reviews];
-		}
+		},
 	}
 });
 
-export const {reviewsReset, setCurrentPage} = reviewsSlice.actions;
+export const {reviewsReset, setCurrentPage, deleteReview} = reviewsSlice.actions;
 
 export default reviewsSlice.reducer;

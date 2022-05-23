@@ -2,6 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {octoAxios} from '@/lib/http';
 import {IReviewAddSubmit, IReviewAddSubmitMobile} from '../../../../types/types';
+import { deleteReview } from '../reviewsSlice';
 
 export const fetchReviews = createAsyncThunk(
 	'reviews/get',
@@ -68,6 +69,23 @@ export const fetchMoreReviews = createAsyncThunk(
 			if(axios.isAxiosError(e)) {
 				return thunkAPI.rejectWithValue(e.response?.status);
 			}
+		}
+	}
+);
+
+export const fetchDeleteReview = createAsyncThunk(
+	'reviews/delete',
+	async (data : {id: number}, {dispatch, rejectWithValue}) => {		
+		try {
+			const res = await octoAxios.delete('/admin/review', { data: { reviewId: data.id }});
+			
+			if (res.statusText !== 'OK') {
+				throw new Error('Не удалось удалить удалить отзыв');
+			  }
+			dispatch(deleteReview(data.id));
+			// return data.id;
+		} catch (e ) {
+		 return	rejectWithValue('ошибка удаления отзыва');
 		}
 	}
 );

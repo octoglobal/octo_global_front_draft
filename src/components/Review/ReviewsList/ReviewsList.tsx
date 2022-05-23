@@ -26,12 +26,14 @@ const ReviewsList: FC<IReviewsListProps> = ({isMobile}) => {
 			{!isMobile ? (
 				<ReviewsContentMUI>
 					<ReviewBlockMUI>
+					
 						{reviews.slice(0, 3).map((item, index) => (
 							<ReviewItem
 								key={`${item.createdTime}${index}${item.userName}`}
 								text={item.text}
 								userName={item.userName}
 								createdTime={item.createdTime}
+								id={item.id}
 							/>
 						))}
 					</ReviewBlockMUI>
@@ -42,12 +44,14 @@ const ReviewsList: FC<IReviewsListProps> = ({isMobile}) => {
 								text={item.text}
 								userName={item.userName}
 								createdTime={item.createdTime}
+								id={item.id}
 							/>
 						))}
 					</ReviewBlockMUI>
 				</ReviewsContentMUI>
 			) : (
 				<ReviewBlockMUI ref={listRef}>
+					
 					{reviews.map((item, index) => (
 						<ReviewItem
 							key={`${item.createdTime}${index}${item.userName}`}

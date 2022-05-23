@@ -83,6 +83,7 @@ export interface IReviewItem {
 	text: string,
 	userName: string,
 	createdTime: string,
+	id: number,
 }
 
 export interface IReviewAddSubmit {
