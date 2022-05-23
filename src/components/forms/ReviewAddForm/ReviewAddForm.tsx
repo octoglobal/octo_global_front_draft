@@ -48,11 +48,12 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 			setShowPromt(true);
 		} else {
 			const text = getValues('text');
-			dispatch(fetchAddReviewsMobile({
-				text,
-				userName: user.name,
-				userId: user.id
-			}));
+			// dispatch(fetchAddReviewsMobile({
+			// 	text,
+			// 	userName: user.name,
+			// 	userId: user.id
+			// }));
+			getReviews(currentPage);
 		}
 		reset({
 			text: '',

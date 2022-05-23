@@ -58,6 +58,7 @@ const ReviewsList: FC<IReviewsListProps> = ({isMobile}) => {
 							text={item.text}
 							userName={item.userName}
 							createdTime={item.createdTime}
+							id={item.id}
 						/>
 					))}
 				</ReviewBlockMUI>
