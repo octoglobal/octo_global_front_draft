@@ -1,4 +1,8 @@
 import {Link, styled} from '@mui/material';
+import ListItemButton from '@mui/material/ListItemButton';
+
+
+
 
 export const usePackageItemStyles = () => {
 
@@ -137,7 +141,7 @@ export const usePackageItemStyles = () => {
 	}));
 
 	const OrdersDitailsContainerMUI = styled('div')(({theme}) => ({
-		marginTop: '50px',
+		// marginTop: '50px',
 		marginBottom: 20,
 		marginLeft: 194,
 		display: 'flex',
@@ -186,13 +190,16 @@ export const usePackageItemStyles = () => {
 			maxWidth: '200px',
 			minWidth: 200,
 		},
-		[theme.breakpoints.down(1180)]:{
-			maxWidth: '180px',
-			minWidth: 180,
-		},
+		// [theme.breakpoints.down(1180)]:{
+		// 	maxWidth: '180px',
+		// 	minWidth: 180,
+		// },
 		[theme.breakpoints.down(1180)]:{
 			maxWidth: '150px',
 			minWidth: 150,
+		},
+		[theme.breakpoints.down(500)]:{
+			fontSize: '16px'
 		},
 	}));
 	const OrdersLineItemTrackContainerMUI = styled('div')(({theme}) => ({		
@@ -204,6 +211,26 @@ export const usePackageItemStyles = () => {
 		}
 		
 	}));
+	const ListItemButtonMUI = styled(ListItemButton)(({theme}) => ({		
+		padding: 0,
+		maxWidth: 24,
+		marginLeft: 23,
+		
+		// alignSelf: 'flex-start',
+		[theme.breakpoints.down(500)]:{
+			marginRight: 30,
+		}
+
+	}));
+	const FlexEndMUI = styled('div')(() => ({		
+		display: 'flex',
+	
+		
+		
+
+	}));
+	
+
 	return {
 		TextMUI,
 		TitleMUI,
@@ -222,6 +249,8 @@ export const usePackageItemStyles = () => {
 		TrackNumberLinkMUI,
 		OrdersLineContainerMUI,
 		OrdersLineItemContainerMUI,
-		OrdersLineItemTrackContainerMUI
+		OrdersLineItemTrackContainerMUI,
+		ListItemButtonMUI,
+		FlexEndMUI
 	};
 };
