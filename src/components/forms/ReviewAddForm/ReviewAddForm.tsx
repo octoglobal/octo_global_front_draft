@@ -39,8 +39,8 @@ const ReviewAddForm: FC<IReviewAddForm> = ({defaultText}) => {
 
 	const {isMobile} = useMobile();
 	const {isCustomSize} = useCustomSize(null, 1241);
-	const { user } = useUserStore();
-	const dispatch = useAppDispatch();
+	// const { user } = useUserStore();
+	// const dispatch = useAppDispatch();
 
 	const successSubmit = () => {
 		if (!isMobile) {
