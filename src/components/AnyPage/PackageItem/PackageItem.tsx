@@ -110,7 +110,7 @@ const PackageItem: FC<IPackageItem> = (
 						)}
 					</TitleTextMUI>
 			
-					<ListItemButtonMUI onClick={handleClick}>
+					<ListItemButtonMUI disableRipple={true}  onClick={handleClick}>
 						{open ? <ArrowOpen></ArrowOpen> :   <ArrowClose></ArrowClose>}
 					</ListItemButtonMUI>
 				</FlexEndMUI>

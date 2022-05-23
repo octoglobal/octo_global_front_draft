@@ -141,7 +141,7 @@ export const usePackageItemStyles = () => {
 	}));
 
 	const OrdersDitailsContainerMUI = styled('div')(({theme}) => ({
-		// marginTop: '50px',
+		marginTop: '30px',
 		marginBottom: 20,
 		marginLeft: 194,
 		display: 'flex',
@@ -153,7 +153,7 @@ export const usePackageItemStyles = () => {
 		},
 		[theme.breakpoints.down(500)]:{
 			
-			marginTop: '32px',
+			marginTop: '0px',
 			marginBottom: 0,
 			
 		}
@@ -216,7 +216,9 @@ export const usePackageItemStyles = () => {
 		maxWidth: 24,
 		marginLeft: 23,
 		
-		// alignSelf: 'flex-start',
+		'&:hover':{
+			background: 'none',
+		},
 		[theme.breakpoints.down(500)]:{
 			marginRight: 30,
 		}
