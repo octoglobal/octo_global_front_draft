@@ -80,7 +80,7 @@ export const fetchMoreReviews = createAsyncThunk(
 export const fetchDeleteReview = createAsyncThunk(
 	'reviews/delete',
 	async (data : {id: number}, {dispatch, rejectWithValue}) => {
-		console.log('DELETE', data);		
+		// console.log('DELETE', data);		
 		try {
 			const res = await octoAxios.delete('/admin/review', { data: { reviewId: data.id }});
 			
