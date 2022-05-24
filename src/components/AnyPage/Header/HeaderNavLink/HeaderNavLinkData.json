@@ -79,7 +79,7 @@
       "href": "/blog"
     }, {
       "title": "Сформировать отчёт",
-      "showAuth": false,
+      "showAuth": true,
       "showAdmin": true,
       "href": "https://octo.global/api/admin/users_table"
     },
