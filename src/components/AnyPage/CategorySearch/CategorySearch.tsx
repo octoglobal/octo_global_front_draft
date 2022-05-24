@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC,useState} from 'react';
 import {useCategorySearchStyles} from '@/components/AnyPage/CategorySearch/style';
 import {Controller} from 'react-hook-form';
 import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySearchHints/CategorySearchHints';
@@ -8,6 +8,11 @@ import { IHints } from '@/components/AnyPage/CategorySearch/types';
 import { IAdminHintsData } from '@/reducers/adminSlice/adminSlice';
 
 import EuroExchange from '@/components/AnyPage/EuroExchange/EuroExchange';
+import DropDownUI from 'UI/UIComponents/DropDownUI/DropDownUI';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
+
+import { useRouter } from 'next/router';
+
 interface ICategorySearchProps {
 	onSubmit: (data: ISearchData | {suggestionIndex: number}, type?: SearchSubmitType) => void;
 	searchHints: IHints[] | IAdminHintsData[];
@@ -37,6 +42,10 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 		isAdmin,
 		isMobile,
 		isAccount,
+		dropItems,
+		dropDownOpen,
+		setDropDownOpen,
+		ButtonSxStyle,
 	} = useCategorySearch(
 		onSubmit,
 		searchHints,
@@ -45,31 +54,47 @@ const CategorySearch: FC<ICategorySearchProps> = ({
 		component,
 	);	
 	
-
+	const router = useRouter();
 	return (
 		<SearchContainerWrapperMUI>
 			{isAdmin && isAccount?<EuroPositionMUI>
 				{isMobile?null:<EuroExchange/>	}	
 			</EuroPositionMUI>: null}
 			 
+					
+			<SearchWrapperMUI>
+				<SearchContainerMUI>
+					<Controller
+						name='search'
+						control={control}
+						render={({field: {value, onChange}}) => (
+							<TextFieldSearch
+								value={value}
+								autoComplete='off'
+								onFocus={handleChangeFocus(true)}
+								onBlur={handleChangeFocus(false)}
+								onChange={onChange}
+								onKeyDown={handleKeyDown}
+								placeholder='Поиск'
+							/>
+						)}
+					/>
+				</SearchContainerMUI>
+				
+				{isAdmin && isAccount? isMobile? <ButtonUI onClick={()=>router.push('/account/orders/all-wait')} sx={ButtonSxStyle}>Показать все ожидаемые товары</ButtonUI>:<DropDownWrapperMUI>
+					<DropDownUI
+						itemId={0}
+						externalOpen={dropDownOpen}
+						setExternalOpen={setDropDownOpen}
+						dropItems={dropItems}
+						containerStyles={{ width: 261}}
+					/>
+				</DropDownWrapperMUI>: null}
+			</SearchWrapperMUI>
+		
+		
+
 			
-			<SearchContainerMUI>
-				<Controller
-					name='search'
-					control={control}
-					render={({field: {value, onChange}}) => (
-						<TextFieldSearch
-							value={value}
-							autoComplete='off'
-							onFocus={handleChangeFocus(true)}
-							onBlur={handleChangeFocus(false)}
-							onChange={onChange}
-							onKeyDown={handleKeyDown}
-							placeholder='Поиск'
-						/>
-					)}
-				/>
-			</SearchContainerMUI>
 			{isVisibleHints && (
 				<CategorySearchHint
 					component={component}
@@ -91,7 +116,9 @@ const {
 	SearchContainerMUI,
 	TextFieldSearch,
 	SearchContainerWrapperMUI,
-	EuroPositionMUI
+	EuroPositionMUI,
+	DropDownWrapperMUI,
+	SearchWrapperMUI,
 } = useCategorySearchStyles();
 
 

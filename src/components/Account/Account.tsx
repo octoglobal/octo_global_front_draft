@@ -4,15 +4,18 @@ import AccountUrlArray from './AccountTabsData.json';
 import {useAccountPageStyle} from './style';
 import { useAccount } from '@/components/Account/useAccount';
 import AccountSearch from '@/components/Account/AccountSearch/AccountSearch';
+import AccountAllProductList from './AccountAllProductList/AccountAllProductList';
 
 interface IAccountPage {
 	renderTabs?: boolean,
 	children: React.ReactChild | React.ReactNode,
+	allWaitPage?: boolean
 }
 
 const AccountPage: FC<IAccountPage> = ({
 	renderTabs = true,
-	children
+	children,
+	allWaitPage = false
 }) => {
 
 	const {
@@ -29,9 +32,16 @@ const AccountPage: FC<IAccountPage> = ({
 					<AccountSearch/>
 				</SearchContainerMUI>
 			)}
-			{!!(isAdmin && adminSwitchIdToUser && adminSwitchUserModel) && (
+
+			{/* {isAdmin?<AccountAllProductList/>:null} */}
+
+		
+				
+
+
+			{!!(isAdmin && (adminSwitchIdToUser && adminSwitchUserModel || allWaitPage)) && (
 				<>
-					{renderTabs && (
+					{renderTabs && ( allWaitPage?null: 
 						<Tabs
 							data={AccountUrlArray}
 						/>

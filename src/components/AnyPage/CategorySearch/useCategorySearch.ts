@@ -21,7 +21,14 @@ export const useCategorySearch = (
 	const [isFocus, setIsFocus] = useState<boolean>(false);
 	const [activeSuggestion, setActiveSuggestion] = useState<number>(0);
 	const [isMouseEnter, setIsMouseEnter] = useState(false);
+	const [dropDownOpen, setDropDownOpen] = useState<boolean>(false);
 
+	const router = useRouter();
+	const dropItems = [
+		{title: 'Сформировать отчёт', onClick: () => console.log('Сформировать отчёт')},
+		{title: 'Все ожидаемые товары', onClick: ()=>router.push('/account/orders/all-wait')},
+		
+	];
 	const {
 		isMobile
 	} = useMobile();
@@ -151,7 +158,11 @@ export const useCategorySearch = (
 			handleKeyDownEnter();
 		}
 	}, [searchValue]);
-
+	const ButtonSxStyle = {
+		backgroundColor: 'rgba(39, 77, 130, 0.8)',
+		 width: '90%',
+		margin: 0
+	};
 	return {
 		isFocus,
 		control,
@@ -168,6 +179,10 @@ export const useCategorySearch = (
 		handleChangeActiveSuggestion,
 		isAdmin,
 		isMobile,
-		isAccount
+		isAccount,
+		dropItems,
+		dropDownOpen,
+		setDropDownOpen,
+		ButtonSxStyle,
 	};
 };
