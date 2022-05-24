@@ -7,6 +7,7 @@ import { useUserStore } from '@/hooks/useUserStore';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {fetchDeleteReview} from '@/reducers/reviewsSlice/asyncActions/reviewsApi';
 import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/OrderDeleteModal';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName, id}) => {
 	const [openMore, setOpenMore] = useState<boolean>(false);
@@ -25,7 +26,7 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName, id}) => {
 	const dispatch = useAppDispatch();
 
 	const handleDeleteReview = ()=>{
-		console.log('dsfsdf');
+		
 		dispatch(fetchDeleteReview({id:id}));
 		setOpenConfirmDialog(false);
 	};
@@ -70,7 +71,12 @@ const ReviewItem: FC<IReviewItem> = ({text, createdTime, userName, id}) => {
 			/>
 				
 			
-			{isAdmin?<div onClick={()=>setOpenConfirmDialog(true)}>delete</div>: null}
+			{isAdmin?<ButtonUI style={{
+				width: '100px',
+				height: '30px',
+				backgroundColor: '#274D82',
+				opacity: '0.8'
+			}} onClick={()=>setOpenConfirmDialog(true)}>delete</ButtonUI>: null}
 		</>
 		
 	);
