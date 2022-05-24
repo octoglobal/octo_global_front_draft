@@ -4,7 +4,7 @@ import AccountUrlArray from './AccountTabsData.json';
 import {useAccountPageStyle} from './style';
 import { useAccount } from '@/components/Account/useAccount';
 import AccountSearch from '@/components/Account/AccountSearch/AccountSearch';
-import AccountAllProductList from './AccountAllProductList/AccountAllProductList';
+
 
 interface IAccountPage {
 	renderTabs?: boolean,

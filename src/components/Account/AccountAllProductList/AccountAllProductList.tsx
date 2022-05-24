@@ -4,10 +4,6 @@ import {useAccountAllProducListStyle} from './style';
 import CheckboxUIV3 from 'UI/UIComponents/CheckboxUIV3/CheckboxUIV3';
 
 import {useForm} from 'react-hook-form';
-import { useMobile } from '@/hooks/useMedia';
-
-import { useRouter } from 'next/router';
-
 
 interface IDataProducts {
 	orderId: number,
@@ -22,16 +18,11 @@ interface IDataProducts {
 const AccountAllProducList: FC = () => {
 
 	const [productlist, setProductlist] = useState<IDataProducts[]>([]);
-	;
-
-	const {
-		isMobile
-	} = useMobile();
-	const {		
-		control,		
 		
+	const {		
+		control		
 	} = useForm();
-	const router = useRouter();
+	
 	
 
 

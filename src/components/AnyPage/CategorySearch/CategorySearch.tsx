@@ -1,4 +1,4 @@
-import React, {FC,useState} from 'react';
+import React, {FC} from 'react';
 import {useCategorySearchStyles} from '@/components/AnyPage/CategorySearch/style';
 import {Controller} from 'react-hook-form';
 import CategorySearchHint from '@/components/AnyPage/CategorySearch/CategorySearchHints/CategorySearchHints';

@@ -24,8 +24,17 @@ export const useCategorySearch = (
 	const [dropDownOpen, setDropDownOpen] = useState<boolean>(false);
 
 	const router = useRouter();
+
+	const getFile = async ()=>{
+		console.log('Сформировать отчёт');
+		const a = document.createElement('a');		
+		a.href = 'https://octo.global/api/admin/users_table';		
+		a.click();
+		a.remove();		
+	};
+
 	const dropItems = [
-		{title: 'Сформировать отчёт', onClick: () => console.log('Сформировать отчёт')},
+		{title: 'Сформировать отчёт', onClick: () => getFile() },
 		{title: 'Все ожидаемые товары', onClick: ()=>router.push('/account/orders/all-wait')},
 		
 	];
