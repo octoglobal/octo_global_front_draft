@@ -57,7 +57,7 @@ const Footer = () => {
 							<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
 							<FooterRowIconsUI>
 								<SvgLinkUI
-									href='https://vk.com/'
+									href='https://vk.com/club212299557'
 									title='vk'
 								>
 									<VkIcon/>
@@ -70,7 +70,7 @@ const Footer = () => {
 								{/*</SvgLinkUI>*/}
 								<SvgLinkUI
 									title='telegram'
-									href='https://web.telegram.org/k/'
+									href='https://t.me/octoglobal'
 								>
 									<TelegramIcon/>
 								</SvgLinkUI>
