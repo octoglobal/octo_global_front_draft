@@ -42,7 +42,13 @@ export const useAccountSearch = () => {
 				await dispatch(orderStockSlice.actions.resetSlice());
 				await dispatch(orderWaitSlice.actions.defaultData());
 				await dispatch(orderSendSlice.actions.resetSlice());
-				router.push(router.pathname, {query: {userId: item.id}});
+				const allWaitPage = router.pathname.match('all-wait');
+				
+				if (!allWaitPage) {
+					router.push(router.pathname, {query: {userId: item.id}});
+				} else {				
+					router.push(`/account/orders/wait?userId=${item.id}`);
+				}
 			}
 		}
 	};

@@ -77,6 +77,11 @@
       "showAuth": false,
       "showAdmin": true,
       "href": "/blog"
+    }, {
+      "title": "Сформировать отчёт",
+      "showAuth": false,
+      "showAdmin": true,
+      "href": "https://octo.global/api/admin/users_table"
     },
     {
       "title": "Частые вопросы",

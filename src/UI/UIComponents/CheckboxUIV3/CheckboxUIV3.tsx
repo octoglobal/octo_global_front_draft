@@ -6,26 +6,18 @@ import {
 import {CheckboxProps} from '@mui/material';
 import CheckBoxEmpty from '../../UIIcon/CheckboxEmptyV2.svg';
 import CheckBoxFill from '../../UIIcon/CheckBoxFillV2.svg';
-import {useCheckboxUIV2Styles} from './style';
+import {useCheckboxUIV3Styles} from './style';
 
-interface ICheckboxUIV2Props {
+interface ICheckboxUIV3Props {
 	controller: Omit<ControllerProps, 'render'>
+	myValue: boolean,
 	checkboxProps?: CheckboxProps,
-	callback?: () => void;
+	
 }
 
-const CheckboxUIV2: FC<ICheckboxUIV2Props> = ({controller, checkboxProps, callback}) => {
+const CheckboxUIV3: FC<ICheckboxUIV3Props> = ({controller, checkboxProps, myValue}) => {
 
-	const handleChange = (value: boolean, onChange: (state: boolean) => void) => {
-		console.log(value);
-		return () => {
-			onChange(!value);
-			if (callback) {
-				callback();
-				
-			}
-		};
-	};
+
 	return (
 		<Controller
 			{...controller}
@@ -34,9 +26,9 @@ const CheckboxUIV2: FC<ICheckboxUIV2Props> = ({controller, checkboxProps, callba
 				<StyleCheckboxMUI
 					icon={<CheckBoxEmpty />}
 					checkedIcon={<CheckBoxFill />}
-					checked={value}
+					checked={myValue}
 					{...checkboxProps}
-					onChange={handleChange(value, onChange)}
+					// onChange={handleChange(value, onChange)}
 				/>
 			)}
 		/>
@@ -45,6 +37,6 @@ const CheckboxUIV2: FC<ICheckboxUIV2Props> = ({controller, checkboxProps, callba
 
 const {
 	StyleCheckboxMUI
-} = useCheckboxUIV2Styles();
+} = useCheckboxUIV3Styles();
 
-export default React.memo(CheckboxUIV2);
+export default React.memo(CheckboxUIV3);

@@ -20,6 +20,9 @@ export const useCategorySearchStyles = () => {
 		},
 		[theme.breakpoints.down(1025)]: {
 			marginBottom: '3px',
+		},
+		[theme.breakpoints.down(600)]: {
+			marginBottom: '15px',
 		}
 	}));
 
@@ -35,11 +38,47 @@ export const useCategorySearchStyles = () => {
 			},
 		}
 	}));
+	const DropDownWrapperMUI = styled('div')(() => ({
+		'& > div': {
+			'& > button': {
+				padding: 0,
+				margin: '0 0 0 5px !important',
+			},
+			'& > div': {
+				'& > button': {
+					margin: '0 !important',
+				}
+			}
+		}
+	}));
+	const SearchWrapperMUI = styled('div')(({theme}) => ({
+		display: 'flex',
+		alignItems: 'center',
+		
+		[theme.breakpoints.down(600)]:{
+			flexDirection: 'column',
+		
+		},	
+		'&>div':{			
+			'&:nth-child(1)':{
+				width: '100%',
+				marginRight: 25	,
+				[theme.breakpoints.down(600)]:{
+					marginRight: 0	
+				}			
+			},
+			
+		},
+	}));
+
+	
 
 	return {
 		TextFieldSearch,
 		SearchContainerMUI,
 		SearchContainerWrapperMUI,
-		EuroPositionMUI
+		EuroPositionMUI,
+		DropDownWrapperMUI,
+		SearchWrapperMUI,
 	};
 };
