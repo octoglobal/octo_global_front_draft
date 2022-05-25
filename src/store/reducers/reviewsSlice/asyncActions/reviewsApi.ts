@@ -83,14 +83,14 @@ export const fetchDeleteReview = createAsyncThunk(
 		// console.log('DELETE', data);		
 		try {
 			const res = await octoAxios.delete('/admin/review', { data: { reviewId: data.id }});
-			
-			if (res.statusText !== 'OK') {
-				throw new Error('Не удалось удалить удалить отзыв');
-			  }
-			dispatch(deleteReview(data.id));
+			if (res.status === 200){			
+				
+				dispatch(deleteReview(data.id));
+			 }
+			 throw new Error('Не удалось удалить удалить отзыв');
 			// return data.id;
 		} catch (e ) {
-		 return	rejectWithValue('ошибка удаления отзыва');
+		 	return	rejectWithValue('ошибка удаления отзыва');
 		}
 	}
 );

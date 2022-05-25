@@ -27,7 +27,7 @@ const AccountInstruction : FC = () => {
 					За покупками!
 				</ButtonUI> */}
 				<LinkMUI
-					href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=`}
+					href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=''`}
 				>Связаться с менеджером</LinkMUI>
 				<WhatsAppIconLarge/>
 			</FooterButtonMUI>
