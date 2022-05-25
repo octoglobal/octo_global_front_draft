@@ -29,7 +29,14 @@ export const useContactsStyle = () => {
 		width: 368,
 		[theme.breakpoints.down(600)]:{
 			textAlign: 'center',
-			marginTop: 20,
+			paddingTop: 20,
+			margin: '0 auto',
+		},
+		[theme.breakpoints.down(376)]:{
+			width: 350,
+		},
+		[theme.breakpoints.down(369)]:{
+			width: 300,
 		},
 
 	}));
@@ -113,11 +120,14 @@ export const useContactsStyle = () => {
 		marginBottom: '15px',
 		width: '100%',
 	}));
-	const DaysGridMUI = styled('div')(() => ({
+	const DaysGridMUI = styled('div')(({theme}) => ({
 		display: 'grid',
 		gridTemplateAreas: 'day time',
 		gridTemplateColumns: '178px 113px',
-		gap: 15
+		gap: 15,
+		[theme.breakpoints.down(600)]:{
+			gridTemplateColumns: '168px 113px',
+		}
 	}));
 
 	const ErrorMUI = styled('div')(() => ({
