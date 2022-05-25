@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {FC, ReactElement, ReactNode } from 'react';
 import {useBackgroundWrapperStyle} from './style';
 
-const BackgroundWrapper = ({children}) => {
+interface IBgProps {
+	children: ReactElement | ReactNode
+}
+
+
+const BackgroundWrapper:FC<IBgProps> = ({children}) => {
 	return(
 		<BackgroundWrapperMUI>
 			<BackgroundTitleMUI>

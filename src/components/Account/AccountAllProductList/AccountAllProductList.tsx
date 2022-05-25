@@ -30,12 +30,17 @@ const AccountAllProducList: FC = () => {
 	useEffect( ()=>{
 		
 		async function getProducts() {
-			const res = await octoAxios.get('/admin/all_expected');
+			try {
+				const res = await octoAxios.get('/admin/all_expected');
 		
-			if (res.status === 200){
-				setProductlist([...res.data.orders]);
+				if (res.status === 200){
+					setProductlist([...res.data.orders]);
 			
-			}		
+				}
+			} catch (error) {
+				console.log('error');
+			}
+					
 		}
 
 		
