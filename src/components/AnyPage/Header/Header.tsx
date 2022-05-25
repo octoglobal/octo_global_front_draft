@@ -150,7 +150,7 @@ const Header = () => {
 
 							{!isCustomSize && <HeaderNavLink/>}
 							<IconMarginRight
-								href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=`}
+								href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=""`}
 							>
 								<WhatsAppIconLarge/>
 							</IconMarginRight>
