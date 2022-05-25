@@ -1,11 +1,15 @@
 import React from 'react';
 import type {NextPage} from 'next';
 import AboutUsPage from '@/components/AboutUsPage/AboutUsPage';
+import BackgroundWrapper from '@/components/AnyPage/BackgroundWrapper/BackgroundWrapper';
+
 
 const AboutUs: NextPage = () => {
 
 	return (
-		<AboutUsPage/>
+		<BackgroundWrapper>
+			<AboutUsPage/>
+		</BackgroundWrapper>
 	);
 };
 

@@ -34,7 +34,7 @@ const ContactsPage: FC = () => {
 		<ContainerMUI>
 			<HeaderMargin/>
 					
-			<H1MUI>Котакты</H1MUI>
+			<H1MUI>Контакты</H1MUI>
 
 			<PBOX>
 				<ParagraphMUI>ANV Hansekontor GmbH </ParagraphMUI>
@@ -75,17 +75,6 @@ const ContactsPage: FC = () => {
 				График работы (МСК)
 			</H2MUI>
 
-			{/* <PBOX>
-				<ParagraphMUI> 
-				Вы можете связаться с нами с понедельника по пятницу <MarkMUI>с 10 до 20 часов</MarkMUI>
-				</ParagraphMUI> 
-				<ParagraphMUI>
-				В выходные и праздничные дни <MarkMUI>с 12 до 16 часов</MarkMUI>
-				</ParagraphMUI>
-				<ParagraphMUI>
-				Заявки, поданные не в рабочее время, будут обработаны  <MarkMUI>на следующий день</MarkMUI>
-				</ParagraphMUI>
-			</PBOX> */}
 			<PBOX>
 				<DaysGridMUI>
 					
