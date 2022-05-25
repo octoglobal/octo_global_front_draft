@@ -38,12 +38,12 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 			if ( isAdmin && item.showAdmin){
 			
 				return item;
-			} else if (isAuth  && !isAdmin){
+			} else if (isAuth  && !isAdmin && item.showAuth){
 				
 				return item;
-			} else if (!isAuth  && !isAdmin && !item.showAuth){{
+			} else if (!isAuth  && !isAdmin && !item.showAuth){
 				return item;
-			}}
+			}
 		} else {
 			return item;
 		}

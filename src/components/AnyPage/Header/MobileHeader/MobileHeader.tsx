@@ -9,7 +9,7 @@ import WhatsAppLarge from '../../../../UI/UIIcon/WhatsAppLarge.svg';
 import {useHeaderMobileStyle} from './style';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
 import {SUPPORT_PHONE_RU} from '@/constants/constants';
-
+import { WHATSAPP } from '@/lib/services/services';
 const MobileHeader: FC = () => {
 
 	// const {isHomePage} = useHeader();
@@ -40,7 +40,10 @@ const MobileHeader: FC = () => {
 						<Logotip />
 					</NavItemUI>
 					<NavItemUI>
-						<a href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=`}>
+						<a 
+							href={WHATSAPP(SUPPORT_PHONE_RU)}
+						>
+							
 							<WhatsAppLarge />
 						</a>
 					</NavItemUI>

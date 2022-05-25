@@ -21,7 +21,7 @@ import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
 import {useAppSelector} from '@/hooks/useReduxHooks';
 import {usePayment} from '@/hooks/usePayment';
-
+import { WHATSAPP } from '@/lib/services/services';
 const Header = () => {
 
 	const {
@@ -150,7 +150,8 @@ const Header = () => {
 
 							{!isCustomSize && <HeaderNavLink/>}
 							<IconMarginRight
-								href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=""`}
+								// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=Здавствуйте!`}
+								href={WHATSAPP(SUPPORT_PHONE_RU)}
 							>
 								<WhatsAppIconLarge/>
 							</IconMarginRight>

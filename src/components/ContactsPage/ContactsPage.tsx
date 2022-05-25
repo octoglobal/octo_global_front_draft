@@ -10,7 +10,7 @@ import { useContactPage } from './useContactPage';
 
 import WhatsAppIconLarge from '@/UIIcon/WhatsAppLarge.svg';
 import {SUPPORT_PHONE_DE, SUPPORT_PHONE_RU} from '@/constants/constants';
-
+import { WHATSAPP } from '@/lib/services/services';
 
 const ContactsPage: FC = () => {	
 
@@ -47,8 +47,10 @@ const ContactsPage: FC = () => {
 					<MarkMUI>Поддержка на любом этапе в России</MarkMUI>
 					<IcoBoxMUI>
 						<LinkMUI
-							href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=''`}
-						>
+							// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=Здавствуйте! `}
+							href={WHATSAPP(SUPPORT_PHONE_RU)}
+						>	
+						  
 							<WhatsAppIconLarge/>
 						</LinkMUI>
 						
@@ -62,7 +64,8 @@ const ContactsPage: FC = () => {
 					<MarkMUI>Поддержка на любом этапе в Германии на русском</MarkMUI>
 					<IcoBoxMUI>
 						<LinkMUI
-							href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=''`}
+							// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=Здавствуйте! `}
+							href={WHATSAPP(SUPPORT_PHONE_DE)}
 						>
 							<WhatsAppIconLarge/>
 						</LinkMUI>
