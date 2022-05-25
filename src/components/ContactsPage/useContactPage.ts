@@ -24,16 +24,14 @@ export const useContactPage = () => {
 				const res = await octoAxios.post('/user/send_message/feedback', {
 					email: data.contactEmail,
 					subject: data.contactText
-				});
-            
+				});            
 				if (res.status === 200){
-					
-					reset({contactEmail: '',contactText: ''});
-                   
+					setIsOk(true);					
+					reset({contactEmail: '',contactText: ''});                   
 					setTimeout(()=>{
 						setIsOk(false);
 					},3000);
-					setIsOk(true);
+					
 				}
 			} catch (error) {
 				
