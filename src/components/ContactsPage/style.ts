@@ -103,7 +103,7 @@ export const useContactsStyle = () => {
 	const FormMUI = styled('form')(({theme}) => ({
 		display: 'flex',
 		flexDirection:'column',
-		width: 526,
+		width: 526,		
 		[theme.breakpoints.down(600)]:{
 			width: '100%',
 		}
@@ -119,15 +119,28 @@ export const useContactsStyle = () => {
 		gridTemplateColumns: '178px 113px',
 		gap: 15
 	}));
-	// const DayRowMUI = styled('div')(() => ({
-	// 	display: 'grid',
-	// 	gridTemplateAreas: 'day time',
-	// 	gridTemplateColumns: '178px 113px',
-	// 	gap: 10
-	// }));
+
+	const ErrorMUI = styled('div')(() => ({
+		fontSize: 12,
+		color: 'crimson',
+		
+	}));
+	const OkMUI = styled('div')(() => ({
+		fontSize: 12,
+		color: 'green',
+		
+	}));
+
+	
+	const EpmtyBoxMUI = styled('div')(() => ({
+		height: '15px',
+		alignSelf: 'end',
+	}));
+	
+
 	const TextAreaContainerMUI = styled('div')(({theme}) => ({
 		width: '100%',
-		marginBottom: '20px',
+		marginBottom: '10px',
 		
 		[theme.breakpoints.up(1025)]: {
 			'& > div': {
@@ -195,6 +208,8 @@ export const useContactsStyle = () => {
 		LinkMUI,
 		TextBoxMUI,
 		DaysGridMUI,
-		// DayRowMUI,
+		ErrorMUI,
+		EpmtyBoxMUI,
+		OkMUI,
 	};
 };

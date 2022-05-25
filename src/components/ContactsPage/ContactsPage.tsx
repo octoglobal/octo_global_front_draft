@@ -20,7 +20,9 @@ const ContactsPage: FC = () => {
 		control,
 		handleSubmit,
 		watch,		
-		onSubmit,		
+		onSubmit,
+		errors,
+		isOk,		
 	} = useContactPage();	
 
 
@@ -142,7 +144,14 @@ const ContactsPage: FC = () => {
 
 						}}					
 					/>
-				</TextAreaContainerMUI>
+				</TextAreaContainerMUI>				
+				
+				<EpmtyBoxMUI>
+					{errors.test && <ErrorMUI>{errors.test.message}</ErrorMUI>}
+					{isOk && <OkMUI>{'Сообщение отправленно'}</OkMUI>}
+				</EpmtyBoxMUI>
+				
+
 				<ButtonUI sx={BtnStyle} type='submit'>Отправить</ButtonUI>
 			</FormMUI>
 			
@@ -168,6 +177,9 @@ const {
 	LinkMUI,
 	DaysGridMUI,
 	TextBoxMUI,
+	ErrorMUI,
+	EpmtyBoxMUI,
+	OkMUI,
 } = useContactsStyle();
 
 export default React.memo(ContactsPage);
