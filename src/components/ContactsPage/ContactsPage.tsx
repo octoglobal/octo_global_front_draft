@@ -1,20 +1,13 @@
 import React, { FC } from 'react';
 import HeaderMargin from '@/components/AnyPage/Header/HeaderMargin/HeaderMargin';
 import { useContactsStyle } from './style';
-import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
-
 import TextFieldUI from 'UI/UIComponents/TextFIeldUI/TextFieldUI';
-
 import { useContactPage } from './useContactPage';
-
-
 import WhatsAppIconLarge from '@/UIIcon/WhatsAppLarge.svg';
 import {SUPPORT_PHONE_DE, SUPPORT_PHONE_RU} from '@/constants/constants';
 import { WHATSAPP } from '@/lib/services/services';
 
-const ContactsPage: FC = () => {	
-
-	
+const ContactsPage: FC = () => {		
 
 	const {
 		control,
@@ -144,7 +137,7 @@ const ContactsPage: FC = () => {
 				</EpmtyBoxMUI>
 				
 
-				<ButtonUI sx={BtnStyle} type='submit'>Отправить</ButtonUI>
+				<ButtonMUI type='submit'>Отправить</ButtonMUI>
 			</FormMUI>
 			
 		</ContainerMUI>
@@ -164,8 +157,8 @@ const {
 	TextAreaContainerMUI,
 	PBOX,
 	LinksBox,
-	TextFieldContainerMUI,
-	BtnStyle,
+	TextFieldContainerMUI,	
+	ButtonMUI,
 	LinkMUI,
 	DaysGridMUI,
 	TextBoxMUI,
