@@ -1,4 +1,4 @@
-import React, {KeyboardEvent, SyntheticEvent, useRef, useState, useMemo,useEffect} from 'react';
+import React, {KeyboardEvent, SyntheticEvent, useRef, useState, useMemo} from 'react';
 import {fetchUserLogout} from '@/reducers/userSlice/asyncActions/userApi';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
@@ -10,7 +10,7 @@ export const useHeader = () => {
 
 	// Пункты пользователя
 	const [open, setOpen] = useState(false);
-	const anchorRef = useRef<HTMLDivElement>(null);
+	const anchorRef = useRef<HTMLDivElement>(null);	
 
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
@@ -39,7 +39,8 @@ export const useHeader = () => {
 			});
 	};
 
-	const handlerPushAccount = (url: string, query = {}) => {		
+	const handlerPushAccount = (url: string, query = {}) => {	
+		
 		return () => {			
 			pushTo(url, query);
 			setOpen(false);
@@ -80,11 +81,6 @@ export const useHeader = () => {
 		[router.pathname]
 	);
 
-
-
-	useEffect(()=>{
-		console.log(router,'ff');
-	},[router]);
 
 	return {
 		handlerPushToNav,

@@ -172,7 +172,7 @@ const Header = () => {
 									>
 
 										<Box
-											onClick={handlerPushAccount('/account/info', {location: 'ger'})}
+											onClick={handlerPushAccount('/account/info')}  //прокинуть query userID????
 										>
 											<User/>
 										</Box>
@@ -215,7 +215,7 @@ const Header = () => {
 																	данные
 																</MenuItem>} */}
 																{isAdmin? null:<MenuItem
-																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
+																	onClick={handlerPushAccount('/account/info')}>Личные
 																	данные
 																</MenuItem>}
 																

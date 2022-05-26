@@ -64,7 +64,7 @@ export const useAccountOrdersWait = () => {
 	), [orderWaitData, isAdmin]);
 
 	const handleDeleteItems = (forDel?:boolean) => {
-	
+		
 		if (forDel){		
 			if (innerId) {
 				dispatch(fetchDeleteOrders({

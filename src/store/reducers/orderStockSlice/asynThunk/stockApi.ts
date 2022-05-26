@@ -194,16 +194,10 @@ export const fetchDeleteStockOrders = createAsyncThunk(
 			const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
 				data: sendData
 			});
-			if (response.status === 200){
-				// console.log('orderStockReducer',orderStockReducer.stockData);
-				// console.log('response',response);
+			if (response.status === 200){		
 				
-				const all = orderStockReducer.stockData;
-				console.log('allallallall',all);
-				const whatDelete = data.orderId;
-				console.log('whatDeletewhatDelete',whatDelete);
-
-				// const filteredStockData = orderStockReducer.data.orderId.filter(item=>{
+				const all = orderStockReducer.stockData;			
+				const whatDelete = data.orderId;	
 
 				const result = [];
 				for (let i = 0; i < all.length; i++) {
@@ -211,12 +205,10 @@ export const fetchDeleteStockOrders = createAsyncThunk(
 					  result.push(all[i]);
 					}
 				  }
-				console.log('result',result);
+				
 				return result;
-
-
 			}
-			return response;
+			
 
 		} catch (e) {
 			return rejectWithValue('Error orderStockSlice/delete');
