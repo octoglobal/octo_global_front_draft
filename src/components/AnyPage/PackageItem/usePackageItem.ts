@@ -182,7 +182,7 @@ export const usePackageItem = (
 				title: 'Удалить адрес',
 				onClick: handleDeleteAddress
 			}, {
-				title: 'Перенести',
+				title: 'В отправленные',
 				onClick: handleAddTrackNumber,
 			}];
 		} else if (statusId === 1 && !isAdmin) {
@@ -197,7 +197,7 @@ export const usePackageItem = (
 		} else if (statusId === 3 && component == 'send')  {
 			dropItemsArray = [
 				{
-					title: 'Переместить',
+					title: 'На склад',
 					onClick: handleToggleDeleteTrackNumberModal,
 				}
 			];

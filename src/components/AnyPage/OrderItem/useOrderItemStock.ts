@@ -137,7 +137,7 @@ export const useOrderItemStock = (orderId: number, orderItem: IOrderModel) => {
 		}
 		return [
 			{title: 'Удалить', onClick: handleToggleModal(setIsDeleteModal)},
-			{title: 'Перенести', onClick: handleToggleModal(setIsStatusModal)},
+			{title: 'В ожидаемое', onClick: handleToggleModal(setIsStatusModal)},
 			{title: 'Оформить', onClick: handleSendOrder},
 		];
 	}, [isAdmin]);
