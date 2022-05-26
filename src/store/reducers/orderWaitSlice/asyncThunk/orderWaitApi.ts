@@ -72,7 +72,7 @@ export const fetchDeleteOrders = createAsyncThunk(
 );
 
 export const fetchChangeStatus = createAsyncThunk(
-	'orderWaitSlice/delete',
+	'orderWaitSlice/changeStatus',
 	async (data: IFetchDeleteData, thunkAPI) => {
 		try {
 			const sendData = {

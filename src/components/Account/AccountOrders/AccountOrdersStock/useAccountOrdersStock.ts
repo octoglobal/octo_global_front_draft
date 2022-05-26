@@ -120,8 +120,8 @@ export const useAccountOrdersStock = () => {
 	
 	const buttonsData = useMemo(() => (
 		[
+			{name: 'Удалить', onClick: handleDeleteItems,isModalOpen:isModalOpen ,  message: 'Вы точно хотите удалать заказы?'},
 			{name: 'Объединить', onClick: handleMergeOrders},
-			{name: 'Удалить', onClick: handleDeleteItems,isModalOpen:isModalOpen},
 		]
 	), [innerId,isModalOpen]);
 

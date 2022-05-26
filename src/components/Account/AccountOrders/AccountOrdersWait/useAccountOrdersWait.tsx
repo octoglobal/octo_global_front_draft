@@ -1,11 +1,12 @@
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useEffect, useMemo, useState} from 'react';
-import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
+import {fetchChangeStatus, fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {getSelectArray, onScroll} from '@/services/services';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+import { octoAxios } from '@/lib/http';
 
 
 export const useAccountOrdersWait = () => {
@@ -38,6 +39,7 @@ export const useAccountOrdersWait = () => {
 
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModaMovelOpen, setIsModalMoveOpen] = useState(false);
 
 
 	const innerId = useMemo(() => (
@@ -85,11 +87,67 @@ export const useAccountOrdersWait = () => {
 		
 	};
 
+	const handleMoveItems = (forDel:boolean) => {
+
+		console.log('перемещение',orderWaitData);
+		console.log('innerId',innerId);
+		console.log('getSelectArray(methods.getValues())',getSelectArray(methods.getValues()));
+		
+		if (forDel){		
+			if (innerId) {		
+				
+				const all =  orderWaitData;			
+				const whatDelete = getSelectArray(methods.getValues());;	
+
+				const result = [];
+				for (let i = 0; i < all.length; i++) {
+					if (whatDelete.indexOf(all[i].id) !== -1) {
+				  		result.push(all[i]);
+					}
+				
+				}
+				
+
+				console.log('result',result);
+
+				for (let i = 0; i < result.length; i++) {
+					
+					try {
+						octoAxios.post('/admin/orders', {
+							userId: result[i].userId,
+							track_number: +result[i].trackNumber,
+							title: result[i].title,
+							comment: result[i].comment,
+							statusId: result[i].statusId+1,
+						});
+					} catch (error) {
+						console.log('rrr');
+					}
+				}
+
+				
+					
+					
+				
+				
+				setIsModalMoveOpen(false);
+			}
+			
+		} else {		
+			if (isModaMovelOpen){
+				setIsModalMoveOpen(false);
+			} else {
+				setIsModalMoveOpen(true);
+			}
+		}
+		
+	};
 	const buttonsData = useMemo(() => (
 		[
-			{name: 'Удалить', onClick: handleDeleteItems, isModalOpen:isModalOpen },
+			{name: 'Удалить', onClick: handleDeleteItems, isModalOpen:isModalOpen, message: 'Вы точно хотите удалать заказы?' },
+			{name: 'На склад', onClick: handleMoveItems, isModalOpen:isModaMovelOpen,message: 'Вы точно хотите переместить заказы?' },
 		]
-	), [innerId,isModalOpen]);
+	), [innerId,isModalOpen, isModaMovelOpen]);
 
 	const getAdminUserData = (id: number) => {
 		dispatch(fetchOrderWaitData(
