@@ -41,7 +41,10 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 		return  {};
 	}, [isVisibleMenu]);
  
-	const btnObj = buttons[0];
+	
+	const btnObj = buttons.filter((button)=>{
+		return button.name === 'Удалить';
+	})[0];
 	
 
 	return (

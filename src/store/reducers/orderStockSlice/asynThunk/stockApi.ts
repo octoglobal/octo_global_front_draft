@@ -8,6 +8,12 @@ import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
 import {IOrderModel} from '@/models/IOrderModel';
 import packageItem from '@/components/AnyPage/PackageItem/PackageItem';
 
+interface IFetchDeleteData {
+	userId: number;
+	orderId: number[];
+	successCallback: () => void;
+	ordersData: IOrderModel[];
+}
 interface IFetchOrderStockData {
 	page: number;
 	page_limit: number;
@@ -169,6 +175,51 @@ export const fetchOrderDelete = createAsyncThunk(
 			return stockData;
 		} catch (e) {
 			thunkAPI.rejectWithValue('error');
+		}
+	}
+);
+
+export const fetchDeleteStockOrders = createAsyncThunk(
+	'orderStockSlice/deleteOrders',
+		
+	async (data: IFetchDeleteData, {rejectWithValue, getState}) => {
+		// console.log('fetchDeleteOrders', data);
+		try {
+			const sendData = {
+				'userId': data.userId,
+				'orderId': data.orderId,
+			};
+			
+			const {orderStockReducer} = getState();
+			const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
+				data: sendData
+			});
+			if (response.status === 200){
+				// console.log('orderStockReducer',orderStockReducer.stockData);
+				// console.log('response',response);
+				
+				const all = orderStockReducer.stockData;
+				console.log('allallallall',all);
+				const whatDelete = data.orderId;
+				console.log('whatDeletewhatDelete',whatDelete);
+
+				// const filteredStockData = orderStockReducer.data.orderId.filter(item=>{
+
+				const result = [];
+				for (let i = 0; i < all.length; i++) {
+					if (whatDelete.indexOf(all[i].id) == -1) {
+					  result.push(all[i]);
+					}
+				  }
+				console.log('result',result);
+				return result;
+
+
+			}
+			return response;
+
+		} catch (e) {
+			return rejectWithValue('Error orderStockSlice/delete');
 		}
 	}
 );

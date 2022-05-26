@@ -1,10 +1,14 @@
+import {useEffect, useMemo,useState} from 'react';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
-import {useEffect, useMemo} from 'react';
 import {
+	fetchDeleteStockOrders,
 	fetchMergeOrders,
 	fetchOrderStockData,
-	fetchPackageStockData, fetchUnMergePackage
+	fetchPackageStockData, fetchUnMergePackage,
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
+
+
+
 import {useUserStore} from '@/hooks/useUserStore';
 import {useForm} from 'react-hook-form';
 import {getSelectArray, onScroll} from '@/services/services';
@@ -31,6 +35,7 @@ export const useAccountOrdersStock = () => {
 		handlePushOrdersAddress
 	} = useOrdersAccount();
 
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const innerId = useMemo(() => (
 		adminSwitchIdToUser ? adminSwitchIdToUser : id
@@ -88,11 +93,37 @@ export const useAccountOrdersStock = () => {
 		}
 	};
 
+	const handleDeleteItems = (forDel?:boolean) => {
+		console.log('fdfdf');
+		if (forDel){		
+			if (innerId) {
+				
+				dispatch(fetchDeleteStockOrders({
+					userId: innerId,
+					orderId: getSelectArray(methods.getValues()),
+					ordersData: stockData,
+					successCallback: () =>methods.reset({}),
+				}));
+				setIsModalOpen(false);
+			}
+		} else {		
+			if (isModalOpen){
+				setIsModalOpen(false);
+			} else {
+				setIsModalOpen(true);
+			}
+		}
+		
+	};
+
+
+	
 	const buttonsData = useMemo(() => (
 		[
 			{name: 'Объединить', onClick: handleMergeOrders},
+			{name: 'Удалить', onClick: handleDeleteItems,isModalOpen:isModalOpen},
 		]
-	), [innerId]);
+	), [innerId,isModalOpen]);
 
 	const packageDopDownData = useMemo(() => {
 		if (!isAdmin) {

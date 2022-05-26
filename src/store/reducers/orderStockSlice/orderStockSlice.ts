@@ -4,7 +4,7 @@ import {
 	fetchChangeStatusPackageToSend, fetchDeletePackage,
 	fetchMergeOrders, fetchOrderDelete,
 	fetchOrderStockData, fetchPackageRemoveAddress,
-	fetchPackageStockData, fetchUnMergePackage
+	fetchPackageStockData, fetchUnMergePackage,fetchDeleteStockOrders
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
 
@@ -107,6 +107,9 @@ export const orderStockSlice = createSlice({
 		},
 		[fetchDeletePackage.fulfilled.type]: (state, action: PayloadAction<IPackageModel[]>) => {
 			state.packageData = action.payload;
+		},
+		[fetchDeleteStockOrders.fulfilled.type]: (state, action: PayloadAction<[]>) => {			
+			state.stockData = action.payload;
 		}
 	}
 });
