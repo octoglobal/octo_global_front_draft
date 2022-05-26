@@ -4,9 +4,9 @@ import {IStockDataModel} from '@/models/IStockDataModel';
 import { findItemInArrayForId, sortItemArrayInId } from '@/services/services';
 import {IDefaultFetchSuccess} from '../../../../types/types';
 import {IPackageModel} from '@/models/IPackageModel';
-import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
+import { orderStockSlice, IInitialStateStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
 import {IOrderModel} from '@/models/IOrderModel';
-import packageItem from '@/components/AnyPage/PackageItem/PackageItem';
+
 
 interface IFetchDeleteData {
 	userId: number;
@@ -190,7 +190,7 @@ export const fetchDeleteStockOrders = createAsyncThunk(
 				'orderId': data.orderId,
 			};
 			
-			const {orderStockReducer} = getState();
+			const {orderStockReducer} = getState() as {orderStockReducer:IInitialStateStockSlice};
 			const response = await octoAxios.delete<IDefaultFetchSuccess>('/admin/orders', {
 				data: sendData
 			});

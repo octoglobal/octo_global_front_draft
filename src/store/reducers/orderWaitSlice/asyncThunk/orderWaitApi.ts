@@ -2,7 +2,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {octoAxios} from '@/lib/http';
 import {IOrderModel} from '@/models/IOrderModel';
 import {IDefaultFetchSuccess} from '../../../../types/types';
-import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+
 import {sortItemArrayInId} from '@/services/services';
 
 interface IOrderWaitData {

@@ -8,7 +8,7 @@ import {
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
 
-interface IInitialState {
+export interface IInitialStateStockSlice {
 	page: number;
 	pageLimit: number;
 	stockData: IStockDataModel[];
@@ -19,7 +19,7 @@ interface IInitialState {
 	packageEnd: boolean;
 }
 
-const initialState: IInitialState = {
+const initialState: IInitialStateStockSlice = {
 	page: 1,
 	pageLimit: 50,
 	stockData: [],
