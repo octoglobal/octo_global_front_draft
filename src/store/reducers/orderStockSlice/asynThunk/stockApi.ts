@@ -195,7 +195,7 @@ export const fetchDeleteStockOrders = createAsyncThunk(
 				data: sendData
 			});
 			if (response.status === 200){		
-				
+				data.successCallback();
 				const all = orderStockReducer.stockData;			
 				const whatDelete = data.orderId;	
 

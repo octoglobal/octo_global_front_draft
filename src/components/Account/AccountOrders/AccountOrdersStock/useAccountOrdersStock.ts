@@ -94,7 +94,7 @@ export const useAccountOrdersStock = () => {
 	};
 
 	const handleDeleteItems = (forDel?:boolean) => {
-		console.log('fdfdf');
+		
 		if (forDel){		
 			if (innerId) {
 				
