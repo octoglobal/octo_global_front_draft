@@ -5,7 +5,7 @@ export const useShopsItemStyles = () => {
 	const LinkMUI = styled(Link)(({theme}) => ({
 		textDecoration: 'none',
 		display: 'block',
-		
+		position: 'relative',
 		[theme.breakpoints.down(1250)]: {
 			minHeight: '270px',
 		},
@@ -68,8 +68,8 @@ export const useShopsItemStyles = () => {
 
 	const ImagePlaceholderMUI = styled('div')(({theme}) => ({
 		position: 'absolute',
-		top: 25,
-		left:10,
+		top: 0,
+		left:0,
 		zIndex: 1,
 		maxWidth: '336px',
 		maxHeight: '208px',
@@ -82,8 +82,8 @@ export const useShopsItemStyles = () => {
 		overflow: 'hidden',
 		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
 		[theme.breakpoints.down(768)]: {
-			top: 20,
-			left:6,
+			// top: 20,
+			// left:6,
 		},	
 	}));
 
