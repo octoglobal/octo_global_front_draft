@@ -9,7 +9,7 @@ import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/Or
 
 export interface IAdminMenuButton {
 	name: string;
-	onClick: (forDel?:boolean) => void;
+	onClick: (forDel:boolean) => void;
 	isModalOpen?: boolean | undefined;
 	message?: string;
 }
