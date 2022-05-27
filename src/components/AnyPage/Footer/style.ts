@@ -40,7 +40,8 @@ export const useFooterStyle = () => {
 
 	const FooterRowUI = styled('div')(({theme}) => ({
 		display: 'flex',
-		flexDirection: 'row',
+		// flexDirection: 'row',
+		gap: 20,
 
 		[theme.breakpoints.down(801)]: {
 			justifyContent: 'space-between',
@@ -71,27 +72,27 @@ export const useFooterStyle = () => {
 		flexDirection: 'column',
 
 		// width: '210px',
-		margin: '0 64px',
+		// margin: '0 64px',
 
-		'&:first-child': {
-			marginLeft: '0px',
-		},
+		// '&:first-child': {
+		// 	marginLeft: '0px',
+		// },
 
-		'&:last-child': {
-			marginRight: '0px',
-		},
+		// '&:last-child': {
+		// 	marginRight: '0px',
+		// },
 
-		[theme.breakpoints.down(1110)]: {
-			margin: '0 44px',
-		},
+		// [theme.breakpoints.down(1110)]: {
+		// 	margin: '0 44px',
+		// },
 
-		[theme.breakpoints.down(1024)]: {
-			margin: '0 34px',
-		},
+		// [theme.breakpoints.down(1024)]: {
+		// 	margin: '0 34px',
+		// },
 
-		[theme.breakpoints.down(801)]: {
-			margin: '0 10px',
-		},
+		// [theme.breakpoints.down(801)]: {
+		// 	margin: '0 10px',
+		// },
 
 		[theme.breakpoints.down(801)]: {
 			margin: '0 0 10px',
@@ -139,23 +140,41 @@ export const useFooterStyle = () => {
 		}
 	}));
 
+	const FooterColumnSocialBlockMUI = styled('div')(() => ({
+	
+	}));
+	
+
 	const IndexTitleUI = styled('a')(({theme}) => ({
 		fontStyle: 'normal',
 		fontWeight: '400',
 		fontSize: '14px',
-		lineHeight: '16px',
-		textAlign: 'center',
+		lineHeight: '16px',	
 		textDecorationLine: 'underline',
 		color: '#FFFFFF',
-
 		marginTop: '39px',
-
+		display: 'block',
 		[theme.breakpoints.down(801)]: {
 			order: '5',
 			marginTop: '10px',
+			textAlign: 'center',
 		}
 	}));
+	
+	const FooterColumnTextMUI = styled('a')(() => ({
+		width: 'auto',
+		fontStyle: 'normal',
+		fontWeight: '500',
+		fontSize: '14px',
+		lineHeight: '16px',
+		marginBottom: '15px',
+		textDecoration: 'underline',
+		cursor: 'pointer',
 
+		'&:last-child': {
+			marginBottom: '0px',
+		}
+	}));
 	return {
 		FooterWrapperUI,
 		FooterContentUI,
@@ -164,6 +183,9 @@ export const useFooterStyle = () => {
 		FooterColumnTitleUI,
 		FooterColumnTextUI,
 		IndexTitleUI,
-		FooterRowIconsUI
+		FooterRowIconsUI,
+		
+		FooterColumnTextMUI,
+		FooterColumnSocialBlockMUI,
 	};
 };
