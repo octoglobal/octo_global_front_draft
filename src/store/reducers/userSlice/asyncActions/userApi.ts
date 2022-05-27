@@ -178,9 +178,12 @@ export const fetchRecoveryPassword = createAsyncThunk(
 
 export const fetchRecoveryMessage = createAsyncThunk(
 	'user/send_recovery_message',
-	async(data : IRecoveryMessage, thunkAPI) => {
+	async(data : IRecoveryMessage, thunkAPI) => {		
 		try {
-			return await octoAxios.post('/send_recovery_message', data);
+			const res =  await octoAxios.post('/send_recovery_message', data);
+			 if (res.status === 200){
+				  return res.status;
+			 }
 		} catch (err: unknown) {
 			if (axios.isAxiosError(err)) {
 				return thunkAPI.rejectWithValue(err.response?.status);

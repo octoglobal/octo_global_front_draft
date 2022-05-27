@@ -7,9 +7,12 @@ export const useFormsStyle = () => {
 		flexDirection: 'column',
 
 		padding: '20px 0px 0px',
-
+		[theme.breakpoints.down(600)]: {
+			padding: '15px',
+			
+		},
 		[theme.breakpoints.down(500)]: {
-			padding: '15px 0px 0px',
+			// padding: '15px 0px 0px',
 		}
 	}));
 

@@ -7,18 +7,20 @@ import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
 
 import {useFormsStyle} from '../style';
 import {useResetPasswordForm} from '@/components/forms/ResetPasswordForm/useResetPasswordForm';
+import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
 
 const ResetPasswordForm = () => {
 
 	const {handleSubmit, control, setError} = useForm();
 
-	const {onSubmit} = useResetPasswordForm(setError);
+	const {onSubmit,openModal,changeOpenModal} = useResetPasswordForm(setError);
 
 	const {
 		FormsWrapperBox,
 		FormsInput,
 		FormsButton,
-		FormsDescription
+		FormsDescription,
+		
 	} = useFormsStyle();
 
 	return (
@@ -54,7 +56,15 @@ const ResetPasswordForm = () => {
 						Продолжить
 					</ButtonUI>
 				</FormsButton>
-
+				
+				<ModalUI
+					dialogProps={{
+						open: openModal,
+						onClose:changeOpenModal
+					}}
+					title={'Письмо на востановление пароля отправленно'}
+					closeTime={5}
+				/>
 			</FormsWrapperBox>
 		</Box>
 	);
