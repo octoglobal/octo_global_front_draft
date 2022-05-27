@@ -14,7 +14,7 @@ const Store: NextPage = () => {
 				'Access-Control-Allow-Credentials': true,
 				'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
 			}
-		}).then(r => console.log(r.data));
+		});
 	}, []);
 
 	return (
