@@ -23,6 +23,9 @@ const Footer = () => {
 		FooterColumnTextUI,
 		IndexTitleUI,
 		FooterRowIconsUI,
+	
+		FooterColumnTextMUI,
+		FooterColumnSocialBlockMUI,
 	} = useFooterStyle();
 
 	const {isCustomSize} = useCustomSize(800);
@@ -34,7 +37,7 @@ const Footer = () => {
 				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
 					<FooterColumnTextUI href='/shops'>Список магазинов</FooterColumnTextUI>
-					<FooterColumnTextUI href='/transfer'>Стоимость посылки</FooterColumnTextUI>
+					<FooterColumnTextUI href='/questions?transfer'>Стоимость посылки</FooterColumnTextUI>
 					<FooterColumnTextUI href='/questions'>Частые вопросы</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
@@ -49,11 +52,12 @@ const Footer = () => {
 					<FooterColumnTextUI href='/aboutus'>О нас</FooterColumnTextUI>
 					<FooterColumnTextUI href='/contacts'>Контакты</FooterColumnTextUI>
 					<FooterColumnTextUI href='/lawinfo'>Юридическая информация</FooterColumnTextUI>
+				 	{isCustomSize?<FooterColumnTextMUI href='/contacts'>Обратная связь</FooterColumnTextMUI>:null}	
 				</FooterColumnBlockUI>
 
 				<FooterColumnBlockUI>
 					<FooterRowUI>
-						<FooterColumnBlockUI>
+						<FooterColumnSocialBlockMUI>
 							<FooterColumnTitleUI>Социальные сети</FooterColumnTitleUI>
 							<FooterRowIconsUI>
 								<SvgLinkUI
@@ -76,9 +80,17 @@ const Footer = () => {
 								</SvgLinkUI>
 								{/*<InstIcon />*/}
 							</FooterRowIconsUI>
-						</FooterColumnBlockUI>
+							{!isCustomSize && <IndexTitleUI
+								href="https://www.index-studio.ru/"
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+							Разработано студией INDEX 
+							</IndexTitleUI>}
+							
+						</FooterColumnSocialBlockMUI>
 
-						<FooterColumnBlockUI>
+						<FooterColumnSocialBlockMUI>
 							<FooterColumnTitleUI>Чаты поддержки</FooterColumnTitleUI>
 							<FooterRowIconsUI>
 								<SvgLinkUI
@@ -95,19 +107,17 @@ const Footer = () => {
 									<WhatsUpIcon/>
 								</SvgLinkUI>
 							</FooterRowIconsUI>
-						</FooterColumnBlockUI>
+							{!isCustomSize &&<IndexTitleUI
+								href="/contacts"								
+							>
+							Обратная связь
+							</IndexTitleUI>}
+							
+						</FooterColumnSocialBlockMUI>
 
 					</FooterRowUI>
 
-					{!isCustomSize && (
-						<IndexTitleUI
-							href="https://www.index-studio.ru/"
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							Разработано студией INDEX
-						</IndexTitleUI>
-					)}
+				
 				</FooterColumnBlockUI>
 
 				{isCustomSize && (
