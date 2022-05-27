@@ -11,11 +11,11 @@ function MyApp({Component, pageProps}: AppProps) {
 	return (
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				{/* <HeaderLayout> */}
-				<MainLayout>
-					<Component {...pageProps} />
-				</MainLayout>
-				{/* </HeaderLayout> */}
+				<HeaderLayout>
+					<MainLayout>
+						<Component {...pageProps} />
+					</MainLayout>
+				</HeaderLayout>
 				
 			</PersistGate>
 		</Provider>
