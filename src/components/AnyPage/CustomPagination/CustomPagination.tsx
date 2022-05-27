@@ -28,7 +28,7 @@ const NextPaginationButton: FC<PaginationItemProps> = (props) => {
 		[selected]
 	);
 
-	// console.log(`props-${props.page}: `, props);
+
 
 	return (
 		<NavigationItemMUI>

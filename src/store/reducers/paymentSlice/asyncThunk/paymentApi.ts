@@ -11,7 +11,7 @@ export const fetchAdminAddPaymentInUser = createAsyncThunk(
 	) => {
 		try {
 			const response = await octoAxios.post<IDefaultFetchSuccess>('/admin/user/balance', data);
-			console.log(response);
+		
 			return {
 				message: response.data?.message == 'success' ? 'Платеж успешно проведён' : ''
 			};

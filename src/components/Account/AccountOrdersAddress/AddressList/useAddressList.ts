@@ -27,7 +27,7 @@ export const useAddressList = () => {
 
 	const addressesArray = useMemo(() => {
 		if (isAdmin) {
-			console.log('test', adminSwitchUserModel);
+			
 			if (adminSwitchUserModel) {
 				return adminSwitchUserModel.addresses;
 			}

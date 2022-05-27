@@ -11,15 +11,13 @@ const ContactsPage: FC = () => {
 
 	const {
 		control,
-		handleSubmit,
-		watch,		
+		handleSubmit,				
 		onSubmit,
 		errors,
 		isOk,		
 	} = useContactPage();	
 
 
-	console.log('watch',watch());
 	
 
 

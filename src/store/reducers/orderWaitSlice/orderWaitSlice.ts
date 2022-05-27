@@ -53,7 +53,7 @@ export const orderWaitSlice = createSlice({
 			state.orderWaitData = action.payload;
 		},
 		[fetchMiltiChangeStatus.fulfilled.type]: (state, action: PayloadAction<IOrderModel[]>) => {
-			console.log('fetchMiltiChangeStatus',action);
+		
 			state.orderWaitData = action.payload;
 		},
 	}

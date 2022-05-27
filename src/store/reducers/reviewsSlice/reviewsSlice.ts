@@ -59,7 +59,7 @@ export const reviewsSlice = createSlice({
 			state.isNewReviewsMobile = false;
 		},
 		deleteReview: (state, action)=>{
-			console.log('deleteReview',action.payload);
+		
 			state.reviews = state.reviews.filter((item) => {
 				return item.id !== action.payload;
 			  });

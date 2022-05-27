@@ -54,7 +54,7 @@ export const fetchUserRefresh = async () => {
 export const fetchVerificMessage = async () => {
 	try {
 		const response = await octoAxios.get('/send_verification_message');
-		// console.log(response);
+	
 		return response.data;
 	} catch (err: unknown) {
 		if (axios.isAxiosError(err)) {
@@ -90,7 +90,7 @@ export const fetchUserAutoLogin = createAsyncThunk(
 	async (__, thunkAPI) => {		
 		try {
 			const response = await octoAxios.get('/user');
-			// console.log('пошел запрос: ', response.data);
+		
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
@@ -178,9 +178,12 @@ export const fetchRecoveryPassword = createAsyncThunk(
 
 export const fetchRecoveryMessage = createAsyncThunk(
 	'user/send_recovery_message',
-	async(data : IRecoveryMessage, thunkAPI) => {
+	async(data : IRecoveryMessage, thunkAPI) => {		
 		try {
-			return await octoAxios.post('/send_recovery_message', data);
+			const res =  await octoAxios.post('/send_recovery_message', data);
+			 if (res.status === 200){
+				  return res.status;
+			 }
 		} catch (err: unknown) {
 			if (axios.isAxiosError(err)) {
 				return thunkAPI.rejectWithValue(err.response?.status);
@@ -196,7 +199,7 @@ export const fetchAddAddress = createAsyncThunk(
 		try {		
 			const response = await octoAxios.post('/user/address', data);
 
-			// console.log('response: ', response);
+			
 			return response;
 		} catch (err) {
 			
@@ -214,9 +217,9 @@ export const fetchDeleteAddress = createAsyncThunk(
 	// TODO: добавитьтип адресса к удалению адреса	
 	async (data: IAddressDelete, thunkAPI) => {		
 		try {
-			// console.log('data: ', data);
+		
 			const response = await octoAxios.delete('/user/address', {data});
-			// console.log('response: ', response);
+			
 			// const response
 			return response;
 		} catch (e) {
@@ -232,7 +235,7 @@ export const fetchDeleteAddressAdmin = createAsyncThunk(
 		
 		try {			
 			const response = await octoAxios.delete('/admin/user/address', {data});
-			// console.log('response: ', response);
+		
 			// const response
 			return response;
 		} catch (e) {

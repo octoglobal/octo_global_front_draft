@@ -48,7 +48,7 @@ export const userSlice = createSlice({
 		// 		state.loading = true;
 		// 	})
 		// 	.addCase(fetchUserAutoLogin.fulfilled, (state, data: PayloadAction<IUserSlice>) => {
-		// 		console.log('fetchUserAutoLogin-data: ', data);
+		// 	
 		// 		state.user = {
 		// 			...state.user,
 		// 			...data.payload.user

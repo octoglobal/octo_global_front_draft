@@ -183,7 +183,7 @@ export const fetchDeleteStockOrders = createAsyncThunk(
 	'orderStockSlice/deleteOrders',
 		
 	async (data: IFetchDeleteData, {rejectWithValue, getState}) => {
-		// console.log('fetchDeleteOrders', data);
+	
 		try {
 			const sendData = {
 				'userId': data.userId,
@@ -242,7 +242,7 @@ export const fetchPackageRemoveAddress = createAsyncThunk(
 					});
 				}
 			}).catch(() => packageData);
-			console.log(response);
+		
 			return response;
 		} catch (e) {
 			thunkAPI.rejectWithValue('error');

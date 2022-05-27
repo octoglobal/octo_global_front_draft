@@ -26,7 +26,7 @@ export const useCategorySearch = (
 	const router = useRouter();
 
 	const getFile = async ()=>{
-		console.log('Сформировать отчёт');
+	
 		const a = document.createElement('a');		
 		a.href = 'https://octo.global/api/admin/users_table';		
 		a.click();

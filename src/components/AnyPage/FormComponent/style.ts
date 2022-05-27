@@ -27,14 +27,17 @@ export const useFormComponentStyle = () => {
 		fontWeight: '400',
 		fontSize: '36px',
 		lineHeight: '42px',
-
+		textAlign: 'center',
 		color: '#000000',
-
+		
+		[theme.breakpoints.down(600)]: {
+			paddingTop: 20,
+		},
 		[theme.breakpoints.down(500)]: {
 			fontWeight: '500',
 			fontSize: '20px',
 			lineHeight: '23px',
-		}
+		},
 	}));
 
 	return {

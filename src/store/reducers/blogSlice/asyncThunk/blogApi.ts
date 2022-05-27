@@ -126,15 +126,13 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 		
 		try {		
 			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: data.id }});
-			
-			if (response.status === 200){
-				
+
+			if (response.status === 200){				
 				dispatch(deletePostItem(data.id));		
 			 }
 						
 	
-		} catch (e) {
-		
+		} catch (e) {		
 			return rejectWithValue('Произошла ошибка при удалении');
 		}
 	}
@@ -186,7 +184,8 @@ export const fetchUpdateBlog = createAsyncThunk(
 			const response = await octoAxios.patch('/admin/blog', formData);
 
 				
-			if (response.statusText === 'OK'){				
+			// if (response.statusText === 'OK'){				
+			if (response.status === 200){				
 			
 				const updateData = {	
 					id:data.id,
@@ -222,7 +221,7 @@ export const fetchUpdateBlog = createAsyncThunk(
 			}
 			
 		} catch (error) {	
-			console.log(error);
+			
 			
 			return rejectWithValue('Произошла ошибка при обновлении',);
 		}
