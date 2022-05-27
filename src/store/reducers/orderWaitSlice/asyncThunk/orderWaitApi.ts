@@ -115,7 +115,7 @@ export const fetchMiltiChangeStatus = createAsyncThunk(
 		
 
 		for (let i = 0; i < resultMove.length; i++) {
-			console.log('i',i , resultMove.length);
+		
 			try {
 				octoAxios.post('/admin/orders', {
 					userId: resultMove[i].userId,

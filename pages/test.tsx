@@ -4,17 +4,17 @@ import TextFieldUI from '../src/UI/UIComponents/TextFIeldUI/TextFieldUI';
 import ButtonUI from '../src/UI/UIComponents/ButtonUI/ButtonUI';
 import {Box} from '@mui/material';
 import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
-interface FormData {
-	readonly test: string;
-	readonly test2: string
-}
+// interface FormData {
+// 	readonly test: string;
+// 	readonly test2: string
+// }
 
 const Test = () => {
 	const {control, handleSubmit} = useForm();
 
-	const onSubmit: SubmitHandler<FieldValues> = (data) => {
-		const innerData = data as FormData;
-		console.log(innerData);
+	const onSubmit: SubmitHandler<FieldValues> = () => {
+		// const innerData = data as FormData;
+	
 	};
 
 	return (

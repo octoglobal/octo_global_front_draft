@@ -33,7 +33,7 @@ export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>) => 
 		if(formData.email) {
 			dispatch(fetchRecoveryMessage(formData))
 				.then(response => {
-					console.log('!!!!!!!!fetchRecoveryMessage',response.payload);
+				
 					const statusCode = response.payload;
 					switch (statusCode) {
 					case 403:
@@ -46,16 +46,16 @@ export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>) => 
 						handleMoreRequest();
 						return;
 					case 200:
-						console.log('!!!!200');
+					
 						changeOpenModal(true);
 						return;
 					default:
 						// pushTo('/');
 					}
 				})
-				.catch(error => {
+				.catch(() => {
 					changeOpenModal(false);
-					console.log('error: ', error);
+				
 				});
 		}
 	};

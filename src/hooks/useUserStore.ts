@@ -9,12 +9,7 @@ export const useUserStore = () => {
 	const isAdmin = useMemo(() => user?.statusId === 9, [user]);
 
 	
-	// const fetchUser = () : void => {
-	// 	console.log('fetchUser: ', isAuth, user.id);
-	// 	if (!isAuth && !user.id) {
-	// 		dispatch(fetchUserAutoLogin());
-	// 	}
-	// };
+
 	const {
 		adminSwitchIdToUser,
 		adminSwitchUserModel
@@ -74,25 +69,9 @@ export const useUserStore = () => {
 					}
 				}
 			});
-		//
-		// setTimeout(() => {
-		// dispatch(fetchUserAutoLogin());
-		// }, 2000);
-		// }
+	
 	};
 
-	// useEffect(() => {
-	// 	// if (!isAuth && !user.id) {
-	// 	setTimeout(() => {
-	// 		dispatch(fetchUserAutoLogin());
-	// 	}, 10000);
-	// 	// }
-	// }, [isAuth, user.id]);
-
-	// useEffect(() => {
-	// 	console.log(adminSwitchIdToUser);
-	// 	console.log('dfdf');
-	// }, [adminSwitchIdToUser]);
 	
 	return {
 		userPhone,

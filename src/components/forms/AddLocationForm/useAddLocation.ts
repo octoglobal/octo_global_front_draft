@@ -64,14 +64,7 @@ export const useAddLocation = (
 				
 			 await	dispatch(fetchAddAddressAdminForUser(sendObject)).then((e) => {
 					const statusCode = e.payload as {status:number};
-					console.log(e);
-					// switch (statusCode) {
-					// 	case 403:
-					// 		handleBadResponse();
-					// 		return;
-					// 	case 422:
-					// 		handleBadResponse();
-					// }
+					
 					if (statusCode.status !== 200){
 						
 						err = true;
@@ -90,17 +83,10 @@ export const useAddLocation = (
 					latitude: '4.5321',
 					longitude: '98.7456',
 				};
-				dispatch(fetchAddAddress(sendObject)).then((e) => {
-					const statusCode = e.payload;
+				dispatch(fetchAddAddress(sendObject)).then(() => {
+				
 	
-					console.log('statusCode: ', statusCode);
-					// switch (statusCode) {
-					// 	case 403:
-					// 		handleBadResponse();
-					// 		return;
-					// 	case 422:
-					// 		handleBadResponse();
-					// }
+				
 	
 					dispatch(fetchUserAutoLogin());
 				});

@@ -16,7 +16,6 @@ export const useConfirm = () => {
 		if (query) {
 			const queryData = query as unknown as IQueryData;
 
-			console.log('queryData: ', queryData);
 
 			if (queryData.email && queryData.token) {
 				octoAxios.post('mail_confirmation', {

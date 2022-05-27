@@ -47,7 +47,7 @@ const TextFieldPhoneUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconPr
 	const IconComponent = useMemo(() => (iconActive ? iconProps?.defaultIcon : iconProps?.activeIcon) as React.ElementType, [iconProps]);
 
 	// const focusTextInput = useCallback(() => {
-	// 	console.log('focusTextInput: ', inputRef.current);
+
 	// 	if(inputRef?.current) inputRef.current.focus();
 	// }, [inputRef])
 

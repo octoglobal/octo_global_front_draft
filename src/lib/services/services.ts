@@ -165,7 +165,7 @@ const MonthArray=[
 
 export const ToRusDate = (date : string) : string => {
 
-	// console.log('date: , ', date);
+	
 
 	const expaireData = new Date(date);
 
@@ -174,15 +174,12 @@ export const ToRusDate = (date : string) : string => {
 	// const diff = grinvic.getTimezoneOffset();
 	// const local = new Date(time - (diff * 60 * 1000));
 
-	// console.log('localdate: ', local);
-	// console.log('diff: ', diff);
-	// console.log('grinvic: ', grinvic);
 
 	// const options = {
 	// 	month: 'long',
 	// };
 
-	// console.log(typeof grinvic.getHours());
+	
 
 	const h = addZero(grinvic.getHours());
 	const mi = addZero(grinvic.getMinutes());
@@ -199,9 +196,6 @@ export const ToRusDate = (date : string) : string => {
 	const timeLocal = `${h}:${mi}`;
 	const dateLocal = `${d} ${month} ${y}`;
 
-	// console.log('timeLocal: ', timeLocal);
-	// console.log('dmy: ', d, m, y);
-	// console.log('month: ', local.toLocaleString("ru", options));
 
 	return `${timeLocal} ${dateLocal}`;
 };

@@ -18,7 +18,7 @@ const SignUpPromt : FC<ISignUpPromt> = ({
 	} = useSignUpPromtStyle();
 
 	const handlerToLogin = () => {
-		console.log('handlerToLogin');
+	
 		onClickLogin();
 	};
 

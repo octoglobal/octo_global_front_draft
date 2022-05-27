@@ -45,7 +45,7 @@ const Questions = () => {
 		default:
 			break;
 		}
-		// console.log('router',Object.keys(router.query)[0]);
+	
 		
 	},[router]);
 
