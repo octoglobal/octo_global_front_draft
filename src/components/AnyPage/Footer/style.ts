@@ -71,29 +71,6 @@ export const useFooterStyle = () => {
 		display: 'flex',
 		flexDirection: 'column',
 
-		// width: '210px',
-		// margin: '0 64px',
-
-		// '&:first-child': {
-		// 	marginLeft: '0px',
-		// },
-
-		// '&:last-child': {
-		// 	marginRight: '0px',
-		// },
-
-		// [theme.breakpoints.down(1110)]: {
-		// 	margin: '0 44px',
-		// },
-
-		// [theme.breakpoints.down(1024)]: {
-		// 	margin: '0 34px',
-		// },
-
-		// [theme.breakpoints.down(801)]: {
-		// 	margin: '0 10px',
-		// },
-
 		[theme.breakpoints.down(801)]: {
 			margin: '0 0 10px',
 			padding: '0 0 10px',
@@ -132,9 +109,7 @@ export const useFooterStyle = () => {
 		fontSize: '14px',
 		lineHeight: '16px',
 		marginBottom: '15px',
-
 		cursor: 'pointer',
-
 		'&:last-child': {
 			marginBottom: '0px',
 		}
@@ -170,7 +145,6 @@ export const useFooterStyle = () => {
 		marginBottom: '15px',
 		textDecoration: 'underline',
 		cursor: 'pointer',
-
 		'&:last-child': {
 			marginBottom: '0px',
 		}
@@ -183,8 +157,7 @@ export const useFooterStyle = () => {
 		FooterColumnTitleUI,
 		FooterColumnTextUI,
 		IndexTitleUI,
-		FooterRowIconsUI,
-		
+		FooterRowIconsUI,		
 		FooterColumnTextMUI,
 		FooterColumnSocialBlockMUI,
 	};
