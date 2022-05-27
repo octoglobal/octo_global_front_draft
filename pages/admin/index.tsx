@@ -1,11 +1,14 @@
 import React from 'react';
 import {NextPage} from 'next';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Account: NextPage = () => {
 	return (
-		<div>
-			Аккаунт
-		</div>
+		<HeaderLayout>
+			<div>
+				Аккаунт
+			</div>
+		</HeaderLayout>
+		
 	);
 };
 

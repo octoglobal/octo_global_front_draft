@@ -7,7 +7,7 @@ import AuthFormLayout from '../src/layout/AuthFormLayout/AuthFormLayout';
 import FormComponent from '@/components/AnyPage/FormComponent/FormComponent';
 import {useSwipeableDrawerStore} from '@/hooks/useSwipeableDrawerStore';
 import ButtonUI from '../src/UI/UIComponents/ButtonUI/ButtonUI';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Reset: NextPage = () => {
 
 	const isMobile = useMediaQuery('(max-width: 499px)');
@@ -29,19 +29,22 @@ const Reset: NextPage = () => {
 	}, [isMobile]);
 
 	return (
-		<AuthFormLayout>
-			<Box>
-				{!isMobile ? (
-					<FormComponent title="Восстановление пароля">
-						<ResetPasswordForm />
-					</FormComponent>
-				) : (
-					<ButtonUI onClick={onToggleMenu}>
+		<HeaderLayout>
+			<AuthFormLayout>
+				<Box>
+					{!isMobile ? (
+						<FormComponent title="Восстановление пароля">
+							<ResetPasswordForm />
+						</FormComponent>
+					) : (
+						<ButtonUI onClick={onToggleMenu}>
 						Открыть форму восстановления пароля
-					</ButtonUI>
-				)}
-			</Box>
-		</AuthFormLayout>
+						</ButtonUI>
+					)}
+				</Box>
+			</AuthFormLayout>
+		</HeaderLayout>
+		
 	);
 };
 

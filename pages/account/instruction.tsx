@@ -5,7 +5,7 @@ import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 import AccountPage from '@/components/Account/Account';
 import AccountInstruction from '@/components/Account/AccountInstruction/AccountInstruction';
 import { useMobile } from '@/hooks/useMedia';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Instruction : NextPage = () => {
 
 	const {
@@ -15,9 +15,12 @@ const Instruction : NextPage = () => {
 	console.log('isMobile: ', isMobile);
 
 	return (
-		<AccountPage renderTabs={!isMobile}>
-			<AccountInstruction />
-		</AccountPage>
+		<HeaderLayout>
+			<AccountPage renderTabs={!isMobile}>
+				<AccountInstruction />
+			</AccountPage>
+		</HeaderLayout>
+		
 	);
 };
 

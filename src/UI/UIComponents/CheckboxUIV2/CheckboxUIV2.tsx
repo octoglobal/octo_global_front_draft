@@ -17,7 +17,7 @@ interface ICheckboxUIV2Props {
 const CheckboxUIV2: FC<ICheckboxUIV2Props> = ({controller, checkboxProps, callback}) => {
 
 	const handleChange = (value: boolean, onChange: (state: boolean) => void) => {
-		console.log(value);
+		
 		return () => {
 			onChange(!value);
 			if (callback) {

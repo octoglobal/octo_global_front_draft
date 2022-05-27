@@ -10,7 +10,7 @@ export const useHeader = () => {
 
 	// Пункты пользователя
 	const [open, setOpen] = useState(false);
-	const anchorRef = useRef<HTMLDivElement>(null);
+	const anchorRef = useRef<HTMLDivElement>(null);	
 
 	const handleToggle = () => {
 		setOpen((prevOpen) => !prevOpen);
@@ -39,8 +39,9 @@ export const useHeader = () => {
 			});
 	};
 
-	const handlerPushAccount = (url: string, query = {}) => {
-		return () => {
+	const handlerPushAccount = (url: string, query = {}) => {	
+		
+		return () => {			
 			pushTo(url, query);
 			setOpen(false);
 		};
@@ -79,6 +80,7 @@ export const useHeader = () => {
 		() => router.pathname === '/',
 		[router.pathname]
 	);
+
 
 	return {
 		handlerPushToNav,

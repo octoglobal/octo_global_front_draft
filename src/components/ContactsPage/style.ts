@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+import ButtonUI from 'UI/UIComponents/ButtonUI/ButtonUI';
 
 export const useContactsStyle = () => {
 	const ContainerMUI = styled('div')(() => ({
@@ -174,13 +175,12 @@ export const useContactsStyle = () => {
 			'& > div': {
 				marginBottom: 0,
 				'& > .MuiFormControl-root': {
-					height: 'auto',
+					height: '183px !important',
 					'& > .MuiOutlinedInput-root': {
-						height: 'auto',
-						padding: '15px',
+						height: '183px !important ',
+						padding: '13px 16px',
 						'& > textArea': {
-							fontSize: '16px',
-							lineHeight: '18px',
+							height: '100% !important ',
 							'&::placeholder': {
 								fontSize: '16px',
 								fontWeight: 300,
@@ -194,11 +194,14 @@ export const useContactsStyle = () => {
 		
 	}));
 
-	const BtnStyle = {
+	const ButtonMUI = styled(ButtonUI)(({theme})=>({
 		backgroundColor: 'rgba(39, 77, 130, 0.8)',
 		alignSelf: 'end',
-		width: 135
-	};
+		width: 135,
+		[theme.breakpoints.down(391)]:{
+			alignSelf: 'center',
+		}
+	}));
 
 	return {
 		ContainerMUI,
@@ -213,7 +216,7 @@ export const useContactsStyle = () => {
 		LinksBox,
 		TextAreaContainerMUI,
 		TextFieldContainerMUI,
-		BtnStyle,
+		ButtonMUI,
 		IcoBoxMUI,
 		LinkMUI,
 		TextBoxMUI,

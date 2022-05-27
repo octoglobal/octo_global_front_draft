@@ -6,7 +6,7 @@ import type {NextPage} from 'next';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import AuthFormLayout from '@/layout/AuthFormLayout/AuthFormLayout';
 import RepeatPasswordForm from '../src/components/forms/RepeatPasswordForm/RepeatPasswordForm';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 // const BoxUI = styled('div')(({theme}) => ({
 // 	fontWeight: '400',
 // 	fontSize: '36px',
@@ -61,33 +61,36 @@ const ResetPassword: NextPage = () => {
 	// };
 
 	return (
-		<AuthFormLayout>
-			<Box>
+		<HeaderLayout>
+			<AuthFormLayout>
+				<Box>
 
-				<RepeatPasswordForm token={token}/>
-				{/*{showForm ? (*/}
-				{/*	<BoxUI>*/}
-				{/*		<Box>Упс! Время ссылки истекло</Box>*/}
-				{/*		<Box>Для получения новой, нажмите <Box*/}
-				{/*			component="span"*/}
-				{/*			onClick={handlerPushToReset}*/}
-				{/*			sx={{*/}
-				{/*				color: '#274D82',*/}
-				{/*				cursor: 'pointer',*/}
-				{/*			}}>здесь</Box></Box>*/}
-				{/*		<ImageUI>*/}
-				{/*			<Image*/}
-				{/*				width={410}*/}
-				{/*				height={348}*/}
-				{/*				objectFit='cover'*/}
-				{/*				src='/image/OctoFailed.png'*/}
-				{/*				alt='octo-failed'*/}
-				{/*			/>*/}
-				{/*		</ImageUI>*/}
-				{/*	</BoxUI>*/}
-				{/*)}*/}
-			</Box>
-		</AuthFormLayout>
+					<RepeatPasswordForm token={token}/>
+					{/*{showForm ? (*/}
+					{/*	<BoxUI>*/}
+					{/*		<Box>Упс! Время ссылки истекло</Box>*/}
+					{/*		<Box>Для получения новой, нажмите <Box*/}
+					{/*			component="span"*/}
+					{/*			onClick={handlerPushToReset}*/}
+					{/*			sx={{*/}
+					{/*				color: '#274D82',*/}
+					{/*				cursor: 'pointer',*/}
+					{/*			}}>здесь</Box></Box>*/}
+					{/*		<ImageUI>*/}
+					{/*			<Image*/}
+					{/*				width={410}*/}
+					{/*				height={348}*/}
+					{/*				objectFit='cover'*/}
+					{/*				src='/image/OctoFailed.png'*/}
+					{/*				alt='octo-failed'*/}
+					{/*			/>*/}
+					{/*		</ImageUI>*/}
+					{/*	</BoxUI>*/}
+					{/*)}*/}
+				</Box>
+			</AuthFormLayout>
+		</HeaderLayout>
+		
 	);
 };
 

@@ -9,8 +9,9 @@ import OrderDeleteModal from '@/components/AnyPage/OrderItem/OrderDeleteModal/Or
 
 export interface IAdminMenuButton {
 	name: string;
-	onClick: (forDel?:boolean) => void;
-	isModalOpen?: boolean;
+	onClick: (forDel:boolean) => void;
+	isModalOpen?: boolean | undefined;
+	message?: string;
 }
 
 interface IAdminBottomMenuProps {
@@ -41,8 +42,7 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 		return  {};
 	}, [isVisibleMenu]);
  
-	const btnObj = buttons[0];
-	
+
 
 	return (
 		isVisibleComponents ? (
@@ -83,20 +83,34 @@ const AdminBottomMenu: FC<IAdminBottomMenuProps> = (
 							> 
 								{button.name}
 							</ButtonMUI>
+						
 						))}
 					</ButtonWrapperMUI>
 				
-							
-					<OrderDeleteModal
+					{buttons.map((button, index) => (
+						<OrderDeleteModal key={index}
+							dialogProps={{
+								open: !!button.isModalOpen,
+								onClose: ()=>button.onClick(false)
+							}}
+							// title='Вы точно хотите удлать заказы?'
+							title={button.message}
+							onClickNo={()=>button.onClick(false)}
+							onClickYes={() => button.onClick(true)}
+
+						/>
+					))}	
+					{/* <OrderDeleteModal
 						dialogProps={{
 							open: !!btnObj.isModalOpen,
 							onClose: ()=>btnObj.onClick(false)
 						}}
-						title='Вы точно хотите удлать заказы?'
+						// title='Вы точно хотите удлать заказы?'
+						title={btnObj.message}
 						onClickNo={()=>btnObj.onClick(false)}
 						onClickYes={() => btnObj.onClick(true)}
 
-					/>
+					/> */}
 
 
 				</WrapperMUI>

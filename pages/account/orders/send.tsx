@@ -6,7 +6,7 @@ import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 import AccountOrdersSend from '@/components/Account/AccountOrders/AccountOrdersSend/AccountOrdersSend';
 import {orderSendSlice} from '@/reducers/orderSendSlice/orderSendSlice';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Send: NextPage = () => {
 
 	const dispatch = useAppDispatch();
@@ -18,11 +18,14 @@ const Send: NextPage = () => {
 	}, []);
 
 	return (
-		<AccountPage>
-			<AccountOrders>
-				<AccountOrdersSend/>
-			</AccountOrders>
-		</AccountPage>
+		<HeaderLayout>
+
+			<AccountPage>
+				<AccountOrders>
+					<AccountOrdersSend/>
+				</AccountOrders>
+			</AccountPage>
+		</HeaderLayout>
 	);
 };
 

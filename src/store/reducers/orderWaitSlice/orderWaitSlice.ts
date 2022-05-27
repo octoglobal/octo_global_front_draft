@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
+import {fetchDeleteOrders, fetchOrderWaitData,fetchMiltiChangeStatus} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {IOrderModel} from '@/models/IOrderModel';
 
 interface IInitialState {
@@ -50,6 +50,10 @@ export const orderWaitSlice = createSlice({
 			state.updateData = false;
 		},
 		[fetchDeleteOrders.fulfilled.type]: (state, action: PayloadAction<IOrderModel[]>) => {
+			state.orderWaitData = action.payload;
+		},
+		[fetchMiltiChangeStatus.fulfilled.type]: (state, action: PayloadAction<IOrderModel[]>) => {
+			console.log('fetchMiltiChangeStatus',action);
 			state.orderWaitData = action.payload;
 		},
 	}

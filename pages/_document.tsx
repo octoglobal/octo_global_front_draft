@@ -7,7 +7,7 @@ class MyDocument extends Document {
 			<Html>
 				<Head>
 					{/* eslint-disable-next-line @next/next/no-title-in-document-head */}
-					<title>OCTO-GLOBAL</title>
+					{/* <title>OCTO-GLOBAL</title> */}
 					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 					<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>
 					<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

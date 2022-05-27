@@ -40,7 +40,8 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 	const {isMobile} = useMobile();
 	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
 	const {
-		isAdmin
+		isAdmin,		
+		adminSwitchIdToUser,		
 	} = useUserStore();
 
 	const {router, pushTo} = useCustomRouter();
@@ -51,9 +52,10 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		if (!isAdmin) {
 			pushTo(urlTo);
 		} else {
-			const pathname = router.asPath;
-			const userId = pathname?.split('userId=')[1]?.split('&')[0];
-			pushTo(urlTo, {userId});
+			// const pathname = router.asPath;
+			// const userId = pathname?.split('userId=')[1]?.split('&')[0];
+		
+			pushTo(urlTo, {userId:adminSwitchIdToUser});
 		}
 	};
 

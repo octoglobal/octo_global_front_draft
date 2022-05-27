@@ -6,6 +6,7 @@ import {useCustomRouter} from '@/hooks/useCustomRouter';
 import ButtonUI from '../src/UI/UIComponents/ButtonUI/ButtonUI';
 import Octo_Shop from '../src/UI/UIIcon/Octo_Shop.svg';
 
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const BoxUI = styled('div')(({theme}) => ({
 	fontWeight: '500',
 	fontSize: '36px',
@@ -81,29 +82,32 @@ const Welcome: NextPage = () => {
 	};
 
 	return (
-		<BoxUI>
-			<BoxWrapperUI>
-				<TextMUI>
+		<HeaderLayout>
+			<BoxUI>
+				<BoxWrapperUI>
+					<TextMUI>
 					Приветствуем вас<br />
 					на самом лучшем<br />
 					сайте для шоппинга в Европе!
-				</TextMUI>
-				<OctoImageMUI>
-					<Octo_Shop />
-				</OctoImageMUI>
+					</TextMUI>
+					<OctoImageMUI>
+						<Octo_Shop />
+					</OctoImageMUI>
 
-				<ButtonUI
-					onClick={handlerPushToIndex}
-					style={{
-						width: '161px',
-						height: '40px',
-						alignSelf: 'center',
-					}}
-				>
+					<ButtonUI
+						onClick={handlerPushToIndex}
+						style={{
+							width: '161px',
+							height: '40px',
+							alignSelf: 'center',
+						}}
+					>
 					За покупками!
-				</ButtonUI>
-			</BoxWrapperUI>
-		</BoxUI>
+					</ButtonUI>
+				</BoxWrapperUI>
+			</BoxUI>
+		</HeaderLayout>
+		
 	);
 };
 

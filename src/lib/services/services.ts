@@ -302,3 +302,4 @@ export const onScroll = (event: Event, callback: () => void) => {
 		}
 	}
 };
+export const WHATSAPP = (phone:string)=> `https://api.whatsapp.com/send?phone=${phone}&text=Здрвствуйте!`;

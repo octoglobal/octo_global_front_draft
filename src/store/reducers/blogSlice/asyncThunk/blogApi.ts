@@ -126,7 +126,7 @@ export const fetchDeleteBlogItem = createAsyncThunk(
 		
 		try {		
 			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: data.id }});
-			console.log('!!!!!',response);
+			
 			if (response.status === 200){
 				
 				dispatch(deletePostItem(data.id));		

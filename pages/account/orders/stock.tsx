@@ -6,7 +6,7 @@ import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 import AccountOrdersStock from '@/components/Account/AccountOrders/AccountOrdersStock/AccountOrdersStock';
 import { useAppDispatch } from '@/hooks/useReduxHooks';
 import { orderStockSlice } from '@/reducers/orderStockSlice/orderStockSlice';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Stock: NextPage = () => {
 
 	const dispatch = useAppDispatch();
@@ -18,11 +18,14 @@ const Stock: NextPage = () => {
 	}, []);
 
 	return (
-		<AccountPage>
-			<AccountOrders>
-				<AccountOrdersStock/>
-			</AccountOrders>
-		</AccountPage>
+		<HeaderLayout>
+
+			<AccountPage>
+				<AccountOrders>
+					<AccountOrdersStock/>
+				</AccountOrders>
+			</AccountPage>
+		</HeaderLayout>
 	);
 };
 

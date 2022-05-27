@@ -4,7 +4,7 @@ import {useAccountInstructionStyle} from './style';
 // import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
 import {SUPPORT_PHONE_DE} from '@/constants/constants';
-
+import { WHATSAPP } from '@/lib/services/services';
 const AccountInstruction : FC = () => {
 	return (
 		<WrapperMUI>
@@ -27,7 +27,8 @@ const AccountInstruction : FC = () => {
 					За покупками!
 				</ButtonUI> */}
 				<LinkMUI
-					href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=''`}
+					// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_DE}&text=Здавствуйте! `}
+					href={WHATSAPP(SUPPORT_PHONE_DE)}
 				>Связаться с менеджером</LinkMUI>
 				<WhatsAppIconLarge/>
 			</FooterButtonMUI>

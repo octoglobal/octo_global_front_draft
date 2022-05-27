@@ -10,6 +10,8 @@ import {useCustomRouter} from '@/hooks/useCustomRouter';
 import ScrollTop from '@/components/AnyPage/ScrollTop/ScrollTop';
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {adminSlice} from '@/reducers/adminSlice/adminSlice';
+
+
 interface MainLayout {
 	children: React.ReactChild | React.ReactNode;
 }

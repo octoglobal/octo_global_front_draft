@@ -11,7 +11,7 @@ import {useCustomSize} from '@/hooks/useMedia';
 import {useFooterStyle} from './style';
 import SvgLinkUI from '../../../UI/UIComponents/SvgLinkUI/SvgLinkUI';
 import {SUPPORT_PHONE_RU} from '@/constants/constants';
-
+import { WHATSAPP } from '@/lib/services/services';
 const Footer = () => {
 
 	const {
@@ -34,7 +34,7 @@ const Footer = () => {
 				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
 					<FooterColumnTextUI href='/shops'>Список магазинов</FooterColumnTextUI>
-					<FooterColumnTextUI>Стоимость посылки</FooterColumnTextUI>
+					<FooterColumnTextUI href='/transfer'>Стоимость посылки</FooterColumnTextUI>
 					<FooterColumnTextUI href='/questions'>Частые вопросы</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
@@ -89,7 +89,8 @@ const Footer = () => {
 								</SvgLinkUI>
 								<SvgLinkUI
 									title='whatsapp'
-									href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=`}
+									// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=Здавствуйте!`}
+									href={WHATSAPP(SUPPORT_PHONE_RU)}
 								>
 									<WhatsUpIcon/>
 								</SvgLinkUI>

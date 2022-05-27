@@ -53,7 +53,7 @@ export const useOrderItemWait = () => {
 
 	const dropDownData = [
 		{title: 'Удалить', onClick: handleToggleModal(setIsDeleteModal)},
-		{title: 'Перенести', onClick: handleToggleModal(setIsStatusModal)},
+		{title: 'На склад', onClick: handleToggleModal(setIsStatusModal)},
 	];
 
 	return {

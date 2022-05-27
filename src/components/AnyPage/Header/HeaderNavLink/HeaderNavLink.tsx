@@ -38,7 +38,7 @@ const HeaderNavLink : FC<IHeaderNavLink> = ({toggleOpenMenu}) => {
 			if ( isAdmin && item.showAdmin){
 			
 				return item;
-			} else if (isAuth  && !isAdmin){
+			} else if (isAuth  && !isAdmin && !item.showAdmin){
 				
 				return item;
 			} else if (!isAuth  && !isAdmin && !item.showAuth){{

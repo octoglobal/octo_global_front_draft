@@ -3,13 +3,16 @@ import type {NextPage} from 'next';
 import AboutUsPage from '@/components/AboutUsPage/AboutUsPage';
 import BackgroundWrapper from '@/components/AnyPage/BackgroundWrapper/BackgroundWrapper';
 
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const AboutUs: NextPage = () => {
 
 	return (
-		<BackgroundWrapper>
-			<AboutUsPage/>
-		</BackgroundWrapper>
+		<HeaderLayout>
+			<BackgroundWrapper>
+				<AboutUsPage/>
+			</BackgroundWrapper>
+
+		</HeaderLayout>
 	);
 };
 

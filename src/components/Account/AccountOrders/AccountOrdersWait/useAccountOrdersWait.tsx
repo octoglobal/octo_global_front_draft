@@ -1,11 +1,12 @@
 import {useAppDispatch, useAppSelector} from '@/hooks/useReduxHooks';
 import {useEffect, useMemo, useState} from 'react';
-import {fetchDeleteOrders, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
+import {fetchDeleteOrders, fetchMiltiChangeStatus, fetchOrderWaitData} from '@/reducers/orderWaitSlice/asyncThunk/orderWaitApi';
 import {useForm} from 'react-hook-form';
 import {useUserStore} from '@/hooks/useUserStore';
 import {useCustomRouter} from '@/hooks/useCustomRouter';
 import {getSelectArray, onScroll} from '@/services/services';
 import {orderWaitSlice} from '@/reducers/orderWaitSlice/orderWaitSlice';
+
 
 
 export const useAccountOrdersWait = () => {
@@ -38,6 +39,7 @@ export const useAccountOrdersWait = () => {
 
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModaMovelOpen, setIsModalMoveOpen] = useState(false);
 
 
 	const innerId = useMemo(() => (
@@ -64,7 +66,7 @@ export const useAccountOrdersWait = () => {
 	), [orderWaitData, isAdmin]);
 
 	const handleDeleteItems = (forDel?:boolean) => {
-	
+		
 		if (forDel){		
 			if (innerId) {
 				dispatch(fetchDeleteOrders({
@@ -85,11 +87,33 @@ export const useAccountOrdersWait = () => {
 		
 	};
 
+	const handleMoveItems = (forDel:boolean) => {
+		
+		if (forDel){		
+			if (innerId) {					
+				dispatch(fetchMiltiChangeStatus({
+					userId: innerId,
+					orderId: getSelectArray(methods.getValues()),
+					ordersData: orderWaitData,
+					successCallback: () =>methods.reset({}),
+				}));
+				setIsModalMoveOpen(false);
+			}			
+		} else {		
+			if (isModaMovelOpen){
+				setIsModalMoveOpen(false);
+			} else {
+				setIsModalMoveOpen(true);
+			}
+		}
+		
+	};
 	const buttonsData = useMemo(() => (
 		[
-			{name: 'Удалить', onClick: handleDeleteItems, isModalOpen:isModalOpen },
+			{name: 'Удалить', onClick: handleDeleteItems, isModalOpen:isModalOpen, message: 'Вы точно хотите удалать заказы?' },
+			{name: 'На склад', onClick: handleMoveItems, isModalOpen:isModaMovelOpen,message: 'Вы точно хотите переместить заказы?' },
 		]
-	), [innerId,isModalOpen]);
+	), [innerId,isModalOpen, isModaMovelOpen]);
 
 	const getAdminUserData = (id: number) => {
 		dispatch(fetchOrderWaitData(

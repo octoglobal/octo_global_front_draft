@@ -6,17 +6,19 @@ import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 import AccountOrdersAdd from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountOrdersAdd';
 import AccountAddInfo from '@/components/Account/AccountOrders/AccountOrdersAdd/AccountAddInfo/AccountAddInfo';
 import {styled} from '@mui/material';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Add: NextPage = () => {
 	return (
-		<AccountPage>
-			<AccountOrders>
-				<AccountOrdersAdd/>
-				<AccountInfoContainerMUI>
-					<AccountAddInfo/>
-				</AccountInfoContainerMUI>
-			</AccountOrders>
-		</AccountPage>
+		<HeaderLayout>			
+			<AccountPage>
+				<AccountOrders>
+					<AccountOrdersAdd/>
+					<AccountInfoContainerMUI>
+						<AccountAddInfo/>
+					</AccountInfoContainerMUI>
+				</AccountOrders>
+			</AccountPage>
+		</HeaderLayout>
 	);
 };
 

@@ -21,7 +21,7 @@ import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 import HeaderPayment from '@/components/AnyPage/Header/HeaderPayment/HeaderPayment';
 import {useAppSelector} from '@/hooks/useReduxHooks';
 import {usePayment} from '@/hooks/usePayment';
-
+import { WHATSAPP } from '@/lib/services/services';
 const Header = () => {
 
 	const {
@@ -150,7 +150,8 @@ const Header = () => {
 
 							{!isCustomSize && <HeaderNavLink/>}
 							<IconMarginRight
-								href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=""`}
+								// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=Здавствуйте!`}
+								href={WHATSAPP(SUPPORT_PHONE_RU)}
 							>
 								<WhatsAppIconLarge/>
 							</IconMarginRight>
@@ -171,7 +172,7 @@ const Header = () => {
 									>
 
 										<Box
-											onClick={handlerPushAccount('/account/info', {location: 'ger'})}
+											onClick={handlerPushAccount('/account/info')}  //прокинуть query userID????
 										>
 											<User/>
 										</Box>
@@ -214,7 +215,7 @@ const Header = () => {
 																	данные
 																</MenuItem>} */}
 																{isAdmin? null:<MenuItem
-																	onClick={handlerPushAccount('/account/info', {location: 'ger'})}>Личные
+																	onClick={handlerPushAccount('/account/info')}>Личные
 																	данные
 																</MenuItem>}
 																

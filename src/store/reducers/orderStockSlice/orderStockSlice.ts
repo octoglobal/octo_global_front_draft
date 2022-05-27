@@ -4,11 +4,11 @@ import {
 	fetchChangeStatusPackageToSend, fetchDeletePackage,
 	fetchMergeOrders, fetchOrderDelete,
 	fetchOrderStockData, fetchPackageRemoveAddress,
-	fetchPackageStockData, fetchUnMergePackage
+	fetchPackageStockData, fetchUnMergePackage,fetchDeleteStockOrders
 } from '@/reducers/orderStockSlice/asynThunk/stockApi';
 import {IPackageModel} from '@/models/IPackageModel';
 
-interface IInitialState {
+export interface IInitialStateStockSlice {
 	page: number;
 	pageLimit: number;
 	stockData: IStockDataModel[];
@@ -19,7 +19,7 @@ interface IInitialState {
 	packageEnd: boolean;
 }
 
-const initialState: IInitialState = {
+const initialState: IInitialStateStockSlice = {
 	page: 1,
 	pageLimit: 50,
 	stockData: [],
@@ -107,6 +107,9 @@ export const orderStockSlice = createSlice({
 		},
 		[fetchDeletePackage.fulfilled.type]: (state, action: PayloadAction<IPackageModel[]>) => {
 			state.packageData = action.payload;
+		},
+		[fetchDeleteStockOrders.fulfilled.type]: (state, action: PayloadAction<[]>) => {			
+			state.stockData = action.payload;
 		}
 	}
 });
