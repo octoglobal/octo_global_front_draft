@@ -1,11 +1,13 @@
 import React from 'react';
 import {NextPage} from 'next';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const InternetError: NextPage = () => {
 	return (
-		<div>
+		<HeaderLayout>
+			<div>
 			500 error
-		</div>
+			</div>
+		</HeaderLayout>
 	);
 };
 

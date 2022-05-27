@@ -6,7 +6,7 @@ import WithAuth from '@/components/HOC/WithAuth/WithAuth';
 import AccountOrdersWait from '@/components/Account/AccountOrders/AccountOrdersWait/AccountOrdersWait';
 import { useAppDispatch } from '@/hooks/useReduxHooks';
 import { orderWaitSlice } from '@/reducers/orderWaitSlice/orderWaitSlice';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Wait: NextPage = () => {
 
 	const dispatch = useAppDispatch();
@@ -19,11 +19,14 @@ const Wait: NextPage = () => {
 
 
 	return (
-		<AccountPage>
-			<AccountOrders>
-				<AccountOrdersWait/>
-			</AccountOrders>
-		</AccountPage>
+		<HeaderLayout>
+
+			<AccountPage>
+				<AccountOrders>
+					<AccountOrdersWait/>
+				</AccountOrders>
+			</AccountPage>
+		</HeaderLayout>
 	);
 };
 

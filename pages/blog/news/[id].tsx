@@ -1,11 +1,14 @@
 import React from 'react';
 import {NextPage} from 'next';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const News: NextPage = () => {
 	return (
-		<h1>
+		<HeaderLayout>
+			<h1>
             Пост
-		</h1>
+			</h1>
+		</HeaderLayout>
+		
 	);
 };
 

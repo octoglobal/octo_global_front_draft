@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import type {NextPage} from 'next';
 import axios from 'axios';
 import {HOST} from '@/constants/constants';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Store: NextPage = () => {
 
 	useEffect(() => {
@@ -19,7 +19,10 @@ const Store: NextPage = () => {
 
 	return (
 		<>
-			<h1>Магазин</h1>
+			<HeaderLayout>
+				<h1>Магазин</h1>
+			</HeaderLayout>
+		
 		</>
 	);
 };

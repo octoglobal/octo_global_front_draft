@@ -1,11 +1,13 @@
 import React from 'react';
 import {NextPage} from 'next';
-
+import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const NotFound: NextPage = () => {
 	return (
-		<div>
+		<HeaderLayout>
+			<div>
 			not found
-		</div>
+			</div>
+		</HeaderLayout>
 	);
 };
 
