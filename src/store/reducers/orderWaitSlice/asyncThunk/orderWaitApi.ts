@@ -97,6 +97,46 @@ export const fetchChangeStatus = createAsyncThunk(
 	}
 );
 
+
+export const fetchMiltiChangeStatus = createAsyncThunk(
+	'orderWaitSlice/changeMiltiStatus',
+	async (data: IFetchDeleteData, {rejectWithValue}) => {		
+		const all =  data.ordersData;			
+		const whatDelete = data.orderId;
+		const resultMove = [];
+		const resultStay = [];
+		for (let i = 0; i < all.length; i++) {
+			if (whatDelete.indexOf(all[i].id) !== -1) {
+				resultMove.push(all[i]);
+			} else {				
+				resultStay.push(all[i]);
+			}				
+		}				
+		
+
+		for (let i = 0; i < resultMove.length; i++) {
+			console.log('i',i , resultMove.length);
+			try {
+				octoAxios.post('/admin/orders', {
+					userId: resultMove[i].userId,
+					track_number: +resultMove[i].trackNumber,
+					title: resultMove[i].title,
+					comment: resultMove[i].comment,
+					statusId: resultMove[i].statusId+1,
+				});
+				if (i === resultMove.length -1){					
+					data.successCallback();
+					return resultStay;
+				}
+			} catch (error) {				
+				return rejectWithValue('error in orderWaitSlice/changeMiltiStatus');
+			}
+			
+		}
+	}
+);
+
+
 // const handleDeleteOrder = (orderId: number) => {
 // 	return () => {
 // 		try {
