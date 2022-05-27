@@ -5,7 +5,7 @@ const Account: NextPage = () => {
 	return (
 		<HeaderLayout>
 			<div>
-			Аккаунт
+				Аккаунт
 			</div>
 		</HeaderLayout>
 		

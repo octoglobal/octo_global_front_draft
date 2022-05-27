@@ -5,7 +5,7 @@ const News: NextPage = () => {
 	return (
 		<HeaderLayout>
 			<h1>
-            Пост
+            	Пост
 			</h1>
 		</HeaderLayout>
 		

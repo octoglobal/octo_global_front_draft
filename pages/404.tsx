@@ -5,7 +5,7 @@ const NotFound: NextPage = () => {
 	return (
 		<HeaderLayout>
 			<div>
-			not found
+				not found
 			</div>
 		</HeaderLayout>
 	);
