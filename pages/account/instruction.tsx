@@ -12,7 +12,7 @@ const Instruction : NextPage = () => {
 		isMobile
 	} = useMobile();
 
-	console.log('isMobile: ', isMobile);
+	
 
 	return (
 		<HeaderLayout>

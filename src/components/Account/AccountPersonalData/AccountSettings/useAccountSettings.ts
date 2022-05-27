@@ -56,7 +56,7 @@ export const useAccountSettings = (clearErrors:UseFormClearErrors<FieldValues>,s
 	};
 
 	const handlerEditClick = useCallback((): void => {
-		console.log('handlerEditClick');
+		// console.log('handlerEditClick');
 	}, []);
 
 	const handleBadResponseUser = () => {
