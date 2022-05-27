@@ -25,29 +25,18 @@ export const euroSlice = createSlice({
 		},
 	},
 	extraReducers: {		
-		[fetchEuroRate.pending.type]: (state) => {
-			// console.log('пошел запрос');
-		},
+		
 		[fetchEuroRate.fulfilled.type]: (state, action) => {		
 			state.value = action.payload.data.exchange_rate[0].value / 100;
 		},
-		[fetchEuroRate.rejected.type]: (state, action) => {
-			// console.log(action.payload);
-			
-		},
-		[fetchSetEuroRate.pending.type]: (state, action) => {
-			// console.log('пошел запрос fetchSetEuroRate',action);
-			
-		},
+		
+		
 		[fetchSetEuroRate.fulfilled.type]: (state, action) => {
-			// console.log('запрос fetchSetEuroRate ok',action);
+		
 			state.value =action.payload / 100;
 			
 		},
-		[fetchSetEuroRate.rejected.type]: (state, action) => {
-			// console.log('fetchSetEuroRate err',action.payload);
-			
-		},
+		
 	}
 });
 

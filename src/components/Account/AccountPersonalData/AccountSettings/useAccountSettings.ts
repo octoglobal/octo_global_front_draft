@@ -30,10 +30,7 @@ export const useAccountSettings = (clearErrors:UseFormClearErrors<FieldValues>,s
 
 	const handlerConfirmEmail = () => {
 		fetchVerificMessage()
-			.then(r => {
-				console.log('r: ', r);
-				console.log('statusCode: ', typeof r);
-			})
+			.then()
 			.catch(e => {
 				const statusCode = e.response.status;
 				switch (statusCode) {
@@ -253,8 +250,8 @@ export const useAccountSettings = (clearErrors:UseFormClearErrors<FieldValues>,s
 						// }
 					}
 				})
-				.catch(e => {
-					console.log('catch: ', e);
+				.catch(() => {
+					// console.log('catch: ', e);
 				});
 		}
 	};

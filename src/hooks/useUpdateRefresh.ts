@@ -10,7 +10,7 @@ export const useUpdateRefresh = () => {
 	} = useUserStore();
 	const [newToken, setNewToken] = useState<boolean>(false);
 
-	console.log(isAuth);
+	
 
 	const updateToken = () => {
 		fetchUserRefresh()
@@ -22,8 +22,8 @@ export const useUpdateRefresh = () => {
 					setNewToken(false);
 				}
 			})
-			.catch(e => {
-				console.log('updateToken, fetchUserRefresh: ', e);
+			.catch(() => {
+				// console.log('updateToken, fetchUserRefresh: ', e);
 			});
 	};
 
