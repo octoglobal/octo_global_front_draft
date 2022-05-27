@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Typography } from '@mui/material';
-import {useForm} from 'react-hook-form';
+import {FieldValues,useForm} from 'react-hook-form';
 
 import ButtonUI from '../../../UI/UIComponents/ButtonUI/ButtonUI';
 import TextFieldUI from '../../../UI/UIComponents/TextFIeldUI/TextFieldUI';
@@ -11,10 +11,15 @@ import ModalUI from 'UI/UIComponents/ModalUI/ModalUI';
 
 const ResetPasswordForm = () => {
 
-	const {handleSubmit, control, setError} = useForm();
+	const {handleSubmit, control, setError, reset} = useForm<FieldValues>();
 
-	const {onSubmit,openModal,changeOpenModal} = useResetPasswordForm(setError);
-
+	const {
+		onSubmit,
+		openModal,
+		changeOpenModal,
+		
+	} = useResetPasswordForm(setError,reset);
+	
 	const {
 		FormsWrapperBox,
 		FormsInput,
@@ -63,7 +68,7 @@ const ResetPasswordForm = () => {
 						onClose:changeOpenModal
 					}}
 					title={'Письмо на востановление пароля отправленно'}
-					closeTime={5}
+					closeTime={3}
 				/>
 			</FormsWrapperBox>
 		</Box>

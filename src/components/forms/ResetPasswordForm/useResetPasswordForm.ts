@@ -1,10 +1,13 @@
-import {FieldValues, SubmitHandler, UseFormSetError} from 'react-hook-form';
+import { FieldValues, SubmitHandler, UseFormSetError, UseFormReset } from 'react-hook-form';
 import {useAppDispatch} from '@/hooks/useReduxHooks';
 import {fetchRecoveryMessage, IUserLoginReq} from '@/reducers/userSlice/asyncActions/userApi';
 import {IRecoveryMessage} from '../../../types/types';
 import { useState } from 'react';
 
-export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>) => {
+
+
+export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>,reset:UseFormReset<FieldValues>) => {
+
 	
 	const [openModal,changeOpenModal] = useState(false);
 	const dispatch = useAppDispatch();
@@ -15,7 +18,7 @@ export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>) => 
 			message
 		});
 	};
-
+	
 	const handleUserNotFound = () => {
 		setErrorFields('email', 'Пользователь не найден');
 	};
@@ -27,13 +30,13 @@ export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>) => 
 	const handleMoreRequest = () => {
 		setErrorFields('email', 'Слишком много запросов');
 	};
-
+	
 	const onSubmit : SubmitHandler<FieldValues> = (data) => {
 		const formData = data as IRecoveryMessage;
 		if(formData.email) {
 			dispatch(fetchRecoveryMessage(formData))
 				.then(response => {
-				
+					
 					const statusCode = response.payload;
 					switch (statusCode) {
 					case 403:
@@ -45,9 +48,9 @@ export const useResetPasswordForm = (setError: UseFormSetError<FieldValues>) => 
 					case 429:
 						handleMoreRequest();
 						return;
-					case 200:
-					
+					case 200:					
 						changeOpenModal(true);
+						reset({});					
 						return;
 					default:
 						// pushTo('/');
