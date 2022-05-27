@@ -34,7 +34,7 @@ const Footer = () => {
 				<FooterColumnBlockUI>
 					<FooterColumnTitleUI>Полезное</FooterColumnTitleUI>
 					<FooterColumnTextUI href='/shops'>Список магазинов</FooterColumnTextUI>
-					<FooterColumnTextUI>Стоимость посылки</FooterColumnTextUI>
+					<FooterColumnTextUI href='/transfer'>Стоимость посылки</FooterColumnTextUI>
 					<FooterColumnTextUI href='/questions'>Частые вопросы</FooterColumnTextUI>
 				</FooterColumnBlockUI>
 
