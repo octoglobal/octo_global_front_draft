@@ -60,7 +60,7 @@ const EuroExchange = () => {
 										}}
 										inputProps={{
 											name: 'rate',
-											type: 'number',}}
+											type: 'text',}}
 										
 									/>
 								</TextFieldEuroMUI>
