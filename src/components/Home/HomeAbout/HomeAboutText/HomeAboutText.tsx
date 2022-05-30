@@ -2,6 +2,12 @@ import React, {FC} from 'react';
 import {useHomeAboutTextStyles} from '@/components/Home/HomeAbout/HomeAboutText/style';
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 
+import WhatsUpIcon from '../../../../UI/UIIcon/WhatsappIconColor.svg';
+import TelegramIcon from '../../../../UI/UIIcon/TelegramIconColor.svg';
+import SvgLinkUI from '../../../../UI/UIComponents/SvgLinkUI/SvgLinkUI';
+import {SUPPORT_PHONE_RU} from '@/constants/constants';
+import { WHATSAPP } from '@/lib/services/services';
+
 const HomeAboutText: FC = () => {
 	return (
 		<ContainerMUI>
@@ -22,6 +28,21 @@ const HomeAboutText: FC = () => {
 			<ParagraphMUI>
 				<SpanMUI>Служба поддержки в России и Европе</SpanMUI>
 			</ParagraphMUI>
+			<FooterRowIconsMUI>
+				<SvgLinkUI
+					title='telegram'
+					href={'tg://resolve?domain=<@qwe>'}
+				>
+					<TelegramIcon/>
+				</SvgLinkUI>
+				<SvgLinkUI
+					title='whatsapp'
+					// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=Здавствуйте!`}
+					href={WHATSAPP(SUPPORT_PHONE_RU)}
+				>
+					<WhatsUpIcon/>
+				</SvgLinkUI>
+			</FooterRowIconsMUI>
 		</ContainerMUI>
 	);
 };
@@ -30,6 +51,7 @@ const {
 	SpanMUI,
 	ContainerMUI,
 	ParagraphMUI,
+	FooterRowIconsMUI,
 } = useHomeAboutTextStyles();
 
 export default React.memo(HomeAboutText);

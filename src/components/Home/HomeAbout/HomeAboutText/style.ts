@@ -107,7 +107,15 @@ export const useHomeAboutTextStyles = () => {
 		}
 		
 	}));
-	
+	const FooterRowIconsMUI = styled('div')(() => ({
+		display: 'flex',
+		flexDirection: 'row',
+
+		'& svg': {
+			marginRight: '13px',
+			cursor: 'pointer',
+		}
+	}));
 	return {
 		SpanMUI,
 		ParagraphMUI,
@@ -115,6 +123,7 @@ export const useHomeAboutTextStyles = () => {
 		LinkItemMUI,
 		LinkTitleMUI,
 		LinkWrapperMUI,
-		LinkContainerMUI
+		LinkContainerMUI,
+		FooterRowIconsMUI
 	};
 };
