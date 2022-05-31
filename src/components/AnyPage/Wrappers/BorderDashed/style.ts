@@ -4,8 +4,8 @@ export const useBorderDashedStyle = () => {
 
 	const DashedBoxMUI = styled('div')(({theme}) => ({
 		maxWidth: '673px',
-		width: 'auto',
-		// width: '100%',
+		// width: 'auto',
+		width: '100%',
 		height: 'auto',
 		background: '#FFFFFF',
 		border: '3.5px dashed rgba(39, 77, 130, 0.5)',

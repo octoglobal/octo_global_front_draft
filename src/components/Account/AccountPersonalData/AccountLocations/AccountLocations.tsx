@@ -1,35 +1,34 @@
-import React, {FC, useState} from 'react';
+import React, {FC, /*useState*/} from 'react';
 
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import AccountUrlArray from './AccountTabsLocationData.json';
-import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
+// import TabsUnstyled from '@mui/base/TabsUnstyled';
+// import AccountUrlArray from './AccountTabsLocationData.json';
+// import AccountLocationRules from './AccountLocationRules/AccountLocationRules';
 
 import {useAccountLocationStyle} from './style';
 import BorderDashed from '@/components/AnyPage/Wrappers/BorderDashed/BorderDashed';
-import {useTabsStyle} from '@/components/AnyPage/Tabs/style';
+// import {useTabsStyle} from '@/components/AnyPage/Tabs/style';
 
 const AccountLocations: FC = () => {
-	const [openRules, setOpenRules] = useState<boolean>(false);
-	const [selCountry, setSelCountry] = useState<string>('ger');
+	// const [openRules, setOpenRules] = useState<boolean>(false);
+	// const [selCountry, setSelCountry] = useState<string>('ger');
 
-	const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
-		return () => {
-			setState(prevState => !prevState);
-		};
-	};
+	// const handlerToggleState = (setState: (prevState: (state: boolean) => boolean) => void) => {
+	// 	return () => {
+	// 		setState(prevState => !prevState);
+	// 	};
+	// };
 
-	const handlerCountryState = (countryShort: string) => {
-		return () => {
-			setSelCountry(countryShort);
-		};
-	};
+	// const handlerCountryState = (countryShort: string) => {
+	// 	return () => {
+	// 		setSelCountry(countryShort);
+	// 	};
+	// };
 
 	return (
 		<LocationWrapperUI>
 			<BorderDashed title="Адрес для интернет-магазина">
-				<LocationContainerUI>
-					{/*<Tabs data={AccountUrlArray}/>*/}
-
+				{/* <LocationContainerUI>
+				
 					<TabWrapperUI>
 						<TabsUnstyled>
 							<TabsListUI>
@@ -60,7 +59,7 @@ const AccountLocations: FC = () => {
 							<AccountLocationRules openRules={openRules}/>
 						</>
 					</LocationContentUI>
-				</LocationContainerUI>
+				</LocationContainerUI> */}
 			</BorderDashed>
 		</LocationWrapperUI>
 	);
@@ -69,15 +68,15 @@ const AccountLocations: FC = () => {
 export default React.memo(AccountLocations);
 
 const {
-	LocationButtonUI,
+	// LocationButtonUI,
 	LocationWrapperUI,
-	LocationAddressUI,
-	LocationContentUI,
-	LocationContainerUI,
+	// LocationAddressUI,
+	// LocationContentUI,
+	// LocationContainerUI,
 } = useAccountLocationStyle();
 
-const {
-	TabWrapperUI,
-	TabUI,
-	TabsListUI,
-} = useTabsStyle();
+// const {
+// 	TabWrapperUI,
+// 	TabUI,
+// 	TabsListUI,
+// } = useTabsStyle();

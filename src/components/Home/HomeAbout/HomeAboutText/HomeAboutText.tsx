@@ -3,9 +3,9 @@ import {useHomeAboutTextStyles} from '@/components/Home/HomeAbout/HomeAboutText/
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 
 import WhatsUpIcon from '../../../../UI/UIIcon/WhatsappIconColor.svg';
-import TelegramIcon from '../../../../UI/UIIcon/TelegramIconColor.svg';
 import SvgLinkUI from '../../../../UI/UIComponents/SvgLinkUI/SvgLinkUI';
-import {SUPPORT_PHONE_RU} from '@/constants/constants';
+import {SUPPORT_PHONE_RU ,SUPPORT_PHONE_DE} from '@/constants/constants';
+
 import { WHATSAPP } from '@/lib/services/services';
 
 const HomeAboutText: FC = () => {
@@ -30,15 +30,14 @@ const HomeAboutText: FC = () => {
 			</ParagraphMUI>
 			<FooterRowIconsMUI>
 				<SvgLinkUI
-					title='telegram'
-					href={'tg://resolve?domain=<@qwe>'}
+					title='Поддрежака в России'					
+					href={WHATSAPP(SUPPORT_PHONE_RU)}
 				>
-					<TelegramIcon/>
+					<WhatsUpIcon/>
 				</SvgLinkUI>
 				<SvgLinkUI
-					title='whatsapp'
-					// href={`https://api.whatsapp.com/send?phone=${SUPPORT_PHONE_RU}&text=Здавствуйте!`}
-					href={WHATSAPP(SUPPORT_PHONE_RU)}
+					title='Поддрежака в Германии'					
+					href={WHATSAPP(SUPPORT_PHONE_DE)}
 				>
 					<WhatsUpIcon/>
 				</SvgLinkUI>

@@ -68,12 +68,15 @@ export const useLoginFormStyle = () => {
 			textAlign: 'center'
 		}
 	}));
-
+	const MarginBoxMUI = styled('div')(() => ({
+		marginTop: '150px'
+	}));
 	return {
 		LoginFormWrapperBox,
 		LoginFormFooterInfoBox,
 		LoginFormLink,
 		LoginFormInput,
-		LoginFormButton
+		LoginFormButton,
+		MarginBoxMUI,
 	};
 };
