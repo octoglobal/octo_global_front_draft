@@ -66,7 +66,8 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 					<TextField
 						// sx={TextFieldStyle}
 						sx={isMobile ? TextFieldMobileStyle : TextFieldStyle}
-						value={value}
+						value={value}			
+						
 						{...inputProps}
 						onChange={handlerChange(onChange)}
 						// onChange={onChange}

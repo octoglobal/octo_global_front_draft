@@ -60,7 +60,11 @@ const EuroExchange = () => {
 										}}
 										inputProps={{
 											name: 'rate',
-											type: 'number',
+											type: 'number',											
+											autoFocus: true,
+											inputProps:{							
+												step: 'any'
+											  }
 										}}
 										
 									/>
