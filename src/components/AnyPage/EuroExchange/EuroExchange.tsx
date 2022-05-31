@@ -56,11 +56,12 @@ const EuroExchange = () => {
 										controller={{
 											name: 'rate',
 											control,
-											defaultValue: value,
+											defaultValue: +value,
 										}}
 										inputProps={{
 											name: 'rate',
-											type: 'text',}}
+											type: 'number',
+										}}
 										
 									/>
 								</TextFieldEuroMUI>
