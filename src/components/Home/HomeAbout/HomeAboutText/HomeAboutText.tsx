@@ -3,7 +3,6 @@ import {useHomeAboutTextStyles} from '@/components/Home/HomeAbout/HomeAboutText/
 import HomeSectionTitle from '@/components/Home/HomeSectionTitle/HomeSectionTitle';
 
 import WhatsUpIcon from '../../../../UI/UIIcon/WhatsappIconColor.svg';
-import TelegramIcon from '../../../../UI/UIIcon/TelegramIconColor.svg';
 import SvgLinkUI from '../../../../UI/UIComponents/SvgLinkUI/SvgLinkUI';
 import {SUPPORT_PHONE_RU ,SUPPORT_PHONE_DE} from '@/constants/constants';
 
