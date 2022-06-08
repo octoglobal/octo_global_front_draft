@@ -46,7 +46,7 @@ const AccountOrdersAdd = () => {
 								...textFieldTrackNumber.controller,
 								rules: {
 									required: true,
-									maxLength: 14,
+									
 									pattern: /^[a-zA-Z0-9]+$/g
 								},
 							}}
