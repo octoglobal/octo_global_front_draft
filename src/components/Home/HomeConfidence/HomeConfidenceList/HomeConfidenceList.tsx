@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {useHomeConfidenceListStyles} from '@/components/Home/HomeConfidence/HomeConfidenceList/style';
+import React, { FC } from 'react';
+import { useHomeConfidenceListStyles } from '@/components/Home/HomeConfidence/HomeConfidenceList/style';
 import HomeConfidenceListItem from '../HomeConfidenceListItem/HomeConfidenceListItem';
 
 const homeConfidenceData = [
@@ -9,12 +9,10 @@ const homeConfidenceData = [
 	'Заполняем экспортную декларацию',
 	'Покупаем на территории Европейского Союза',
 	'Заказываем любой вид товара от одежды до бытовой техники',
-	'Предоставляем возможность оплачивать Bitcoin',
+	'Предоставляем возможность оплачивать криптовалюте',
 ];
 
-
 const HomeConfidenceList: FC = () => {
-
 	// const listRef = useRef<HTMLUListElement>(null);
 	//
 	// useEffect(() => {
@@ -38,7 +36,7 @@ const HomeConfidenceList: FC = () => {
 	// ref={listRef}
 	return (
 		<ListMUI>
-			{homeConfidenceData.map(confidenceItem => (
+			{homeConfidenceData.map((confidenceItem) => (
 				<HomeConfidenceListItem
 					key={confidenceItem}
 					title={confidenceItem}
@@ -49,6 +47,5 @@ const HomeConfidenceList: FC = () => {
 };
 
 const { ListMUI } = useHomeConfidenceListStyles();
-
 
 export default React.memo(HomeConfidenceList);
