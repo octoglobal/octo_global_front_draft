@@ -22,6 +22,7 @@ const AccountOrdersAdd = () => {
 		textFieldDesc,
 		setIsAddOrder,
 		textFieldTrackNumber,
+		errors,
 	} = useAccountOrdersAdd();
 
 	return (
@@ -33,7 +34,12 @@ const AccountOrdersAdd = () => {
 				<FormMUI onSubmit={handleSubmit(onSubmit)}>
 					<TextFieldContainerMUI>
 						<TextFieldUI
-							controller={textFieldName.controller}
+							controller={{...textFieldName.controller,
+								rules: {
+									required: 'Обязательное поле',								
+									
+								},
+							}}
 							inputProps={{
 								...textFieldName.inputProps,
 								sx: isMobile ? inputContainerAdaptiveSX : inputContainerSX,
@@ -45,14 +51,17 @@ const AccountOrdersAdd = () => {
 							controller={{
 								...textFieldTrackNumber.controller,
 								rules: {
-									required: true,
+									required: 'Обязательное поле',
+									maxLength: {value:22, message: 'максимум 22 символа'},
+									pattern: /^[a-zA-Z0-9]+$/g,
 									
-									pattern: /^[a-zA-Z0-9]+$/g
 								},
+								
 							}}
 							inputProps={{
 								...textFieldTrackNumber.inputProps,
 								sx: isMobile ? inputContainerAdaptiveSX :  inputContainerSX,
+								helperText: errors?.track_number
 							}}
 						/>
 					</TextFieldContainerMUI>

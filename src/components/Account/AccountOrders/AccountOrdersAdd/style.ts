@@ -41,7 +41,7 @@ export const useAccountOrdersAddStyles = () => {
 	}));
 
 	const TextFieldContainerMUI = styled('div')(() => ({
-		marginBottom: '10px',
+		marginBottom: '20px',
 		width: '100%',
 	}));
 

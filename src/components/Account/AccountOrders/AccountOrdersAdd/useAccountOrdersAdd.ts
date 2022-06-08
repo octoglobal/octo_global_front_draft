@@ -19,7 +19,7 @@ interface IAddOrderSuccess {
 export const useAccountOrdersAdd = () => {
 	const dispatch = useAppDispatch();
 	const isMobile = useMediaQuery('(max-width: 1025px)');
-	const {control, handleSubmit, reset} = useForm<IFormData | FieldValues>();
+	const {control, handleSubmit, reset, formState: {errors} } = useForm<IFormData | FieldValues>({ mode: 'onChange' });
 	const {isAdmin} = useUserStore();
 	const {adminSwitchIdToUser} = useAppSelector(state => state.adminReducer);
 
@@ -30,6 +30,7 @@ export const useAccountOrdersAdd = () => {
 		setIsAddOrder(prevState => !prevState);
 	};
 
+	console.log(errors);
 	const getControlObj = (name: string, placeholder: string) => {
 		return {
 			controller: {
@@ -98,7 +99,7 @@ export const useAccountOrdersAdd = () => {
 			setFormMessage('');
 		}, 5000);
 	};
-
+	
 	return {
 		control,
 		isMobile,
@@ -111,5 +112,6 @@ export const useAccountOrdersAdd = () => {
 		setIsAddOrder,
 		handleToggleOrder,
 		textFieldTrackNumber,
+		errors,
 	};
 };
