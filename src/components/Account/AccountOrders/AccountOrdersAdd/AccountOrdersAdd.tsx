@@ -53,7 +53,10 @@ const AccountOrdersAdd = () => {
 								rules: {
 									required: 'Обязательное поле',
 									maxLength: {value:22, message: 'максимум 22 символа'},
-									pattern: /^[a-zA-Z0-9]+$/g,
+									pattern: {
+										value: /^[a-zA-Z0-9]+$/g ,
+										message: 'Только латинские буквы и цифры'
+									},
 									
 								},
 								
