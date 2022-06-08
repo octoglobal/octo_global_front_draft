@@ -12,6 +12,7 @@ import ReplenishmentPersonalAccaunt from './questionPages/ReplenishmentPersonalA
 import CustomsDuties from './questionPages/CustomsDuties';
 import CostServices from './questionPages/CostServices';
 import ProductReturns from './questionPages/ProductReturns';
+import TrackYourOrder from './questionPages/TrackYourOrder';
 
 
 
@@ -20,6 +21,7 @@ const Questions = () => {
 	const [openTranslate, setOpenTranslate] = useState(false);
 	const [openTransferPage, setOpenTransferPage] = useState(false);
 	const [costServices, setOpenСostServicesPage] = useState(false);
+	const [trackYourOrder, setSrackYourOrder] = useState(false);
 	const router = useRouter();
 
 
@@ -41,6 +43,10 @@ const Questions = () => {
 		case 'costServices':
 			
 			setOpenСostServicesPage(true);
+			break;
+		case 'trackyourorder':
+			
+			setSrackYourOrder(true);
 			break;
 		default:
 			break;
@@ -112,12 +118,18 @@ const Questions = () => {
 			<CollapseInfo			
 				title={'Как перевести сайт на русский'}
 				open={openTranslate}
-				end={true}
+				
 			>
 				<TranslatePage/>
 			</CollapseInfo>
 
-			
+			<CollapseInfo			
+				title={'Как отследить заказ'}
+				open={trackYourOrder}
+				end={true}
+			>
+				<TrackYourOrder/>
+			</CollapseInfo>
 
 		</ContainerMUI>
 	);
