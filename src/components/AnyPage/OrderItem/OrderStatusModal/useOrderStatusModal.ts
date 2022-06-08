@@ -67,7 +67,7 @@ export const useOrderStatusModal = (
 			rules: { required: true, pattern: /^[a-zA-Z0-9]+$/g },
 		},
 		inputProps: {
-			placeholder: 'Трек номер22',
+			placeholder: 'Трек номер',
 			disabled: component === 'wait' || component === 'stock',
 		},
 	};
