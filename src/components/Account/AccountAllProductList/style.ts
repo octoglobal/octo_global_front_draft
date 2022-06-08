@@ -82,6 +82,8 @@ export const useAccountAllProducListStyle = () => {
 	const ProductTracknumberMUI = styled('div')(() => ({
 		gridArea: 'trackp',
 		textTransform: 'uppercase',
+		maxWidth: 133,
+		overflowX: 'auto',
 	}));
 	const ProductNameMUI = styled('div')(({ theme }) => ({
 		gridArea: 'namep',
