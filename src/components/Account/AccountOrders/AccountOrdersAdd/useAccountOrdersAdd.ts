@@ -30,7 +30,7 @@ export const useAccountOrdersAdd = () => {
 		setIsAddOrder(prevState => !prevState);
 	};
 
-	console.log(errors);
+	
 	const getControlObj = (name: string, placeholder: string) => {
 		return {
 			controller: {
