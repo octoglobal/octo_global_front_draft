@@ -9,7 +9,7 @@ const AccountOrdersAddInstruction = () => {
 	return (
 		<>
 			<ItemMUI>
-				<Link href='/questions'>
+				<Link href='/questions?trackyourorder'>
 					<a>
 						<IconMUI>
 							<InstructionIcon/>

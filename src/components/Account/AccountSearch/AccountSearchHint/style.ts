@@ -1,50 +1,43 @@
 import { styled } from '@mui/material';
 
 export const useAccountSearchHintStyles = () => {
-
-	const ContainerMUI = styled('div')(({theme}) => ({
+	const ContainerMUI = styled('div')(({ theme }) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		paddingRight: '69px',
 
-		'& > div':{
+		'& > div': {
 			fontSize: '20px',
 			lineHeight: '24px',
 			fontWeight: 300,
 			[theme.breakpoints.down(770)]: {
-				fontSize: '16px'
-				
-			}
-		}
+				fontSize: '16px',
+			},
+		},
 	}));
 
 	const HintItemMUI = styled('div')(() => ({
 		fontSize: '20px',
 		lineHeight: '24px',
 		fontWeight: 300,
-			
 	}));
-	const HintItemuserAreaIdMUI = styled('div')(({theme}) => ({
+	const HintItemuserAreaIdMUI = styled('div')(({ theme }) => ({
 		width: '10%',
 		[theme.breakpoints.down(770)]: {
 			width: '100%',
 			gridArea: 'a',
-			
-		}
-		
+		},
 	}));
-	const HintItemEmailMUI = styled('div')(({theme}) => ({
+	const HintItemEmailMUI = styled('div')(({ theme }) => ({
 		width: '28%',
-		wordWrap: 'break-word', 
-		overflowWrap: 'break-word',	
+		wordWrap: 'break-word',
+		overflowWrap: 'break-word',
 		[theme.breakpoints.down(770)]: {
-			width: '100%',		
-			gridArea: 'd',	
-				
-		
-		}
+			width: '100%',
+			gridArea: 'd',
+		},
 	}));
-	const HintItemOrderMUI = styled('div')(({theme}) => ({
+	const HintItemOrderMUI = styled('div')(({ theme }) => ({
 		width: '8%',
 		textTransform: 'uppercase',
 		[theme.breakpoints.down(770)]: {
@@ -53,35 +46,30 @@ export const useAccountSearchHintStyles = () => {
 			display: 'flex',
 			justifyContent: 'end',
 			alignItems: 'end',
-		
-						
-		}
+		},
 	}));
-	const HintItemTrackMUI = styled('div')(({theme}) => ({
+	const HintItemTrackMUI = styled('div')(({ theme }) => ({
 		width: '18%',
 		textTransform: 'uppercase',
+		overflowX: 'auto',
+
 		[theme.breakpoints.down(770)]: {
 			width: '100%',
-			gridArea: 'b',			
+			gridArea: 'b',
 		},
-		
-		
 	}));
-	const HintItemNameMUI = styled('div')(({theme}) => ({
+	const HintItemNameMUI = styled('div')(({ theme }) => ({
 		width: '28%',
-		
+
 		[theme.breakpoints.down(770)]: {
 			width: '100%',
 			gridArea: 'e',
-		
-		}
-	}));
-	const PMUI = styled('div')(({theme}) => ({
-		[theme.breakpoints.down(400)]: {
-			fontSize: '15px',					
 		},
-		
-
+	}));
+	const PMUI = styled('div')(({ theme }) => ({
+		[theme.breakpoints.down(400)]: {
+			fontSize: '15px',
+		},
 	}));
 	return {
 		HintItemMUI,
@@ -91,6 +79,6 @@ export const useAccountSearchHintStyles = () => {
 		HintItemOrderMUI,
 		HintItemTrackMUI,
 		HintItemNameMUI,
-		PMUI
+		PMUI,
 	};
 };

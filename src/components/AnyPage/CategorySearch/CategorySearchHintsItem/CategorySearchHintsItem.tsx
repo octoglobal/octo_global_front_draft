@@ -41,19 +41,27 @@ const CategorySearchHintsItem: FC<ICategorySearchHintsItemProps> = (
 	
 	const searchValue = useWatch({name: 'search'});
 	
-	const editTextValue = (title: string | null | undefined,searchValue:string, ) =>{		
+	const editTextValue = (title: string | null | undefined,searchValue:string, ) =>{	
+	
 		if (searchValue && title){				
-			const textsArr = title.toLocaleLowerCase().split(searchValue.toLocaleLowerCase());		
-			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());			
 		
+			const indexSeparet = title.toLocaleLowerCase().indexOf(searchValue.toLocaleLowerCase());
+			const BeforeMark = title.slice(0,indexSeparet);
+			const result = title.toLocaleLowerCase().match(searchValue.toLocaleLowerCase());
+
 			let markText ;
+			let AfterMark;
+
 			if (result?.index !== null && result?.index !== undefined) {
 				markText = title.toLocaleLowerCase().slice(result?.index, result?.index  + searchValue.length);
+				 AfterMark = title.slice(indexSeparet + markText.length);
+				
+				
 			} else {				
 				markText = '';
 			}	
-						
-			return <>{textsArr[0]}<TextMarkMUI>{markText }</TextMarkMUI>{textsArr[1]}</>; 			
+			
+			return <>{BeforeMark}<TextMarkMUI>{markText }</TextMarkMUI>{AfterMark}</>; 			
 			
 			
 		} else {
