@@ -259,8 +259,19 @@ export const useAccountLocationStyle = () => {
 
 	const LinkWrapperMUI = styled('span')(() => ({
 		color: '#274D82',
+		fontSize: '18px',
+		textDecoration: 'underline',
 		'&> a:visited': {
 			color: '#274D82',
+			fontSize: '18px',
+		},
+		'&> a': {
+			color: '#274D82',
+			fontSize: '18px',
+		},
+		'&> a:link': {
+			color: '#274D82',
+			fontSize: '18px',
 		},
 	}));
 
