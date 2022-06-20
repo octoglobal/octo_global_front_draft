@@ -255,7 +255,9 @@ export const useAccountLocationStyle = () => {
 			height: '37px !important',
 		},
 	};
-	const LinkMUI = styled(LinkUI)(() => ({}));
+	const LinkMUI = styled('span')(() => ({
+		cursor: 'pointer',
+	}));
 
 	const LinkWrapperMUI = styled('span')(() => ({
 		color: '#274D82',
