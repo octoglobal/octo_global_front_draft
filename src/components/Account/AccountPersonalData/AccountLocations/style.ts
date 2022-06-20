@@ -1,4 +1,3 @@
-import LinkUI from 'UI/UIComponents/LinkUI/LinkUI';
 import React from 'react';
 import { styled, Typography } from '@mui/material';
 
