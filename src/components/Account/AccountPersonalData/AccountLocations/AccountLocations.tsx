@@ -47,7 +47,7 @@ const AccountLocations: FC = () => {
 				<LocationAddressUI>
 					Пришлите мне инструкцию для заполнения адреса доставки в{' '}
 					<LinkWrapperMUI>
-						<LinkMUI onClick={handlerCountryState('ger')}>
+						<LinkMUI onClick={handlerCountryState('Ger')}>
 							Германии,
 						</LinkMUI>{' '}
 					</LinkWrapperMUI>
@@ -68,7 +68,7 @@ const AccountLocations: FC = () => {
 						setOpenRules(false);
 					}}
 					open={openRules}
-					title={'Связаться с Вами для уточнения адреса?'}
+					title={'Письмо с адресом поступит к Вам в ближайшее время'}
 					onClickYes={sendAdress()}
 				/>
 
