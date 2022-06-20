@@ -1,3 +1,4 @@
+import sendAdressSlice from './reducers/sendAdress/sendAdressSlice';
 import translateReducer from '@/reducers/translateSlice/translateSlice';
 import userReducer from '@/reducers/userSlice/userSlice';
 import reviewsReducer from '@/reducers/reviewsSlice/reviewsSlice';
@@ -24,4 +25,5 @@ export const allReducers = {
 	paymentReducer,
 	swipeableDrawerSliceReducer,
 	euroSlice,
+	sendAdressSlice,
 };

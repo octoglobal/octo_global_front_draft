@@ -1,8 +1,13 @@
-import {octoAxios} from '@/lib/http';
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {IUserSlice} from '@/reducers/userSlice/userSlice';
+import { octoAxios } from '@/lib/http';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IUserSlice } from '@/reducers/userSlice/userSlice';
 import axios from 'axios';
-import {AddressFetchObject, IRecoveryMessage, ISendRecoveryPass, IUpdatePassword} from '../../../../types/types';
+import {
+	AddressFetchObject,
+	IRecoveryMessage,
+	ISendRecoveryPass,
+	IUpdatePassword,
+} from '../../../../types/types';
 
 export interface IUserRegistrationReq {
 	name: string;
@@ -22,7 +27,7 @@ export interface IUserChange {
 	phone?: string;
 }
 interface IUserDefaultRes {
-	message: string
+	message: string;
 }
 
 export interface IUserAddresReq {
@@ -33,11 +38,9 @@ export interface IUserAddresReq {
 }
 
 interface IAddressDelete {
-	address_id: number,
-	userId?:number
+	address_id: number;
+	userId?: number;
 }
-
-
 
 export const fetchUserRefresh = async () => {
 	try {
@@ -54,7 +57,7 @@ export const fetchUserRefresh = async () => {
 export const fetchVerificMessage = async () => {
 	try {
 		const response = await octoAxios.get('/send_verification_message');
-	
+
 		return response.data;
 	} catch (err: unknown) {
 		if (axios.isAxiosError(err)) {
@@ -66,11 +69,10 @@ export const fetchVerificMessage = async () => {
 };
 
 export const fetchUserRegistration = async (data: IUserRegistrationReq) => {
-	return (
-		await octoAxios.post<IUserDefaultRes>('/registration', data)
-			.then(r => r.data.message)
-			.catch(e => e.response)
-	);
+	return await octoAxios
+		.post<IUserDefaultRes>('/registration', data)
+		.then((r) => r.data.message)
+		.catch((e) => e.response);
 };
 
 export const fetchUserLogout = createAsyncThunk(
@@ -87,15 +89,17 @@ export const fetchUserLogout = createAsyncThunk(
 
 export const fetchUserAutoLogin = createAsyncThunk(
 	'user/autologin',
-	async (__, thunkAPI) => {		
+	async (__, thunkAPI) => {
 		try {
 			const response = await octoAxios.get('/user');
-		
+
 			return response.data;
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
 				return {
-					message: thunkAPI.rejectWithValue(`${err.response?.status}`),
+					message: thunkAPI.rejectWithValue(
+						`${err.response?.status}`
+					),
 				};
 			}
 			return thunkAPI.rejectWithValue('422');
@@ -110,8 +114,10 @@ export const fetchUserLogin = createAsyncThunk(
 			const response = await octoAxios.get<IUserSlice>('/login', {
 				headers: {
 					'Access-Control-Allow-Origin': '*',
-					'Authorization': `Basic ${window.btoa(`${data.email}:${data.password}`)}`
-				}
+					Authorization: `Basic ${window.btoa(
+						`${data.email}:${data.password}`
+					)}`,
+				},
 			});
 			return response.data;
 		} catch (err: unknown) {
@@ -125,10 +131,10 @@ export const fetchUserLogin = createAsyncThunk(
 
 export const fetchChangeUser = createAsyncThunk(
 	'user/change',
-	async(data: {data: IUserChange, url: string}, thunkAPI) => {
+	async (data: { data: IUserChange; url: string }, thunkAPI) => {
 		try {
 			return await octoAxios.patch(data.url, data.data);
-		} catch (err : unknown) {
+		} catch (err: unknown) {
 			if (axios.isAxiosError(err)) {
 				return thunkAPI.rejectWithValue(err.response);
 			}
@@ -139,7 +145,14 @@ export const fetchChangeUser = createAsyncThunk(
 
 export const fetchChangePassword = createAsyncThunk(
 	'password/chang',
-	async(data : {data: IUpdatePassword | {password: string}, url: string, isAdmin: boolean}, thunkAPI) => {
+	async (
+		data: {
+			data: IUpdatePassword | { password: string };
+			url: string;
+			isAdmin: boolean;
+		},
+		thunkAPI
+	) => {
 		try {
 			if (data.isAdmin) {
 				return await octoAxios.patch(data.url, data.data);
@@ -157,15 +170,15 @@ export const fetchChangePassword = createAsyncThunk(
 
 export const fetchRecoveryPassword = createAsyncThunk(
 	'password/recovery',
-	async(data : ISendRecoveryPass, thunkAPI) => {
+	async (data: ISendRecoveryPass, thunkAPI) => {
 		try {
 			const dataSend = {
-				password: data.password
+				password: data.password,
 			};
 			return await octoAxios.post('/password_recovery', dataSend, {
 				headers: {
-					'Authorization': `Bearer ${data.token}`
-				}
+					Authorization: `Bearer ${data.token}`,
+				},
 			});
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
@@ -178,12 +191,12 @@ export const fetchRecoveryPassword = createAsyncThunk(
 
 export const fetchRecoveryMessage = createAsyncThunk(
 	'user/send_recovery_message',
-	async(data : IRecoveryMessage, thunkAPI) => {		
+	async (data: IRecoveryMessage, thunkAPI) => {
 		try {
-			const res =  await octoAxios.post('/send_recovery_message', data);
-			 if (res.status === 200){
-				  return res.status;
-			 }
+			const res = await octoAxios.post('/send_recovery_message', data);
+			if (res.status === 200) {
+				return res.status;
+			}
 		} catch (err: unknown) {
 			if (axios.isAxiosError(err)) {
 				return thunkAPI.rejectWithValue(err.response?.status);
@@ -195,31 +208,26 @@ export const fetchRecoveryMessage = createAsyncThunk(
 
 export const fetchAddAddress = createAsyncThunk(
 	'address/add',
-	async(data: AddressFetchObject, {rejectWithValue}) => {
-		try {		
+	async (data: AddressFetchObject, { rejectWithValue }) => {
+		try {
 			const response = await octoAxios.post('/user/address', data);
 
-			
 			return response;
 		} catch (err) {
-			
 			if (axios.isAxiosError(err)) {
-			
 				return rejectWithValue(err.response?.status);
 			}
-		
 		}
 	}
 );
 
 export const fetchDeleteAddress = createAsyncThunk(
 	'/address/delete',
-	// TODO: добавитьтип адресса к удалению адреса	
-	async (data: IAddressDelete, thunkAPI) => {		
+	// TODO: добавитьтип адресса к удалению адреса
+	async (data: IAddressDelete, thunkAPI) => {
 		try {
-		
-			const response = await octoAxios.delete('/user/address', {data});
-			
+			const response = await octoAxios.delete('/user/address', { data });
+
 			// const response
 			return response;
 		} catch (e) {
@@ -230,12 +238,13 @@ export const fetchDeleteAddress = createAsyncThunk(
 export const fetchDeleteAddressAdmin = createAsyncThunk(
 	'/address/AdminDeleteUser',
 	// TODO: добавитьтип адресса к удалению адреса
-	
+
 	async (data: IAddressDelete, thunkAPI) => {
-		
-		try {			
-			const response = await octoAxios.delete('/admin/user/address', {data});
-		
+		try {
+			const response = await octoAxios.delete('/admin/user/address', {
+				data,
+			});
+
 			// const response
 			return response;
 		} catch (e) {
@@ -244,13 +253,12 @@ export const fetchDeleteAddressAdmin = createAsyncThunk(
 	}
 );
 
-
 export const fetchAddAddressAdminForUser = createAsyncThunk(
 	'/address/AdminDeleteUser',
-	
-	async (data:object, thunkAPI) => {		
-		try {			
-			const response = await octoAxios.post('/admin/user/address', data);	
+
+	async (data: object, thunkAPI) => {
+		try {
+			const response = await octoAxios.post('/admin/user/address', data);
 			return response;
 		} catch (e) {
 			return thunkAPI.rejectWithValue('Ошибка api /admin/user/address');

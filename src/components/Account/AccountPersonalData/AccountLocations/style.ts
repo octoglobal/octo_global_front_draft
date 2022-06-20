@@ -1,8 +1,7 @@
 import React from 'react';
-import {styled, Typography} from '@mui/material';
+import { styled, Typography } from '@mui/material';
 
 export const useAccountLocationStyle = () => {
-
 	const LocationWrapperUI = styled('div')(() => ({
 		width: '100%',
 		height: 'max-content',
@@ -15,11 +14,11 @@ export const useAccountLocationStyle = () => {
 
 	const AddressListMUI = styled('div')(() => ({
 		'& > *:last-child': {
-			borderBottom: 0
-		}
+			borderBottom: 0,
+		},
 	}));
 
-	const BorderWrapperUI = styled('div')(({theme}) => ({
+	const BorderWrapperUI = styled('div')(({ theme }) => ({
 		maxWidth: '673px',
 		width: 'auto',
 		height: 'auto',
@@ -40,11 +39,10 @@ export const useAccountLocationStyle = () => {
 		[theme.breakpoints.down(600)]: {
 			// width: '95%'
 			border: '5px dashed #234A82',
-
-		}
+		},
 	}));
 
-	const LocationContainerUI = styled('div')(({theme}) => ({
+	const LocationContainerUI = styled('div')(({ theme }) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -72,7 +70,7 @@ export const useAccountLocationStyle = () => {
 
 			// скрываем адрес на мобилке
 			'& p:first-child': {
-				display: 'none'
+				display: 'none',
 			},
 
 			'& .TabsListUnstyled-root': {
@@ -91,7 +89,7 @@ export const useAccountLocationStyle = () => {
 		},
 	}));
 
-	const LocationContentUI = styled('div')(({theme}) => ({
+	const LocationContentUI = styled('div')(({ theme }) => ({
 		width: '100%',
 		height: '100%',
 
@@ -100,11 +98,11 @@ export const useAccountLocationStyle = () => {
 
 			'& button': {
 				marginBottom: '0 !important',
-			}
-		}
+			},
+		},
 	}));
 
-	const LocationFormUI = styled('div')(({theme}) => ({
+	const LocationFormUI = styled('div')(({ theme }) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -124,32 +122,33 @@ export const useAccountLocationStyle = () => {
 
 			'& .MuiCollapse-root ': {
 				width: '100%',
-			}
-		}
+			},
+		},
 	}));
 
 	const LocationButtonsUI = styled('div', {
-		shouldForwardProp: (prop) => prop !== 'justifyAlign' && prop !== 'addMargin',
-	})<{ justifyAlign?: boolean, addMargin?: boolean }>(({justifyAlign = false, addMargin = false, theme}) => ({
-		display: 'flex',
-		flexDirection: 'row',
-		alignSelf: 'flex-end',
-		justifyContent: justifyAlign ? 'center' : 'flex-end',
-		width: '100%',
-
-		marginBottom: addMargin ? '10px' : '0',
-		marginTop: !addMargin ? '10px' : '0',
-
-		
-
-		[theme.breakpoints.down(500)]: {
+		shouldForwardProp: (prop) =>
+			prop !== 'justifyAlign' && prop !== 'addMargin',
+	})<{ justifyAlign?: boolean; addMargin?: boolean }>(
+		({ justifyAlign = false, addMargin = false, theme }) => ({
+			display: 'flex',
+			flexDirection: 'row',
+			alignSelf: 'flex-end',
 			justifyContent: justifyAlign ? 'center' : 'flex-end',
-			marginBottom: '0',
-			marginTop: '5px',
-		}
-	}));
+			width: '100%',
 
-	const LocationPlusUI = styled('span')(({theme}) => ({
+			marginBottom: addMargin ? '10px' : '0',
+			marginTop: !addMargin ? '10px' : '0',
+
+			[theme.breakpoints.down(500)]: {
+				justifyContent: justifyAlign ? 'center' : 'flex-end',
+				marginBottom: '0',
+				marginTop: '5px',
+			},
+		})
+	);
+
+	const LocationPlusUI = styled('span')(({ theme }) => ({
 		marginTop: '5px',
 
 		'& svg': {
@@ -158,16 +157,16 @@ export const useAccountLocationStyle = () => {
 
 		[theme.breakpoints.down(500)]: {
 			marginTop: '30px',
-		}
+		},
 	}));
 
-	const LocationAddressUI = styled('div')(({theme}) => ({
+	const LocationAddressUI = styled('div')(({ theme }) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '22px',
 		lineHeight: '28px',
 		color: '#000000',
-		width: '288px',
+		// width: '288px',
 
 		marginBottom: '25px',
 
@@ -180,11 +179,11 @@ export const useAccountLocationStyle = () => {
 		[theme.breakpoints.down(400)]: {
 			width: '100%',
 			margin: '15px 0px 20px 0px',
-			fontSize: '16px'
-		}
+			fontSize: '16px',
+		},
 	}));
 
-	const LocationButtonUI = styled('div')(({theme}) => ({
+	const LocationButtonUI = styled('div')(({ theme }) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '20px',
@@ -198,10 +197,10 @@ export const useAccountLocationStyle = () => {
 		},
 		[theme.breakpoints.down(400)]: {
 			fontSize: '16px',
-		}
+		},
 	}));
 
-	const TypographyUI = styled(Typography)(({theme}) => ({
+	const TypographyUI = styled(Typography)(({ theme }) => ({
 		fontStyle: 'normal',
 		fontWeight: '300',
 		fontSize: '24px',
@@ -225,7 +224,7 @@ export const useAccountLocationStyle = () => {
 		width: '150px',
 		height: '32px',
 		padding: '8px 14px',
-		margin: '0 0 0 25px'
+		margin: '0 0 0 25px',
 		// marginLeft: '25px'
 		// alignSelf: 'flex-end'
 	};
@@ -245,7 +244,7 @@ export const useAccountLocationStyle = () => {
 		width: 'auto',
 		height: '32px',
 		padding: '0',
-		margin: '0'
+		margin: '0',
 	};
 
 	const TextFieldMobileSx = {
@@ -253,8 +252,29 @@ export const useAccountLocationStyle = () => {
 
 		'& .MuiOutlinedInput-root input': {
 			height: '37px !important',
-		}
+		},
 	};
+	const LinkMUI = styled('span')(() => ({
+		cursor: 'pointer',
+	}));
+
+	const LinkWrapperMUI = styled('span')(() => ({
+		color: '#274D82',
+		fontSize: '18px',
+		textDecoration: 'underline',
+		'&> a:visited': {
+			color: '#274D82',
+			fontSize: '18px',
+		},
+		'&> a': {
+			color: '#274D82',
+			fontSize: '18px',
+		},
+		'&> a:link': {
+			color: '#274D82',
+			fontSize: '18px',
+		},
+	}));
 
 	return {
 		TypographyUI,
@@ -270,6 +290,8 @@ export const useAccountLocationStyle = () => {
 		LocationButtonsUI,
 		ButtonAdd,
 		ButtonShowAll,
-		TextFieldMobileSx
+		TextFieldMobileSx,
+		LinkMUI,
+		LinkWrapperMUI,
 	};
 };
