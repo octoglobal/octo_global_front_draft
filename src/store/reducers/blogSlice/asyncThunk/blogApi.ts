@@ -1,13 +1,16 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {IFormData} from '@/components/Blog/BlogNewPost/BlogFields/useBlogFields';
-import {octoAxios} from '@/lib/http';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IFormData } from '@/components/Blog/BlogNewPost/BlogFields/useBlogFields';
+import { octoAxios } from '@/lib/http';
 import axios from 'axios';
-import {IBlogModel} from '@/models/IBlogModel';
+import { IBlogModel } from '@/models/IBlogModel';
 
-import { deletePostItem,updateBlogData } from '@/store/reducers/blogSlice/blogSlice';
+import {
+	deletePostItem,
+	updateBlogData,
+} from '@/store/reducers/blogSlice/blogSlice';
 
 interface IFetchNewsDataReq {
-	page: number
+	page: number;
 	pageLimit: number;
 }
 
@@ -16,53 +19,52 @@ interface IFetchAddNewsRes {
 }
 
 interface IImgPathType {
-	base64: string
+	base64: string;
 }
 
 export interface IFetchNewsDataRes {
-	page_count: number
+	page_count: number;
 	posts: IBlogModel[];
 }
-
 
 export const fetchAddNewsBlog = createAsyncThunk(
 	'blogSlice/add',
 	async (data: IFormData, thunkAPI) => {
 		try {
 			const formData = new FormData();
-			const sendData = JSON.stringify(
-				{
-					title: data.blogTitle,
-					body: data.blogDescription,
-					products: [
-						{
-							title: data.subtitlePhoto1,
-							body: data.miniDescPhoto1,
-							url: data.postLink1
-						},
-						{
-							title: data.subtitlePhoto2,
-							body: data.miniDescPhoto2,
-							url: data.postLink2
-						},
-						{
-							title: data.subtitlePhoto3,
-							body: data.miniDescPhoto3,
-							url: data.postLink3
-						},
-					]
-				}
-			);
+			const sendData = JSON.stringify({
+				title: data.blogTitle,
+				body: data.blogDescription,
+				products: [
+					{
+						title: '',
+						body: '',
+						url: data.postLink1,
+					},
+					{
+						title: '',
+						body: '',
+						url: data.postLink2,
+					},
+					{
+						title: '',
+						body: '',
+						url: data.postLink3,
+					},
+				],
+			});
 			formData.append('image', data.blogPhoto1.file as File);
 			formData.append('image', data.blogPhoto2.file as File);
 			formData.append('image', data.blogPhoto3.file as File);
 			formData.append('json_data', sendData);
 			const response = await octoAxios
 				.post<IFetchAddNewsRes>('/admin/blog', formData)
-				.then(r => r.data);
+				.then((r) => r.data);
 
-			const response2 = await octoAxios.get<IFetchNewsDataRes>('blog?page=1&page_limit=1');
-		
+			const response2 = await octoAxios.get<IFetchNewsDataRes>(
+				'blog?page=1&page_limit=1'
+			);
+
 			const newId = response2.data.posts[0].id;
 			if (response.message == 'success') {
 				return {
@@ -77,27 +79,29 @@ export const fetchAddNewsBlog = createAsyncThunk(
 							title: data.subtitlePhoto1,
 							body: data.miniDescPhoto1,
 							url: data.postLink1,
-							photo:  data.blogPhoto1.base64,
+							photo: data.blogPhoto1.base64,
 						},
 						{
 							title: data.subtitlePhoto2,
 							body: data.miniDescPhoto2,
 							url: data.postLink2,
-							photo:  data.blogPhoto2.base64,
+							photo: data.blogPhoto2.base64,
 						},
 						{
 							title: data.subtitlePhoto3,
 							body: data.miniDescPhoto3,
 							url: data.postLink3,
-							photo:  data.blogPhoto3.base64,
+							photo: data.blogPhoto3.base64,
 						},
-					]
+					],
 				};
 			}
 		} catch (e) {
 			if (axios.isAxiosError(e)) {
 				// return thunkAPI.rejectWithValue(e.response?.status);
-				 return thunkAPI.rejectWithValue('Произошла ошибка при добавлении');
+				return thunkAPI.rejectWithValue(
+					'Произошла ошибка при добавлении'
+				);
 			}
 		}
 	}
@@ -107,7 +111,9 @@ export const fetchNewsData = createAsyncThunk(
 	'blogSlice/getPosts',
 	async (data: IFetchNewsDataReq, thunkAPI) => {
 		try {
-			const response = await octoAxios.get<IFetchNewsDataRes>(`blog?page=${data.page}&page_limit=${data.pageLimit}`);
+			const response = await octoAxios.get<IFetchNewsDataRes>(
+				`blog?page=${data.page}&page_limit=${data.pageLimit}`
+			);
 			return {
 				posts: response.data.posts,
 				blogEnd: !(response.data.posts.length === data.pageLimit),
@@ -122,108 +128,96 @@ export const fetchNewsData = createAsyncThunk(
 
 export const fetchDeleteBlogItem = createAsyncThunk(
 	'blogSlice/deletePosts',
-	async (data: {id: number}, {rejectWithValue, dispatch}) => {
-		
-		try {		
-			const response = await octoAxios.delete('/admin/blog',{ data: { blogId: data.id }});
+	async (data: { id: number }, { rejectWithValue, dispatch }) => {
+		try {
+			const response = await octoAxios.delete('/admin/blog', {
+				data: { blogId: data.id },
+			});
 
-			if (response.status === 200){				
-				dispatch(deletePostItem(data.id));		
-			 }
-						
-	
-		} catch (e) {		
+			if (response.status === 200) {
+				dispatch(deletePostItem(data.id));
+			}
+		} catch (e) {
 			return rejectWithValue('Произошла ошибка при удалении');
 		}
 	}
 );
 
-
-
 export const fetchUpdateBlog = createAsyncThunk(
 	'blogSlice/update',
-	async (data: {data:IFormData, id:number},{dispatch,rejectWithValue}) => {
-
-		const  imgPathType = (data:IImgPathType) :string=>{			
+	async (
+		data: { data: IFormData; id: number },
+		{ dispatch, rejectWithValue }
+	) => {
+		const imgPathType = (data: IImgPathType): string => {
 			if (data.base64.split('/image')[1]) {
 				return data.base64.split('/image')[1];
 			} else {
 				return data.base64;
 			}
 		};
-	
+
 		try {
 			const formData = new FormData();
-			const sendData = JSON.stringify(
-				{	
-					blogId:data.id,
-					title: data.data.blogTitle,
-					body: data.data.blogDescription,
-					products: [
-						{
-							title: data.data.subtitlePhoto1,
-							body: data.data.miniDescPhoto1,
-							url: data.data.postLink1
-						},
-						{
-							title: data.data.subtitlePhoto2,
-							body: data.data.miniDescPhoto2,
-							url: data.data.postLink2
-						},
-						{
-							title: data.data.subtitlePhoto3,
-							body: data.data.miniDescPhoto3,
-							url: data.data.postLink3
-						},
-					]
-				}
-			);
+			const sendData = JSON.stringify({
+				blogId: data.id,
+				title: data.data.blogTitle,
+				body: data.data.blogDescription,
+				products: [
+					{
+						title: data.data.subtitlePhoto1,
+						body: data.data.miniDescPhoto1,
+						url: data.data.postLink1,
+					},
+					{
+						title: data.data.subtitlePhoto2,
+						body: data.data.miniDescPhoto2,
+						url: data.data.postLink2,
+					},
+					{
+						title: data.data.subtitlePhoto3,
+						body: data.data.miniDescPhoto3,
+						url: data.data.postLink3,
+					},
+				],
+			});
 
-					
 			formData.append('json_data', sendData);
 			const response = await octoAxios.patch('/admin/blog', formData);
 
-				
-			// if (response.statusText === 'OK'){				
-			if (response.status === 200){				
-			
-				const updateData = {	
-					id:data.id,
+			// if (response.statusText === 'OK'){
+			if (response.status === 200) {
+				const updateData = {
+					id: data.id,
 					title: data.data.blogTitle,
 					body: data.data.blogDescription,
-					
+
 					products: [
 						{
 							title: data.data.subtitlePhoto1,
 							body: data.data.miniDescPhoto1,
-							url: data.data.postLink1,						
+							url: data.data.postLink1,
 							photo: imgPathType(data.data.blogPhoto1),
-							
-							
 						},
 						{
 							title: data.data.subtitlePhoto2,
 							body: data.data.miniDescPhoto2,
-							url: data.data.postLink2,							
+							url: data.data.postLink2,
 							photo: imgPathType(data.data.blogPhoto2),
 						},
 						{
 							title: data.data.subtitlePhoto3,
 							body: data.data.miniDescPhoto3,
-							url: data.data.postLink3,						
+							url: data.data.postLink3,
 							photo: imgPathType(data.data.blogPhoto3),
 						},
-					]
+					],
 				};
-			
+
 				dispatch(updateBlogData(updateData));
-				
 			}
-			
-		} catch (error) {	
-			
-			
-			return rejectWithValue('Произошла ошибка при обновлении',);
+		} catch (error) {
+			return rejectWithValue('Произошла ошибка при обновлении');
 		}
 	}
 );
