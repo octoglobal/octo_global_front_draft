@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import BlogPhoto from '@/components/Blog/BlogNewPost/BlogPhoto/BlogPhoto';
-import BlogTextField from '@/components/Blog/BlogNewPost/BlogTextField/BlogTextField';
+// import BlogTextField from '@/components/Blog/BlogNewPost/BlogTextField/BlogTextField';
 import BlogLink from '@/components/Blog/BlogNewPost/BlogLink/BlogLink';
 import { useBlogPreviewFieldsStyles } from '@/components/Blog/BlogNewPost/BlogPreviewFields/style';
 
