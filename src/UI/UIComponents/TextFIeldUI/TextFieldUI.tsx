@@ -1,6 +1,6 @@
 import React, {FC, useState, useMemo} from 'react';
 import {InputAdornment, TextField, TextFieldProps} from '@mui/material';
-import {Controller, ControllerProps} from 'react-hook-form';
+import {Control, Controller, ControllerProps, FieldValues} from 'react-hook-form';
 
 import {useMobile} from '@/hooks/useMedia';
 import {useTextFieldUIStyle} from './style';
@@ -18,8 +18,12 @@ interface IRegexProps {
 	ucFirst?: boolean
 }
 
+interface IController extends Omit<ControllerProps, 'render' | 'control'>{
+	control: any;
+}
+
 interface ITextFieldUIProps {
-	controller: Omit<ControllerProps, 'render'>
+	controller: IController;
 	inputProps?: TextFieldProps,
 	iconProps?: IIconsProps,
 	regexProps?: IRegexProps,
@@ -66,8 +70,8 @@ const TextFieldUI: FC<ITextFieldUIProps> = ({controller, inputProps, iconProps, 
 					<TextField
 						// sx={TextFieldStyle}
 						sx={isMobile ? TextFieldMobileStyle : TextFieldStyle}
-						value={value}			
-						
+						value={value}
+
 						{...inputProps}
 						onChange={handlerChange(onChange)}
 						// onChange={onChange}

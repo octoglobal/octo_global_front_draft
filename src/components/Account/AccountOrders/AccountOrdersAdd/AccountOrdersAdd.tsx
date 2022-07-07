@@ -36,8 +36,7 @@ const AccountOrdersAdd = () => {
 						<TextFieldUI
 							controller={{...textFieldName.controller,
 								rules: {
-									required: 'Обязательное поле',								
-									
+									required: 'Обязательное поле',
 								},
 							}}
 							inputProps={{
@@ -57,9 +56,9 @@ const AccountOrdersAdd = () => {
 										value: /^[a-zA-Z0-9]+$/g ,
 										message: 'Только латинские буквы и цифры'
 									},
-									
+
 								},
-								
+
 							}}
 							inputProps={{
 								...textFieldTrackNumber.inputProps,

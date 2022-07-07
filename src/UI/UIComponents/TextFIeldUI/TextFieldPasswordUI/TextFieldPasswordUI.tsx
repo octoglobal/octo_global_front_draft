@@ -25,12 +25,12 @@ const TextFieldPasswordUI: FC<ITextFieldUIProps> = ({controller, inputProps}) =>
 		setShowPassword(prevState => !prevState);
 	};
 
-	
+
 
 	return (
 		<TextFieldUI
 			controller={{
-				...controller
+				...controller as any
 			}}
 			inputProps={{
 				...inputProps,
