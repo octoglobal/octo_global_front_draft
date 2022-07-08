@@ -40,8 +40,8 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 	const {isMobile} = useMobile();
 	const isTouchDevice = useMediaQuery('(max-width: 1024px)');
 	const {
-		isAdmin,		
-		adminSwitchIdToUser,		
+		isAdmin,
+		adminSwitchIdToUser,
 	} = useUserStore();
 
 	const {router, pushTo} = useCustomRouter();
@@ -54,7 +54,7 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 		} else {
 			// const pathname = router.asPath;
 			// const userId = pathname?.split('userId=')[1]?.split('&')[0];
-		
+
 			pushTo(urlTo, {userId:adminSwitchIdToUser});
 		}
 	};
@@ -87,9 +87,9 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 	return (
 		<TabWrapperUI>
 			<TabsUnstyled defaultValue={router.asPath}>
-				
+
 				{isMobile? isAdmin? null:<EuroExchange></EuroExchange>: null}
-				
+
 				<TabsListUI>
 					{isMobile? null: isAdmin? null:<EuroExchange></EuroExchange>}
 					{data.map((item) => (
@@ -138,7 +138,7 @@ const {
 	TabsListUI,
 	TabsMarginLeft,
 	BgMUI,
-	
+
 } = useTabsStyle();
 
 export default React.memo(Tabs);

@@ -7,12 +7,9 @@ import AccountInstruction from '@/components/Account/AccountInstruction/AccountI
 import { useMobile } from '@/hooks/useMedia';
 import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 const Instruction : NextPage = () => {
-
 	const {
 		isMobile
 	} = useMobile();
-
-	
 
 	return (
 		<HeaderLayout>
@@ -20,7 +17,7 @@ const Instruction : NextPage = () => {
 				<AccountInstruction />
 			</AccountPage>
 		</HeaderLayout>
-		
+
 	);
 };
 

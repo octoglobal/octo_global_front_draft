@@ -15,7 +15,7 @@ export const useTabsStyle = () => {
 		 `;
 
 
-	const BgMUI = styled('div')(() => ({
+	const BgMUI = styled('div')(({theme}) => ({
 		position: 'relative',
 		width: 30,
 		height: 30,
@@ -23,7 +23,11 @@ export const useTabsStyle = () => {
 		animation:`${AnimationName} 2s linear infinite`,
 		background: 'linear-gradient(210deg, #F35151 0%, #F35151 45%, #FFCD 50%, #F35151 55%, #F35151 100% )',
 		backgroundSize: '1000% 100%',
-
+		[theme.breakpoints.down(600)]: {
+			width: 20,
+			height: 20,
+			marginBottom: '5px',
+		},
 	}));
 
 	const TabWrapperUI = styled('div')(() => ({
@@ -52,7 +56,7 @@ export const useTabsStyle = () => {
 		display: 'flex',
 		justifyContent: 'center',
 		fontFamily: 'Roboto',
-		
+
 		// '&.Mui-selected': {
 		// 	// fontWeight: '400',
 		//
@@ -72,7 +76,7 @@ export const useTabsStyle = () => {
 			margin: '0 10px !important',
 		},
 
-		
+
 		[theme.breakpoints.down(781)]: {
 			fontSize: '20px',
 			lineHeight: '21px',
@@ -80,7 +84,11 @@ export const useTabsStyle = () => {
 		[theme.breakpoints.down(500)]: {
 			fontSize: '16px',
 			lineHeight: '19px',
+			margin: '0 4px !important',
 		},
+		[theme.breakpoints.down(370)]: {
+			fontSize: '14px',
+		}
 	}));
 
 	const TabsListUI = styled(TabsListUnstyled)(({theme}) => ({
@@ -105,7 +113,7 @@ export const useTabsStyle = () => {
 		margin: '0px 0px -6px 6px',
 		alignItems: 'baseline',
 
-	}));	
+	}));
 	const TabLineMUI = styled('div')(() => ({
 		width: '100%',
 		display: 'flex',

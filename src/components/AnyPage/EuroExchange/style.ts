@@ -2,65 +2,65 @@ import {styled} from '@mui/material';
 
 
 export const useEuroExchangeStyles = () => {
-	
+
 	const ContainerMUI = styled('div',{shouldForwardProp:(prop)=>prop !== 'admin'})
-	<{admin?: boolean}>(({theme, admin = false}) => ({
-		display: 'flex',	
-		
+	<{admin: boolean}>(({theme, admin = false}) => ({
+		display: 'flex',
+
 		[theme.breakpoints.down(600)]: {
 			display: 'flex',
-			
+
 			justifyContent: admin ? 'flex-start': 'center',
-			marginBottom: admin ? 20 : 0,	
-			height: 30,	
-		
-			
+			marginBottom: admin ? 20 : 0,
+			height: 30,
+
+
 		},
 	}));
-	
+
 	const BlockWrap = styled('div')(() => ({
 		display: 'flex',
 		alignItems: 'center',
-			
+
 	}));
 
-	
+
 
 
 	const ParagraphMUI = styled('p',{shouldForwardProp:(prop)=>prop !== 'admin'})
-	<{admin?: boolean}>(({theme, admin = false}) => ({
+	<{admin: boolean}>(({theme, admin = false}) => ({
 		fontSize: 20,
 		fontWeight: 300,
 		[theme.breakpoints.down(500)]: {
 			fontSize: admin? '16px': '12px',
 		},
-		
+
 	}));
 
 
 	const LabelMUI = styled('label',{shouldForwardProp:(prop)=>prop !== 'admin'})
-	<{admin?: boolean}>(({theme, admin = false}) => ({
+	<{admin: boolean}>(({theme, admin = false}) => ({
 		fontSize: 20,
 		fontWeight: 300,
 		marginRight: 5,
 		[theme.breakpoints.down(500)]: {
 			fontSize: admin? '16px': '12px',
 		},
-		
+
 	}));
 
-	
+
 	const FormMUI = styled('form',{shouldForwardProp:(prop)=>prop !== 'admin'})
-	<{admin?: boolean}>(({theme, admin = false}) => ({
+	<{admin: boolean}>(({theme, admin = false}) => ({
 		display: 'flex',
-		flexDirection: 'column',		
+		flexDirection: 'column',
 		alignItems: 'center',
 		[theme.breakpoints.down(500)]: {
 			flexDirection: 'row',
 			justifyContent: 'space-between',
 			width: admin? '100%': null,
 		},
-		
+
 	}));
 	const FormButtonUI = (isMobile:boolean)=>{
 		return {
@@ -68,12 +68,12 @@ export const useEuroExchangeStyles = () => {
 			height: '32px',
 			backgroundColor: 'rgba(39, 77, 130, 0.8)',
 			margin: isMobile? '0 0':'12px 0 0 0',
-	
+
 		};
-	}; 
+	};
 	const IcoMUI = styled('div')(() => ({
-		display: 'flex',		
-		
+		display: 'flex',
+
 	}));
 
 
@@ -82,12 +82,12 @@ export const useEuroExchangeStyles = () => {
 		display: 'flex',
 		'&>svg':{
 			width: 34,
-			height: 34,	
-		},	
+			height: 34,
+		},
 		[theme.breakpoints.down(500)]: {
 			'&>svg':{
 				width: 16,
-				height: 16,	
+				height: 16,
 			}
 		}
 	}));
@@ -95,11 +95,11 @@ export const useEuroExchangeStyles = () => {
 	const TextFieldEuroMUI = styled('div')(({theme}) => ({
 		display: 'flex',
 		width: 74,
-		height: 27,		
+		height: 27,
 		alignItems:'cneter',
 		justifyContent: 'center',
-		
-		
+
+
 		[theme.breakpoints.down(500)]: {
 			width: 50,
 			'& > div': {
@@ -107,7 +107,7 @@ export const useEuroExchangeStyles = () => {
 					height: 27,
 					'& > div': {
 						// height: 27,
-						
+
 						'& > input[type=number]': {
 							'-moz-appearance': 'textfield',
 						},
@@ -122,8 +122,8 @@ export const useEuroExchangeStyles = () => {
 							padding: '0px 3px',
 							fontWeight: 300,
 							fontSize: '16px',
-							
-							
+
+
 						},
 						'& > fieldset': {
 							border: 'none',
@@ -153,12 +153,12 @@ export const useEuroExchangeStyles = () => {
 						// margin: '0px 0px',
 						padding: '0px 3px',
 						fontWeight: 300
-						
+
 					}
 				}
 			}
 		}
-		
+
 	}));
 	const InfoBlockMUI = styled('div')(() => ({
 		display: 'flex',
@@ -168,7 +168,7 @@ export const useEuroExchangeStyles = () => {
 		},
 		'&>label':{
 			paddingTop: 5
-		},	
+		},
 	}));
 
 
@@ -176,7 +176,7 @@ export const useEuroExchangeStyles = () => {
 	return {
 		ContainerMUI,
 		ParagraphMUI,
-		LabelMUI,		
+		LabelMUI,
 		FormMUI,
 		FormButtonUI,
 		IcoMUI,
