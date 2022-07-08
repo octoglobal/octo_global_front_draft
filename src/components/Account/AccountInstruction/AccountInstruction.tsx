@@ -5,6 +5,8 @@ import {useAccountInstructionStyle} from './style';
 import WhatsAppIconLarge from '../../../UI/UIIcon/WhatsAppLarge.svg';
 import {SUPPORT_PHONE_DE} from '@/constants/constants';
 import { WHATSAPP } from '@/lib/services/services';
+import AccountInstructionForm
+	from '@/components/Account/AccountInstruction/AccountInstructionForm/AccountInstructionForm';
 const AccountInstruction : FC = () => {
 	return (
 		<WrapperMUI>
@@ -20,6 +22,7 @@ const AccountInstruction : FC = () => {
 			{/* <FooterMUI>
 				<TextMUI>Если товар превышает сумму беспошлинного ввоза (на сегодня это пока что 200 евро за посылку), то там точно такая же процедура, как если бы товар пришел от интернет магазина на прямую. </TextMUI>
 			</FooterMUI> */}
+			<AccountInstructionForm/>
 			<FooterButtonMUI>
 				{/* <ButtonUI
 					sx={ButtonToShopMUI}
