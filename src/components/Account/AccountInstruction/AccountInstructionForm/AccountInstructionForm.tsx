@@ -51,7 +51,7 @@ const AccountInstructionForm = () => {
 								PopperProps={{
 									disablePortal: true,
 								}}
-								title="Когда человек сознательно или интуитивно выбирает себе в жизни какую-то цель, жизненную задачу, он невольно дает себе оценку. По тому, ради чего человек.">
+								title="Вставьте в поле ссылку на товар. Найдите понравившийся товар в магазине, указанном на сайте, скопируйте ссылку на него, вставьте в поле и нажмите отправить.">
 								<IconTooltipMUI onClick={handleTooltipOpen}>
 									<Info></Info>
 								</IconTooltipMUI>
@@ -82,7 +82,7 @@ const AccountInstructionForm = () => {
 				</ContainerCounter>
 				<SendButtonContainer>
 					<ButtonUI type='submit'>
-						Отправить запрос на выкуп товара
+						Отправить
 					</ButtonUI>
 				</SendButtonContainer>
 			</ContainerForm>
@@ -113,15 +113,16 @@ const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
 	<Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
 	[`& .${tooltipClasses.tooltip}`]: {
-		width: 165,
+		width: 169,
 		backgroundColor: theme.palette.common.white,
 		fontWeight: 300,
-		boxShadow: theme.shadows[1],
-		fontSize: 12,
-		padding: '25px 22px 20px 24px',
+		boxShadow: '0px -4px 4px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.15)',
+		borderRadius: '8px',
+		fontSize: 14,
+		padding: '7px 23px 8px',
 		textAlign: 'center',
 		color: '#3A3A3A',
-		lineHeight: '14px',
+		lineHeight: '16px',
 	},
 }));
 
