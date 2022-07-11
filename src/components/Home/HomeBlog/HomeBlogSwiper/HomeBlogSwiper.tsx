@@ -14,11 +14,14 @@ const HomeBlogSwiper = () => {
 	const {
 		onSwiper,
 		blogData,
+		// isLoadingBlog,
+		onSlideChange,
 		isBlogDataArray,
 		isTouchDevice,
 		handleChangeSlide,
 	} = useHomeBlogSwiper();
 
+	console.log(blogData);
 
 	return (
 		isBlogDataArray ? (
@@ -37,24 +40,33 @@ const HomeBlogSwiper = () => {
 					spaceBetween={20}
 					onSwiper={onSwiper}
 					modules={[Autoplay]}
+					style={{position: 'relative'}}
+					onSlideChange={onSlideChange}
 					watchSlidesProgress={true}
 					speed={500}
 					autoplay={{
-						delay: 3000,
+						delay: 5000,
 						disableOnInteraction: false,
 					}}
 				>
-					{blogData.map(blogItem => (
-						<SwiperSlide
-							key={blogItem.id}
-						>
-							<BlogItem
-								isTitleSplice={isTouchDevice}
-								viewDescription={false}
-								{...blogItem}
-							/>
-						</SwiperSlide>
-					))}
+					{/*{isLoadingBlog && (*/}
+					{/*	<LoadingContainerSC>*/}
+					{/*		<SpinnerSC color="inherit" />*/}
+					{/*	</LoadingContainerSC>*/}
+					{/*)}*/}
+					<>
+						{blogData.map(blogItem => (
+							<SwiperSlide
+								key={blogItem.id}
+							>
+								<BlogItem
+									isTitleSplice={isTouchDevice}
+									viewDescription={false}
+									{...blogItem}
+								/>
+							</SwiperSlide>
+						))}
+					</>
 				</Swiper>
 				{!isTouchDevice && (
 					<ButtonArrowMUI
@@ -70,7 +82,9 @@ const HomeBlogSwiper = () => {
 };
 
 const {
-	ButtonArrowMUI
+	SpinnerSC,
+	ButtonArrowMUI,
+	LoadingContainerSC,
 } = useHomeBlogSwiperStyles();
 
 export default React.memo(HomeBlogSwiper);

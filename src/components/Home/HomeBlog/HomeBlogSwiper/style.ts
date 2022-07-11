@@ -1,4 +1,4 @@
-import {Button, styled} from '@mui/material';
+import {Button, CircularProgress, styled} from '@mui/material';
 
 export const useHomeBlogSwiperStyles = () => {
 
@@ -7,7 +7,27 @@ export const useHomeBlogSwiperStyles = () => {
 		marginBottom: '80px',
 	}));
 
+	const LoadingContainerSC = styled('div')(() => ({
+		position: 'absolute',
+		width: '100%',
+		left: 0,
+		top: 0,
+		height: '100%',
+		color: '#203f69',
+		backgroundColor: 'rgba(32,63,105,0.2)',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		zIndex: 9999,
+	}));
+
+	const SpinnerSC = styled(CircularProgress)(() => ({
+
+	}));
+
 	return {
-		ButtonArrowMUI
+		SpinnerSC,
+		ButtonArrowMUI,
+		LoadingContainerSC,
 	};
 };
