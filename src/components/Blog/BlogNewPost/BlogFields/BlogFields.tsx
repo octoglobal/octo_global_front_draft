@@ -16,25 +16,22 @@ interface IBlogFieldsProps {
 
 const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 	const { blogData,EditMode,error } = useAppSelector(state => state.blogReducer);
-	
+
 	const {
 		methods,
 		openModal,
 		loading,
 		onSubmit,
-		changeOpenModal		
+		changeOpenModal
 	} = useBlogFields(EditMode.id as number ,blogData,error);
-	
+
 
 	return (
 		<ContainerMUI>
-			
-		
 			<CollapseMUI in={open}>
 				<FormProvider {...methods}>
 					<FormMUI onSubmit={methods.handleSubmit(onSubmit)}>
 						<BlogTitle/>
-					
 						<WrapperMUI>
 							<BlogPreviewFields indexField={1}/>
 							<BlogPreviewFields indexField={2} />
@@ -43,14 +40,12 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 						<BlogDescription/>
 						<ButtonContainerMUI>
 							<ButtonUI type='submit' disabled={loading? true : false} >
-								{EditMode.id ? 'Изменить':'Сохранить'}								
+								{EditMode.id ? 'Изменить':'Сохранить'}
 							</ButtonUI>
-							
 						</ButtonContainerMUI>
 					</FormMUI>
 				</FormProvider>
 			</CollapseMUI>
-
 			<ModalUI
 				dialogProps={{
 					open: openModal,
@@ -60,7 +55,6 @@ const BlogFields: FC<IBlogFieldsProps> = ({open}) => {
 				closeTime={3}
 			/>
 			<ModalSpinner open={loading} />
-		
 		</ContainerMUI>
 	);
 };

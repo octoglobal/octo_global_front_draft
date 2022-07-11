@@ -8,7 +8,11 @@ import {Swiper as SwiperTypes} from 'swiper';
 export const useHomeBlogSwiper = () => {
 	const { isTouchDevice } = useTouchDevice();
 	const [swiper, setSwiper] = useState<SwiperTypes | null>(null);
+	// const [isLoadingBlog, setIsLoadingBlog] = useState<boolean>(false);
 	const [blogData, setBlogData] = useState<IBlogModel[]>([]);
+	const [page, setPage] = useState<number>(2);
+	const [isBlogEnd, setIsBlogEnd] = useState<boolean>(false);
+	const pageLimit = 10;
 
 	const onSwiper = (swiperData: SwiperTypes) => {
 		if (!swiper) {
@@ -32,6 +36,31 @@ export const useHomeBlogSwiper = () => {
 		blogData.length && Array.isArray(blogData)
 	), [blogData]);
 
+	const onSlideChange = (swiper: SwiperTypes) => {
+		// prevSlideIndex = swiper.activeIndex;
+		if (swiper.activeIndex === blogData.length - 3 && !isBlogEnd) {
+			// setIsLoadingBlog(true);
+			octoAxios.get<IFetchNewsDataRes>(`/blog?page=${page}&page_limit=${pageLimit}`).then(response => {
+				const postsLength = response.data.posts.length;
+				if (response.data.posts.length) {
+					if (swiper.activeIndex > swiper.previousIndex) {
+						setBlogData([...blogData, ...response.data.posts]);
+					}
+					if (swiper.activeIndex < swiper.previousIndex) {
+						setBlogData([...response.data.posts, ...blogData]);
+					}
+					setPage(prevState => prevState + 1);
+					if (postsLength < pageLimit) {
+						setIsBlogEnd(true);
+					}
+					// setIsLoadingBlog(false);
+				}
+			});
+		}
+	};
+
+	console.log(blogData);
+
 
 	useEffect(() => {
 		if (swiper) {
@@ -44,20 +73,24 @@ export const useHomeBlogSwiper = () => {
 	}, [isTouchDevice, swiper]);
 
 	useEffect(() => {
-		try {
-			octoAxios.get<IFetchNewsDataRes>('/blog?page=1&page_limit=5').then(response => {
-				if (response.data.posts.length) {
-					setBlogData(response.data.posts);
-				}
-			});
-		} catch (e) {
-			throw new Error('Ошибка загрузки постов');
+		if (!blogData.length) {
+			try {
+				octoAxios.get<IFetchNewsDataRes>(`/blog?page=1&page_limit=${pageLimit}`).then(response => {
+					if (response.data.posts.length) {
+						setBlogData(response.data.posts);
+					}
+				});
+			} catch (e) {
+				throw new Error('Ошибка загрузки постов');
+			}
 		}
 	}, []);
 
 	return {
 		onSwiper,
 		blogData,
+		// isLoadingBlog,
+		onSlideChange,
 		isTouchDevice,
 		isBlogDataArray,
 		handleChangeSlide,
