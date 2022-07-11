@@ -22,11 +22,16 @@ export const useAccountInstuctionFormStyle = () => {
 		}
 	}));
 
-	const ContainerCounter = styled('div')(() => ({
+	const ContainerCounter = styled('div')(({theme}) => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginTop: '32px',
 		marginLeft: '20px',
+		[theme.breakpoints.down(500)]: {
+			marginTop: '25px',
+			marginLeft: '13px',
+		}
+
 	}));
 
 	const ContainerInputTitle = styled('p')(({theme}) => ({
@@ -35,6 +40,7 @@ export const useAccountInstuctionFormStyle = () => {
 		fontSize: 24,
 		[theme.breakpoints.down(500)]: {
 			fontSize: '16px',
+			fontWeight: 300,
 			lineHeight: '16px',
 		}
 	}));
@@ -46,10 +52,13 @@ export const useAccountInstuctionFormStyle = () => {
 		margin: '0 6px',
 	}));
 
-	const CounterContainer = styled('div')(() => ({
+	const CounterContainer = styled('div')(({theme}) => ({
 		display: 'flex',
 		alignItems: 'center',
 		marginLeft: '12px',
+		[theme.breakpoints.down(500)]: {
+			marginLeft: '10px',
+		}
 	}));
 
 	const CounterButton = styled(Button)(() => ({
@@ -60,9 +69,15 @@ export const useAccountInstuctionFormStyle = () => {
 	}));
 
 	const SendButtonContainer = styled('div')(({theme}) => ({
-		marginTop: '30px',
+		marginTop: '24px',
+		maxWidth: '140px',
+		opacity: 0.8,
+		'& > button': {
+			marginBottom: 0,
+			minHeight: '40px',
+		},
 		[theme.breakpoints.down(500)]: {
-			marginTop: '15px',
+			marginTop: '20px',
 		}
 	}));
 

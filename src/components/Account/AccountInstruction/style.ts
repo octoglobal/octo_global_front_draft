@@ -32,7 +32,7 @@ export const useAccountInstructionStyle = () => {
 			}
 		}
 	}));
-	
+
 	const ULMUI = styled('ul')(({theme}) => ({
 		listStyleType: 'decimal',
 		marginBottom: '30px',
@@ -71,7 +71,7 @@ export const useAccountInstructionStyle = () => {
 	}));
 
 	const FooterButtonMUI = styled('div')(({theme}) => ({
-		marginTop: '42px',
+		marginTop: '27px',
 		display: 'flex',
 		alignItems:'center',
 

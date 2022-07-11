@@ -66,21 +66,21 @@ const MenuAuthContent: FC = () => {
 		pushTo('/account/info');
 	};
 
-	
+
 	return (
 		<ContentLayoutUI
 			disabledPadding={true}
-		>	
-		
-			
+		>
+
+
 			<>
 				{isAuth ? (
 					<>
 						<UserUI onClick={handlerPushToAccount}>
-							<User cutFio={false} />
+							<User cutFio={false} isChangeToAdmin />
 						</UserUI>
 						{isAdmin?<EuroExchange></EuroExchange>:null}
-						
+
 						{isAuth && (!isAdmin || (isAdmin && adminSwitchIdToUser)) && (
 							<ContainerAddPaymentMobileMUI onClick={handleTogglePaymentForm}>
 								<BalanceTextMUI>
