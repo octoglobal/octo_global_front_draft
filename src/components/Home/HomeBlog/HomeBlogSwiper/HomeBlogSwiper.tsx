@@ -21,8 +21,6 @@ const HomeBlogSwiper = () => {
 		handleChangeSlide,
 	} = useHomeBlogSwiper();
 
-	console.log(blogData);
-
 	return (
 		isBlogDataArray ? (
 			<>

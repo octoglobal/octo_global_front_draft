@@ -21,6 +21,7 @@ const PaymentForm = () => {
 							name: 'plus',
 							control,
 							defaultValue: '',
+							rules: {max: {message: 'error', value: 10000000000000000}}
 						}}
 						inputProps={{
 							placeholder: '+',
@@ -52,6 +53,7 @@ const PaymentForm = () => {
 						controller={{
 							name: 'minus',
 							control,
+							rules: {max: {message: 'error', value: 10000000000000000}}
 						}}
 						inputProps={{
 							placeholder: '-',
