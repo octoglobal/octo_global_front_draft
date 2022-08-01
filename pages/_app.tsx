@@ -8,17 +8,19 @@ import {store, persistor} from '../src/store/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 function MyApp({Component, pageProps}: AppProps) {
+	const isActiveWebsite = false;
 	return (
-		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
-				<HeaderLayout>
-					<MainLayout>
-						<Component {...pageProps} />
-					</MainLayout>
-				</HeaderLayout>
-				
-			</PersistGate>
-		</Provider>
+		isActiveWebsite ? (
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<HeaderLayout>
+						<MainLayout>
+							<Component {...pageProps} />
+						</MainLayout>
+					</HeaderLayout>
+				</PersistGate>
+			</Provider>
+		) : <h1 style={{textAlign: 'center'}}>Работа сайта временно приостановлена</h1>
 	);
 }
 
