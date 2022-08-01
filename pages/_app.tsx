@@ -8,7 +8,7 @@ import {store, persistor} from '../src/store/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
 function MyApp({Component, pageProps}: AppProps) {
-	const isActiveWebsite = false;
+	const isActiveWebsite = true;
 	return (
 		isActiveWebsite ? (
 			<Provider store={store}>
