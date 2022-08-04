@@ -53,6 +53,12 @@ export const useHeaderPayment = () => {
 				domDrawer.style.backgroundColor = `${isOpenPaymentForm ? '#FFFFFF' : ''}`;
 			}
 		}
+		if (!isMobile) {
+			document.body.style.overflowY = isOpenPaymentForm ? 'hidden' : 'scroll';
+			return () => {
+				document.body.style.overflowY = 'scroll';
+			};
+		}
 	}, [isOpenPaymentForm]);
 
 	return {
