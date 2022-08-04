@@ -138,7 +138,6 @@ const AccountUserForm: FC = () => {
 			const phoneValue = data?.phone;
 			const nameValue = data?.name;
 			const surnameValue = data?.surname;
-			console.log(data, userEmail, userPhone, phoneValue);
 			if (userEmail !== emailValue) {
 				setValue('email', userEmail ? userEmail : '');
 			}
@@ -158,7 +157,7 @@ const AccountUserForm: FC = () => {
 	// useEffect(()=>{
 	// 	const data = getValues();
 	// 	const phoneValue = data?.phone;
-	
+
 	// 	if (userPhone !== phoneValue) {
 	// 		setValue('phone', userPhone ? userPhone : '');
 	// 	}

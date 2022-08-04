@@ -1,8 +1,12 @@
-import {useMemo, useState} from 'react';
+import {useMemo, useState, MouseEvent} from 'react';
+import {fetchDeleteTransaction} from '@/reducers/paymentSlice/asyncThunk/paymentApi';
+import {useAppDispatch} from '@/hooks/useReduxHooks';
+import {useUserStore} from '@/hooks/useUserStore';
 
 export const usePaymentHistoryItem = (amount: number) => {
-
+	const dispatch = useAppDispatch();
 	const [isCollapseOpen, seIsCollapseOpen] = useState<boolean>(false);
+	const { isAdmin } = useUserStore();
 
 	const handleToggleCollapse = () => {
 		seIsCollapseOpen(prevState => !prevState);
@@ -46,12 +50,21 @@ export const usePaymentHistoryItem = (amount: number) => {
 		return {};
 	}, [isCollapseOpen]);
 
+	const handleDeleteTransaction = (operationId: number, operationSum: number) => {
+		return (e: MouseEvent<HTMLButtonElement>) => {
+			e.stopPropagation();
+			dispatch(fetchDeleteTransaction({operationId, operationSum}));
+		};
+	};
+
 
 	return {
+		isAdmin,
 		amountData,
 		isCollapseOpen,
 		commentOpenStyle,
 		payTextMarginStyle,
 		handleToggleCollapse,
+		handleDeleteTransaction,
 	};
 };

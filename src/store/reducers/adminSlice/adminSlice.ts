@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {IHints} from '@/components/AnyPage/CategorySearch/types';
 import {fetchUserAdmin, fetchUsersInAdmin} from '@/reducers/adminSlice/asyncThunk/adminApi';
 import {IUserModel} from '@/models/IUserModel';
+import admin from "../../../../pages/admin";
 
 export interface IAdminHintsData extends IHints{
 	userAreaId: null | number ,
@@ -74,5 +75,7 @@ export const adminSlice = createSlice({
 		},
 	}
 });
+
+export const {changeUserBalance} = adminSlice.actions;
 
 export default adminSlice.reducer;

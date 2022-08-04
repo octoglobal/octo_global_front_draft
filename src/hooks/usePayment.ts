@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/useReduxHooks';
-import {useEffect, useMemo, useState} from 'react';
+import { useMemo, useState} from 'react';
 import { paymentSlice } from '@/reducers/paymentSlice/paymentSlice';
 import {
 	fetchHistoryBalanceOperation,
