@@ -1,9 +1,11 @@
 import {Collapse, styled} from '@mui/material';
+import ButtonUI from '../../../../../UI/UIComponents/ButtonUI/ButtonUI';
 
 export const usePaymentHistoryItemStyles = () => {
 
-	const CollapseContainerMUI = styled(Collapse)(() => ({
-
+	const CollapseContainerMUI = styled(Collapse)(({theme}) => ({
+		[theme.breakpoints.down(501)]: {
+		}
 	}));
 
 	const ContainerMUI = styled('div')(() => ({
@@ -13,6 +15,7 @@ export const usePaymentHistoryItemStyles = () => {
 
 	const WrapperMUI = styled('a')(() => ({
 		display: 'flex',
+		position: 'relative',
 		justifyContent: 'space-between',
 		cursor: 'pointer',
 	}));
@@ -72,6 +75,38 @@ export const usePaymentHistoryItemStyles = () => {
 	const TimeMUI = styled('time')(() => ({
 
 	}));
+
+	const DeleteTransactionButtonSC = styled(ButtonUI)(({theme}) => ({
+		marginTop: '5px',
+		marginBottom: '0',
+		minWidth: '171px',
+		fontWeight: 400,
+		height: '32px',
+		padding: '8px',
+		[theme.breakpoints.down(501)]: {
+			display: 'none'
+		}
+	}
+	));
+
+	const DeleteTransactionButtonTabletSC = styled(ButtonUI)<{isVisible: boolean}>(({theme, isVisible}) => ({
+		display: 'none',
+		[theme.breakpoints.down(501)]: {
+			display: isVisible ? 'block' : 'none',
+			marginTop: '10px',
+			backgroundColor: 'transparent',
+			color: '#234A82',
+			textDecoration: 'underline',
+			padding: 0,
+			height: '19px',
+			width: '165px',
+			'&:hover': {
+				backgroundColor: 'inherit',
+				textDecoration: 'underline',
+			}
+		}
+	}));
+
 	return {
 		TimeMUI,
 		WrapperMUI,
@@ -79,6 +114,8 @@ export const usePaymentHistoryItemStyles = () => {
 		ContainerMUI,
 		MoneyTextMUI,
 		CommentTextMUI,
-		CollapseContainerMUI
+		CollapseContainerMUI,
+		DeleteTransactionButtonSC,
+		DeleteTransactionButtonTabletSC,
 	};
 };

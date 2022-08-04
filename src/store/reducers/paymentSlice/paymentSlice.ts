@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-	fetchAdminAddPaymentInUser, fetchHistoryBalanceOperation,
+	fetchDeleteTransaction,
+	fetchHistoryBalanceOperation,
 	fetchSendPaymentMessageInEmail,
 } from '@/reducers/paymentSlice/asyncThunk/paymentApi';
 import {IPaymentModel} from '@/models/IPaymentModel';
@@ -51,6 +52,9 @@ export const paymentSlice = createSlice({
 		[fetchHistoryBalanceOperation.fulfilled.type]: (state, action: PayloadAction<IPaymentModel[]>) => {
 			state.historyBalance = action.payload;
 			state.loadingHistoryBalance = false;
+		},
+		[fetchDeleteTransaction.fulfilled.type]: (state, action: PayloadAction<IPaymentModel[]>) => {
+			state.historyBalance = action.payload;
 		}
 	}
 });
