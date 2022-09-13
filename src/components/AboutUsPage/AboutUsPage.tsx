@@ -11,7 +11,7 @@ const AboutUsPage = () => {
 				О нас
 				</AboutTitleMUI>
 				<ParagraphMUI>
-					<HighlightSpanMUI> Компания &quot;Octo Global&quot;</HighlightSpanMUI> работает на российском и немецком рынках с <HighlightSpanMUI> 2021 </HighlightSpanMUI> года. 
+					<HighlightSpanMUI> Компания &quot;Octo Global&quot;</HighlightSpanMUI> работает на российском и немецком рынках с <HighlightSpanMUI>2021</HighlightSpanMUI> года. 
 				</ParagraphMUI>
 				<ParagraphMUI>
 					Головной офис компании находится в Германии в городе <HighlightSpanMUI>Гамбург</HighlightSpanMUI>, а
@@ -33,6 +33,12 @@ const AboutUsPage = () => {
 	);
 };
 
-const { ContainerMUI, AboutContainerMUI, AboutTitleMUI, ParagraphMUI, HighlightSpanMUI,} = useAboutUsStyle();
+const {
+	ContainerMUI,
+	AboutContainerMUI,
+	AboutTitleMUI,
+	ParagraphMUI,
+	HighlightSpanMUI,
+} = useAboutUsStyle();
 
 export default React.memo(AboutUsPage);

@@ -81,7 +81,7 @@ const Questions = () => {
 			</CollapseInfo>	
 
 			<CollapseInfo
-				title={'Пополнение личного счета'}				
+				title={'Оплата товаров'}				
 				open={false}
 			>				
 				<ReplenishmentPersonalAccaunt/>

@@ -100,6 +100,10 @@ export const useQuestionPagesStyles = () => {
 		marginBottom: 10
 	}));
 
+	const AMUI = styled('a')(() => ({
+		color: '#274D82',
+	}));
+
 	return {
 		ContainerMUI,
 		H3MUI,
@@ -111,6 +115,7 @@ export const useQuestionPagesStyles = () => {
 		SvgBlockMUI,
 		SpanMUI,
 		ULMUI,
-		LIMUI
+		LIMUI,
+		AMUI,
 	};
 };

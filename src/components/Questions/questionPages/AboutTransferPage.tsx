@@ -11,36 +11,38 @@ const AboutTransferPage = () => {
 				<SvgBlockMUI>
 					<Busket/>
 				</SvgBlockMUI>				
-				<ParagraphMUI>2 кг Коробка до 30*30*30см  =  от 19,89 EUR </ParagraphMUI>
+				<ParagraphMUI>2 кг Коробка до 30*30*30см = 19,89 EUR </ParagraphMUI>
 			</ContetntLineMUI>
 
 			<ContetntLineMUI>
 				<SvgBlockMUI>
 					<Busket/>
 				</SvgBlockMUI>				
-				<ParagraphMUI>5 кг Коробка до 120*60*60 см =  от 30,99 EUR </ParagraphMUI>
+				<ParagraphMUI>5 кг Коробка до 120*60*60 см = 31 EUR / Premium 38,50 EUR</ParagraphMUI>
 			</ContetntLineMUI>
 
 			<ContetntLineMUI>
 				<SvgBlockMUI>
 					<Busket/>
 				</SvgBlockMUI>				
-				<ParagraphMUI>10 кг Коробка до 120*60*60 см =  от 37,99 EUR </ParagraphMUI>
+				<ParagraphMUI>10 кг Коробка до 120*60*60 см = 38 EUR / Premium 51 EUR</ParagraphMUI>
 			</ContetntLineMUI>
 
 			<ContetntLineMUI>
 				<SvgBlockMUI>
 					<Busket/>
 				</SvgBlockMUI>				
-				<ParagraphMUI>20 кг Коробка до 120*60*60 см =  от 54,99 EUR </ParagraphMUI>
+				<ParagraphMUI>20 кг Коробка до 120*60*60 см = 55 EUR / Premium 74 EUR</ParagraphMUI>
 			</ContetntLineMUI>
             
-			<ContetntLineMUI>
+			{/* <ContetntLineMUI>
 				<SvgBlockMUI>
 					<Busket/>
 				</SvgBlockMUI>				
 				<ParagraphMUI>30 кг Один товар с негабаритными размерами 180×60×60см = 95 EUR </ParagraphMUI>
-			</ContetntLineMUI>
+			</ContetntLineMUI> */}
+
+			<ParagraphMUI>Ориентировочные сроки доставки от 10-20 дней. С сервисом Premium ваши посылки доходят быстрее.</ParagraphMUI>
 
 		</ContainerMUI>
 	);

@@ -42,7 +42,7 @@ export const useAboutUsStyle = () => {
 		marginBottom: 20,
 		lineHeight: '117%',
 		textAlign: 'justify',
-		[theme.breakpoints.down(391)]:{
+		[theme.breakpoints.down(961)]:{
 			fontSize: '18px',
 		},
 		[theme.breakpoints.down(391)]:{

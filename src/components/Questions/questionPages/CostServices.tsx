@@ -25,7 +25,7 @@ const CostServices = () => {
 			</ParagraphMUI>
 
 			<ParagraphMUI>
-               Двухслойная картонная коробка – 3 €
+               Двухслойная картонная коробка – 6 €
 			</ParagraphMUI>
 
 			<ParagraphMUI>

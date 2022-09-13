@@ -6,7 +6,7 @@ const ReplenishmentPersonalAccaunt = () => {
 		<ContainerMUI>
 		
 			<ParagraphMUI>
-				Пополнить свой личный счет на Octo Global можно двумя способами: 
+				Оплатить товары на Octo Global  возможно двумя способами:
 			</ParagraphMUI>
 			<ULMUI>
 				<LIMUI>
@@ -19,10 +19,10 @@ const ReplenishmentPersonalAccaunt = () => {
 
 
 			<ParagraphMUI>
-				Для пополнения счета необходимо сформировать заявку, и мы пришлем реквизиты для перевода и нужную сумму.
+				Для оплаты необходимо сформировать заявку, и мы пришлем реквизиты.
 			</ParagraphMUI>
 			<ParagraphMUI>
-				Курс Евро к рублю по которому возможен перевод вы видите у нас на сайте. 
+				Курс Евро к рублю по которому возможен перевод вы видите у нас на сайте.
 			</ParagraphMUI>
 
 		</ContainerMUI>
