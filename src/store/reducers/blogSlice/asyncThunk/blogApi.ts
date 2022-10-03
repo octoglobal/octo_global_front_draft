@@ -165,18 +165,18 @@ export const fetchUpdateBlog = createAsyncThunk(
 				body: data.data.blogDescription,
 				products: [
 					{
-						title: data.data.subtitlePhoto1,
-						body: data.data.miniDescPhoto1,
+						title: data.data.subtitlePhoto1 || '',
+						body: data.data.miniDescPhoto1 || '',
 						url: data.data.postLink1,
 					},
 					{
-						title: data.data.subtitlePhoto2,
-						body: data.data.miniDescPhoto2,
+						title: data.data.subtitlePhoto2 || '',
+						body: data.data.miniDescPhoto2 || '',
 						url: data.data.postLink2,
 					},
 					{
-						title: data.data.subtitlePhoto3,
-						body: data.data.miniDescPhoto3,
+						title: data.data.subtitlePhoto3 || '',
+						body: data.data.miniDescPhoto3 || '',
 						url: data.data.postLink3,
 					},
 				],
