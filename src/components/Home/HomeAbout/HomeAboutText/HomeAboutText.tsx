@@ -28,6 +28,12 @@ const HomeAboutText: FC = () => {
 			<ParagraphMUI>
 				<SpanMUI>Служба поддержки в России и Европе поможет на любом этапе.</SpanMUI>
 			</ParagraphMUI>
+			<ParagraphMUI>
+				Комиссия составляет 10% от стоимости заказа
+			</ParagraphMUI>
+			<ParagraphMUI>
+				Курс Евро к рублю по которому возможен перевод вы видите у нас на сайте в личном кабинете
+			</ParagraphMUI>
 			<FooterRowIconsMUI>
 				<SvgLinkUI
 					title='Поддрежака в России'
