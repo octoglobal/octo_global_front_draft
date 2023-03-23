@@ -24,22 +24,24 @@ const ShopsItem: FC<IShopsModel & IHandleClickTagInCard> = (
 	), [photo]);
 
 
-	const handleImageLoaded  = ()=>{		
+	const handleImageLoaded  = ()=>{
 		setImg(true);
 	};
 
 
 	return (
 		<ItemMUI>
-			
+
 			<LinkMUI
 				href={url}
 				title={title}
 				target="_blank"
 				rel="noreferrer"
-			>	
-				 {!img && <ImagePlaceholderMUI/> }		
-				<PhotoMUI {...photoAttributes} onLoad={handleImageLoaded}/>
+			>
+				<PhotoContainerMUI>
+					{!img && <ImagePlaceholderMUI/> }
+					<PhotoMUI {...photoAttributes} onLoad={handleImageLoaded}/>
+				</PhotoContainerMUI>
 				<TitleMUI>
 					{title}
 				</TitleMUI>
@@ -60,6 +62,7 @@ const {
 	PhotoMUI,
 	TitleMUI,
 	TextWrapperMUI,
+	PhotoContainerMUI,
 	ImagePlaceholderMUI
 } = useShopsItemStyles();
 

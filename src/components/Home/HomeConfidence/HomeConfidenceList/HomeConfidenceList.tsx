@@ -5,7 +5,7 @@ import HomeConfidenceListItem from '../HomeConfidenceListItem/HomeConfidenceList
 const homeConfidenceData = [
 	'Помогаем с поиском и оплатой любого товара',
 	'Консультируем и помогаем на любом этапе',
-	'Консультируем и помогаем на любом этапе',
+	'Заполняем экспортную декларацию',
 	'Покупаем на территории ЕС',
 ];
 
