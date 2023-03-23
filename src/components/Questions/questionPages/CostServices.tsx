@@ -5,6 +5,11 @@ const CostServices = () => {
 	return (
 		<ContainerMUI>
 			<ParagraphMUI>
+				<strong>
+					Выкуп товара 10%
+				</strong>
+			</ParagraphMUI>
+			<ParagraphMUI>
                 Прием посылок на склад – 0 €
 			</ParagraphMUI>
 
@@ -25,27 +30,27 @@ const CostServices = () => {
 			</ParagraphMUI>
 
 			<ParagraphMUI>
-               Двухслойная картонная коробка – 6 €
+				Двухслойная картонная коробка – 3 €
 			</ParagraphMUI>
 
 			<ParagraphMUI>
-               Гофрированная усиленная трехслойная картонная коробка (фарфор, посуда, стекло, лампы) – 20 €
-			</ParagraphMUI>
-            
-			<ParagraphMUI>
-                Возврат товара в магазин – 10 €
+				Гофрированная усиленная трехслойная картонная коробка (фарфор, посуда, стекло, лампы) – 20 €
 			</ParagraphMUI>
 
 			<ParagraphMUI>
-                Проверка товара и фотофиксация – 15 € 
+				Возврат товара в магазин – 10 €
+			</ParagraphMUI>
+
+			<ParagraphMUI>
+				Проверка товара и фотофиксация – 7 €
 			</ParagraphMUI>
 		</ContainerMUI>
 	);
 };
 
 const {
-	ContainerMUI,	
+	ContainerMUI,
 	ParagraphMUI,
-	
+
 } = useQuestionPagesStyles();
 export default React.memo(CostServices);

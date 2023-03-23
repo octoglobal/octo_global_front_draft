@@ -7,72 +7,76 @@ const TranslatePage = () => {
 			<ContainerTextMUI>
 				<H3MUI>1. Яндекс браузер</H3MUI>
 				<ParagraphMUI>
-					Перевести страницу можно быстро, если в дополнительных
-					расширениях указан автоматический перевод страниц.Перейдите
-					на иностранный сайт. В правой верхней части экрана появится
-					панель для перевода --нажмите перевести страницу. Выберите
-					язык для перевода и наслаждайтесь шопингом!
+					Для того, чтобы перевести страницу с иностранного языка на русский язык, нажмите стрелочку перевести страницу.
 				</ParagraphMUI>
-				<ContainerImgMUI>
-					<ImgMUI src="/image/ydxTopMenu.jpg" alt="img" />
-				</ContainerImgMUI>
-				<ContainerImgMUI>
-					<ImgMUI src="/image/ydxTransBtn.jpg" alt="img" />
-				</ContainerImgMUI>
+				<ParagraphMUI>
+					В Верхней части экрана появится панель перевода, где отображается ход работы
+				</ParagraphMUI>
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI src="/image/ydxTopMenu.jpg" alt="img" />*/}
+				{/*</ContainerImgMUI>*/}
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI src="/image/ydxTransBtn.jpg" alt="img" />*/}
+				{/*</ContainerImgMUI>*/}
 			</ContainerTextMUI>
 
 			<ContainerTextMUI>
 				<H3MUI>2. Google Chrome</H3MUI>
 				<ParagraphMUI>
-					Запустите браузер. В верхней части экрана нажмите на значок
-					с тремя точками. Далее «Дополнительные инструменты» --
-					«Расширения».
+					В поисковой строке выберите нужный иностранный сайт.
+				</ParagraphMUI>
+				<ParagraphMUI>
+					Далее в верхнем правом углу нажмите на значок в виде трёх точек -- перейдите в настройки -- дополнительные -- языки
+				</ParagraphMUI>
+				<ParagraphMUI>
+					Затем добавьте нужный язык для перевода
 				</ParagraphMUI>
 
-				<ContainerImgMUI>
-					<ImgMUI
-						src="/image/ChromSettings.jpg"
-						alt="crhomSettings"
-					/>
-					<ImgMUI
-						src="/image/ChromSettingsMore.jpg"
-						alt="crhomSettingsMore"
-					/>
-				</ContainerImgMUI>
-				<ParagraphMUI>
-					В левой части экрана нажмите на значок с тремя{' '}
-					<SpanMUI>
-						<ImgMUI src="/image/yandexBurger.jpg" alt="=" />{' '}
-					</SpanMUI>
-					. Затем откройте интернет-магазин Chrome.
-				</ParagraphMUI>
-				<ContainerImgMUI>
-					<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />
-				</ContainerImgMUI>
-				<ParagraphMUI>
-					В новой вкладке откроется окно. В поиске по магазину
-					напишите «переводчик». Выберите его и скачайте.<br></br> В
-					поисковой строке выберите нужный сайт для шопинга.
-				</ParagraphMUI>
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI*/}
+				{/*		src="/image/ChromSettings.jpg"*/}
+				{/*		alt="crhomSettings"*/}
+				{/*	/>*/}
+				{/*	<ImgMUI*/}
+				{/*		src="/image/ChromSettingsMore.jpg"*/}
+				{/*		alt="crhomSettingsMore"*/}
+				{/*	/>*/}
+				{/*</ContainerImgMUI>*/}
+				{/*<ParagraphMUI>*/}
+				{/*	В левой части экрана нажмите на значок с тремя{' '}*/}
+				{/*	<SpanMUI>*/}
+				{/*		<ImgMUI src="/image/yandexBurger.jpg" alt="=" />{' '}*/}
+				{/*	</SpanMUI>*/}
+				{/*	. Затем откройте интернет-магазин Chrome.*/}
+				{/*</ParagraphMUI>*/}
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />*/}
+				{/*</ContainerImgMUI>*/}
+				{/*<ParagraphMUI>*/}
+				{/*	В новой вкладке откроется окно. В поиске по магазину*/}
+				{/*	напишите «переводчик». Выберите его и скачайте.<br></br> В*/}
+				{/*	поисковой строке выберите нужный сайт для шопинга.*/}
+				{/*</ParagraphMUI>*/}
 			</ContainerTextMUI>
 
 			<ContainerTextMUI>
 				<H3MUI>3. Mozilla Firefox</H3MUI>
 				<ParagraphMUI>
-					Откройте браузер<br></br>В верхней части экрана откройте
-					меню. Затем перейдите в «Дополнения».
+					Для того чтобы перевести страницу с иностранного языка на русский язык, нажмите стрелочку перевести страницу.
 				</ParagraphMUI>
-				<ContainerImgMUI>
-					<ImgMUI
-						src="/image/MozilaSettings.jpg"
-						alt="mazila themes"
-					/>
-				</ContainerImgMUI>
-				<ParagraphMUI>
-					В поисковой строке напишите «Переводчик». Затем откроется
-					новое окно с разными переводчиками. Выберите понравившийся и
-					перезапустите браузер.
-				</ParagraphMUI>
+				<ParagraphMUI>В правом верхнем углу на три черточки </ParagraphMUI>
+				<ParagraphMUI>Перейдите в настройки и выберите дополнительный язык.</ParagraphMUI>
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI*/}
+				{/*		src="/image/MozilaSettings.jpg"*/}
+				{/*		alt="mazila themes"*/}
+				{/*	/>*/}
+				{/*</ContainerImgMUI>*/}
+				{/*<ParagraphMUI>*/}
+				{/*	В поисковой строке напишите «Переводчик». Затем откроется*/}
+				{/*	новое окно с разными переводчиками. Выберите понравившийся и*/}
+				{/*	перезапустите браузер.*/}
+				{/*</ParagraphMUI>*/}
 			</ContainerTextMUI>
 
 			<ContainerTextMUI>
@@ -80,7 +84,7 @@ const TranslatePage = () => {
 				<ParagraphMUI>
 					Для того чтобы пере­вести страницу на ру­сский язык в доменной строке необходимо нажать «Аа»
 					и выбрать «перевести на Русский»
-					
+
 				</ParagraphMUI>
 			</ContainerTextMUI>
 		</ContainerMUI>

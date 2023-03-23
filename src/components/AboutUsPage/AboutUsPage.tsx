@@ -10,25 +10,32 @@ const AboutUsPage = () => {
 				<AboutTitleMUI>
 				О нас
 				</AboutTitleMUI>
-				<ParagraphMUI>
-					<HighlightSpanMUI> Компания &quot;Octo Global&quot;</HighlightSpanMUI> работает на российском и немецком рынках с <HighlightSpanMUI>2021</HighlightSpanMUI> года. 
+				<ParagraphMUI isNotBottom>
+					<HighlightSpanMUI> Компания &quot;Octo Global&quot;</HighlightSpanMUI> работает на российском и немецком рынках с <HighlightSpanMUI>2021</HighlightSpanMUI> года.
 				</ParagraphMUI>
-				<ParagraphMUI>
+				<ParagraphMUI isNotBottom>
 					Головной офис компании находится в Германии в городе <HighlightSpanMUI>Гамбург</HighlightSpanMUI>, а
-					официальный представитель в России <HighlightSpanMUI>г. Санкт-Петербург</HighlightSpanMUI>. Наш
-					основной склад расположен в городе Гамбург, дополнительные
-					склады находятся в Роттердаме (Нидерланды) и Котке (Финляндия).
+					официальный представитель в России <HighlightSpanMUI>г. Санкт-Петербург</HighlightSpanMUI>.
 				</ParagraphMUI>
 				<ParagraphMUI>
-					Наше основное направление – это <HighlightSpanMUI>предоставление склада для ваших
-					покупок</HighlightSpanMUI> в Европе и дальнейшая логистика.
+					Наш основной склад расположен в городе Гамбург, дополнительный
+					склад находятся в городе Дюссельдорф.
 				</ParagraphMUI>
-				<ParagraphMUI>
-					Мы <HighlightSpanMUI>современная</HighlightSpanMUI> и динамично <HighlightSpanMUI>развивающаяся  </HighlightSpanMUI> компания. Наша основная
+				<ParagraphMUI >
+					Основное наше направление – это <HighlightSpanMUI>выкуп и предоставление склада для ваших покупок</HighlightSpanMUI> в Европе и дальнейшая логистика.
+				</ParagraphMUI>
+				<ParagraphMUI isNotBottom>
+					Мы <HighlightSpanMUI>современная</HighlightSpanMUI> и динамично <HighlightSpanMUI>развивающаяся</HighlightSpanMUI> компания.
+				</ParagraphMUI>
+				<ParagraphMUI isNotBottom>
+					Наша основная
 					цель — это индивидуальный подход к каждому клиенту,
-					профессионализм и компетентность. Octo global - ваш персональный <HighlightSpanMUI>надежный </HighlightSpanMUI> помощник по доставке товаров из Европы!
+					профессионализм и компетентность.
 				</ParagraphMUI>
-			</AboutContainerMUI> 
+				<ParagraphMUI>
+					<HighlightSpanMUI>Octo global</HighlightSpanMUI> - ваш персональный <HighlightSpanMUI>надежный </HighlightSpanMUI> помощник по доставке товаров из Европы!
+				</ParagraphMUI>
+			</AboutContainerMUI>
 		</ContainerMUI>
 	);
 };

@@ -6,6 +6,7 @@ export const useHomeConfidenceListStyles = () => {
 		listStyle: 'none',
 		paddingLeft: '25px',
 		margin: '60px 0 0 265px',
+		minHeight: '374px',
 		'& >*:last-child': {
 			marginBottom: 0,
 		},
@@ -21,6 +22,7 @@ export const useHomeConfidenceListStyles = () => {
 			marginTop: '30px',
 			marginLeft: '0',
 			maxWidth: 'none',
+			minHeight: '260px',
 		},
 		[theme.breakpoints.down(351)]: {
 			marginTop: '10px',
