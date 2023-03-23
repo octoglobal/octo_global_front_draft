@@ -7,7 +7,7 @@ const NotFound: NextPage = () => {
 		<HeaderLayout>
 			<HeaderMargin/>
 			<div>
-				404 Not found
+				Страница не найдена
 			</div>
 		</HeaderLayout>
 	);
