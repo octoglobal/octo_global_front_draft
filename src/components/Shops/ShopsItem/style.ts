@@ -3,9 +3,13 @@ import {Link, styled} from '@mui/material';
 export const useShopsItemStyles = () => {
 
 	const LinkMUI = styled(Link)(({theme}) => ({
-		textDecoration: 'none',
+		width: '100%',
+		height: '100%',
+
 		display: 'block',
 		position: 'relative',
+
+		textDecoration: 'none',
 		[theme.breakpoints.down(1250)]: {
 			minHeight: '270px',
 		},
@@ -40,51 +44,45 @@ export const useShopsItemStyles = () => {
 		}
 	}));
 
-	const PhotoMUI = styled('img')(({theme}) => ({
+	const PhotoContainerMUI = styled('div')(({theme}) => ({
 		position: 'relative',
+
+		width: '100%',
+		height: '208px',
 		maxWidth: '336px',
-		maxHeight: '208px',
-		minWidth: '336px',
-		minHeight: '208px',
+		minWidth: '280px',
+
+		margin: '0 auto 20px',
+
+		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
+		overflow: 'hidden',
+
+		[theme.breakpoints.down(501)]: {
+			height: '189px',
+			margin: '0 auto 8px',
+		},
+	}));
+
+	const PhotoMUI = styled('img')(({theme}) => ({
 		width: '100%',
 		height: '100%',
 		objectFit: 'cover',
-		marginBottom: '20px',
-		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
-		transition: '.2s all linear',	
 		[theme.breakpoints.down(768)]: {
 			objectFit: 'contain',
 		},
 		[theme.breakpoints.down(501)]: {
-			minWidth: '306px',
-			height: '189px',
 			objectFit: 'fill',
-			marginBottom: '8px',
 		},
-		[theme.breakpoints.down(361)]: {
-			minWidth: 'auto',
-		}
 	}));
 
-	const ImagePlaceholderMUI = styled('div')(({theme}) => ({
+	const ImagePlaceholderMUI = styled('div')(() => ({
 		position: 'absolute',
 		top: 0,
 		left:0,
 		zIndex: 1,
-		maxWidth: '336px',
-		maxHeight: '208px',
-		minWidth: '336px',
-		minHeight: '208px',
 		width: '100%',
 		height: '100%',
-		backgroundColor: '#fff',		
-		// borderRadius: '8px',
-		overflow: 'hidden',
-		boxShadow: '0 0 10px rgba(0, 0, 0, 0.25)',
-		[theme.breakpoints.down(768)]: {
-			// top: 20,
-			// left:6,
-		},	
+		backgroundColor: '#ffffff',
 	}));
 
 
@@ -108,14 +106,15 @@ export const useShopsItemStyles = () => {
 			marginBottom: '10px',
 		}
 	}));
-	
-	
+
+
 	return {
 		LinkMUI,
 		ItemMUI,
 		PhotoMUI,
 		TitleMUI,
 		TextWrapperMUI,
+		PhotoContainerMUI,
 		ImagePlaceholderMUI
 	};
 };
