@@ -13,6 +13,8 @@ import CustomsDuties from './questionPages/CustomsDuties';
 import CostServices from './questionPages/CostServices';
 import ProductReturns from './questionPages/ProductReturns';
 import TrackYourOrder from './questionPages/TrackYourOrder';
+import RedemptionOfGoods from '@/components/Questions/questionPages/RedemptionOfGoods';
+import ReplenishmentInfo from '@/components/Questions/questionPages/ReplenishmentInfo';
 
 
 
@@ -29,101 +31,114 @@ const Questions = () => {
 		const key = Object.keys(router.query)[0];
 		switch (key) {
 		case 'translate':
-			
+
 			setOpenTranslate(true);
 			break;
 		case 'transfer':
-			
+
 			setOpenTransferPage(true);
 			break;
 		case 'vpn':
-			
+
 			setOpenVPN(true);
 			break;
 		case 'costServices':
-			
+
 			setOpenСostServicesPage(true);
 			break;
 		case 'trackyourorder':
-			
+
 			setSrackYourOrder(true);
 			break;
 		default:
 			break;
 		}
-	
-		
+
+
 	},[router]);
 
 	return (
 		<ContainerMUI>
 			<HeaderMargin/>
 			<CollapseInfo
-				title={'Как это работает'}				
+				title={'Как это работает'}
 				open={false}
 			>
 				<HowItWorks/>
 			</CollapseInfo>
 
 			<CollapseInfo
-				title={'Стоимость наших услуг '}				
-				open={costServices}
-			>
-				<CostServices/>
-			</CollapseInfo>
-
-		
-			<CollapseInfo			
-				title={'Стоимость почтового отправления в Россию'}				
-				open={openTransferPage}
-			>
-				<AboutTransferPage/>
-			</CollapseInfo>	
-
-			<CollapseInfo
-				title={'Оплата товаров'}				
-				open={false}
-			>				
-				<ReplenishmentPersonalAccaunt/>
-			</CollapseInfo>
-
-			<CollapseInfo
-				title={'Запрещенные товары'}				
+				title={'Запрещенные товары'}
 				open={false}
 			>
 				<BlockProduct/>
 			</CollapseInfo>
 
 			<CollapseInfo
-				title={'Таможенные пошлины'}				
+				title={'Выкуп товара'}
 				open={false}
-			>								
+			>
+				<RedemptionOfGoods/>
+			</CollapseInfo>
+
+			<CollapseInfo
+				title={'Пополнение личного счета.'}
+				open={false}
+			>
+				<ReplenishmentInfo/>
+			</CollapseInfo>
+
+			<CollapseInfo
+				title={'Стоимость почтового отправления'}
+				open={openTransferPage}
+			>
+				<AboutTransferPage/>
+			</CollapseInfo>
+
+			<CollapseInfo
+				title={'Стоимость наших услуг '}
+				open={costServices}
+			>
+				<CostServices/>
+			</CollapseInfo>
+
+
+			<CollapseInfo
+				title={'Оплата товаров'}
+				open={false}
+			>
+				<ReplenishmentPersonalAccaunt/>
+			</CollapseInfo>
+			<CollapseInfo
+				title={'Таможенные пошлины'}
+				open={false}
+			>
 				<CustomsDuties/>
 			</CollapseInfo>
 
 			<CollapseInfo
-				title={'Возврат товара'}				
+				title={'Возврат товара'}
 				open={false}
 			>
 				<ProductReturns/>
 			</CollapseInfo>
 
 			<CollapseInfo
-				title={'Инструкция по настройке VPN сервиса для работы на сайте'}				
+				title={'Инструкция по настройке VPN сервиса для работы на сайте'}
 				open={openVPN}
 			>
 				<VpnPage/>
 			</CollapseInfo>
-			
-			<CollapseInfo			
+
+			<CollapseInfo
 				title={'Как перевести сайт на русский'}
 				open={openTranslate}
-				
+
 			>
 				<TranslatePage/>
 			</CollapseInfo>
 
-			<CollapseInfo			
+			<CollapseInfo
 				title={'Как отследить заказ'}
 				open={trackYourOrder}
 				end={true}

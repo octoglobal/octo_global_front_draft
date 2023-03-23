@@ -10,25 +10,25 @@ import HomeWorkExpListItem, {
 
 const listData: IHomeWorkExpListItemProps[] = [
 	{
-		title: 'Зарегистрируйтесь на сайте, чтобы получить инструкцию для покупок.',
+		title: 'Зарегистрируйте свой личный кабинет.',
 		icon: HomeWorkExpIconReg,
 		animation: true,
 		top: 0,
 	},
 	{
-		title: 'Совершайте покупки самостоятельно или с помощью услуги «Выкуп товара»',
+		title: 'Совершайте покупки с помощью услуги «выкуп товара».',
 		icon: HomeWorkExpIconBuy,
 		animation: true,
 		top: 100,
 	},
 	{
-		title: 'Объединяйте несколько покупок в одну посылку',
+		title: 'Объединяйте несколько покупок в одну посылку.',
 		icon: HomeWorkExpIconCons,
 		animation: true,
 		top: 200,
 	},
 	{
-		title: 'Получайте заказы по почте',
+		title: 'Получайте заказы по почте.',
 		icon: HomeWorkExpIconSending,
 		animation: true,
 		top: 300,

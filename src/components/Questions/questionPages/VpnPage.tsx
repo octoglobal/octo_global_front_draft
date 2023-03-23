@@ -8,51 +8,57 @@ const VpnPage = () => {
 				<H3MUI>1. Яндекс браузер</H3MUI>
 				<ParagraphMUI>
 					{' '}
-					Откройте браузер. В правом верхнем углу нажмите на этот
-					значок{' '}
+					Откройте настройки. В правом, верхнем углу 3 черточки —{' '}
 					<SpanMUI>
 						<ImgMUI src="/image/yandexBurger.jpg" alt="=" />{' '}
 					</SpanMUI>{' '}
-					выберите настройки – перейдите в Дополнения.{' '}
+					и нажмите настройки. Прокрутите до раздела «Турбо» и выберите «Автоматически включать…».
+					Нажмите 3 клавиши одновременно – Ctrl+Shift+Del и удалите «файлы, сохраненные в кэше».{' '}
 				</ParagraphMUI>
-
-				<ContainerImgMUI>
-					<ImgMUI src="/image/yandexDop.jpg" alt="img" />
-				</ContainerImgMUI>
-
 				<ParagraphMUI>
-					Прокрутите колесиком вниз и выберите каталог расширений для
-					Яндекс.Браузера.{' '}
+					Перезапустите браузер и наслаждайтесь свободным серфингом
 				</ParagraphMUI>
-				<ContainerImgMUI>
-					<ImgMUI
-						src="/image/ydxCatalog.jpg"
-						alt="каталог расширений браузера"
-					/>
-				</ContainerImgMUI>
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI src="/image/yandexDop.jpg" alt="img" />*/}
+				{/*</ContainerImgMUI>*/}
 
-				<ParagraphMUI>
-					В поисковой строке напишите VPN и скачайте. Перезапустите
-					браузер, зайдите на сайт и наслаждайтесь шопингом!{' '}
-				</ParagraphMUI>
+				{/*<ParagraphMUI>*/}
+				{/*	Прокрутите колесиком вниз и выберите каталог расширений для*/}
+				{/*	Яндекс.Браузера.{' '}*/}
+				{/*</ParagraphMUI>*/}
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI*/}
+				{/*		src="/image/ydxCatalog.jpg"*/}
+				{/*		alt="каталог расширений браузера"*/}
+				{/*	/>*/}
+				{/*</ContainerImgMUI>*/}
+
+				{/*<ParagraphMUI>*/}
+				{/*	В поисковой строке напишите VPN и скачайте. Перезапустите*/}
+				{/*	браузер, зайдите на сайт и наслаждайтесь шопингом!{' '}*/}
+				{/*</ParagraphMUI>*/}
+
 			</ContainerTextMUI>
 			<ContainerTextMUI>
 				<H3MUI>2. Google Chrome</H3MUI>
 				<ParagraphMUI>
-					Запустите браузер. В правой верхней части экрана нажмите на
-					кнопку с дополнительными функциями. В открывшемся окне
-					выберите Дополнительные инструменты – Расширения.
+					В правом верхнем углу нажмите на троеточие. Далее, переходим в «Дополнительные инструменты», потом «Расширения».
 				</ParagraphMUI>
-
-				<ContainerImgMUI>
-					<ImgMUI src="/image/ChromSettings.jpg" alt="img" />
-					<ImgMUI src="/image/ChromSettingsMore.jpg" alt="img" />
-				</ContainerImgMUI>
 				<ParagraphMUI>
-					В расширениях перейдите на интернет-магазин Chrome. В строке
-					«Поиск по магазину» напишите VPN и скачайте.
+					В поиске напишите «VPN».
 				</ParagraphMUI>
-				<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />
+				<ParagraphMUI>
+					Установите выбранное расширение.
+				</ParagraphMUI>
+				{/*<ContainerImgMUI>*/}
+				{/*	<ImgMUI src="/image/ChromSettings.jpg" alt="img" />*/}
+				{/*	<ImgMUI src="/image/ChromSettingsMore.jpg" alt="img" />*/}
+				{/*</ContainerImgMUI>*/}
+				{/*<ParagraphMUI>*/}
+				{/*	В расширениях перейдите на интернет-магазин Chrome. В строке*/}
+				{/*	«Поиск по магазину» напишите VPN и скачайте.*/}
+				{/*</ParagraphMUI>*/}
+				{/*<ImgMUI src="/image/ChromShop.jpg" alt="магазин google" />*/}
 			</ContainerTextMUI>
 
 			<ContainerTextMUI>

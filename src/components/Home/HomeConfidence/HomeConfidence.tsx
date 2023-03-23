@@ -12,7 +12,7 @@ const HomeConfidence: FC = () => {
 			<WrapperMUI>
 				<ConfidenceTextMUI>
 					<HomeSectionTitle
-						title='Почему именно мы?'
+						title='Почему выбирают Нас?'
 					/>
 					<OctoContainerMUI>
 						<OctoTitleMUI>

@@ -16,7 +16,7 @@ const HomeAboutText: FC = () => {
 			/>
 
 			<ParagraphMUI>
-				<SpanMUI>Octo global</SpanMUI> - сервис по доставке ваших покупок из Европы.  Вы можете воспользоваться всеми <SpanMUI>преимуществами европейского покупателя</SpanMUI>.  Помощь при оплате товаров.
+				<SpanMUI>Octo Global</SpanMUI> - сервис по доставке ваших покупок из Европы.  Вы можете воспользоваться всеми <SpanMUI>преимуществами европейского покупателя</SpanMUI>.  Выкуп товаров.
 			</ParagraphMUI>
 			<ParagraphMUI>
 
@@ -26,17 +26,17 @@ const HomeAboutText: FC = () => {
 				Если вы хотите привезти крупногабаритный груз или коммерческую партию товара, то Мы поможем Вам в поиске, оплате и доставке.
 			</ParagraphMUI>
 			<ParagraphMUI>
-				<SpanMUI>Служба поддержки в России и Европе</SpanMUI>
+				<SpanMUI>Служба поддержки в России и Европе поможет на любом этапе.</SpanMUI>
 			</ParagraphMUI>
 			<FooterRowIconsMUI>
 				<SvgLinkUI
-					title='Поддрежака в России'					
+					title='Поддрежака в России'
 					href={WHATSAPP(SUPPORT_PHONE_RU)}
 				>
 					<WhatsUpIcon/>
 				</SvgLinkUI>
 				<SvgLinkUI
-					title='Поддрежака в Германии'					
+					title='Поддрежака в Германии'
 					href={WHATSAPP(SUPPORT_PHONE_DE)}
 				>
 					<WhatsUpIcon/>

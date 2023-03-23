@@ -38,7 +38,7 @@ const HomeWorkExp: FC = () => {
 		<Container>
 			<InnerContainerMUI ref={refWork}>
 				<HomeSectionTitle
-					title='Как это работает'
+					title='Как это работает?'
 				/>
 				<WrapperMUI>
 					<HomeWorkExpImg/>

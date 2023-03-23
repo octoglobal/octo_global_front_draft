@@ -12,7 +12,7 @@ export const useAboutUsStyle = () => {
 		[theme.breakpoints.down(1360)]:{
 			margin:'60px auto 80px',
 		},
-		
+
 		[theme.breakpoints.down(961)]:{
 			margin:'40px 0px 70px 0px',
 			padding: '0px 28px',
@@ -36,10 +36,10 @@ export const useAboutUsStyle = () => {
 			fontSize: '24px',
 		}
 	}));
-	const ParagraphMUI = styled('p')(({theme}) => ({
+	const ParagraphMUI = styled('p')<{isNotBottom?: boolean}>(({theme, isNotBottom}) => ({
 		fontSize: '20px',
 		fontWeight: 300,
-		marginBottom: 20,
+		marginBottom: isNotBottom ? 0 : '20px',
 		lineHeight: '117%',
 		textAlign: 'justify',
 		[theme.breakpoints.down(961)]:{
