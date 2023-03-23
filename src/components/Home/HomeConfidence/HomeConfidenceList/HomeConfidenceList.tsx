@@ -3,13 +3,10 @@ import { useHomeConfidenceListStyles } from '@/components/Home/HomeConfidence/Ho
 import HomeConfidenceListItem from '../HomeConfidenceListItem/HomeConfidenceListItem';
 
 const homeConfidenceData = [
-	'Наши услуги для вас бесплатны',
 	'Помогаем с поиском и оплатой любого товара',
-	'Консультируем на любом этапе',
-	'Заполняем экспортную декларацию',
-	'Покупаем на территории Европейского Союза',
-	'Заказываем любой вид товара от одежды до бытовой техники',
-	'Предоставляем возможность оплачивать криптовалюте',
+	'Консультируем и помогаем на любом этапе',
+	'Консультируем и помогаем на любом этапе',
+	'Покупаем на территории ЕС',
 ];
 
 const HomeConfidenceList: FC = () => {
