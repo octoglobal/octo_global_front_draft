@@ -6,8 +6,8 @@ const HowItWorks = () => {
 		<ContainerMUI>
 			<ULMUI>
 				<LIMUI>Создайте личный кабинет на Octo Global.</LIMUI>
-				<LIMUI>Выбирайте любой товар из <AMUI href="/shops" target="_blank" rel="noreferrer">списка магазинов у нас на сайте</AMUI> или из любого другого магазина Европы.</LIMUI>
-				<LIMUI>Если у вас нет возможности оплатить товар самостоятельно, пополните ваш личный счет переводом на рублевую карту</LIMUI>
+				<LIMUI>Выбирайте любой товар из <AMUI style={{textDecoration: 'underline'}} href="/shops" target="_blank" rel="noreferrer">списка магазинов у нас на сайте</AMUI> или из любого другого магазина Европы.</LIMUI>
+				<LIMUI>Если у вас нет возможности оплатить товар самостоятельно, пополните ваш личный счет переводом на рублевую карту.</LIMUI>
 				<LIMUI>Воспользуйтесь услугой <AMUI href="/account/instruction" target="_blank" rel="noreferrer">«Выкуп товара».</AMUI></LIMUI>
 				<LIMUI>Вы получите письмо, когда товар поступит к нам на склад.</LIMUI>
 				<LIMUI>Укажите конечный адрес доставки и оформите заявку для отправки посылки.</LIMUI>
