@@ -86,11 +86,11 @@ const Tabs: FC<ITabsProps> = ({data}) => {
 
 	return (
 		<TabWrapperUI>
-			<TabsUnstyled defaultValue={router.asPath}>
+			<TabsUnstyled className="TabsUnstyled-root TabsUnstyled-horizontal" defaultValue={router.asPath}>
 
 				{isMobile? isAdmin? null:<EuroExchange></EuroExchange>: null}
 
-				<TabsListUI>
+				<TabsListUI className='TabsListUnstyled-root TabsListUnstyled-horizontal'>
 					{isMobile? null: isAdmin? null:<EuroExchange></EuroExchange>}
 					{data.map((item) => (
 						<React.Fragment key={item.title}>
