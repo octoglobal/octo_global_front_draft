@@ -82,7 +82,7 @@ const Questions = () => {
 			</CollapseInfo>
 
 			<CollapseInfo
-				title={'Пополнение личного счета.'}
+				title={'Пополнение личного счета'}
 				open={false}
 			>
 				<ReplenishmentInfo/>
@@ -96,7 +96,7 @@ const Questions = () => {
 			</CollapseInfo>
 
 			<CollapseInfo
-				title={'Стоимость наших услуг '}
+				title={'Стоимость наших услуг'}
 				open={costServices}
 			>
 				<CostServices/>

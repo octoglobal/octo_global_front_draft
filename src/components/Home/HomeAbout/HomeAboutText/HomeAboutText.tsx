@@ -16,7 +16,7 @@ const HomeAboutText: FC = () => {
 			/>
 
 			<ParagraphMUI>
-				<SpanMUI>Octo Global</SpanMUI> - сервис по доставке ваших покупок из Европы.  Вы можете воспользоваться всеми <SpanMUI>преимуществами европейского покупателя</SpanMUI>.  Выкуп товаров.
+				<SpanMUI>Octo Global</SpanMUI> - сервис по доставке ваших покупок из Европы.  Вы можете воспользоваться всеми <SpanMUI>преимуществами европейского покупателя</SpanMUI>.
 			</ParagraphMUI>
 			<ParagraphMUI>
 
@@ -29,10 +29,10 @@ const HomeAboutText: FC = () => {
 				<SpanMUI>Служба поддержки в России и Европе поможет на любом этапе.</SpanMUI>
 			</ParagraphMUI>
 			<ParagraphMUI>
-				Комиссия составляет 10% от стоимости заказа
+				Наша комиссия составляет 10% от стоимости заказа
 			</ParagraphMUI>
 			<ParagraphMUI>
-				Курс Евро к рублю по которому возможен перевод вы видите у нас на сайте в личном кабинете
+				Курс Евро к рублю вы видите у нас на сайте в личном кабинете.
 			</ParagraphMUI>
 			<FooterRowIconsMUI>
 				<SvgLinkUI

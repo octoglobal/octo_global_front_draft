@@ -6,7 +6,7 @@ const CostServices = () => {
 		<ContainerMUI>
 			<ParagraphMUI>
 				<strong>
-					Выкуп товара 10%
+					Наша комиссия 10%
 				</strong>
 			</ParagraphMUI>
 			<ParagraphMUI>
