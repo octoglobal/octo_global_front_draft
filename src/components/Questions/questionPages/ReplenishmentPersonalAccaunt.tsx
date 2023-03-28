@@ -11,7 +11,7 @@ const ReplenishmentPersonalAccaunt = () => {
 			</ParagraphMUI>
 			<CustomULMUI>
 				<CustomLIMUI>
-					Переводом в рублях на карту по курсу евро
+					Переводом в рублях на карту по курсу сервиса
 				</CustomLIMUI>
 				<CustomLIMUI>
 					Переводом Bitcoin на крипто кошелек
