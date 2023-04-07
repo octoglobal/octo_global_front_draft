@@ -17,7 +17,7 @@ const WaitProductItem = (props: WaitProductItemProps) => {
 	} = props;
 
 	return (
-		<ContainerSC>
+		<>
 			<ItemSC>
 				<CheckboxContainerSC>
 					<CheckboxUIV3
@@ -39,10 +39,10 @@ const WaitProductItem = (props: WaitProductItemProps) => {
 			<ItemSC>{orderLongId}</ItemSC>
 			<ItemSC>{orderTrackNumber}</ItemSC>
 			<ItemSC>{userName}</ItemSC>
-		</ContainerSC>
+		</>
 	);
 };
 
-const {ContainerSC, ItemSC, CheckboxContainerSC} = useWaitProductItemStyles();
+const {ItemSC, CheckboxContainerSC} = useWaitProductItemStyles();
 
 export default React.memo(WaitProductItem);

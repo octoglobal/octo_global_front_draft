@@ -1,14 +1,5 @@
 import {styled} from '@mui/system';
 
-const ContainerSC = styled('ul')`
-	display: flex;
-	margin-bottom: 15px;
-	
-	& > *:last-child {
-		margin-right: 0;
-	}
-`;
-
 const ItemSC = styled('li')`
   list-style-type: none;
 	
@@ -19,7 +10,8 @@ const ItemSC = styled('li')`
 	
 	display: flex;
 	align-items: center;
-	margin-right: 33px;
+	margin-bottom: 15px;
+	margin-right: 5px;
 `;
 
 const CheckboxContainerSC = styled('div')`
@@ -29,7 +21,6 @@ const CheckboxContainerSC = styled('div')`
 `;
 
 export const useWaitProductItemStyles = () => ({
-	ContainerSC,
 	ItemSC,
 	CheckboxContainerSC,
 });

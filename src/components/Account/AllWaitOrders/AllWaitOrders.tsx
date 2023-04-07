@@ -8,28 +8,26 @@ const AllWaitOrders = () => {
 
 	return (
 		<ContainerSC>
-			<ColumnTopSC>
-				<ColumnTopRowSC>
-					<ColumnRowTopItemSC>User ID</ColumnRowTopItemSC>
-					<ColumnRowTopItemSC>Product name</ColumnRowTopItemSC>
-					<ColumnRowTopItemSC>E-Mail</ColumnRowTopItemSC>
-					<ColumnRowTopItemSC>Order</ColumnRowTopItemSC>
-					<ColumnRowTopItemSC>Track number</ColumnRowTopItemSC>
-					<ColumnRowTopItemSC>Name</ColumnRowTopItemSC>
-				</ColumnTopRowSC>
-			</ColumnTopSC>
-			{productList.map((productItem) => (
-				<WaitProductItem
-					key={productItem.orderId}
-					control={control}
-					onClick={onSubmitInputValue(productItem.orderId, productItem.orderInvoiceCheck)}
-					{...productItem}
-				/>
-			))}
+			<ColumnSC>
+				<ColumnRowTopItemSC paddingLeft={12}>User ID</ColumnRowTopItemSC>
+				<ColumnRowTopItemSC>Product name</ColumnRowTopItemSC>
+				<ColumnRowTopItemSC>E-Mail</ColumnRowTopItemSC>
+				<ColumnRowTopItemSC>Order</ColumnRowTopItemSC>
+				<ColumnRowTopItemSC>Track number</ColumnRowTopItemSC>
+				<ColumnRowTopItemSC>Name</ColumnRowTopItemSC>
+				{productList.map((productItem) => (
+					<WaitProductItem
+						key={productItem.orderId}
+						control={control}
+						onClick={onSubmitInputValue(productItem.orderId, productItem.orderInvoiceCheck)}
+						{...productItem}
+					/>
+				))}
+			</ColumnSC>
 		</ContainerSC>
 	);
 };
 
-const {ContainerSC, ColumnTopRowSC, ColumnTopSC, ColumnRowTopItemSC} = useAllWitOrdersStyles();
+const {ContainerSC, ColumnSC, ColumnRowTopItemSC} = useAllWitOrdersStyles();
 
 export default React.memo(AllWaitOrders);
