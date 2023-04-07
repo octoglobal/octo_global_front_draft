@@ -31,10 +31,12 @@ const WaitProductItem = (props: WaitProductItemProps) => {
 						}}
 						myValue={orderInvoiceCheck}
 					/>
+					<span>
+						{userId}
+					</span>
 				</CheckboxContainerSC>
-				{userId}
 			</ItemSC>
-			<ItemSC>product name</ItemSC>
+			<ItemSC whiteSpace="pre-wrap">product name product name product name product name product name product</ItemSC>
 			<ItemSC>{userEmail}</ItemSC>
 			<ItemSC>{orderLongId}</ItemSC>
 			<ItemSC>{orderTrackNumber}</ItemSC>

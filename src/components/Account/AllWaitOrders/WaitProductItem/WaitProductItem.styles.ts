@@ -1,23 +1,26 @@
 import {styled} from '@mui/system';
 
-const ItemSC = styled('li')`
-  list-style-type: none;
+const ItemSC = styled('li')<{whiteSpace?: string}>`
+	max-width: 198px;
 	
-	color: #000000;
 	font-size: 20px;
 	line-height: 23px;
 	font-weight: 400;
 	
-	display: flex;
-	align-items: center;
-	margin-bottom: 15px;
-	margin-right: 5px;
+	padding-bottom: 15px;
+	margin-right: 20px;
+	
+	overflow-x: scroll;
+	white-space: ${({whiteSpace = 'nowrap'}) => whiteSpace};
+	text-overflow: ellipsis;
 `;
 
 const CheckboxContainerSC = styled('div')`
-	margin-right: 13px;
 	display: flex;
 	align-items: center;
+	& > span {
+		margin-right: 13px;
+	}
 `;
 
 export const useWaitProductItemStyles = () => ({
