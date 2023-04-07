@@ -13,12 +13,18 @@ const ContainerSC = styled('section')`
 		width: 100%;
 		height: 1.5px;
 		background-color: #C4C4C4;
+		@media(max-width: 768px) {
+			display: none;
+		}
 	}
 `;
 
-const ColumnSC = styled('ul')`
+const ColumnSC = styled('div')`
 	display: grid;
 	grid-template-columns: repeat(6, auto);
+	@media(max-width: 768px) {
+		display: block;
+	}
 `;
 
 
@@ -30,6 +36,9 @@ const ColumnRowTopItemSC = styled('li')<{paddingLeft?: number}>`
 	font-weight: 400;
 	margin-bottom: 32px;
 	padding-left: ${({paddingLeft}) => paddingLeft}px;
+	@media(max-width: 768px) {
+		display: none;
+	} 
 `;
 
 export const useAllWitOrdersStyles = () => ({

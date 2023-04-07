@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useWaitProductItemStyles} from '@/components/Account/AllWaitOrders/WaitProductItem/WaitProductItem.styles';
 import { WaitProductItemProps } from '@/components/Account/AllWaitOrders/types';
 import CheckboxUIV3 from '../../../../UI/UIComponents/CheckboxUIV3/CheckboxUIV3';
+import {useMediaQuery} from '@mui/material';
 
 const WaitProductItem = (props: WaitProductItemProps) => {
 	const {
 		userId,
 		orderId,
+		orderTitle,
 		orderInvoiceCheck,
 		userEmail,
 		orderLongId,
@@ -16,8 +18,17 @@ const WaitProductItem = (props: WaitProductItemProps) => {
 		onClick,
 	} = props;
 
+	const isTablet = useMediaQuery('(max-width: 768px)');
+
+	const Container = useMemo(() => {
+		if (isTablet) {
+			return ContainerSC;
+		}
+		return React.Fragment;
+	}, [isTablet]);
+
 	return (
-		<>
+		<Container>
 			<ItemSC>
 				<CheckboxContainerSC>
 					<CheckboxUIV3
@@ -32,19 +43,34 @@ const WaitProductItem = (props: WaitProductItemProps) => {
 						myValue={orderInvoiceCheck}
 					/>
 					<span>
-						{userId}
+						{isTablet && 'id '}{userId}
 					</span>
 				</CheckboxContainerSC>
 			</ItemSC>
-			<ItemSC whiteSpace="pre-wrap">product name product name product name product name product name product</ItemSC>
-			<ItemSC>{userEmail}</ItemSC>
-			<ItemSC>{orderLongId}</ItemSC>
-			<ItemSC>{orderTrackNumber}</ItemSC>
-			<ItemSC>{userName}</ItemSC>
-		</>
+			<ItemSC whiteSpace="pre-wrap">
+				<span>{isTablet && 'Product name: '}</span>
+				{orderTitle || ''}
+			</ItemSC>
+			<ItemSC>
+				<span>{isTablet && 'E-Mail: '}</span>
+				{userEmail}
+			</ItemSC>
+			<ItemSC>
+				<span>{isTablet && 'Order: '}</span>
+				{orderLongId}
+			</ItemSC>
+			<ItemSC>
+				<span>{isTablet && 'Track number: '}</span>
+				{orderTrackNumber}
+			</ItemSC>
+			<ItemSC>
+				<span>{isTablet && 'Name: '}</span>
+				{userName}
+			</ItemSC>
+		</Container>
 	);
 };
 
-const {ItemSC, CheckboxContainerSC} = useWaitProductItemStyles();
+const {ContainerSC, ItemSC, CheckboxContainerSC} = useWaitProductItemStyles();
 
 export default React.memo(WaitProductItem);
