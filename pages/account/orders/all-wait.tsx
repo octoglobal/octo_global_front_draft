@@ -1,15 +1,14 @@
 import React from 'react';
 import AccountPage from '@/components/Account/Account';
-import AccountAllProductList from '@/components/Account/AccountAllProductList/AccountAllProductList';
 import HeaderLayout from '@/layout/HeaderLayout/HeaderLayout';
+import AllWaitOrders from '@/components/Account/AllWaitOrders/AllWaitOrders';
 
 const AllWait = () => {
-	
+
 	return (
 		<HeaderLayout>
-
 			<AccountPage allWaitPage={true}>
-				<AccountAllProductList/>
+				<AllWaitOrders/>
 			</AccountPage>
 		</HeaderLayout>
 	);
