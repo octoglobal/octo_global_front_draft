@@ -1,13 +1,7 @@
 import React from 'react';
 import {useWaitProductItemStyles} from '@/components/Account/AllWaitOrders/WaitProductItem/WaitProductItem.styles';
-import {IWaitProductsData} from '@/components/Account/AllWaitOrders/types';
+import { WaitProductItemProps } from '@/components/Account/AllWaitOrders/types';
 import CheckboxUIV3 from '../../../../UI/UIComponents/CheckboxUIV3/CheckboxUIV3';
-import {Control, FieldValue} from 'react-hook-form';
-
-type WaitProductItemProps = IWaitProductsData & {
-	control: Control<FieldValue<any>>;
-	onClick: () => void;
-}
 
 const WaitProductItem = (props: WaitProductItemProps) => {
 	const {

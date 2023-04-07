@@ -9,5 +9,9 @@ export interface IWaitProductsData {
   orderTrackNumber: number,
   userName: string,
   orderInvoiceCheck: boolean,
+}
 
+export type WaitProductItemProps = IWaitProductsData & {
+  control: Control<FieldValue<any>>;
+  onClick: () => void;
 }
