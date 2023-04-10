@@ -17,7 +17,6 @@ const ItemSC = styled('div')<{whiteSpace?: string}>`
 	
 	overflow-x: scroll;
 	white-space: ${({whiteSpace = 'nowrap'}) => whiteSpace};
-	text-overflow: ellipsis;
 	@media(max-width: 768px) {
 		max-width: none;
 		font-size: 16px;
