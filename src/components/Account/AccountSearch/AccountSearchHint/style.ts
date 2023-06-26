@@ -60,6 +60,9 @@ export const useAccountSearchHintStyles = () => {
 	}));
 	const HintItemNameMUI = styled('div')(({ theme }) => ({
 		width: '28%',
+		textOverflow: 'ellipsis',
+		overflow: 'hidden',
+		whiteSpace: 'nowrap',
 
 		[theme.breakpoints.down(770)]: {
 			width: '100%',
