@@ -1,5 +1,5 @@
-import TabsListUnstyled from '@mui/base/TabsListUnstyled';
-import TabUnstyled from '@mui/base/TabUnstyled';
+import TabsListUnstyled from '@mui/base/TabsList';
+import TabUnstyled from '@mui/base/Tab';
 
 import {styled} from '@mui/material';
 import { keyframes } from '@mui/system';
@@ -36,7 +36,7 @@ export const useTabsStyle = () => {
 		justifyContent: 'center',
 	}));
 
-	const TabUI = styled(TabUnstyled, {
+	const TabUI = styled('div', {
 		shouldForwardProp: (prop) => prop !== 'active',
 	})<{active?: boolean}>(({active, theme}) => ({
 		fontStyle: 'normal',
@@ -51,7 +51,7 @@ export const useTabsStyle = () => {
 		border: 'none',
 
 		width: 'auto',
-		margin: '0 auto',
+		margin: '0 27.5px',
 		padding: '5px 0px 0px',
 		display: 'flex',
 		justifyContent: 'center',

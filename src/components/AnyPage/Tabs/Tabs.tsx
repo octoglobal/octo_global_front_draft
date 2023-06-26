@@ -1,5 +1,5 @@
 import React, {FC, useCallback} from 'react';
-import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsUnstyled from '@mui/base/Tabs';
 // import Link from 'next/link';
 
 import {ObjectHasOwnProperty} from '@/services/services';
